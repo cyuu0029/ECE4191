@@ -1,0 +1,1488 @@
+ARM GAS  C:\Users\raymo\AppData\Local\Temp\ccIB1g08.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	echo_flag
+  20              		.bss
+  21              		.type	echo_flag, %object
+  22              		.size	echo_flag, 1
+  23              	echo_flag:
+  24 0000 00       		.space	1
+  25              		.global	max_count
+  26              		.data
+  27              		.align	1
+  28              		.type	max_count, %object
+  29              		.size	max_count, 2
+  30              	max_count:
+  31 0000 FFFF     		.short	-1
+  32              		.comm	echo_distance,2,2
+  33              		.global	mux_select
+  34              		.bss
+  35              		.type	mux_select, %object
+  36              		.size	mux_select, 1
+  37              	mux_select:
+  38 0001 00       		.space	1
+  39              		.global	left_wheel_count
+  40 0002 0000     		.align	2
+  41              		.type	left_wheel_count, %object
+  42              		.size	left_wheel_count, 4
+  43              	left_wheel_count:
+  44 0004 00000000 		.space	4
+  45              		.global	right_wheel_count
+  46              		.align	2
+  47              		.type	right_wheel_count, %object
+  48              		.size	right_wheel_count, 4
+  49              	right_wheel_count:
+  50 0008 00000000 		.space	4
+  51              		.comm	serial_output,150,4
+  52              		.global	duty_cyle
+  53              		.data
+  54 0002 0000     		.align	2
+  55              		.type	duty_cyle, %object
+  56              		.size	duty_cyle, 4
+  57              	duty_cyle:
+ARM GAS  C:\Users\raymo\AppData\Local\Temp\ccIB1g08.s 			page 2
+
+
+  58 0004 000080BF 		.word	-1082130432
+  59              		.comm	left_motor,16,4
+  60              		.comm	right_motor,16,4
+  61              		.section	.text.Timer_Int_Handler,"ax",%progbits
+  62              		.align	2
+  63              		.global	Timer_Int_Handler
+  64              		.thumb
+  65              		.thumb_func
+  66              		.type	Timer_Int_Handler, %function
+  67              	Timer_Int_Handler:
+  68              	.LFB64:
+  69              		.file 1 "main.c"
+   1:main.c        **** /* ========================================
+   2:main.c        ****  *
+   3:main.c        ****  * Copyright YOUR COMPANY, THE YEAR
+   4:main.c        ****  * All Rights Reserved
+   5:main.c        ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:main.c        ****  *
+   7:main.c        ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:main.c        ****  * WHICH IS THE PROPERTY OF your company.
+   9:main.c        ****  *
+  10:main.c        ****  * ========================================
+  11:main.c        **** */
+  12:main.c        **** #include "project.h"
+  13:main.c        **** #include <stdio.h>
+  14:main.c        **** 
+  15:main.c        **** struct Motor {
+  16:main.c        ****     float duty_cycle;
+  17:main.c        ****     float error;
+  18:main.c        ****     float rps;
+  19:main.c        ****     int wheel_radius; // wheel radius in cm
+  20:main.c        **** };
+  21:main.c        **** 
+  22:main.c        **** void Drive_Left_Motor(float duty_cycle);
+  23:main.c        ****   
+  24:main.c        **** uint8_t echo_flag = 0;
+  25:main.c        **** uint16_t max_count = 65535;
+  26:main.c        **** uint16_t echo_distance;
+  27:main.c        **** uint8_t mux_select = 0;
+  28:main.c        **** int32 left_wheel_count = 0;
+  29:main.c        **** int32 right_wheel_count = 0;
+  30:main.c        **** char serial_output[150];
+  31:main.c        **** float duty_cyle= -1;
+  32:main.c        **** struct Motor left_motor;
+  33:main.c        **** struct Motor right_motor;
+  34:main.c        **** 
+  35:main.c        **** 
+  36:main.c        ****   
+  37:main.c        **** CY_ISR( Timer_Int_Handler ) {
+  70              		.loc 1 37 0
+  71              		.cfi_startproc
+  72              		@ args = 0, pretend = 0, frame = 0
+  73              		@ frame_needed = 1, uses_anonymous_args = 0
+  74 0000 80B5     		push	{r7, lr}
+  75              		.cfi_def_cfa_offset 8
+  76              		.cfi_offset 7, -8
+  77              		.cfi_offset 14, -4
+ARM GAS  C:\Users\raymo\AppData\Local\Temp\ccIB1g08.s 			page 3
+
+
+  78 0002 00AF     		add	r7, sp, #0
+  79              		.cfi_def_cfa_register 7
+  38:main.c        ****     // read centimeters
+  39:main.c        ****     echo_distance = Timer_Echo_ReadCapture();
+  80              		.loc 1 39 0
+  81 0004 FFF7FEFF 		bl	Timer_Echo_ReadCapture
+  82 0008 0346     		mov	r3, r0
+  83 000a 1A46     		mov	r2, r3
+  84 000c 064B     		ldr	r3, .L2
+  85 000e 1A80     		strh	r2, [r3]	@ movhi
+  40:main.c        ****     echo_flag = 1;
+  86              		.loc 1 40 0
+  87 0010 064B     		ldr	r3, .L2+4
+  88 0012 0122     		movs	r2, #1
+  89 0014 1A70     		strb	r2, [r3]
+  41:main.c        ****     Timer_Echo_WriteCounter(max_count);
+  90              		.loc 1 41 0
+  91 0016 064B     		ldr	r3, .L2+8
+  92 0018 1B88     		ldrh	r3, [r3]
+  93 001a 1846     		mov	r0, r3
+  94 001c FFF7FEFF 		bl	Timer_Echo_WriteCounter
+  42:main.c        ****     // clear the interrupt
+  43:main.c        ****     Timer_Echo_ReadStatusRegister();
+  95              		.loc 1 43 0
+  96 0020 FFF7FEFF 		bl	Timer_Echo_ReadStatusRegister
+  44:main.c        **** }
+  97              		.loc 1 44 0
+  98 0024 00BF     		nop
+  99 0026 80BD     		pop	{r7, pc}
+ 100              	.L3:
+ 101              		.align	2
+ 102              	.L2:
+ 103 0028 00000000 		.word	echo_distance
+ 104 002c 00000000 		.word	echo_flag
+ 105 0030 00000000 		.word	max_count
+ 106              		.cfi_endproc
+ 107              	.LFE64:
+ 108              		.size	Timer_Int_Handler, .-Timer_Int_Handler
+ 109              		.global	__aeabi_i2d
+ 110              		.global	__aeabi_ddiv
+ 111              		.global	__aeabi_d2f
+ 112              		.global	__aeabi_f2d
+ 113              		.section	.rodata
+ 114              		.align	2
+ 115              	.LC0:
+ 116 0000 54657374 		.ascii	"Test: %f\000"
+ 116      3A202566 
+ 116      00
+ 117              		.section	.text.Wheel_Vel_Int_Handler,"ax",%progbits
+ 118              		.align	2
+ 119              		.global	Wheel_Vel_Int_Handler
+ 120              		.thumb
+ 121              		.thumb_func
+ 122              		.type	Wheel_Vel_Int_Handler, %function
+ 123              	Wheel_Vel_Int_Handler:
+ 124              	.LFB65:
+  45:main.c        **** 
+ARM GAS  C:\Users\raymo\AppData\Local\Temp\ccIB1g08.s 			page 4
+
+
+  46:main.c        **** CY_ISR( Wheel_Vel_Int_Handler ) {
+ 125              		.loc 1 46 0
+ 126              		.cfi_startproc
+ 127              		@ args = 0, pretend = 0, frame = 8
+ 128              		@ frame_needed = 1, uses_anonymous_args = 0
+ 129 0000 90B5     		push	{r4, r7, lr}
+ 130              		.cfi_def_cfa_offset 12
+ 131              		.cfi_offset 4, -12
+ 132              		.cfi_offset 7, -8
+ 133              		.cfi_offset 14, -4
+ 134 0002 83B0     		sub	sp, sp, #12
+ 135              		.cfi_def_cfa_offset 24
+ 136 0004 00AF     		add	r7, sp, #0
+ 137              		.cfi_def_cfa_register 7
+  47:main.c        ****     int32 left_new = QuadDec_L_GetCounter();
+ 138              		.loc 1 47 0
+ 139 0006 FFF7FEFF 		bl	QuadDec_L_GetCounter
+ 140 000a 7860     		str	r0, [r7, #4]
+  48:main.c        ****     int32 left_diff = left_new - left_wheel_count;
+ 141              		.loc 1 48 0
+ 142 000c 204B     		ldr	r3, .L5+16
+ 143 000e 1B68     		ldr	r3, [r3]
+ 144 0010 7A68     		ldr	r2, [r7, #4]
+ 145 0012 D31A     		subs	r3, r2, r3
+ 146 0014 3B60     		str	r3, [r7]
+  49:main.c        ****     left_wheel_count = left_new;
+ 147              		.loc 1 49 0
+ 148 0016 1E4A     		ldr	r2, .L5+16
+ 149 0018 7B68     		ldr	r3, [r7, #4]
+ 150 001a 1360     		str	r3, [r2]
+  50:main.c        ****     left_motor.rps = (left_diff/0.02)/3591.92;
+ 151              		.loc 1 50 0
+ 152 001c 3868     		ldr	r0, [r7]
+ 153 001e FFF7FEFF 		bl	__aeabi_i2d
+ 154 0022 17A3     		adr	r3, .L5
+ 155 0024 D3E90023 		ldrd	r2, [r3]
+ 156 0028 FFF7FEFF 		bl	__aeabi_ddiv
+ 157 002c 0346     		mov	r3, r0
+ 158 002e 0C46     		mov	r4, r1
+ 159 0030 1846     		mov	r0, r3
+ 160 0032 2146     		mov	r1, r4
+ 161 0034 14A3     		adr	r3, .L5+8
+ 162 0036 D3E90023 		ldrd	r2, [r3]
+ 163 003a FFF7FEFF 		bl	__aeabi_ddiv
+ 164 003e 0346     		mov	r3, r0
+ 165 0040 0C46     		mov	r4, r1
+ 166 0042 1846     		mov	r0, r3
+ 167 0044 2146     		mov	r1, r4
+ 168 0046 FFF7FEFF 		bl	__aeabi_d2f
+ 169 004a 0246     		mov	r2, r0
+ 170 004c 114B     		ldr	r3, .L5+20
+ 171 004e 9A60     		str	r2, [r3, #8]	@ float
+  51:main.c        ****     sprintf(serial_output, "Test: %f", left_motor.rps);
+ 172              		.loc 1 51 0
+ 173 0050 104B     		ldr	r3, .L5+20
+ 174 0052 9B68     		ldr	r3, [r3, #8]	@ float
+ 175 0054 1846     		mov	r0, r3
+ARM GAS  C:\Users\raymo\AppData\Local\Temp\ccIB1g08.s 			page 5
+
+
+ 176 0056 FFF7FEFF 		bl	__aeabi_f2d
+ 177 005a 0346     		mov	r3, r0
+ 178 005c 0C46     		mov	r4, r1
+ 179 005e 1A46     		mov	r2, r3
+ 180 0060 2346     		mov	r3, r4
+ 181 0062 0D49     		ldr	r1, .L5+24
+ 182 0064 0D48     		ldr	r0, .L5+28
+ 183 0066 FFF7FEFF 		bl	sprintf
+  52:main.c        ****     UART_PutString(serial_output);
+ 184              		.loc 1 52 0
+ 185 006a 0C48     		ldr	r0, .L5+28
+ 186 006c FFF7FEFF 		bl	UART_PutString
+  53:main.c        ****     UART_PutCRLF(0x0D);
+ 187              		.loc 1 53 0
+ 188 0070 0D20     		movs	r0, #13
+ 189 0072 FFF7FEFF 		bl	UART_PutCRLF
+  54:main.c        **** }
+ 190              		.loc 1 54 0
+ 191 0076 00BF     		nop
+ 192 0078 0C37     		adds	r7, r7, #12
+ 193              		.cfi_def_cfa_offset 12
+ 194 007a BD46     		mov	sp, r7
+ 195              		.cfi_def_cfa_register 13
+ 196              		@ sp needed
+ 197 007c 90BD     		pop	{r4, r7, pc}
+ 198              	.L6:
+ 199 007e 00BF     		.align	3
+ 200              	.L5:
+ 201 0080 7B14AE47 		.word	1202590843
+ 202 0084 E17A943F 		.word	1066695393
+ 203 0088 A4703D0A 		.word	171798692
+ 204 008c D70FAC40 		.word	1085018071
+ 205 0090 00000000 		.word	left_wheel_count
+ 206 0094 00000000 		.word	left_motor
+ 207 0098 00000000 		.word	.LC0
+ 208 009c 00000000 		.word	serial_output
+ 209              		.cfi_endproc
+ 210              	.LFE65:
+ 211              		.size	Wheel_Vel_Int_Handler, .-Wheel_Vel_Int_Handler
+ 212              		.global	__aeabi_dadd
+ 213              		.section	.text.main,"ax",%progbits
+ 214              		.align	2
+ 215              		.global	main
+ 216              		.thumb
+ 217              		.thumb_func
+ 218              		.type	main, %function
+ 219              	main:
+ 220              	.LFB66:
+  55:main.c        **** 
+  56:main.c        **** 
+  57:main.c        **** 
+  58:main.c        **** int main(void)
+  59:main.c        **** {
+ 221              		.loc 1 59 0
+ 222              		.cfi_startproc
+ 223              		@ args = 0, pretend = 0, frame = 0
+ 224              		@ frame_needed = 1, uses_anonymous_args = 0
+ARM GAS  C:\Users\raymo\AppData\Local\Temp\ccIB1g08.s 			page 6
+
+
+ 225 0000 98B5     		push	{r3, r4, r7, lr}
+ 226              		.cfi_def_cfa_offset 16
+ 227              		.cfi_offset 3, -16
+ 228              		.cfi_offset 4, -12
+ 229              		.cfi_offset 7, -8
+ 230              		.cfi_offset 14, -4
+ 231 0002 00AF     		add	r7, sp, #0
+ 232              		.cfi_def_cfa_register 7
+  60:main.c        ****     left_motor.duty_cycle = 0;
+ 233              		.loc 1 60 0
+ 234 0004 324B     		ldr	r3, .L13+8
+ 235 0006 4FF00002 		mov	r2, #0
+ 236 000a 1A60     		str	r2, [r3]	@ float
+  61:main.c        ****     left_motor.error = 0;
+ 237              		.loc 1 61 0
+ 238 000c 304B     		ldr	r3, .L13+8
+ 239 000e 4FF00002 		mov	r2, #0
+ 240 0012 5A60     		str	r2, [r3, #4]	@ float
+  62:main.c        ****     left_motor.rps = 0;
+ 241              		.loc 1 62 0
+ 242 0014 2E4B     		ldr	r3, .L13+8
+ 243 0016 4FF00002 		mov	r2, #0
+ 244 001a 9A60     		str	r2, [r3, #8]	@ float
+  63:main.c        ****     left_motor.wheel_radius = 5;
+ 245              		.loc 1 63 0
+ 246 001c 2C4B     		ldr	r3, .L13+8
+ 247 001e 0522     		movs	r2, #5
+ 248 0020 DA60     		str	r2, [r3, #12]
+  64:main.c        ****     
+  65:main.c        ****     
+  66:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
+ 249              		.loc 1 66 0
+ 250              		.syntax unified
+ 251              	@ 66 "main.c" 1
+ 252 0022 62B6     		CPSIE   i
+ 253              	@ 0 "" 2
+  67:main.c        **** 
+  68:main.c        ****     // Start up code - enable UART, PWM and Timer used for ultrasonic module
+  69:main.c        ****     UART_Start();
+ 254              		.loc 1 69 0
+ 255              		.thumb
+ 256              		.syntax unified
+ 257 0024 FFF7FEFF 		bl	UART_Start
+  70:main.c        ****     Timer_Echo_Start();
+ 258              		.loc 1 70 0
+ 259 0028 FFF7FEFF 		bl	Timer_Echo_Start
+  71:main.c        ****     PWM_Trigger_Start();
+ 260              		.loc 1 71 0
+ 261 002c FFF7FEFF 		bl	PWM_Trigger_Start
+  72:main.c        ****     QuadDec_L_Start();
+ 262              		.loc 1 72 0
+ 263 0030 FFF7FEFF 		bl	QuadDec_L_Start
+  73:main.c        ****     PWM_Motor_L_Start();
+ 264              		.loc 1 73 0
+ 265 0034 FFF7FEFF 		bl	PWM_Motor_L_Start
+  74:main.c        **** 
+  75:main.c        ****     // Registration of Timer ISR
+ARM GAS  C:\Users\raymo\AppData\Local\Temp\ccIB1g08.s 			page 7
+
+
+  76:main.c        ****     Timer_Echo_Int_StartEx( Timer_Int_Handler );
+ 266              		.loc 1 76 0
+ 267 0038 2648     		ldr	r0, .L13+12
+ 268 003a FFF7FEFF 		bl	Timer_Echo_Int_StartEx
+  77:main.c        ****     Wheel_Vel_Int_StartEx( Wheel_Vel_Int_Handler );
+ 269              		.loc 1 77 0
+ 270 003e 2648     		ldr	r0, .L13+16
+ 271 0040 FFF7FEFF 		bl	Wheel_Vel_Int_StartEx
+ 272              	.L12:
+  78:main.c        **** 
+  79:main.c        ****     
+  80:main.c        **** 
+  81:main.c        **** 
+  82:main.c        ****     for(;;) {
+  83:main.c        ****         duty_cyle = duty_cyle + 0.1;
+ 273              		.loc 1 83 0
+ 274 0044 254B     		ldr	r3, .L13+20
+ 275 0046 1B68     		ldr	r3, [r3]	@ float
+ 276 0048 1846     		mov	r0, r3
+ 277 004a FFF7FEFF 		bl	__aeabi_f2d
+ 278 004e 1EA3     		adr	r3, .L13
+ 279 0050 D3E90023 		ldrd	r2, [r3]
+ 280 0054 FFF7FEFF 		bl	__aeabi_dadd
+ 281 0058 0346     		mov	r3, r0
+ 282 005a 0C46     		mov	r4, r1
+ 283 005c 1846     		mov	r0, r3
+ 284 005e 2146     		mov	r1, r4
+ 285 0060 FFF7FEFF 		bl	__aeabi_d2f
+ 286 0064 0246     		mov	r2, r0
+ 287 0066 1D4B     		ldr	r3, .L13+20
+ 288 0068 1A60     		str	r2, [r3]	@ float
+  84:main.c        ****         Drive_Left_Motor(duty_cyle);
+ 289              		.loc 1 84 0
+ 290 006a 1C4B     		ldr	r3, .L13+20
+ 291 006c 1B68     		ldr	r3, [r3]	@ float
+ 292 006e 1846     		mov	r0, r3
+ 293 0070 FFF7FEFF 		bl	Drive_Left_Motor
+  85:main.c        ****         CyDelay(100);
+ 294              		.loc 1 85 0
+ 295 0074 6420     		movs	r0, #100
+ 296 0076 FFF7FEFF 		bl	CyDelay
+  86:main.c        ****         
+  87:main.c        ****         // if a distance was measured, print the distance and clear the flag
+  88:main.c        ****         while ( echo_flag == 1 ) {
+ 297              		.loc 1 88 0
+ 298 007a 1EE0     		b	.L8
+ 299              	.L11:
+  89:main.c        ****             //sprintf(serial_output, "%d cm", 65535-echo_distance);
+  90:main.c        ****             //UART_PutString(serial_output);
+  91:main.c        ****             //UART_PutCRLF(0x0D);
+  92:main.c        ****             
+  93:main.c        ****             Timer_Echo_Stop();
+ 300              		.loc 1 93 0
+ 301 007c FFF7FEFF 		bl	Timer_Echo_Stop
+  94:main.c        ****             CyDelayUs(1);
+ 302              		.loc 1 94 0
+ 303 0080 0120     		movs	r0, #1
+ARM GAS  C:\Users\raymo\AppData\Local\Temp\ccIB1g08.s 			page 8
+
+
+ 304 0082 FFF7FEFF 		bl	CyDelayUs
+  95:main.c        ****             if (mux_select == 0) {
+ 305              		.loc 1 95 0
+ 306 0086 164B     		ldr	r3, .L13+24
+ 307 0088 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 308 008a 002B     		cmp	r3, #0
+ 309 008c 03D1     		bne	.L9
+  96:main.c        ****                 mux_select = 1;
+ 310              		.loc 1 96 0
+ 311 008e 144B     		ldr	r3, .L13+24
+ 312 0090 0122     		movs	r2, #1
+ 313 0092 1A70     		strb	r2, [r3]
+ 314 0094 02E0     		b	.L10
+ 315              	.L9:
+  97:main.c        ****             } else {
+  98:main.c        ****                 mux_select = 0;
+ 316              		.loc 1 98 0
+ 317 0096 124B     		ldr	r3, .L13+24
+ 318 0098 0022     		movs	r2, #0
+ 319 009a 1A70     		strb	r2, [r3]
+ 320              	.L10:
+  99:main.c        ****             }
+ 100:main.c        ****             Control_Reg_US_Write(mux_select);
+ 321              		.loc 1 100 0
+ 322 009c 104B     		ldr	r3, .L13+24
+ 323 009e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 324 00a0 1846     		mov	r0, r3
+ 325 00a2 FFF7FEFF 		bl	Control_Reg_US_Write
+ 101:main.c        ****             Timer_Echo_Enable();
+ 326              		.loc 1 101 0
+ 327 00a6 FFF7FEFF 		bl	Timer_Echo_Enable
+ 102:main.c        ****             PWM_Trigger_WriteCounter(1);
+ 328              		.loc 1 102 0
+ 329 00aa 0120     		movs	r0, #1
+ 330 00ac FFF7FEFF 		bl	PWM_Trigger_WriteCounter
+ 103:main.c        **** 
+ 104:main.c        **** 
+ 105:main.c        ****             CyGlobalIntDisable; // Disable global interrupts, so the flag gets cleared. 
+ 331              		.loc 1 105 0
+ 332              		.syntax unified
+ 333              	@ 105 "main.c" 1
+ 334 00b0 72B6     		CPSID   i
+ 335              	@ 0 "" 2
+ 106:main.c        ****             echo_flag = 0;
+ 336              		.loc 1 106 0
+ 337              		.thumb
+ 338              		.syntax unified
+ 339 00b2 0C4B     		ldr	r3, .L13+28
+ 340 00b4 0022     		movs	r2, #0
+ 341 00b6 1A70     		strb	r2, [r3]
+ 107:main.c        ****             CyGlobalIntEnable; // Enable global interrupts after the flag is cleared. 
+ 342              		.loc 1 107 0
+ 343              		.syntax unified
+ 344              	@ 107 "main.c" 1
+ 345 00b8 62B6     		CPSIE   i
+ 346              	@ 0 "" 2
+ 347              		.thumb
+ARM GAS  C:\Users\raymo\AppData\Local\Temp\ccIB1g08.s 			page 9
+
+
+ 348              		.syntax unified
+ 349              	.L8:
+  88:main.c        ****             //sprintf(serial_output, "%d cm", 65535-echo_distance);
+ 350              		.loc 1 88 0
+ 351 00ba 0A4B     		ldr	r3, .L13+28
+ 352 00bc 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 353 00be 012B     		cmp	r3, #1
+ 354 00c0 DCD0     		beq	.L11
+ 108:main.c        ****     }
+ 109:main.c        ****  }
+ 355              		.loc 1 109 0
+ 356 00c2 BFE7     		b	.L12
+ 357              	.L14:
+ 358 00c4 AFF30080 		.align	3
+ 359              	.L13:
+ 360 00c8 9A999999 		.word	-1717986918
+ 361 00cc 9999B93F 		.word	1069128089
+ 362 00d0 00000000 		.word	left_motor
+ 363 00d4 00000000 		.word	Timer_Int_Handler
+ 364 00d8 00000000 		.word	Wheel_Vel_Int_Handler
+ 365 00dc 00000000 		.word	duty_cyle
+ 366 00e0 00000000 		.word	mux_select
+ 367 00e4 00000000 		.word	echo_flag
+ 368              		.cfi_endproc
+ 369              	.LFE66:
+ 370              		.size	main, .-main
+ 371              		.global	__aeabi_fcmplt
+ 372              		.global	__aeabi_fmul
+ 373              		.global	__aeabi_f2uiz
+ 374              		.section	.text.Drive_Left_Motor,"ax",%progbits
+ 375              		.align	2
+ 376              		.global	Drive_Left_Motor
+ 377              		.thumb
+ 378              		.thumb_func
+ 379              		.type	Drive_Left_Motor, %function
+ 380              	Drive_Left_Motor:
+ 381              	.LFB67:
+ 110:main.c        ****   
+ 111:main.c        **** }
+ 112:main.c        **** 
+ 113:main.c        **** void Drive_Left_Motor(float duty_cycle) {
+ 382              		.loc 1 113 0
+ 383              		.cfi_startproc
+ 384              		@ args = 0, pretend = 0, frame = 8
+ 385              		@ frame_needed = 1, uses_anonymous_args = 0
+ 386 0000 80B5     		push	{r7, lr}
+ 387              		.cfi_def_cfa_offset 8
+ 388              		.cfi_offset 7, -8
+ 389              		.cfi_offset 14, -4
+ 390 0002 82B0     		sub	sp, sp, #8
+ 391              		.cfi_def_cfa_offset 16
+ 392 0004 00AF     		add	r7, sp, #0
+ 393              		.cfi_def_cfa_register 7
+ 394 0006 7860     		str	r0, [r7, #4]	@ float
+ 114:main.c        ****     if (duty_cycle < 0) {
+ 395              		.loc 1 114 0
+ 396 0008 4FF00001 		mov	r1, #0
+ARM GAS  C:\Users\raymo\AppData\Local\Temp\ccIB1g08.s 			page 10
+
+
+ 397 000c 7868     		ldr	r0, [r7, #4]	@ float
+ 398 000e FFF7FEFF 		bl	__aeabi_fcmplt
+ 399 0012 0346     		mov	r3, r0
+ 400 0014 002B     		cmp	r3, #0
+ 401 0016 14D0     		beq	.L20
+ 115:main.c        ****         duty_cycle = -duty_cycle;
+ 402              		.loc 1 115 0
+ 403 0018 7B68     		ldr	r3, [r7, #4]
+ 404 001a 83F00043 		eor	r3, r3, #-2147483648
+ 405 001e 7B60     		str	r3, [r7, #4]	@ float
+ 116:main.c        ****         PWM_Motor_L_WriteCompare1(0);
+ 406              		.loc 1 116 0
+ 407 0020 0020     		movs	r0, #0
+ 408 0022 FFF7FEFF 		bl	PWM_Motor_L_WriteCompare1
+ 117:main.c        ****         PWM_Motor_L_WriteCompare2(duty_cycle*10000);
+ 409              		.loc 1 117 0
+ 410 0026 1149     		ldr	r1, .L22
+ 411 0028 7868     		ldr	r0, [r7, #4]	@ float
+ 412 002a FFF7FEFF 		bl	__aeabi_fmul
+ 413 002e 0346     		mov	r3, r0
+ 414 0030 1846     		mov	r0, r3
+ 415 0032 FFF7FEFF 		bl	__aeabi_f2uiz
+ 416 0036 0346     		mov	r3, r0
+ 417 0038 9BB2     		uxth	r3, r3
+ 418 003a 1846     		mov	r0, r3
+ 419 003c FFF7FEFF 		bl	PWM_Motor_L_WriteCompare2
+ 118:main.c        ****     } else {
+ 119:main.c        ****         PWM_Motor_L_WriteCompare1(duty_cycle*10000);
+ 120:main.c        ****         PWM_Motor_L_WriteCompare2(0);
+ 121:main.c        ****     }
+ 122:main.c        **** }
+ 420              		.loc 1 122 0
+ 421 0040 0FE0     		b	.L21
+ 422              	.L20:
+ 119:main.c        ****         PWM_Motor_L_WriteCompare2(0);
+ 423              		.loc 1 119 0
+ 424 0042 0A49     		ldr	r1, .L22
+ 425 0044 7868     		ldr	r0, [r7, #4]	@ float
+ 426 0046 FFF7FEFF 		bl	__aeabi_fmul
+ 427 004a 0346     		mov	r3, r0
+ 428 004c 1846     		mov	r0, r3
+ 429 004e FFF7FEFF 		bl	__aeabi_f2uiz
+ 430 0052 0346     		mov	r3, r0
+ 431 0054 9BB2     		uxth	r3, r3
+ 432 0056 1846     		mov	r0, r3
+ 433 0058 FFF7FEFF 		bl	PWM_Motor_L_WriteCompare1
+ 120:main.c        ****     }
+ 434              		.loc 1 120 0
+ 435 005c 0020     		movs	r0, #0
+ 436 005e FFF7FEFF 		bl	PWM_Motor_L_WriteCompare2
+ 437              	.L21:
+ 438              		.loc 1 122 0
+ 439 0062 00BF     		nop
+ 440 0064 0837     		adds	r7, r7, #8
+ 441              		.cfi_def_cfa_offset 8
+ 442 0066 BD46     		mov	sp, r7
+ 443              		.cfi_def_cfa_register 13
+ARM GAS  C:\Users\raymo\AppData\Local\Temp\ccIB1g08.s 			page 11
+
+
+ 444              		@ sp needed
+ 445 0068 80BD     		pop	{r7, pc}
+ 446              	.L23:
+ 447 006a 00BF     		.align	2
+ 448              	.L22:
+ 449 006c 00401C46 		.word	1176256512
+ 450              		.cfi_endproc
+ 451              	.LFE67:
+ 452              		.size	Drive_Left_Motor, .-Drive_Left_Motor
+ 453              		.text
+ 454              	.Letext0:
+ 455              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 456              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 457              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 458              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 459              		.section	.debug_info,"",%progbits
+ 460              	.Ldebug_info0:
+ 461 0000 5D020000 		.4byte	0x25d
+ 462 0004 0400     		.2byte	0x4
+ 463 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 464 000a 04       		.byte	0x4
+ 465 000b 01       		.uleb128 0x1
+ 466 000c 18000000 		.4byte	.LASF39
+ 467 0010 0C       		.byte	0xc
+ 468 0011 7D020000 		.4byte	.LASF40
+ 469 0015 7F010000 		.4byte	.LASF41
+ 470 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 471 001d 00000000 		.4byte	0
+ 472 0021 00000000 		.4byte	.Ldebug_line0
+ 473 0025 02       		.uleb128 0x2
+ 474 0026 01       		.byte	0x1
+ 475 0027 06       		.byte	0x6
+ 476 0028 F2000000 		.4byte	.LASF0
+ 477 002c 03       		.uleb128 0x3
+ 478 002d 0E000000 		.4byte	.LASF3
+ 479 0031 02       		.byte	0x2
+ 480 0032 1D       		.byte	0x1d
+ 481 0033 37000000 		.4byte	0x37
+ 482 0037 02       		.uleb128 0x2
+ 483 0038 01       		.byte	0x1
+ 484 0039 08       		.byte	0x8
+ 485 003a 4B010000 		.4byte	.LASF1
+ 486 003e 02       		.uleb128 0x2
+ 487 003f 02       		.byte	0x2
+ 488 0040 05       		.byte	0x5
+ 489 0041 6B010000 		.4byte	.LASF2
+ 490 0045 03       		.uleb128 0x3
+ 491 0046 59010000 		.4byte	.LASF4
+ 492 004a 02       		.byte	0x2
+ 493 004b 2B       		.byte	0x2b
+ 494 004c 50000000 		.4byte	0x50
+ 495 0050 02       		.uleb128 0x2
+ 496 0051 02       		.byte	0x2
+ 497 0052 07       		.byte	0x7
+ 498 0053 BA000000 		.4byte	.LASF5
+ 499 0057 03       		.uleb128 0x3
+ 500 0058 A6000000 		.4byte	.LASF6
+ARM GAS  C:\Users\raymo\AppData\Local\Temp\ccIB1g08.s 			page 12
+
+
+ 501 005c 02       		.byte	0x2
+ 502 005d 3F       		.byte	0x3f
+ 503 005e 62000000 		.4byte	0x62
+ 504 0062 02       		.uleb128 0x2
+ 505 0063 04       		.byte	0x4
+ 506 0064 05       		.byte	0x5
+ 507 0065 A3020000 		.4byte	.LASF7
+ 508 0069 02       		.uleb128 0x2
+ 509 006a 04       		.byte	0x4
+ 510 006b 07       		.byte	0x7
+ 511 006c 10010000 		.4byte	.LASF8
+ 512 0070 02       		.uleb128 0x2
+ 513 0071 08       		.byte	0x8
+ 514 0072 05       		.byte	0x5
+ 515 0073 5D020000 		.4byte	.LASF9
+ 516 0077 02       		.uleb128 0x2
+ 517 0078 08       		.byte	0x8
+ 518 0079 07       		.byte	0x7
+ 519 007a 0E020000 		.4byte	.LASF10
+ 520 007e 04       		.uleb128 0x4
+ 521 007f 04       		.byte	0x4
+ 522 0080 05       		.byte	0x5
+ 523 0081 696E7400 		.ascii	"int\000"
+ 524 0085 02       		.uleb128 0x2
+ 525 0086 04       		.byte	0x4
+ 526 0087 07       		.byte	0x7
+ 527 0088 01020000 		.4byte	.LASF11
+ 528 008c 03       		.uleb128 0x3
+ 529 008d 25020000 		.4byte	.LASF12
+ 530 0091 03       		.byte	0x3
+ 531 0092 18       		.byte	0x18
+ 532 0093 2C000000 		.4byte	0x2c
+ 533 0097 03       		.uleb128 0x3
+ 534 0098 9A020000 		.4byte	.LASF13
+ 535 009c 03       		.byte	0x3
+ 536 009d 24       		.byte	0x24
+ 537 009e 45000000 		.4byte	0x45
+ 538 00a2 03       		.uleb128 0x3
+ 539 00a3 3C020000 		.4byte	.LASF14
+ 540 00a7 03       		.byte	0x3
+ 541 00a8 2C       		.byte	0x2c
+ 542 00a9 57000000 		.4byte	0x57
+ 543 00ad 05       		.uleb128 0x5
+ 544 00ae 22010000 		.4byte	.LASF15
+ 545 00b2 04       		.byte	0x4
+ 546 00b3 ED01     		.2byte	0x1ed
+ 547 00b5 62000000 		.4byte	0x62
+ 548 00b9 02       		.uleb128 0x2
+ 549 00ba 04       		.byte	0x4
+ 550 00bb 04       		.byte	0x4
+ 551 00bc D6000000 		.4byte	.LASF16
+ 552 00c0 02       		.uleb128 0x2
+ 553 00c1 08       		.byte	0x8
+ 554 00c2 04       		.byte	0x4
+ 555 00c3 64010000 		.4byte	.LASF17
+ 556 00c7 02       		.uleb128 0x2
+ 557 00c8 01       		.byte	0x1
+ARM GAS  C:\Users\raymo\AppData\Local\Temp\ccIB1g08.s 			page 13
+
+
+ 558 00c9 08       		.byte	0x8
+ 559 00ca 84020000 		.4byte	.LASF18
+ 560 00ce 02       		.uleb128 0x2
+ 561 00cf 08       		.byte	0x8
+ 562 00d0 04       		.byte	0x4
+ 563 00d1 B8020000 		.4byte	.LASF19
+ 564 00d5 02       		.uleb128 0x2
+ 565 00d6 04       		.byte	0x4
+ 566 00d7 07       		.byte	0x7
+ 567 00d8 44020000 		.4byte	.LASF20
+ 568 00dc 06       		.uleb128 0x6
+ 569 00dd C4020000 		.4byte	.LASF42
+ 570 00e1 10       		.byte	0x10
+ 571 00e2 01       		.byte	0x1
+ 572 00e3 0F       		.byte	0xf
+ 573 00e4 19010000 		.4byte	0x119
+ 574 00e8 07       		.uleb128 0x7
+ 575 00e9 F6010000 		.4byte	.LASF21
+ 576 00ed 01       		.byte	0x1
+ 577 00ee 10       		.byte	0x10
+ 578 00ef B9000000 		.4byte	0xb9
+ 579 00f3 00       		.byte	0
+ 580 00f4 07       		.uleb128 0x7
+ 581 00f5 57020000 		.4byte	.LASF22
+ 582 00f9 01       		.byte	0x1
+ 583 00fa 11       		.byte	0x11
+ 584 00fb B9000000 		.4byte	0xb9
+ 585 00ff 04       		.byte	0x4
+ 586 0100 08       		.uleb128 0x8
+ 587 0101 72707300 		.ascii	"rps\000"
+ 588 0105 01       		.byte	0x1
+ 589 0106 12       		.byte	0x12
+ 590 0107 B9000000 		.4byte	0xb9
+ 591 010b 08       		.byte	0x8
+ 592 010c 07       		.uleb128 0x7
+ 593 010d CA020000 		.4byte	.LASF23
+ 594 0111 01       		.byte	0x1
+ 595 0112 13       		.byte	0x13
+ 596 0113 7E000000 		.4byte	0x7e
+ 597 0117 0C       		.byte	0xc
+ 598 0118 00       		.byte	0
+ 599 0119 09       		.uleb128 0x9
+ 600 011a FE000000 		.4byte	.LASF43
+ 601 011e 01       		.byte	0x1
+ 602 011f 25       		.byte	0x25
+ 603 0120 00000000 		.4byte	.LFB64
+ 604 0124 34000000 		.4byte	.LFE64-.LFB64
+ 605 0128 01       		.uleb128 0x1
+ 606 0129 9C       		.byte	0x9c
+ 607 012a 0A       		.uleb128 0xa
+ 608 012b DC000000 		.4byte	.LASF26
+ 609 012f 01       		.byte	0x1
+ 610 0130 2E       		.byte	0x2e
+ 611 0131 00000000 		.4byte	.LFB65
+ 612 0135 A0000000 		.4byte	.LFE65-.LFB65
+ 613 0139 01       		.uleb128 0x1
+ 614 013a 9C       		.byte	0x9c
+ARM GAS  C:\Users\raymo\AppData\Local\Temp\ccIB1g08.s 			page 14
+
+
+ 615 013b 5C010000 		.4byte	0x15c
+ 616 013f 0B       		.uleb128 0xb
+ 617 0140 CD000000 		.4byte	.LASF24
+ 618 0144 01       		.byte	0x1
+ 619 0145 2F       		.byte	0x2f
+ 620 0146 AD000000 		.4byte	0xad
+ 621 014a 02       		.uleb128 0x2
+ 622 014b 91       		.byte	0x91
+ 623 014c 6C       		.sleb128 -20
+ 624 014d 0B       		.uleb128 0xb
+ 625 014e B0000000 		.4byte	.LASF25
+ 626 0152 01       		.byte	0x1
+ 627 0153 30       		.byte	0x30
+ 628 0154 AD000000 		.4byte	0xad
+ 629 0158 02       		.uleb128 0x2
+ 630 0159 91       		.byte	0x91
+ 631 015a 68       		.sleb128 -24
+ 632 015b 00       		.byte	0
+ 633 015c 0C       		.uleb128 0xc
+ 634 015d 37020000 		.4byte	.LASF44
+ 635 0161 01       		.byte	0x1
+ 636 0162 3A       		.byte	0x3a
+ 637 0163 7E000000 		.4byte	0x7e
+ 638 0167 00000000 		.4byte	.LFB66
+ 639 016b E8000000 		.4byte	.LFE66-.LFB66
+ 640 016f 01       		.uleb128 0x1
+ 641 0170 9C       		.byte	0x9c
+ 642 0171 0A       		.uleb128 0xa
+ 643 0172 89020000 		.4byte	.LASF27
+ 644 0176 01       		.byte	0x1
+ 645 0177 71       		.byte	0x71
+ 646 0178 00000000 		.4byte	.LFB67
+ 647 017c 70000000 		.4byte	.LFE67-.LFB67
+ 648 0180 01       		.uleb128 0x1
+ 649 0181 9C       		.byte	0x9c
+ 650 0182 95010000 		.4byte	0x195
+ 651 0186 0D       		.uleb128 0xd
+ 652 0187 F6010000 		.4byte	.LASF21
+ 653 018b 01       		.byte	0x1
+ 654 018c 71       		.byte	0x71
+ 655 018d B9000000 		.4byte	0xb9
+ 656 0191 02       		.uleb128 0x2
+ 657 0192 91       		.byte	0x91
+ 658 0193 74       		.sleb128 -12
+ 659 0194 00       		.byte	0
+ 660 0195 0E       		.uleb128 0xe
+ 661 0196 33010000 		.4byte	.LASF28
+ 662 019a 05       		.byte	0x5
+ 663 019b 1207     		.2byte	0x712
+ 664 019d A1010000 		.4byte	0x1a1
+ 665 01a1 0F       		.uleb128 0xf
+ 666 01a2 A2000000 		.4byte	0xa2
+ 667 01a6 10       		.uleb128 0x10
+ 668 01a7 2D020000 		.4byte	.LASF29
+ 669 01ab 01       		.byte	0x1
+ 670 01ac 18       		.byte	0x18
+ 671 01ad 8C000000 		.4byte	0x8c
+ARM GAS  C:\Users\raymo\AppData\Local\Temp\ccIB1g08.s 			page 15
+
+
+ 672 01b1 05       		.uleb128 0x5
+ 673 01b2 03       		.byte	0x3
+ 674 01b3 00000000 		.4byte	echo_flag
+ 675 01b7 10       		.uleb128 0x10
+ 676 01b8 75010000 		.4byte	.LASF30
+ 677 01bc 01       		.byte	0x1
+ 678 01bd 19       		.byte	0x19
+ 679 01be 97000000 		.4byte	0x97
+ 680 01c2 05       		.uleb128 0x5
+ 681 01c3 03       		.byte	0x3
+ 682 01c4 00000000 		.4byte	max_count
+ 683 01c8 10       		.uleb128 0x10
+ 684 01c9 00000000 		.4byte	.LASF31
+ 685 01cd 01       		.byte	0x1
+ 686 01ce 1A       		.byte	0x1a
+ 687 01cf 97000000 		.4byte	0x97
+ 688 01d3 05       		.uleb128 0x5
+ 689 01d4 03       		.byte	0x3
+ 690 01d5 00000000 		.4byte	echo_distance
+ 691 01d9 10       		.uleb128 0x10
+ 692 01da 40010000 		.4byte	.LASF32
+ 693 01de 01       		.byte	0x1
+ 694 01df 1B       		.byte	0x1b
+ 695 01e0 8C000000 		.4byte	0x8c
+ 696 01e4 05       		.uleb128 0x5
+ 697 01e5 03       		.byte	0x3
+ 698 01e6 00000000 		.4byte	mux_select
+ 699 01ea 10       		.uleb128 0x10
+ 700 01eb E5020000 		.4byte	.LASF33
+ 701 01ef 01       		.byte	0x1
+ 702 01f0 1C       		.byte	0x1c
+ 703 01f1 AD000000 		.4byte	0xad
+ 704 01f5 05       		.uleb128 0x5
+ 705 01f6 03       		.byte	0x3
+ 706 01f7 00000000 		.4byte	left_wheel_count
+ 707 01fb 10       		.uleb128 0x10
+ 708 01fc 6B020000 		.4byte	.LASF34
+ 709 0200 01       		.byte	0x1
+ 710 0201 1D       		.byte	0x1d
+ 711 0202 AD000000 		.4byte	0xad
+ 712 0206 05       		.uleb128 0x5
+ 713 0207 03       		.byte	0x3
+ 714 0208 00000000 		.4byte	right_wheel_count
+ 715 020c 11       		.uleb128 0x11
+ 716 020d C7000000 		.4byte	0xc7
+ 717 0211 1C020000 		.4byte	0x21c
+ 718 0215 12       		.uleb128 0x12
+ 719 0216 D5000000 		.4byte	0xd5
+ 720 021a 95       		.byte	0x95
+ 721 021b 00       		.byte	0
+ 722 021c 10       		.uleb128 0x10
+ 723 021d D7020000 		.4byte	.LASF35
+ 724 0221 01       		.byte	0x1
+ 725 0222 1E       		.byte	0x1e
+ 726 0223 0C020000 		.4byte	0x20c
+ 727 0227 05       		.uleb128 0x5
+ 728 0228 03       		.byte	0x3
+ARM GAS  C:\Users\raymo\AppData\Local\Temp\ccIB1g08.s 			page 16
+
+
+ 729 0229 00000000 		.4byte	serial_output
+ 730 022d 10       		.uleb128 0x10
+ 731 022e 4D020000 		.4byte	.LASF36
+ 732 0232 01       		.byte	0x1
+ 733 0233 1F       		.byte	0x1f
+ 734 0234 B9000000 		.4byte	0xb9
+ 735 0238 05       		.uleb128 0x5
+ 736 0239 03       		.byte	0x3
+ 737 023a 00000000 		.4byte	duty_cyle
+ 738 023e 10       		.uleb128 0x10
+ 739 023f 28010000 		.4byte	.LASF37
+ 740 0243 01       		.byte	0x1
+ 741 0244 20       		.byte	0x20
+ 742 0245 DC000000 		.4byte	0xdc
+ 743 0249 05       		.uleb128 0x5
+ 744 024a 03       		.byte	0x3
+ 745 024b 00000000 		.4byte	left_motor
+ 746 024f 10       		.uleb128 0x10
+ 747 0250 AC020000 		.4byte	.LASF38
+ 748 0254 01       		.byte	0x1
+ 749 0255 21       		.byte	0x21
+ 750 0256 DC000000 		.4byte	0xdc
+ 751 025a 05       		.uleb128 0x5
+ 752 025b 03       		.byte	0x3
+ 753 025c 00000000 		.4byte	right_motor
+ 754 0260 00       		.byte	0
+ 755              		.section	.debug_abbrev,"",%progbits
+ 756              	.Ldebug_abbrev0:
+ 757 0000 01       		.uleb128 0x1
+ 758 0001 11       		.uleb128 0x11
+ 759 0002 01       		.byte	0x1
+ 760 0003 25       		.uleb128 0x25
+ 761 0004 0E       		.uleb128 0xe
+ 762 0005 13       		.uleb128 0x13
+ 763 0006 0B       		.uleb128 0xb
+ 764 0007 03       		.uleb128 0x3
+ 765 0008 0E       		.uleb128 0xe
+ 766 0009 1B       		.uleb128 0x1b
+ 767 000a 0E       		.uleb128 0xe
+ 768 000b 55       		.uleb128 0x55
+ 769 000c 17       		.uleb128 0x17
+ 770 000d 11       		.uleb128 0x11
+ 771 000e 01       		.uleb128 0x1
+ 772 000f 10       		.uleb128 0x10
+ 773 0010 17       		.uleb128 0x17
+ 774 0011 00       		.byte	0
+ 775 0012 00       		.byte	0
+ 776 0013 02       		.uleb128 0x2
+ 777 0014 24       		.uleb128 0x24
+ 778 0015 00       		.byte	0
+ 779 0016 0B       		.uleb128 0xb
+ 780 0017 0B       		.uleb128 0xb
+ 781 0018 3E       		.uleb128 0x3e
+ 782 0019 0B       		.uleb128 0xb
+ 783 001a 03       		.uleb128 0x3
+ 784 001b 0E       		.uleb128 0xe
+ 785 001c 00       		.byte	0
+ARM GAS  C:\Users\raymo\AppData\Local\Temp\ccIB1g08.s 			page 17
+
+
+ 786 001d 00       		.byte	0
+ 787 001e 03       		.uleb128 0x3
+ 788 001f 16       		.uleb128 0x16
+ 789 0020 00       		.byte	0
+ 790 0021 03       		.uleb128 0x3
+ 791 0022 0E       		.uleb128 0xe
+ 792 0023 3A       		.uleb128 0x3a
+ 793 0024 0B       		.uleb128 0xb
+ 794 0025 3B       		.uleb128 0x3b
+ 795 0026 0B       		.uleb128 0xb
+ 796 0027 49       		.uleb128 0x49
+ 797 0028 13       		.uleb128 0x13
+ 798 0029 00       		.byte	0
+ 799 002a 00       		.byte	0
+ 800 002b 04       		.uleb128 0x4
+ 801 002c 24       		.uleb128 0x24
+ 802 002d 00       		.byte	0
+ 803 002e 0B       		.uleb128 0xb
+ 804 002f 0B       		.uleb128 0xb
+ 805 0030 3E       		.uleb128 0x3e
+ 806 0031 0B       		.uleb128 0xb
+ 807 0032 03       		.uleb128 0x3
+ 808 0033 08       		.uleb128 0x8
+ 809 0034 00       		.byte	0
+ 810 0035 00       		.byte	0
+ 811 0036 05       		.uleb128 0x5
+ 812 0037 16       		.uleb128 0x16
+ 813 0038 00       		.byte	0
+ 814 0039 03       		.uleb128 0x3
+ 815 003a 0E       		.uleb128 0xe
+ 816 003b 3A       		.uleb128 0x3a
+ 817 003c 0B       		.uleb128 0xb
+ 818 003d 3B       		.uleb128 0x3b
+ 819 003e 05       		.uleb128 0x5
+ 820 003f 49       		.uleb128 0x49
+ 821 0040 13       		.uleb128 0x13
+ 822 0041 00       		.byte	0
+ 823 0042 00       		.byte	0
+ 824 0043 06       		.uleb128 0x6
+ 825 0044 13       		.uleb128 0x13
+ 826 0045 01       		.byte	0x1
+ 827 0046 03       		.uleb128 0x3
+ 828 0047 0E       		.uleb128 0xe
+ 829 0048 0B       		.uleb128 0xb
+ 830 0049 0B       		.uleb128 0xb
+ 831 004a 3A       		.uleb128 0x3a
+ 832 004b 0B       		.uleb128 0xb
+ 833 004c 3B       		.uleb128 0x3b
+ 834 004d 0B       		.uleb128 0xb
+ 835 004e 01       		.uleb128 0x1
+ 836 004f 13       		.uleb128 0x13
+ 837 0050 00       		.byte	0
+ 838 0051 00       		.byte	0
+ 839 0052 07       		.uleb128 0x7
+ 840 0053 0D       		.uleb128 0xd
+ 841 0054 00       		.byte	0
+ 842 0055 03       		.uleb128 0x3
+ARM GAS  C:\Users\raymo\AppData\Local\Temp\ccIB1g08.s 			page 18
+
+
+ 843 0056 0E       		.uleb128 0xe
+ 844 0057 3A       		.uleb128 0x3a
+ 845 0058 0B       		.uleb128 0xb
+ 846 0059 3B       		.uleb128 0x3b
+ 847 005a 0B       		.uleb128 0xb
+ 848 005b 49       		.uleb128 0x49
+ 849 005c 13       		.uleb128 0x13
+ 850 005d 38       		.uleb128 0x38
+ 851 005e 0B       		.uleb128 0xb
+ 852 005f 00       		.byte	0
+ 853 0060 00       		.byte	0
+ 854 0061 08       		.uleb128 0x8
+ 855 0062 0D       		.uleb128 0xd
+ 856 0063 00       		.byte	0
+ 857 0064 03       		.uleb128 0x3
+ 858 0065 08       		.uleb128 0x8
+ 859 0066 3A       		.uleb128 0x3a
+ 860 0067 0B       		.uleb128 0xb
+ 861 0068 3B       		.uleb128 0x3b
+ 862 0069 0B       		.uleb128 0xb
+ 863 006a 49       		.uleb128 0x49
+ 864 006b 13       		.uleb128 0x13
+ 865 006c 38       		.uleb128 0x38
+ 866 006d 0B       		.uleb128 0xb
+ 867 006e 00       		.byte	0
+ 868 006f 00       		.byte	0
+ 869 0070 09       		.uleb128 0x9
+ 870 0071 2E       		.uleb128 0x2e
+ 871 0072 00       		.byte	0
+ 872 0073 3F       		.uleb128 0x3f
+ 873 0074 19       		.uleb128 0x19
+ 874 0075 03       		.uleb128 0x3
+ 875 0076 0E       		.uleb128 0xe
+ 876 0077 3A       		.uleb128 0x3a
+ 877 0078 0B       		.uleb128 0xb
+ 878 0079 3B       		.uleb128 0x3b
+ 879 007a 0B       		.uleb128 0xb
+ 880 007b 27       		.uleb128 0x27
+ 881 007c 19       		.uleb128 0x19
+ 882 007d 11       		.uleb128 0x11
+ 883 007e 01       		.uleb128 0x1
+ 884 007f 12       		.uleb128 0x12
+ 885 0080 06       		.uleb128 0x6
+ 886 0081 40       		.uleb128 0x40
+ 887 0082 18       		.uleb128 0x18
+ 888 0083 9642     		.uleb128 0x2116
+ 889 0085 19       		.uleb128 0x19
+ 890 0086 00       		.byte	0
+ 891 0087 00       		.byte	0
+ 892 0088 0A       		.uleb128 0xa
+ 893 0089 2E       		.uleb128 0x2e
+ 894 008a 01       		.byte	0x1
+ 895 008b 3F       		.uleb128 0x3f
+ 896 008c 19       		.uleb128 0x19
+ 897 008d 03       		.uleb128 0x3
+ 898 008e 0E       		.uleb128 0xe
+ 899 008f 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\raymo\AppData\Local\Temp\ccIB1g08.s 			page 19
+
+
+ 900 0090 0B       		.uleb128 0xb
+ 901 0091 3B       		.uleb128 0x3b
+ 902 0092 0B       		.uleb128 0xb
+ 903 0093 27       		.uleb128 0x27
+ 904 0094 19       		.uleb128 0x19
+ 905 0095 11       		.uleb128 0x11
+ 906 0096 01       		.uleb128 0x1
+ 907 0097 12       		.uleb128 0x12
+ 908 0098 06       		.uleb128 0x6
+ 909 0099 40       		.uleb128 0x40
+ 910 009a 18       		.uleb128 0x18
+ 911 009b 9642     		.uleb128 0x2116
+ 912 009d 19       		.uleb128 0x19
+ 913 009e 01       		.uleb128 0x1
+ 914 009f 13       		.uleb128 0x13
+ 915 00a0 00       		.byte	0
+ 916 00a1 00       		.byte	0
+ 917 00a2 0B       		.uleb128 0xb
+ 918 00a3 34       		.uleb128 0x34
+ 919 00a4 00       		.byte	0
+ 920 00a5 03       		.uleb128 0x3
+ 921 00a6 0E       		.uleb128 0xe
+ 922 00a7 3A       		.uleb128 0x3a
+ 923 00a8 0B       		.uleb128 0xb
+ 924 00a9 3B       		.uleb128 0x3b
+ 925 00aa 0B       		.uleb128 0xb
+ 926 00ab 49       		.uleb128 0x49
+ 927 00ac 13       		.uleb128 0x13
+ 928 00ad 02       		.uleb128 0x2
+ 929 00ae 18       		.uleb128 0x18
+ 930 00af 00       		.byte	0
+ 931 00b0 00       		.byte	0
+ 932 00b1 0C       		.uleb128 0xc
+ 933 00b2 2E       		.uleb128 0x2e
+ 934 00b3 00       		.byte	0
+ 935 00b4 3F       		.uleb128 0x3f
+ 936 00b5 19       		.uleb128 0x19
+ 937 00b6 03       		.uleb128 0x3
+ 938 00b7 0E       		.uleb128 0xe
+ 939 00b8 3A       		.uleb128 0x3a
+ 940 00b9 0B       		.uleb128 0xb
+ 941 00ba 3B       		.uleb128 0x3b
+ 942 00bb 0B       		.uleb128 0xb
+ 943 00bc 27       		.uleb128 0x27
+ 944 00bd 19       		.uleb128 0x19
+ 945 00be 49       		.uleb128 0x49
+ 946 00bf 13       		.uleb128 0x13
+ 947 00c0 11       		.uleb128 0x11
+ 948 00c1 01       		.uleb128 0x1
+ 949 00c2 12       		.uleb128 0x12
+ 950 00c3 06       		.uleb128 0x6
+ 951 00c4 40       		.uleb128 0x40
+ 952 00c5 18       		.uleb128 0x18
+ 953 00c6 9642     		.uleb128 0x2116
+ 954 00c8 19       		.uleb128 0x19
+ 955 00c9 00       		.byte	0
+ 956 00ca 00       		.byte	0
+ARM GAS  C:\Users\raymo\AppData\Local\Temp\ccIB1g08.s 			page 20
+
+
+ 957 00cb 0D       		.uleb128 0xd
+ 958 00cc 05       		.uleb128 0x5
+ 959 00cd 00       		.byte	0
+ 960 00ce 03       		.uleb128 0x3
+ 961 00cf 0E       		.uleb128 0xe
+ 962 00d0 3A       		.uleb128 0x3a
+ 963 00d1 0B       		.uleb128 0xb
+ 964 00d2 3B       		.uleb128 0x3b
+ 965 00d3 0B       		.uleb128 0xb
+ 966 00d4 49       		.uleb128 0x49
+ 967 00d5 13       		.uleb128 0x13
+ 968 00d6 02       		.uleb128 0x2
+ 969 00d7 18       		.uleb128 0x18
+ 970 00d8 00       		.byte	0
+ 971 00d9 00       		.byte	0
+ 972 00da 0E       		.uleb128 0xe
+ 973 00db 34       		.uleb128 0x34
+ 974 00dc 00       		.byte	0
+ 975 00dd 03       		.uleb128 0x3
+ 976 00de 0E       		.uleb128 0xe
+ 977 00df 3A       		.uleb128 0x3a
+ 978 00e0 0B       		.uleb128 0xb
+ 979 00e1 3B       		.uleb128 0x3b
+ 980 00e2 05       		.uleb128 0x5
+ 981 00e3 49       		.uleb128 0x49
+ 982 00e4 13       		.uleb128 0x13
+ 983 00e5 3F       		.uleb128 0x3f
+ 984 00e6 19       		.uleb128 0x19
+ 985 00e7 3C       		.uleb128 0x3c
+ 986 00e8 19       		.uleb128 0x19
+ 987 00e9 00       		.byte	0
+ 988 00ea 00       		.byte	0
+ 989 00eb 0F       		.uleb128 0xf
+ 990 00ec 35       		.uleb128 0x35
+ 991 00ed 00       		.byte	0
+ 992 00ee 49       		.uleb128 0x49
+ 993 00ef 13       		.uleb128 0x13
+ 994 00f0 00       		.byte	0
+ 995 00f1 00       		.byte	0
+ 996 00f2 10       		.uleb128 0x10
+ 997 00f3 34       		.uleb128 0x34
+ 998 00f4 00       		.byte	0
+ 999 00f5 03       		.uleb128 0x3
+ 1000 00f6 0E       		.uleb128 0xe
+ 1001 00f7 3A       		.uleb128 0x3a
+ 1002 00f8 0B       		.uleb128 0xb
+ 1003 00f9 3B       		.uleb128 0x3b
+ 1004 00fa 0B       		.uleb128 0xb
+ 1005 00fb 49       		.uleb128 0x49
+ 1006 00fc 13       		.uleb128 0x13
+ 1007 00fd 3F       		.uleb128 0x3f
+ 1008 00fe 19       		.uleb128 0x19
+ 1009 00ff 02       		.uleb128 0x2
+ 1010 0100 18       		.uleb128 0x18
+ 1011 0101 00       		.byte	0
+ 1012 0102 00       		.byte	0
+ 1013 0103 11       		.uleb128 0x11
+ARM GAS  C:\Users\raymo\AppData\Local\Temp\ccIB1g08.s 			page 21
+
+
+ 1014 0104 01       		.uleb128 0x1
+ 1015 0105 01       		.byte	0x1
+ 1016 0106 49       		.uleb128 0x49
+ 1017 0107 13       		.uleb128 0x13
+ 1018 0108 01       		.uleb128 0x1
+ 1019 0109 13       		.uleb128 0x13
+ 1020 010a 00       		.byte	0
+ 1021 010b 00       		.byte	0
+ 1022 010c 12       		.uleb128 0x12
+ 1023 010d 21       		.uleb128 0x21
+ 1024 010e 00       		.byte	0
+ 1025 010f 49       		.uleb128 0x49
+ 1026 0110 13       		.uleb128 0x13
+ 1027 0111 2F       		.uleb128 0x2f
+ 1028 0112 0B       		.uleb128 0xb
+ 1029 0113 00       		.byte	0
+ 1030 0114 00       		.byte	0
+ 1031 0115 00       		.byte	0
+ 1032              		.section	.debug_aranges,"",%progbits
+ 1033 0000 34000000 		.4byte	0x34
+ 1034 0004 0200     		.2byte	0x2
+ 1035 0006 00000000 		.4byte	.Ldebug_info0
+ 1036 000a 04       		.byte	0x4
+ 1037 000b 00       		.byte	0
+ 1038 000c 0000     		.2byte	0
+ 1039 000e 0000     		.2byte	0
+ 1040 0010 00000000 		.4byte	.LFB64
+ 1041 0014 34000000 		.4byte	.LFE64-.LFB64
+ 1042 0018 00000000 		.4byte	.LFB65
+ 1043 001c A0000000 		.4byte	.LFE65-.LFB65
+ 1044 0020 00000000 		.4byte	.LFB66
+ 1045 0024 E8000000 		.4byte	.LFE66-.LFB66
+ 1046 0028 00000000 		.4byte	.LFB67
+ 1047 002c 70000000 		.4byte	.LFE67-.LFB67
+ 1048 0030 00000000 		.4byte	0
+ 1049 0034 00000000 		.4byte	0
+ 1050              		.section	.debug_ranges,"",%progbits
+ 1051              	.Ldebug_ranges0:
+ 1052 0000 00000000 		.4byte	.LFB64
+ 1053 0004 34000000 		.4byte	.LFE64
+ 1054 0008 00000000 		.4byte	.LFB65
+ 1055 000c A0000000 		.4byte	.LFE65
+ 1056 0010 00000000 		.4byte	.LFB66
+ 1057 0014 E8000000 		.4byte	.LFE66
+ 1058 0018 00000000 		.4byte	.LFB67
+ 1059 001c 70000000 		.4byte	.LFE67
+ 1060 0020 00000000 		.4byte	0
+ 1061 0024 00000000 		.4byte	0
+ 1062              		.section	.debug_line,"",%progbits
+ 1063              	.Ldebug_line0:
+ 1064 0000 C7010000 		.section	.debug_str,"MS",%progbits,1
+ 1064      02004C01 
+ 1064      00000201 
+ 1064      FB0E0D00 
+ 1064      01010101 
+ 1065              	.LASF31:
+ 1066 0000 6563686F 		.ascii	"echo_distance\000"
+ARM GAS  C:\Users\raymo\AppData\Local\Temp\ccIB1g08.s 			page 22
+
+
+ 1066      5F646973 
+ 1066      74616E63 
+ 1066      6500
+ 1067              	.LASF3:
+ 1068 000e 5F5F7569 		.ascii	"__uint8_t\000"
+ 1068      6E74385F 
+ 1068      7400
+ 1069              	.LASF39:
+ 1070 0018 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1070      43313120 
+ 1070      352E342E 
+ 1070      31203230 
+ 1070      31363036 
+ 1071 004b 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1071      20726576 
+ 1071      6973696F 
+ 1071      6E203233 
+ 1071      37373135 
+ 1072 007e 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 1072      66756E63 
+ 1072      74696F6E 
+ 1072      2D736563 
+ 1072      74696F6E 
+ 1073              	.LASF6:
+ 1074 00a6 5F5F696E 		.ascii	"__int32_t\000"
+ 1074      7433325F 
+ 1074      7400
+ 1075              	.LASF25:
+ 1076 00b0 6C656674 		.ascii	"left_diff\000"
+ 1076      5F646966 
+ 1076      6600
+ 1077              	.LASF5:
+ 1078 00ba 73686F72 		.ascii	"short unsigned int\000"
+ 1078      7420756E 
+ 1078      7369676E 
+ 1078      65642069 
+ 1078      6E7400
+ 1079              	.LASF24:
+ 1080 00cd 6C656674 		.ascii	"left_new\000"
+ 1080      5F6E6577 
+ 1080      00
+ 1081              	.LASF16:
+ 1082 00d6 666C6F61 		.ascii	"float\000"
+ 1082      7400
+ 1083              	.LASF26:
+ 1084 00dc 57686565 		.ascii	"Wheel_Vel_Int_Handler\000"
+ 1084      6C5F5665 
+ 1084      6C5F496E 
+ 1084      745F4861 
+ 1084      6E646C65 
+ 1085              	.LASF0:
+ 1086 00f2 7369676E 		.ascii	"signed char\000"
+ 1086      65642063 
+ 1086      68617200 
+ 1087              	.LASF43:
+ 1088 00fe 54696D65 		.ascii	"Timer_Int_Handler\000"
+ 1088      725F496E 
+ARM GAS  C:\Users\raymo\AppData\Local\Temp\ccIB1g08.s 			page 23
+
+
+ 1088      745F4861 
+ 1088      6E646C65 
+ 1088      7200
+ 1089              	.LASF8:
+ 1090 0110 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1090      20756E73 
+ 1090      69676E65 
+ 1090      6420696E 
+ 1090      7400
+ 1091              	.LASF15:
+ 1092 0122 696E7433 		.ascii	"int32\000"
+ 1092      3200
+ 1093              	.LASF37:
+ 1094 0128 6C656674 		.ascii	"left_motor\000"
+ 1094      5F6D6F74 
+ 1094      6F7200
+ 1095              	.LASF28:
+ 1096 0133 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1096      52784275 
+ 1096      66666572 
+ 1096      00
+ 1097              	.LASF32:
+ 1098 0140 6D75785F 		.ascii	"mux_select\000"
+ 1098      73656C65 
+ 1098      637400
+ 1099              	.LASF1:
+ 1100 014b 756E7369 		.ascii	"unsigned char\000"
+ 1100      676E6564 
+ 1100      20636861 
+ 1100      7200
+ 1101              	.LASF4:
+ 1102 0159 5F5F7569 		.ascii	"__uint16_t\000"
+ 1102      6E743136 
+ 1102      5F7400
+ 1103              	.LASF17:
+ 1104 0164 646F7562 		.ascii	"double\000"
+ 1104      6C6500
+ 1105              	.LASF2:
+ 1106 016b 73686F72 		.ascii	"short int\000"
+ 1106      7420696E 
+ 1106      7400
+ 1107              	.LASF30:
+ 1108 0175 6D61785F 		.ascii	"max_count\000"
+ 1108      636F756E 
+ 1108      7400
+ 1109              	.LASF41:
+ 1110 017f 433A5C55 		.ascii	"C:\\Users\\raymo\\Desktop\\Raymond\\Monash\\OneDriv"
+ 1110      73657273 
+ 1110      5C726179 
+ 1110      6D6F5C44 
+ 1110      65736B74 
+ 1111 01ac 65202D20 		.ascii	"e - Monash University\\Fifth Year\\ECE4191\\PSOC_EC"
+ 1111      4D6F6E61 
+ 1111      73682055 
+ 1111      6E697665 
+ 1111      72736974 
+ 1112 01dc 45343139 		.ascii	"E4191\\DeliveryRobot.cydsn\000"
+ARM GAS  C:\Users\raymo\AppData\Local\Temp\ccIB1g08.s 			page 24
+
+
+ 1112      315C4465 
+ 1112      6C697665 
+ 1112      7279526F 
+ 1112      626F742E 
+ 1113              	.LASF21:
+ 1114 01f6 64757479 		.ascii	"duty_cycle\000"
+ 1114      5F637963 
+ 1114      6C6500
+ 1115              	.LASF11:
+ 1116 0201 756E7369 		.ascii	"unsigned int\000"
+ 1116      676E6564 
+ 1116      20696E74 
+ 1116      00
+ 1117              	.LASF10:
+ 1118 020e 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1118      206C6F6E 
+ 1118      6720756E 
+ 1118      7369676E 
+ 1118      65642069 
+ 1119              	.LASF12:
+ 1120 0225 75696E74 		.ascii	"uint8_t\000"
+ 1120      385F7400 
+ 1121              	.LASF29:
+ 1122 022d 6563686F 		.ascii	"echo_flag\000"
+ 1122      5F666C61 
+ 1122      6700
+ 1123              	.LASF44:
+ 1124 0237 6D61696E 		.ascii	"main\000"
+ 1124      00
+ 1125              	.LASF14:
+ 1126 023c 696E7433 		.ascii	"int32_t\000"
+ 1126      325F7400 
+ 1127              	.LASF20:
+ 1128 0244 73697A65 		.ascii	"sizetype\000"
+ 1128      74797065 
+ 1128      00
+ 1129              	.LASF36:
+ 1130 024d 64757479 		.ascii	"duty_cyle\000"
+ 1130      5F63796C 
+ 1130      6500
+ 1131              	.LASF22:
+ 1132 0257 6572726F 		.ascii	"error\000"
+ 1132      7200
+ 1133              	.LASF9:
+ 1134 025d 6C6F6E67 		.ascii	"long long int\000"
+ 1134      206C6F6E 
+ 1134      6720696E 
+ 1134      7400
+ 1135              	.LASF34:
+ 1136 026b 72696768 		.ascii	"right_wheel_count\000"
+ 1136      745F7768 
+ 1136      65656C5F 
+ 1136      636F756E 
+ 1136      7400
+ 1137              	.LASF40:
+ 1138 027d 6D61696E 		.ascii	"main.c\000"
+ 1138      2E6300
+ARM GAS  C:\Users\raymo\AppData\Local\Temp\ccIB1g08.s 			page 25
+
+
+ 1139              	.LASF18:
+ 1140 0284 63686172 		.ascii	"char\000"
+ 1140      00
+ 1141              	.LASF27:
+ 1142 0289 44726976 		.ascii	"Drive_Left_Motor\000"
+ 1142      655F4C65 
+ 1142      66745F4D 
+ 1142      6F746F72 
+ 1142      00
+ 1143              	.LASF13:
+ 1144 029a 75696E74 		.ascii	"uint16_t\000"
+ 1144      31365F74 
+ 1144      00
+ 1145              	.LASF7:
+ 1146 02a3 6C6F6E67 		.ascii	"long int\000"
+ 1146      20696E74 
+ 1146      00
+ 1147              	.LASF38:
+ 1148 02ac 72696768 		.ascii	"right_motor\000"
+ 1148      745F6D6F 
+ 1148      746F7200 
+ 1149              	.LASF19:
+ 1150 02b8 6C6F6E67 		.ascii	"long double\000"
+ 1150      20646F75 
+ 1150      626C6500 
+ 1151              	.LASF42:
+ 1152 02c4 4D6F746F 		.ascii	"Motor\000"
+ 1152      7200
+ 1153              	.LASF23:
+ 1154 02ca 77686565 		.ascii	"wheel_radius\000"
+ 1154      6C5F7261 
+ 1154      64697573 
+ 1154      00
+ 1155              	.LASF35:
+ 1156 02d7 73657269 		.ascii	"serial_output\000"
+ 1156      616C5F6F 
+ 1156      75747075 
+ 1156      7400
+ 1157              	.LASF33:
+ 1158 02e5 6C656674 		.ascii	"left_wheel_count\000"
+ 1158      5F776865 
+ 1158      656C5F63 
+ 1158      6F756E74 
+ 1158      00
+ 1159              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

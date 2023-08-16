@@ -42,7 +42,7 @@ int modular_dist(int a, int b, int m) {
 //
 
 /* TODO: Improve the direction calculation. Re-read the paper. */
-int calculate_direction(hist_t * hist, int objective_direction) {
+int calculate_direction(histogram * hist, int objective_direction) {
   int sector, best_direction = -1;
   int dist_best_and_obj, dist_sector_and_obj; /* Just to improve readability. */
 

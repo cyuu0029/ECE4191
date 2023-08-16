@@ -91,7 +91,7 @@ grid * active_window(grid * map, int curr_x, int curr_y, int dimension) {
    *
    * If grid_init returns NULL, exit the function.
   */
-  grid * active = initial_grid(dimension, map->resolution);
+  grid * active = initial_grid(dimension, dimension, map->resolution);
 
   if (active != NULL) {
 

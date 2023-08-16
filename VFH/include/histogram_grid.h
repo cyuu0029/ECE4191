@@ -43,9 +43,9 @@ grid * initial_grid(int width, int height, int resolution);
 
 /* active_window: Get a sub-grid of the grid that represents the current active window.
  * It is centered around (x, y), most likely robot coordinates in our scenario */
-grid * active_window(grid * grid, int pos_x, int pos_y, int dimension);
+grid * active_window(grid * map, int pos_x, int pos_y, int dimension);
 
 /* update_grid: Update histogram grid cells with sensor readings. */
-int update_grid(grid * grid, int pos_x, int pos_y, int yaw, sensor_data data);
+int update_grid(grid * map, int pos_x, int pos_y, int yaw, sensor_data data);
 
 #endif

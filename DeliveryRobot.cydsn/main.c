@@ -19,8 +19,15 @@ struct Motor {
     double desired_w;
     double Ki;
     double Kp;
-    int wheel_radius; // wheel radius in cm
+    double wheel_radius; // wheel radius in cm
     int32 enc_count;
+};
+
+struct Robot {
+    float theta;
+    float x;
+    float y;
+    float axle_width; // in cm
 };
 
 const float PULSES_PER_REV = 3591.92;
@@ -28,7 +35,8 @@ const float MOTOR_CONTROL_PERIOD = 0.02; // seconds
 const double TWO_PI = 2*3.14159265358979;
 
 void Drive_Left_Motor(double duty_cycle);
-  
+void Drive_Right_Motor(double duty_cycle);
+
 uint8_t echo_flag = 0;
 uint16_t max_count = 65535;
 uint16_t echo_distance;
@@ -36,10 +44,10 @@ uint8_t mux_select = 0;
 int32 left_wheel_count = 0;
 int32 right_wheel_count = 0;
 char serial_output[150];
-float duty_cyle= -1;
+
 struct Motor left_motor;
 struct Motor right_motor;
-
+struct Robot robot;
 
   
 CY_ISR( Timer_Int_Handler ) {
@@ -56,9 +64,25 @@ CY_ISR( Wheel_Vel_Int_Handler ) {
     int32 diff = new - left_motor.enc_count;
     left_motor.enc_count = new;
     left_motor.w = TWO_PI*diff/MOTOR_CONTROL_PERIOD/PULSES_PER_REV;
+    
+    new = QuadDec_R_GetCounter();
+    diff = new - right_motor.enc_count;
+    right_motor.enc_count = new;
+    right_motor.w = TWO_PI*diff/MOTOR_CONTROL_PERIOD/PULSES_PER_REV;
+    
+    // TODO: Add localisation update
+}
+
+CY_ISR( Motor_PI_Int_Handler ) {
     double error = left_motor.desired_w - left_motor.w;
     left_motor.int_error  = left_motor.int_error + error;
-    Drive_Left_Motor(left_motor.Kp*error + left_motor.Ki*left_motor.int_error);
+    left_motor.duty_cycle = left_motor.duty_cycle + left_motor.Kp*error + left_motor.Ki*left_motor.int_error;
+    Drive_Left_Motor(left_motor.duty_cycle);
+    
+    error = right_motor.desired_w - right_motor.w;
+    right_motor.int_error  = right_motor.int_error + error;
+    right_motor.duty_cycle = right_motor.duty_cycle + right_motor.Kp*error + right_motor.Ki*right_motor.int_error;
+    Drive_Left_Motor(left_motor.duty_cycle);
 }
 
 
@@ -67,11 +91,19 @@ int main(void)
 {
     left_motor.duty_cycle = 0;
     left_motor.int_error = 0;
-    left_motor.desired_w = 0;
-    left_motor.wheel_radius = 5;
+    left_motor.desired_w = TWO_PI;
+    left_motor.wheel_radius = 2.5;
     left_motor.enc_count = 0;
-    left_motor.Ki = 0.1;  // TODO: determine good PI params
-    left_motor.Kp = 0.1;
+    left_motor.Ki = 3e-11;  // TODO: determine good PI params
+    left_motor.Kp = 0.00005;
+    
+    right_motor.duty_cycle = 0;
+    right_motor.int_error = 0;
+    right_motor.desired_w = TWO_PI;
+    right_motor.wheel_radius = 2.5;
+    right_motor.enc_count = 0;
+    right_motor.Ki = 0.00000000003;  // TODO: determine good PI params
+    right_motor.Kp = 0.00005;
     
     CyGlobalIntEnable; /* Enable global interrupts. */
 
@@ -85,11 +117,13 @@ int main(void)
     // Registration of Timer ISR
     Timer_Echo_Int_StartEx( Timer_Int_Handler );
     Wheel_Vel_Int_StartEx( Wheel_Vel_Int_Handler );
-
+    Motor_PI_Int_StartEx( Motor_PI_Int_Handler );
     
 
 
     for(;;) {
+        sprintf(serial_output, "desired: %lf, actual: %lf, dc:%lf\n", left_motor.desired_w,left_motor.w, left_motor.duty_cycle);
+        UART_PutString(serial_output);
         // if a distance was measured, print the distance and clear the flag
         while ( echo_flag == 1 ) {
             //sprintf(serial_output, "%d cm", 65535-echo_distance);
@@ -117,13 +151,36 @@ int main(void)
 }
 
 void Drive_Left_Motor(double duty_cycle) {
+    if (duty_cycle < -1) {
+        duty_cycle = -1;
+    } else if (duty_cycle > 1) {
+        duty_cycle = 1;
+    }
+    
     if (duty_cycle < 0) {
         duty_cycle = -duty_cycle;
         PWM_Motor_L_WriteCompare1(0);
-        PWM_Motor_L_WriteCompare2(duty_cycle*10000);
+        PWM_Motor_L_WriteCompare2(duty_cycle*65535);
     } else {
-        PWM_Motor_L_WriteCompare1(duty_cycle*10000);
+        PWM_Motor_L_WriteCompare1(duty_cycle*65535);
         PWM_Motor_L_WriteCompare2(0);
+    }
+}
+
+void Drive_Right_Motor(double duty_cycle) {
+    if (duty_cycle < -1) {
+        duty_cycle = -1;
+    } else if (duty_cycle > 1) {
+        duty_cycle = 1;
+    }
+    
+    if (duty_cycle < 0) {
+        duty_cycle = -duty_cycle;
+        PWM_Motor_R_WriteCompare1(0);
+        PWM_Motor_R_WriteCompare2(duty_cycle*65535);
+    } else {
+        PWM_Motor_R_WriteCompare1(duty_cycle*65535);
+        PWM_Motor_R_WriteCompare2(0);
     }
 }
 

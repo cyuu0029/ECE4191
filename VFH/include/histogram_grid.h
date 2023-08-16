@@ -5,36 +5,47 @@
 
 #ifndef HISTOGRAM_GRID_H
 #define HISTOGRAM_GRID_H
+#endif
 
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
 #endif
 
-/* Histogram grid.
- *
- * Use `i * dimension + j` to iterate over the `cells`.
- * */
-typedef struct {
-  int dimension; /* Dimension in number of cells. */
-  int resolution; /* Centimeters per cell. */
-  int *cells; /* The obstacle density in each cell. */
-} grid_t;
+// Global tracker for number of sensors
+#ifndef N_SENSORS
+#define N_SENSORS 8
+#endif
 
-/* A rangefinder measurement.
- *
+
+/* Histogram grid.
+ * Define Histogram Grid Strcuture
+ * 
  */
 typedef struct {
-  int direction; /* [degrees] */
-  unsigned long distance; /* [cm] */
-} range_measure_t;
+  int width;      // Width of grid
+  int height;     // Height of grid
+  int resolution; // Size of cell in grid
+  int *cells;     // Obstacle density of each cell
+} grid;
 
-/* grid_init: Return a pointer to an empty (all zeros) grid. NULL otherwise. */
-grid_t * grid_init(int dimension, int resolution);
+/* Sensor Measurement Data
+ * Stores the distance measurement from ultrasonic sensor
+ * Organised as: [N, NE, E, SE, S, SW, W, NW]
+ * where N is the front of the robot regardless of real world orientation
+ */
+typedef struct {
+  int direction[n_sensors]; /* [degrees] */
+  unsigned long distance[n_sensors]; /* [cm] */
+} sensor_data;
 
-/* get_moving_window: Get a sub-grid of the grid centered in (x, y). */
-grid_t * get_moving_window(grid_t * grid, int pos_x, int pos_y, int dimension);
+/* initial_grid: Return a pointer to an empty (all zeros) grid. NULL otherwise. */
+grid * initial_grid(int width, int height, int resolution);
 
-/* grid_update: Update grid's cells with an array of sensor readings. */
-int grid_update(grid_t * grid, int pos_x, int pos_y, range_measure_t data);
+/* active_window: Get a sub-grid of the grid that represents the current active window.
+ * It is centered around (x, y), most likely robot coordinates in our scenario */
+grid * active_window(grid * grid, int pos_x, int pos_y, int dimension);
+
+/* update_grid: Update histogram grid cells with sensor readings. */
+int update_grid(grid * grid, int pos_x, int pos_y, int yaw, sensor_data data);
 
 #endif

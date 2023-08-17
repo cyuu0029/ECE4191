@@ -1,6 +1,6 @@
 // ======================================================================
 // DeliveryRobot.v generated from TopDesign.cysch
-// 08/16/2023 at 13:18
+// 08/16/2023 at 21:02
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 
@@ -2256,7 +2256,7 @@ module top ;
 		#(.id("6b9db8aa-0354-412d-915a-ee0b19b6bcd3"),
 		  .source_clock_id(""),
 		  .divisor(0),
-		  .period("10000000000"),
+		  .period("1000000000000"),
 		  .is_direct(0),
 		  .is_digital(1))
 		Clock_Motor_PI_Control

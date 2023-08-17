@@ -82,7 +82,7 @@ CY_ISR( Motor_PI_Int_Handler ) {
     error = right_motor.desired_w - right_motor.w;
     right_motor.int_error  = right_motor.int_error + error;
     right_motor.duty_cycle = right_motor.duty_cycle + right_motor.Kp*error + right_motor.Ki*right_motor.int_error;
-    Drive_Left_Motor(left_motor.duty_cycle);
+    Drive_Right_Motor(right_motor.duty_cycle);
 }
 
 
@@ -91,19 +91,19 @@ int main(void)
 {
     left_motor.duty_cycle = 0;
     left_motor.int_error = 0;
-    left_motor.desired_w = TWO_PI;
+    left_motor.desired_w = 0.3;
     left_motor.wheel_radius = 2.5;
     left_motor.enc_count = 0;
-    left_motor.Ki = 3e-11;  // TODO: determine good PI params
-    left_motor.Kp = 0.00005;
+    left_motor.Ki = 3e-7;  // TODO: determine good PI params
+    left_motor.Kp = 0.005;
     
     right_motor.duty_cycle = 0;
     right_motor.int_error = 0;
-    right_motor.desired_w = TWO_PI;
+    right_motor.desired_w = 0.3;
     right_motor.wheel_radius = 2.5;
     right_motor.enc_count = 0;
-    right_motor.Ki = 0.00000000003;  // TODO: determine good PI params
-    right_motor.Kp = 0.00005;
+    right_motor.Ki = 3e-7;  // TODO: determine good PI params
+    right_motor.Kp = 0.005;
     
     CyGlobalIntEnable; /* Enable global interrupts. */
 
@@ -113,7 +113,9 @@ int main(void)
     PWM_Trigger_Start();
     QuadDec_L_Start();
     PWM_Motor_L_Start();
-
+    QuadDec_R_Start();
+    PWM_Motor_R_Start();
+    
     // Registration of Timer ISR
     Timer_Echo_Int_StartEx( Timer_Int_Handler );
     Wheel_Vel_Int_StartEx( Wheel_Vel_Int_Handler );

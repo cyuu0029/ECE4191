@@ -16,6 +16,7 @@ struct Motor {
     float duty_cycle;
     double int_error;  // integrated error
     double w; // omega, [rad per sec]
+    double tangent_v; //tangential velocity, [cm per sec]
     double desired_w;
     double Ki;
     double Kp;
@@ -71,6 +72,10 @@ CY_ISR( Wheel_Vel_Int_Handler ) {
     right_motor.w = TWO_PI*diff/MOTOR_CONTROL_PERIOD/PULSES_PER_REV;
     
     // TODO: Add localisation update
+    left_motor.tangent_v = left_motor.w*left_motor.wheel_radius
+    right_motor.tangent_v = right_motor.w*right_motor.wheel_radius
+
+    
 }
 
 CY_ISR( Motor_PI_Int_Handler ) {

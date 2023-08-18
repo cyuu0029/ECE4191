@@ -72,8 +72,31 @@ CY_ISR( Wheel_Vel_Int_Handler ) {
     right_motor.w = TWO_PI*diff/MOTOR_CONTROL_PERIOD/PULSES_PER_REV;
     
     // TODO: Add localisation update
+    //Calculate and update tangential velocity of wheels
     left_motor.tangent_v = left_motor.w*left_motor.wheel_radius
     right_motor.tangent_v = right_motor.w*right_motor.wheel_radius
+
+    //temporary values
+    double omega = (right_motor.tangent_v - left_motor.tangent_v)/robot.axle_width //instantaneous turning velocity
+    double averge_v =  (right_motor.tangent_v + left_motor.tangent_v)/2 //instantaneous tangential velocity of robot centre
+    float new_theta = robot.theta + omega*MOTOR_CONTROL_PERIOD  //new angle of robot after time period, saved for use
+
+    //3 cases:
+    //1. Robot is going straight, velocity is contant and omega = 0
+    //2. Robot is turning (both on the spot and while moving)
+
+    if(omega == 0){
+        robot.x = robot.x + average_v*MOTOR_CONTROL_PERIOD
+        robot.y = robot.y + average_v*MOTOR_CONTROL_PERIOD
+            
+    }
+    else{
+        robot.x = robot.x + (average_v/omega)*(sin(new_theta) - sin(robot.theta)) //update robot x
+        robot.y = robot.y + (average_v/omega)*(- cos(new_theta) + sin(robot.theta)) //update robot y
+    }
+            
+    robot.theta = new_theta //update robot theta
+    
 
     
 }

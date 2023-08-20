@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: Wheel_Vel_Int.c  
+* File Name: Pose_Update_Int.c  
 * Version 1.70
 *
 *  Description:
@@ -18,15 +18,15 @@
 
 #include <cydevice_trm.h>
 #include <CyLib.h>
-#include <Wheel_Vel_Int.h>
+#include <Pose_Update_Int.h>
 #include "cyapicallbacks.h"
 
-#if !defined(Wheel_Vel_Int__REMOVED) /* Check for removal by optimization */
+#if !defined(Pose_Update_Int__REMOVED) /* Check for removal by optimization */
 
 /*******************************************************************************
 *  Place your includes, defines and code here 
 ********************************************************************************/
-/* `#START Wheel_Vel_Int_intc` */
+/* `#START Pose_Update_Int_intc` */
 
 /* `#END` */
 
@@ -42,7 +42,7 @@ CY_ISR_PROTO(IntDefaultHandler);
 
 
 /*******************************************************************************
-* Function Name: Wheel_Vel_Int_Start
+* Function Name: Pose_Update_Int_Start
 ********************************************************************************
 *
 * Summary:
@@ -58,24 +58,24 @@ CY_ISR_PROTO(IntDefaultHandler);
 *   None
 *
 *******************************************************************************/
-void Wheel_Vel_Int_Start(void)
+void Pose_Update_Int_Start(void)
 {
     /* For all we know the interrupt is active. */
-    Wheel_Vel_Int_Disable();
+    Pose_Update_Int_Disable();
 
-    /* Set the ISR to point to the Wheel_Vel_Int Interrupt. */
-    Wheel_Vel_Int_SetVector(&Wheel_Vel_Int_Interrupt);
+    /* Set the ISR to point to the Pose_Update_Int Interrupt. */
+    Pose_Update_Int_SetVector(&Pose_Update_Int_Interrupt);
 
     /* Set the priority. */
-    Wheel_Vel_Int_SetPriority((uint8)Wheel_Vel_Int_INTC_PRIOR_NUMBER);
+    Pose_Update_Int_SetPriority((uint8)Pose_Update_Int_INTC_PRIOR_NUMBER);
 
     /* Enable it. */
-    Wheel_Vel_Int_Enable();
+    Pose_Update_Int_Enable();
 }
 
 
 /*******************************************************************************
-* Function Name: Wheel_Vel_Int_StartEx
+* Function Name: Pose_Update_Int_StartEx
 ********************************************************************************
 *
 * Summary:
@@ -101,24 +101,24 @@ void Wheel_Vel_Int_Start(void)
 *   None
 *
 *******************************************************************************/
-void Wheel_Vel_Int_StartEx(cyisraddress address)
+void Pose_Update_Int_StartEx(cyisraddress address)
 {
     /* For all we know the interrupt is active. */
-    Wheel_Vel_Int_Disable();
+    Pose_Update_Int_Disable();
 
-    /* Set the ISR to point to the Wheel_Vel_Int Interrupt. */
-    Wheel_Vel_Int_SetVector(address);
+    /* Set the ISR to point to the Pose_Update_Int Interrupt. */
+    Pose_Update_Int_SetVector(address);
 
     /* Set the priority. */
-    Wheel_Vel_Int_SetPriority((uint8)Wheel_Vel_Int_INTC_PRIOR_NUMBER);
+    Pose_Update_Int_SetPriority((uint8)Pose_Update_Int_INTC_PRIOR_NUMBER);
 
     /* Enable it. */
-    Wheel_Vel_Int_Enable();
+    Pose_Update_Int_Enable();
 }
 
 
 /*******************************************************************************
-* Function Name: Wheel_Vel_Int_Stop
+* Function Name: Pose_Update_Int_Stop
 ********************************************************************************
 *
 * Summary:
@@ -131,22 +131,22 @@ void Wheel_Vel_Int_StartEx(cyisraddress address)
 *   None
 *
 *******************************************************************************/
-void Wheel_Vel_Int_Stop(void)
+void Pose_Update_Int_Stop(void)
 {
     /* Disable this interrupt. */
-    Wheel_Vel_Int_Disable();
+    Pose_Update_Int_Disable();
 
     /* Set the ISR to point to the passive one. */
-    Wheel_Vel_Int_SetVector(&IntDefaultHandler);
+    Pose_Update_Int_SetVector(&IntDefaultHandler);
 }
 
 
 /*******************************************************************************
-* Function Name: Wheel_Vel_Int_Interrupt
+* Function Name: Pose_Update_Int_Interrupt
 ********************************************************************************
 *
 * Summary:
-*   The default Interrupt Service Routine for Wheel_Vel_Int.
+*   The default Interrupt Service Routine for Pose_Update_Int.
 *
 *   Add custom code between the coments to keep the next version of this file
 *   from over writting your code.
@@ -157,27 +157,27 @@ void Wheel_Vel_Int_Stop(void)
 *   None
 *
 *******************************************************************************/
-CY_ISR(Wheel_Vel_Int_Interrupt)
+CY_ISR(Pose_Update_Int_Interrupt)
 {
-    #ifdef Wheel_Vel_Int_INTERRUPT_INTERRUPT_CALLBACK
-        Wheel_Vel_Int_Interrupt_InterruptCallback();
-    #endif /* Wheel_Vel_Int_INTERRUPT_INTERRUPT_CALLBACK */ 
+    #ifdef Pose_Update_Int_INTERRUPT_INTERRUPT_CALLBACK
+        Pose_Update_Int_Interrupt_InterruptCallback();
+    #endif /* Pose_Update_Int_INTERRUPT_INTERRUPT_CALLBACK */ 
 
     /*  Place your Interrupt code here. */
-    /* `#START Wheel_Vel_Int_Interrupt` */
+    /* `#START Pose_Update_Int_Interrupt` */
 
     /* `#END` */
 }
 
 
 /*******************************************************************************
-* Function Name: Wheel_Vel_Int_SetVector
+* Function Name: Pose_Update_Int_SetVector
 ********************************************************************************
 *
 * Summary:
-*   Change the ISR vector for the Interrupt. Note calling Wheel_Vel_Int_Start
+*   Change the ISR vector for the Interrupt. Note calling Pose_Update_Int_Start
 *   will override any effect this method would have had. To set the vector 
-*   before the component has been started use Wheel_Vel_Int_StartEx instead.
+*   before the component has been started use Pose_Update_Int_StartEx instead.
 * 
 *   When defining ISR functions, the CY_ISR and CY_ISR_PROTO macros should be 
 *   used to provide consistent definition across compilers:
@@ -197,18 +197,18 @@ CY_ISR(Wheel_Vel_Int_Interrupt)
 *   None
 *
 *******************************************************************************/
-void Wheel_Vel_Int_SetVector(cyisraddress address)
+void Pose_Update_Int_SetVector(cyisraddress address)
 {
     cyisraddress * ramVectorTable;
 
     ramVectorTable = (cyisraddress *) *CYINT_VECT_TABLE;
 
-    ramVectorTable[CYINT_IRQ_BASE + (uint32)Wheel_Vel_Int__INTC_NUMBER] = address;
+    ramVectorTable[CYINT_IRQ_BASE + (uint32)Pose_Update_Int__INTC_NUMBER] = address;
 }
 
 
 /*******************************************************************************
-* Function Name: Wheel_Vel_Int_GetVector
+* Function Name: Pose_Update_Int_GetVector
 ********************************************************************************
 *
 * Summary:
@@ -221,26 +221,26 @@ void Wheel_Vel_Int_SetVector(cyisraddress address)
 *   Address of the ISR in the interrupt vector table.
 *
 *******************************************************************************/
-cyisraddress Wheel_Vel_Int_GetVector(void)
+cyisraddress Pose_Update_Int_GetVector(void)
 {
     cyisraddress * ramVectorTable;
 
     ramVectorTable = (cyisraddress *) *CYINT_VECT_TABLE;
 
-    return ramVectorTable[CYINT_IRQ_BASE + (uint32)Wheel_Vel_Int__INTC_NUMBER];
+    return ramVectorTable[CYINT_IRQ_BASE + (uint32)Pose_Update_Int__INTC_NUMBER];
 }
 
 
 /*******************************************************************************
-* Function Name: Wheel_Vel_Int_SetPriority
+* Function Name: Pose_Update_Int_SetPriority
 ********************************************************************************
 *
 * Summary:
 *   Sets the Priority of the Interrupt. 
 *
-*   Note calling Wheel_Vel_Int_Start or Wheel_Vel_Int_StartEx will 
+*   Note calling Pose_Update_Int_Start or Pose_Update_Int_StartEx will 
 *   override any effect this API would have had. This API should only be called
-*   after Wheel_Vel_Int_Start or Wheel_Vel_Int_StartEx has been called. 
+*   after Pose_Update_Int_Start or Pose_Update_Int_StartEx has been called. 
 *   To set the initial priority for the component, use the Design-Wide Resources
 *   Interrupt Editor.
 *
@@ -255,14 +255,14 @@ cyisraddress Wheel_Vel_Int_GetVector(void)
 *   None
 *
 *******************************************************************************/
-void Wheel_Vel_Int_SetPriority(uint8 priority)
+void Pose_Update_Int_SetPriority(uint8 priority)
 {
-    *Wheel_Vel_Int_INTC_PRIOR = priority << 5;
+    *Pose_Update_Int_INTC_PRIOR = priority << 5;
 }
 
 
 /*******************************************************************************
-* Function Name: Wheel_Vel_Int_GetPriority
+* Function Name: Pose_Update_Int_GetPriority
 ********************************************************************************
 *
 * Summary:
@@ -277,19 +277,19 @@ void Wheel_Vel_Int_SetPriority(uint8 priority)
 *    PSoC 4: Priority is from 0 to 3.
 *
 *******************************************************************************/
-uint8 Wheel_Vel_Int_GetPriority(void)
+uint8 Pose_Update_Int_GetPriority(void)
 {
     uint8 priority;
 
 
-    priority = *Wheel_Vel_Int_INTC_PRIOR >> 5;
+    priority = *Pose_Update_Int_INTC_PRIOR >> 5;
 
     return priority;
 }
 
 
 /*******************************************************************************
-* Function Name: Wheel_Vel_Int_Enable
+* Function Name: Pose_Update_Int_Enable
 ********************************************************************************
 *
 * Summary:
@@ -304,15 +304,15 @@ uint8 Wheel_Vel_Int_GetPriority(void)
 *   None
 *
 *******************************************************************************/
-void Wheel_Vel_Int_Enable(void)
+void Pose_Update_Int_Enable(void)
 {
     /* Enable the general interrupt. */
-    *Wheel_Vel_Int_INTC_SET_EN = Wheel_Vel_Int__INTC_MASK;
+    *Pose_Update_Int_INTC_SET_EN = Pose_Update_Int__INTC_MASK;
 }
 
 
 /*******************************************************************************
-* Function Name: Wheel_Vel_Int_GetState
+* Function Name: Pose_Update_Int_GetState
 ********************************************************************************
 *
 * Summary:
@@ -325,15 +325,15 @@ void Wheel_Vel_Int_Enable(void)
 *   1 if enabled, 0 if disabled.
 *
 *******************************************************************************/
-uint8 Wheel_Vel_Int_GetState(void)
+uint8 Pose_Update_Int_GetState(void)
 {
     /* Get the state of the general interrupt. */
-    return ((*Wheel_Vel_Int_INTC_SET_EN & (uint32)Wheel_Vel_Int__INTC_MASK) != 0u) ? 1u:0u;
+    return ((*Pose_Update_Int_INTC_SET_EN & (uint32)Pose_Update_Int__INTC_MASK) != 0u) ? 1u:0u;
 }
 
 
 /*******************************************************************************
-* Function Name: Wheel_Vel_Int_Disable
+* Function Name: Pose_Update_Int_Disable
 ********************************************************************************
 *
 * Summary:
@@ -346,15 +346,15 @@ uint8 Wheel_Vel_Int_GetState(void)
 *   None
 *
 *******************************************************************************/
-void Wheel_Vel_Int_Disable(void)
+void Pose_Update_Int_Disable(void)
 {
     /* Disable the general interrupt. */
-    *Wheel_Vel_Int_INTC_CLR_EN = Wheel_Vel_Int__INTC_MASK;
+    *Pose_Update_Int_INTC_CLR_EN = Pose_Update_Int__INTC_MASK;
 }
 
 
 /*******************************************************************************
-* Function Name: Wheel_Vel_Int_SetPending
+* Function Name: Pose_Update_Int_SetPending
 ********************************************************************************
 *
 * Summary:
@@ -373,14 +373,14 @@ void Wheel_Vel_Int_Disable(void)
 *   interrupts).
 *
 *******************************************************************************/
-void Wheel_Vel_Int_SetPending(void)
+void Pose_Update_Int_SetPending(void)
 {
-    *Wheel_Vel_Int_INTC_SET_PD = Wheel_Vel_Int__INTC_MASK;
+    *Pose_Update_Int_INTC_SET_PD = Pose_Update_Int__INTC_MASK;
 }
 
 
 /*******************************************************************************
-* Function Name: Wheel_Vel_Int_ClearPending
+* Function Name: Pose_Update_Int_ClearPending
 ********************************************************************************
 *
 * Summary:
@@ -398,9 +398,9 @@ void Wheel_Vel_Int_SetPending(void)
 *   None
 *
 *******************************************************************************/
-void Wheel_Vel_Int_ClearPending(void)
+void Pose_Update_Int_ClearPending(void)
 {
-    *Wheel_Vel_Int_INTC_CLR_PD = Wheel_Vel_Int__INTC_MASK;
+    *Pose_Update_Int_INTC_CLR_PD = Pose_Update_Int__INTC_MASK;
 }
 
 #endif /* End check for removal by optimization */

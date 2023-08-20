@@ -1,5 +1,5 @@
 # DeliveryRobot
-# 2023-08-16 11:02:34Z
+# 2023-08-20 06:46:20Z
 
 # IO_0@[IOP=(1)][IoId=(0)] is reserved: SWDDebugEnabled
 dont_use_io iocell 1 0
@@ -55,7 +55,7 @@ set_location "\Timer_Echo:TimerUDB:sCTRLReg:SyncCtl:ctrlreg\" 0 3 6
 set_location "\Timer_Echo:TimerUDB:rstSts:stsreg\" 0 2 4
 set_location "\Timer_Echo:TimerUDB:sT16:timerdp:u0\" 1 2 2
 set_location "\Timer_Echo:TimerUDB:sT16:timerdp:u1\" 0 2 2
-set_location "Timer_Echo_Int" interrupt -1 -1 1
+set_location "Timer_Echo_Int" interrupt -1 -1 2
 set_location "\Control_Reg_US:Sync:ctrl_reg\" 0 1 6
 set_location "\PWM_Motor_L:PWMUDB:genblk1:ctrlreg\" 1 5 6
 set_location "\PWM_Motor_L:PWMUDB:genblk8:stsreg\" 1 5 4
@@ -69,7 +69,7 @@ set_location "\QuadDec_L:Cnt16:CounterUDB:sC16:counterdp:u1\" 2 2 2
 set_location "\QuadDec_L:bQuadDec:quad_A_filt\" 0 0 1 0
 set_location "\QuadDec_L:bQuadDec:quad_B_filt\" 0 0 1 2
 set_location "\QuadDec_L:bQuadDec:Stsreg\" 3 1 4
-set_location "Wheel_Vel_Int" interrupt -1 -1 2
+set_location "Pose_Update_Int" interrupt -1 -1 1
 set_location "Motor_PI_Int" interrupt -1 -1 0
 set_location "\QuadDec_R:isr\" interrupt -1 -1 4
 set_location "\QuadDec_R:Cnt16:CounterUDB:sCTRLReg:ctrlreg\" 1 4 6

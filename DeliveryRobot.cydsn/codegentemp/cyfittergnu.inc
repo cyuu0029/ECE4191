@@ -555,10 +555,10 @@
 /* Timer_Echo */
 .set Timer_Echo_Int__INTC_CLR_EN_REG, CYREG_NVIC_CLRENA0
 .set Timer_Echo_Int__INTC_CLR_PD_REG, CYREG_NVIC_CLRPEND0
-.set Timer_Echo_Int__INTC_MASK, 0x02
-.set Timer_Echo_Int__INTC_NUMBER, 1
+.set Timer_Echo_Int__INTC_MASK, 0x04
+.set Timer_Echo_Int__INTC_NUMBER, 2
 .set Timer_Echo_Int__INTC_PRIOR_NUM, 7
-.set Timer_Echo_Int__INTC_PRIOR_REG, CYREG_NVIC_PRI_1
+.set Timer_Echo_Int__INTC_PRIOR_REG, CYREG_NVIC_PRI_2
 .set Timer_Echo_Int__INTC_SET_EN_REG, CYREG_NVIC_SETENA0
 .set Timer_Echo_Int__INTC_SET_PD_REG, CYREG_NVIC_SETPEND0
 .set Timer_Echo_TimerUDB_rstSts_stsreg__0__MASK, 0x01
@@ -938,16 +938,6 @@
 .set Clock_Trigger__PM_STBY_CFG, CYREG_PM_STBY_CFG2
 .set Clock_Trigger__PM_STBY_MSK, 0x01
 
-/* Wheel_Vel_Int */
-.set Wheel_Vel_Int__INTC_CLR_EN_REG, CYREG_NVIC_CLRENA0
-.set Wheel_Vel_Int__INTC_CLR_PD_REG, CYREG_NVIC_CLRPEND0
-.set Wheel_Vel_Int__INTC_MASK, 0x04
-.set Wheel_Vel_Int__INTC_NUMBER, 2
-.set Wheel_Vel_Int__INTC_PRIOR_NUM, 0
-.set Wheel_Vel_Int__INTC_PRIOR_REG, CYREG_NVIC_PRI_2
-.set Wheel_Vel_Int__INTC_SET_EN_REG, CYREG_NVIC_SETENA0
-.set Wheel_Vel_Int__INTC_SET_PD_REG, CYREG_NVIC_SETPEND0
-
 /* Control_Reg_US */
 .set Control_Reg_US_Sync_ctrl_reg__0__MASK, 0x01
 .set Control_Reg_US_Sync_ctrl_reg__0__POS, 0
@@ -1039,6 +1029,16 @@
 .set Pin_US_Trigger2__PS, CYREG_PRT2_PS
 .set Pin_US_Trigger2__SHIFT, 0
 .set Pin_US_Trigger2__SLW, CYREG_PRT2_SLW
+
+/* Pose_Update_Int */
+.set Pose_Update_Int__INTC_CLR_EN_REG, CYREG_NVIC_CLRENA0
+.set Pose_Update_Int__INTC_CLR_PD_REG, CYREG_NVIC_CLRPEND0
+.set Pose_Update_Int__INTC_MASK, 0x02
+.set Pose_Update_Int__INTC_NUMBER, 1
+.set Pose_Update_Int__INTC_PRIOR_NUM, 0
+.set Pose_Update_Int__INTC_PRIOR_REG, CYREG_NVIC_PRI_1
+.set Pose_Update_Int__INTC_SET_EN_REG, CYREG_NVIC_SETENA0
+.set Pose_Update_Int__INTC_SET_PD_REG, CYREG_NVIC_SETPEND0
 
 /* Clock_Motor_Control */
 .set Clock_Motor_Control__CFG0, CYREG_CLKDIST_DCFG4_CFG0
@@ -1217,7 +1217,7 @@
 .set CYDEV_DEBUGGING_XRES, 0
 .set CYDEV_DMA_CHANNELS_AVAILABLE, 24
 .set CYDEV_ECC_ENABLE, 0
-.set CYDEV_HEAP_SIZE, 0x200
+.set CYDEV_HEAP_SIZE, 1024
 .set CYDEV_INSTRUCT_CACHE_ENABLED, 1
 .set CYDEV_INTR_RISING, 0x0000001F
 .set CYDEV_IS_EXPORTING_CODE, 0

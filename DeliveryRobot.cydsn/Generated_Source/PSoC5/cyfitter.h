@@ -555,10 +555,10 @@
 /* Timer_Echo */
 #define Timer_Echo_Int__INTC_CLR_EN_REG CYREG_NVIC_CLRENA0
 #define Timer_Echo_Int__INTC_CLR_PD_REG CYREG_NVIC_CLRPEND0
-#define Timer_Echo_Int__INTC_MASK 0x02u
-#define Timer_Echo_Int__INTC_NUMBER 1u
+#define Timer_Echo_Int__INTC_MASK 0x04u
+#define Timer_Echo_Int__INTC_NUMBER 2u
 #define Timer_Echo_Int__INTC_PRIOR_NUM 7u
-#define Timer_Echo_Int__INTC_PRIOR_REG CYREG_NVIC_PRI_1
+#define Timer_Echo_Int__INTC_PRIOR_REG CYREG_NVIC_PRI_2
 #define Timer_Echo_Int__INTC_SET_EN_REG CYREG_NVIC_SETENA0
 #define Timer_Echo_Int__INTC_SET_PD_REG CYREG_NVIC_SETPEND0
 #define Timer_Echo_TimerUDB_rstSts_stsreg__0__MASK 0x01u
@@ -938,16 +938,6 @@
 #define Clock_Trigger__PM_STBY_CFG CYREG_PM_STBY_CFG2
 #define Clock_Trigger__PM_STBY_MSK 0x01u
 
-/* Wheel_Vel_Int */
-#define Wheel_Vel_Int__INTC_CLR_EN_REG CYREG_NVIC_CLRENA0
-#define Wheel_Vel_Int__INTC_CLR_PD_REG CYREG_NVIC_CLRPEND0
-#define Wheel_Vel_Int__INTC_MASK 0x04u
-#define Wheel_Vel_Int__INTC_NUMBER 2u
-#define Wheel_Vel_Int__INTC_PRIOR_NUM 0u
-#define Wheel_Vel_Int__INTC_PRIOR_REG CYREG_NVIC_PRI_2
-#define Wheel_Vel_Int__INTC_SET_EN_REG CYREG_NVIC_SETENA0
-#define Wheel_Vel_Int__INTC_SET_PD_REG CYREG_NVIC_SETPEND0
-
 /* Control_Reg_US */
 #define Control_Reg_US_Sync_ctrl_reg__0__MASK 0x01u
 #define Control_Reg_US_Sync_ctrl_reg__0__POS 0
@@ -1039,6 +1029,16 @@
 #define Pin_US_Trigger2__PS CYREG_PRT2_PS
 #define Pin_US_Trigger2__SHIFT 0u
 #define Pin_US_Trigger2__SLW CYREG_PRT2_SLW
+
+/* Pose_Update_Int */
+#define Pose_Update_Int__INTC_CLR_EN_REG CYREG_NVIC_CLRENA0
+#define Pose_Update_Int__INTC_CLR_PD_REG CYREG_NVIC_CLRPEND0
+#define Pose_Update_Int__INTC_MASK 0x02u
+#define Pose_Update_Int__INTC_NUMBER 1u
+#define Pose_Update_Int__INTC_PRIOR_NUM 0u
+#define Pose_Update_Int__INTC_PRIOR_REG CYREG_NVIC_PRI_1
+#define Pose_Update_Int__INTC_SET_EN_REG CYREG_NVIC_SETENA0
+#define Pose_Update_Int__INTC_SET_PD_REG CYREG_NVIC_SETPEND0
 
 /* Clock_Motor_Control */
 #define Clock_Motor_Control__CFG0 CYREG_CLKDIST_DCFG4_CFG0
@@ -1219,7 +1219,7 @@
 #define CYDEV_DEBUGGING_XRES 0
 #define CYDEV_DMA_CHANNELS_AVAILABLE 24u
 #define CYDEV_ECC_ENABLE 0
-#define CYDEV_HEAP_SIZE 0x200
+#define CYDEV_HEAP_SIZE 1024
 #define CYDEV_INSTRUCT_CACHE_ENABLED 1
 #define CYDEV_INTR_RISING 0x0000001Fu
 #define CYDEV_IS_EXPORTING_CODE 0

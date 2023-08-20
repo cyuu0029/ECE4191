@@ -1,5 +1,5 @@
 -- Project:   DeliveryRobot
--- Generated: 08/16/2023 21:02:31
+-- Generated: 08/20/2023 16:46:18
 -- PSoC Creator  4.4
 
 ENTITY DeliveryRobot IS
@@ -2888,7 +2888,7 @@ BEGIN
             status_0 => \QuadDec_L:Net_530\,
             interrupt => Net_426);
 
-    Wheel_Vel_Int:interrupt
+    Pose_Update_Int:interrupt
         GENERIC MAP(
             int_type => "10",
             is_nmi => 0)

@@ -11,9 +11,10 @@
 */
 #include "project.h"
 #include <stdio.h>
+#include <math.h>
 
 struct Motor {
-    float duty_cycle;
+    double duty_cycle;
     double int_error;  // integrated error
     double w; // omega, [rad per sec]
     double tangent_v; //tangential velocity, [cm per sec]
@@ -25,14 +26,24 @@ struct Motor {
 };
 
 struct Robot {
-    float theta;
-    float x;
-    float y;
-    float axle_width; // in cm
+    double theta;  // in RADIANS
+    double x;   // in cm
+    double y;   // in cm
+    double axle_width; // in cm
+    
+    double V;   // in cm/s
+    double w;   // in rad/s
+    
+    double desired_V;
+    double desired_theta;
+    
+    double Ki;
+    double Kp;
+    double int_error; // integrated error for PI control
 };
 
 const float PULSES_PER_REV = 3591.92;
-const float MOTOR_CONTROL_PERIOD = 0.02; // seconds
+const float POSE_UPDATE_PERIOD = 0.02; // seconds
 const double TWO_PI = 2*3.14159265358979;
 
 void Drive_Left_Motor(double duty_cycle);
@@ -60,34 +71,53 @@ CY_ISR( Timer_Int_Handler ) {
     Timer_Echo_ReadStatusRegister();
 }
 
-CY_ISR( Wheel_Vel_Int_Handler ) {
+CY_ISR( Pose_Update_Int_Handler ) {
     int32 new = QuadDec_L_GetCounter();
     int32 diff = new - left_motor.enc_count;
     left_motor.enc_count = new;
-    left_motor.w = TWO_PI*diff/MOTOR_CONTROL_PERIOD/PULSES_PER_REV;
+    left_motor.w = TWO_PI*diff/POSE_UPDATE_PERIOD/PULSES_PER_REV;
     
     new = QuadDec_R_GetCounter();
     diff = new - right_motor.enc_count;
     right_motor.enc_count = new;
-    right_motor.w = TWO_PI*diff/MOTOR_CONTROL_PERIOD/PULSES_PER_REV;
+    right_motor.w = TWO_PI*diff/POSE_UPDATE_PERIOD/PULSES_PER_REV;
     
-    // TODO: Add localisation update
     //Calculate and update tangential velocity of wheels
-    left_motor.tangent_v = left_motor.w*left_motor.wheel_radius
-    right_motor.tangent_v = right_motor.w*right_motor.wheel_radius
+    left_motor.tangent_v = left_motor.w*left_motor.wheel_radius;
+    right_motor.tangent_v = right_motor.w*right_motor.wheel_radius;
 
     //temporary values
-    double omega = (right_motor.tangent_v - left_motor.tangent_v)/robot.axle_width //instantaneous turning velocity
-    double averge_v =  (right_motor.tangent_v + left_motor.tangent_v)/2 //instantaneous tangential velocity of robot centre
-    float new_theta = robot.theta + omega*MOTOR_CONTROL_PERIOD  //new angle of robot after time period, saved for use
+    robot.w = (right_motor.tangent_v - left_motor.tangent_v)/robot.axle_width; //instantaneous turning velocity
+    robot.V =  (right_motor.tangent_v + left_motor.tangent_v)/2; //instantaneous tangential velocity of robot centre
 
+    // update pose variables
+    robot.theta = robot.theta + robot.w * POSE_UPDATE_PERIOD;
+    robot.theta = robot.theta - 360 * floor(robot.theta / 360); // ensures theta is in range [0, 360)
+    robot.x = robot.x + POSE_UPDATE_PERIOD * robot.V * cos(robot.theta);
+    robot.y = robot.y + POSE_UPDATE_PERIOD * robot.V * sin(robot.theta);
+    
+    // do robot PI control
+    double error = robot.desired_theta - robot.theta;   
+    if( error > M_PI ) {     // TODO: give this more thought. Want the robot to choose direction of rotation efficiently, but this might work
+        error = error - 2*M_TWOPI;
+    }
+    if( error < -M_PI) {
+        error = error + 2*M_PI;
+    }
+    robot.int_error = robot.int_error + error;
+    double new_omega = robot.Kp * error + robot.Ki * robot.int_error;
+    right_motor.desired_w = (robot.desired_V + new_omega * robot.axle_width / 2) / right_motor.wheel_radius;
+    left_motor.desired_w = (robot.desired_V - new_omega * robot.axle_width / 2) / left_motor.wheel_radius;
+    
+    /* JS: Think this can be done more succinctly by code above 
+    
     //3 cases:
     //1. Robot is going straight, velocity is contant and omega = 0
     //2. Robot is turning (both on the spot and while moving)
 
     if(omega == 0){
-        robot.x = robot.x + average_v*MOTOR_CONTROL_PERIOD
-        robot.y = robot.y + average_v*MOTOR_CONTROL_PERIOD
+        robot.x = robot.x + average_v*POSE_UPDATE_PERIOD
+        robot.y = robot.y + average_v*POSE_UPDATE_PERIOD
             
     }
     else{
@@ -96,7 +126,7 @@ CY_ISR( Wheel_Vel_Int_Handler ) {
     }
             
     robot.theta = new_theta //update robot theta
-    
+    */
 
     
 }
@@ -133,6 +163,11 @@ int main(void)
     right_motor.Ki = 3e-7;  // TODO: determine good PI params
     right_motor.Kp = 0.005;
     
+    robot.axle_width = 20; // TODO: get accurate measurement
+    robot.int_error = 0;
+    robot.Ki = 3e-7;    // TODO: determine good PI values
+    robot.Kp = 0.005;
+    
     CyGlobalIntEnable; /* Enable global interrupts. */
 
     // Start up code - enable UART, PWM and Timer used for ultrasonic module
@@ -146,7 +181,7 @@ int main(void)
     
     // Registration of Timer ISR
     Timer_Echo_Int_StartEx( Timer_Int_Handler );
-    Wheel_Vel_Int_StartEx( Wheel_Vel_Int_Handler );
+    Pose_Update_Int_StartEx( Pose_Update_Int_Handler );
     Motor_PI_Int_StartEx( Motor_PI_Int_Handler );
     
 

@@ -1,5 +1,5 @@
--- Project:   C:\Users\raymo\Documents\GitHub\ECE4191\DeliveryRobot.cydsn\DeliveryRobot.cyprj
--- Generated: 08/16/2023 21:02:37
+-- Project:   C:\Users\jmspi\OneDrive\Documents\GitHub\ECE4191\DeliveryRobot.cydsn\DeliveryRobot.cyprj
+-- Generated: 08/20/2023 16:46:23
 -- PSoC Creator  4.4
 
 ENTITY DeliveryRobot IS
@@ -503,7 +503,7 @@ ARCHITECTURE __DEFAULT__ OF DeliveryRobot IS
     ATTRIBUTE Location OF \Timer_Echo:TimerUDB:sT16:timerdp:u0\ : LABEL IS "U(1,2)";
     ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:sT16:timerdp:u1\ : LABEL IS "datapathcell5";
     ATTRIBUTE Location OF \Timer_Echo:TimerUDB:sT16:timerdp:u1\ : LABEL IS "U(0,2)";
-    ATTRIBUTE Location OF Timer_Echo_Int : LABEL IS "[IntrContainer=(0)][IntrId=(1)]";
+    ATTRIBUTE Location OF Timer_Echo_Int : LABEL IS "[IntrContainer=(0)][IntrId=(2)]";
     ATTRIBUTE lib_model OF \Control_Reg_US:Sync:ctrl_reg\ : LABEL IS "controlcell3";
     ATTRIBUTE Location OF \Control_Reg_US:Sync:ctrl_reg\ : LABEL IS "U(0,1)";
     ATTRIBUTE lib_model OF \PWM_Motor_L:PWMUDB:genblk1:ctrlreg\ : LABEL IS "controlcell4";
@@ -529,7 +529,7 @@ ARCHITECTURE __DEFAULT__ OF DeliveryRobot IS
     ATTRIBUTE Location OF \QuadDec_L:bQuadDec:quad_B_filt\ : LABEL IS "U(0,0)";
     ATTRIBUTE lib_model OF \QuadDec_L:bQuadDec:Stsreg\ : LABEL IS "statusicell5";
     ATTRIBUTE Location OF \QuadDec_L:bQuadDec:Stsreg\ : LABEL IS "U(3,1)";
-    ATTRIBUTE Location OF Wheel_Vel_Int : LABEL IS "[IntrContainer=(0)][IntrId=(2)]";
+    ATTRIBUTE Location OF Pose_Update_Int : LABEL IS "[IntrContainer=(0)][IntrId=(1)]";
     ATTRIBUTE Location OF Motor_PI_Int : LABEL IS "[IntrContainer=(0)][IntrId=(0)]";
     ATTRIBUTE Location OF \QuadDec_R:isr\ : LABEL IS "[IntrContainer=(0)][IntrId=(4)]";
     ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:sCTRLReg:ctrlreg\ : LABEL IS "controlcell6";
@@ -3071,7 +3071,7 @@ BEGIN
             status_0 => \QuadDec_L:Net_530\,
             interrupt => Net_426);
 
-    Wheel_Vel_Int:interrupt
+    Pose_Update_Int:interrupt
         GENERIC MAP(
             int_type => "10",
             is_nmi => 0)

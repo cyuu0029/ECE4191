@@ -11882,10 +11882,10 @@ ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 1
 
 
  557              	.set Timer_Echo_Int__INTC_CLR_PD_REG, CYREG_NVIC_CLRPEND0
- 558              	.set Timer_Echo_Int__INTC_MASK, 0x02
- 559              	.set Timer_Echo_Int__INTC_NUMBER, 1
+ 558              	.set Timer_Echo_Int__INTC_MASK, 0x04
+ 559              	.set Timer_Echo_Int__INTC_NUMBER, 2
  560              	.set Timer_Echo_Int__INTC_PRIOR_NUM, 7
- 561              	.set Timer_Echo_Int__INTC_PRIOR_REG, CYREG_NVIC_PRI_1
+ 561              	.set Timer_Echo_Int__INTC_PRIOR_REG, CYREG_NVIC_PRI_2
  562              	.set Timer_Echo_Int__INTC_SET_EN_REG, CYREG_NVIC_SETENA0
  563              	.set Timer_Echo_Int__INTC_SET_PD_REG, CYREG_NVIC_SETPEND0
  564              	.set Timer_Echo_TimerUDB_rstSts_stsreg__0__MASK, 0x01
@@ -12283,113 +12283,113 @@ ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 1
  938              	.set Clock_Trigger__PM_STBY_CFG, CYREG_PM_STBY_CFG2
  939              	.set Clock_Trigger__PM_STBY_MSK, 0x01
  940              	
- 941              	/* Wheel_Vel_Int */
- 942              	.set Wheel_Vel_Int__INTC_CLR_EN_REG, CYREG_NVIC_CLRENA0
- 943              	.set Wheel_Vel_Int__INTC_CLR_PD_REG, CYREG_NVIC_CLRPEND0
- 944              	.set Wheel_Vel_Int__INTC_MASK, 0x04
- 945              	.set Wheel_Vel_Int__INTC_NUMBER, 2
- 946              	.set Wheel_Vel_Int__INTC_PRIOR_NUM, 0
- 947              	.set Wheel_Vel_Int__INTC_PRIOR_REG, CYREG_NVIC_PRI_2
- 948              	.set Wheel_Vel_Int__INTC_SET_EN_REG, CYREG_NVIC_SETENA0
- 949              	.set Wheel_Vel_Int__INTC_SET_PD_REG, CYREG_NVIC_SETPEND0
- 950              	
- 951              	/* Control_Reg_US */
- 952              	.set Control_Reg_US_Sync_ctrl_reg__0__MASK, 0x01
- 953              	.set Control_Reg_US_Sync_ctrl_reg__0__POS, 0
- 954              	.set Control_Reg_US_Sync_ctrl_reg__1__MASK, 0x02
- 955              	.set Control_Reg_US_Sync_ctrl_reg__1__POS, 1
+ 941              	/* Control_Reg_US */
+ 942              	.set Control_Reg_US_Sync_ctrl_reg__0__MASK, 0x01
+ 943              	.set Control_Reg_US_Sync_ctrl_reg__0__POS, 0
+ 944              	.set Control_Reg_US_Sync_ctrl_reg__1__MASK, 0x02
+ 945              	.set Control_Reg_US_Sync_ctrl_reg__1__POS, 1
+ 946              	.set Control_Reg_US_Sync_ctrl_reg__16BIT_CONTROL_AUX_CTL_REG, CYREG_B1_UDB09_10_ACTL
+ 947              	.set Control_Reg_US_Sync_ctrl_reg__16BIT_CONTROL_CONTROL_REG, CYREG_B1_UDB09_10_CTL
+ 948              	.set Control_Reg_US_Sync_ctrl_reg__16BIT_CONTROL_COUNT_REG, CYREG_B1_UDB09_10_CTL
+ 949              	.set Control_Reg_US_Sync_ctrl_reg__16BIT_COUNT_CONTROL_REG, CYREG_B1_UDB09_10_CTL
+ 950              	.set Control_Reg_US_Sync_ctrl_reg__16BIT_COUNT_COUNT_REG, CYREG_B1_UDB09_10_CTL
+ 951              	.set Control_Reg_US_Sync_ctrl_reg__16BIT_MASK_MASK_REG, CYREG_B1_UDB09_10_MSK
+ 952              	.set Control_Reg_US_Sync_ctrl_reg__16BIT_MASK_PERIOD_REG, CYREG_B1_UDB09_10_MSK
+ 953              	.set Control_Reg_US_Sync_ctrl_reg__16BIT_PERIOD_MASK_REG, CYREG_B1_UDB09_10_MSK
+ 954              	.set Control_Reg_US_Sync_ctrl_reg__16BIT_PERIOD_PERIOD_REG, CYREG_B1_UDB09_10_MSK
+ 955              	.set Control_Reg_US_Sync_ctrl_reg__CONTROL_AUX_CTL_REG, CYREG_B1_UDB09_ACTL
 ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 206
 
 
- 956              	.set Control_Reg_US_Sync_ctrl_reg__16BIT_CONTROL_AUX_CTL_REG, CYREG_B1_UDB09_10_ACTL
- 957              	.set Control_Reg_US_Sync_ctrl_reg__16BIT_CONTROL_CONTROL_REG, CYREG_B1_UDB09_10_CTL
- 958              	.set Control_Reg_US_Sync_ctrl_reg__16BIT_CONTROL_COUNT_REG, CYREG_B1_UDB09_10_CTL
- 959              	.set Control_Reg_US_Sync_ctrl_reg__16BIT_COUNT_CONTROL_REG, CYREG_B1_UDB09_10_CTL
- 960              	.set Control_Reg_US_Sync_ctrl_reg__16BIT_COUNT_COUNT_REG, CYREG_B1_UDB09_10_CTL
- 961              	.set Control_Reg_US_Sync_ctrl_reg__16BIT_MASK_MASK_REG, CYREG_B1_UDB09_10_MSK
- 962              	.set Control_Reg_US_Sync_ctrl_reg__16BIT_MASK_PERIOD_REG, CYREG_B1_UDB09_10_MSK
- 963              	.set Control_Reg_US_Sync_ctrl_reg__16BIT_PERIOD_MASK_REG, CYREG_B1_UDB09_10_MSK
- 964              	.set Control_Reg_US_Sync_ctrl_reg__16BIT_PERIOD_PERIOD_REG, CYREG_B1_UDB09_10_MSK
- 965              	.set Control_Reg_US_Sync_ctrl_reg__CONTROL_AUX_CTL_REG, CYREG_B1_UDB09_ACTL
- 966              	.set Control_Reg_US_Sync_ctrl_reg__CONTROL_REG, CYREG_B1_UDB09_CTL
- 967              	.set Control_Reg_US_Sync_ctrl_reg__CONTROL_ST_REG, CYREG_B1_UDB09_ST_CTL
- 968              	.set Control_Reg_US_Sync_ctrl_reg__COUNT_REG, CYREG_B1_UDB09_CTL
- 969              	.set Control_Reg_US_Sync_ctrl_reg__COUNT_ST_REG, CYREG_B1_UDB09_ST_CTL
- 970              	.set Control_Reg_US_Sync_ctrl_reg__MASK, 0x03
- 971              	.set Control_Reg_US_Sync_ctrl_reg__MASK_CTL_AUX_CTL_REG, CYREG_B1_UDB09_MSK_ACTL
- 972              	.set Control_Reg_US_Sync_ctrl_reg__PER_CTL_AUX_CTL_REG, CYREG_B1_UDB09_MSK_ACTL
- 973              	.set Control_Reg_US_Sync_ctrl_reg__PERIOD_REG, CYREG_B1_UDB09_MSK
- 974              	
- 975              	/* Pin_US_Trigger1 */
- 976              	.set Pin_US_Trigger1__0__INTTYPE, CYREG_PICU1_INTTYPE6
- 977              	.set Pin_US_Trigger1__0__MASK, 0x40
- 978              	.set Pin_US_Trigger1__0__PC, CYREG_PRT1_PC6
- 979              	.set Pin_US_Trigger1__0__PORT, 1
- 980              	.set Pin_US_Trigger1__0__SHIFT, 6
- 981              	.set Pin_US_Trigger1__AG, CYREG_PRT1_AG
- 982              	.set Pin_US_Trigger1__AMUX, CYREG_PRT1_AMUX
- 983              	.set Pin_US_Trigger1__BIE, CYREG_PRT1_BIE
- 984              	.set Pin_US_Trigger1__BIT_MASK, CYREG_PRT1_BIT_MASK
- 985              	.set Pin_US_Trigger1__BYP, CYREG_PRT1_BYP
- 986              	.set Pin_US_Trigger1__CTL, CYREG_PRT1_CTL
- 987              	.set Pin_US_Trigger1__DM0, CYREG_PRT1_DM0
- 988              	.set Pin_US_Trigger1__DM1, CYREG_PRT1_DM1
- 989              	.set Pin_US_Trigger1__DM2, CYREG_PRT1_DM2
- 990              	.set Pin_US_Trigger1__DR, CYREG_PRT1_DR
- 991              	.set Pin_US_Trigger1__INP_DIS, CYREG_PRT1_INP_DIS
- 992              	.set Pin_US_Trigger1__INTTYPE_BASE, CYDEV_PICU_INTTYPE_PICU1_BASE
- 993              	.set Pin_US_Trigger1__LCD_COM_SEG, CYREG_PRT1_LCD_COM_SEG
- 994              	.set Pin_US_Trigger1__LCD_EN, CYREG_PRT1_LCD_EN
- 995              	.set Pin_US_Trigger1__MASK, 0x40
- 996              	.set Pin_US_Trigger1__PORT, 1
- 997              	.set Pin_US_Trigger1__PRT, CYREG_PRT1_PRT
- 998              	.set Pin_US_Trigger1__PRTDSI__CAPS_SEL, CYREG_PRT1_CAPS_SEL
- 999              	.set Pin_US_Trigger1__PRTDSI__DBL_SYNC_IN, CYREG_PRT1_DBL_SYNC_IN
- 1000              	.set Pin_US_Trigger1__PRTDSI__OE_SEL0, CYREG_PRT1_OE_SEL0
- 1001              	.set Pin_US_Trigger1__PRTDSI__OE_SEL1, CYREG_PRT1_OE_SEL1
- 1002              	.set Pin_US_Trigger1__PRTDSI__OUT_SEL0, CYREG_PRT1_OUT_SEL0
- 1003              	.set Pin_US_Trigger1__PRTDSI__OUT_SEL1, CYREG_PRT1_OUT_SEL1
- 1004              	.set Pin_US_Trigger1__PRTDSI__SYNC_OUT, CYREG_PRT1_SYNC_OUT
- 1005              	.set Pin_US_Trigger1__PS, CYREG_PRT1_PS
- 1006              	.set Pin_US_Trigger1__SHIFT, 6
- 1007              	.set Pin_US_Trigger1__SLW, CYREG_PRT1_SLW
- 1008              	
- 1009              	/* Pin_US_Trigger2 */
- 1010              	.set Pin_US_Trigger2__0__INTTYPE, CYREG_PICU2_INTTYPE0
- 1011              	.set Pin_US_Trigger2__0__MASK, 0x01
- 1012              	.set Pin_US_Trigger2__0__PC, CYREG_PRT2_PC0
+ 956              	.set Control_Reg_US_Sync_ctrl_reg__CONTROL_REG, CYREG_B1_UDB09_CTL
+ 957              	.set Control_Reg_US_Sync_ctrl_reg__CONTROL_ST_REG, CYREG_B1_UDB09_ST_CTL
+ 958              	.set Control_Reg_US_Sync_ctrl_reg__COUNT_REG, CYREG_B1_UDB09_CTL
+ 959              	.set Control_Reg_US_Sync_ctrl_reg__COUNT_ST_REG, CYREG_B1_UDB09_ST_CTL
+ 960              	.set Control_Reg_US_Sync_ctrl_reg__MASK, 0x03
+ 961              	.set Control_Reg_US_Sync_ctrl_reg__MASK_CTL_AUX_CTL_REG, CYREG_B1_UDB09_MSK_ACTL
+ 962              	.set Control_Reg_US_Sync_ctrl_reg__PER_CTL_AUX_CTL_REG, CYREG_B1_UDB09_MSK_ACTL
+ 963              	.set Control_Reg_US_Sync_ctrl_reg__PERIOD_REG, CYREG_B1_UDB09_MSK
+ 964              	
+ 965              	/* Pin_US_Trigger1 */
+ 966              	.set Pin_US_Trigger1__0__INTTYPE, CYREG_PICU1_INTTYPE6
+ 967              	.set Pin_US_Trigger1__0__MASK, 0x40
+ 968              	.set Pin_US_Trigger1__0__PC, CYREG_PRT1_PC6
+ 969              	.set Pin_US_Trigger1__0__PORT, 1
+ 970              	.set Pin_US_Trigger1__0__SHIFT, 6
+ 971              	.set Pin_US_Trigger1__AG, CYREG_PRT1_AG
+ 972              	.set Pin_US_Trigger1__AMUX, CYREG_PRT1_AMUX
+ 973              	.set Pin_US_Trigger1__BIE, CYREG_PRT1_BIE
+ 974              	.set Pin_US_Trigger1__BIT_MASK, CYREG_PRT1_BIT_MASK
+ 975              	.set Pin_US_Trigger1__BYP, CYREG_PRT1_BYP
+ 976              	.set Pin_US_Trigger1__CTL, CYREG_PRT1_CTL
+ 977              	.set Pin_US_Trigger1__DM0, CYREG_PRT1_DM0
+ 978              	.set Pin_US_Trigger1__DM1, CYREG_PRT1_DM1
+ 979              	.set Pin_US_Trigger1__DM2, CYREG_PRT1_DM2
+ 980              	.set Pin_US_Trigger1__DR, CYREG_PRT1_DR
+ 981              	.set Pin_US_Trigger1__INP_DIS, CYREG_PRT1_INP_DIS
+ 982              	.set Pin_US_Trigger1__INTTYPE_BASE, CYDEV_PICU_INTTYPE_PICU1_BASE
+ 983              	.set Pin_US_Trigger1__LCD_COM_SEG, CYREG_PRT1_LCD_COM_SEG
+ 984              	.set Pin_US_Trigger1__LCD_EN, CYREG_PRT1_LCD_EN
+ 985              	.set Pin_US_Trigger1__MASK, 0x40
+ 986              	.set Pin_US_Trigger1__PORT, 1
+ 987              	.set Pin_US_Trigger1__PRT, CYREG_PRT1_PRT
+ 988              	.set Pin_US_Trigger1__PRTDSI__CAPS_SEL, CYREG_PRT1_CAPS_SEL
+ 989              	.set Pin_US_Trigger1__PRTDSI__DBL_SYNC_IN, CYREG_PRT1_DBL_SYNC_IN
+ 990              	.set Pin_US_Trigger1__PRTDSI__OE_SEL0, CYREG_PRT1_OE_SEL0
+ 991              	.set Pin_US_Trigger1__PRTDSI__OE_SEL1, CYREG_PRT1_OE_SEL1
+ 992              	.set Pin_US_Trigger1__PRTDSI__OUT_SEL0, CYREG_PRT1_OUT_SEL0
+ 993              	.set Pin_US_Trigger1__PRTDSI__OUT_SEL1, CYREG_PRT1_OUT_SEL1
+ 994              	.set Pin_US_Trigger1__PRTDSI__SYNC_OUT, CYREG_PRT1_SYNC_OUT
+ 995              	.set Pin_US_Trigger1__PS, CYREG_PRT1_PS
+ 996              	.set Pin_US_Trigger1__SHIFT, 6
+ 997              	.set Pin_US_Trigger1__SLW, CYREG_PRT1_SLW
+ 998              	
+ 999              	/* Pin_US_Trigger2 */
+ 1000              	.set Pin_US_Trigger2__0__INTTYPE, CYREG_PICU2_INTTYPE0
+ 1001              	.set Pin_US_Trigger2__0__MASK, 0x01
+ 1002              	.set Pin_US_Trigger2__0__PC, CYREG_PRT2_PC0
+ 1003              	.set Pin_US_Trigger2__0__PORT, 2
+ 1004              	.set Pin_US_Trigger2__0__SHIFT, 0
+ 1005              	.set Pin_US_Trigger2__AG, CYREG_PRT2_AG
+ 1006              	.set Pin_US_Trigger2__AMUX, CYREG_PRT2_AMUX
+ 1007              	.set Pin_US_Trigger2__BIE, CYREG_PRT2_BIE
+ 1008              	.set Pin_US_Trigger2__BIT_MASK, CYREG_PRT2_BIT_MASK
+ 1009              	.set Pin_US_Trigger2__BYP, CYREG_PRT2_BYP
+ 1010              	.set Pin_US_Trigger2__CTL, CYREG_PRT2_CTL
+ 1011              	.set Pin_US_Trigger2__DM0, CYREG_PRT2_DM0
+ 1012              	.set Pin_US_Trigger2__DM1, CYREG_PRT2_DM1
 ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 207
 
 
- 1013              	.set Pin_US_Trigger2__0__PORT, 2
- 1014              	.set Pin_US_Trigger2__0__SHIFT, 0
- 1015              	.set Pin_US_Trigger2__AG, CYREG_PRT2_AG
- 1016              	.set Pin_US_Trigger2__AMUX, CYREG_PRT2_AMUX
- 1017              	.set Pin_US_Trigger2__BIE, CYREG_PRT2_BIE
- 1018              	.set Pin_US_Trigger2__BIT_MASK, CYREG_PRT2_BIT_MASK
- 1019              	.set Pin_US_Trigger2__BYP, CYREG_PRT2_BYP
- 1020              	.set Pin_US_Trigger2__CTL, CYREG_PRT2_CTL
- 1021              	.set Pin_US_Trigger2__DM0, CYREG_PRT2_DM0
- 1022              	.set Pin_US_Trigger2__DM1, CYREG_PRT2_DM1
- 1023              	.set Pin_US_Trigger2__DM2, CYREG_PRT2_DM2
- 1024              	.set Pin_US_Trigger2__DR, CYREG_PRT2_DR
- 1025              	.set Pin_US_Trigger2__INP_DIS, CYREG_PRT2_INP_DIS
- 1026              	.set Pin_US_Trigger2__INTTYPE_BASE, CYDEV_PICU_INTTYPE_PICU2_BASE
- 1027              	.set Pin_US_Trigger2__LCD_COM_SEG, CYREG_PRT2_LCD_COM_SEG
- 1028              	.set Pin_US_Trigger2__LCD_EN, CYREG_PRT2_LCD_EN
- 1029              	.set Pin_US_Trigger2__MASK, 0x01
- 1030              	.set Pin_US_Trigger2__PORT, 2
- 1031              	.set Pin_US_Trigger2__PRT, CYREG_PRT2_PRT
- 1032              	.set Pin_US_Trigger2__PRTDSI__CAPS_SEL, CYREG_PRT2_CAPS_SEL
- 1033              	.set Pin_US_Trigger2__PRTDSI__DBL_SYNC_IN, CYREG_PRT2_DBL_SYNC_IN
- 1034              	.set Pin_US_Trigger2__PRTDSI__OE_SEL0, CYREG_PRT2_OE_SEL0
- 1035              	.set Pin_US_Trigger2__PRTDSI__OE_SEL1, CYREG_PRT2_OE_SEL1
- 1036              	.set Pin_US_Trigger2__PRTDSI__OUT_SEL0, CYREG_PRT2_OUT_SEL0
- 1037              	.set Pin_US_Trigger2__PRTDSI__OUT_SEL1, CYREG_PRT2_OUT_SEL1
- 1038              	.set Pin_US_Trigger2__PRTDSI__SYNC_OUT, CYREG_PRT2_SYNC_OUT
- 1039              	.set Pin_US_Trigger2__PS, CYREG_PRT2_PS
- 1040              	.set Pin_US_Trigger2__SHIFT, 0
- 1041              	.set Pin_US_Trigger2__SLW, CYREG_PRT2_SLW
+ 1013              	.set Pin_US_Trigger2__DM2, CYREG_PRT2_DM2
+ 1014              	.set Pin_US_Trigger2__DR, CYREG_PRT2_DR
+ 1015              	.set Pin_US_Trigger2__INP_DIS, CYREG_PRT2_INP_DIS
+ 1016              	.set Pin_US_Trigger2__INTTYPE_BASE, CYDEV_PICU_INTTYPE_PICU2_BASE
+ 1017              	.set Pin_US_Trigger2__LCD_COM_SEG, CYREG_PRT2_LCD_COM_SEG
+ 1018              	.set Pin_US_Trigger2__LCD_EN, CYREG_PRT2_LCD_EN
+ 1019              	.set Pin_US_Trigger2__MASK, 0x01
+ 1020              	.set Pin_US_Trigger2__PORT, 2
+ 1021              	.set Pin_US_Trigger2__PRT, CYREG_PRT2_PRT
+ 1022              	.set Pin_US_Trigger2__PRTDSI__CAPS_SEL, CYREG_PRT2_CAPS_SEL
+ 1023              	.set Pin_US_Trigger2__PRTDSI__DBL_SYNC_IN, CYREG_PRT2_DBL_SYNC_IN
+ 1024              	.set Pin_US_Trigger2__PRTDSI__OE_SEL0, CYREG_PRT2_OE_SEL0
+ 1025              	.set Pin_US_Trigger2__PRTDSI__OE_SEL1, CYREG_PRT2_OE_SEL1
+ 1026              	.set Pin_US_Trigger2__PRTDSI__OUT_SEL0, CYREG_PRT2_OUT_SEL0
+ 1027              	.set Pin_US_Trigger2__PRTDSI__OUT_SEL1, CYREG_PRT2_OUT_SEL1
+ 1028              	.set Pin_US_Trigger2__PRTDSI__SYNC_OUT, CYREG_PRT2_SYNC_OUT
+ 1029              	.set Pin_US_Trigger2__PS, CYREG_PRT2_PS
+ 1030              	.set Pin_US_Trigger2__SHIFT, 0
+ 1031              	.set Pin_US_Trigger2__SLW, CYREG_PRT2_SLW
+ 1032              	
+ 1033              	/* Pose_Update_Int */
+ 1034              	.set Pose_Update_Int__INTC_CLR_EN_REG, CYREG_NVIC_CLRENA0
+ 1035              	.set Pose_Update_Int__INTC_CLR_PD_REG, CYREG_NVIC_CLRPEND0
+ 1036              	.set Pose_Update_Int__INTC_MASK, 0x02
+ 1037              	.set Pose_Update_Int__INTC_NUMBER, 1
+ 1038              	.set Pose_Update_Int__INTC_PRIOR_NUM, 0
+ 1039              	.set Pose_Update_Int__INTC_PRIOR_REG, CYREG_NVIC_PRI_1
+ 1040              	.set Pose_Update_Int__INTC_SET_EN_REG, CYREG_NVIC_SETENA0
+ 1041              	.set Pose_Update_Int__INTC_SET_PD_REG, CYREG_NVIC_SETPEND0
  1042              	
  1043              	/* Clock_Motor_Control */
  1044              	.set Clock_Motor_Control__CFG0, CYREG_CLKDIST_DCFG4_CFG0
@@ -12577,7 +12577,7 @@ ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 1
  1217              	.set CYDEV_DEBUGGING_XRES, 0
  1218              	.set CYDEV_DMA_CHANNELS_AVAILABLE, 24
  1219              	.set CYDEV_ECC_ENABLE, 0
- 1220              	.set CYDEV_HEAP_SIZE, 0x200
+ 1220              	.set CYDEV_HEAP_SIZE, 1024
  1221              	.set CYDEV_INSTRUCT_CACHE_ENABLED, 1
  1222              	.set CYDEV_INTR_RISING, 0x0000001F
  1223              	.set CYDEV_IS_EXPORTING_CODE, 0

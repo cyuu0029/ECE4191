@@ -39,7 +39,7 @@ void mprint(grid * map) {
 }
 
 int main(int argc, char* argv[]) {
-  grid * map = grid_init(WIDTH, HEIGHT, RESOLUTION);
+  grid * map = initial_grid(WIDTH, HEIGHT, RESOLUTION);
 
   if (argc > 1) {
     int seed = atoi(argv[1]);

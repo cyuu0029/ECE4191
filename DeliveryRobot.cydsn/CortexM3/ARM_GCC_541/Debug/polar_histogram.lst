@@ -1,0 +1,1271 @@
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cco2mZYM.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"polar_histogram.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.initial_histogram,"ax",%progbits
+  20              		.align	2
+  21              		.global	initial_histogram
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	initial_histogram, %function
+  25              	initial_histogram:
+  26              	.LFB0:
+  27              		.file 1 "VFH\\src\\polar_histogram.c"
+   1:VFH\src/polar_histogram.c **** #include <stdlib.h>
+   2:VFH\src/polar_histogram.c **** #include <math.h>
+   3:VFH\src/polar_histogram.c **** 
+   4:VFH\src/polar_histogram.c **** #include "histogram_grid.h"
+   5:VFH\src/polar_histogram.c **** #include "polar_histogram.h"
+   6:VFH\src/polar_histogram.c **** 
+   7:VFH\src/polar_histogram.c **** // Converting Histogram Grid into Polar Histogram for VFH implementation.
+   8:VFH\src/polar_histogram.c **** 
+   9:VFH\src/polar_histogram.c **** histogram * initial_histogram(int alpha, double threshold, double density_a, double density_b) {
+  28              		.loc 1 9 0
+  29              		.cfi_startproc
+  30              		@ args = 16, pretend = 0, frame = 24
+  31              		@ frame_needed = 1, uses_anonymous_args = 0
+  32 0000 90B5     		push	{r4, r7, lr}
+  33              		.cfi_def_cfa_offset 12
+  34              		.cfi_offset 4, -12
+  35              		.cfi_offset 7, -8
+  36              		.cfi_offset 14, -4
+  37 0002 87B0     		sub	sp, sp, #28
+  38              		.cfi_def_cfa_offset 40
+  39 0004 00AF     		add	r7, sp, #0
+  40              		.cfi_def_cfa_register 7
+  41 0006 F860     		str	r0, [r7, #12]
+  42 0008 C7E90023 		strd	r2, [r7]
+  10:VFH\src/polar_histogram.c ****   /* Create a histogram pointer and allocate memory to it. */
+  11:VFH\src/polar_histogram.c ****   histogram * hist = malloc(sizeof(histogram));
+  43              		.loc 1 11 0
+  44 000c 3020     		movs	r0, #48
+  45 000e FFF7FEFF 		bl	malloc
+  46 0012 0346     		mov	r3, r0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cco2mZYM.s 			page 2
+
+
+  47 0014 3B61     		str	r3, [r7, #16]
+  12:VFH\src/polar_histogram.c **** 
+  13:VFH\src/polar_histogram.c ****   /* Is there enough memory for the histogram? */
+  14:VFH\src/polar_histogram.c ****   if (NULL == hist) {
+  48              		.loc 1 14 0
+  49 0016 3B69     		ldr	r3, [r7, #16]
+  50 0018 002B     		cmp	r3, #0
+  51 001a 04D1     		bne	.L2
+  15:VFH\src/polar_histogram.c ****     free(hist);
+  52              		.loc 1 15 0
+  53 001c 3869     		ldr	r0, [r7, #16]
+  54 001e FFF7FEFF 		bl	free
+  16:VFH\src/polar_histogram.c ****     return NULL;
+  55              		.loc 1 16 0
+  56 0022 0023     		movs	r3, #0
+  57 0024 34E0     		b	.L3
+  58              	.L2:
+  17:VFH\src/polar_histogram.c ****   }
+  18:VFH\src/polar_histogram.c **** 
+  19:VFH\src/polar_histogram.c ****   /* Initialize the histogram parameters. */
+  20:VFH\src/polar_histogram.c ****   hist->alpha = alpha;
+  59              		.loc 1 20 0
+  60 0026 3B69     		ldr	r3, [r7, #16]
+  61 0028 FA68     		ldr	r2, [r7, #12]
+  62 002a 1A60     		str	r2, [r3]
+  21:VFH\src/polar_histogram.c ****   hist->sectors = 360 / alpha;
+  63              		.loc 1 21 0
+  64 002c 4FF4B472 		mov	r2, #360
+  65 0030 FB68     		ldr	r3, [r7, #12]
+  66 0032 92FBF3F2 		sdiv	r2, r2, r3
+  67 0036 3B69     		ldr	r3, [r7, #16]
+  68 0038 5A60     		str	r2, [r3, #4]
+  22:VFH\src/polar_histogram.c ****   hist->threshold = threshold;
+  69              		.loc 1 22 0
+  70 003a 3A69     		ldr	r2, [r7, #16]
+  71 003c D7E90034 		ldrd	r3, [r7]
+  72 0040 C2E90234 		strd	r3, [r2, #8]
+  23:VFH\src/polar_histogram.c ****   hist->densities = (int *)malloc(hist->sectors * sizeof(int));
+  73              		.loc 1 23 0
+  74 0044 3B69     		ldr	r3, [r7, #16]
+  75 0046 5B68     		ldr	r3, [r3, #4]
+  76 0048 9B00     		lsls	r3, r3, #2
+  77 004a 1846     		mov	r0, r3
+  78 004c FFF7FEFF 		bl	malloc
+  79 0050 0346     		mov	r3, r0
+  80 0052 1A46     		mov	r2, r3
+  81 0054 3B69     		ldr	r3, [r7, #16]
+  82 0056 9A62     		str	r2, [r3, #40]
+  24:VFH\src/polar_histogram.c **** 
+  25:VFH\src/polar_histogram.c ****   if (hist->densities == NULL) {
+  83              		.loc 1 25 0
+  84 0058 3B69     		ldr	r3, [r7, #16]
+  85 005a 9B6A     		ldr	r3, [r3, #40]
+  86 005c 002B     		cmp	r3, #0
+  87 005e 04D1     		bne	.L4
+  26:VFH\src/polar_histogram.c ****     free(hist);
+  88              		.loc 1 26 0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cco2mZYM.s 			page 3
+
+
+  89 0060 3869     		ldr	r0, [r7, #16]
+  90 0062 FFF7FEFF 		bl	free
+  27:VFH\src/polar_histogram.c ****     return NULL;
+  91              		.loc 1 27 0
+  92 0066 0023     		movs	r3, #0
+  93 0068 12E0     		b	.L3
+  94              	.L4:
+  95              	.LBB2:
+  28:VFH\src/polar_histogram.c ****   }
+  29:VFH\src/polar_histogram.c **** 
+  30:VFH\src/polar_histogram.c ****   /* Initialize all densities to 0. */
+  31:VFH\src/polar_histogram.c ****   for (int i = 0; i < hist->sectors; ++i) {
+  96              		.loc 1 31 0
+  97 006a 0023     		movs	r3, #0
+  98 006c 7B61     		str	r3, [r7, #20]
+  99 006e 09E0     		b	.L5
+ 100              	.L6:
+  32:VFH\src/polar_histogram.c ****     hist->densities[i] = 0;
+ 101              		.loc 1 32 0 discriminator 3
+ 102 0070 3B69     		ldr	r3, [r7, #16]
+ 103 0072 9A6A     		ldr	r2, [r3, #40]
+ 104 0074 7B69     		ldr	r3, [r7, #20]
+ 105 0076 9B00     		lsls	r3, r3, #2
+ 106 0078 1344     		add	r3, r3, r2
+ 107 007a 0022     		movs	r2, #0
+ 108 007c 1A60     		str	r2, [r3]
+  31:VFH\src/polar_histogram.c ****     hist->densities[i] = 0;
+ 109              		.loc 1 31 0 discriminator 3
+ 110 007e 7B69     		ldr	r3, [r7, #20]
+ 111 0080 0133     		adds	r3, r3, #1
+ 112 0082 7B61     		str	r3, [r7, #20]
+ 113              	.L5:
+  31:VFH\src/polar_histogram.c ****     hist->densities[i] = 0;
+ 114              		.loc 1 31 0 is_stmt 0 discriminator 1
+ 115 0084 3B69     		ldr	r3, [r7, #16]
+ 116 0086 5A68     		ldr	r2, [r3, #4]
+ 117 0088 7B69     		ldr	r3, [r7, #20]
+ 118 008a 9A42     		cmp	r2, r3
+ 119 008c F0DC     		bgt	.L6
+ 120              	.LBE2:
+  33:VFH\src/polar_histogram.c ****   }
+  34:VFH\src/polar_histogram.c **** 
+  35:VFH\src/polar_histogram.c ****   return hist;
+ 121              		.loc 1 35 0 is_stmt 1
+ 122 008e 3B69     		ldr	r3, [r7, #16]
+ 123              	.L3:
+  36:VFH\src/polar_histogram.c **** }
+ 124              		.loc 1 36 0
+ 125 0090 1846     		mov	r0, r3
+ 126 0092 1C37     		adds	r7, r7, #28
+ 127              		.cfi_def_cfa_offset 12
+ 128 0094 BD46     		mov	sp, r7
+ 129              		.cfi_def_cfa_register 13
+ 130              		@ sp needed
+ 131 0096 90BD     		pop	{r4, r7, pc}
+ 132              		.cfi_endproc
+ 133              	.LFE0:
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cco2mZYM.s 			page 4
+
+
+ 134              		.size	initial_histogram, .-initial_histogram
+ 135              		.global	__aeabi_i2d
+ 136              		.global	__aeabi_dadd
+ 137              		.global	__aeabi_dmul
+ 138              		.global	__aeabi_dsub
+ 139              		.global	__aeabi_ddiv
+ 140              		.global	__aeabi_d2iz
+ 141              		.section	.text.hist_update,"ax",%progbits
+ 142              		.align	2
+ 143              		.global	hist_update
+ 144              		.thumb
+ 145              		.thumb_func
+ 146              		.type	hist_update, %function
+ 147              	hist_update:
+ 148              	.LFB1:
+  37:VFH\src/polar_histogram.c **** 
+  38:VFH\src/polar_histogram.c **** void hist_update(histogram * hist, grid * map) {
+ 149              		.loc 1 38 0
+ 150              		.cfi_startproc
+ 151              		@ args = 0, pretend = 0, frame = 56
+ 152              		@ frame_needed = 1, uses_anonymous_args = 0
+ 153 0000 B0B5     		push	{r4, r5, r7, lr}
+ 154              		.cfi_def_cfa_offset 16
+ 155              		.cfi_offset 4, -16
+ 156              		.cfi_offset 5, -12
+ 157              		.cfi_offset 7, -8
+ 158              		.cfi_offset 14, -4
+ 159 0002 8EB0     		sub	sp, sp, #56
+ 160              		.cfi_def_cfa_offset 72
+ 161 0004 00AF     		add	r7, sp, #0
+ 162              		.cfi_def_cfa_register 7
+ 163 0006 7860     		str	r0, [r7, #4]
+ 164 0008 3960     		str	r1, [r7]
+  39:VFH\src/polar_histogram.c ****   int width = map->width;
+ 165              		.loc 1 39 0
+ 166 000a 3B68     		ldr	r3, [r7]
+ 167 000c 1B68     		ldr	r3, [r3]
+ 168 000e FB62     		str	r3, [r7, #44]
+  40:VFH\src/polar_histogram.c ****   int height = map->height;
+ 169              		.loc 1 40 0
+ 170 0010 3B68     		ldr	r3, [r7]
+ 171 0012 5B68     		ldr	r3, [r3, #4]
+ 172 0014 BB62     		str	r3, [r7, #40]
+  41:VFH\src/polar_histogram.c ****   double dens_a = hist->density_a;
+ 173              		.loc 1 41 0
+ 174 0016 7B68     		ldr	r3, [r7, #4]
+ 175 0018 03F11804 		add	r4, r3, #24
+ 176 001c D4E90034 		ldrd	r3, [r4]
+ 177 0020 C7E90834 		strd	r3, [r7, #32]
+  42:VFH\src/polar_histogram.c ****   double dens_b = hist->density_b;
+ 178              		.loc 1 42 0
+ 179 0024 7B68     		ldr	r3, [r7, #4]
+ 180 0026 03F12004 		add	r4, r3, #32
+ 181 002a D4E90034 		ldrd	r3, [r4]
+ 182 002e C7E90634 		strd	r3, [r7, #24]
+ 183              	.LBB3:
+  43:VFH\src/polar_histogram.c **** 
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cco2mZYM.s 			page 5
+
+
+  44:VFH\src/polar_histogram.c ****   /* Calculate densities based on grid. */
+  45:VFH\src/polar_histogram.c ****   for (int i = 0; i < width; ++i) {
+ 184              		.loc 1 45 0
+ 185 0032 0023     		movs	r3, #0
+ 186 0034 7B63     		str	r3, [r7, #52]
+ 187 0036 CFE0     		b	.L8
+ 188              	.L11:
+ 189              	.LBB4:
+  46:VFH\src/polar_histogram.c ****     for (int j = 0; j < height; ++j) {
+ 190              		.loc 1 46 0
+ 191 0038 0023     		movs	r3, #0
+ 192 003a 3B63     		str	r3, [r7, #48]
+ 193 003c C4E0     		b	.L9
+ 194              	.L10:
+ 195              	.LBB5:
+  47:VFH\src/polar_histogram.c **** 
+  48:VFH\src/polar_histogram.c ****       /* Calculate the angular position (beta) of this cell. */
+  49:VFH\src/polar_histogram.c ****       double beta = atan2((double)(j - height/2), (double)(i - width/2));
+ 196              		.loc 1 49 0 discriminator 3
+ 197 003e BB6A     		ldr	r3, [r7, #40]
+ 198 0040 DA0F     		lsrs	r2, r3, #31
+ 199 0042 1344     		add	r3, r3, r2
+ 200 0044 5B10     		asrs	r3, r3, #1
+ 201 0046 1A46     		mov	r2, r3
+ 202 0048 3B6B     		ldr	r3, [r7, #48]
+ 203 004a 9B1A     		subs	r3, r3, r2
+ 204 004c 1846     		mov	r0, r3
+ 205 004e FFF7FEFF 		bl	__aeabi_i2d
+ 206 0052 0446     		mov	r4, r0
+ 207 0054 0D46     		mov	r5, r1
+ 208 0056 FB6A     		ldr	r3, [r7, #44]
+ 209 0058 DA0F     		lsrs	r2, r3, #31
+ 210 005a 1344     		add	r3, r3, r2
+ 211 005c 5B10     		asrs	r3, r3, #1
+ 212 005e 1A46     		mov	r2, r3
+ 213 0060 7B6B     		ldr	r3, [r7, #52]
+ 214 0062 9B1A     		subs	r3, r3, r2
+ 215 0064 1846     		mov	r0, r3
+ 216 0066 FFF7FEFF 		bl	__aeabi_i2d
+ 217 006a 0246     		mov	r2, r0
+ 218 006c 0B46     		mov	r3, r1
+ 219 006e 2046     		mov	r0, r4
+ 220 0070 2946     		mov	r1, r5
+ 221 0072 FFF7FEFF 		bl	atan2
+ 222 0076 C7E90401 		strd	r0, [r7, #16]
+  50:VFH\src/polar_histogram.c **** 
+  51:VFH\src/polar_histogram.c ****       /* Calculate the obstacle density of this cell. */
+  52:VFH\src/polar_histogram.c ****       double density = pow(map->cells[i * width + j], 2);
+ 223              		.loc 1 52 0 discriminator 3
+ 224 007a 3B68     		ldr	r3, [r7]
+ 225 007c DA68     		ldr	r2, [r3, #12]
+ 226 007e 7B6B     		ldr	r3, [r7, #52]
+ 227 0080 F96A     		ldr	r1, [r7, #44]
+ 228 0082 01FB03F1 		mul	r1, r1, r3
+ 229 0086 3B6B     		ldr	r3, [r7, #48]
+ 230 0088 0B44     		add	r3, r3, r1
+ 231 008a 9B00     		lsls	r3, r3, #2
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cco2mZYM.s 			page 6
+
+
+ 232 008c 1344     		add	r3, r3, r2
+ 233 008e 1B68     		ldr	r3, [r3]
+ 234 0090 1846     		mov	r0, r3
+ 235 0092 FFF7FEFF 		bl	__aeabi_i2d
+ 236 0096 4FF00002 		mov	r2, #0
+ 237 009a 4FF08043 		mov	r3, #1073741824
+ 238 009e FFF7FEFF 		bl	pow
+ 239 00a2 C7E90201 		strd	r0, [r7, #8]
+  53:VFH\src/polar_histogram.c ****       density *= dens_a - dens_b * sqrt(pow(i - width/2, 2) + pow(j - height/2, 2));
+ 240              		.loc 1 53 0 discriminator 3
+ 241 00a6 FB6A     		ldr	r3, [r7, #44]
+ 242 00a8 DA0F     		lsrs	r2, r3, #31
+ 243 00aa 1344     		add	r3, r3, r2
+ 244 00ac 5B10     		asrs	r3, r3, #1
+ 245 00ae 1A46     		mov	r2, r3
+ 246 00b0 7B6B     		ldr	r3, [r7, #52]
+ 247 00b2 9B1A     		subs	r3, r3, r2
+ 248 00b4 1846     		mov	r0, r3
+ 249 00b6 FFF7FEFF 		bl	__aeabi_i2d
+ 250 00ba 4FF00002 		mov	r2, #0
+ 251 00be 4FF08043 		mov	r3, #1073741824
+ 252 00c2 FFF7FEFF 		bl	pow
+ 253 00c6 0446     		mov	r4, r0
+ 254 00c8 0D46     		mov	r5, r1
+ 255 00ca BB6A     		ldr	r3, [r7, #40]
+ 256 00cc DA0F     		lsrs	r2, r3, #31
+ 257 00ce 1344     		add	r3, r3, r2
+ 258 00d0 5B10     		asrs	r3, r3, #1
+ 259 00d2 1A46     		mov	r2, r3
+ 260 00d4 3B6B     		ldr	r3, [r7, #48]
+ 261 00d6 9B1A     		subs	r3, r3, r2
+ 262 00d8 1846     		mov	r0, r3
+ 263 00da FFF7FEFF 		bl	__aeabi_i2d
+ 264 00de 4FF00002 		mov	r2, #0
+ 265 00e2 4FF08043 		mov	r3, #1073741824
+ 266 00e6 FFF7FEFF 		bl	pow
+ 267 00ea 0246     		mov	r2, r0
+ 268 00ec 0B46     		mov	r3, r1
+ 269 00ee 2046     		mov	r0, r4
+ 270 00f0 2946     		mov	r1, r5
+ 271 00f2 FFF7FEFF 		bl	__aeabi_dadd
+ 272 00f6 0346     		mov	r3, r0
+ 273 00f8 0C46     		mov	r4, r1
+ 274 00fa 1846     		mov	r0, r3
+ 275 00fc 2146     		mov	r1, r4
+ 276 00fe FFF7FEFF 		bl	sqrt
+ 277 0102 D7E90623 		ldrd	r2, [r7, #24]
+ 278 0106 FFF7FEFF 		bl	__aeabi_dmul
+ 279 010a 0346     		mov	r3, r0
+ 280 010c 0C46     		mov	r4, r1
+ 281 010e 1A46     		mov	r2, r3
+ 282 0110 2346     		mov	r3, r4
+ 283 0112 D7E90801 		ldrd	r0, [r7, #32]
+ 284 0116 FFF7FEFF 		bl	__aeabi_dsub
+ 285 011a 0346     		mov	r3, r0
+ 286 011c 0C46     		mov	r4, r1
+ 287 011e 1A46     		mov	r2, r3
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cco2mZYM.s 			page 7
+
+
+ 288 0120 2346     		mov	r3, r4
+ 289 0122 D7E90201 		ldrd	r0, [r7, #8]
+ 290 0126 FFF7FEFF 		bl	__aeabi_dmul
+ 291 012a 0346     		mov	r3, r0
+ 292 012c 0C46     		mov	r4, r1
+ 293 012e C7E90234 		strd	r3, [r7, #8]
+  54:VFH\src/polar_histogram.c **** 
+  55:VFH\src/polar_histogram.c ****       /* Add density to respective point in the histogram. */
+  56:VFH\src/polar_histogram.c ****       hist->densities[(int) floor(beta / hist->alpha)] += density;
+ 294              		.loc 1 56 0 discriminator 3
+ 295 0132 7B68     		ldr	r3, [r7, #4]
+ 296 0134 9C6A     		ldr	r4, [r3, #40]
+ 297 0136 7B68     		ldr	r3, [r7, #4]
+ 298 0138 1B68     		ldr	r3, [r3]
+ 299 013a 1846     		mov	r0, r3
+ 300 013c FFF7FEFF 		bl	__aeabi_i2d
+ 301 0140 0246     		mov	r2, r0
+ 302 0142 0B46     		mov	r3, r1
+ 303 0144 D7E90401 		ldrd	r0, [r7, #16]
+ 304 0148 FFF7FEFF 		bl	__aeabi_ddiv
+ 305 014c 0246     		mov	r2, r0
+ 306 014e 0B46     		mov	r3, r1
+ 307 0150 1046     		mov	r0, r2
+ 308 0152 1946     		mov	r1, r3
+ 309 0154 FFF7FEFF 		bl	floor
+ 310 0158 0246     		mov	r2, r0
+ 311 015a 0B46     		mov	r3, r1
+ 312 015c 1046     		mov	r0, r2
+ 313 015e 1946     		mov	r1, r3
+ 314 0160 FFF7FEFF 		bl	__aeabi_d2iz
+ 315 0164 0346     		mov	r3, r0
+ 316 0166 9B00     		lsls	r3, r3, #2
+ 317 0168 1C44     		add	r4, r4, r3
+ 318 016a 7B68     		ldr	r3, [r7, #4]
+ 319 016c 9D6A     		ldr	r5, [r3, #40]
+ 320 016e 7B68     		ldr	r3, [r7, #4]
+ 321 0170 1B68     		ldr	r3, [r3]
+ 322 0172 1846     		mov	r0, r3
+ 323 0174 FFF7FEFF 		bl	__aeabi_i2d
+ 324 0178 0246     		mov	r2, r0
+ 325 017a 0B46     		mov	r3, r1
+ 326 017c D7E90401 		ldrd	r0, [r7, #16]
+ 327 0180 FFF7FEFF 		bl	__aeabi_ddiv
+ 328 0184 0246     		mov	r2, r0
+ 329 0186 0B46     		mov	r3, r1
+ 330 0188 1046     		mov	r0, r2
+ 331 018a 1946     		mov	r1, r3
+ 332 018c FFF7FEFF 		bl	floor
+ 333 0190 0246     		mov	r2, r0
+ 334 0192 0B46     		mov	r3, r1
+ 335 0194 1046     		mov	r0, r2
+ 336 0196 1946     		mov	r1, r3
+ 337 0198 FFF7FEFF 		bl	__aeabi_d2iz
+ 338 019c 0346     		mov	r3, r0
+ 339 019e 9B00     		lsls	r3, r3, #2
+ 340 01a0 2B44     		add	r3, r3, r5
+ 341 01a2 1B68     		ldr	r3, [r3]
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cco2mZYM.s 			page 8
+
+
+ 342 01a4 1846     		mov	r0, r3
+ 343 01a6 FFF7FEFF 		bl	__aeabi_i2d
+ 344 01aa D7E90223 		ldrd	r2, [r7, #8]
+ 345 01ae FFF7FEFF 		bl	__aeabi_dadd
+ 346 01b2 0246     		mov	r2, r0
+ 347 01b4 0B46     		mov	r3, r1
+ 348 01b6 1046     		mov	r0, r2
+ 349 01b8 1946     		mov	r1, r3
+ 350 01ba FFF7FEFF 		bl	__aeabi_d2iz
+ 351 01be 0346     		mov	r3, r0
+ 352 01c0 2360     		str	r3, [r4]
+ 353              	.LBE5:
+  46:VFH\src/polar_histogram.c **** 
+ 354              		.loc 1 46 0 discriminator 3
+ 355 01c2 3B6B     		ldr	r3, [r7, #48]
+ 356 01c4 0133     		adds	r3, r3, #1
+ 357 01c6 3B63     		str	r3, [r7, #48]
+ 358              	.L9:
+  46:VFH\src/polar_histogram.c **** 
+ 359              		.loc 1 46 0 is_stmt 0 discriminator 1
+ 360 01c8 3A6B     		ldr	r2, [r7, #48]
+ 361 01ca BB6A     		ldr	r3, [r7, #40]
+ 362 01cc 9A42     		cmp	r2, r3
+ 363 01ce FFF636AF 		blt	.L10
+ 364              	.LBE4:
+  45:VFH\src/polar_histogram.c ****     for (int j = 0; j < height; ++j) {
+ 365              		.loc 1 45 0 is_stmt 1 discriminator 2
+ 366 01d2 7B6B     		ldr	r3, [r7, #52]
+ 367 01d4 0133     		adds	r3, r3, #1
+ 368 01d6 7B63     		str	r3, [r7, #52]
+ 369              	.L8:
+  45:VFH\src/polar_histogram.c ****     for (int j = 0; j < height; ++j) {
+ 370              		.loc 1 45 0 is_stmt 0 discriminator 1
+ 371 01d8 7A6B     		ldr	r2, [r7, #52]
+ 372 01da FB6A     		ldr	r3, [r7, #44]
+ 373 01dc 9A42     		cmp	r2, r3
+ 374 01de FFF62BAF 		blt	.L11
+ 375              	.LBE3:
+  57:VFH\src/polar_histogram.c ****     }
+  58:VFH\src/polar_histogram.c ****   }
+  59:VFH\src/polar_histogram.c **** }
+ 376              		.loc 1 59 0 is_stmt 1
+ 377 01e2 00BF     		nop
+ 378 01e4 3837     		adds	r7, r7, #56
+ 379              		.cfi_def_cfa_offset 16
+ 380 01e6 BD46     		mov	sp, r7
+ 381              		.cfi_def_cfa_register 13
+ 382              		@ sp needed
+ 383 01e8 B0BD     		pop	{r4, r5, r7, pc}
+ 384              		.cfi_endproc
+ 385              	.LFE1:
+ 386              		.size	hist_update, .-hist_update
+ 387 01ea 00BF     		.text
+ 388              	.Letext0:
+ 389              		.file 2 ".\\VFH\\include/histogram_grid.h"
+ 390              		.file 3 ".\\VFH\\include/polar_histogram.h"
+ 391              		.section	.debug_info,"",%progbits
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cco2mZYM.s 			page 9
+
+
+ 392              	.Ldebug_info0:
+ 393 0000 7D020000 		.4byte	0x27d
+ 394 0004 0400     		.2byte	0x4
+ 395 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 396 000a 04       		.byte	0x4
+ 397 000b 01       		.uleb128 0x1
+ 398 000c 13000000 		.4byte	.LASF32
+ 399 0010 0C       		.byte	0xc
+ 400 0011 A8000000 		.4byte	.LASF33
+ 401 0015 14010000 		.4byte	.LASF34
+ 402 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 403 001d 00000000 		.4byte	0
+ 404 0021 00000000 		.4byte	.Ldebug_line0
+ 405 0025 02       		.uleb128 0x2
+ 406 0026 04       		.byte	0x4
+ 407 0027 07       		.byte	0x7
+ 408 0028 B2010000 		.4byte	.LASF0
+ 409 002c 03       		.uleb128 0x3
+ 410 002d 04       		.byte	0x4
+ 411 002e 05       		.byte	0x5
+ 412 002f 696E7400 		.ascii	"int\000"
+ 413 0033 02       		.uleb128 0x2
+ 414 0034 08       		.byte	0x8
+ 415 0035 05       		.byte	0x5
+ 416 0036 00000000 		.4byte	.LASF1
+ 417 003a 02       		.uleb128 0x2
+ 418 003b 08       		.byte	0x8
+ 419 003c 04       		.byte	0x4
+ 420 003d 21020000 		.4byte	.LASF2
+ 421 0041 02       		.uleb128 0x2
+ 422 0042 01       		.byte	0x1
+ 423 0043 06       		.byte	0x6
+ 424 0044 2D020000 		.4byte	.LASF3
+ 425 0048 02       		.uleb128 0x2
+ 426 0049 01       		.byte	0x1
+ 427 004a 08       		.byte	0x8
+ 428 004b CD000000 		.4byte	.LASF4
+ 429 004f 02       		.uleb128 0x2
+ 430 0050 02       		.byte	0x2
+ 431 0051 05       		.byte	0x5
+ 432 0052 71010000 		.4byte	.LASF5
+ 433 0056 02       		.uleb128 0x2
+ 434 0057 02       		.byte	0x2
+ 435 0058 07       		.byte	0x7
+ 436 0059 01010000 		.4byte	.LASF6
+ 437 005d 02       		.uleb128 0x2
+ 438 005e 04       		.byte	0x4
+ 439 005f 05       		.byte	0x5
+ 440 0060 18020000 		.4byte	.LASF7
+ 441 0064 02       		.uleb128 0x2
+ 442 0065 04       		.byte	0x4
+ 443 0066 07       		.byte	0x7
+ 444 0067 EF000000 		.4byte	.LASF8
+ 445 006b 02       		.uleb128 0x2
+ 446 006c 08       		.byte	0x8
+ 447 006d 07       		.byte	0x7
+ 448 006e D3010000 		.4byte	.LASF9
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cco2mZYM.s 			page 10
+
+
+ 449 0072 02       		.uleb128 0x2
+ 450 0073 04       		.byte	0x4
+ 451 0074 07       		.byte	0x7
+ 452 0075 EA010000 		.4byte	.LASF10
+ 453 0079 02       		.uleb128 0x2
+ 454 007a 01       		.byte	0x1
+ 455 007b 08       		.byte	0x8
+ 456 007c FB010000 		.4byte	.LASF11
+ 457 0080 02       		.uleb128 0x2
+ 458 0081 08       		.byte	0x8
+ 459 0082 04       		.byte	0x4
+ 460 0083 6A010000 		.4byte	.LASF12
+ 461 0087 02       		.uleb128 0x2
+ 462 0088 04       		.byte	0x4
+ 463 0089 04       		.byte	0x4
+ 464 008a C2000000 		.4byte	.LASF13
+ 465 008e 04       		.uleb128 0x4
+ 466 008f 10       		.byte	0x10
+ 467 0090 02       		.byte	0x2
+ 468 0091 18       		.byte	0x18
+ 469 0092 C7000000 		.4byte	0xc7
+ 470 0096 05       		.uleb128 0x5
+ 471 0097 0C020000 		.4byte	.LASF14
+ 472 009b 02       		.byte	0x2
+ 473 009c 19       		.byte	0x19
+ 474 009d 2C000000 		.4byte	0x2c
+ 475 00a1 00       		.byte	0
+ 476 00a2 05       		.uleb128 0x5
+ 477 00a3 59010000 		.4byte	.LASF15
+ 478 00a7 02       		.byte	0x2
+ 479 00a8 1A       		.byte	0x1a
+ 480 00a9 2C000000 		.4byte	0x2c
+ 481 00ad 04       		.byte	0x4
+ 482 00ae 05       		.uleb128 0x5
+ 483 00af 39020000 		.4byte	.LASF16
+ 484 00b3 02       		.byte	0x2
+ 485 00b4 1B       		.byte	0x1b
+ 486 00b5 2C000000 		.4byte	0x2c
+ 487 00b9 08       		.byte	0x8
+ 488 00ba 05       		.uleb128 0x5
+ 489 00bb 12020000 		.4byte	.LASF17
+ 490 00bf 02       		.byte	0x2
+ 491 00c0 1C       		.byte	0x1c
+ 492 00c1 C7000000 		.4byte	0xc7
+ 493 00c5 0C       		.byte	0xc
+ 494 00c6 00       		.byte	0
+ 495 00c7 06       		.uleb128 0x6
+ 496 00c8 04       		.byte	0x4
+ 497 00c9 2C000000 		.4byte	0x2c
+ 498 00cd 07       		.uleb128 0x7
+ 499 00ce 0E000000 		.4byte	.LASF25
+ 500 00d2 02       		.byte	0x2
+ 501 00d3 1D       		.byte	0x1d
+ 502 00d4 8E000000 		.4byte	0x8e
+ 503 00d8 04       		.uleb128 0x4
+ 504 00d9 30       		.byte	0x30
+ 505 00da 03       		.byte	0x3
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cco2mZYM.s 			page 11
+
+
+ 506 00db 0C       		.byte	0xc
+ 507 00dc 35010000 		.4byte	0x135
+ 508 00e0 05       		.uleb128 0x5
+ 509 00e1 44020000 		.4byte	.LASF18
+ 510 00e5 03       		.byte	0x3
+ 511 00e6 0D       		.byte	0xd
+ 512 00e7 2C000000 		.4byte	0x2c
+ 513 00eb 00       		.byte	0
+ 514 00ec 05       		.uleb128 0x5
+ 515 00ed 7B010000 		.4byte	.LASF19
+ 516 00f1 03       		.byte	0x3
+ 517 00f2 0E       		.byte	0xe
+ 518 00f3 2C000000 		.4byte	0x2c
+ 519 00f7 04       		.byte	0x4
+ 520 00f8 05       		.uleb128 0x5
+ 521 00f9 DB000000 		.4byte	.LASF20
+ 522 00fd 03       		.byte	0x3
+ 523 00fe 0F       		.byte	0xf
+ 524 00ff 80000000 		.4byte	0x80
+ 525 0103 08       		.byte	0x8
+ 526 0104 05       		.uleb128 0x5
+ 527 0105 8F010000 		.4byte	.LASF21
+ 528 0109 03       		.byte	0x3
+ 529 010a 10       		.byte	0x10
+ 530 010b 80000000 		.4byte	0x80
+ 531 010f 10       		.byte	0x10
+ 532 0110 05       		.uleb128 0x5
+ 533 0111 BF010000 		.4byte	.LASF22
+ 534 0115 03       		.byte	0x3
+ 535 0116 11       		.byte	0x11
+ 536 0117 80000000 		.4byte	0x80
+ 537 011b 18       		.byte	0x18
+ 538 011c 05       		.uleb128 0x5
+ 539 011d C9010000 		.4byte	.LASF23
+ 540 0121 03       		.byte	0x3
+ 541 0122 12       		.byte	0x12
+ 542 0123 80000000 		.4byte	0x80
+ 543 0127 20       		.byte	0x20
+ 544 0128 05       		.uleb128 0x5
+ 545 0129 E5000000 		.4byte	.LASF24
+ 546 012d 03       		.byte	0x3
+ 547 012e 13       		.byte	0x13
+ 548 012f C7000000 		.4byte	0xc7
+ 549 0133 28       		.byte	0x28
+ 550 0134 00       		.byte	0
+ 551 0135 07       		.uleb128 0x7
+ 552 0136 60010000 		.4byte	.LASF26
+ 553 013a 03       		.byte	0x3
+ 554 013b 14       		.byte	0x14
+ 555 013c D8000000 		.4byte	0xd8
+ 556 0140 08       		.uleb128 0x8
+ 557 0141 A0010000 		.4byte	.LASF35
+ 558 0145 01       		.byte	0x1
+ 559 0146 09       		.byte	0x9
+ 560 0147 B6010000 		.4byte	0x1b6
+ 561 014b 00000000 		.4byte	.LFB0
+ 562 014f 98000000 		.4byte	.LFE0-.LFB0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cco2mZYM.s 			page 12
+
+
+ 563 0153 01       		.uleb128 0x1
+ 564 0154 9C       		.byte	0x9c
+ 565 0155 B6010000 		.4byte	0x1b6
+ 566 0159 09       		.uleb128 0x9
+ 567 015a 44020000 		.4byte	.LASF18
+ 568 015e 01       		.byte	0x1
+ 569 015f 09       		.byte	0x9
+ 570 0160 2C000000 		.4byte	0x2c
+ 571 0164 02       		.uleb128 0x2
+ 572 0165 91       		.byte	0x91
+ 573 0166 64       		.sleb128 -28
+ 574 0167 09       		.uleb128 0x9
+ 575 0168 DB000000 		.4byte	.LASF20
+ 576 016c 01       		.byte	0x1
+ 577 016d 09       		.byte	0x9
+ 578 016e 80000000 		.4byte	0x80
+ 579 0172 02       		.uleb128 0x2
+ 580 0173 91       		.byte	0x91
+ 581 0174 58       		.sleb128 -40
+ 582 0175 09       		.uleb128 0x9
+ 583 0176 BF010000 		.4byte	.LASF22
+ 584 017a 01       		.byte	0x1
+ 585 017b 09       		.byte	0x9
+ 586 017c 80000000 		.4byte	0x80
+ 587 0180 02       		.uleb128 0x2
+ 588 0181 91       		.byte	0x91
+ 589 0182 00       		.sleb128 0
+ 590 0183 09       		.uleb128 0x9
+ 591 0184 C9010000 		.4byte	.LASF23
+ 592 0188 01       		.byte	0x1
+ 593 0189 09       		.byte	0x9
+ 594 018a 80000000 		.4byte	0x80
+ 595 018e 02       		.uleb128 0x2
+ 596 018f 91       		.byte	0x91
+ 597 0190 08       		.sleb128 8
+ 598 0191 0A       		.uleb128 0xa
+ 599 0192 83010000 		.4byte	.LASF27
+ 600 0196 01       		.byte	0x1
+ 601 0197 0B       		.byte	0xb
+ 602 0198 B6010000 		.4byte	0x1b6
+ 603 019c 02       		.uleb128 0x2
+ 604 019d 91       		.byte	0x91
+ 605 019e 68       		.sleb128 -24
+ 606 019f 0B       		.uleb128 0xb
+ 607 01a0 6A000000 		.4byte	.LBB2
+ 608 01a4 24000000 		.4byte	.LBE2-.LBB2
+ 609 01a8 0C       		.uleb128 0xc
+ 610 01a9 6900     		.ascii	"i\000"
+ 611 01ab 01       		.byte	0x1
+ 612 01ac 1F       		.byte	0x1f
+ 613 01ad 2C000000 		.4byte	0x2c
+ 614 01b1 02       		.uleb128 0x2
+ 615 01b2 91       		.byte	0x91
+ 616 01b3 6C       		.sleb128 -20
+ 617 01b4 00       		.byte	0
+ 618 01b5 00       		.byte	0
+ 619 01b6 06       		.uleb128 0x6
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cco2mZYM.s 			page 13
+
+
+ 620 01b7 04       		.byte	0x4
+ 621 01b8 35010000 		.4byte	0x135
+ 622 01bc 0D       		.uleb128 0xd
+ 623 01bd 00020000 		.4byte	.LASF36
+ 624 01c1 01       		.byte	0x1
+ 625 01c2 26       		.byte	0x26
+ 626 01c3 00000000 		.4byte	.LFB1
+ 627 01c7 EA010000 		.4byte	.LFE1-.LFB1
+ 628 01cb 01       		.uleb128 0x1
+ 629 01cc 9C       		.byte	0x9c
+ 630 01cd 7A020000 		.4byte	0x27a
+ 631 01d1 09       		.uleb128 0x9
+ 632 01d2 83010000 		.4byte	.LASF27
+ 633 01d6 01       		.byte	0x1
+ 634 01d7 26       		.byte	0x26
+ 635 01d8 B6010000 		.4byte	0x1b6
+ 636 01dc 03       		.uleb128 0x3
+ 637 01dd 91       		.byte	0x91
+ 638 01de BC7F     		.sleb128 -68
+ 639 01e0 0E       		.uleb128 0xe
+ 640 01e1 6D617000 		.ascii	"map\000"
+ 641 01e5 01       		.byte	0x1
+ 642 01e6 26       		.byte	0x26
+ 643 01e7 7A020000 		.4byte	0x27a
+ 644 01eb 03       		.uleb128 0x3
+ 645 01ec 91       		.byte	0x91
+ 646 01ed B87F     		.sleb128 -72
+ 647 01ef 0A       		.uleb128 0xa
+ 648 01f0 0C020000 		.4byte	.LASF14
+ 649 01f4 01       		.byte	0x1
+ 650 01f5 27       		.byte	0x27
+ 651 01f6 2C000000 		.4byte	0x2c
+ 652 01fa 02       		.uleb128 0x2
+ 653 01fb 91       		.byte	0x91
+ 654 01fc 64       		.sleb128 -28
+ 655 01fd 0A       		.uleb128 0xa
+ 656 01fe 59010000 		.4byte	.LASF15
+ 657 0202 01       		.byte	0x1
+ 658 0203 28       		.byte	0x28
+ 659 0204 2C000000 		.4byte	0x2c
+ 660 0208 02       		.uleb128 0x2
+ 661 0209 91       		.byte	0x91
+ 662 020a 60       		.sleb128 -32
+ 663 020b 0A       		.uleb128 0xa
+ 664 020c 88010000 		.4byte	.LASF28
+ 665 0210 01       		.byte	0x1
+ 666 0211 29       		.byte	0x29
+ 667 0212 80000000 		.4byte	0x80
+ 668 0216 02       		.uleb128 0x2
+ 669 0217 91       		.byte	0x91
+ 670 0218 58       		.sleb128 -40
+ 671 0219 0A       		.uleb128 0xa
+ 672 021a A1000000 		.4byte	.LASF29
+ 673 021e 01       		.byte	0x1
+ 674 021f 2A       		.byte	0x2a
+ 675 0220 80000000 		.4byte	0x80
+ 676 0224 02       		.uleb128 0x2
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cco2mZYM.s 			page 14
+
+
+ 677 0225 91       		.byte	0x91
+ 678 0226 50       		.sleb128 -48
+ 679 0227 0B       		.uleb128 0xb
+ 680 0228 32000000 		.4byte	.LBB3
+ 681 022c B0010000 		.4byte	.LBE3-.LBB3
+ 682 0230 0C       		.uleb128 0xc
+ 683 0231 6900     		.ascii	"i\000"
+ 684 0233 01       		.byte	0x1
+ 685 0234 2D       		.byte	0x2d
+ 686 0235 2C000000 		.4byte	0x2c
+ 687 0239 02       		.uleb128 0x2
+ 688 023a 91       		.byte	0x91
+ 689 023b 6C       		.sleb128 -20
+ 690 023c 0B       		.uleb128 0xb
+ 691 023d 38000000 		.4byte	.LBB4
+ 692 0241 9A010000 		.4byte	.LBE4-.LBB4
+ 693 0245 0C       		.uleb128 0xc
+ 694 0246 6A00     		.ascii	"j\000"
+ 695 0248 01       		.byte	0x1
+ 696 0249 2E       		.byte	0x2e
+ 697 024a 2C000000 		.4byte	0x2c
+ 698 024e 02       		.uleb128 0x2
+ 699 024f 91       		.byte	0x91
+ 700 0250 68       		.sleb128 -24
+ 701 0251 0B       		.uleb128 0xb
+ 702 0252 3E000000 		.4byte	.LBB5
+ 703 0256 84010000 		.4byte	.LBE5-.LBB5
+ 704 025a 0A       		.uleb128 0xa
+ 705 025b C8000000 		.4byte	.LASF30
+ 706 025f 01       		.byte	0x1
+ 707 0260 31       		.byte	0x31
+ 708 0261 80000000 		.4byte	0x80
+ 709 0265 02       		.uleb128 0x2
+ 710 0266 91       		.byte	0x91
+ 711 0267 48       		.sleb128 -56
+ 712 0268 0A       		.uleb128 0xa
+ 713 0269 F3010000 		.4byte	.LASF31
+ 714 026d 01       		.byte	0x1
+ 715 026e 34       		.byte	0x34
+ 716 026f 80000000 		.4byte	0x80
+ 717 0273 02       		.uleb128 0x2
+ 718 0274 91       		.byte	0x91
+ 719 0275 40       		.sleb128 -64
+ 720 0276 00       		.byte	0
+ 721 0277 00       		.byte	0
+ 722 0278 00       		.byte	0
+ 723 0279 00       		.byte	0
+ 724 027a 06       		.uleb128 0x6
+ 725 027b 04       		.byte	0x4
+ 726 027c CD000000 		.4byte	0xcd
+ 727 0280 00       		.byte	0
+ 728              		.section	.debug_abbrev,"",%progbits
+ 729              	.Ldebug_abbrev0:
+ 730 0000 01       		.uleb128 0x1
+ 731 0001 11       		.uleb128 0x11
+ 732 0002 01       		.byte	0x1
+ 733 0003 25       		.uleb128 0x25
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cco2mZYM.s 			page 15
+
+
+ 734 0004 0E       		.uleb128 0xe
+ 735 0005 13       		.uleb128 0x13
+ 736 0006 0B       		.uleb128 0xb
+ 737 0007 03       		.uleb128 0x3
+ 738 0008 0E       		.uleb128 0xe
+ 739 0009 1B       		.uleb128 0x1b
+ 740 000a 0E       		.uleb128 0xe
+ 741 000b 55       		.uleb128 0x55
+ 742 000c 17       		.uleb128 0x17
+ 743 000d 11       		.uleb128 0x11
+ 744 000e 01       		.uleb128 0x1
+ 745 000f 10       		.uleb128 0x10
+ 746 0010 17       		.uleb128 0x17
+ 747 0011 00       		.byte	0
+ 748 0012 00       		.byte	0
+ 749 0013 02       		.uleb128 0x2
+ 750 0014 24       		.uleb128 0x24
+ 751 0015 00       		.byte	0
+ 752 0016 0B       		.uleb128 0xb
+ 753 0017 0B       		.uleb128 0xb
+ 754 0018 3E       		.uleb128 0x3e
+ 755 0019 0B       		.uleb128 0xb
+ 756 001a 03       		.uleb128 0x3
+ 757 001b 0E       		.uleb128 0xe
+ 758 001c 00       		.byte	0
+ 759 001d 00       		.byte	0
+ 760 001e 03       		.uleb128 0x3
+ 761 001f 24       		.uleb128 0x24
+ 762 0020 00       		.byte	0
+ 763 0021 0B       		.uleb128 0xb
+ 764 0022 0B       		.uleb128 0xb
+ 765 0023 3E       		.uleb128 0x3e
+ 766 0024 0B       		.uleb128 0xb
+ 767 0025 03       		.uleb128 0x3
+ 768 0026 08       		.uleb128 0x8
+ 769 0027 00       		.byte	0
+ 770 0028 00       		.byte	0
+ 771 0029 04       		.uleb128 0x4
+ 772 002a 13       		.uleb128 0x13
+ 773 002b 01       		.byte	0x1
+ 774 002c 0B       		.uleb128 0xb
+ 775 002d 0B       		.uleb128 0xb
+ 776 002e 3A       		.uleb128 0x3a
+ 777 002f 0B       		.uleb128 0xb
+ 778 0030 3B       		.uleb128 0x3b
+ 779 0031 0B       		.uleb128 0xb
+ 780 0032 01       		.uleb128 0x1
+ 781 0033 13       		.uleb128 0x13
+ 782 0034 00       		.byte	0
+ 783 0035 00       		.byte	0
+ 784 0036 05       		.uleb128 0x5
+ 785 0037 0D       		.uleb128 0xd
+ 786 0038 00       		.byte	0
+ 787 0039 03       		.uleb128 0x3
+ 788 003a 0E       		.uleb128 0xe
+ 789 003b 3A       		.uleb128 0x3a
+ 790 003c 0B       		.uleb128 0xb
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cco2mZYM.s 			page 16
+
+
+ 791 003d 3B       		.uleb128 0x3b
+ 792 003e 0B       		.uleb128 0xb
+ 793 003f 49       		.uleb128 0x49
+ 794 0040 13       		.uleb128 0x13
+ 795 0041 38       		.uleb128 0x38
+ 796 0042 0B       		.uleb128 0xb
+ 797 0043 00       		.byte	0
+ 798 0044 00       		.byte	0
+ 799 0045 06       		.uleb128 0x6
+ 800 0046 0F       		.uleb128 0xf
+ 801 0047 00       		.byte	0
+ 802 0048 0B       		.uleb128 0xb
+ 803 0049 0B       		.uleb128 0xb
+ 804 004a 49       		.uleb128 0x49
+ 805 004b 13       		.uleb128 0x13
+ 806 004c 00       		.byte	0
+ 807 004d 00       		.byte	0
+ 808 004e 07       		.uleb128 0x7
+ 809 004f 16       		.uleb128 0x16
+ 810 0050 00       		.byte	0
+ 811 0051 03       		.uleb128 0x3
+ 812 0052 0E       		.uleb128 0xe
+ 813 0053 3A       		.uleb128 0x3a
+ 814 0054 0B       		.uleb128 0xb
+ 815 0055 3B       		.uleb128 0x3b
+ 816 0056 0B       		.uleb128 0xb
+ 817 0057 49       		.uleb128 0x49
+ 818 0058 13       		.uleb128 0x13
+ 819 0059 00       		.byte	0
+ 820 005a 00       		.byte	0
+ 821 005b 08       		.uleb128 0x8
+ 822 005c 2E       		.uleb128 0x2e
+ 823 005d 01       		.byte	0x1
+ 824 005e 3F       		.uleb128 0x3f
+ 825 005f 19       		.uleb128 0x19
+ 826 0060 03       		.uleb128 0x3
+ 827 0061 0E       		.uleb128 0xe
+ 828 0062 3A       		.uleb128 0x3a
+ 829 0063 0B       		.uleb128 0xb
+ 830 0064 3B       		.uleb128 0x3b
+ 831 0065 0B       		.uleb128 0xb
+ 832 0066 27       		.uleb128 0x27
+ 833 0067 19       		.uleb128 0x19
+ 834 0068 49       		.uleb128 0x49
+ 835 0069 13       		.uleb128 0x13
+ 836 006a 11       		.uleb128 0x11
+ 837 006b 01       		.uleb128 0x1
+ 838 006c 12       		.uleb128 0x12
+ 839 006d 06       		.uleb128 0x6
+ 840 006e 40       		.uleb128 0x40
+ 841 006f 18       		.uleb128 0x18
+ 842 0070 9642     		.uleb128 0x2116
+ 843 0072 19       		.uleb128 0x19
+ 844 0073 01       		.uleb128 0x1
+ 845 0074 13       		.uleb128 0x13
+ 846 0075 00       		.byte	0
+ 847 0076 00       		.byte	0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cco2mZYM.s 			page 17
+
+
+ 848 0077 09       		.uleb128 0x9
+ 849 0078 05       		.uleb128 0x5
+ 850 0079 00       		.byte	0
+ 851 007a 03       		.uleb128 0x3
+ 852 007b 0E       		.uleb128 0xe
+ 853 007c 3A       		.uleb128 0x3a
+ 854 007d 0B       		.uleb128 0xb
+ 855 007e 3B       		.uleb128 0x3b
+ 856 007f 0B       		.uleb128 0xb
+ 857 0080 49       		.uleb128 0x49
+ 858 0081 13       		.uleb128 0x13
+ 859 0082 02       		.uleb128 0x2
+ 860 0083 18       		.uleb128 0x18
+ 861 0084 00       		.byte	0
+ 862 0085 00       		.byte	0
+ 863 0086 0A       		.uleb128 0xa
+ 864 0087 34       		.uleb128 0x34
+ 865 0088 00       		.byte	0
+ 866 0089 03       		.uleb128 0x3
+ 867 008a 0E       		.uleb128 0xe
+ 868 008b 3A       		.uleb128 0x3a
+ 869 008c 0B       		.uleb128 0xb
+ 870 008d 3B       		.uleb128 0x3b
+ 871 008e 0B       		.uleb128 0xb
+ 872 008f 49       		.uleb128 0x49
+ 873 0090 13       		.uleb128 0x13
+ 874 0091 02       		.uleb128 0x2
+ 875 0092 18       		.uleb128 0x18
+ 876 0093 00       		.byte	0
+ 877 0094 00       		.byte	0
+ 878 0095 0B       		.uleb128 0xb
+ 879 0096 0B       		.uleb128 0xb
+ 880 0097 01       		.byte	0x1
+ 881 0098 11       		.uleb128 0x11
+ 882 0099 01       		.uleb128 0x1
+ 883 009a 12       		.uleb128 0x12
+ 884 009b 06       		.uleb128 0x6
+ 885 009c 00       		.byte	0
+ 886 009d 00       		.byte	0
+ 887 009e 0C       		.uleb128 0xc
+ 888 009f 34       		.uleb128 0x34
+ 889 00a0 00       		.byte	0
+ 890 00a1 03       		.uleb128 0x3
+ 891 00a2 08       		.uleb128 0x8
+ 892 00a3 3A       		.uleb128 0x3a
+ 893 00a4 0B       		.uleb128 0xb
+ 894 00a5 3B       		.uleb128 0x3b
+ 895 00a6 0B       		.uleb128 0xb
+ 896 00a7 49       		.uleb128 0x49
+ 897 00a8 13       		.uleb128 0x13
+ 898 00a9 02       		.uleb128 0x2
+ 899 00aa 18       		.uleb128 0x18
+ 900 00ab 00       		.byte	0
+ 901 00ac 00       		.byte	0
+ 902 00ad 0D       		.uleb128 0xd
+ 903 00ae 2E       		.uleb128 0x2e
+ 904 00af 01       		.byte	0x1
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cco2mZYM.s 			page 18
+
+
+ 905 00b0 3F       		.uleb128 0x3f
+ 906 00b1 19       		.uleb128 0x19
+ 907 00b2 03       		.uleb128 0x3
+ 908 00b3 0E       		.uleb128 0xe
+ 909 00b4 3A       		.uleb128 0x3a
+ 910 00b5 0B       		.uleb128 0xb
+ 911 00b6 3B       		.uleb128 0x3b
+ 912 00b7 0B       		.uleb128 0xb
+ 913 00b8 27       		.uleb128 0x27
+ 914 00b9 19       		.uleb128 0x19
+ 915 00ba 11       		.uleb128 0x11
+ 916 00bb 01       		.uleb128 0x1
+ 917 00bc 12       		.uleb128 0x12
+ 918 00bd 06       		.uleb128 0x6
+ 919 00be 40       		.uleb128 0x40
+ 920 00bf 18       		.uleb128 0x18
+ 921 00c0 9642     		.uleb128 0x2116
+ 922 00c2 19       		.uleb128 0x19
+ 923 00c3 01       		.uleb128 0x1
+ 924 00c4 13       		.uleb128 0x13
+ 925 00c5 00       		.byte	0
+ 926 00c6 00       		.byte	0
+ 927 00c7 0E       		.uleb128 0xe
+ 928 00c8 05       		.uleb128 0x5
+ 929 00c9 00       		.byte	0
+ 930 00ca 03       		.uleb128 0x3
+ 931 00cb 08       		.uleb128 0x8
+ 932 00cc 3A       		.uleb128 0x3a
+ 933 00cd 0B       		.uleb128 0xb
+ 934 00ce 3B       		.uleb128 0x3b
+ 935 00cf 0B       		.uleb128 0xb
+ 936 00d0 49       		.uleb128 0x49
+ 937 00d1 13       		.uleb128 0x13
+ 938 00d2 02       		.uleb128 0x2
+ 939 00d3 18       		.uleb128 0x18
+ 940 00d4 00       		.byte	0
+ 941 00d5 00       		.byte	0
+ 942 00d6 00       		.byte	0
+ 943              		.section	.debug_aranges,"",%progbits
+ 944 0000 24000000 		.4byte	0x24
+ 945 0004 0200     		.2byte	0x2
+ 946 0006 00000000 		.4byte	.Ldebug_info0
+ 947 000a 04       		.byte	0x4
+ 948 000b 00       		.byte	0
+ 949 000c 0000     		.2byte	0
+ 950 000e 0000     		.2byte	0
+ 951 0010 00000000 		.4byte	.LFB0
+ 952 0014 98000000 		.4byte	.LFE0-.LFB0
+ 953 0018 00000000 		.4byte	.LFB1
+ 954 001c EA010000 		.4byte	.LFE1-.LFB1
+ 955 0020 00000000 		.4byte	0
+ 956 0024 00000000 		.4byte	0
+ 957              		.section	.debug_ranges,"",%progbits
+ 958              	.Ldebug_ranges0:
+ 959 0000 00000000 		.4byte	.LFB0
+ 960 0004 98000000 		.4byte	.LFE0
+ 961 0008 00000000 		.4byte	.LFB1
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cco2mZYM.s 			page 19
+
+
+ 962 000c EA010000 		.4byte	.LFE1
+ 963 0010 00000000 		.4byte	0
+ 964 0014 00000000 		.4byte	0
+ 965              		.section	.debug_line,"",%progbits
+ 966              	.Ldebug_line0:
+ 967 0000 E5000000 		.section	.debug_str,"MS",%progbits,1
+ 967      02006700 
+ 967      00000201 
+ 967      FB0E0D00 
+ 967      01010101 
+ 968              	.LASF1:
+ 969 0000 6C6F6E67 		.ascii	"long long int\000"
+ 969      206C6F6E 
+ 969      6720696E 
+ 969      7400
+ 970              	.LASF25:
+ 971 000e 67726964 		.ascii	"grid\000"
+ 971      00
+ 972              	.LASF32:
+ 973 0013 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 973      43313120 
+ 973      352E342E 
+ 973      31203230 
+ 973      31363036 
+ 974 0046 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 974      20726576 
+ 974      6973696F 
+ 974      6E203233 
+ 974      37373135 
+ 975 0079 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 975      66756E63 
+ 975      74696F6E 
+ 975      2D736563 
+ 975      74696F6E 
+ 976              	.LASF29:
+ 977 00a1 64656E73 		.ascii	"dens_b\000"
+ 977      5F6200
+ 978              	.LASF33:
+ 979 00a8 5646485C 		.ascii	"VFH\\src\\polar_histogram.c\000"
+ 979      7372635C 
+ 979      706F6C61 
+ 979      725F6869 
+ 979      73746F67 
+ 980              	.LASF13:
+ 981 00c2 666C6F61 		.ascii	"float\000"
+ 981      7400
+ 982              	.LASF30:
+ 983 00c8 62657461 		.ascii	"beta\000"
+ 983      00
+ 984              	.LASF4:
+ 985 00cd 756E7369 		.ascii	"unsigned char\000"
+ 985      676E6564 
+ 985      20636861 
+ 985      7200
+ 986              	.LASF20:
+ 987 00db 74687265 		.ascii	"threshold\000"
+ 987      73686F6C 
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cco2mZYM.s 			page 20
+
+
+ 987      6400
+ 988              	.LASF24:
+ 989 00e5 64656E73 		.ascii	"densities\000"
+ 989      69746965 
+ 989      7300
+ 990              	.LASF8:
+ 991 00ef 6C6F6E67 		.ascii	"long unsigned int\000"
+ 991      20756E73 
+ 991      69676E65 
+ 991      6420696E 
+ 991      7400
+ 992              	.LASF6:
+ 993 0101 73686F72 		.ascii	"short unsigned int\000"
+ 993      7420756E 
+ 993      7369676E 
+ 993      65642069 
+ 993      6E7400
+ 994              	.LASF34:
+ 995 0114 433A5C55 		.ascii	"C:\\Users\\jmspi\\OneDrive\\Documents\\GitHub\\ECE4"
+ 995      73657273 
+ 995      5C6A6D73 
+ 995      70695C4F 
+ 995      6E654472 
+ 996 0141 3139315C 		.ascii	"191\\DeliveryRobot.cydsn\000"
+ 996      44656C69 
+ 996      76657279 
+ 996      526F626F 
+ 996      742E6379 
+ 997              	.LASF15:
+ 998 0159 68656967 		.ascii	"height\000"
+ 998      687400
+ 999              	.LASF26:
+ 1000 0160 68697374 		.ascii	"histogram\000"
+ 1000      6F677261 
+ 1000      6D00
+ 1001              	.LASF12:
+ 1002 016a 646F7562 		.ascii	"double\000"
+ 1002      6C6500
+ 1003              	.LASF5:
+ 1004 0171 73686F72 		.ascii	"short int\000"
+ 1004      7420696E 
+ 1004      7400
+ 1005              	.LASF19:
+ 1006 017b 73656374 		.ascii	"sectors\000"
+ 1006      6F727300 
+ 1007              	.LASF27:
+ 1008 0183 68697374 		.ascii	"hist\000"
+ 1008      00
+ 1009              	.LASF28:
+ 1010 0188 64656E73 		.ascii	"dens_a\000"
+ 1010      5F6100
+ 1011              	.LASF21:
+ 1012 018f 64616D70 		.ascii	"damping_constant\000"
+ 1012      696E675F 
+ 1012      636F6E73 
+ 1012      74616E74 
+ 1012      00
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cco2mZYM.s 			page 21
+
+
+ 1013              	.LASF35:
+ 1014 01a0 696E6974 		.ascii	"initial_histogram\000"
+ 1014      69616C5F 
+ 1014      68697374 
+ 1014      6F677261 
+ 1014      6D00
+ 1015              	.LASF0:
+ 1016 01b2 756E7369 		.ascii	"unsigned int\000"
+ 1016      676E6564 
+ 1016      20696E74 
+ 1016      00
+ 1017              	.LASF22:
+ 1018 01bf 64656E73 		.ascii	"density_a\000"
+ 1018      6974795F 
+ 1018      6100
+ 1019              	.LASF23:
+ 1020 01c9 64656E73 		.ascii	"density_b\000"
+ 1020      6974795F 
+ 1020      6200
+ 1021              	.LASF9:
+ 1022 01d3 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1022      206C6F6E 
+ 1022      6720756E 
+ 1022      7369676E 
+ 1022      65642069 
+ 1023              	.LASF10:
+ 1024 01ea 73697A65 		.ascii	"sizetype\000"
+ 1024      74797065 
+ 1024      00
+ 1025              	.LASF31:
+ 1026 01f3 64656E73 		.ascii	"density\000"
+ 1026      69747900 
+ 1027              	.LASF11:
+ 1028 01fb 63686172 		.ascii	"char\000"
+ 1028      00
+ 1029              	.LASF36:
+ 1030 0200 68697374 		.ascii	"hist_update\000"
+ 1030      5F757064 
+ 1030      61746500 
+ 1031              	.LASF14:
+ 1032 020c 77696474 		.ascii	"width\000"
+ 1032      6800
+ 1033              	.LASF17:
+ 1034 0212 63656C6C 		.ascii	"cells\000"
+ 1034      7300
+ 1035              	.LASF7:
+ 1036 0218 6C6F6E67 		.ascii	"long int\000"
+ 1036      20696E74 
+ 1036      00
+ 1037              	.LASF2:
+ 1038 0221 6C6F6E67 		.ascii	"long double\000"
+ 1038      20646F75 
+ 1038      626C6500 
+ 1039              	.LASF3:
+ 1040 022d 7369676E 		.ascii	"signed char\000"
+ 1040      65642063 
+ 1040      68617200 
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cco2mZYM.s 			page 22
+
+
+ 1041              	.LASF16:
+ 1042 0239 7265736F 		.ascii	"resolution\000"
+ 1042      6C757469 
+ 1042      6F6E00
+ 1043              	.LASF18:
+ 1044 0244 616C7068 		.ascii	"alpha\000"
+ 1044      6100
+ 1045              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

@@ -13,6 +13,10 @@
 #include <stdio.h>
 #include <math.h>
 
+#include "vfh.h"
+#include "histogram_grid.h"
+#include "polar_histogram.h"
+
 struct Motor {
     double duty_cycle;
     double int_error;  // integrated error

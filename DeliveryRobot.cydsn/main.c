@@ -73,6 +73,8 @@ CY_ISR( Timer_Int_Handler ) {
     Timer_Echo_WriteCounter(max_count); // TODO: check if this is needed next lab
     // clear the interrupt
     Timer_Echo_ReadStatusRegister();
+    
+    
 }
 
 CY_ISR( Pose_Update_Int_Handler ) {
@@ -95,15 +97,15 @@ CY_ISR( Pose_Update_Int_Handler ) {
     robot.V =  (right_motor.tangent_v + left_motor.tangent_v)/2; //instantaneous tangential velocity of robot centre
 
     // update pose variables
-    float old_theta = robot.theta
+    float old_theta = robot.theta;
     robot.theta = robot.theta + robot.w * POSE_UPDATE_PERIOD;
     robot.theta = robot.theta - 360 * floor(robot.theta / 360); // ensures theta is in range [0, 360)
     if (robot.w == 0){
         robot.x = robot.x + POSE_UPDATE_PERIOD * robot.V * cos(robot.theta);
         robot.y = robot.y + POSE_UPDATE_PERIOD * robot.V * sin(robot.theta);
     }else{
-        robot.x = robot.x + robot.V*(sin(robot.theta) - sin(old_theta))/robot.w
-        robot.y = robot.y + robot.V*(cos(old_theta) -cos(robot.theta))/robot.w
+        robot.x = robot.x + robot.V*(sin(robot.theta) - sin(old_theta))/robot.w;
+        robot.y = robot.y + robot.V*(cos(old_theta) -cos(robot.theta))/robot.w;
     }
     
     // do robot PI control

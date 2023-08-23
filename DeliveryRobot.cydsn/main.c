@@ -203,11 +203,16 @@ int main(void)
             
             Timer_Echo_Stop();
             CyDelayUs(1); // TODO: Should be able to make this shorter, one or two bus clock cycles
+            /*
             if (mux_select == 0) {
                 mux_select = 1;
             } else {
                 mux_select = 0;
             }
+            */
+            
+            mux_select = (mux_select + 1)%8; //()
+            
             Control_Reg_US_Write(mux_select);
             Timer_Echo_Enable();
             PWM_Trigger_WriteCounter(1);

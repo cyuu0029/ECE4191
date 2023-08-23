@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
   55              		.type	mux_select, %object
   56              		.size	mux_select, 1
   57              	mux_select:
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 2
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 2
 
 
   58 0001 00       		.space	1
@@ -102,60 +102,64 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
   13:main.c        **** #include <stdio.h>
   14:main.c        **** #include <math.h>
   15:main.c        **** 
-  16:main.c        **** struct Motor {
-  17:main.c        ****     double duty_cycle;
-  18:main.c        ****     double int_error;  // integrated error
-  19:main.c        ****     double w; // omega, [rad per sec]
-  20:main.c        ****     double tangent_v; //tangential velocity, [cm per sec]
-  21:main.c        ****     double desired_w;
-  22:main.c        ****     double Ki;
-  23:main.c        ****     double Kp;
-  24:main.c        ****     double wheel_radius; // wheel radius in cm
-  25:main.c        ****     int32 enc_count;
-  26:main.c        **** };
-  27:main.c        **** 
-  28:main.c        **** struct Robot {
-  29:main.c        ****     double theta;  // in RADIANS
-  30:main.c        ****     double x;   // in cm
-  31:main.c        ****     double y;   // in cm
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 3
+  16:main.c        **** #include "vfh.h"
+  17:main.c        **** #include "histogram_grid.h"
+  18:main.c        **** #include "polar_histogram.h"
+  19:main.c        **** 
+  20:main.c        **** struct Motor {
+  21:main.c        ****     double duty_cycle;
+  22:main.c        ****     double int_error;  // integrated error
+  23:main.c        ****     double w; // omega, [rad per sec]
+  24:main.c        ****     double tangent_v; //tangential velocity, [cm per sec]
+  25:main.c        ****     double desired_w;
+  26:main.c        ****     double Ki;
+  27:main.c        ****     double Kp;
+  28:main.c        ****     double wheel_radius; // wheel radius in cm
+  29:main.c        ****     int32 enc_count;
+  30:main.c        **** };
+  31:main.c        **** 
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 3
 
 
-  32:main.c        ****     double axle_width; // in cm
-  33:main.c        ****     
-  34:main.c        ****     double V;   // in cm/s
-  35:main.c        ****     double w;   // in rad/s
-  36:main.c        ****     
-  37:main.c        ****     double desired_V;
-  38:main.c        ****     double desired_theta;
-  39:main.c        ****     
-  40:main.c        ****     double Ki;
-  41:main.c        ****     double Kp;
-  42:main.c        ****     double int_error; // integrated error for PI control
-  43:main.c        **** };
-  44:main.c        **** 
-  45:main.c        **** const float PULSES_PER_REV = 3591.92;
-  46:main.c        **** const float POSE_UPDATE_PERIOD = 0.02; // seconds
-  47:main.c        **** const double TWO_PI = 2*3.14159265358979;
+  32:main.c        **** struct Robot {
+  33:main.c        ****     double theta;  // in RADIANS
+  34:main.c        ****     double x;   // in cm
+  35:main.c        ****     double y;   // in cm
+  36:main.c        ****     double axle_width; // in cm
+  37:main.c        ****     
+  38:main.c        ****     double V;   // in cm/s
+  39:main.c        ****     double w;   // in rad/s
+  40:main.c        ****     
+  41:main.c        ****     double desired_V;
+  42:main.c        ****     double desired_theta;
+  43:main.c        ****     
+  44:main.c        ****     double Ki;
+  45:main.c        ****     double Kp;
+  46:main.c        ****     double int_error; // integrated error for PI control
+  47:main.c        **** };
   48:main.c        **** 
-  49:main.c        **** void Drive_Left_Motor(double duty_cycle);
-  50:main.c        **** void Drive_Right_Motor(double duty_cycle);
-  51:main.c        **** 
-  52:main.c        **** uint8_t echo_flag = 0;
-  53:main.c        **** uint16_t max_count = 65535;
-  54:main.c        **** uint16_t echo_distance;
-  55:main.c        **** uint8_t mux_select = 0;
-  56:main.c        **** int32 left_wheel_count = 0;
-  57:main.c        **** int32 right_wheel_count = 0;
-  58:main.c        **** char serial_output[150];
-  59:main.c        **** 
-  60:main.c        **** struct Motor left_motor;
-  61:main.c        **** struct Motor right_motor;
-  62:main.c        **** struct Robot robot;
+  49:main.c        **** const float PULSES_PER_REV = 3591.92;
+  50:main.c        **** const float POSE_UPDATE_PERIOD = 0.02; // seconds
+  51:main.c        **** const double TWO_PI = 2*3.14159265358979;
+  52:main.c        **** 
+  53:main.c        **** void Drive_Left_Motor(double duty_cycle);
+  54:main.c        **** void Drive_Right_Motor(double duty_cycle);
+  55:main.c        **** 
+  56:main.c        **** uint8_t echo_flag = 0;
+  57:main.c        **** uint16_t max_count = 65535;
+  58:main.c        **** uint16_t echo_distance;
+  59:main.c        **** uint8_t mux_select = 0;
+  60:main.c        **** int32 left_wheel_count = 0;
+  61:main.c        **** int32 right_wheel_count = 0;
+  62:main.c        **** char serial_output[150];
   63:main.c        **** 
-  64:main.c        ****   
-  65:main.c        **** CY_ISR( Timer_Int_Handler ) {
-  84              		.loc 1 65 0
+  64:main.c        **** struct Motor left_motor;
+  65:main.c        **** struct Motor right_motor;
+  66:main.c        **** struct Robot robot;
+  67:main.c        **** 
+  68:main.c        ****   
+  69:main.c        **** CY_ISR( Timer_Int_Handler ) {
+  84              		.loc 1 69 0
   85              		.cfi_startproc
   86              		@ args = 0, pretend = 0, frame = 0
   87              		@ frame_needed = 1, uses_anonymous_args = 0
@@ -165,34 +169,34 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
   91              		.cfi_offset 14, -4
   92 0002 00AF     		add	r7, sp, #0
   93              		.cfi_def_cfa_register 7
-  66:main.c        ****     // read centimeters
-  67:main.c        ****     echo_distance = Timer_Echo_ReadCapture();
-  94              		.loc 1 67 0
+  70:main.c        ****     // read centimeters
+  71:main.c        ****     echo_distance = Timer_Echo_ReadCapture();
+  94              		.loc 1 71 0
   95 0004 FFF7FEFF 		bl	Timer_Echo_ReadCapture
   96 0008 0346     		mov	r3, r0
   97 000a 1A46     		mov	r2, r3
   98 000c 064B     		ldr	r3, .L2
   99 000e 1A80     		strh	r2, [r3]	@ movhi
-  68:main.c        ****     echo_flag = 1;
- 100              		.loc 1 68 0
+  72:main.c        ****     echo_flag = 1;
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 4
+
+
+ 100              		.loc 1 72 0
  101 0010 064B     		ldr	r3, .L2+4
  102 0012 0122     		movs	r2, #1
  103 0014 1A70     		strb	r2, [r3]
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 4
-
-
-  69:main.c        ****     Timer_Echo_WriteCounter(max_count); // TODO: check if this is needed next lab
- 104              		.loc 1 69 0
+  73:main.c        ****     Timer_Echo_WriteCounter(max_count); // TODO: check if this is needed next lab
+ 104              		.loc 1 73 0
  105 0016 064B     		ldr	r3, .L2+8
  106 0018 1B88     		ldrh	r3, [r3]
  107 001a 1846     		mov	r0, r3
  108 001c FFF7FEFF 		bl	Timer_Echo_WriteCounter
-  70:main.c        ****     // clear the interrupt
-  71:main.c        ****     Timer_Echo_ReadStatusRegister();
- 109              		.loc 1 71 0
+  74:main.c        ****     // clear the interrupt
+  75:main.c        ****     Timer_Echo_ReadStatusRegister();
+ 109              		.loc 1 75 0
  110 0020 FFF7FEFF 		bl	Timer_Echo_ReadStatusRegister
-  72:main.c        **** }
- 111              		.loc 1 72 0
+  76:main.c        **** }
+ 111              		.loc 1 76 0
  112 0024 00BF     		nop
  113 0026 80BD     		pop	{r7, pc}
  114              	.L3:
@@ -220,9 +224,9 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  136              		.type	Pose_Update_Int_Handler, %function
  137              	Pose_Update_Int_Handler:
  138              	.LFB65:
-  73:main.c        **** 
-  74:main.c        **** CY_ISR( Pose_Update_Int_Handler ) {
- 139              		.loc 1 74 0
+  77:main.c        **** 
+  78:main.c        **** CY_ISR( Pose_Update_Int_Handler ) {
+ 139              		.loc 1 78 0
  140              		.cfi_startproc
  141              		@ args = 0, pretend = 0, frame = 24
  142              		@ frame_needed = 1, uses_anonymous_args = 0
@@ -234,32 +238,32 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  148              		.cfi_offset 7, -16
  149              		.cfi_offset 8, -12
  150              		.cfi_offset 9, -8
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 5
+
+
  151              		.cfi_offset 14, -4
  152 0004 87B0     		sub	sp, sp, #28
  153              		.cfi_def_cfa_offset 56
  154 0006 00AF     		add	r7, sp, #0
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 5
-
-
  155              		.cfi_def_cfa_register 7
-  75:main.c        ****     int32 new = QuadDec_L_GetCounter();
- 156              		.loc 1 75 0
+  79:main.c        ****     int32 new = QuadDec_L_GetCounter();
+ 156              		.loc 1 79 0
  157 0008 FFF7FEFF 		bl	QuadDec_L_GetCounter
  158 000c F860     		str	r0, [r7, #12]
-  76:main.c        ****     int32 diff = new - left_motor.enc_count;
- 159              		.loc 1 76 0
+  80:main.c        ****     int32 diff = new - left_motor.enc_count;
+ 159              		.loc 1 80 0
  160 000e BE4B     		ldr	r3, .L11+24
  161 0010 1B6C     		ldr	r3, [r3, #64]
  162 0012 FA68     		ldr	r2, [r7, #12]
  163 0014 D31A     		subs	r3, r2, r3
  164 0016 BB60     		str	r3, [r7, #8]
-  77:main.c        ****     left_motor.enc_count = new;
- 165              		.loc 1 77 0
+  81:main.c        ****     left_motor.enc_count = new;
+ 165              		.loc 1 81 0
  166 0018 BB4A     		ldr	r2, .L11+24
  167 001a FB68     		ldr	r3, [r7, #12]
  168 001c 1364     		str	r3, [r2, #64]
-  78:main.c        ****     left_motor.w = TWO_PI*diff/POSE_UPDATE_PERIOD/PULSES_PER_REV;
- 169              		.loc 1 78 0
+  82:main.c        ****     left_motor.w = TWO_PI*diff/POSE_UPDATE_PERIOD/PULSES_PER_REV;
+ 169              		.loc 1 82 0
  170 001e B868     		ldr	r0, [r7, #8]
  171 0020 FFF7FEFF 		bl	__aeabi_i2d
  172 0024 B2A4     		adr	r4, .L11
@@ -294,29 +298,29 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  201 006a 0346     		mov	r3, r0
  202 006c 0C46     		mov	r4, r1
  203 006e A64A     		ldr	r2, .L11+24
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 6
+
+
  204 0070 C2E90434 		strd	r3, [r2, #16]
-  79:main.c        ****     
-  80:main.c        ****     new = QuadDec_R_GetCounter();
- 205              		.loc 1 80 0
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 6
-
-
+  83:main.c        ****     
+  84:main.c        ****     new = QuadDec_R_GetCounter();
+ 205              		.loc 1 84 0
  206 0074 FFF7FEFF 		bl	QuadDec_R_GetCounter
  207 0078 F860     		str	r0, [r7, #12]
-  81:main.c        ****     diff = new - right_motor.enc_count;
- 208              		.loc 1 81 0
+  85:main.c        ****     diff = new - right_motor.enc_count;
+ 208              		.loc 1 85 0
  209 007a A64B     		ldr	r3, .L11+36
  210 007c 1B6C     		ldr	r3, [r3, #64]
  211 007e FA68     		ldr	r2, [r7, #12]
  212 0080 D31A     		subs	r3, r2, r3
  213 0082 BB60     		str	r3, [r7, #8]
-  82:main.c        ****     right_motor.enc_count = new;
- 214              		.loc 1 82 0
+  86:main.c        ****     right_motor.enc_count = new;
+ 214              		.loc 1 86 0
  215 0084 A34A     		ldr	r2, .L11+36
  216 0086 FB68     		ldr	r3, [r7, #12]
  217 0088 1364     		str	r3, [r2, #64]
-  83:main.c        ****     right_motor.w = TWO_PI*diff/POSE_UPDATE_PERIOD/PULSES_PER_REV;
- 218              		.loc 1 83 0
+  87:main.c        ****     right_motor.w = TWO_PI*diff/POSE_UPDATE_PERIOD/PULSES_PER_REV;
+ 218              		.loc 1 87 0
  219 008a B868     		ldr	r0, [r7, #8]
  220 008c FFF7FEFF 		bl	__aeabi_i2d
  221 0090 97A4     		adr	r4, .L11
@@ -352,15 +356,15 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  251 00d8 0C46     		mov	r4, r1
  252 00da 8E4A     		ldr	r2, .L11+36
  253 00dc C2E90434 		strd	r3, [r2, #16]
-  84:main.c        ****     
-  85:main.c        ****     //Calculate and update tangential velocity of wheels
-  86:main.c        ****     left_motor.tangent_v = left_motor.w*left_motor.wheel_radius;
- 254              		.loc 1 86 0
+  88:main.c        ****     
+  89:main.c        ****     //Calculate and update tangential velocity of wheels
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 7
+
+
+  90:main.c        ****     left_motor.tangent_v = left_motor.w*left_motor.wheel_radius;
+ 254              		.loc 1 90 0
  255 00e0 894B     		ldr	r3, .L11+24
  256 00e2 D3E90401 		ldrd	r0, [r3, #16]
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 7
-
-
  257 00e6 884B     		ldr	r3, .L11+24
  258 00e8 03F13804 		add	r4, r3, #56
  259 00ec D4E90034 		ldrd	r3, [r4]
@@ -371,8 +375,8 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  264 00fa 0C46     		mov	r4, r1
  265 00fc 824A     		ldr	r2, .L11+24
  266 00fe C2E90634 		strd	r3, [r2, #24]
-  87:main.c        ****     right_motor.tangent_v = right_motor.w*right_motor.wheel_radius;
- 267              		.loc 1 87 0
+  91:main.c        ****     right_motor.tangent_v = right_motor.w*right_motor.wheel_radius;
+ 267              		.loc 1 91 0
  268 0102 844B     		ldr	r3, .L11+36
  269 0104 D3E90401 		ldrd	r0, [r3, #16]
  270 0108 824B     		ldr	r3, .L11+36
@@ -385,10 +389,10 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  277 011c 0C46     		mov	r4, r1
  278 011e 7D4A     		ldr	r2, .L11+36
  279 0120 C2E90634 		strd	r3, [r2, #24]
-  88:main.c        **** 
-  89:main.c        ****     //temporary values
-  90:main.c        ****     robot.w = (right_motor.tangent_v - left_motor.tangent_v)/robot.axle_width; //instantaneous turn
- 280              		.loc 1 90 0
+  92:main.c        **** 
+  93:main.c        ****     //temporary values
+  94:main.c        ****     robot.w = (right_motor.tangent_v - left_motor.tangent_v)/robot.axle_width; //instantaneous turn
+ 280              		.loc 1 94 0
  281 0124 7B4B     		ldr	r3, .L11+36
  282 0126 D3E90601 		ldrd	r0, [r3, #24]
  283 012a 774B     		ldr	r3, .L11+24
@@ -411,16 +415,16 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  300 0158 0C46     		mov	r4, r1
  301 015a 6F4A     		ldr	r2, .L11+40
  302 015c C2E90A34 		strd	r3, [r2, #40]
-  91:main.c        ****     robot.V =  (right_motor.tangent_v + left_motor.tangent_v)/2; //instantaneous tangential velocit
- 303              		.loc 1 91 0
+  95:main.c        ****     robot.V =  (right_motor.tangent_v + left_motor.tangent_v)/2; //instantaneous tangential velocit
+ 303              		.loc 1 95 0
  304 0160 6C4B     		ldr	r3, .L11+36
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 8
+
+
  305 0162 D3E90601 		ldrd	r0, [r3, #24]
  306 0166 684B     		ldr	r3, .L11+24
  307 0168 03F11804 		add	r4, r3, #24
  308 016c D4E90034 		ldrd	r3, [r4]
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 8
-
-
  309 0170 1A46     		mov	r2, r3
  310 0172 2346     		mov	r3, r4
  311 0174 FFF7FEFF 		bl	__aeabi_dadd
@@ -435,10 +439,10 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  320 018e 0C46     		mov	r4, r1
  321 0190 614A     		ldr	r2, .L11+40
  322 0192 C2E90834 		strd	r3, [r2, #32]
-  92:main.c        **** 
-  93:main.c        ****     // update pose variables
-  94:main.c        ****     robot.theta = robot.theta + robot.w * POSE_UPDATE_PERIOD;
- 323              		.loc 1 94 0
+  96:main.c        **** 
+  97:main.c        ****     // update pose variables
+  98:main.c        ****     robot.theta = robot.theta + robot.w * POSE_UPDATE_PERIOD;
+ 323              		.loc 1 98 0
  324 0196 604B     		ldr	r3, .L11+40
  325 0198 D3E90045 		ldrd	r4, [r3]
  326 019c 5E4B     		ldr	r3, .L11+40
@@ -460,8 +464,8 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  342 01c4 0C46     		mov	r4, r1
  343 01c6 544A     		ldr	r2, .L11+40
  344 01c8 C2E90034 		strd	r3, [r2]
-  95:main.c        ****     robot.theta = robot.theta - 360 * floor(robot.theta / 360); // ensures theta is in range [0, 36
- 345              		.loc 1 95 0
+  99:main.c        ****     robot.theta = robot.theta - 360 * floor(robot.theta / 360); // ensures theta is in range [0, 36
+ 345              		.loc 1 99 0
  346 01cc 524B     		ldr	r3, .L11+40
  347 01ce D3E90045 		ldrd	r4, [r3]
  348 01d2 514B     		ldr	r3, .L11+40
@@ -474,13 +478,13 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  355 01e6 1046     		mov	r0, r2
  356 01e8 1946     		mov	r1, r3
  357 01ea FFF7FEFF 		bl	floor
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 9
+
+
  358 01ee 4FF00002 		mov	r2, #0
  359 01f2 4A4B     		ldr	r3, .L11+44
  360 01f4 FFF7FEFF 		bl	__aeabi_dmul
  361 01f8 0246     		mov	r2, r0
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 9
-
-
  362 01fa 0B46     		mov	r3, r1
  363 01fc 2046     		mov	r0, r4
  364 01fe 2946     		mov	r1, r5
@@ -489,8 +493,8 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  367 0206 0C46     		mov	r4, r1
  368 0208 434A     		ldr	r2, .L11+40
  369 020a C2E90034 		strd	r3, [r2]
-  96:main.c        ****     robot.x = robot.x + POSE_UPDATE_PERIOD * robot.V * cos(robot.theta);
- 370              		.loc 1 96 0
+ 100:main.c        ****     robot.x = robot.x + POSE_UPDATE_PERIOD * robot.V * cos(robot.theta);
+ 370              		.loc 1 100 0
  371 020e 424B     		ldr	r3, .L11+40
  372 0210 D3E90245 		ldrd	r4, [r3, #8]
  373 0214 3D4B     		ldr	r3, .L11+28
@@ -522,8 +526,8 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  399 0256 0C46     		mov	r4, r1
  400 0258 2F4A     		ldr	r2, .L11+40
  401 025a C2E90234 		strd	r3, [r2, #8]
-  97:main.c        ****     robot.y = robot.y + POSE_UPDATE_PERIOD * robot.V * sin(robot.theta);
- 402              		.loc 1 97 0
+ 101:main.c        ****     robot.y = robot.y + POSE_UPDATE_PERIOD * robot.V * sin(robot.theta);
+ 402              		.loc 1 101 0
  403 025e 2E4B     		ldr	r3, .L11+40
  404 0260 D3E90445 		ldrd	r4, [r3, #16]
  405 0264 294B     		ldr	r3, .L11+28
@@ -534,13 +538,13 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  410 0272 FFF7FEFF 		bl	__aeabi_dmul
  411 0276 0246     		mov	r2, r0
  412 0278 0B46     		mov	r3, r1
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 10
+
+
  413 027a 9046     		mov	r8, r2
  414 027c 9946     		mov	r9, r3
  415 027e 264B     		ldr	r3, .L11+40
  416 0280 D3E90023 		ldrd	r2, [r3]
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 10
-
-
  417 0284 1046     		mov	r0, r2
  418 0286 1946     		mov	r1, r3
  419 0288 FFF7FEFF 		bl	sin
@@ -558,10 +562,10 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  431 02a6 0C46     		mov	r4, r1
  432 02a8 1B4A     		ldr	r2, .L11+40
  433 02aa C2E90434 		strd	r3, [r2, #16]
-  98:main.c        ****     
-  99:main.c        ****     // do robot PI control
- 100:main.c        ****     double error = robot.desired_theta - robot.theta;   
- 434              		.loc 1 100 0
+ 102:main.c        ****     
+ 103:main.c        ****     // do robot PI control
+ 104:main.c        ****     double error = robot.desired_theta - robot.theta;   
+ 434              		.loc 1 104 0
  435 02ae 1A4B     		ldr	r3, .L11+40
  436 02b0 D3E90E01 		ldrd	r0, [r3, #56]
  437 02b4 184B     		ldr	r3, .L11+40
@@ -572,8 +576,8 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  442 02c0 0346     		mov	r3, r0
  443 02c2 0C46     		mov	r4, r1
  444 02c4 C7E90434 		strd	r3, [r7, #16]
- 101:main.c        ****     if( error > M_PI ) {     // TODO: give this more thought. Want the robot to choose direction of
- 445              		.loc 1 101 0
+ 105:main.c        ****     if( error > M_PI ) {     // TODO: give this more thought. Want the robot to choose direction of
+ 445              		.loc 1 105 0
  446 02c8 0BA3     		adr	r3, .L11+8
  447 02ca D3E90023 		ldrd	r2, [r3]
  448 02ce D7E90401 		ldrd	r0, [r7, #16]
@@ -581,8 +585,8 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  450 02d6 0346     		mov	r3, r0
  451 02d8 002B     		cmp	r3, #0
  452 02da 25D0     		beq	.L5
- 102:main.c        ****         error = error - 2*M_TWOPI;
- 453              		.loc 1 102 0
+ 106:main.c        ****         error = error - 2*M_TWOPI;
+ 453              		.loc 1 106 0
  454 02dc 08A3     		adr	r3, .L11+16
  455 02de D3E90023 		ldrd	r2, [r3]
  456 02e2 D7E90401 		ldrd	r0, [r7, #16]
@@ -594,13 +598,13 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  462 02f0 112D4454 		.word	1413754129
  463 02f4 FB211940 		.word	1075388923
  464 02f8 182D4454 		.word	1413754136
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 11
+
+
  465 02fc FB210940 		.word	1074340347
  466 0300 182D4454 		.word	1413754136
  467 0304 FB212940 		.word	1076437499
  468 0308 00000000 		.word	left_motor
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 11
-
-
  469 030c 0AD7A33C 		.word	1017370378
  470 0310 B87E6045 		.word	1163951800
  471 0314 00000000 		.word	right_motor
@@ -611,9 +615,9 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  476 0322 0C46     		mov	r4, r1
  477 0324 C7E90434 		strd	r3, [r7, #16]
  478              	.L5:
- 103:main.c        ****     }
- 104:main.c        ****     if( error < -M_PI) {
- 479              		.loc 1 104 0
+ 107:main.c        ****     }
+ 108:main.c        ****     if( error < -M_PI) {
+ 479              		.loc 1 108 0
  480 0328 51A3     		adr	r3, .L14
  481 032a D3E90023 		ldrd	r2, [r3]
  482 032e D7E90401 		ldrd	r0, [r7, #16]
@@ -621,8 +625,8 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  484 0336 0346     		mov	r3, r0
  485 0338 002B     		cmp	r3, #0
  486 033a 0AD0     		beq	.L7
- 105:main.c        ****         error = error + 2*M_PI;
- 487              		.loc 1 105 0
+ 109:main.c        ****         error = error + 2*M_PI;
+ 487              		.loc 1 109 0
  488 033c 4EA3     		adr	r3, .L14+8
  489 033e D3E90023 		ldrd	r2, [r3]
  490 0342 D7E90401 		ldrd	r0, [r7, #16]
@@ -631,9 +635,9 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  493 034c 0C46     		mov	r4, r1
  494 034e C7E90434 		strd	r3, [r7, #16]
  495              	.L7:
- 106:main.c        ****     }
- 107:main.c        ****     robot.int_error = robot.int_error + error;
- 496              		.loc 1 107 0
+ 110:main.c        ****     }
+ 111:main.c        ****     robot.int_error = robot.int_error + error;
+ 496              		.loc 1 111 0
  497 0352 4B4B     		ldr	r3, .L14+16
  498 0354 D3E91401 		ldrd	r0, [r3, #80]
  499 0358 D7E90423 		ldrd	r2, [r7, #16]
@@ -642,8 +646,8 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  502 0362 0C46     		mov	r4, r1
  503 0364 464A     		ldr	r2, .L14+16
  504 0366 C2E91434 		strd	r3, [r2, #80]
- 108:main.c        ****     double new_omega = robot.Kp * error + robot.Ki * robot.int_error;
- 505              		.loc 1 108 0
+ 112:main.c        ****     double new_omega = robot.Kp * error + robot.Ki * robot.int_error;
+ 505              		.loc 1 112 0
  506 036a 454B     		ldr	r3, .L14+16
  507 036c D3E91201 		ldrd	r0, [r3, #72]
  508 0370 D7E90423 		ldrd	r2, [r7, #16]
@@ -654,13 +658,13 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  513 037e 2646     		mov	r6, r4
  514 0380 3F4B     		ldr	r3, .L14+16
  515 0382 D3E91001 		ldrd	r0, [r3, #64]
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 12
+
+
  516 0386 3E4B     		ldr	r3, .L14+16
  517 0388 03F15004 		add	r4, r3, #80
  518 038c D4E90034 		ldrd	r3, [r4]
  519 0390 1A46     		mov	r2, r3
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 12
-
-
  520 0392 2346     		mov	r3, r4
  521 0394 FFF7FEFF 		bl	__aeabi_dmul
  522 0398 0346     		mov	r3, r0
@@ -673,8 +677,8 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  529 03a8 0346     		mov	r3, r0
  530 03aa 0C46     		mov	r4, r1
  531 03ac C7E90034 		strd	r3, [r7]
- 109:main.c        ****     right_motor.desired_w = (robot.desired_V + new_omega * robot.axle_width / 2) / right_motor.whee
- 532              		.loc 1 109 0
+ 113:main.c        ****     right_motor.desired_w = (robot.desired_V + new_omega * robot.axle_width / 2) / right_motor.whee
+ 532              		.loc 1 113 0
  533 03b0 334B     		ldr	r3, .L14+16
  534 03b2 D3E90C45 		ldrd	r4, [r3, #48]
  535 03b6 324B     		ldr	r3, .L14+16
@@ -707,20 +711,20 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  562 0400 0C46     		mov	r4, r1
  563 0402 204A     		ldr	r2, .L14+20
  564 0404 C2E90834 		strd	r3, [r2, #32]
- 110:main.c        ****     left_motor.desired_w = (robot.desired_V - new_omega * robot.axle_width / 2) / left_motor.wheel_
- 565              		.loc 1 110 0
+ 114:main.c        ****     left_motor.desired_w = (robot.desired_V - new_omega * robot.axle_width / 2) / left_motor.wheel_
+ 565              		.loc 1 114 0
  566 0408 1D4B     		ldr	r3, .L14+16
  567 040a D3E90C45 		ldrd	r4, [r3, #48]
  568 040e 1C4B     		ldr	r3, .L14+16
  569 0410 D3E90601 		ldrd	r0, [r3, #24]
  570 0414 D7E90023 		ldrd	r2, [r7]
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 13
+
+
  571 0418 FFF7FEFF 		bl	__aeabi_dmul
  572 041c 0246     		mov	r2, r0
  573 041e 0B46     		mov	r3, r1
  574 0420 1046     		mov	r0, r2
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 13
-
-
  575 0422 1946     		mov	r1, r3
  576 0424 4FF00002 		mov	r2, #0
  577 0428 4FF08043 		mov	r3, #1073741824
@@ -744,29 +748,29 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  595 0458 0C46     		mov	r4, r1
  596 045a 0B4A     		ldr	r2, .L14+24
  597 045c C2E90834 		strd	r3, [r2, #32]
- 111:main.c        ****     
- 112:main.c        ****     /* JS: Think this can be done more succinctly by code above 
- 113:main.c        ****     
- 114:main.c        ****     //3 cases:
- 115:main.c        ****     //1. Robot is going straight, velocity is contant and omega = 0
- 116:main.c        ****     //2. Robot is turning (both on the spot and while moving)
- 117:main.c        **** 
- 118:main.c        ****     if(omega == 0){
- 119:main.c        ****         robot.x = robot.x + average_v*POSE_UPDATE_PERIOD
- 120:main.c        ****         robot.y = robot.y + average_v*POSE_UPDATE_PERIOD
- 121:main.c        ****             
- 122:main.c        ****     }
- 123:main.c        ****     else{
- 124:main.c        ****         robot.x = robot.x + (average_v/omega)*(sin(new_theta) - sin(robot.theta)) //update robot x
- 125:main.c        ****         robot.y = robot.y + (average_v/omega)*(- cos(new_theta) + sin(robot.theta)) //update robot 
+ 115:main.c        ****     
+ 116:main.c        ****     /* JS: Think this can be done more succinctly by code above 
+ 117:main.c        ****     
+ 118:main.c        ****     //3 cases:
+ 119:main.c        ****     //1. Robot is going straight, velocity is contant and omega = 0
+ 120:main.c        ****     //2. Robot is turning (both on the spot and while moving)
+ 121:main.c        **** 
+ 122:main.c        ****     if(omega == 0){
+ 123:main.c        ****         robot.x = robot.x + average_v*POSE_UPDATE_PERIOD
+ 124:main.c        ****         robot.y = robot.y + average_v*POSE_UPDATE_PERIOD
+ 125:main.c        ****             
  126:main.c        ****     }
- 127:main.c        ****             
- 128:main.c        ****     robot.theta = new_theta //update robot theta
- 129:main.c        ****     */
- 130:main.c        **** 
- 131:main.c        ****     
- 132:main.c        **** }
- 598              		.loc 1 132 0
+ 127:main.c        ****     else{
+ 128:main.c        ****         robot.x = robot.x + (average_v/omega)*(sin(new_theta) - sin(robot.theta)) //update robot x
+ 129:main.c        ****         robot.y = robot.y + (average_v/omega)*(- cos(new_theta) + sin(robot.theta)) //update robot 
+ 130:main.c        ****     }
+ 131:main.c        ****             
+ 132:main.c        ****     robot.theta = new_theta //update robot theta
+ 133:main.c        ****     */
+ 134:main.c        **** 
+ 135:main.c        ****     
+ 136:main.c        **** }
+ 598              		.loc 1 136 0
  599 0460 00BF     		nop
  600 0462 1C37     		adds	r7, r7, #28
  601              		.cfi_def_cfa_offset 28
@@ -774,13 +778,13 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  603              		.cfi_def_cfa_register 13
  604              		@ sp needed
  605 0466 BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 14
+
+
  606              	.L15:
  607 046a 00BFAFF3 		.align	3
  607      0080
  608              	.L14:
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 14
-
-
  609 0470 182D4454 		.word	1413754136
  610 0474 FB2109C0 		.word	-1073143301
  611 0478 182D4454 		.word	1413754136
@@ -799,9 +803,9 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  624              		.type	Motor_PI_Int_Handler, %function
  625              	Motor_PI_Int_Handler:
  626              	.LFB66:
- 133:main.c        **** 
- 134:main.c        **** CY_ISR( Motor_PI_Int_Handler ) {
- 627              		.loc 1 134 0
+ 137:main.c        **** 
+ 138:main.c        **** CY_ISR( Motor_PI_Int_Handler ) {
+ 627              		.loc 1 138 0
  628              		.cfi_startproc
  629              		@ args = 0, pretend = 0, frame = 8
  630              		@ frame_needed = 1, uses_anonymous_args = 0
@@ -816,8 +820,8 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  639              		.cfi_def_cfa_offset 32
  640 0004 00AF     		add	r7, sp, #0
  641              		.cfi_def_cfa_register 7
- 135:main.c        ****     double error = left_motor.desired_w - left_motor.w;
- 642              		.loc 1 135 0
+ 139:main.c        ****     double error = left_motor.desired_w - left_motor.w;
+ 642              		.loc 1 139 0
  643 0006 514B     		ldr	r3, .L17
  644 0008 D3E90801 		ldrd	r0, [r3, #32]
  645 000c 4F4B     		ldr	r3, .L17
@@ -829,21 +833,21 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  651 001e 0346     		mov	r3, r0
  652 0020 0C46     		mov	r4, r1
  653 0022 C7E90034 		strd	r3, [r7]
- 136:main.c        ****     left_motor.int_error  = left_motor.int_error + error;
- 654              		.loc 1 136 0
+ 140:main.c        ****     left_motor.int_error  = left_motor.int_error + error;
+ 654              		.loc 1 140 0
  655 0026 494B     		ldr	r3, .L17
  656 0028 D3E90201 		ldrd	r0, [r3, #8]
  657 002c D7E90023 		ldrd	r2, [r7]
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 15
+
+
  658 0030 FFF7FEFF 		bl	__aeabi_dadd
  659 0034 0346     		mov	r3, r0
  660 0036 0C46     		mov	r4, r1
  661 0038 444A     		ldr	r2, .L17
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 15
-
-
  662 003a C2E90234 		strd	r3, [r2, #8]
- 137:main.c        ****     left_motor.duty_cycle = left_motor.duty_cycle + left_motor.Kp*error + left_motor.Ki*left_motor.
- 663              		.loc 1 137 0
+ 141:main.c        ****     left_motor.duty_cycle = left_motor.duty_cycle + left_motor.Kp*error + left_motor.Ki*left_motor.
+ 663              		.loc 1 141 0
  664 003e 434B     		ldr	r3, .L17
  665 0040 D3E90045 		ldrd	r4, [r3]
  666 0044 414B     		ldr	r3, .L17
@@ -878,32 +882,32 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  695 0090 0C46     		mov	r4, r1
  696 0092 2E4A     		ldr	r2, .L17
  697 0094 C2E90034 		strd	r3, [r2]
- 138:main.c        ****     Drive_Left_Motor(left_motor.duty_cycle);
- 698              		.loc 1 138 0
+ 142:main.c        ****     Drive_Left_Motor(left_motor.duty_cycle);
+ 698              		.loc 1 142 0
  699 0098 2C4B     		ldr	r3, .L17
  700 009a 18CB     		ldmia	r3, {r3-r4}
  701 009c 1846     		mov	r0, r3
  702 009e 2146     		mov	r1, r4
  703 00a0 FFF7FEFF 		bl	Drive_Left_Motor
- 139:main.c        ****     
- 140:main.c        ****     error = right_motor.desired_w - right_motor.w;
- 704              		.loc 1 140 0
+ 143:main.c        ****     
+ 144:main.c        ****     error = right_motor.desired_w - right_motor.w;
+ 704              		.loc 1 144 0
  705 00a4 2A4B     		ldr	r3, .L17+4
  706 00a6 D3E90801 		ldrd	r0, [r3, #32]
  707 00aa 294B     		ldr	r3, .L17+4
  708 00ac 03F11004 		add	r4, r3, #16
  709 00b0 D4E90034 		ldrd	r3, [r4]
  710 00b4 1A46     		mov	r2, r3
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 16
+
+
  711 00b6 2346     		mov	r3, r4
  712 00b8 FFF7FEFF 		bl	__aeabi_dsub
  713 00bc 0346     		mov	r3, r0
  714 00be 0C46     		mov	r4, r1
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 16
-
-
  715 00c0 C7E90034 		strd	r3, [r7]
- 141:main.c        ****     right_motor.int_error  = right_motor.int_error + error;
- 716              		.loc 1 141 0
+ 145:main.c        ****     right_motor.int_error  = right_motor.int_error + error;
+ 716              		.loc 1 145 0
  717 00c4 224B     		ldr	r3, .L17+4
  718 00c6 D3E90201 		ldrd	r0, [r3, #8]
  719 00ca D7E90023 		ldrd	r2, [r7]
@@ -912,8 +916,8 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  722 00d4 0C46     		mov	r4, r1
  723 00d6 1E4A     		ldr	r2, .L17+4
  724 00d8 C2E90234 		strd	r3, [r2, #8]
- 142:main.c        ****     right_motor.duty_cycle = right_motor.duty_cycle + right_motor.Kp*error + right_motor.Ki*right_m
- 725              		.loc 1 142 0
+ 146:main.c        ****     right_motor.duty_cycle = right_motor.duty_cycle + right_motor.Kp*error + right_motor.Ki*right_m
+ 725              		.loc 1 146 0
  726 00dc 1C4B     		ldr	r3, .L17+4
  727 00de D3E90045 		ldrd	r4, [r3]
  728 00e2 1B4B     		ldr	r3, .L17+4
@@ -948,19 +952,19 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  757 012e 0C46     		mov	r4, r1
  758 0130 074A     		ldr	r2, .L17+4
  759 0132 C2E90034 		strd	r3, [r2]
- 143:main.c        ****     Drive_Right_Motor(right_motor.duty_cycle);
- 760              		.loc 1 143 0
+ 147:main.c        ****     Drive_Right_Motor(right_motor.duty_cycle);
+ 760              		.loc 1 147 0
  761 0136 064B     		ldr	r3, .L17+4
  762 0138 18CB     		ldmia	r3, {r3-r4}
  763 013a 1846     		mov	r0, r3
  764 013c 2146     		mov	r1, r4
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 17
+
+
  765 013e FFF7FEFF 		bl	Drive_Right_Motor
- 144:main.c        **** }
- 766              		.loc 1 144 0
+ 148:main.c        **** }
+ 766              		.loc 1 148 0
  767 0142 00BF     		nop
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 17
-
-
  768 0144 0C37     		adds	r7, r7, #12
  769              		.cfi_def_cfa_offset 20
  770 0146 BD46     		mov	sp, r7
@@ -991,12 +995,12 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  791              		.type	main, %function
  792              	main:
  793              	.LFB67:
- 145:main.c        **** 
- 146:main.c        **** 
- 147:main.c        **** 
- 148:main.c        **** int main(void)
- 149:main.c        **** {
- 794              		.loc 1 149 0
+ 149:main.c        **** 
+ 150:main.c        **** 
+ 151:main.c        **** 
+ 152:main.c        **** int main(void)
+ 153:main.c        **** {
+ 794              		.loc 1 153 0
  795              		.cfi_startproc
  796              		@ args = 0, pretend = 0, frame = 0
  797              		@ frame_needed = 1, uses_anonymous_args = 0
@@ -1011,176 +1015,176 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  806              		.cfi_def_cfa_offset 40
  807 0004 04AF     		add	r7, sp, #16
  808              		.cfi_def_cfa 7, 24
- 150:main.c        ****     left_motor.duty_cycle = 0;
- 809              		.loc 1 150 0
+ 154:main.c        ****     left_motor.duty_cycle = 0;
+ 809              		.loc 1 154 0
  810 0006 664A     		ldr	r2, .L25+24
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 18
+
+
  811 0008 4FF00003 		mov	r3, #0
  812 000c 4FF00004 		mov	r4, #0
  813 0010 C2E90034 		strd	r3, [r2]
- 151:main.c        ****     left_motor.int_error = 0;
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 18
-
-
- 814              		.loc 1 151 0
+ 155:main.c        ****     left_motor.int_error = 0;
+ 814              		.loc 1 155 0
  815 0014 624A     		ldr	r2, .L25+24
  816 0016 4FF00003 		mov	r3, #0
  817 001a 4FF00004 		mov	r4, #0
  818 001e C2E90234 		strd	r3, [r2, #8]
- 152:main.c        ****     left_motor.desired_w = 0.3;
- 819              		.loc 1 152 0
+ 156:main.c        ****     left_motor.desired_w = 0.3;
+ 819              		.loc 1 156 0
  820 0022 5F4A     		ldr	r2, .L25+24
  821 0024 58A4     		adr	r4, .L25
  822 0026 D4E90034 		ldrd	r3, [r4]
  823 002a C2E90834 		strd	r3, [r2, #32]
- 153:main.c        ****     left_motor.wheel_radius = 2.5;
- 824              		.loc 1 153 0
+ 157:main.c        ****     left_motor.wheel_radius = 2.5;
+ 824              		.loc 1 157 0
  825 002e 5C4A     		ldr	r2, .L25+24
  826 0030 4FF00003 		mov	r3, #0
  827 0034 5B4C     		ldr	r4, .L25+28
  828 0036 C2E90E34 		strd	r3, [r2, #56]
- 154:main.c        ****     left_motor.enc_count = 0;
- 829              		.loc 1 154 0
+ 158:main.c        ****     left_motor.enc_count = 0;
+ 829              		.loc 1 158 0
  830 003a 594B     		ldr	r3, .L25+24
  831 003c 0022     		movs	r2, #0
  832 003e 1A64     		str	r2, [r3, #64]
- 155:main.c        ****     left_motor.Ki = 3e-7;  // TODO: determine good PI params
- 833              		.loc 1 155 0
+ 159:main.c        ****     left_motor.Ki = 3e-7;  // TODO: determine good PI params
+ 833              		.loc 1 159 0
  834 0040 574A     		ldr	r2, .L25+24
  835 0042 53A4     		adr	r4, .L25+8
  836 0044 D4E90034 		ldrd	r3, [r4]
  837 0048 C2E90A34 		strd	r3, [r2, #40]
- 156:main.c        ****     left_motor.Kp = 0.005;
- 838              		.loc 1 156 0
+ 160:main.c        ****     left_motor.Kp = 0.005;
+ 838              		.loc 1 160 0
  839 004c 544A     		ldr	r2, .L25+24
  840 004e 52A4     		adr	r4, .L25+16
  841 0050 D4E90034 		ldrd	r3, [r4]
  842 0054 C2E90C34 		strd	r3, [r2, #48]
- 157:main.c        ****     
- 158:main.c        ****     right_motor.duty_cycle = 0;
- 843              		.loc 1 158 0
+ 161:main.c        ****     
+ 162:main.c        ****     right_motor.duty_cycle = 0;
+ 843              		.loc 1 162 0
  844 0058 534A     		ldr	r2, .L25+32
  845 005a 4FF00003 		mov	r3, #0
  846 005e 4FF00004 		mov	r4, #0
  847 0062 C2E90034 		strd	r3, [r2]
- 159:main.c        ****     right_motor.int_error = 0;
- 848              		.loc 1 159 0
+ 163:main.c        ****     right_motor.int_error = 0;
+ 848              		.loc 1 163 0
  849 0066 504A     		ldr	r2, .L25+32
  850 0068 4FF00003 		mov	r3, #0
  851 006c 4FF00004 		mov	r4, #0
  852 0070 C2E90234 		strd	r3, [r2, #8]
- 160:main.c        ****     right_motor.desired_w = 0.3;
- 853              		.loc 1 160 0
+ 164:main.c        ****     right_motor.desired_w = 0.3;
+ 853              		.loc 1 164 0
  854 0074 4C4A     		ldr	r2, .L25+32
  855 0076 44A4     		adr	r4, .L25
  856 0078 D4E90034 		ldrd	r3, [r4]
  857 007c C2E90834 		strd	r3, [r2, #32]
- 161:main.c        ****     right_motor.wheel_radius = 2.5;
- 858              		.loc 1 161 0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 19
+
+
+ 165:main.c        ****     right_motor.wheel_radius = 2.5;
+ 858              		.loc 1 165 0
  859 0080 494A     		ldr	r2, .L25+32
  860 0082 4FF00003 		mov	r3, #0
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 19
-
-
  861 0086 474C     		ldr	r4, .L25+28
  862 0088 C2E90E34 		strd	r3, [r2, #56]
- 162:main.c        ****     right_motor.enc_count = 0;
- 863              		.loc 1 162 0
+ 166:main.c        ****     right_motor.enc_count = 0;
+ 863              		.loc 1 166 0
  864 008c 464B     		ldr	r3, .L25+32
  865 008e 0022     		movs	r2, #0
  866 0090 1A64     		str	r2, [r3, #64]
- 163:main.c        ****     right_motor.Ki = 3e-7;  // TODO: determine good PI params
- 867              		.loc 1 163 0
+ 167:main.c        ****     right_motor.Ki = 3e-7;  // TODO: determine good PI params
+ 867              		.loc 1 167 0
  868 0092 454A     		ldr	r2, .L25+32
  869 0094 3EA4     		adr	r4, .L25+8
  870 0096 D4E90034 		ldrd	r3, [r4]
  871 009a C2E90A34 		strd	r3, [r2, #40]
- 164:main.c        ****     right_motor.Kp = 0.005;
- 872              		.loc 1 164 0
+ 168:main.c        ****     right_motor.Kp = 0.005;
+ 872              		.loc 1 168 0
  873 009e 424A     		ldr	r2, .L25+32
  874 00a0 3DA4     		adr	r4, .L25+16
  875 00a2 D4E90034 		ldrd	r3, [r4]
  876 00a6 C2E90C34 		strd	r3, [r2, #48]
- 165:main.c        ****     
- 166:main.c        ****     robot.axle_width = 20; // TODO: get accurate measurement
- 877              		.loc 1 166 0
+ 169:main.c        ****     
+ 170:main.c        ****     robot.axle_width = 20; // TODO: get accurate measurement
+ 877              		.loc 1 170 0
  878 00aa 404A     		ldr	r2, .L25+36
  879 00ac 4FF00003 		mov	r3, #0
  880 00b0 3F4C     		ldr	r4, .L25+40
  881 00b2 C2E90634 		strd	r3, [r2, #24]
- 167:main.c        ****     robot.int_error = 0;
- 882              		.loc 1 167 0
+ 171:main.c        ****     robot.int_error = 0;
+ 882              		.loc 1 171 0
  883 00b6 3D4A     		ldr	r2, .L25+36
  884 00b8 4FF00003 		mov	r3, #0
  885 00bc 4FF00004 		mov	r4, #0
  886 00c0 C2E91434 		strd	r3, [r2, #80]
- 168:main.c        ****     robot.Ki = 3e-7;    // TODO: determine good PI values
- 887              		.loc 1 168 0
+ 172:main.c        ****     robot.Ki = 3e-7;    // TODO: determine good PI values
+ 887              		.loc 1 172 0
  888 00c4 394A     		ldr	r2, .L25+36
  889 00c6 32A4     		adr	r4, .L25+8
  890 00c8 D4E90034 		ldrd	r3, [r4]
  891 00cc C2E91034 		strd	r3, [r2, #64]
- 169:main.c        ****     robot.Kp = 0.005;
- 892              		.loc 1 169 0
+ 173:main.c        ****     robot.Kp = 0.005;
+ 892              		.loc 1 173 0
  893 00d0 364A     		ldr	r2, .L25+36
  894 00d2 31A4     		adr	r4, .L25+16
  895 00d4 D4E90034 		ldrd	r3, [r4]
  896 00d8 C2E91234 		strd	r3, [r2, #72]
- 170:main.c        ****     
- 171:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
- 897              		.loc 1 171 0
+ 174:main.c        ****     
+ 175:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
+ 897              		.loc 1 175 0
  898              		.syntax unified
- 899              	@ 171 "main.c" 1
+ 899              	@ 175 "main.c" 1
  900 00dc 62B6     		CPSIE   i
  901              	@ 0 "" 2
- 172:main.c        **** 
- 173:main.c        ****     // Start up code - enable UART, PWM and Timer used for ultrasonic module
- 174:main.c        ****     UART_Start();
- 902              		.loc 1 174 0
+ 176:main.c        **** 
+ 177:main.c        ****     // Start up code - enable UART, PWM and Timer used for ultrasonic module
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 20
+
+
+ 178:main.c        ****     UART_Start();
+ 902              		.loc 1 178 0
  903              		.thumb
  904              		.syntax unified
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 20
-
-
  905 00de FFF7FEFF 		bl	UART_Start
- 175:main.c        ****     Timer_Echo_Start();
- 906              		.loc 1 175 0
+ 179:main.c        ****     Timer_Echo_Start();
+ 906              		.loc 1 179 0
  907 00e2 FFF7FEFF 		bl	Timer_Echo_Start
- 176:main.c        ****     PWM_Trigger_Start();
- 908              		.loc 1 176 0
+ 180:main.c        ****     PWM_Trigger_Start();
+ 908              		.loc 1 180 0
  909 00e6 FFF7FEFF 		bl	PWM_Trigger_Start
- 177:main.c        ****     QuadDec_L_Start();
- 910              		.loc 1 177 0
+ 181:main.c        ****     QuadDec_L_Start();
+ 910              		.loc 1 181 0
  911 00ea FFF7FEFF 		bl	QuadDec_L_Start
- 178:main.c        ****     PWM_Motor_L_Start();
- 912              		.loc 1 178 0
+ 182:main.c        ****     PWM_Motor_L_Start();
+ 912              		.loc 1 182 0
  913 00ee FFF7FEFF 		bl	PWM_Motor_L_Start
- 179:main.c        ****     QuadDec_R_Start();
- 914              		.loc 1 179 0
+ 183:main.c        ****     QuadDec_R_Start();
+ 914              		.loc 1 183 0
  915 00f2 FFF7FEFF 		bl	QuadDec_R_Start
- 180:main.c        ****     PWM_Motor_R_Start();
- 916              		.loc 1 180 0
+ 184:main.c        ****     PWM_Motor_R_Start();
+ 916              		.loc 1 184 0
  917 00f6 FFF7FEFF 		bl	PWM_Motor_R_Start
- 181:main.c        ****     
- 182:main.c        ****     // Registration of Timer ISR
- 183:main.c        ****     Timer_Echo_Int_StartEx( Timer_Int_Handler );
- 918              		.loc 1 183 0
+ 185:main.c        ****     
+ 186:main.c        ****     // Registration of Timer ISR
+ 187:main.c        ****     Timer_Echo_Int_StartEx( Timer_Int_Handler );
+ 918              		.loc 1 187 0
  919 00fa 2E48     		ldr	r0, .L25+44
  920 00fc FFF7FEFF 		bl	Timer_Echo_Int_StartEx
- 184:main.c        ****     Pose_Update_Int_StartEx( Pose_Update_Int_Handler );
- 921              		.loc 1 184 0
+ 188:main.c        ****     Pose_Update_Int_StartEx( Pose_Update_Int_Handler );
+ 921              		.loc 1 188 0
  922 0100 2D48     		ldr	r0, .L25+48
  923 0102 FFF7FEFF 		bl	Pose_Update_Int_StartEx
- 185:main.c        ****     Motor_PI_Int_StartEx( Motor_PI_Int_Handler );
- 924              		.loc 1 185 0
+ 189:main.c        ****     Motor_PI_Int_StartEx( Motor_PI_Int_Handler );
+ 924              		.loc 1 189 0
  925 0106 2D48     		ldr	r0, .L25+52
  926 0108 FFF7FEFF 		bl	Motor_PI_Int_StartEx
  927              	.L24:
- 186:main.c        ****     
- 187:main.c        **** 
- 188:main.c        **** 
- 189:main.c        ****     for(;;) {
- 190:main.c        ****         sprintf(serial_output, "desired: %lf, actual: %lf, dc:%lf\n", left_motor.desired_w,left_mot
- 928              		.loc 1 190 0
+ 190:main.c        ****     
+ 191:main.c        **** 
+ 192:main.c        **** 
+ 193:main.c        ****     for(;;) {
+ 194:main.c        ****         sprintf(serial_output, "desired: %lf, actual: %lf, dc:%lf\n", left_motor.desired_w,left_mot
+ 928              		.loc 1 194 0
  929 010c 244B     		ldr	r3, .L25+24
  930 010e D3E90856 		ldrd	r5, [r3, #32]
  931 0112 234B     		ldr	r3, .L25+24
@@ -1194,100 +1198,100 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  939 012c 3346     		mov	r3, r6
  940 012e 2449     		ldr	r1, .L25+56
  941 0130 2448     		ldr	r0, .L25+60
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 21
+
+
  942 0132 FFF7FEFF 		bl	sprintf
- 191:main.c        ****         UART_PutString(serial_output);
- 943              		.loc 1 191 0
+ 195:main.c        ****         UART_PutString(serial_output);
+ 943              		.loc 1 195 0
  944 0136 2348     		ldr	r0, .L25+60
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 21
-
-
  945 0138 FFF7FEFF 		bl	UART_PutString
- 192:main.c        ****         // if a distance was measured, print the distance and clear the flag
- 193:main.c        ****         while ( echo_flag == 1 ) {
- 946              		.loc 1 193 0
+ 196:main.c        ****         // if a distance was measured, print the distance and clear the flag
+ 197:main.c        ****         while ( echo_flag == 1 ) {
+ 946              		.loc 1 197 0
  947 013c 1EE0     		b	.L20
  948              	.L23:
- 194:main.c        ****             //sprintf(serial_output, "%d cm", 65535-echo_distance);
- 195:main.c        ****             //UART_PutString(serial_output);
- 196:main.c        ****             //UART_PutCRLF(0x0D);
- 197:main.c        ****             
- 198:main.c        ****             Timer_Echo_Stop();
- 949              		.loc 1 198 0
+ 198:main.c        ****             //sprintf(serial_output, "%d cm", 65535-echo_distance);
+ 199:main.c        ****             //UART_PutString(serial_output);
+ 200:main.c        ****             //UART_PutCRLF(0x0D);
+ 201:main.c        ****             
+ 202:main.c        ****             Timer_Echo_Stop();
+ 949              		.loc 1 202 0
  950 013e FFF7FEFF 		bl	Timer_Echo_Stop
- 199:main.c        ****             CyDelayUs(1); // TODO: Should be able to make this shorter, one or two bus clock cycles
- 951              		.loc 1 199 0
+ 203:main.c        ****             CyDelayUs(1); // TODO: Should be able to make this shorter, one or two bus clock cycles
+ 951              		.loc 1 203 0
  952 0142 0120     		movs	r0, #1
  953 0144 FFF7FEFF 		bl	CyDelayUs
- 200:main.c        ****             if (mux_select == 0) {
- 954              		.loc 1 200 0
+ 204:main.c        ****             if (mux_select == 0) {
+ 954              		.loc 1 204 0
  955 0148 1F4B     		ldr	r3, .L25+64
  956 014a 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  957 014c 002B     		cmp	r3, #0
  958 014e 03D1     		bne	.L21
- 201:main.c        ****                 mux_select = 1;
- 959              		.loc 1 201 0
+ 205:main.c        ****                 mux_select = 1;
+ 959              		.loc 1 205 0
  960 0150 1D4B     		ldr	r3, .L25+64
  961 0152 0122     		movs	r2, #1
  962 0154 1A70     		strb	r2, [r3]
  963 0156 02E0     		b	.L22
  964              	.L21:
- 202:main.c        ****             } else {
- 203:main.c        ****                 mux_select = 0;
- 965              		.loc 1 203 0
+ 206:main.c        ****             } else {
+ 207:main.c        ****                 mux_select = 0;
+ 965              		.loc 1 207 0
  966 0158 1B4B     		ldr	r3, .L25+64
  967 015a 0022     		movs	r2, #0
  968 015c 1A70     		strb	r2, [r3]
  969              	.L22:
- 204:main.c        ****             }
- 205:main.c        ****             Control_Reg_US_Write(mux_select);
- 970              		.loc 1 205 0
+ 208:main.c        ****             }
+ 209:main.c        ****             Control_Reg_US_Write(mux_select);
+ 970              		.loc 1 209 0
  971 015e 1A4B     		ldr	r3, .L25+64
  972 0160 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  973 0162 1846     		mov	r0, r3
  974 0164 FFF7FEFF 		bl	Control_Reg_US_Write
- 206:main.c        ****             Timer_Echo_Enable();
- 975              		.loc 1 206 0
+ 210:main.c        ****             Timer_Echo_Enable();
+ 975              		.loc 1 210 0
  976 0168 FFF7FEFF 		bl	Timer_Echo_Enable
- 207:main.c        ****             PWM_Trigger_WriteCounter(1);
- 977              		.loc 1 207 0
+ 211:main.c        ****             PWM_Trigger_WriteCounter(1);
+ 977              		.loc 1 211 0
  978 016c 0120     		movs	r0, #1
  979 016e FFF7FEFF 		bl	PWM_Trigger_WriteCounter
- 208:main.c        **** 
- 209:main.c        **** 
- 210:main.c        ****             CyGlobalIntDisable; // Disable global interrupts, so the flag gets cleared. 
- 980              		.loc 1 210 0
+ 212:main.c        **** 
+ 213:main.c        **** 
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 22
+
+
+ 214:main.c        ****             CyGlobalIntDisable; // Disable global interrupts, so the flag gets cleared. 
+ 980              		.loc 1 214 0
  981              		.syntax unified
- 982              	@ 210 "main.c" 1
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 22
-
-
+ 982              	@ 214 "main.c" 1
  983 0172 72B6     		CPSID   i
  984              	@ 0 "" 2
- 211:main.c        ****             echo_flag = 0;
- 985              		.loc 1 211 0
+ 215:main.c        ****             echo_flag = 0;
+ 985              		.loc 1 215 0
  986              		.thumb
  987              		.syntax unified
  988 0174 154B     		ldr	r3, .L25+68
  989 0176 0022     		movs	r2, #0
  990 0178 1A70     		strb	r2, [r3]
- 212:main.c        ****             CyGlobalIntEnable; // Enable global interrupts after the flag is cleared. 
- 991              		.loc 1 212 0
+ 216:main.c        ****             CyGlobalIntEnable; // Enable global interrupts after the flag is cleared. 
+ 991              		.loc 1 216 0
  992              		.syntax unified
- 993              	@ 212 "main.c" 1
+ 993              	@ 216 "main.c" 1
  994 017a 62B6     		CPSIE   i
  995              	@ 0 "" 2
  996              		.thumb
  997              		.syntax unified
  998              	.L20:
- 193:main.c        ****             //sprintf(serial_output, "%d cm", 65535-echo_distance);
- 999              		.loc 1 193 0
+ 197:main.c        ****             //sprintf(serial_output, "%d cm", 65535-echo_distance);
+ 999              		.loc 1 197 0
  1000 017c 134B     		ldr	r3, .L25+68
  1001 017e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  1002 0180 012B     		cmp	r3, #1
  1003 0182 DCD0     		beq	.L23
- 213:main.c        ****     }
- 214:main.c        ****  }
- 1004              		.loc 1 214 0
+ 217:main.c        ****     }
+ 218:main.c        ****  }
+ 1004              		.loc 1 218 0
  1005 0184 C2E7     		b	.L24
  1006              	.L26:
  1007 0186 00BF     		.align	3
@@ -1314,22 +1318,22 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1028              	.LFE67:
  1029              		.size	main, .-main
  1030              		.global	__aeabi_d2uiz
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 23
+
+
  1031              		.section	.text.Drive_Left_Motor,"ax",%progbits
  1032              		.align	2
  1033              		.global	Drive_Left_Motor
  1034              		.thumb
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 23
-
-
  1035              		.thumb_func
  1036              		.type	Drive_Left_Motor, %function
  1037              	Drive_Left_Motor:
  1038              	.LFB68:
- 215:main.c        ****   
- 216:main.c        **** }
- 217:main.c        **** 
- 218:main.c        **** void Drive_Left_Motor(double duty_cycle) {
- 1039              		.loc 1 218 0
+ 219:main.c        ****   
+ 220:main.c        **** }
+ 221:main.c        **** 
+ 222:main.c        **** void Drive_Left_Motor(double duty_cycle) {
+ 1039              		.loc 1 222 0
  1040              		.cfi_startproc
  1041              		@ args = 0, pretend = 0, frame = 8
  1042              		@ frame_needed = 1, uses_anonymous_args = 0
@@ -1343,8 +1347,8 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1050 0004 00AF     		add	r7, sp, #0
  1051              		.cfi_def_cfa_register 7
  1052 0006 C7E90001 		strd	r0, [r7]
- 219:main.c        ****     if (duty_cycle < -1) {
- 1053              		.loc 1 219 0
+ 223:main.c        ****     if (duty_cycle < -1) {
+ 1053              		.loc 1 223 0
  1054 000a 4FF00002 		mov	r2, #0
  1055 000e 304B     		ldr	r3, .L41+8
  1056 0010 D7E90001 		ldrd	r0, [r7]
@@ -1352,15 +1356,15 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1058 0018 0346     		mov	r3, r0
  1059 001a 002B     		cmp	r3, #0
  1060 001c 05D0     		beq	.L38
- 220:main.c        ****         duty_cycle = -1;
- 1061              		.loc 1 220 0
+ 224:main.c        ****         duty_cycle = -1;
+ 1061              		.loc 1 224 0
  1062 001e 4FF00003 		mov	r3, #0
  1063 0022 2B4C     		ldr	r4, .L41+8
  1064 0024 C7E90034 		strd	r3, [r7]
  1065 0028 0EE0     		b	.L30
  1066              	.L38:
- 221:main.c        ****     } else if (duty_cycle > 1) {
- 1067              		.loc 1 221 0
+ 225:main.c        ****     } else if (duty_cycle > 1) {
+ 1067              		.loc 1 225 0
  1068 002a 4FF00002 		mov	r2, #0
  1069 002e 294B     		ldr	r3, .L41+12
  1070 0030 D7E90001 		ldrd	r0, [r7]
@@ -1368,19 +1372,19 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1072 0038 0346     		mov	r3, r0
  1073 003a 002B     		cmp	r3, #0
  1074 003c 04D0     		beq	.L30
- 222:main.c        ****         duty_cycle = 1;
- 1075              		.loc 1 222 0
+ 226:main.c        ****         duty_cycle = 1;
+ 1075              		.loc 1 226 0
  1076 003e 4FF00003 		mov	r3, #0
  1077 0042 244C     		ldr	r4, .L41+12
  1078 0044 C7E90034 		strd	r3, [r7]
  1079              	.L30:
- 223:main.c        ****     }
- 224:main.c        ****     
- 225:main.c        ****     if (duty_cycle < 0) {
- 1080              		.loc 1 225 0
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 24
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 24
 
 
+ 227:main.c        ****     }
+ 228:main.c        ****     
+ 229:main.c        ****     if (duty_cycle < 0) {
+ 1080              		.loc 1 229 0
  1081 0048 4FF00002 		mov	r2, #0
  1082 004c 4FF00003 		mov	r3, #0
  1083 0050 D7E90001 		ldrd	r0, [r7]
@@ -1388,19 +1392,19 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1085 0058 0346     		mov	r3, r0
  1086 005a 002B     		cmp	r3, #0
  1087 005c 1BD0     		beq	.L39
- 226:main.c        ****         duty_cycle = -duty_cycle;
- 1088              		.loc 1 226 0
+ 230:main.c        ****         duty_cycle = -duty_cycle;
+ 1088              		.loc 1 230 0
  1089 005e 3B68     		ldr	r3, [r7]
  1090 0060 3B60     		str	r3, [r7]
  1091 0062 7B68     		ldr	r3, [r7, #4]
  1092 0064 83F00043 		eor	r3, r3, #-2147483648
  1093 0068 7B60     		str	r3, [r7, #4]
- 227:main.c        ****         PWM_Motor_L_WriteCompare1(0);
- 1094              		.loc 1 227 0
+ 231:main.c        ****         PWM_Motor_L_WriteCompare1(0);
+ 1094              		.loc 1 231 0
  1095 006a 0020     		movs	r0, #0
  1096 006c FFF7FEFF 		bl	PWM_Motor_L_WriteCompare1
- 228:main.c        ****         PWM_Motor_L_WriteCompare2(duty_cycle*65535);
- 1097              		.loc 1 228 0
+ 232:main.c        ****         PWM_Motor_L_WriteCompare2(duty_cycle*65535);
+ 1097              		.loc 1 232 0
  1098 0070 15A3     		adr	r3, .L41
  1099 0072 D3E90023 		ldrd	r2, [r3]
  1100 0076 D7E90001 		ldrd	r0, [r7]
@@ -1414,16 +1418,16 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1108 008c 9BB2     		uxth	r3, r3
  1109 008e 1846     		mov	r0, r3
  1110 0090 FFF7FEFF 		bl	PWM_Motor_L_WriteCompare2
- 229:main.c        ****     } else {
- 230:main.c        ****         PWM_Motor_L_WriteCompare1(duty_cycle*65535);
- 231:main.c        ****         PWM_Motor_L_WriteCompare2(0);
- 232:main.c        ****     }
- 233:main.c        **** }
- 1111              		.loc 1 233 0
+ 233:main.c        ****     } else {
+ 234:main.c        ****         PWM_Motor_L_WriteCompare1(duty_cycle*65535);
+ 235:main.c        ****         PWM_Motor_L_WriteCompare2(0);
+ 236:main.c        ****     }
+ 237:main.c        **** }
+ 1111              		.loc 1 237 0
  1112 0094 14E0     		b	.L40
  1113              	.L39:
- 230:main.c        ****         PWM_Motor_L_WriteCompare2(0);
- 1114              		.loc 1 230 0
+ 234:main.c        ****         PWM_Motor_L_WriteCompare2(0);
+ 1114              		.loc 1 234 0
  1115 0096 0CA3     		adr	r3, .L41
  1116 0098 D3E90023 		ldrd	r2, [r3]
  1117 009c D7E90001 		ldrd	r0, [r7]
@@ -1434,18 +1438,18 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1122 00aa 2146     		mov	r1, r4
  1123 00ac FFF7FEFF 		bl	__aeabi_d2uiz
  1124 00b0 0346     		mov	r3, r0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 25
+
+
  1125 00b2 9BB2     		uxth	r3, r3
  1126 00b4 1846     		mov	r0, r3
  1127 00b6 FFF7FEFF 		bl	PWM_Motor_L_WriteCompare1
- 231:main.c        ****     }
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 25
-
-
- 1128              		.loc 1 231 0
+ 235:main.c        ****     }
+ 1128              		.loc 1 235 0
  1129 00ba 0020     		movs	r0, #0
  1130 00bc FFF7FEFF 		bl	PWM_Motor_L_WriteCompare2
  1131              	.L40:
- 1132              		.loc 1 233 0
+ 1132              		.loc 1 237 0
  1133 00c0 00BF     		nop
  1134 00c2 0C37     		adds	r7, r7, #12
  1135              		.cfi_def_cfa_offset 12
@@ -1471,9 +1475,9 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1155              		.type	Drive_Right_Motor, %function
  1156              	Drive_Right_Motor:
  1157              	.LFB69:
- 234:main.c        **** 
- 235:main.c        **** void Drive_Right_Motor(double duty_cycle) {
- 1158              		.loc 1 235 0
+ 238:main.c        **** 
+ 239:main.c        **** void Drive_Right_Motor(double duty_cycle) {
+ 1158              		.loc 1 239 0
  1159              		.cfi_startproc
  1160              		@ args = 0, pretend = 0, frame = 8
  1161              		@ frame_needed = 1, uses_anonymous_args = 0
@@ -1487,27 +1491,27 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1169 0004 00AF     		add	r7, sp, #0
  1170              		.cfi_def_cfa_register 7
  1171 0006 C7E90001 		strd	r0, [r7]
- 236:main.c        ****     if (duty_cycle < -1) {
- 1172              		.loc 1 236 0
+ 240:main.c        ****     if (duty_cycle < -1) {
+ 1172              		.loc 1 240 0
  1173 000a 4FF00002 		mov	r2, #0
  1174 000e 304B     		ldr	r3, .L57+8
  1175 0010 D7E90001 		ldrd	r0, [r7]
  1176 0014 FFF7FEFF 		bl	__aeabi_dcmplt
  1177 0018 0346     		mov	r3, r0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 26
+
+
  1178 001a 002B     		cmp	r3, #0
  1179 001c 05D0     		beq	.L54
- 237:main.c        ****         duty_cycle = -1;
- 1180              		.loc 1 237 0
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 26
-
-
+ 241:main.c        ****         duty_cycle = -1;
+ 1180              		.loc 1 241 0
  1181 001e 4FF00003 		mov	r3, #0
  1182 0022 2B4C     		ldr	r4, .L57+8
  1183 0024 C7E90034 		strd	r3, [r7]
  1184 0028 0EE0     		b	.L46
  1185              	.L54:
- 238:main.c        ****     } else if (duty_cycle > 1) {
- 1186              		.loc 1 238 0
+ 242:main.c        ****     } else if (duty_cycle > 1) {
+ 1186              		.loc 1 242 0
  1187 002a 4FF00002 		mov	r2, #0
  1188 002e 294B     		ldr	r3, .L57+12
  1189 0030 D7E90001 		ldrd	r0, [r7]
@@ -1515,16 +1519,16 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1191 0038 0346     		mov	r3, r0
  1192 003a 002B     		cmp	r3, #0
  1193 003c 04D0     		beq	.L46
- 239:main.c        ****         duty_cycle = 1;
- 1194              		.loc 1 239 0
+ 243:main.c        ****         duty_cycle = 1;
+ 1194              		.loc 1 243 0
  1195 003e 4FF00003 		mov	r3, #0
  1196 0042 244C     		ldr	r4, .L57+12
  1197 0044 C7E90034 		strd	r3, [r7]
  1198              	.L46:
- 240:main.c        ****     }
- 241:main.c        ****     
- 242:main.c        ****     if (duty_cycle < 0) {
- 1199              		.loc 1 242 0
+ 244:main.c        ****     }
+ 245:main.c        ****     
+ 246:main.c        ****     if (duty_cycle < 0) {
+ 1199              		.loc 1 246 0
  1200 0048 4FF00002 		mov	r2, #0
  1201 004c 4FF00003 		mov	r3, #0
  1202 0050 D7E90001 		ldrd	r0, [r7]
@@ -1532,19 +1536,19 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1204 0058 0346     		mov	r3, r0
  1205 005a 002B     		cmp	r3, #0
  1206 005c 1BD0     		beq	.L55
- 243:main.c        ****         duty_cycle = -duty_cycle;
- 1207              		.loc 1 243 0
+ 247:main.c        ****         duty_cycle = -duty_cycle;
+ 1207              		.loc 1 247 0
  1208 005e 3B68     		ldr	r3, [r7]
  1209 0060 3B60     		str	r3, [r7]
  1210 0062 7B68     		ldr	r3, [r7, #4]
  1211 0064 83F00043 		eor	r3, r3, #-2147483648
  1212 0068 7B60     		str	r3, [r7, #4]
- 244:main.c        ****         PWM_Motor_R_WriteCompare1(0);
- 1213              		.loc 1 244 0
+ 248:main.c        ****         PWM_Motor_R_WriteCompare1(0);
+ 1213              		.loc 1 248 0
  1214 006a 0020     		movs	r0, #0
  1215 006c FFF7FEFF 		bl	PWM_Motor_R_WriteCompare1
- 245:main.c        ****         PWM_Motor_R_WriteCompare2(duty_cycle*65535);
- 1216              		.loc 1 245 0
+ 249:main.c        ****         PWM_Motor_R_WriteCompare2(duty_cycle*65535);
+ 1216              		.loc 1 249 0
  1217 0070 15A3     		adr	r3, .L57
  1218 0072 D3E90023 		ldrd	r2, [r3]
  1219 0076 D7E90001 		ldrd	r0, [r7]
@@ -1554,23 +1558,23 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1223 0082 1846     		mov	r0, r3
  1224 0084 2146     		mov	r1, r4
  1225 0086 FFF7FEFF 		bl	__aeabi_d2uiz
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 27
+
+
  1226 008a 0346     		mov	r3, r0
  1227 008c 9BB2     		uxth	r3, r3
  1228 008e 1846     		mov	r0, r3
  1229 0090 FFF7FEFF 		bl	PWM_Motor_R_WriteCompare2
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 27
-
-
- 246:main.c        ****     } else {
- 247:main.c        ****         PWM_Motor_R_WriteCompare1(duty_cycle*65535);
- 248:main.c        ****         PWM_Motor_R_WriteCompare2(0);
- 249:main.c        ****     }
- 250:main.c        **** }
- 1230              		.loc 1 250 0
+ 250:main.c        ****     } else {
+ 251:main.c        ****         PWM_Motor_R_WriteCompare1(duty_cycle*65535);
+ 252:main.c        ****         PWM_Motor_R_WriteCompare2(0);
+ 253:main.c        ****     }
+ 254:main.c        **** }
+ 1230              		.loc 1 254 0
  1231 0094 14E0     		b	.L56
  1232              	.L55:
- 247:main.c        ****         PWM_Motor_R_WriteCompare2(0);
- 1233              		.loc 1 247 0
+ 251:main.c        ****         PWM_Motor_R_WriteCompare2(0);
+ 1233              		.loc 1 251 0
  1234 0096 0CA3     		adr	r3, .L57
  1235 0098 D3E90023 		ldrd	r2, [r3]
  1236 009c D7E90001 		ldrd	r0, [r7]
@@ -1584,12 +1588,12 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1244 00b2 9BB2     		uxth	r3, r3
  1245 00b4 1846     		mov	r0, r3
  1246 00b6 FFF7FEFF 		bl	PWM_Motor_R_WriteCompare1
- 248:main.c        ****     }
- 1247              		.loc 1 248 0
+ 252:main.c        ****     }
+ 1247              		.loc 1 252 0
  1248 00ba 0020     		movs	r0, #0
  1249 00bc FFF7FEFF 		bl	PWM_Motor_R_WriteCompare2
  1250              	.L56:
- 1251              		.loc 1 250 0
+ 1251              		.loc 1 254 0
  1252 00c0 00BF     		nop
  1253 00c2 0C37     		adds	r7, r7, #12
  1254              		.cfi_def_cfa_offset 12
@@ -1614,13 +1618,13 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1273              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
  1274              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
  1275              		.section	.debug_info,"",%progbits
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 28
+
+
  1276              	.Ldebug_info0:
  1277 0000 BD030000 		.4byte	0x3bd
  1278 0004 0400     		.2byte	0x4
  1279 0006 00000000 		.4byte	.Ldebug_abbrev0
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 28
-
-
  1280 000a 04       		.byte	0x4
  1281 000b 01       		.uleb128 0x1
  1282 000c 50000000 		.4byte	.LASF54
@@ -1674,13 +1678,13 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1330 0072 05       		.byte	0x5
  1331 0073 3F010000 		.4byte	.LASF9
  1332 0077 02       		.uleb128 0x2
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 29
+
+
  1333 0078 08       		.byte	0x8
  1334 0079 07       		.byte	0x7
  1335 007a 2A020000 		.4byte	.LASF10
  1336 007e 04       		.uleb128 0x4
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 29
-
-
  1337 007f 04       		.byte	0x4
  1338 0080 05       		.byte	0x5
  1339 0081 696E7400 		.ascii	"int\000"
@@ -1732,149 +1736,149 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1385 00dd EE010000 		.4byte	.LASF27
  1386 00e1 48       		.byte	0x48
  1387 00e2 01       		.byte	0x1
- 1388 00e3 10       		.byte	0x10
+ 1388 00e3 14       		.byte	0x14
  1389 00e4 51010000 		.4byte	0x151
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 30
+
+
  1390 00e8 07       		.uleb128 0x7
  1391 00e9 03030000 		.4byte	.LASF21
  1392 00ed 01       		.byte	0x1
- 1393 00ee 11       		.byte	0x11
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 30
-
-
+ 1393 00ee 15       		.byte	0x15
  1394 00ef C0000000 		.4byte	0xc0
  1395 00f3 00       		.byte	0
  1396 00f4 07       		.uleb128 0x7
  1397 00f5 18030000 		.4byte	.LASF22
  1398 00f9 01       		.byte	0x1
- 1399 00fa 12       		.byte	0x12
+ 1399 00fa 16       		.byte	0x16
  1400 00fb C0000000 		.4byte	0xc0
  1401 00ff 08       		.byte	0x8
  1402 0100 08       		.uleb128 0x8
  1403 0101 7700     		.ascii	"w\000"
  1404 0103 01       		.byte	0x1
- 1405 0104 13       		.byte	0x13
+ 1405 0104 17       		.byte	0x17
  1406 0105 C0000000 		.4byte	0xc0
  1407 0109 10       		.byte	0x10
  1408 010a 07       		.uleb128 0x7
  1409 010b 3F030000 		.4byte	.LASF23
  1410 010f 01       		.byte	0x1
- 1411 0110 14       		.byte	0x14
+ 1411 0110 18       		.byte	0x18
  1412 0111 C0000000 		.4byte	0xc0
  1413 0115 18       		.byte	0x18
  1414 0116 07       		.uleb128 0x7
  1415 0117 0C020000 		.4byte	.LASF24
  1416 011b 01       		.byte	0x1
- 1417 011c 15       		.byte	0x15
+ 1417 011c 19       		.byte	0x19
  1418 011d C0000000 		.4byte	0xc0
  1419 0121 20       		.byte	0x20
  1420 0122 08       		.uleb128 0x8
  1421 0123 4B6900   		.ascii	"Ki\000"
  1422 0126 01       		.byte	0x1
- 1423 0127 16       		.byte	0x16
+ 1423 0127 1A       		.byte	0x1a
  1424 0128 C0000000 		.4byte	0xc0
  1425 012c 28       		.byte	0x28
  1426 012d 08       		.uleb128 0x8
  1427 012e 4B7000   		.ascii	"Kp\000"
  1428 0131 01       		.byte	0x1
- 1429 0132 17       		.byte	0x17
+ 1429 0132 1B       		.byte	0x1b
  1430 0133 C0000000 		.4byte	0xc0
  1431 0137 30       		.byte	0x30
  1432 0138 07       		.uleb128 0x7
  1433 0139 65010000 		.4byte	.LASF25
  1434 013d 01       		.byte	0x1
- 1435 013e 18       		.byte	0x18
+ 1435 013e 1C       		.byte	0x1c
  1436 013f C0000000 		.4byte	0xc0
  1437 0143 38       		.byte	0x38
  1438 0144 07       		.uleb128 0x7
  1439 0145 2F030000 		.4byte	.LASF26
  1440 0149 01       		.byte	0x1
- 1441 014a 19       		.byte	0x19
+ 1441 014a 1D       		.byte	0x1d
  1442 014b AD000000 		.4byte	0xad
  1443 014f 40       		.byte	0x40
  1444 0150 00       		.byte	0
  1445 0151 06       		.uleb128 0x6
  1446 0152 4A000000 		.4byte	.LASF28
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 31
+
+
  1447 0156 58       		.byte	0x58
  1448 0157 01       		.byte	0x1
- 1449 0158 1C       		.byte	0x1c
+ 1449 0158 20       		.byte	0x20
  1450 0159 D8010000 		.4byte	0x1d8
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 31
-
-
  1451 015d 07       		.uleb128 0x7
  1452 015e 22030000 		.4byte	.LASF29
  1453 0162 01       		.byte	0x1
- 1454 0163 1D       		.byte	0x1d
+ 1454 0163 21       		.byte	0x21
  1455 0164 C0000000 		.4byte	0xc0
  1456 0168 00       		.byte	0
  1457 0169 08       		.uleb128 0x8
  1458 016a 7800     		.ascii	"x\000"
  1459 016c 01       		.byte	0x1
- 1460 016d 1E       		.byte	0x1e
+ 1460 016d 22       		.byte	0x22
  1461 016e C0000000 		.4byte	0xc0
  1462 0172 08       		.byte	0x8
  1463 0173 08       		.uleb128 0x8
  1464 0174 7900     		.ascii	"y\000"
  1465 0176 01       		.byte	0x1
- 1466 0177 1F       		.byte	0x1f
+ 1466 0177 23       		.byte	0x23
  1467 0178 C0000000 		.4byte	0xc0
  1468 017c 10       		.byte	0x10
  1469 017d 07       		.uleb128 0x7
  1470 017e 00000000 		.4byte	.LASF30
  1471 0182 01       		.byte	0x1
- 1472 0183 20       		.byte	0x20
+ 1472 0183 24       		.byte	0x24
  1473 0184 C0000000 		.4byte	0xc0
  1474 0188 18       		.byte	0x18
  1475 0189 08       		.uleb128 0x8
  1476 018a 5600     		.ascii	"V\000"
  1477 018c 01       		.byte	0x1
- 1478 018d 22       		.byte	0x22
+ 1478 018d 26       		.byte	0x26
  1479 018e C0000000 		.4byte	0xc0
  1480 0192 20       		.byte	0x20
  1481 0193 08       		.uleb128 0x8
  1482 0194 7700     		.ascii	"w\000"
  1483 0196 01       		.byte	0x1
- 1484 0197 23       		.byte	0x23
+ 1484 0197 27       		.byte	0x27
  1485 0198 C0000000 		.4byte	0xc0
  1486 019c 28       		.byte	0x28
  1487 019d 07       		.uleb128 0x7
  1488 019e C0010000 		.4byte	.LASF31
  1489 01a2 01       		.byte	0x1
- 1490 01a3 25       		.byte	0x25
+ 1490 01a3 29       		.byte	0x29
  1491 01a4 C0000000 		.4byte	0xc0
  1492 01a8 30       		.byte	0x30
  1493 01a9 07       		.uleb128 0x7
  1494 01aa 11000000 		.4byte	.LASF32
  1495 01ae 01       		.byte	0x1
- 1496 01af 26       		.byte	0x26
+ 1496 01af 2A       		.byte	0x2a
  1497 01b0 C0000000 		.4byte	0xc0
  1498 01b4 38       		.byte	0x38
  1499 01b5 08       		.uleb128 0x8
  1500 01b6 4B6900   		.ascii	"Ki\000"
  1501 01b9 01       		.byte	0x1
- 1502 01ba 28       		.byte	0x28
+ 1502 01ba 2C       		.byte	0x2c
  1503 01bb C0000000 		.4byte	0xc0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 32
+
+
  1504 01bf 40       		.byte	0x40
  1505 01c0 08       		.uleb128 0x8
  1506 01c1 4B7000   		.ascii	"Kp\000"
  1507 01c4 01       		.byte	0x1
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 32
-
-
- 1508 01c5 29       		.byte	0x29
+ 1508 01c5 2D       		.byte	0x2d
  1509 01c6 C0000000 		.4byte	0xc0
  1510 01ca 48       		.byte	0x48
  1511 01cb 07       		.uleb128 0x7
  1512 01cc 18030000 		.4byte	.LASF22
  1513 01d0 01       		.byte	0x1
- 1514 01d1 2A       		.byte	0x2a
+ 1514 01d1 2E       		.byte	0x2e
  1515 01d2 C0000000 		.4byte	0xc0
  1516 01d6 50       		.byte	0x50
  1517 01d7 00       		.byte	0
  1518 01d8 09       		.uleb128 0x9
  1519 01d9 F1020000 		.4byte	.LASF57
  1520 01dd 01       		.byte	0x1
- 1521 01de 41       		.byte	0x41
+ 1521 01de 45       		.byte	0x45
  1522 01df 00000000 		.4byte	.LFB64
  1523 01e3 34000000 		.4byte	.LFE64-.LFB64
  1524 01e7 01       		.uleb128 0x1
@@ -1882,7 +1886,7 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1526 01e9 0A       		.uleb128 0xa
  1527 01ea 4D010000 		.4byte	.LASF36
  1528 01ee 01       		.byte	0x1
- 1529 01ef 4A       		.byte	0x4a
+ 1529 01ef 4E       		.byte	0x4e
  1530 01f0 00000000 		.4byte	.LFB65
  1531 01f4 8C040000 		.4byte	.LFE65-.LFB65
  1532 01f8 01       		.uleb128 0x1
@@ -1891,7 +1895,7 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1535 01fe 0B       		.uleb128 0xb
  1536 01ff 6E657700 		.ascii	"new\000"
  1537 0203 01       		.byte	0x1
- 1538 0204 4B       		.byte	0x4b
+ 1538 0204 4F       		.byte	0x4f
  1539 0205 AD000000 		.4byte	0xad
  1540 0209 02       		.uleb128 0x2
  1541 020a 91       		.byte	0x91
@@ -1899,7 +1903,7 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1543 020c 0C       		.uleb128 0xc
  1544 020d 1F000000 		.4byte	.LASF33
  1545 0211 01       		.byte	0x1
- 1546 0212 4C       		.byte	0x4c
+ 1546 0212 50       		.byte	0x50
  1547 0213 AD000000 		.4byte	0xad
  1548 0217 02       		.uleb128 0x2
  1549 0218 91       		.byte	0x91
@@ -1907,27 +1911,27 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1551 021a 0C       		.uleb128 0xc
  1552 021b 39030000 		.4byte	.LASF34
  1553 021f 01       		.byte	0x1
- 1554 0220 64       		.byte	0x64
+ 1554 0220 68       		.byte	0x68
  1555 0221 C0000000 		.4byte	0xc0
  1556 0225 02       		.uleb128 0x2
  1557 0226 91       		.byte	0x91
  1558 0227 58       		.sleb128 -40
  1559 0228 0C       		.uleb128 0xc
  1560 0229 4E020000 		.4byte	.LASF35
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 33
+
+
  1561 022d 01       		.byte	0x1
- 1562 022e 6C       		.byte	0x6c
+ 1562 022e 70       		.byte	0x70
  1563 022f C0000000 		.4byte	0xc0
  1564 0233 02       		.uleb128 0x2
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 33
-
-
  1565 0234 91       		.byte	0x91
  1566 0235 48       		.sleb128 -56
  1567 0236 00       		.byte	0
  1568 0237 0A       		.uleb128 0xa
  1569 0238 E9000000 		.4byte	.LASF37
  1570 023c 01       		.byte	0x1
- 1571 023d 86       		.byte	0x86
+ 1571 023d 8A       		.byte	0x8a
  1572 023e 00000000 		.4byte	.LFB66
  1573 0242 54010000 		.4byte	.LFE66-.LFB66
  1574 0246 01       		.uleb128 0x1
@@ -1936,7 +1940,7 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1577 024c 0C       		.uleb128 0xc
  1578 024d 39030000 		.4byte	.LASF34
  1579 0251 01       		.byte	0x1
- 1580 0252 87       		.byte	0x87
+ 1580 0252 8B       		.byte	0x8b
  1581 0253 C0000000 		.4byte	0xc0
  1582 0257 02       		.uleb128 0x2
  1583 0258 91       		.byte	0x91
@@ -1945,7 +1949,7 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1586 025b 0D       		.uleb128 0xd
  1587 025c AC020000 		.4byte	.LASF58
  1588 0260 01       		.byte	0x1
- 1589 0261 94       		.byte	0x94
+ 1589 0261 98       		.byte	0x98
  1590 0262 7E000000 		.4byte	0x7e
  1591 0266 00000000 		.4byte	.LFB67
  1592 026a D0010000 		.4byte	.LFE67-.LFB67
@@ -1954,7 +1958,7 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1595 0270 0A       		.uleb128 0xa
  1596 0271 FE000000 		.4byte	.LASF38
  1597 0275 01       		.byte	0x1
- 1598 0276 DA       		.byte	0xda
+ 1598 0276 DE       		.byte	0xde
  1599 0277 00000000 		.4byte	.LFB68
  1600 027b D8000000 		.4byte	.LFE68-.LFB68
  1601 027f 01       		.uleb128 0x1
@@ -1963,7 +1967,7 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1604 0285 0E       		.uleb128 0xe
  1605 0286 03030000 		.4byte	.LASF21
  1606 028a 01       		.byte	0x1
- 1607 028b DA       		.byte	0xda
+ 1607 028b DE       		.byte	0xde
  1608 028c C0000000 		.4byte	0xc0
  1609 0290 02       		.uleb128 0x2
  1610 0291 91       		.byte	0x91
@@ -1972,19 +1976,19 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1613 0294 0A       		.uleb128 0xa
  1614 0295 74020000 		.4byte	.LASF39
  1615 0299 01       		.byte	0x1
- 1616 029a EB       		.byte	0xeb
+ 1616 029a EF       		.byte	0xef
  1617 029b 00000000 		.4byte	.LFB69
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 34
+
+
  1618 029f D8000000 		.4byte	.LFE69-.LFB69
  1619 02a3 01       		.uleb128 0x1
  1620 02a4 9C       		.byte	0x9c
  1621 02a5 B8020000 		.4byte	0x2b8
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 34
-
-
  1622 02a9 0E       		.uleb128 0xe
  1623 02aa 03030000 		.4byte	.LASF21
  1624 02ae 01       		.byte	0x1
- 1625 02af EB       		.byte	0xeb
+ 1625 02af EF       		.byte	0xef
  1626 02b0 C0000000 		.4byte	0xc0
  1627 02b4 02       		.uleb128 0x2
  1628 02b5 91       		.byte	0x91
@@ -2000,7 +2004,7 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1638 02c9 11       		.uleb128 0x11
  1639 02ca 56030000 		.4byte	.LASF41
  1640 02ce 01       		.byte	0x1
- 1641 02cf 2D       		.byte	0x2d
+ 1641 02cf 31       		.byte	0x31
  1642 02d0 DA020000 		.4byte	0x2da
  1643 02d4 05       		.uleb128 0x5
  1644 02d5 03       		.byte	0x3
@@ -2010,7 +2014,7 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1648 02df 11       		.uleb128 0x11
  1649 02e0 2E000000 		.4byte	.LASF42
  1650 02e4 01       		.byte	0x1
- 1651 02e5 2E       		.byte	0x2e
+ 1651 02e5 32       		.byte	0x32
  1652 02e6 DA020000 		.4byte	0x2da
  1653 02ea 05       		.uleb128 0x5
  1654 02eb 03       		.byte	0x3
@@ -2018,7 +2022,7 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1656 02f0 11       		.uleb128 0x11
  1657 02f1 28030000 		.4byte	.LASF43
  1658 02f5 01       		.byte	0x1
- 1659 02f6 2F       		.byte	0x2f
+ 1659 02f6 33       		.byte	0x33
  1660 02f7 01030000 		.4byte	0x301
  1661 02fb 05       		.uleb128 0x5
  1662 02fc 03       		.byte	0x3
@@ -2028,26 +2032,26 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1666 0306 11       		.uleb128 0x11
  1667 0307 02020000 		.4byte	.LASF44
  1668 030b 01       		.byte	0x1
- 1669 030c 34       		.byte	0x34
+ 1669 030c 38       		.byte	0x38
  1670 030d 8C000000 		.4byte	0x8c
  1671 0311 05       		.uleb128 0x5
  1672 0312 03       		.byte	0x3
  1673 0313 00000000 		.4byte	echo_flag
  1674 0317 11       		.uleb128 0x11
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 35
+
+
  1675 0318 6A020000 		.4byte	.LASF45
  1676 031c 01       		.byte	0x1
- 1677 031d 35       		.byte	0x35
+ 1677 031d 39       		.byte	0x39
  1678 031e 97000000 		.4byte	0x97
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 35
-
-
  1679 0322 05       		.uleb128 0x5
  1680 0323 03       		.byte	0x3
  1681 0324 00000000 		.4byte	max_count
  1682 0328 11       		.uleb128 0x11
  1683 0329 CA010000 		.4byte	.LASF46
  1684 032d 01       		.byte	0x1
- 1685 032e 36       		.byte	0x36
+ 1685 032e 3A       		.byte	0x3a
  1686 032f 97000000 		.4byte	0x97
  1687 0333 05       		.uleb128 0x5
  1688 0334 03       		.byte	0x3
@@ -2055,7 +2059,7 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1690 0339 11       		.uleb128 0x11
  1691 033a 34010000 		.4byte	.LASF47
  1692 033e 01       		.byte	0x1
- 1693 033f 37       		.byte	0x37
+ 1693 033f 3B       		.byte	0x3b
  1694 0340 8C000000 		.4byte	0x8c
  1695 0344 05       		.uleb128 0x5
  1696 0345 03       		.byte	0x3
@@ -2063,7 +2067,7 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1698 034a 11       		.uleb128 0x11
  1699 034b D3020000 		.4byte	.LASF48
  1700 034f 01       		.byte	0x1
- 1701 0350 38       		.byte	0x38
+ 1701 0350 3C       		.byte	0x3c
  1702 0351 AD000000 		.4byte	0xad
  1703 0355 05       		.uleb128 0x5
  1704 0356 03       		.byte	0x3
@@ -2071,7 +2075,7 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1706 035b 11       		.uleb128 0x11
  1707 035c C1020000 		.4byte	.LASF49
  1708 0360 01       		.byte	0x1
- 1709 0361 39       		.byte	0x39
+ 1709 0361 3D       		.byte	0x3d
  1710 0362 AD000000 		.4byte	0xad
  1711 0366 05       		.uleb128 0x5
  1712 0367 03       		.byte	0x3
@@ -2086,7 +2090,7 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1721 037c 11       		.uleb128 0x11
  1722 037d 9E020000 		.4byte	.LASF50
  1723 0381 01       		.byte	0x1
- 1724 0382 3A       		.byte	0x3a
+ 1724 0382 3E       		.byte	0x3e
  1725 0383 6C030000 		.4byte	0x36c
  1726 0387 05       		.uleb128 0x5
  1727 0388 03       		.byte	0x3
@@ -2094,18 +2098,18 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1729 038d 11       		.uleb128 0x11
  1730 038e 1B010000 		.4byte	.LASF51
  1731 0392 01       		.byte	0x1
- 1732 0393 3C       		.byte	0x3c
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 36
+
+
+ 1732 0393 40       		.byte	0x40
  1733 0394 DC000000 		.4byte	0xdc
  1734 0398 05       		.uleb128 0x5
  1735 0399 03       		.byte	0x3
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 36
-
-
  1736 039a 00000000 		.4byte	left_motor
  1737 039e 11       		.uleb128 0x11
  1738 039f 0F010000 		.4byte	.LASF52
  1739 03a3 01       		.byte	0x1
- 1740 03a4 3D       		.byte	0x3d
+ 1740 03a4 41       		.byte	0x41
  1741 03a5 DC000000 		.4byte	0xdc
  1742 03a9 05       		.uleb128 0x5
  1743 03aa 03       		.byte	0x3
@@ -2113,7 +2117,7 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1745 03af 11       		.uleb128 0x11
  1746 03b0 0B000000 		.4byte	.LASF53
  1747 03b4 01       		.byte	0x1
- 1748 03b5 3E       		.byte	0x3e
+ 1748 03b5 42       		.byte	0x42
  1749 03b6 51010000 		.4byte	0x151
  1750 03ba 05       		.uleb128 0x5
  1751 03bb 03       		.byte	0x3
@@ -2154,13 +2158,13 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1786 001e 03       		.uleb128 0x3
  1787 001f 16       		.uleb128 0x16
  1788 0020 00       		.byte	0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 37
+
+
  1789 0021 03       		.uleb128 0x3
  1790 0022 0E       		.uleb128 0xe
  1791 0023 3A       		.uleb128 0x3a
  1792 0024 0B       		.uleb128 0xb
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 37
-
-
  1793 0025 3B       		.uleb128 0x3b
  1794 0026 0B       		.uleb128 0xb
  1795 0027 49       		.uleb128 0x49
@@ -2214,13 +2218,13 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1843 0057 3A       		.uleb128 0x3a
  1844 0058 0B       		.uleb128 0xb
  1845 0059 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 38
+
+
  1846 005a 0B       		.uleb128 0xb
  1847 005b 49       		.uleb128 0x49
  1848 005c 13       		.uleb128 0x13
  1849 005d 38       		.uleb128 0x38
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 38
-
-
  1850 005e 0B       		.uleb128 0xb
  1851 005f 00       		.byte	0
  1852 0060 00       		.byte	0
@@ -2274,13 +2278,13 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1900 0091 3B       		.uleb128 0x3b
  1901 0092 0B       		.uleb128 0xb
  1902 0093 27       		.uleb128 0x27
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 39
+
+
  1903 0094 19       		.uleb128 0x19
  1904 0095 11       		.uleb128 0x11
  1905 0096 01       		.uleb128 0x1
  1906 0097 12       		.uleb128 0x12
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 39
-
-
  1907 0098 06       		.uleb128 0x6
  1908 0099 40       		.uleb128 0x40
  1909 009a 18       		.uleb128 0x18
@@ -2334,13 +2338,13 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  1957 00cb 27       		.uleb128 0x27
  1958 00cc 19       		.uleb128 0x19
  1959 00cd 49       		.uleb128 0x49
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 40
+
+
  1960 00ce 13       		.uleb128 0x13
  1961 00cf 11       		.uleb128 0x11
  1962 00d0 01       		.uleb128 0x1
  1963 00d1 12       		.uleb128 0x12
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 40
-
-
  1964 00d2 06       		.uleb128 0x6
  1965 00d3 40       		.uleb128 0x40
  1966 00d4 18       		.uleb128 0x18
@@ -2394,13 +2398,13 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  2014 0105 0E       		.uleb128 0xe
  2015 0106 3A       		.uleb128 0x3a
  2016 0107 0B       		.uleb128 0xb
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 41
+
+
  2017 0108 3B       		.uleb128 0x3b
  2018 0109 0B       		.uleb128 0xb
  2019 010a 49       		.uleb128 0x49
  2020 010b 13       		.uleb128 0x13
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 41
-
-
  2021 010c 3F       		.uleb128 0x3f
  2022 010d 19       		.uleb128 0x19
  2023 010e 02       		.uleb128 0x2
@@ -2454,13 +2458,13 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  2071 0038 00000000 		.4byte	.LFB69
  2072 003c D8000000 		.4byte	.LFE69-.LFB69
  2073 0040 00000000 		.4byte	0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 42
+
+
  2074 0044 00000000 		.4byte	0
  2075              		.section	.debug_ranges,"",%progbits
  2076              	.Ldebug_ranges0:
  2077 0000 00000000 		.4byte	.LFB64
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 42
-
-
  2078 0004 34000000 		.4byte	.LFE64
  2079 0008 00000000 		.4byte	.LFB65
  2080 000c 8C040000 		.4byte	.LFE65
@@ -2514,13 +2518,13 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  2109 004a 526F626F 		.ascii	"Robot\000"
  2109      7400
  2110              	.LASF54:
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 43
+
+
  2111 0050 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
  2111      43313120 
  2111      352E342E 
  2111      31203230 
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 43
-
-
  2111      31363036 
  2112 0083 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
  2112      20726576 
@@ -2574,13 +2578,13 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  2132              	.LASF36:
  2133 014d 506F7365 		.ascii	"Pose_Update_Int_Handler\000"
  2133      5F557064 
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 44
+
+
  2133      6174655F 
  2133      496E745F 
  2133      48616E64 
  2134              	.LASF25:
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 44
-
-
  2135 0165 77686565 		.ascii	"wheel_radius\000"
  2135      6C5F7261 
  2135      64697573 
@@ -2634,13 +2638,13 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  2156      7265645F 
  2156      7700
  2157              	.LASF0:
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 45
+
+
  2158 0216 7369676E 		.ascii	"signed char\000"
  2158      65642063 
  2158      68617200 
  2159              	.LASF14:
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 45
-
-
  2160 0222 696E7433 		.ascii	"int32_t\000"
  2160      325F7400 
  2161              	.LASF10:
@@ -2694,13 +2698,13 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  2181              	.LASF13:
  2182 02b1 75696E74 		.ascii	"uint16_t\000"
  2182      31365F74 
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 46
+
+
  2182      00
  2183              	.LASF55:
  2184 02ba 6D61696E 		.ascii	"main.c\000"
  2184      2E6300
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 46
-
-
  2185              	.LASF49:
  2186 02c1 72696768 		.ascii	"right_wheel_count\000"
  2186      745F7768 
@@ -2754,13 +2758,13 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 1
  2210 033f 74616E67 		.ascii	"tangent_v\000"
  2210      656E745F 
  2210      7600
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc6ksahc.s 			page 47
+
+
  2211              	.LASF40:
  2212 0349 49544D5F 		.ascii	"ITM_RxBuffer\000"
  2212      52784275 
  2212      66666572 
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cctNDusI.s 			page 47
-
-
  2212      00
  2213              	.LASF41:
  2214 0356 50554C53 		.ascii	"PULSES_PER_REV\000"

@@ -226,8 +226,8 @@ void PWM_Trigger_RestoreConfig(void) ;
 /***************************************
 *         Initialization Values
 **************************************/
-#define PWM_Trigger_INIT_PERIOD_VALUE          (1u)
-#define PWM_Trigger_INIT_COMPARE_VALUE1        (0u)
+#define PWM_Trigger_INIT_PERIOD_VALUE          (255u)
+#define PWM_Trigger_INIT_COMPARE_VALUE1        (255u)
 #define PWM_Trigger_INIT_COMPARE_VALUE2        (2501u)
 #define PWM_Trigger_INIT_INTERRUPTS_MODE       (uint8)(((uint8)(0u <<   \
                                                     PWM_Trigger_STATUS_TC_INT_EN_MASK_SHIFT)) | \
@@ -238,7 +238,7 @@ void PWM_Trigger_RestoreConfig(void) ;
                                                     (uint8)((uint8)(0u <<  \
                                                     PWM_Trigger_STATUS_KILL_INT_EN_MASK_SHIFT )))
 #define PWM_Trigger_DEFAULT_COMPARE2_MODE      (uint8)((uint8)4u <<  PWM_Trigger_CTRL_CMPMODE2_SHIFT)
-#define PWM_Trigger_DEFAULT_COMPARE1_MODE      (uint8)((uint8)3u <<  PWM_Trigger_CTRL_CMPMODE1_SHIFT)
+#define PWM_Trigger_DEFAULT_COMPARE1_MODE      (uint8)((uint8)4u <<  PWM_Trigger_CTRL_CMPMODE1_SHIFT)
 #define PWM_Trigger_INIT_DEAD_TIME             (1u)
 
 

@@ -96,8 +96,7 @@ CY_ISR( Pose_Update_Int_Handler ) {
     robot.V =  (right_motor.tangent_v + left_motor.tangent_v)/2; //instantaneous tangential velocity of robot centre
 
     // update pose variables
-    robot.theta = robot.theta + robot.w * POSE_UPDATE_PERIOD;
-    robot.theta = robot.theta - M_TWOPI * floor(robot.theta / M_TWOPI); // ensures theta is in range [0, 360)
+    robot.theta = angle_modulo( robot.theta + robot.w * POSE_UPDATE_PERIOD );
     robot.x = robot.x + POSE_UPDATE_PERIOD * robot.V * cos(robot.theta);
     robot.y = robot.y + POSE_UPDATE_PERIOD * robot.V * sin(robot.theta);
     
@@ -111,7 +110,6 @@ CY_ISR( Pose_Update_Int_Handler ) {
         error = error + M_TWOPI;
     }
     
-    //robot.V = robot.desired_V *sqrtl( 1 - (error/M_PI) );
     robot.V = robot.desired_V *( 1 - logl( (M_E-1) * fabsl(error) / M_PI + 1 )); // scales velocity depending on how much we have to rotate (makes robot turn on spot more)
     
     robot.int_error = robot.int_error + error;
@@ -161,19 +159,19 @@ int main(void)
     right_motor.desired_w = 0;
     right_motor.wheel_radius = wheel_r_scale * 1.001*2.75;
     right_motor.enc_count = 0;
-    right_motor.Ki = 3e-7;  // TODO: determine good PI params
+    right_motor.Ki = 3e-6;  // TODO: determine good PI params
     right_motor.Kp = 0.0025;
     
-    robot.axle_width = 0.935*22.5; // TODO: get accurate measurement
+    robot.axle_width = 0.967*22.5; // TODO: get accurate measurement
     robot.int_error = 0;
-    robot.Ki = 3e-7;    // TODO: determine good PI values
-    robot.Kp = 1;
+    robot.Ki = 3e-5;    // TODO: determine good PI values
+    robot.Kp = 0.75;
     robot.desired_V = 0;
     robot.desired_theta = 0;
     
     robot.goal_min_dist = 1;
     robot.goal_x = 100;
-    robot.goal_y = 0;
+    robot.goal_y = -100;
     
     CyGlobalIntEnable;
     
@@ -203,14 +201,14 @@ int main(void)
         if( dist_to_goal <= robot.goal_min_dist ) {
             robot.desired_V = 0;
         } else if( echo_flag && echo_distance < 40 && echo_distance <= dist_to_goal) {
-            //robot.desired_theta = angle_modulo( robot.theta - M_PI/3 );
+            robot.desired_theta = angle_modulo( robot.theta - M_PI/5 );
             Timer_Avoidance_WriteCounter(65535);
         } else if( Timer_Avoidance_ReadCounter() < 65532 ){
             robot.desired_theta = theta_to_goal;
             if( dist_to_goal < 10 ) {
                 robot.desired_V = 2;
             } else {
-                robot.desired_V = 3;
+                robot.desired_V = 10;
             }
         }
         

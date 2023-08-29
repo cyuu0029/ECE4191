@@ -25,7 +25,7 @@ typedef struct {
   int width;      // Width of grid
   int height;     // Height of grid
   int resolution; // Size of cell in grid
-  int *cells;     // Obstacle density of each cell
+  unsigned long *cells;     // Obstacle density of each cell
 } grid;
 
 /* Sensor Measurement Data

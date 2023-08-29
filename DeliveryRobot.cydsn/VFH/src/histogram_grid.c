@@ -23,7 +23,7 @@ grid * initial_grid(int width, int height, int resolution) {
   map->width = width;
   map->height = height;
   map->resolution = resolution;
-  map->cells = malloc(width * height * sizeof(int));
+  map->cells = malloc(width * height * sizeof(unsigned long));
 
   // Return NULL if not enough memory
   if (map->cells == NULL) {
@@ -59,8 +59,6 @@ int update_grid(grid * map, int pos_x, int pos_y, int yaw, sensor_data data) {
     cell_distance[i] = data.distance[i] / map->resolution;
   }
 
-  // Determine cell location of obstacles
-  double cell_location[N_SENSORS];
   int theta;
 
   for (int i = 0; i < N_SENSORS; ++i){
@@ -72,11 +70,11 @@ int update_grid(grid * map, int pos_x, int pos_y, int yaw, sensor_data data) {
       theta = yaw + data.direction[i];
     }
 
-    int new_x = pos_x + (int) floor(cell_distance[i] * cos(theta * M_PI / 180));
-    int new_y = pos_y + (int) floor(cell_distance[i] * sin(theta * M_PI / 180));
-
+    int new_x = pos_x/map->resolution + (int) floor(cell_distance[i] * cos(theta * M_PI / 180));
+    int new_y = pos_y/map->resolution + (int) floor(cell_distance[i] * sin(theta * M_PI / 180));
+    
     // Check if point is within grid to avoid overflow
-    if (new_x < map->width && new_y < map->height) {
+    if (new_x < map->width && new_y < map->height && new_x >= 0 && new_y >= 0) {
       map->cells[new_x * map->width + new_y] += 1;
     } 
   }
@@ -104,11 +102,11 @@ grid * active_window(grid * map, int curr_x, int curr_y, int dimension) {
       for (int j = 0; j < dimension; ++j) {
 
         /* x and y are the center coordinates of the body with sensors. */
-        int grid_i = i + curr_x + (dimension - 1) / 2;
-        int grid_j = j + curr_y + (dimension - 1) / 2;
+        int grid_i = i + curr_x/map->resolution - (dimension - 1) / 2;
+        int grid_j = j + curr_y/map->resolution - (dimension - 1) / 2;
 
         /* Copy the information from the grid to the moving window. */
-        if (grid_i < map->width && grid_j < map->height) {
+        if (grid_i < map->width && grid_j < map->height && grid_i >= 0 && grid_j >= 0) {
           active->cells[i * dimension + j] = map->cells[grid_i * map->width + grid_j];
         }
       }

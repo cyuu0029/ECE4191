@@ -8,11 +8,20 @@
 ** This is an implementation of the Virtual Field Histogram algorithm,
 ** developed by J. Borenstein and Y.Koren in 1990.
 */
-
 #ifndef VFH_H
 #define VFH_H
     
 #include "polar_histogram.h"
+
+/* Valleys */
+typedef struct valley valley;
+struct valley{
+  double center_dir;
+  int start_sector;
+  int end_sector;
+  int width;
+  struct valley * next_valley;
+};
 
 /* Control signal created by the algorithm. */
 typedef struct {
@@ -35,5 +44,8 @@ int modular_dist(int a, int b, int m);
 ** specified in hist. The objective_direction is given in DEGREES.
 */
 int calculate_direction(histogram * hist, int objective_direction);
+
+
+double calculate_direction2(histogram * hist, int objective_direction);
 
 #endif

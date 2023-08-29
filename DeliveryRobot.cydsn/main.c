@@ -11,11 +11,12 @@
 */
 #include "project.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 
 #include "vfh.h"
-#include "histogram_grid.h"
-#include "polar_histogram.h"
+//#include "polar_histogram.h"
+//#include "histogram_grid.h"
 
 struct Motor {
     long double duty_cycle;
@@ -176,9 +177,9 @@ int main(void)
     CyGlobalIntEnable;
     
     // Registration of Timer ISR
-    Timer_Echo_Int_StartEx( Timer_Int_Handler );
-    Pose_Update_Int_StartEx( Pose_Update_Int_Handler );
-    Motor_PI_Int_StartEx( Motor_PI_Int_Handler );
+    //Timer_Echo_Int_StartEx( Timer_Int_Handler );
+    //Pose_Update_Int_StartEx( Pose_Update_Int_Handler );
+    //Motor_PI_Int_StartEx( Motor_PI_Int_Handler );
     //Testing_Int_StartEx( Navigation_Test_Int_Handler );
     
     // Start up code - enable UART, PWM and Timer used for ultrasonic module
@@ -192,7 +193,78 @@ int main(void)
     Timer_Avoidance_Start();
     Timer_Avoidance_WriteCounter(60000); // Cause robot to start moving immediately
     
+    /* Declaration of the needed data structures. */
+	grid * certainty_grid;
+	sensor_data sensors;
+	histogram * polar_histogram;
+	control_signal_t control_signal;
+        
+    certainty_grid = initial_grid(65, 65, 2);
+    polar_histogram = initial_histogram(5, 20, 10, 5);
+        
+    /* Are the initializations ok? */
+	if (certainty_grid == NULL) return -1;
+	if (certainty_grid->cells == NULL) return -1;
+	if (polar_histogram == NULL) return -1;
+	if (polar_histogram->densities == NULL) return -1;
+    
+    /*
+	** Fake measures.
+	*/
+    for (int i = 0; i < 1000; ++i) {
+        for( int j = 0; j<4; j++) {
+            sensors.direction[j] = (int) ((40.0 * rand()) / RAND_MAX + 90.0); /* [degrees] */
+        	sensors.distance[j] = (u_long) (((65.0 * rand()) / RAND_MAX)+5.0); /* [cm] */
+        }
+        for( int j = 4; j<8; j++) {
+        	sensors.direction[j] = (int) ((40.0 * rand()) / RAND_MAX); /* [degrees] */
+        	sensors.distance[j] = (u_long) (((65.0 * rand()) / RAND_MAX)+5.0); /* [cm] */
+        }
+        update_grid(certainty_grid, 65, 65, 0, sensors);
+    }    
+    
     for(;;) {
+        
+        for( int y=certainty_grid->height-1; y >= 0; --y ) {
+            for( int x=0; x < certainty_grid->width; ++x ) {
+                sprintf(serial_output, "%lu ", certainty_grid->cells[x*certainty_grid->width+y] );
+                UART_PutString(serial_output);
+            }
+            UART_PutString("\n");
+        }
+        UART_PutString("\n\n\n\n\n");
+        
+        
+        grid * active = active_window(certainty_grid,0,0,5);
+        
+        
+        for( int y=active->height-1; y >= 0; --y ) {
+            for( int x=0; x < active->width; ++x ) {
+                sprintf(serial_output, "%lu ", active->cells[x*active->width+y] );
+                UART_PutString(serial_output);
+            }
+            UART_PutString("\n");
+        }
+        UART_PutString("\n\n\n\n\n");
+        
+        
+        hist_update(polar_histogram, certainty_grid);
+        
+        
+        for( int i=0; i<polar_histogram->sectors; i++ ) {
+            sprintf(serial_output, "%lf\n", polar_histogram->densities[i]);
+            UART_PutString(serial_output);
+        }
+        UART_PutString("\n\n\n\n\n");
+        
+        
+        double dir = calculate_direction2(polar_histogram, 45);
+        
+        sprintf(serial_output, "best_dir: %lf\n", dir);
+        UART_PutString(serial_output);
+        
+        
+        /*
         long double dy = robot.goal_y - robot.y;
         long double dx = robot.goal_x - robot.x;
         long double dist_to_goal = sqrtl( dy*dy + dx*dx );
@@ -211,15 +283,11 @@ int main(void)
                 robot.desired_V = 10;
             }
         }
+        */
         
         // if a distance was measured, print the distance and clear the flag
         if ( echo_flag == 1 ) {
             echo_distance = 65535 - Timer_Echo_ReadCapture();  // in cm
-            //Timer_Echo_WriteCounter(max_count); // TODO: check if this is needed next lab
-            // clear the interrupt
-            
-            //sprintf(serial_output, "%d cm\n", echo_distance);
-            //UART_PutString(serial_output);
             
             /*
             Timer_Echo_Stop();
@@ -240,10 +308,10 @@ int main(void)
             CyGlobalIntEnable; // Enable global interrupts after the flag is cleared. 
         }
         
-        sprintf(serial_output, "dx: %Lf, dy: %Lf, dtg: %Lf, ttg: %Lf, dist: %i, tmr: %i\n", dx, dy, dist_to_goal, theta_to_goal, echo_distance, Timer_Avoidance_ReadCounter());
+        //sprintf(serial_output, "dx: %Lf, dy: %Lf, dtg: %Lf, ttg: %Lf, dist: %i, tmr: %i\n", dx, dy, dist_to_goal, theta_to_goal, echo_distance, Timer_Avoidance_ReadCounter());
         //sprintf(serial_output, "desired: %lf, actual: %lf, dc:%lf, enc: %li\n", right_motor.desired_w,right_motor.w, right_motor.duty_cycle, QuadDec_R_GetCounter());
         //sprintf(serial_output, "x: %lf, y: %lf, theta: %lf\n", robot.x, robot.y, robot.theta);
-        UART_PutString(serial_output);
+        //UART_PutString(serial_output);
     }
   
 }

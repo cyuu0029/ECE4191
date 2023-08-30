@@ -74,7 +74,7 @@ int calculate_direction(histogram * hist, int objective_direction) {
 }
 
 double calculate_direction2(histogram * hist, int objective_direction) {
-    int threshold = 1000;
+    int threshold = 100;
     int smax = 18;
     int nsectors = hist->sectors;
     
@@ -84,8 +84,16 @@ double calculate_direction2(histogram * hist, int objective_direction) {
     
     // generate binary histogram
     int binary_hist[nsectors];
+    int object_sum = 0;
+    
     for( int i = 0; i < nsectors; i++ ) {
-        binary_hist[i] = hist->densities[i] > threshold;   
+        binary_hist[i] = hist->densities[i] > threshold;
+        object_sum += binary_hist[i];
+    }
+    
+    if( object_sum == 0 ) { 
+        free(head_valley);
+        return objective_direction; 
     }
     
     // get valleys
@@ -149,8 +157,8 @@ double calculate_direction2(histogram * hist, int objective_direction) {
             best_dist = dist;
             best_v = v;
         }
-        sprintf(out, "dist: %lf\n", dist);
-        UART_PutString(out);
+        //sprintf(out, "dist: %lf\n", dist);
+        //UART_PutString(out);
         v = v->next_valley;
     }
     
@@ -176,6 +184,10 @@ double calculate_direction2(histogram * hist, int objective_direction) {
         }
     }
     
+    sprintf(out, "choosing angle: %lf\n", return_val);
+    UART_PutString(out);
+    
+    // free the linked list
     valley * tmp;
     while( head_valley != NULL ) {
         tmp = head_valley;

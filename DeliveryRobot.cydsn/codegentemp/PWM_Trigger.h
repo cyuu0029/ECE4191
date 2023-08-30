@@ -28,7 +28,7 @@ extern uint8 PWM_Trigger_initVar;
 /***************************************
 * Conditional Compilation Parameters
 ***************************************/
-#define PWM_Trigger_Resolution                     (8u)
+#define PWM_Trigger_Resolution                     (16u)
 #define PWM_Trigger_UsingFixedFunction             (0u)
 #define PWM_Trigger_DeadBandMode                   (0u)
 #define PWM_Trigger_KillModeMinTime                (0u)
@@ -110,9 +110,9 @@ typedef struct
     uint8 PWMEnableState;
 
     #if(!PWM_Trigger_UsingFixedFunction)
-        uint8 PWMUdb;               /* PWM Current Counter value  */
+        uint16 PWMUdb;               /* PWM Current Counter value  */
         #if(!PWM_Trigger_PWMModeIsCenterAligned)
-            uint8 PWMPeriod;
+            uint16 PWMPeriod;
         #endif /* (!PWM_Trigger_PWMModeIsCenterAligned) */
         #if (PWM_Trigger_UseStatus)
             uint8 InterruptMaskValue;   /* PWM Current Interrupt Mask */
@@ -176,32 +176,32 @@ void    PWM_Trigger_Stop(void) ;
 #endif /* (PWM_Trigger_UseOneCompareMode) */
 
 #if (!PWM_Trigger_UsingFixedFunction)
-    uint8   PWM_Trigger_ReadCounter(void) ;
-    uint8 PWM_Trigger_ReadCapture(void) ;
+    uint16   PWM_Trigger_ReadCounter(void) ;
+    uint16 PWM_Trigger_ReadCapture(void) ;
 
     #if (PWM_Trigger_UseStatus)
             void PWM_Trigger_ClearFIFO(void) ;
     #endif /* (PWM_Trigger_UseStatus) */
 
-    void    PWM_Trigger_WriteCounter(uint8 counter)
+    void    PWM_Trigger_WriteCounter(uint16 counter)
             ;
 #endif /* (!PWM_Trigger_UsingFixedFunction) */
 
-void    PWM_Trigger_WritePeriod(uint8 period)
+void    PWM_Trigger_WritePeriod(uint16 period)
         ;
-uint8 PWM_Trigger_ReadPeriod(void) ;
+uint16 PWM_Trigger_ReadPeriod(void) ;
 
 #if (PWM_Trigger_UseOneCompareMode)
-    void    PWM_Trigger_WriteCompare(uint8 compare)
+    void    PWM_Trigger_WriteCompare(uint16 compare)
             ;
-    uint8 PWM_Trigger_ReadCompare(void) ;
+    uint16 PWM_Trigger_ReadCompare(void) ;
 #else
-    void    PWM_Trigger_WriteCompare1(uint8 compare)
+    void    PWM_Trigger_WriteCompare1(uint16 compare)
             ;
-    uint8 PWM_Trigger_ReadCompare1(void) ;
-    void    PWM_Trigger_WriteCompare2(uint8 compare)
+    uint16 PWM_Trigger_ReadCompare1(void) ;
+    void    PWM_Trigger_WriteCompare2(uint16 compare)
             ;
-    uint8 PWM_Trigger_ReadCompare2(void) ;
+    uint16 PWM_Trigger_ReadCompare2(void) ;
 #endif /* (PWM_Trigger_UseOneCompareMode) */
 
 
@@ -226,8 +226,8 @@ void PWM_Trigger_RestoreConfig(void) ;
 /***************************************
 *         Initialization Values
 **************************************/
-#define PWM_Trigger_INIT_PERIOD_VALUE          (255u)
-#define PWM_Trigger_INIT_COMPARE_VALUE1        (255u)
+#define PWM_Trigger_INIT_PERIOD_VALUE          (1000u)
+#define PWM_Trigger_INIT_COMPARE_VALUE1        (1u)
 #define PWM_Trigger_INIT_COMPARE_VALUE2        (2501u)
 #define PWM_Trigger_INIT_INTERRUPTS_MODE       (uint8)(((uint8)(0u <<   \
                                                     PWM_Trigger_STATUS_TC_INT_EN_MASK_SHIFT)) | \
@@ -238,7 +238,7 @@ void PWM_Trigger_RestoreConfig(void) ;
                                                     (uint8)((uint8)(0u <<  \
                                                     PWM_Trigger_STATUS_KILL_INT_EN_MASK_SHIFT )))
 #define PWM_Trigger_DEFAULT_COMPARE2_MODE      (uint8)((uint8)4u <<  PWM_Trigger_CTRL_CMPMODE2_SHIFT)
-#define PWM_Trigger_DEFAULT_COMPARE1_MODE      (uint8)((uint8)4u <<  PWM_Trigger_CTRL_CMPMODE1_SHIFT)
+#define PWM_Trigger_DEFAULT_COMPARE1_MODE      (uint8)((uint8)1u <<  PWM_Trigger_CTRL_CMPMODE1_SHIFT)
 #define PWM_Trigger_INIT_DEAD_TIME             (1u)
 
 
@@ -264,73 +264,73 @@ void PWM_Trigger_RestoreConfig(void) ;
    #if (PWM_Trigger_Resolution == 8u) /* 8bit - PWM */
 
        #if(PWM_Trigger_PWMModeIsCenterAligned)
-           #define PWM_Trigger_PERIOD_LSB      (*(reg8 *)  PWM_Trigger_PWMUDB_sP8_pwmdp_u0__D1_REG)
-           #define PWM_Trigger_PERIOD_LSB_PTR  ((reg8 *)   PWM_Trigger_PWMUDB_sP8_pwmdp_u0__D1_REG)
+           #define PWM_Trigger_PERIOD_LSB      (*(reg8 *)  PWM_Trigger_PWMUDB_sP16_pwmdp_u0__D1_REG)
+           #define PWM_Trigger_PERIOD_LSB_PTR  ((reg8 *)   PWM_Trigger_PWMUDB_sP16_pwmdp_u0__D1_REG)
        #else
-           #define PWM_Trigger_PERIOD_LSB      (*(reg8 *)  PWM_Trigger_PWMUDB_sP8_pwmdp_u0__F0_REG)
-           #define PWM_Trigger_PERIOD_LSB_PTR  ((reg8 *)   PWM_Trigger_PWMUDB_sP8_pwmdp_u0__F0_REG)
+           #define PWM_Trigger_PERIOD_LSB      (*(reg8 *)  PWM_Trigger_PWMUDB_sP16_pwmdp_u0__F0_REG)
+           #define PWM_Trigger_PERIOD_LSB_PTR  ((reg8 *)   PWM_Trigger_PWMUDB_sP16_pwmdp_u0__F0_REG)
        #endif /* (PWM_Trigger_PWMModeIsCenterAligned) */
 
-       #define PWM_Trigger_COMPARE1_LSB        (*(reg8 *)  PWM_Trigger_PWMUDB_sP8_pwmdp_u0__D0_REG)
-       #define PWM_Trigger_COMPARE1_LSB_PTR    ((reg8 *)   PWM_Trigger_PWMUDB_sP8_pwmdp_u0__D0_REG)
-       #define PWM_Trigger_COMPARE2_LSB        (*(reg8 *)  PWM_Trigger_PWMUDB_sP8_pwmdp_u0__D1_REG)
-       #define PWM_Trigger_COMPARE2_LSB_PTR    ((reg8 *)   PWM_Trigger_PWMUDB_sP8_pwmdp_u0__D1_REG)
-       #define PWM_Trigger_COUNTERCAP_LSB      (*(reg8 *)  PWM_Trigger_PWMUDB_sP8_pwmdp_u0__A1_REG)
-       #define PWM_Trigger_COUNTERCAP_LSB_PTR  ((reg8 *)   PWM_Trigger_PWMUDB_sP8_pwmdp_u0__A1_REG)
-       #define PWM_Trigger_COUNTER_LSB         (*(reg8 *)  PWM_Trigger_PWMUDB_sP8_pwmdp_u0__A0_REG)
-       #define PWM_Trigger_COUNTER_LSB_PTR     ((reg8 *)   PWM_Trigger_PWMUDB_sP8_pwmdp_u0__A0_REG)
-       #define PWM_Trigger_CAPTURE_LSB         (*(reg8 *)  PWM_Trigger_PWMUDB_sP8_pwmdp_u0__F1_REG)
-       #define PWM_Trigger_CAPTURE_LSB_PTR     ((reg8 *)   PWM_Trigger_PWMUDB_sP8_pwmdp_u0__F1_REG)
+       #define PWM_Trigger_COMPARE1_LSB        (*(reg8 *)  PWM_Trigger_PWMUDB_sP16_pwmdp_u0__D0_REG)
+       #define PWM_Trigger_COMPARE1_LSB_PTR    ((reg8 *)   PWM_Trigger_PWMUDB_sP16_pwmdp_u0__D0_REG)
+       #define PWM_Trigger_COMPARE2_LSB        (*(reg8 *)  PWM_Trigger_PWMUDB_sP16_pwmdp_u0__D1_REG)
+       #define PWM_Trigger_COMPARE2_LSB_PTR    ((reg8 *)   PWM_Trigger_PWMUDB_sP16_pwmdp_u0__D1_REG)
+       #define PWM_Trigger_COUNTERCAP_LSB      (*(reg8 *)  PWM_Trigger_PWMUDB_sP16_pwmdp_u0__A1_REG)
+       #define PWM_Trigger_COUNTERCAP_LSB_PTR  ((reg8 *)   PWM_Trigger_PWMUDB_sP16_pwmdp_u0__A1_REG)
+       #define PWM_Trigger_COUNTER_LSB         (*(reg8 *)  PWM_Trigger_PWMUDB_sP16_pwmdp_u0__A0_REG)
+       #define PWM_Trigger_COUNTER_LSB_PTR     ((reg8 *)   PWM_Trigger_PWMUDB_sP16_pwmdp_u0__A0_REG)
+       #define PWM_Trigger_CAPTURE_LSB         (*(reg8 *)  PWM_Trigger_PWMUDB_sP16_pwmdp_u0__F1_REG)
+       #define PWM_Trigger_CAPTURE_LSB_PTR     ((reg8 *)   PWM_Trigger_PWMUDB_sP16_pwmdp_u0__F1_REG)
 
    #else
         #if(CY_PSOC3) /* 8-bit address space */
             #if(PWM_Trigger_PWMModeIsCenterAligned)
-               #define PWM_Trigger_PERIOD_LSB      (*(reg16 *) PWM_Trigger_PWMUDB_sP8_pwmdp_u0__D1_REG)
-               #define PWM_Trigger_PERIOD_LSB_PTR  ((reg16 *)  PWM_Trigger_PWMUDB_sP8_pwmdp_u0__D1_REG)
+               #define PWM_Trigger_PERIOD_LSB      (*(reg16 *) PWM_Trigger_PWMUDB_sP16_pwmdp_u0__D1_REG)
+               #define PWM_Trigger_PERIOD_LSB_PTR  ((reg16 *)  PWM_Trigger_PWMUDB_sP16_pwmdp_u0__D1_REG)
             #else
-               #define PWM_Trigger_PERIOD_LSB      (*(reg16 *) PWM_Trigger_PWMUDB_sP8_pwmdp_u0__F0_REG)
-               #define PWM_Trigger_PERIOD_LSB_PTR  ((reg16 *)  PWM_Trigger_PWMUDB_sP8_pwmdp_u0__F0_REG)
+               #define PWM_Trigger_PERIOD_LSB      (*(reg16 *) PWM_Trigger_PWMUDB_sP16_pwmdp_u0__F0_REG)
+               #define PWM_Trigger_PERIOD_LSB_PTR  ((reg16 *)  PWM_Trigger_PWMUDB_sP16_pwmdp_u0__F0_REG)
             #endif /* (PWM_Trigger_PWMModeIsCenterAligned) */
 
-            #define PWM_Trigger_COMPARE1_LSB       (*(reg16 *) PWM_Trigger_PWMUDB_sP8_pwmdp_u0__D0_REG)
-            #define PWM_Trigger_COMPARE1_LSB_PTR   ((reg16 *)  PWM_Trigger_PWMUDB_sP8_pwmdp_u0__D0_REG)
-            #define PWM_Trigger_COMPARE2_LSB       (*(reg16 *) PWM_Trigger_PWMUDB_sP8_pwmdp_u0__D1_REG)
-            #define PWM_Trigger_COMPARE2_LSB_PTR   ((reg16 *)  PWM_Trigger_PWMUDB_sP8_pwmdp_u0__D1_REG)
-            #define PWM_Trigger_COUNTERCAP_LSB     (*(reg16 *) PWM_Trigger_PWMUDB_sP8_pwmdp_u0__A1_REG)
-            #define PWM_Trigger_COUNTERCAP_LSB_PTR ((reg16 *)  PWM_Trigger_PWMUDB_sP8_pwmdp_u0__A1_REG)
-            #define PWM_Trigger_COUNTER_LSB        (*(reg16 *) PWM_Trigger_PWMUDB_sP8_pwmdp_u0__A0_REG)
-            #define PWM_Trigger_COUNTER_LSB_PTR    ((reg16 *)  PWM_Trigger_PWMUDB_sP8_pwmdp_u0__A0_REG)
-            #define PWM_Trigger_CAPTURE_LSB        (*(reg16 *) PWM_Trigger_PWMUDB_sP8_pwmdp_u0__F1_REG)
-            #define PWM_Trigger_CAPTURE_LSB_PTR    ((reg16 *)  PWM_Trigger_PWMUDB_sP8_pwmdp_u0__F1_REG)
+            #define PWM_Trigger_COMPARE1_LSB       (*(reg16 *) PWM_Trigger_PWMUDB_sP16_pwmdp_u0__D0_REG)
+            #define PWM_Trigger_COMPARE1_LSB_PTR   ((reg16 *)  PWM_Trigger_PWMUDB_sP16_pwmdp_u0__D0_REG)
+            #define PWM_Trigger_COMPARE2_LSB       (*(reg16 *) PWM_Trigger_PWMUDB_sP16_pwmdp_u0__D1_REG)
+            #define PWM_Trigger_COMPARE2_LSB_PTR   ((reg16 *)  PWM_Trigger_PWMUDB_sP16_pwmdp_u0__D1_REG)
+            #define PWM_Trigger_COUNTERCAP_LSB     (*(reg16 *) PWM_Trigger_PWMUDB_sP16_pwmdp_u0__A1_REG)
+            #define PWM_Trigger_COUNTERCAP_LSB_PTR ((reg16 *)  PWM_Trigger_PWMUDB_sP16_pwmdp_u0__A1_REG)
+            #define PWM_Trigger_COUNTER_LSB        (*(reg16 *) PWM_Trigger_PWMUDB_sP16_pwmdp_u0__A0_REG)
+            #define PWM_Trigger_COUNTER_LSB_PTR    ((reg16 *)  PWM_Trigger_PWMUDB_sP16_pwmdp_u0__A0_REG)
+            #define PWM_Trigger_CAPTURE_LSB        (*(reg16 *) PWM_Trigger_PWMUDB_sP16_pwmdp_u0__F1_REG)
+            #define PWM_Trigger_CAPTURE_LSB_PTR    ((reg16 *)  PWM_Trigger_PWMUDB_sP16_pwmdp_u0__F1_REG)
         #else
             #if(PWM_Trigger_PWMModeIsCenterAligned)
-               #define PWM_Trigger_PERIOD_LSB      (*(reg16 *) PWM_Trigger_PWMUDB_sP8_pwmdp_u0__16BIT_D1_REG)
-               #define PWM_Trigger_PERIOD_LSB_PTR  ((reg16 *)  PWM_Trigger_PWMUDB_sP8_pwmdp_u0__16BIT_D1_REG)
+               #define PWM_Trigger_PERIOD_LSB      (*(reg16 *) PWM_Trigger_PWMUDB_sP16_pwmdp_u0__16BIT_D1_REG)
+               #define PWM_Trigger_PERIOD_LSB_PTR  ((reg16 *)  PWM_Trigger_PWMUDB_sP16_pwmdp_u0__16BIT_D1_REG)
             #else
-               #define PWM_Trigger_PERIOD_LSB      (*(reg16 *) PWM_Trigger_PWMUDB_sP8_pwmdp_u0__16BIT_F0_REG)
-               #define PWM_Trigger_PERIOD_LSB_PTR  ((reg16 *)  PWM_Trigger_PWMUDB_sP8_pwmdp_u0__16BIT_F0_REG)
+               #define PWM_Trigger_PERIOD_LSB      (*(reg16 *) PWM_Trigger_PWMUDB_sP16_pwmdp_u0__16BIT_F0_REG)
+               #define PWM_Trigger_PERIOD_LSB_PTR  ((reg16 *)  PWM_Trigger_PWMUDB_sP16_pwmdp_u0__16BIT_F0_REG)
             #endif /* (PWM_Trigger_PWMModeIsCenterAligned) */
 
-            #define PWM_Trigger_COMPARE1_LSB       (*(reg16 *) PWM_Trigger_PWMUDB_sP8_pwmdp_u0__16BIT_D0_REG)
-            #define PWM_Trigger_COMPARE1_LSB_PTR   ((reg16 *)  PWM_Trigger_PWMUDB_sP8_pwmdp_u0__16BIT_D0_REG)
-            #define PWM_Trigger_COMPARE2_LSB       (*(reg16 *) PWM_Trigger_PWMUDB_sP8_pwmdp_u0__16BIT_D1_REG)
-            #define PWM_Trigger_COMPARE2_LSB_PTR   ((reg16 *)  PWM_Trigger_PWMUDB_sP8_pwmdp_u0__16BIT_D1_REG)
-            #define PWM_Trigger_COUNTERCAP_LSB     (*(reg16 *) PWM_Trigger_PWMUDB_sP8_pwmdp_u0__16BIT_A1_REG)
-            #define PWM_Trigger_COUNTERCAP_LSB_PTR ((reg16 *)  PWM_Trigger_PWMUDB_sP8_pwmdp_u0__16BIT_A1_REG)
-            #define PWM_Trigger_COUNTER_LSB        (*(reg16 *) PWM_Trigger_PWMUDB_sP8_pwmdp_u0__16BIT_A0_REG)
-            #define PWM_Trigger_COUNTER_LSB_PTR    ((reg16 *)  PWM_Trigger_PWMUDB_sP8_pwmdp_u0__16BIT_A0_REG)
-            #define PWM_Trigger_CAPTURE_LSB        (*(reg16 *) PWM_Trigger_PWMUDB_sP8_pwmdp_u0__16BIT_F1_REG)
-            #define PWM_Trigger_CAPTURE_LSB_PTR    ((reg16 *)  PWM_Trigger_PWMUDB_sP8_pwmdp_u0__16BIT_F1_REG)
+            #define PWM_Trigger_COMPARE1_LSB       (*(reg16 *) PWM_Trigger_PWMUDB_sP16_pwmdp_u0__16BIT_D0_REG)
+            #define PWM_Trigger_COMPARE1_LSB_PTR   ((reg16 *)  PWM_Trigger_PWMUDB_sP16_pwmdp_u0__16BIT_D0_REG)
+            #define PWM_Trigger_COMPARE2_LSB       (*(reg16 *) PWM_Trigger_PWMUDB_sP16_pwmdp_u0__16BIT_D1_REG)
+            #define PWM_Trigger_COMPARE2_LSB_PTR   ((reg16 *)  PWM_Trigger_PWMUDB_sP16_pwmdp_u0__16BIT_D1_REG)
+            #define PWM_Trigger_COUNTERCAP_LSB     (*(reg16 *) PWM_Trigger_PWMUDB_sP16_pwmdp_u0__16BIT_A1_REG)
+            #define PWM_Trigger_COUNTERCAP_LSB_PTR ((reg16 *)  PWM_Trigger_PWMUDB_sP16_pwmdp_u0__16BIT_A1_REG)
+            #define PWM_Trigger_COUNTER_LSB        (*(reg16 *) PWM_Trigger_PWMUDB_sP16_pwmdp_u0__16BIT_A0_REG)
+            #define PWM_Trigger_COUNTER_LSB_PTR    ((reg16 *)  PWM_Trigger_PWMUDB_sP16_pwmdp_u0__16BIT_A0_REG)
+            #define PWM_Trigger_CAPTURE_LSB        (*(reg16 *) PWM_Trigger_PWMUDB_sP16_pwmdp_u0__16BIT_F1_REG)
+            #define PWM_Trigger_CAPTURE_LSB_PTR    ((reg16 *)  PWM_Trigger_PWMUDB_sP16_pwmdp_u0__16BIT_F1_REG)
         #endif /* (CY_PSOC3) */
 
-       #define PWM_Trigger_AUX_CONTROLDP1          (*(reg8 *)  PWM_Trigger_PWMUDB_sP8_pwmdp_u1__DP_AUX_CTL_REG)
-       #define PWM_Trigger_AUX_CONTROLDP1_PTR      ((reg8 *)   PWM_Trigger_PWMUDB_sP8_pwmdp_u1__DP_AUX_CTL_REG)
+       #define PWM_Trigger_AUX_CONTROLDP1          (*(reg8 *)  PWM_Trigger_PWMUDB_sP16_pwmdp_u1__DP_AUX_CTL_REG)
+       #define PWM_Trigger_AUX_CONTROLDP1_PTR      ((reg8 *)   PWM_Trigger_PWMUDB_sP16_pwmdp_u1__DP_AUX_CTL_REG)
 
    #endif /* (PWM_Trigger_Resolution == 8) */
 
-   #define PWM_Trigger_COUNTERCAP_LSB_PTR_8BIT ( (reg8 *)  PWM_Trigger_PWMUDB_sP8_pwmdp_u0__A1_REG)
-   #define PWM_Trigger_AUX_CONTROLDP0          (*(reg8 *)  PWM_Trigger_PWMUDB_sP8_pwmdp_u0__DP_AUX_CTL_REG)
-   #define PWM_Trigger_AUX_CONTROLDP0_PTR      ((reg8 *)   PWM_Trigger_PWMUDB_sP8_pwmdp_u0__DP_AUX_CTL_REG)
+   #define PWM_Trigger_COUNTERCAP_LSB_PTR_8BIT ( (reg8 *)  PWM_Trigger_PWMUDB_sP16_pwmdp_u0__A1_REG)
+   #define PWM_Trigger_AUX_CONTROLDP0          (*(reg8 *)  PWM_Trigger_PWMUDB_sP16_pwmdp_u0__DP_AUX_CTL_REG)
+   #define PWM_Trigger_AUX_CONTROLDP0_PTR      ((reg8 *)   PWM_Trigger_PWMUDB_sP16_pwmdp_u0__DP_AUX_CTL_REG)
 
 #endif /* (PWM_Trigger_UsingFixedFunction) */
 

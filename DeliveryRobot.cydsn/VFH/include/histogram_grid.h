@@ -13,7 +13,7 @@
 
 // Global tracker for number of sensors
 #ifndef N_SENSORS
-#define N_SENSORS 8
+#define N_SENSORS 5
 #endif
 
 

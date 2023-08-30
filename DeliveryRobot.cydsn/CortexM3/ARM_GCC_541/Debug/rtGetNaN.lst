@@ -1,0 +1,458 @@
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cclFeTVo.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"rtGetNaN.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.rtGetNaN,"ax",%progbits
+  20              		.align	1
+  21              		.global	rtGetNaN
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	rtGetNaN, %function
+  25              	rtGetNaN:
+  26              	.LFB0:
+  27              		.file 1 "VFH+\\src\\rtGetNaN.c"
+   1:VFH+\src/rtGetNaN.c **** /*
+   2:VFH+\src/rtGetNaN.c ****  * Academic License - for use in teaching, academic research, and meeting
+   3:VFH+\src/rtGetNaN.c ****  * course requirements at degree granting institutions only.  Not for
+   4:VFH+\src/rtGetNaN.c ****  * government, commercial, or other organizational use.
+   5:VFH+\src/rtGetNaN.c ****  * File: rtGetNaN.c
+   6:VFH+\src/rtGetNaN.c ****  *
+   7:VFH+\src/rtGetNaN.c ****  * MATLAB Coder version            : 5.3
+   8:VFH+\src/rtGetNaN.c ****  * C/C++ source code generated on  : 30-Aug-2023 22:51:35
+   9:VFH+\src/rtGetNaN.c ****  */
+  10:VFH+\src/rtGetNaN.c **** 
+  11:VFH+\src/rtGetNaN.c **** /*
+  12:VFH+\src/rtGetNaN.c ****  * Abstract:
+  13:VFH+\src/rtGetNaN.c ****  *       MATLAB for code generation function to initialize non-finite, NaN
+  14:VFH+\src/rtGetNaN.c ****  */
+  15:VFH+\src/rtGetNaN.c **** /* Include Files */
+  16:VFH+\src/rtGetNaN.c **** #include "rtGetNaN.h"
+  17:VFH+\src/rtGetNaN.c **** #include "rt_nonfinite.h"
+  18:VFH+\src/rtGetNaN.c **** 
+  19:VFH+\src/rtGetNaN.c **** /*
+  20:VFH+\src/rtGetNaN.c ****  * Function: rtGetNaN
+  21:VFH+\src/rtGetNaN.c ****  * ======================================================================
+  22:VFH+\src/rtGetNaN.c ****  *  Abstract:
+  23:VFH+\src/rtGetNaN.c ****  * Initialize rtNaN needed by the generated code.
+  24:VFH+\src/rtGetNaN.c ****  *  NaN is initialized as non-signaling. Assumes IEEE.
+  25:VFH+\src/rtGetNaN.c ****  */
+  26:VFH+\src/rtGetNaN.c **** real_T rtGetNaN(void)
+  27:VFH+\src/rtGetNaN.c **** {
+  28              		.loc 1 27 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cclFeTVo.s 			page 2
+
+
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+  28:VFH+\src/rtGetNaN.c ****   return rtNaN;
+  29:VFH+\src/rtGetNaN.c **** }
+  33              		.loc 1 29 0
+  34 0000 014B     		ldr	r3, .L2
+  35 0002 D3E90001 		ldrd	r0, [r3]
+  36 0006 7047     		bx	lr
+  37              	.L3:
+  38              		.align	2
+  39              	.L2:
+  40 0008 00000000 		.word	rtNaN
+  41              		.cfi_endproc
+  42              	.LFE0:
+  43              		.size	rtGetNaN, .-rtGetNaN
+  44              		.section	.text.rtGetNaNF,"ax",%progbits
+  45              		.align	1
+  46              		.global	rtGetNaNF
+  47              		.thumb
+  48              		.thumb_func
+  49              		.type	rtGetNaNF, %function
+  50              	rtGetNaNF:
+  51              	.LFB1:
+  30:VFH+\src/rtGetNaN.c **** 
+  31:VFH+\src/rtGetNaN.c **** /*
+  32:VFH+\src/rtGetNaN.c ****  * Function: rtGetNaNF
+  33:VFH+\src/rtGetNaN.c ****  * =====================================================================
+  34:VFH+\src/rtGetNaN.c ****  *  Abstract:
+  35:VFH+\src/rtGetNaN.c ****  *  Initialize rtNaNF needed by the generated code.
+  36:VFH+\src/rtGetNaN.c ****  *  NaN is initialized as non-signaling. Assumes IEEE
+  37:VFH+\src/rtGetNaN.c ****  */
+  38:VFH+\src/rtGetNaN.c **** real32_T rtGetNaNF(void)
+  39:VFH+\src/rtGetNaN.c **** {
+  52              		.loc 1 39 0
+  53              		.cfi_startproc
+  54              		@ args = 0, pretend = 0, frame = 0
+  55              		@ frame_needed = 0, uses_anonymous_args = 0
+  56              		@ link register save eliminated.
+  40:VFH+\src/rtGetNaN.c ****   return rtNaNF;
+  41:VFH+\src/rtGetNaN.c **** }
+  57              		.loc 1 41 0
+  58 0000 014B     		ldr	r3, .L5
+  59 0002 1868     		ldr	r0, [r3]	@ float
+  60 0004 7047     		bx	lr
+  61              	.L6:
+  62 0006 00BF     		.align	2
+  63              	.L5:
+  64 0008 00000000 		.word	rtNaNF
+  65              		.cfi_endproc
+  66              	.LFE1:
+  67              		.size	rtGetNaNF, .-rtGetNaNF
+  68              		.text
+  69              	.Letext0:
+  70              		.file 2 ".\\VFH+\\include/rtwtypes.h"
+  71              		.file 3 ".\\VFH+\\include/rt_nonfinite.h"
+  72              		.section	.debug_info,"",%progbits
+  73              	.Ldebug_info0:
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cclFeTVo.s 			page 3
+
+
+  74 0000 C5000000 		.4byte	0xc5
+  75 0004 0400     		.2byte	0x4
+  76 0006 00000000 		.4byte	.Ldebug_abbrev0
+  77 000a 04       		.byte	0x4
+  78 000b 01       		.uleb128 0x1
+  79 000c 9A000000 		.4byte	.LASF16
+  80 0010 0C       		.byte	0xc
+  81 0011 00000000 		.4byte	.LASF17
+  82 0015 1A000000 		.4byte	.LASF18
+  83 0019 00000000 		.4byte	.Ldebug_ranges0+0
+  84 001d 00000000 		.4byte	0
+  85 0021 00000000 		.4byte	.Ldebug_line0
+  86 0025 02       		.uleb128 0x2
+  87 0026 01       		.byte	0x1
+  88 0027 06       		.byte	0x6
+  89 0028 4B010000 		.4byte	.LASF0
+  90 002c 02       		.uleb128 0x2
+  91 002d 01       		.byte	0x1
+  92 002e 08       		.byte	0x8
+  93 002f 6E000000 		.4byte	.LASF1
+  94 0033 02       		.uleb128 0x2
+  95 0034 02       		.byte	0x2
+  96 0035 05       		.byte	0x5
+  97 0036 6E010000 		.4byte	.LASF2
+  98 003a 02       		.uleb128 0x2
+  99 003b 02       		.byte	0x2
+ 100 003c 07       		.byte	0x7
+ 101 003d 38010000 		.4byte	.LASF3
+ 102 0041 03       		.uleb128 0x3
+ 103 0042 04       		.byte	0x4
+ 104 0043 05       		.byte	0x5
+ 105 0044 696E7400 		.ascii	"int\000"
+ 106 0048 02       		.uleb128 0x2
+ 107 0049 04       		.byte	0x4
+ 108 004a 07       		.byte	0x7
+ 109 004b 78010000 		.4byte	.LASF4
+ 110 004f 04       		.uleb128 0x4
+ 111 0050 2F010000 		.4byte	.LASF7
+ 112 0054 02       		.byte	0x2
+ 113 0055 2F       		.byte	0x2f
+ 114 0056 5A000000 		.4byte	0x5a
+ 115 005a 02       		.uleb128 0x2
+ 116 005b 04       		.byte	0x4
+ 117 005c 04       		.byte	0x4
+ 118 005d 68010000 		.4byte	.LASF5
+ 119 0061 02       		.uleb128 0x2
+ 120 0062 08       		.byte	0x8
+ 121 0063 04       		.byte	0x4
+ 122 0064 93000000 		.4byte	.LASF6
+ 123 0068 04       		.uleb128 0x4
+ 124 0069 28010000 		.4byte	.LASF8
+ 125 006d 02       		.byte	0x2
+ 126 006e 37       		.byte	0x37
+ 127 006f 61000000 		.4byte	0x61
+ 128 0073 02       		.uleb128 0x2
+ 129 0074 01       		.byte	0x1
+ 130 0075 02       		.byte	0x2
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cclFeTVo.s 			page 4
+
+
+ 131 0076 5F000000 		.4byte	.LASF9
+ 132 007a 02       		.uleb128 0x2
+ 133 007b 04       		.byte	0x4
+ 134 007c 07       		.byte	0x7
+ 135 007d 81000000 		.4byte	.LASF10
+ 136 0081 02       		.uleb128 0x2
+ 137 0082 01       		.byte	0x1
+ 138 0083 08       		.byte	0x8
+ 139 0084 7C000000 		.4byte	.LASF11
+ 140 0088 05       		.uleb128 0x5
+ 141 0089 65000000 		.4byte	.LASF12
+ 142 008d 01       		.byte	0x1
+ 143 008e 1A       		.byte	0x1a
+ 144 008f 68000000 		.4byte	0x68
+ 145 0093 00000000 		.4byte	.LFB0
+ 146 0097 0C000000 		.4byte	.LFE0-.LFB0
+ 147 009b 01       		.uleb128 0x1
+ 148 009c 9C       		.byte	0x9c
+ 149 009d 05       		.uleb128 0x5
+ 150 009e 57010000 		.4byte	.LASF13
+ 151 00a2 01       		.byte	0x1
+ 152 00a3 26       		.byte	0x26
+ 153 00a4 4F000000 		.4byte	0x4f
+ 154 00a8 00000000 		.4byte	.LFB1
+ 155 00ac 0C000000 		.4byte	.LFE1-.LFB1
+ 156 00b0 01       		.uleb128 0x1
+ 157 00b1 9C       		.byte	0x9c
+ 158 00b2 06       		.uleb128 0x6
+ 159 00b3 14000000 		.4byte	.LASF14
+ 160 00b7 03       		.byte	0x3
+ 161 00b8 17       		.byte	0x17
+ 162 00b9 68000000 		.4byte	0x68
+ 163 00bd 06       		.uleb128 0x6
+ 164 00be 61010000 		.4byte	.LASF15
+ 165 00c2 03       		.byte	0x3
+ 166 00c3 1A       		.byte	0x1a
+ 167 00c4 4F000000 		.4byte	0x4f
+ 168 00c8 00       		.byte	0
+ 169              		.section	.debug_abbrev,"",%progbits
+ 170              	.Ldebug_abbrev0:
+ 171 0000 01       		.uleb128 0x1
+ 172 0001 11       		.uleb128 0x11
+ 173 0002 01       		.byte	0x1
+ 174 0003 25       		.uleb128 0x25
+ 175 0004 0E       		.uleb128 0xe
+ 176 0005 13       		.uleb128 0x13
+ 177 0006 0B       		.uleb128 0xb
+ 178 0007 03       		.uleb128 0x3
+ 179 0008 0E       		.uleb128 0xe
+ 180 0009 1B       		.uleb128 0x1b
+ 181 000a 0E       		.uleb128 0xe
+ 182 000b 55       		.uleb128 0x55
+ 183 000c 17       		.uleb128 0x17
+ 184 000d 11       		.uleb128 0x11
+ 185 000e 01       		.uleb128 0x1
+ 186 000f 10       		.uleb128 0x10
+ 187 0010 17       		.uleb128 0x17
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cclFeTVo.s 			page 5
+
+
+ 188 0011 00       		.byte	0
+ 189 0012 00       		.byte	0
+ 190 0013 02       		.uleb128 0x2
+ 191 0014 24       		.uleb128 0x24
+ 192 0015 00       		.byte	0
+ 193 0016 0B       		.uleb128 0xb
+ 194 0017 0B       		.uleb128 0xb
+ 195 0018 3E       		.uleb128 0x3e
+ 196 0019 0B       		.uleb128 0xb
+ 197 001a 03       		.uleb128 0x3
+ 198 001b 0E       		.uleb128 0xe
+ 199 001c 00       		.byte	0
+ 200 001d 00       		.byte	0
+ 201 001e 03       		.uleb128 0x3
+ 202 001f 24       		.uleb128 0x24
+ 203 0020 00       		.byte	0
+ 204 0021 0B       		.uleb128 0xb
+ 205 0022 0B       		.uleb128 0xb
+ 206 0023 3E       		.uleb128 0x3e
+ 207 0024 0B       		.uleb128 0xb
+ 208 0025 03       		.uleb128 0x3
+ 209 0026 08       		.uleb128 0x8
+ 210 0027 00       		.byte	0
+ 211 0028 00       		.byte	0
+ 212 0029 04       		.uleb128 0x4
+ 213 002a 16       		.uleb128 0x16
+ 214 002b 00       		.byte	0
+ 215 002c 03       		.uleb128 0x3
+ 216 002d 0E       		.uleb128 0xe
+ 217 002e 3A       		.uleb128 0x3a
+ 218 002f 0B       		.uleb128 0xb
+ 219 0030 3B       		.uleb128 0x3b
+ 220 0031 0B       		.uleb128 0xb
+ 221 0032 49       		.uleb128 0x49
+ 222 0033 13       		.uleb128 0x13
+ 223 0034 00       		.byte	0
+ 224 0035 00       		.byte	0
+ 225 0036 05       		.uleb128 0x5
+ 226 0037 2E       		.uleb128 0x2e
+ 227 0038 00       		.byte	0
+ 228 0039 3F       		.uleb128 0x3f
+ 229 003a 19       		.uleb128 0x19
+ 230 003b 03       		.uleb128 0x3
+ 231 003c 0E       		.uleb128 0xe
+ 232 003d 3A       		.uleb128 0x3a
+ 233 003e 0B       		.uleb128 0xb
+ 234 003f 3B       		.uleb128 0x3b
+ 235 0040 0B       		.uleb128 0xb
+ 236 0041 27       		.uleb128 0x27
+ 237 0042 19       		.uleb128 0x19
+ 238 0043 49       		.uleb128 0x49
+ 239 0044 13       		.uleb128 0x13
+ 240 0045 11       		.uleb128 0x11
+ 241 0046 01       		.uleb128 0x1
+ 242 0047 12       		.uleb128 0x12
+ 243 0048 06       		.uleb128 0x6
+ 244 0049 40       		.uleb128 0x40
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cclFeTVo.s 			page 6
+
+
+ 245 004a 18       		.uleb128 0x18
+ 246 004b 9742     		.uleb128 0x2117
+ 247 004d 19       		.uleb128 0x19
+ 248 004e 00       		.byte	0
+ 249 004f 00       		.byte	0
+ 250 0050 06       		.uleb128 0x6
+ 251 0051 34       		.uleb128 0x34
+ 252 0052 00       		.byte	0
+ 253 0053 03       		.uleb128 0x3
+ 254 0054 0E       		.uleb128 0xe
+ 255 0055 3A       		.uleb128 0x3a
+ 256 0056 0B       		.uleb128 0xb
+ 257 0057 3B       		.uleb128 0x3b
+ 258 0058 0B       		.uleb128 0xb
+ 259 0059 49       		.uleb128 0x49
+ 260 005a 13       		.uleb128 0x13
+ 261 005b 3F       		.uleb128 0x3f
+ 262 005c 19       		.uleb128 0x19
+ 263 005d 3C       		.uleb128 0x3c
+ 264 005e 19       		.uleb128 0x19
+ 265 005f 00       		.byte	0
+ 266 0060 00       		.byte	0
+ 267 0061 00       		.byte	0
+ 268              		.section	.debug_aranges,"",%progbits
+ 269 0000 24000000 		.4byte	0x24
+ 270 0004 0200     		.2byte	0x2
+ 271 0006 00000000 		.4byte	.Ldebug_info0
+ 272 000a 04       		.byte	0x4
+ 273 000b 00       		.byte	0
+ 274 000c 0000     		.2byte	0
+ 275 000e 0000     		.2byte	0
+ 276 0010 00000000 		.4byte	.LFB0
+ 277 0014 0C000000 		.4byte	.LFE0-.LFB0
+ 278 0018 00000000 		.4byte	.LFB1
+ 279 001c 0C000000 		.4byte	.LFE1-.LFB1
+ 280 0020 00000000 		.4byte	0
+ 281 0024 00000000 		.4byte	0
+ 282              		.section	.debug_ranges,"",%progbits
+ 283              	.Ldebug_ranges0:
+ 284 0000 00000000 		.4byte	.LFB0
+ 285 0004 0C000000 		.4byte	.LFE0
+ 286 0008 00000000 		.4byte	.LFB1
+ 287 000c 0C000000 		.4byte	.LFE1
+ 288 0010 00000000 		.4byte	0
+ 289 0014 00000000 		.4byte	0
+ 290              		.section	.debug_line,"",%progbits
+ 291              	.Ldebug_line0:
+ 292 0000 7F000000 		.section	.debug_str,"MS",%progbits,1
+ 292      02005900 
+ 292      00000201 
+ 292      FB0E0D00 
+ 292      01010101 
+ 293              	.LASF17:
+ 294 0000 5646482B 		.ascii	"VFH+\\src\\rtGetNaN.c\000"
+ 294      5C737263 
+ 294      5C727447 
+ 294      65744E61 
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cclFeTVo.s 			page 7
+
+
+ 294      4E2E6300 
+ 295              	.LASF14:
+ 296 0014 72744E61 		.ascii	"rtNaN\000"
+ 296      4E00
+ 297              	.LASF18:
+ 298 001a 433A5C55 		.ascii	"C:\\Users\\jmspi\\OneDrive\\Documents\\GitHub\\ECE4"
+ 298      73657273 
+ 298      5C6A6D73 
+ 298      70695C4F 
+ 298      6E654472 
+ 299 0047 3139315C 		.ascii	"191\\DeliveryRobot.cydsn\000"
+ 299      44656C69 
+ 299      76657279 
+ 299      526F626F 
+ 299      742E6379 
+ 300              	.LASF9:
+ 301 005f 5F426F6F 		.ascii	"_Bool\000"
+ 301      6C00
+ 302              	.LASF12:
+ 303 0065 72744765 		.ascii	"rtGetNaN\000"
+ 303      744E614E 
+ 303      00
+ 304              	.LASF1:
+ 305 006e 756E7369 		.ascii	"unsigned char\000"
+ 305      676E6564 
+ 305      20636861 
+ 305      7200
+ 306              	.LASF11:
+ 307 007c 63686172 		.ascii	"char\000"
+ 307      00
+ 308              	.LASF10:
+ 309 0081 6C6F6E67 		.ascii	"long unsigned int\000"
+ 309      20756E73 
+ 309      69676E65 
+ 309      6420696E 
+ 309      7400
+ 310              	.LASF6:
+ 311 0093 646F7562 		.ascii	"double\000"
+ 311      6C6500
+ 312              	.LASF16:
+ 313 009a 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 313      43313120 
+ 313      352E342E 
+ 313      31203230 
+ 313      31363036 
+ 314 00cd 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 314      20726576 
+ 314      6973696F 
+ 314      6E203233 
+ 314      37373135 
+ 315 0100 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 315      66756E63 
+ 315      74696F6E 
+ 315      2D736563 
+ 315      74696F6E 
+ 316              	.LASF8:
+ 317 0128 7265616C 		.ascii	"real_T\000"
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cclFeTVo.s 			page 8
+
+
+ 317      5F5400
+ 318              	.LASF7:
+ 319 012f 7265616C 		.ascii	"real32_T\000"
+ 319      33325F54 
+ 319      00
+ 320              	.LASF3:
+ 321 0138 73686F72 		.ascii	"short unsigned int\000"
+ 321      7420756E 
+ 321      7369676E 
+ 321      65642069 
+ 321      6E7400
+ 322              	.LASF0:
+ 323 014b 7369676E 		.ascii	"signed char\000"
+ 323      65642063 
+ 323      68617200 
+ 324              	.LASF13:
+ 325 0157 72744765 		.ascii	"rtGetNaNF\000"
+ 325      744E614E 
+ 325      4600
+ 326              	.LASF15:
+ 327 0161 72744E61 		.ascii	"rtNaNF\000"
+ 327      4E4600
+ 328              	.LASF5:
+ 329 0168 666C6F61 		.ascii	"float\000"
+ 329      7400
+ 330              	.LASF2:
+ 331 016e 73686F72 		.ascii	"short int\000"
+ 331      7420696E 
+ 331      7400
+ 332              	.LASF4:
+ 333 0178 756E7369 		.ascii	"unsigned int\000"
+ 333      676E6564 
+ 333      20696E74 
+ 333      00
+ 334              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

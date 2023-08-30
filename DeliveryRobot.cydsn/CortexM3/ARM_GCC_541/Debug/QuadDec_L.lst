@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 1
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccGFvthk.s 			page 1
 
 
    1              		.syntax unified
@@ -10,7 +10,7 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 1
    7              		.eabi_attribute 24, 1
    8              		.eabi_attribute 25, 1
    9              		.eabi_attribute 26, 1
-  10              		.eabi_attribute 30, 6
+  10              		.eabi_attribute 30, 4
   11              		.eabi_attribute 34, 1
   12              		.eabi_attribute 18, 4
   13              		.thumb
@@ -19,21 +19,15 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 1
   16              		.text
   17              	.Ltext0:
   18              		.cfi_sections	.debug_frame
-  19              		.global	QuadDec_L_initVar
-  20              		.bss
-  21              		.type	QuadDec_L_initVar, %object
-  22              		.size	QuadDec_L_initVar, 1
-  23              	QuadDec_L_initVar:
-  24 0000 00       		.space	1
-  25              		.section	.text.QuadDec_L_Init,"ax",%progbits
-  26              		.align	2
-  27              		.global	QuadDec_L_Init
-  28              		.thumb
-  29              		.thumb_func
-  30              		.type	QuadDec_L_Init, %function
-  31              	QuadDec_L_Init:
-  32              	.LFB0:
-  33              		.file 1 "Generated_Source\\PSoC5\\QuadDec_L.c"
+  19              		.section	.text.QuadDec_L_Init,"ax",%progbits
+  20              		.align	1
+  21              		.global	QuadDec_L_Init
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	QuadDec_L_Init, %function
+  25              	QuadDec_L_Init:
+  26              	.LFB0:
+  27              		.file 1 "Generated_Source\\PSoC5\\QuadDec_L.c"
    1:Generated_Source\PSoC5/QuadDec_L.c **** /*******************************************************************************
    2:Generated_Source\PSoC5/QuadDec_L.c **** * File Name: QuadDec_L.c  
    3:Generated_Source\PSoC5/QuadDec_L.c **** * Version 3.0
@@ -58,15 +52,15 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 1
   22:Generated_Source\PSoC5/QuadDec_L.c ****     #include "QuadDec_L_PVT.h"
   23:Generated_Source\PSoC5/QuadDec_L.c **** #endif /* QuadDec_L_COUNTER_SIZE == QuadDec_L_COUNTER_SIZE_32_BIT */
   24:Generated_Source\PSoC5/QuadDec_L.c **** 
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 2
-
-
   25:Generated_Source\PSoC5/QuadDec_L.c **** uint8 QuadDec_L_initVar = 0u;
   26:Generated_Source\PSoC5/QuadDec_L.c **** 
   27:Generated_Source\PSoC5/QuadDec_L.c **** 
   28:Generated_Source\PSoC5/QuadDec_L.c **** /*******************************************************************************
   29:Generated_Source\PSoC5/QuadDec_L.c **** * Function Name: QuadDec_L_Init
   30:Generated_Source\PSoC5/QuadDec_L.c **** ********************************************************************************
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccGFvthk.s 			page 2
+
+
   31:Generated_Source\PSoC5/QuadDec_L.c **** *
   32:Generated_Source\PSoC5/QuadDec_L.c **** * Summary:
   33:Generated_Source\PSoC5/QuadDec_L.c **** *  Inits/Restores default QuadDec configuration provided with customizer.
@@ -80,59 +74,62 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 1
   41:Generated_Source\PSoC5/QuadDec_L.c **** *******************************************************************************/
   42:Generated_Source\PSoC5/QuadDec_L.c **** void QuadDec_L_Init(void) 
   43:Generated_Source\PSoC5/QuadDec_L.c **** {
-  34              		.loc 1 43 0
-  35              		.cfi_startproc
-  36              		@ args = 0, pretend = 0, frame = 0
-  37              		@ frame_needed = 1, uses_anonymous_args = 0
-  38 0000 80B5     		push	{r7, lr}
-  39              		.cfi_def_cfa_offset 8
-  40              		.cfi_offset 7, -8
-  41              		.cfi_offset 14, -4
-  42 0002 00AF     		add	r7, sp, #0
-  43              		.cfi_def_cfa_register 7
+  28              		.loc 1 43 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 08B5     		push	{r3, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 3, -8
+  35              		.cfi_offset 14, -4
   44:Generated_Source\PSoC5/QuadDec_L.c ****     #if (QuadDec_L_COUNTER_SIZE == QuadDec_L_COUNTER_SIZE_32_BIT)
   45:Generated_Source\PSoC5/QuadDec_L.c ****         /* Disable Interrupt. */
   46:Generated_Source\PSoC5/QuadDec_L.c ****         CyIntDisable(QuadDec_L_ISR_NUMBER);
-  44              		.loc 1 46 0
-  45 0004 064B     		ldr	r3, .L2
-  46 0006 1022     		movs	r2, #16
-  47 0008 1A60     		str	r2, [r3]
+  36              		.loc 1 46 0
+  37 0002 064B     		ldr	r3, .L2
+  38 0004 1022     		movs	r2, #16
+  39 0006 1A60     		str	r2, [r3]
   47:Generated_Source\PSoC5/QuadDec_L.c ****         /* Set the ISR to point to the QuadDec_L_isr Interrupt. */
   48:Generated_Source\PSoC5/QuadDec_L.c ****         (void) CyIntSetVector(QuadDec_L_ISR_NUMBER, & QuadDec_L_ISR);
-  48              		.loc 1 48 0
-  49 000a 0649     		ldr	r1, .L2+4
-  50 000c 0420     		movs	r0, #4
-  51 000e FFF7FEFF 		bl	CyIntSetVector
+  40              		.loc 1 48 0
+  41 0008 0549     		ldr	r1, .L2+4
+  42 000a 0420     		movs	r0, #4
+  43 000c FFF7FEFF 		bl	CyIntSetVector
+  44              	.LVL0:
   49:Generated_Source\PSoC5/QuadDec_L.c ****         /* Set the priority. */
   50:Generated_Source\PSoC5/QuadDec_L.c ****         CyIntSetPriority(QuadDec_L_ISR_NUMBER, QuadDec_L_ISR_PRIORITY);
-  52              		.loc 1 50 0
-  53 0012 0721     		movs	r1, #7
-  54 0014 0420     		movs	r0, #4
-  55 0016 FFF7FEFF 		bl	CyIntSetPriority
   51:Generated_Source\PSoC5/QuadDec_L.c ****     #endif /* QuadDec_L_COUNTER_SIZE == QuadDec_L_COUNTER_SIZE_32_BIT */
   52:Generated_Source\PSoC5/QuadDec_L.c **** }
-  56              		.loc 1 52 0
-  57 001a 00BF     		nop
-  58 001c 80BD     		pop	{r7, pc}
-  59              	.L3:
-  60 001e 00BF     		.align	2
-  61              	.L2:
-  62 0020 80E100E0 		.word	-536813184
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 3
+  45              		.loc 1 52 0
+  46 0010 BDE80840 		pop	{r3, lr}
+  47              		.cfi_restore 14
+  48              		.cfi_restore 3
+  49              		.cfi_def_cfa_offset 0
+  50:Generated_Source\PSoC5/QuadDec_L.c ****     #endif /* QuadDec_L_COUNTER_SIZE == QuadDec_L_COUNTER_SIZE_32_BIT */
+  50              		.loc 1 50 0
+  51 0014 0721     		movs	r1, #7
+  52 0016 0420     		movs	r0, #4
+  53 0018 FFF7FEBF 		b	CyIntSetPriority
+  54              	.LVL1:
+  55              	.L3:
+  56              		.align	2
+  57              	.L2:
+  58 001c 80E100E0 		.word	-536813184
+  59 0020 00000000 		.word	QuadDec_L_ISR
+  60              		.cfi_endproc
+  61              	.LFE0:
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccGFvthk.s 			page 3
 
 
-  63 0024 00000000 		.word	QuadDec_L_ISR
-  64              		.cfi_endproc
-  65              	.LFE0:
-  66              		.size	QuadDec_L_Init, .-QuadDec_L_Init
-  67              		.section	.text.QuadDec_L_Enable,"ax",%progbits
-  68              		.align	2
-  69              		.global	QuadDec_L_Enable
-  70              		.thumb
-  71              		.thumb_func
-  72              		.type	QuadDec_L_Enable, %function
-  73              	QuadDec_L_Enable:
-  74              	.LFB1:
+  62              		.size	QuadDec_L_Init, .-QuadDec_L_Init
+  63              		.section	.text.QuadDec_L_Stop,"ax",%progbits
+  64              		.align	1
+  65              		.global	QuadDec_L_Stop
+  66              		.thumb
+  67              		.thumb_func
+  68              		.type	QuadDec_L_Stop, %function
+  69              	QuadDec_L_Stop:
+  70              	.LFB3:
   53:Generated_Source\PSoC5/QuadDec_L.c **** 
   54:Generated_Source\PSoC5/QuadDec_L.c **** 
   55:Generated_Source\PSoC5/QuadDec_L.c **** /*******************************************************************************
@@ -152,95 +149,28 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 1
   69:Generated_Source\PSoC5/QuadDec_L.c **** *******************************************************************************/
   70:Generated_Source\PSoC5/QuadDec_L.c **** void QuadDec_L_Enable(void) 
   71:Generated_Source\PSoC5/QuadDec_L.c **** {
-  75              		.loc 1 71 0
-  76              		.cfi_startproc
-  77              		@ args = 0, pretend = 0, frame = 8
-  78              		@ frame_needed = 1, uses_anonymous_args = 0
-  79 0000 80B5     		push	{r7, lr}
-  80              		.cfi_def_cfa_offset 8
-  81              		.cfi_offset 7, -8
-  82              		.cfi_offset 14, -4
-  83 0002 82B0     		sub	sp, sp, #8
-  84              		.cfi_def_cfa_offset 16
-  85 0004 00AF     		add	r7, sp, #0
-  86              		.cfi_def_cfa_register 7
   72:Generated_Source\PSoC5/QuadDec_L.c ****     uint8 enableInterrupts;
   73:Generated_Source\PSoC5/QuadDec_L.c **** 
   74:Generated_Source\PSoC5/QuadDec_L.c ****     QuadDec_L_SetInterruptMask(QuadDec_L_INIT_INT_MASK);
-  87              		.loc 1 74 0
-  88 0006 0F20     		movs	r0, #15
-  89 0008 FFF7FEFF 		bl	QuadDec_L_SetInterruptMask
   75:Generated_Source\PSoC5/QuadDec_L.c **** 
   76:Generated_Source\PSoC5/QuadDec_L.c ****     /* Clear pending interrupts. */
   77:Generated_Source\PSoC5/QuadDec_L.c ****     (void) QuadDec_L_GetEvents();
-  90              		.loc 1 77 0
-  91 000c FFF7FEFF 		bl	QuadDec_L_GetEvents
   78:Generated_Source\PSoC5/QuadDec_L.c ****     
   79:Generated_Source\PSoC5/QuadDec_L.c ****     enableInterrupts = CyEnterCriticalSection();
-  92              		.loc 1 79 0
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 4
-
-
-  93 0010 FFF7FEFF 		bl	CyEnterCriticalSection
-  94 0014 0346     		mov	r3, r0
-  95 0016 FB71     		strb	r3, [r7, #7]
   80:Generated_Source\PSoC5/QuadDec_L.c **** 
   81:Generated_Source\PSoC5/QuadDec_L.c ****     /* Enable interrupts from Statusi register */
   82:Generated_Source\PSoC5/QuadDec_L.c ****     QuadDec_L_SR_AUX_CONTROL |= QuadDec_L_INTERRUPTS_ENABLE;
-  96              		.loc 1 82 0
-  97 0018 094A     		ldr	r2, .L5
-  98 001a 094B     		ldr	r3, .L5
-  99 001c 1B78     		ldrb	r3, [r3]
- 100 001e DBB2     		uxtb	r3, r3
- 101 0020 43F01003 		orr	r3, r3, #16
- 102 0024 DBB2     		uxtb	r3, r3
- 103 0026 1370     		strb	r3, [r2]
   83:Generated_Source\PSoC5/QuadDec_L.c **** 
   84:Generated_Source\PSoC5/QuadDec_L.c ****     CyExitCriticalSection(enableInterrupts);        
- 104              		.loc 1 84 0
- 105 0028 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
- 106 002a 1846     		mov	r0, r3
- 107 002c FFF7FEFF 		bl	CyExitCriticalSection
   85:Generated_Source\PSoC5/QuadDec_L.c **** 
   86:Generated_Source\PSoC5/QuadDec_L.c ****     #if (QuadDec_L_COUNTER_SIZE == QuadDec_L_COUNTER_SIZE_32_BIT)
   87:Generated_Source\PSoC5/QuadDec_L.c ****         /* Enable Component interrupts */
   88:Generated_Source\PSoC5/QuadDec_L.c ****         CyIntEnable(QuadDec_L_ISR_NUMBER);
- 108              		.loc 1 88 0
- 109 0030 044B     		ldr	r3, .L5+4
- 110 0032 1022     		movs	r2, #16
- 111 0034 1A60     		str	r2, [r3]
   89:Generated_Source\PSoC5/QuadDec_L.c ****     #endif /* QuadDec_L_COUNTER_SIZE == QuadDec_L_COUNTER_SIZE_32_BIT */
   90:Generated_Source\PSoC5/QuadDec_L.c **** }
- 112              		.loc 1 90 0
- 113 0036 00BF     		nop
- 114 0038 0837     		adds	r7, r7, #8
- 115              		.cfi_def_cfa_offset 8
- 116 003a BD46     		mov	sp, r7
- 117              		.cfi_def_cfa_register 13
- 118              		@ sp needed
- 119 003c 80BD     		pop	{r7, pc}
- 120              	.L6:
- 121 003e 00BF     		.align	2
- 122              	.L5:
- 123 0040 97640040 		.word	1073767575
- 124 0044 00E100E0 		.word	-536813312
- 125              		.cfi_endproc
- 126              	.LFE1:
- 127              		.size	QuadDec_L_Enable, .-QuadDec_L_Enable
- 128              		.section	.text.QuadDec_L_Start,"ax",%progbits
- 129              		.align	2
- 130              		.global	QuadDec_L_Start
- 131              		.thumb
- 132              		.thumb_func
- 133              		.type	QuadDec_L_Start, %function
- 134              	QuadDec_L_Start:
- 135              	.LFB2:
   91:Generated_Source\PSoC5/QuadDec_L.c **** 
   92:Generated_Source\PSoC5/QuadDec_L.c **** 
   93:Generated_Source\PSoC5/QuadDec_L.c **** /*******************************************************************************
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 5
-
-
   94:Generated_Source\PSoC5/QuadDec_L.c **** * Function Name: QuadDec_L_Start
   95:Generated_Source\PSoC5/QuadDec_L.c **** ********************************************************************************
   96:Generated_Source\PSoC5/QuadDec_L.c **** *
@@ -248,6 +178,9 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 1
   98:Generated_Source\PSoC5/QuadDec_L.c **** *  Initializes UDBs and other relevant hardware.
   99:Generated_Source\PSoC5/QuadDec_L.c **** *  Resets counter, enables or disables all relevant interrupts.
  100:Generated_Source\PSoC5/QuadDec_L.c **** *  Starts monitoring the inputs and counting.
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccGFvthk.s 			page 4
+
+
  101:Generated_Source\PSoC5/QuadDec_L.c **** *
  102:Generated_Source\PSoC5/QuadDec_L.c **** * Parameters:
  103:Generated_Source\PSoC5/QuadDec_L.c **** *  None.
@@ -265,16 +198,6 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 1
  115:Generated_Source\PSoC5/QuadDec_L.c **** *******************************************************************************/
  116:Generated_Source\PSoC5/QuadDec_L.c **** void QuadDec_L_Start(void) 
  117:Generated_Source\PSoC5/QuadDec_L.c **** {
- 136              		.loc 1 117 0
- 137              		.cfi_startproc
- 138              		@ args = 0, pretend = 0, frame = 0
- 139              		@ frame_needed = 1, uses_anonymous_args = 0
- 140 0000 80B5     		push	{r7, lr}
- 141              		.cfi_def_cfa_offset 8
- 142              		.cfi_offset 7, -8
- 143              		.cfi_offset 14, -4
- 144 0002 00AF     		add	r7, sp, #0
- 145              		.cfi_def_cfa_register 7
  118:Generated_Source\PSoC5/QuadDec_L.c ****     #if (QuadDec_L_COUNTER_SIZE == QuadDec_L_COUNTER_SIZE_8_BIT)
  119:Generated_Source\PSoC5/QuadDec_L.c ****         QuadDec_L_Cnt8_Start();
  120:Generated_Source\PSoC5/QuadDec_L.c ****         QuadDec_L_Cnt8_WriteCounter(QuadDec_L_COUNTER_INIT_VALUE);
@@ -283,66 +206,21 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 1
  123:Generated_Source\PSoC5/QuadDec_L.c ****         *  (QuadDec_L_COUNTER_SIZE == QuadDec_L_COUNTER_SIZE_32_BIT) 
  124:Generated_Source\PSoC5/QuadDec_L.c ****         */
  125:Generated_Source\PSoC5/QuadDec_L.c ****         QuadDec_L_Cnt16_Start();
- 146              		.loc 1 125 0
- 147 0004 FFF7FEFF 		bl	QuadDec_L_Cnt16_Start
  126:Generated_Source\PSoC5/QuadDec_L.c ****         QuadDec_L_Cnt16_WriteCounter(QuadDec_L_COUNTER_INIT_VALUE);
- 148              		.loc 1 126 0
- 149 0008 4FF40040 		mov	r0, #32768
- 150 000c FFF7FEFF 		bl	QuadDec_L_Cnt16_WriteCounter
  127:Generated_Source\PSoC5/QuadDec_L.c ****     #endif /* QuadDec_L_COUNTER_SIZE == QuadDec_L_COUNTER_SIZE_8_BIT */
  128:Generated_Source\PSoC5/QuadDec_L.c ****     
  129:Generated_Source\PSoC5/QuadDec_L.c ****     #if (QuadDec_L_COUNTER_SIZE == QuadDec_L_COUNTER_SIZE_32_BIT)        
  130:Generated_Source\PSoC5/QuadDec_L.c ****        QuadDec_L_count32SoftPart = 0;
- 151              		.loc 1 130 0
- 152 0010 074B     		ldr	r3, .L9
- 153 0012 0022     		movs	r2, #0
- 154 0014 1A60     		str	r2, [r3]
  131:Generated_Source\PSoC5/QuadDec_L.c ****     #endif /* QuadDec_L_COUNTER_SIZE == QuadDec_L_COUNTER_SIZE_32_BIT */
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 6
-
-
  132:Generated_Source\PSoC5/QuadDec_L.c **** 
  133:Generated_Source\PSoC5/QuadDec_L.c ****     if (QuadDec_L_initVar == 0u)
- 155              		.loc 1 133 0
- 156 0016 074B     		ldr	r3, .L9+4
- 157 0018 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 158 001a 002B     		cmp	r3, #0
- 159 001c 04D1     		bne	.L8
  134:Generated_Source\PSoC5/QuadDec_L.c ****     {
  135:Generated_Source\PSoC5/QuadDec_L.c ****         QuadDec_L_Init();
- 160              		.loc 1 135 0
- 161 001e FFF7FEFF 		bl	QuadDec_L_Init
  136:Generated_Source\PSoC5/QuadDec_L.c ****         QuadDec_L_initVar = 1u;
- 162              		.loc 1 136 0
- 163 0022 044B     		ldr	r3, .L9+4
- 164 0024 0122     		movs	r2, #1
- 165 0026 1A70     		strb	r2, [r3]
- 166              	.L8:
  137:Generated_Source\PSoC5/QuadDec_L.c ****     }
  138:Generated_Source\PSoC5/QuadDec_L.c **** 
  139:Generated_Source\PSoC5/QuadDec_L.c ****     QuadDec_L_Enable();
- 167              		.loc 1 139 0
- 168 0028 FFF7FEFF 		bl	QuadDec_L_Enable
  140:Generated_Source\PSoC5/QuadDec_L.c **** }
- 169              		.loc 1 140 0
- 170 002c 00BF     		nop
- 171 002e 80BD     		pop	{r7, pc}
- 172              	.L10:
- 173              		.align	2
- 174              	.L9:
- 175 0030 00000000 		.word	QuadDec_L_count32SoftPart
- 176 0034 00000000 		.word	QuadDec_L_initVar
- 177              		.cfi_endproc
- 178              	.LFE2:
- 179              		.size	QuadDec_L_Start, .-QuadDec_L_Start
- 180              		.section	.text.QuadDec_L_Stop,"ax",%progbits
- 181              		.align	2
- 182              		.global	QuadDec_L_Stop
- 183              		.thumb
- 184              		.thumb_func
- 185              		.type	QuadDec_L_Stop, %function
- 186              	QuadDec_L_Stop:
- 187              	.LFB3:
  141:Generated_Source\PSoC5/QuadDec_L.c **** 
  142:Generated_Source\PSoC5/QuadDec_L.c **** 
  143:Generated_Source\PSoC5/QuadDec_L.c **** /*******************************************************************************
@@ -358,24 +236,20 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 1
  153:Generated_Source\PSoC5/QuadDec_L.c **** * Return:
  154:Generated_Source\PSoC5/QuadDec_L.c **** *  None.
  155:Generated_Source\PSoC5/QuadDec_L.c **** *
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 7
-
-
  156:Generated_Source\PSoC5/QuadDec_L.c **** *******************************************************************************/
  157:Generated_Source\PSoC5/QuadDec_L.c **** void QuadDec_L_Stop(void) 
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccGFvthk.s 			page 5
+
+
  158:Generated_Source\PSoC5/QuadDec_L.c **** {
- 188              		.loc 1 158 0
- 189              		.cfi_startproc
- 190              		@ args = 0, pretend = 0, frame = 8
- 191              		@ frame_needed = 1, uses_anonymous_args = 0
- 192 0000 80B5     		push	{r7, lr}
- 193              		.cfi_def_cfa_offset 8
- 194              		.cfi_offset 7, -8
- 195              		.cfi_offset 14, -4
- 196 0002 82B0     		sub	sp, sp, #8
- 197              		.cfi_def_cfa_offset 16
- 198 0004 00AF     		add	r7, sp, #0
- 199              		.cfi_def_cfa_register 7
+  71              		.loc 1 158 0
+  72              		.cfi_startproc
+  73              		@ args = 0, pretend = 0, frame = 0
+  74              		@ frame_needed = 0, uses_anonymous_args = 0
+  75 0000 08B5     		push	{r3, lr}
+  76              		.cfi_def_cfa_offset 8
+  77              		.cfi_offset 3, -8
+  78              		.cfi_offset 14, -4
  159:Generated_Source\PSoC5/QuadDec_L.c ****     uint8 enableInterrupts;
  160:Generated_Source\PSoC5/QuadDec_L.c **** 
  161:Generated_Source\PSoC5/QuadDec_L.c ****     #if (QuadDec_L_COUNTER_SIZE == QuadDec_L_COUNTER_SIZE_8_BIT)
@@ -385,68 +259,57 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 1
  165:Generated_Source\PSoC5/QuadDec_L.c ****         *  (QuadDec_L_COUNTER_SIZE == QuadDec_L_COUNTER_SIZE_32_BIT)
  166:Generated_Source\PSoC5/QuadDec_L.c ****         */
  167:Generated_Source\PSoC5/QuadDec_L.c ****         QuadDec_L_Cnt16_Stop();    /* counter disable */
- 200              		.loc 1 167 0
- 201 0006 FFF7FEFF 		bl	QuadDec_L_Cnt16_Stop
+  79              		.loc 1 167 0
+  80 0002 FFF7FEFF 		bl	QuadDec_L_Cnt16_Stop
+  81              	.LVL2:
  168:Generated_Source\PSoC5/QuadDec_L.c ****     #endif /* (QuadDec_L_COUNTER_SIZE == QuadDec_L_COUNTER_SIZE_8_BIT) */
  169:Generated_Source\PSoC5/QuadDec_L.c ****  
  170:Generated_Source\PSoC5/QuadDec_L.c ****     enableInterrupts = CyEnterCriticalSection();
- 202              		.loc 1 170 0
- 203 000a FFF7FEFF 		bl	CyEnterCriticalSection
- 204 000e 0346     		mov	r3, r0
- 205 0010 FB71     		strb	r3, [r7, #7]
+  82              		.loc 1 170 0
+  83 0006 FFF7FEFF 		bl	CyEnterCriticalSection
+  84              	.LVL3:
  171:Generated_Source\PSoC5/QuadDec_L.c **** 
  172:Generated_Source\PSoC5/QuadDec_L.c ****     /* Disable interrupts interrupts from Statusi register */
  173:Generated_Source\PSoC5/QuadDec_L.c ****     QuadDec_L_SR_AUX_CONTROL &= (uint8) (~QuadDec_L_INTERRUPTS_ENABLE);
- 206              		.loc 1 173 0
- 207 0012 094A     		ldr	r2, .L12
- 208 0014 084B     		ldr	r3, .L12
- 209 0016 1B78     		ldrb	r3, [r3]
- 210 0018 DBB2     		uxtb	r3, r3
- 211 001a 23F01003 		bic	r3, r3, #16
- 212 001e DBB2     		uxtb	r3, r3
- 213 0020 1370     		strb	r3, [r2]
+  85              		.loc 1 173 0
+  86 000a 054A     		ldr	r2, .L5
+  87 000c 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  88 000e 03F0EF03 		and	r3, r3, #239
+  89 0012 1370     		strb	r3, [r2]
  174:Generated_Source\PSoC5/QuadDec_L.c **** 
  175:Generated_Source\PSoC5/QuadDec_L.c ****     CyExitCriticalSection(enableInterrupts);
- 214              		.loc 1 175 0
- 215 0022 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
- 216 0024 1846     		mov	r0, r3
- 217 0026 FFF7FEFF 		bl	CyExitCriticalSection
+  90              		.loc 1 175 0
+  91 0014 FFF7FEFF 		bl	CyExitCriticalSection
+  92              	.LVL4:
  176:Generated_Source\PSoC5/QuadDec_L.c **** 
  177:Generated_Source\PSoC5/QuadDec_L.c ****     #if (QuadDec_L_COUNTER_SIZE == QuadDec_L_COUNTER_SIZE_32_BIT)
  178:Generated_Source\PSoC5/QuadDec_L.c ****         CyIntDisable(QuadDec_L_ISR_NUMBER);    /* interrupt disable */
- 218              		.loc 1 178 0
- 219 002a 044B     		ldr	r3, .L12+4
- 220 002c 1022     		movs	r2, #16
- 221 002e 1A60     		str	r2, [r3]
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 8
+  93              		.loc 1 178 0
+  94 0018 024B     		ldr	r3, .L5+4
+  95 001a 1022     		movs	r2, #16
+  96 001c 1A60     		str	r2, [r3]
+  97 001e 08BD     		pop	{r3, pc}
+  98              	.L6:
+  99              		.align	2
+ 100              	.L5:
+ 101 0020 97640040 		.word	1073767575
+ 102 0024 80E100E0 		.word	-536813184
+ 103              		.cfi_endproc
+ 104              	.LFE3:
+ 105              		.size	QuadDec_L_Stop, .-QuadDec_L_Stop
+ 106              		.section	.text.QuadDec_L_GetCounter,"ax",%progbits
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccGFvthk.s 			page 6
 
 
+ 107              		.align	1
+ 108              		.global	QuadDec_L_GetCounter
+ 109              		.thumb
+ 110              		.thumb_func
+ 111              		.type	QuadDec_L_GetCounter, %function
+ 112              	QuadDec_L_GetCounter:
+ 113              	.LFB4:
  179:Generated_Source\PSoC5/QuadDec_L.c ****     #endif /* QuadDec_L_COUNTER_SIZE == QuadDec_L_COUNTER_SIZE_32_BIT */
  180:Generated_Source\PSoC5/QuadDec_L.c **** }
- 222              		.loc 1 180 0
- 223 0030 00BF     		nop
- 224 0032 0837     		adds	r7, r7, #8
- 225              		.cfi_def_cfa_offset 8
- 226 0034 BD46     		mov	sp, r7
- 227              		.cfi_def_cfa_register 13
- 228              		@ sp needed
- 229 0036 80BD     		pop	{r7, pc}
- 230              	.L13:
- 231              		.align	2
- 232              	.L12:
- 233 0038 97640040 		.word	1073767575
- 234 003c 80E100E0 		.word	-536813184
- 235              		.cfi_endproc
- 236              	.LFE3:
- 237              		.size	QuadDec_L_Stop, .-QuadDec_L_Stop
- 238              		.section	.text.QuadDec_L_GetCounter,"ax",%progbits
- 239              		.align	2
- 240              		.global	QuadDec_L_GetCounter
- 241              		.thumb
- 242              		.thumb_func
- 243              		.type	QuadDec_L_GetCounter, %function
- 244              	QuadDec_L_GetCounter:
- 245              	.LFB4:
  181:Generated_Source\PSoC5/QuadDec_L.c **** 
  182:Generated_Source\PSoC5/QuadDec_L.c **** 
  183:Generated_Source\PSoC5/QuadDec_L.c **** /*******************************************************************************
@@ -470,21 +333,10 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 1
  201:Generated_Source\PSoC5/QuadDec_L.c **** *******************************************************************************/
  202:Generated_Source\PSoC5/QuadDec_L.c **** int32 QuadDec_L_GetCounter(void) 
  203:Generated_Source\PSoC5/QuadDec_L.c **** {
- 246              		.loc 1 203 0
- 247              		.cfi_startproc
- 248              		@ args = 0, pretend = 0, frame = 8
- 249              		@ frame_needed = 1, uses_anonymous_args = 0
- 250 0000 80B5     		push	{r7, lr}
- 251              		.cfi_def_cfa_offset 8
- 252              		.cfi_offset 7, -8
- 253              		.cfi_offset 14, -4
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 9
-
-
- 254 0002 82B0     		sub	sp, sp, #8
- 255              		.cfi_def_cfa_offset 16
- 256 0004 00AF     		add	r7, sp, #0
- 257              		.cfi_def_cfa_register 7
+ 114              		.loc 1 203 0
+ 115              		.cfi_startproc
+ 116              		@ args = 0, pretend = 0, frame = 0
+ 117              		@ frame_needed = 0, uses_anonymous_args = 0
  204:Generated_Source\PSoC5/QuadDec_L.c ****     int32 count;
  205:Generated_Source\PSoC5/QuadDec_L.c ****     uint16 tmpCnt;
  206:Generated_Source\PSoC5/QuadDec_L.c **** 
@@ -492,35 +344,37 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 1
  208:Generated_Source\PSoC5/QuadDec_L.c ****         int16 hwCount;
  209:Generated_Source\PSoC5/QuadDec_L.c **** 
  210:Generated_Source\PSoC5/QuadDec_L.c ****         CyIntDisable(QuadDec_L_ISR_NUMBER);
- 258              		.loc 1 210 0
- 259 0006 0D4B     		ldr	r3, .L16
- 260 0008 1022     		movs	r2, #16
- 261 000a 1A60     		str	r2, [r3]
+ 118              		.loc 1 210 0
+ 119 0000 074B     		ldr	r3, .L8
+ 203:Generated_Source\PSoC5/QuadDec_L.c ****     int32 count;
+ 120              		.loc 1 203 0
+ 121 0002 10B5     		push	{r4, lr}
+ 122              		.cfi_def_cfa_offset 8
+ 123              		.cfi_offset 4, -8
+ 124              		.cfi_offset 14, -4
+ 125              		.loc 1 210 0
+ 126 0004 1024     		movs	r4, #16
+ 127 0006 1C60     		str	r4, [r3]
  211:Generated_Source\PSoC5/QuadDec_L.c **** 
  212:Generated_Source\PSoC5/QuadDec_L.c ****         tmpCnt = QuadDec_L_Cnt16_ReadCounter();
- 262              		.loc 1 212 0
- 263 000c FFF7FEFF 		bl	QuadDec_L_Cnt16_ReadCounter
- 264 0010 0346     		mov	r3, r0
- 265 0012 FB80     		strh	r3, [r7, #6]	@ movhi
+ 128              		.loc 1 212 0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccGFvthk.s 			page 7
+
+
+ 129 0008 FFF7FEFF 		bl	QuadDec_L_Cnt16_ReadCounter
+ 130              	.LVL5:
  213:Generated_Source\PSoC5/QuadDec_L.c ****         hwCount = (int16) ((int32) tmpCnt - (int32) QuadDec_L_COUNTER_INIT_VALUE);
- 266              		.loc 1 213 0
- 267 0014 FB88     		ldrh	r3, [r7, #6]	@ movhi
- 268 0016 A3F50043 		sub	r3, r3, #32768
- 269 001a 9BB2     		uxth	r3, r3
- 270 001c BB80     		strh	r3, [r7, #4]	@ movhi
  214:Generated_Source\PSoC5/QuadDec_L.c ****         count = QuadDec_L_count32SoftPart + hwCount;
- 271              		.loc 1 214 0
- 272 001e B7F90420 		ldrsh	r2, [r7, #4]
- 273 0022 074B     		ldr	r3, .L16+4
- 274 0024 1B68     		ldr	r3, [r3]
- 275 0026 1344     		add	r3, r3, r2
- 276 0028 3B60     		str	r3, [r7]
+ 131              		.loc 1 214 0
+ 132 000c 054B     		ldr	r3, .L8+4
  215:Generated_Source\PSoC5/QuadDec_L.c **** 
  216:Generated_Source\PSoC5/QuadDec_L.c ****         CyIntEnable(QuadDec_L_ISR_NUMBER);
- 277              		.loc 1 216 0
- 278 002a 064B     		ldr	r3, .L16+8
- 279 002c 1022     		movs	r2, #16
- 280 002e 1A60     		str	r2, [r3]
+ 133              		.loc 1 216 0
+ 134 000e 064A     		ldr	r2, .L8+8
+ 214:Generated_Source\PSoC5/QuadDec_L.c **** 
+ 135              		.loc 1 214 0
+ 136 0010 1B68     		ldr	r3, [r3]
+ 137              	.LVL6:
  217:Generated_Source\PSoC5/QuadDec_L.c ****     #else 
  218:Generated_Source\PSoC5/QuadDec_L.c ****         /* (QuadDec_L_COUNTER_SIZE == QuadDec_L_COUNTER_SIZE_8_BIT) || 
  219:Generated_Source\PSoC5/QuadDec_L.c ****         *  (QuadDec_L_COUNTER_SIZE == QuadDec_L_COUNTER_SIZE_16_BIT)
@@ -537,37 +391,37 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 1
  230:Generated_Source\PSoC5/QuadDec_L.c ****     #endif /* QuadDec_L_COUNTER_SIZE == QuadDec_L_COUNTER_SIZE_32_BIT */ 
  231:Generated_Source\PSoC5/QuadDec_L.c **** 
  232:Generated_Source\PSoC5/QuadDec_L.c ****     return (count);
- 281              		.loc 1 232 0
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 10
-
-
- 282 0030 3B68     		ldr	r3, [r7]
+ 138              		.loc 1 232 0
+ 139 0012 A0F50040 		sub	r0, r0, #32768
+ 140              	.LVL7:
+ 141 0016 00B2     		sxth	r0, r0
+ 216:Generated_Source\PSoC5/QuadDec_L.c ****     #else 
+ 142              		.loc 1 216 0
+ 143 0018 1460     		str	r4, [r2]
  233:Generated_Source\PSoC5/QuadDec_L.c **** }
- 283              		.loc 1 233 0
- 284 0032 1846     		mov	r0, r3
- 285 0034 0837     		adds	r7, r7, #8
- 286              		.cfi_def_cfa_offset 8
- 287 0036 BD46     		mov	sp, r7
- 288              		.cfi_def_cfa_register 13
- 289              		@ sp needed
- 290 0038 80BD     		pop	{r7, pc}
- 291              	.L17:
- 292 003a 00BF     		.align	2
- 293              	.L16:
- 294 003c 80E100E0 		.word	-536813184
- 295 0040 00000000 		.word	QuadDec_L_count32SoftPart
- 296 0044 00E100E0 		.word	-536813312
- 297              		.cfi_endproc
- 298              	.LFE4:
- 299              		.size	QuadDec_L_GetCounter, .-QuadDec_L_GetCounter
- 300              		.section	.text.QuadDec_L_SetCounter,"ax",%progbits
- 301              		.align	2
- 302              		.global	QuadDec_L_SetCounter
- 303              		.thumb
- 304              		.thumb_func
- 305              		.type	QuadDec_L_SetCounter, %function
- 306              	QuadDec_L_SetCounter:
- 307              	.LFB5:
+ 144              		.loc 1 233 0
+ 145 001a 1844     		add	r0, r0, r3
+ 146 001c 10BD     		pop	{r4, pc}
+ 147              	.L9:
+ 148 001e 00BF     		.align	2
+ 149              	.L8:
+ 150 0020 80E100E0 		.word	-536813184
+ 151 0024 00000000 		.word	QuadDec_L_count32SoftPart
+ 152 0028 00E100E0 		.word	-536813312
+ 153              		.cfi_endproc
+ 154              	.LFE4:
+ 155              		.size	QuadDec_L_GetCounter, .-QuadDec_L_GetCounter
+ 156              		.section	.text.QuadDec_L_SetCounter,"ax",%progbits
+ 157              		.align	1
+ 158              		.global	QuadDec_L_SetCounter
+ 159              		.thumb
+ 160              		.thumb_func
+ 161              		.type	QuadDec_L_SetCounter, %function
+ 162              	QuadDec_L_SetCounter:
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccGFvthk.s 			page 8
+
+
+ 163              	.LFB5:
  234:Generated_Source\PSoC5/QuadDec_L.c **** 
  235:Generated_Source\PSoC5/QuadDec_L.c **** 
  236:Generated_Source\PSoC5/QuadDec_L.c **** /*******************************************************************************
@@ -594,22 +448,19 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 1
  257:Generated_Source\PSoC5/QuadDec_L.c **** *******************************************************************************/
  258:Generated_Source\PSoC5/QuadDec_L.c **** void QuadDec_L_SetCounter(int32 value) 
  259:Generated_Source\PSoC5/QuadDec_L.c **** {
- 308              		.loc 1 259 0
- 309              		.cfi_startproc
- 310              		@ args = 0, pretend = 0, frame = 8
- 311              		@ frame_needed = 1, uses_anonymous_args = 0
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 11
-
-
- 312 0000 80B5     		push	{r7, lr}
- 313              		.cfi_def_cfa_offset 8
- 314              		.cfi_offset 7, -8
- 315              		.cfi_offset 14, -4
- 316 0002 82B0     		sub	sp, sp, #8
- 317              		.cfi_def_cfa_offset 16
- 318 0004 00AF     		add	r7, sp, #0
- 319              		.cfi_def_cfa_register 7
- 320 0006 7860     		str	r0, [r7, #4]
+ 164              		.loc 1 259 0
+ 165              		.cfi_startproc
+ 166              		@ args = 0, pretend = 0, frame = 0
+ 167              		@ frame_needed = 0, uses_anonymous_args = 0
+ 168              	.LVL8:
+ 169 0000 38B5     		push	{r3, r4, r5, lr}
+ 170              		.cfi_def_cfa_offset 16
+ 171              		.cfi_offset 3, -16
+ 172              		.cfi_offset 4, -12
+ 173              		.cfi_offset 5, -8
+ 174              		.cfi_offset 14, -4
+ 175              		.loc 1 259 0
+ 176 0002 0546     		mov	r5, r0
  260:Generated_Source\PSoC5/QuadDec_L.c ****     #if ((QuadDec_L_COUNTER_SIZE == QuadDec_L_COUNTER_SIZE_8_BIT) || \
  261:Generated_Source\PSoC5/QuadDec_L.c ****          (QuadDec_L_COUNTER_SIZE == QuadDec_L_COUNTER_SIZE_16_BIT))
  262:Generated_Source\PSoC5/QuadDec_L.c ****         uint16 count;
@@ -627,60 +478,54 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 1
  274:Generated_Source\PSoC5/QuadDec_L.c ****         #else /* (QuadDec_L_COUNTER_SIZE == QuadDec_L_COUNTER_SIZE_16_BIT) */
  275:Generated_Source\PSoC5/QuadDec_L.c ****             QuadDec_L_Cnt16_WriteCounter(count);
  276:Generated_Source\PSoC5/QuadDec_L.c ****         #endif  /* QuadDec_L_COUNTER_SIZE == QuadDec_L_COUNTER_SIZE_8_BIT */
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccGFvthk.s 			page 9
+
+
  277:Generated_Source\PSoC5/QuadDec_L.c ****     #else /* (QuadDec_L_COUNTER_SIZE == QuadDec_L_COUNTER_SIZE_32_BIT) */
  278:Generated_Source\PSoC5/QuadDec_L.c ****         CyIntDisable(QuadDec_L_ISR_NUMBER);
- 321              		.loc 1 278 0
- 322 0008 084B     		ldr	r3, .L19
- 323 000a 1022     		movs	r2, #16
- 324 000c 1A60     		str	r2, [r3]
+ 177              		.loc 1 278 0
+ 178 0004 054B     		ldr	r3, .L11
+ 179 0006 1024     		movs	r4, #16
+ 180 0008 1C60     		str	r4, [r3]
  279:Generated_Source\PSoC5/QuadDec_L.c **** 
  280:Generated_Source\PSoC5/QuadDec_L.c ****         QuadDec_L_Cnt16_WriteCounter(QuadDec_L_COUNTER_INIT_VALUE);
- 325              		.loc 1 280 0
- 326 000e 4FF40040 		mov	r0, #32768
- 327 0012 FFF7FEFF 		bl	QuadDec_L_Cnt16_WriteCounter
+ 181              		.loc 1 280 0
+ 182 000a 4FF40040 		mov	r0, #32768
+ 183              	.LVL9:
+ 184 000e FFF7FEFF 		bl	QuadDec_L_Cnt16_WriteCounter
+ 185              	.LVL10:
  281:Generated_Source\PSoC5/QuadDec_L.c ****         QuadDec_L_count32SoftPart = value;
- 328              		.loc 1 281 0
- 329 0016 064A     		ldr	r2, .L19+4
- 330 0018 7B68     		ldr	r3, [r7, #4]
- 331 001a 1360     		str	r3, [r2]
+ 186              		.loc 1 281 0
+ 187 0012 034B     		ldr	r3, .L11+4
+ 188 0014 1D60     		str	r5, [r3]
  282:Generated_Source\PSoC5/QuadDec_L.c **** 
  283:Generated_Source\PSoC5/QuadDec_L.c ****         CyIntEnable(QuadDec_L_ISR_NUMBER);
- 332              		.loc 1 283 0
- 333 001c 054B     		ldr	r3, .L19+8
- 334 001e 1022     		movs	r2, #16
- 335 0020 1A60     		str	r2, [r3]
+ 189              		.loc 1 283 0
+ 190 0016 034B     		ldr	r3, .L11+8
+ 191 0018 1C60     		str	r4, [r3]
+ 192 001a 38BD     		pop	{r3, r4, r5, pc}
+ 193              	.LVL11:
+ 194              	.L12:
+ 195              		.align	2
+ 196              	.L11:
+ 197 001c 80E100E0 		.word	-536813184
+ 198 0020 00000000 		.word	QuadDec_L_count32SoftPart
+ 199 0024 00E100E0 		.word	-536813312
+ 200              		.cfi_endproc
+ 201              	.LFE5:
+ 202              		.size	QuadDec_L_SetCounter, .-QuadDec_L_SetCounter
+ 203              		.section	.text.QuadDec_L_GetEvents,"ax",%progbits
+ 204              		.align	1
+ 205              		.global	QuadDec_L_GetEvents
+ 206              		.thumb
+ 207              		.thumb_func
+ 208              		.type	QuadDec_L_GetEvents, %function
+ 209              	QuadDec_L_GetEvents:
+ 210              	.LFB6:
  284:Generated_Source\PSoC5/QuadDec_L.c ****     #endif  /* (QuadDec_L_COUNTER_SIZE == QuadDec_L_COUNTER_SIZE_8_BIT) ||
  285:Generated_Source\PSoC5/QuadDec_L.c ****              * (QuadDec_L_COUNTER_SIZE == QuadDec_L_COUNTER_SIZE_16_BIT)
  286:Generated_Source\PSoC5/QuadDec_L.c ****              */
  287:Generated_Source\PSoC5/QuadDec_L.c **** }
- 336              		.loc 1 287 0
- 337 0022 00BF     		nop
- 338 0024 0837     		adds	r7, r7, #8
- 339              		.cfi_def_cfa_offset 8
- 340 0026 BD46     		mov	sp, r7
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 12
-
-
- 341              		.cfi_def_cfa_register 13
- 342              		@ sp needed
- 343 0028 80BD     		pop	{r7, pc}
- 344              	.L20:
- 345 002a 00BF     		.align	2
- 346              	.L19:
- 347 002c 80E100E0 		.word	-536813184
- 348 0030 00000000 		.word	QuadDec_L_count32SoftPart
- 349 0034 00E100E0 		.word	-536813312
- 350              		.cfi_endproc
- 351              	.LFE5:
- 352              		.size	QuadDec_L_SetCounter, .-QuadDec_L_SetCounter
- 353              		.section	.text.QuadDec_L_GetEvents,"ax",%progbits
- 354              		.align	2
- 355              		.global	QuadDec_L_GetEvents
- 356              		.thumb
- 357              		.thumb_func
- 358              		.type	QuadDec_L_GetEvents, %function
- 359              	QuadDec_L_GetEvents:
- 360              	.LFB6:
  288:Generated_Source\PSoC5/QuadDec_L.c **** 
  289:Generated_Source\PSoC5/QuadDec_L.c **** 
  290:Generated_Source\PSoC5/QuadDec_L.c **** /*******************************************************************************
@@ -693,6 +538,9 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 1
  297:Generated_Source\PSoC5/QuadDec_L.c **** *
  298:Generated_Source\PSoC5/QuadDec_L.c **** * Parameters:
  299:Generated_Source\PSoC5/QuadDec_L.c **** *  None.
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccGFvthk.s 			page 10
+
+
  300:Generated_Source\PSoC5/QuadDec_L.c **** *
  301:Generated_Source\PSoC5/QuadDec_L.c **** * Return:
  302:Generated_Source\PSoC5/QuadDec_L.c **** *  The events, as bits in an unsigned 8-bit value:
@@ -705,56 +553,54 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 1
  309:Generated_Source\PSoC5/QuadDec_L.c **** *******************************************************************************/
  310:Generated_Source\PSoC5/QuadDec_L.c **** uint8 QuadDec_L_GetEvents(void) 
  311:Generated_Source\PSoC5/QuadDec_L.c **** {
- 361              		.loc 1 311 0
- 362              		.cfi_startproc
- 363              		@ args = 0, pretend = 0, frame = 0
- 364              		@ frame_needed = 1, uses_anonymous_args = 0
- 365              		@ link register save eliminated.
- 366 0000 80B4     		push	{r7}
- 367              		.cfi_def_cfa_offset 4
- 368              		.cfi_offset 7, -4
- 369 0002 00AF     		add	r7, sp, #0
- 370              		.cfi_def_cfa_register 7
+ 211              		.loc 1 311 0
+ 212              		.cfi_startproc
+ 213              		@ args = 0, pretend = 0, frame = 0
+ 214              		@ frame_needed = 0, uses_anonymous_args = 0
+ 215              		@ link register save eliminated.
  312:Generated_Source\PSoC5/QuadDec_L.c ****     return (QuadDec_L_STATUS_REG & QuadDec_L_INIT_INT_MASK);
- 371              		.loc 1 312 0
- 372 0004 044B     		ldr	r3, .L23
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 13
-
-
- 373 0006 1B78     		ldrb	r3, [r3]
- 374 0008 DBB2     		uxtb	r3, r3
- 375 000a 03F00F03 		and	r3, r3, #15
- 376 000e DBB2     		uxtb	r3, r3
+ 216              		.loc 1 312 0
+ 217 0000 024B     		ldr	r3, .L14
+ 218 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
  313:Generated_Source\PSoC5/QuadDec_L.c **** }
- 377              		.loc 1 313 0
- 378 0010 1846     		mov	r0, r3
- 379 0012 BD46     		mov	sp, r7
- 380              		.cfi_def_cfa_register 13
- 381              		@ sp needed
- 382 0014 80BC     		pop	{r7}
- 383              		.cfi_restore 7
- 384              		.cfi_def_cfa_offset 0
- 385 0016 7047     		bx	lr
- 386              	.L24:
- 387              		.align	2
- 388              	.L23:
- 389 0018 67640040 		.word	1073767527
- 390              		.cfi_endproc
- 391              	.LFE6:
- 392              		.size	QuadDec_L_GetEvents, .-QuadDec_L_GetEvents
- 393              		.section	.text.QuadDec_L_SetInterruptMask,"ax",%progbits
- 394              		.align	2
- 395              		.global	QuadDec_L_SetInterruptMask
- 396              		.thumb
- 397              		.thumb_func
- 398              		.type	QuadDec_L_SetInterruptMask, %function
- 399              	QuadDec_L_SetInterruptMask:
- 400              	.LFB7:
+ 219              		.loc 1 313 0
+ 220 0004 00F00F00 		and	r0, r0, #15
+ 221 0008 7047     		bx	lr
+ 222              	.L15:
+ 223 000a 00BF     		.align	2
+ 224              	.L14:
+ 225 000c 67640040 		.word	1073767527
+ 226              		.cfi_endproc
+ 227              	.LFE6:
+ 228              		.size	QuadDec_L_GetEvents, .-QuadDec_L_GetEvents
+ 229              		.section	.text.QuadDec_L_Enable,"ax",%progbits
+ 230              		.align	1
+ 231              		.global	QuadDec_L_Enable
+ 232              		.thumb
+ 233              		.thumb_func
+ 234              		.type	QuadDec_L_Enable, %function
+ 235              	QuadDec_L_Enable:
+ 236              	.LFB1:
+  71:Generated_Source\PSoC5/QuadDec_L.c ****     uint8 enableInterrupts;
+ 237              		.loc 1 71 0
+ 238              		.cfi_startproc
+ 239              		@ args = 0, pretend = 0, frame = 0
+ 240              		@ frame_needed = 0, uses_anonymous_args = 0
+ 241              	.LVL12:
+ 242 0000 08B5     		push	{r3, lr}
+ 243              		.cfi_def_cfa_offset 8
+ 244              		.cfi_offset 3, -8
+ 245              		.cfi_offset 14, -4
+ 246              	.LBB4:
+ 247              	.LBB5:
  314:Generated_Source\PSoC5/QuadDec_L.c **** 
  315:Generated_Source\PSoC5/QuadDec_L.c **** 
  316:Generated_Source\PSoC5/QuadDec_L.c **** /*******************************************************************************
  317:Generated_Source\PSoC5/QuadDec_L.c **** * Function Name: QuadDec_L_SetInterruptMask
  318:Generated_Source\PSoC5/QuadDec_L.c **** ********************************************************************************
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccGFvthk.s 			page 11
+
+
  319:Generated_Source\PSoC5/QuadDec_L.c **** *
  320:Generated_Source\PSoC5/QuadDec_L.c **** * Summary:
  321:Generated_Source\PSoC5/QuadDec_L.c **** *  Enables / disables interrupts due to the events.
@@ -770,77 +616,176 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 1
  331:Generated_Source\PSoC5/QuadDec_L.c **** *******************************************************************************/
  332:Generated_Source\PSoC5/QuadDec_L.c **** void QuadDec_L_SetInterruptMask(uint8 mask) 
  333:Generated_Source\PSoC5/QuadDec_L.c **** {
- 401              		.loc 1 333 0
- 402              		.cfi_startproc
- 403              		@ args = 0, pretend = 0, frame = 8
- 404              		@ frame_needed = 1, uses_anonymous_args = 0
- 405              		@ link register save eliminated.
- 406 0000 80B4     		push	{r7}
- 407              		.cfi_def_cfa_offset 4
- 408              		.cfi_offset 7, -4
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 14
-
-
- 409 0002 83B0     		sub	sp, sp, #12
- 410              		.cfi_def_cfa_offset 16
- 411 0004 00AF     		add	r7, sp, #0
- 412              		.cfi_def_cfa_register 7
- 413 0006 0346     		mov	r3, r0
- 414 0008 FB71     		strb	r3, [r7, #7]
  334:Generated_Source\PSoC5/QuadDec_L.c ****     #if (QuadDec_L_COUNTER_SIZE == QuadDec_L_COUNTER_SIZE_32_BIT)
  335:Generated_Source\PSoC5/QuadDec_L.c ****         /* Underflow, Overflow and Reset interrupts for 32-bit Counter are always enable */
  336:Generated_Source\PSoC5/QuadDec_L.c ****         mask |= (QuadDec_L_COUNTER_OVERFLOW | QuadDec_L_COUNTER_UNDERFLOW |
- 415              		.loc 1 336 0
- 416 000a FB79     		ldrb	r3, [r7, #7]
- 417 000c 43F00703 		orr	r3, r3, #7
- 418 0010 FB71     		strb	r3, [r7, #7]
  337:Generated_Source\PSoC5/QuadDec_L.c ****                  QuadDec_L_COUNTER_RESET);
  338:Generated_Source\PSoC5/QuadDec_L.c ****     #endif /* QuadDec_L_COUNTER_SIZE == QuadDec_L_COUNTER_SIZE_32_BIT */
  339:Generated_Source\PSoC5/QuadDec_L.c **** 
  340:Generated_Source\PSoC5/QuadDec_L.c ****     QuadDec_L_STATUS_MASK = mask;
- 419              		.loc 1 340 0
- 420 0012 044A     		ldr	r2, .L26
- 421 0014 FB79     		ldrb	r3, [r7, #7]
- 422 0016 1370     		strb	r3, [r2]
+ 248              		.loc 1 340 0
+ 249 0002 094B     		ldr	r3, .L17
+ 250 0004 0F22     		movs	r2, #15
+ 251 0006 1A70     		strb	r2, [r3]
+ 252              	.LVL13:
+ 253              	.LBE5:
+ 254              	.LBE4:
+  77:Generated_Source\PSoC5/QuadDec_L.c ****     
+ 255              		.loc 1 77 0
+ 256 0008 FFF7FEFF 		bl	QuadDec_L_GetEvents
+ 257              	.LVL14:
+  79:Generated_Source\PSoC5/QuadDec_L.c **** 
+ 258              		.loc 1 79 0
+ 259 000c FFF7FEFF 		bl	CyEnterCriticalSection
+ 260              	.LVL15:
+  82:Generated_Source\PSoC5/QuadDec_L.c **** 
+ 261              		.loc 1 82 0
+ 262 0010 064A     		ldr	r2, .L17+4
+ 263 0012 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 264 0014 43F01003 		orr	r3, r3, #16
+ 265 0018 1370     		strb	r3, [r2]
+  84:Generated_Source\PSoC5/QuadDec_L.c **** 
+ 266              		.loc 1 84 0
+ 267 001a FFF7FEFF 		bl	CyExitCriticalSection
+ 268              	.LVL16:
+  88:Generated_Source\PSoC5/QuadDec_L.c ****     #endif /* QuadDec_L_COUNTER_SIZE == QuadDec_L_COUNTER_SIZE_32_BIT */
+ 269              		.loc 1 88 0
+ 270 001e 044B     		ldr	r3, .L17+8
+ 271 0020 1022     		movs	r2, #16
+ 272 0022 1A60     		str	r2, [r3]
+ 273 0024 08BD     		pop	{r3, pc}
+ 274              	.L18:
+ 275 0026 00BF     		.align	2
+ 276              	.L17:
+ 277 0028 87640040 		.word	1073767559
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccGFvthk.s 			page 12
+
+
+ 278 002c 97640040 		.word	1073767575
+ 279 0030 00E100E0 		.word	-536813312
+ 280              		.cfi_endproc
+ 281              	.LFE1:
+ 282              		.size	QuadDec_L_Enable, .-QuadDec_L_Enable
+ 283              		.section	.text.QuadDec_L_Start,"ax",%progbits
+ 284              		.align	1
+ 285              		.global	QuadDec_L_Start
+ 286              		.thumb
+ 287              		.thumb_func
+ 288              		.type	QuadDec_L_Start, %function
+ 289              	QuadDec_L_Start:
+ 290              	.LFB2:
+ 117:Generated_Source\PSoC5/QuadDec_L.c ****     #if (QuadDec_L_COUNTER_SIZE == QuadDec_L_COUNTER_SIZE_8_BIT)
+ 291              		.loc 1 117 0
+ 292              		.cfi_startproc
+ 293              		@ args = 0, pretend = 0, frame = 0
+ 294              		@ frame_needed = 0, uses_anonymous_args = 0
+ 295 0000 10B5     		push	{r4, lr}
+ 296              		.cfi_def_cfa_offset 8
+ 297              		.cfi_offset 4, -8
+ 298              		.cfi_offset 14, -4
+ 125:Generated_Source\PSoC5/QuadDec_L.c ****         QuadDec_L_Cnt16_WriteCounter(QuadDec_L_COUNTER_INIT_VALUE);
+ 299              		.loc 1 125 0
+ 300 0002 FFF7FEFF 		bl	QuadDec_L_Cnt16_Start
+ 301              	.LVL17:
+ 126:Generated_Source\PSoC5/QuadDec_L.c ****     #endif /* QuadDec_L_COUNTER_SIZE == QuadDec_L_COUNTER_SIZE_8_BIT */
+ 302              		.loc 1 126 0
+ 303 0006 4FF40040 		mov	r0, #32768
+ 304 000a FFF7FEFF 		bl	QuadDec_L_Cnt16_WriteCounter
+ 305              	.LVL18:
+ 133:Generated_Source\PSoC5/QuadDec_L.c ****     {
+ 306              		.loc 1 133 0
+ 307 000e 074C     		ldr	r4, .L22
+ 130:Generated_Source\PSoC5/QuadDec_L.c ****     #endif /* QuadDec_L_COUNTER_SIZE == QuadDec_L_COUNTER_SIZE_32_BIT */
+ 308              		.loc 1 130 0
+ 309 0010 074B     		ldr	r3, .L22+4
+ 310 0012 0022     		movs	r2, #0
+ 311 0014 1A60     		str	r2, [r3]
+ 133:Generated_Source\PSoC5/QuadDec_L.c ****     {
+ 312              		.loc 1 133 0
+ 313 0016 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 314 0018 1BB9     		cbnz	r3, .L20
+ 135:Generated_Source\PSoC5/QuadDec_L.c ****         QuadDec_L_initVar = 1u;
+ 315              		.loc 1 135 0
+ 316 001a FFF7FEFF 		bl	QuadDec_L_Init
+ 317              	.LVL19:
+ 136:Generated_Source\PSoC5/QuadDec_L.c ****     }
+ 318              		.loc 1 136 0
+ 319 001e 0123     		movs	r3, #1
+ 320 0020 2370     		strb	r3, [r4]
+ 321              	.L20:
+ 140:Generated_Source\PSoC5/QuadDec_L.c **** 
+ 322              		.loc 1 140 0
+ 323 0022 BDE81040 		pop	{r4, lr}
+ 324              		.cfi_restore 14
+ 325              		.cfi_restore 4
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccGFvthk.s 			page 13
+
+
+ 326              		.cfi_def_cfa_offset 0
+ 139:Generated_Source\PSoC5/QuadDec_L.c **** }
+ 327              		.loc 1 139 0
+ 328 0026 FFF7FEBF 		b	QuadDec_L_Enable
+ 329              	.LVL20:
+ 330              	.L23:
+ 331 002a 00BF     		.align	2
+ 332              	.L22:
+ 333 002c 00000000 		.word	.LANCHOR0
+ 334 0030 00000000 		.word	QuadDec_L_count32SoftPart
+ 335              		.cfi_endproc
+ 336              	.LFE2:
+ 337              		.size	QuadDec_L_Start, .-QuadDec_L_Start
+ 338              		.section	.text.QuadDec_L_SetInterruptMask,"ax",%progbits
+ 339              		.align	1
+ 340              		.global	QuadDec_L_SetInterruptMask
+ 341              		.thumb
+ 342              		.thumb_func
+ 343              		.type	QuadDec_L_SetInterruptMask, %function
+ 344              	QuadDec_L_SetInterruptMask:
+ 345              	.LFB7:
+ 333:Generated_Source\PSoC5/QuadDec_L.c ****     #if (QuadDec_L_COUNTER_SIZE == QuadDec_L_COUNTER_SIZE_32_BIT)
+ 346              		.loc 1 333 0
+ 347              		.cfi_startproc
+ 348              		@ args = 0, pretend = 0, frame = 0
+ 349              		@ frame_needed = 0, uses_anonymous_args = 0
+ 350              		@ link register save eliminated.
+ 351              	.LVL21:
+ 352              		.loc 1 340 0
+ 353 0000 024B     		ldr	r3, .L25
+ 336:Generated_Source\PSoC5/QuadDec_L.c ****                  QuadDec_L_COUNTER_RESET);
+ 354              		.loc 1 336 0
+ 355 0002 40F00700 		orr	r0, r0, #7
+ 356              	.LVL22:
+ 357              		.loc 1 340 0
+ 358 0006 1870     		strb	r0, [r3]
+ 359 0008 7047     		bx	lr
+ 360              	.L26:
+ 361 000a 00BF     		.align	2
+ 362              	.L25:
+ 363 000c 87640040 		.word	1073767559
+ 364              		.cfi_endproc
+ 365              	.LFE7:
+ 366              		.size	QuadDec_L_SetInterruptMask, .-QuadDec_L_SetInterruptMask
+ 367              		.section	.text.QuadDec_L_GetInterruptMask,"ax",%progbits
+ 368              		.align	1
+ 369              		.global	QuadDec_L_GetInterruptMask
+ 370              		.thumb
+ 371              		.thumb_func
+ 372              		.type	QuadDec_L_GetInterruptMask, %function
+ 373              	QuadDec_L_GetInterruptMask:
+ 374              	.LFB8:
  341:Generated_Source\PSoC5/QuadDec_L.c **** }
- 423              		.loc 1 341 0
- 424 0018 00BF     		nop
- 425 001a 0C37     		adds	r7, r7, #12
- 426              		.cfi_def_cfa_offset 4
- 427 001c BD46     		mov	sp, r7
- 428              		.cfi_def_cfa_register 13
- 429              		@ sp needed
- 430 001e 80BC     		pop	{r7}
- 431              		.cfi_restore 7
- 432              		.cfi_def_cfa_offset 0
- 433 0020 7047     		bx	lr
- 434              	.L27:
- 435 0022 00BF     		.align	2
- 436              	.L26:
- 437 0024 87640040 		.word	1073767559
- 438              		.cfi_endproc
- 439              	.LFE7:
- 440              		.size	QuadDec_L_SetInterruptMask, .-QuadDec_L_SetInterruptMask
- 441              		.section	.text.QuadDec_L_GetInterruptMask,"ax",%progbits
- 442              		.align	2
- 443              		.global	QuadDec_L_GetInterruptMask
- 444              		.thumb
- 445              		.thumb_func
- 446              		.type	QuadDec_L_GetInterruptMask, %function
- 447              	QuadDec_L_GetInterruptMask:
- 448              	.LFB8:
  342:Generated_Source\PSoC5/QuadDec_L.c **** 
  343:Generated_Source\PSoC5/QuadDec_L.c **** 
  344:Generated_Source\PSoC5/QuadDec_L.c **** /*******************************************************************************
  345:Generated_Source\PSoC5/QuadDec_L.c **** * Function Name: QuadDec_L_GetInterruptMask
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccGFvthk.s 			page 14
+
+
  346:Generated_Source\PSoC5/QuadDec_L.c **** ********************************************************************************
  347:Generated_Source\PSoC5/QuadDec_L.c **** *
  348:Generated_Source\PSoC5/QuadDec_L.c **** * Summary:
  349:Generated_Source\PSoC5/QuadDec_L.c **** *  Reports the current interrupt mask settings.
  350:Generated_Source\PSoC5/QuadDec_L.c **** *
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 15
-
-
  351:Generated_Source\PSoC5/QuadDec_L.c **** * Parameters:
  352:Generated_Source\PSoC5/QuadDec_L.c **** *  None.
  353:Generated_Source\PSoC5/QuadDec_L.c **** *
@@ -852,892 +797,1264 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 1
  359:Generated_Source\PSoC5/QuadDec_L.c **** *******************************************************************************/
  360:Generated_Source\PSoC5/QuadDec_L.c **** uint8 QuadDec_L_GetInterruptMask(void) 
  361:Generated_Source\PSoC5/QuadDec_L.c **** {
- 449              		.loc 1 361 0
- 450              		.cfi_startproc
- 451              		@ args = 0, pretend = 0, frame = 0
- 452              		@ frame_needed = 1, uses_anonymous_args = 0
- 453              		@ link register save eliminated.
- 454 0000 80B4     		push	{r7}
- 455              		.cfi_def_cfa_offset 4
- 456              		.cfi_offset 7, -4
- 457 0002 00AF     		add	r7, sp, #0
- 458              		.cfi_def_cfa_register 7
+ 375              		.loc 1 361 0
+ 376              		.cfi_startproc
+ 377              		@ args = 0, pretend = 0, frame = 0
+ 378              		@ frame_needed = 0, uses_anonymous_args = 0
+ 379              		@ link register save eliminated.
  362:Generated_Source\PSoC5/QuadDec_L.c ****     return (QuadDec_L_STATUS_MASK & QuadDec_L_INIT_INT_MASK);
- 459              		.loc 1 362 0
- 460 0004 044B     		ldr	r3, .L30
- 461 0006 1B78     		ldrb	r3, [r3]
- 462 0008 DBB2     		uxtb	r3, r3
- 463 000a 03F00F03 		and	r3, r3, #15
- 464 000e DBB2     		uxtb	r3, r3
+ 380              		.loc 1 362 0
+ 381 0000 024B     		ldr	r3, .L28
+ 382 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
  363:Generated_Source\PSoC5/QuadDec_L.c **** }
- 465              		.loc 1 363 0
- 466 0010 1846     		mov	r0, r3
- 467 0012 BD46     		mov	sp, r7
- 468              		.cfi_def_cfa_register 13
- 469              		@ sp needed
- 470 0014 80BC     		pop	{r7}
- 471              		.cfi_restore 7
- 472              		.cfi_def_cfa_offset 0
- 473 0016 7047     		bx	lr
- 474              	.L31:
- 475              		.align	2
- 476              	.L30:
- 477 0018 87640040 		.word	1073767559
- 478              		.cfi_endproc
- 479              	.LFE8:
- 480              		.size	QuadDec_L_GetInterruptMask, .-QuadDec_L_GetInterruptMask
- 481              		.text
- 482              	.Letext0:
- 483              		.file 2 "Generated_Source\\PSoC5\\cytypes.h"
- 484              		.file 3 "Generated_Source\\PSoC5\\QuadDec_L_PVT.h"
- 485              		.section	.debug_info,"",%progbits
- 486              	.Ldebug_info0:
- 487 0000 30020000 		.4byte	0x230
- 488 0004 0400     		.2byte	0x4
- 489 0006 00000000 		.4byte	.Ldebug_abbrev0
- 490 000a 04       		.byte	0x4
- 491 000b 01       		.uleb128 0x1
- 492 000c 21000000 		.4byte	.LASF37
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 16
+ 383              		.loc 1 363 0
+ 384 0004 00F00F00 		and	r0, r0, #15
+ 385 0008 7047     		bx	lr
+ 386              	.L29:
+ 387 000a 00BF     		.align	2
+ 388              	.L28:
+ 389 000c 87640040 		.word	1073767559
+ 390              		.cfi_endproc
+ 391              	.LFE8:
+ 392              		.size	QuadDec_L_GetInterruptMask, .-QuadDec_L_GetInterruptMask
+ 393              		.global	QuadDec_L_initVar
+ 394              		.bss
+ 395              		.set	.LANCHOR0,. + 0
+ 396              		.type	QuadDec_L_initVar, %object
+ 397              		.size	QuadDec_L_initVar, 1
+ 398              	QuadDec_L_initVar:
+ 399 0000 00       		.space	1
+ 400              		.text
+ 401              	.Letext0:
+ 402              		.file 2 "Generated_Source\\PSoC5\\cytypes.h"
+ 403              		.file 3 "Generated_Source\\PSoC5\\QuadDec_L_PVT.h"
+ 404              		.file 4 "Generated_Source\\PSoC5\\CyLib.h"
+ 405              		.file 5 "Generated_Source\\PSoC5\\QuadDec_L_Cnt16.h"
+ 406              		.section	.debug_info,"",%progbits
+ 407              	.Ldebug_info0:
+ 408 0000 6D030000 		.4byte	0x36d
+ 409 0004 0400     		.2byte	0x4
+ 410 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 411 000a 04       		.byte	0x4
+ 412 000b 01       		.uleb128 0x1
+ 413 000c 13010000 		.4byte	.LASF42
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccGFvthk.s 			page 15
 
 
- 493 0010 0C       		.byte	0xc
- 494 0011 04010000 		.4byte	.LASF38
- 495 0015 46010000 		.4byte	.LASF39
- 496 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 497 001d 00000000 		.4byte	0
- 498 0021 00000000 		.4byte	.Ldebug_line0
- 499 0025 02       		.uleb128 0x2
- 500 0026 04       		.byte	0x4
- 501 0027 05       		.byte	0x5
- 502 0028 696E7400 		.ascii	"int\000"
- 503 002c 03       		.uleb128 0x3
- 504 002d 04       		.byte	0x4
- 505 002e 07       		.byte	0x7
- 506 002f 14020000 		.4byte	.LASF0
- 507 0033 03       		.uleb128 0x3
- 508 0034 08       		.byte	0x8
- 509 0035 05       		.byte	0x5
- 510 0036 58020000 		.4byte	.LASF1
- 511 003a 03       		.uleb128 0x3
- 512 003b 08       		.byte	0x8
- 513 003c 04       		.byte	0x4
- 514 003d B2020000 		.4byte	.LASF2
- 515 0041 03       		.uleb128 0x3
- 516 0042 01       		.byte	0x1
- 517 0043 06       		.byte	0x6
- 518 0044 BE020000 		.4byte	.LASF3
- 519 0048 03       		.uleb128 0x3
- 520 0049 01       		.byte	0x1
- 521 004a 08       		.byte	0x8
- 522 004b E9000000 		.4byte	.LASF4
- 523 004f 03       		.uleb128 0x3
- 524 0050 02       		.byte	0x2
- 525 0051 05       		.byte	0x5
- 526 0052 94020000 		.4byte	.LASF5
- 527 0056 03       		.uleb128 0x3
- 528 0057 02       		.byte	0x2
- 529 0058 07       		.byte	0x7
- 530 0059 D0000000 		.4byte	.LASF6
- 531 005d 03       		.uleb128 0x3
- 532 005e 04       		.byte	0x4
- 533 005f 05       		.byte	0x5
- 534 0060 A4020000 		.4byte	.LASF7
- 535 0064 03       		.uleb128 0x3
- 536 0065 04       		.byte	0x4
- 537 0066 07       		.byte	0x7
- 538 0067 27010000 		.4byte	.LASF8
- 539 006b 03       		.uleb128 0x3
- 540 006c 08       		.byte	0x8
- 541 006d 07       		.byte	0x7
- 542 006e 21020000 		.4byte	.LASF9
- 543 0072 03       		.uleb128 0x3
- 544 0073 04       		.byte	0x4
- 545 0074 07       		.byte	0x7
- 546 0075 4F020000 		.4byte	.LASF10
- 547 0079 03       		.uleb128 0x3
- 548 007a 01       		.byte	0x1
- 549 007b 08       		.byte	0x8
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 17
+ 414 0010 0C       		.byte	0xc
+ 415 0011 F0000000 		.4byte	.LASF43
+ 416 0015 AE010000 		.4byte	.LASF44
+ 417 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 418 001d 00000000 		.4byte	0
+ 419 0021 00000000 		.4byte	.Ldebug_line0
+ 420 0025 02       		.uleb128 0x2
+ 421 0026 04       		.byte	0x4
+ 422 0027 05       		.byte	0x5
+ 423 0028 696E7400 		.ascii	"int\000"
+ 424 002c 03       		.uleb128 0x3
+ 425 002d 04       		.byte	0x4
+ 426 002e 07       		.byte	0x7
+ 427 002f 8A020000 		.4byte	.LASF0
+ 428 0033 03       		.uleb128 0x3
+ 429 0034 08       		.byte	0x8
+ 430 0035 05       		.byte	0x5
+ 431 0036 F4020000 		.4byte	.LASF1
+ 432 003a 03       		.uleb128 0x3
+ 433 003b 08       		.byte	0x8
+ 434 003c 04       		.byte	0x4
+ 435 003d 63030000 		.4byte	.LASF2
+ 436 0041 03       		.uleb128 0x3
+ 437 0042 01       		.byte	0x1
+ 438 0043 06       		.byte	0x6
+ 439 0044 6F030000 		.4byte	.LASF3
+ 440 0048 03       		.uleb128 0x3
+ 441 0049 01       		.byte	0x1
+ 442 004a 08       		.byte	0x8
+ 443 004b D5000000 		.4byte	.LASF4
+ 444 004f 03       		.uleb128 0x3
+ 445 0050 02       		.byte	0x2
+ 446 0051 05       		.byte	0x5
+ 447 0052 30030000 		.4byte	.LASF5
+ 448 0056 03       		.uleb128 0x3
+ 449 0057 02       		.byte	0x2
+ 450 0058 07       		.byte	0x7
+ 451 0059 6E000000 		.4byte	.LASF6
+ 452 005d 03       		.uleb128 0x3
+ 453 005e 04       		.byte	0x4
+ 454 005f 05       		.byte	0x5
+ 455 0060 55030000 		.4byte	.LASF7
+ 456 0064 03       		.uleb128 0x3
+ 457 0065 04       		.byte	0x4
+ 458 0066 07       		.byte	0x7
+ 459 0067 78020000 		.4byte	.LASF8
+ 460 006b 03       		.uleb128 0x3
+ 461 006c 08       		.byte	0x8
+ 462 006d 07       		.byte	0x7
+ 463 006e BE000000 		.4byte	.LASF9
+ 464 0072 03       		.uleb128 0x3
+ 465 0073 04       		.byte	0x4
+ 466 0074 07       		.byte	0x7
+ 467 0075 EB020000 		.4byte	.LASF10
+ 468 0079 03       		.uleb128 0x3
+ 469 007a 01       		.byte	0x1
+ 470 007b 08       		.byte	0x8
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccGFvthk.s 			page 16
 
 
- 550 007c AD020000 		.4byte	.LASF11
- 551 0080 04       		.uleb128 0x4
- 552 0081 9E020000 		.4byte	.LASF12
- 553 0085 02       		.byte	0x2
- 554 0086 E801     		.2byte	0x1e8
- 555 0088 48000000 		.4byte	0x48
- 556 008c 04       		.uleb128 0x4
- 557 008d EB010000 		.4byte	.LASF13
- 558 0091 02       		.byte	0x2
- 559 0092 E901     		.2byte	0x1e9
- 560 0094 56000000 		.4byte	0x56
- 561 0098 04       		.uleb128 0x4
- 562 0099 F2010000 		.4byte	.LASF14
- 563 009d 02       		.byte	0x2
- 564 009e EA01     		.2byte	0x1ea
- 565 00a0 64000000 		.4byte	0x64
- 566 00a4 04       		.uleb128 0x4
- 567 00a5 38020000 		.4byte	.LASF15
- 568 00a9 02       		.byte	0x2
- 569 00aa EC01     		.2byte	0x1ec
- 570 00ac 4F000000 		.4byte	0x4f
- 571 00b0 04       		.uleb128 0x4
- 572 00b1 39010000 		.4byte	.LASF16
- 573 00b5 02       		.byte	0x2
- 574 00b6 ED01     		.2byte	0x1ed
- 575 00b8 5D000000 		.4byte	0x5d
- 576 00bc 03       		.uleb128 0x3
- 577 00bd 04       		.byte	0x4
- 578 00be 04       		.byte	0x4
- 579 00bf E3000000 		.4byte	.LASF17
- 580 00c3 03       		.uleb128 0x3
- 581 00c4 08       		.byte	0x8
- 582 00c5 04       		.byte	0x4
- 583 00c6 D0010000 		.4byte	.LASF18
- 584 00ca 04       		.uleb128 0x4
- 585 00cb FF000000 		.4byte	.LASF19
- 586 00cf 02       		.byte	0x2
- 587 00d0 9202     		.2byte	0x292
- 588 00d2 D6000000 		.4byte	0xd6
- 589 00d6 05       		.uleb128 0x5
- 590 00d7 80000000 		.4byte	0x80
- 591 00db 04       		.uleb128 0x4
- 592 00dc 00000000 		.4byte	.LASF20
- 593 00e0 02       		.byte	0x2
- 594 00e1 9402     		.2byte	0x294
- 595 00e3 E7000000 		.4byte	0xe7
- 596 00e7 05       		.uleb128 0x5
- 597 00e8 98000000 		.4byte	0x98
- 598 00ec 06       		.uleb128 0x6
- 599 00ed 8B010000 		.4byte	.LASF21
- 600 00f1 01       		.byte	0x1
- 601 00f2 2A       		.byte	0x2a
- 602 00f3 00000000 		.4byte	.LFB0
- 603 00f7 28000000 		.4byte	.LFE0-.LFB0
- 604 00fb 01       		.uleb128 0x1
- 605 00fc 9C       		.byte	0x9c
- 606 00fd 07       		.uleb128 0x7
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 18
+ 471 007c 5E030000 		.4byte	.LASF11
+ 472 0080 04       		.uleb128 0x4
+ 473 0081 3A030000 		.4byte	.LASF12
+ 474 0085 02       		.byte	0x2
+ 475 0086 E801     		.2byte	0x1e8
+ 476 0088 48000000 		.4byte	0x48
+ 477 008c 04       		.uleb128 0x4
+ 478 008d 53020000 		.4byte	.LASF13
+ 479 0091 02       		.byte	0x2
+ 480 0092 E901     		.2byte	0x1e9
+ 481 0094 56000000 		.4byte	0x56
+ 482 0098 04       		.uleb128 0x4
+ 483 0099 5A020000 		.4byte	.LASF14
+ 484 009d 02       		.byte	0x2
+ 485 009e EA01     		.2byte	0x1ea
+ 486 00a0 64000000 		.4byte	0x64
+ 487 00a4 04       		.uleb128 0x4
+ 488 00a5 D4020000 		.4byte	.LASF15
+ 489 00a9 02       		.byte	0x2
+ 490 00aa EC01     		.2byte	0x1ec
+ 491 00ac 4F000000 		.4byte	0x4f
+ 492 00b0 04       		.uleb128 0x4
+ 493 00b1 A1010000 		.4byte	.LASF16
+ 494 00b5 02       		.byte	0x2
+ 495 00b6 ED01     		.2byte	0x1ed
+ 496 00b8 5D000000 		.4byte	0x5d
+ 497 00bc 03       		.uleb128 0x3
+ 498 00bd 04       		.byte	0x4
+ 499 00be 04       		.byte	0x4
+ 500 00bf B8000000 		.4byte	.LASF17
+ 501 00c3 03       		.uleb128 0x3
+ 502 00c4 08       		.byte	0x8
+ 503 00c5 04       		.byte	0x4
+ 504 00c6 38020000 		.4byte	.LASF18
+ 505 00ca 04       		.uleb128 0x4
+ 506 00cb EB000000 		.4byte	.LASF19
+ 507 00cf 02       		.byte	0x2
+ 508 00d0 9202     		.2byte	0x292
+ 509 00d2 D6000000 		.4byte	0xd6
+ 510 00d6 05       		.uleb128 0x5
+ 511 00d7 80000000 		.4byte	0x80
+ 512 00db 04       		.uleb128 0x4
+ 513 00dc 00000000 		.4byte	.LASF20
+ 514 00e0 02       		.byte	0x2
+ 515 00e1 9402     		.2byte	0x294
+ 516 00e3 E7000000 		.4byte	0xe7
+ 517 00e7 05       		.uleb128 0x5
+ 518 00e8 98000000 		.4byte	0x98
+ 519 00ec 06       		.uleb128 0x6
+ 520 00ed 81000000 		.4byte	.LASF45
+ 521 00f1 01       		.byte	0x1
+ 522 00f2 4C01     		.2byte	0x14c
+ 523 00f4 01       		.byte	0x1
+ 524 00f5 06010000 		.4byte	0x106
+ 525 00f9 07       		.uleb128 0x7
+ 526 00fa 02030000 		.4byte	.LASF46
+ 527 00fe 01       		.byte	0x1
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccGFvthk.s 			page 17
 
 
- 607 00fe 3E020000 		.4byte	.LASF23
- 608 0102 01       		.byte	0x1
- 609 0103 46       		.byte	0x46
- 610 0104 00000000 		.4byte	.LFB1
- 611 0108 48000000 		.4byte	.LFE1-.LFB1
- 612 010c 01       		.uleb128 0x1
- 613 010d 9C       		.byte	0x9c
- 614 010e 21010000 		.4byte	0x121
- 615 0112 08       		.uleb128 0x8
- 616 0113 9A010000 		.4byte	.LASF25
- 617 0117 01       		.byte	0x1
- 618 0118 48       		.byte	0x48
- 619 0119 80000000 		.4byte	0x80
- 620 011d 02       		.uleb128 0x2
- 621 011e 91       		.byte	0x91
- 622 011f 77       		.sleb128 -9
- 623 0120 00       		.byte	0
- 624 0121 06       		.uleb128 0x6
- 625 0122 AB010000 		.4byte	.LASF22
- 626 0126 01       		.byte	0x1
- 627 0127 74       		.byte	0x74
- 628 0128 00000000 		.4byte	.LFB2
- 629 012c 38000000 		.4byte	.LFE2-.LFB2
- 630 0130 01       		.uleb128 0x1
- 631 0131 9C       		.byte	0x9c
- 632 0132 07       		.uleb128 0x7
- 633 0133 6B020000 		.4byte	.LASF24
- 634 0137 01       		.byte	0x1
- 635 0138 9D       		.byte	0x9d
- 636 0139 00000000 		.4byte	.LFB3
- 637 013d 40000000 		.4byte	.LFE3-.LFB3
- 638 0141 01       		.uleb128 0x1
- 639 0142 9C       		.byte	0x9c
- 640 0143 56010000 		.4byte	0x156
- 641 0147 08       		.uleb128 0x8
- 642 0148 9A010000 		.4byte	.LASF25
- 643 014c 01       		.byte	0x1
- 644 014d 9F       		.byte	0x9f
- 645 014e 80000000 		.4byte	0x80
- 646 0152 02       		.uleb128 0x2
- 647 0153 91       		.byte	0x91
- 648 0154 77       		.sleb128 -9
- 649 0155 00       		.byte	0
- 650 0156 09       		.uleb128 0x9
- 651 0157 BB000000 		.4byte	.LASF40
- 652 015b 01       		.byte	0x1
- 653 015c CA       		.byte	0xca
- 654 015d B0000000 		.4byte	0xb0
- 655 0161 00000000 		.4byte	.LFB4
- 656 0165 48000000 		.4byte	.LFE4-.LFB4
- 657 0169 01       		.uleb128 0x1
- 658 016a 9C       		.byte	0x9c
- 659 016b 9A010000 		.4byte	0x19a
- 660 016f 08       		.uleb128 0x8
- 661 0170 B5000000 		.4byte	.LASF26
- 662 0174 01       		.byte	0x1
- 663 0175 CC       		.byte	0xcc
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 19
+ 528 00ff 4C01     		.2byte	0x14c
+ 529 0101 80000000 		.4byte	0x80
+ 530 0105 00       		.byte	0
+ 531 0106 08       		.uleb128 0x8
+ 532 0107 F3010000 		.4byte	.LASF21
+ 533 010b 01       		.byte	0x1
+ 534 010c 2A       		.byte	0x2a
+ 535 010d 00000000 		.4byte	.LFB0
+ 536 0111 24000000 		.4byte	.LFE0-.LFB0
+ 537 0115 01       		.uleb128 0x1
+ 538 0116 9C       		.byte	0x9c
+ 539 0117 43010000 		.4byte	0x143
+ 540 011b 09       		.uleb128 0x9
+ 541 011c 10000000 		.4byte	.LVL0
+ 542 0120 18030000 		.4byte	0x318
+ 543 0124 2E010000 		.4byte	0x12e
+ 544 0128 0A       		.uleb128 0xa
+ 545 0129 01       		.uleb128 0x1
+ 546 012a 50       		.byte	0x50
+ 547 012b 01       		.uleb128 0x1
+ 548 012c 34       		.byte	0x34
+ 549 012d 00       		.byte	0
+ 550 012e 0B       		.uleb128 0xb
+ 551 012f 1C000000 		.4byte	.LVL1
+ 552 0133 23030000 		.4byte	0x323
+ 553 0137 0A       		.uleb128 0xa
+ 554 0138 01       		.uleb128 0x1
+ 555 0139 50       		.byte	0x50
+ 556 013a 01       		.uleb128 0x1
+ 557 013b 34       		.byte	0x34
+ 558 013c 0A       		.uleb128 0xa
+ 559 013d 01       		.uleb128 0x1
+ 560 013e 51       		.byte	0x51
+ 561 013f 01       		.uleb128 0x1
+ 562 0140 37       		.byte	0x37
+ 563 0141 00       		.byte	0
+ 564 0142 00       		.byte	0
+ 565 0143 08       		.uleb128 0x8
+ 566 0144 07030000 		.4byte	.LASF22
+ 567 0148 01       		.byte	0x1
+ 568 0149 9D       		.byte	0x9d
+ 569 014a 00000000 		.4byte	.LFB3
+ 570 014e 28000000 		.4byte	.LFE3-.LFB3
+ 571 0152 01       		.uleb128 0x1
+ 572 0153 9C       		.byte	0x9c
+ 573 0154 83010000 		.4byte	0x183
+ 574 0158 0C       		.uleb128 0xc
+ 575 0159 02020000 		.4byte	.LASF23
+ 576 015d 01       		.byte	0x1
+ 577 015e 9F       		.byte	0x9f
+ 578 015f 80000000 		.4byte	0x80
+ 579 0163 00000000 		.4byte	.LLST0
+ 580 0167 0D       		.uleb128 0xd
+ 581 0168 06000000 		.4byte	.LVL2
+ 582 016c 2E030000 		.4byte	0x32e
+ 583 0170 0D       		.uleb128 0xd
+ 584 0171 0A000000 		.4byte	.LVL3
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccGFvthk.s 			page 18
 
 
- 664 0176 B0000000 		.4byte	0xb0
- 665 017a 02       		.uleb128 0x2
- 666 017b 91       		.byte	0x91
- 667 017c 70       		.sleb128 -16
- 668 017d 08       		.uleb128 0x8
- 669 017e 3F010000 		.4byte	.LASF27
- 670 0182 01       		.byte	0x1
- 671 0183 CD       		.byte	0xcd
- 672 0184 8C000000 		.4byte	0x8c
- 673 0188 02       		.uleb128 0x2
- 674 0189 91       		.byte	0x91
- 675 018a 76       		.sleb128 -10
- 676 018b 08       		.uleb128 0x8
- 677 018c F7000000 		.4byte	.LASF28
- 678 0190 01       		.byte	0x1
- 679 0191 D0       		.byte	0xd0
- 680 0192 A4000000 		.4byte	0xa4
- 681 0196 02       		.uleb128 0x2
- 682 0197 91       		.byte	0x91
- 683 0198 74       		.sleb128 -12
- 684 0199 00       		.byte	0
- 685 019a 0A       		.uleb128 0xa
- 686 019b BB010000 		.4byte	.LASF29
- 687 019f 01       		.byte	0x1
- 688 01a0 0201     		.2byte	0x102
- 689 01a2 00000000 		.4byte	.LFB5
- 690 01a6 38000000 		.4byte	.LFE5-.LFB5
- 691 01aa 01       		.uleb128 0x1
- 692 01ab 9C       		.byte	0x9c
- 693 01ac C0010000 		.4byte	0x1c0
- 694 01b0 0B       		.uleb128 0xb
- 695 01b1 AF000000 		.4byte	.LASF31
- 696 01b5 01       		.byte	0x1
- 697 01b6 0201     		.2byte	0x102
- 698 01b8 B0000000 		.4byte	0xb0
- 699 01bc 02       		.uleb128 0x2
- 700 01bd 91       		.byte	0x91
- 701 01be 74       		.sleb128 -12
- 702 01bf 00       		.byte	0
- 703 01c0 0C       		.uleb128 0xc
- 704 01c1 D7010000 		.4byte	.LASF33
- 705 01c5 01       		.byte	0x1
- 706 01c6 3601     		.2byte	0x136
- 707 01c8 80000000 		.4byte	0x80
- 708 01cc 00000000 		.4byte	.LFB6
- 709 01d0 1C000000 		.4byte	.LFE6-.LFB6
- 710 01d4 01       		.uleb128 0x1
- 711 01d5 9C       		.byte	0x9c
- 712 01d6 0D       		.uleb128 0xd
- 713 01d7 F9010000 		.4byte	.LASF30
- 714 01db 01       		.byte	0x1
- 715 01dc 4C01     		.2byte	0x14c
- 716 01de 00000000 		.4byte	.LFB7
- 717 01e2 28000000 		.4byte	.LFE7-.LFB7
- 718 01e6 01       		.uleb128 0x1
- 719 01e7 9C       		.byte	0x9c
- 720 01e8 FC010000 		.4byte	0x1fc
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 20
+ 585 0175 39030000 		.4byte	0x339
+ 586 0179 0D       		.uleb128 0xd
+ 587 017a 18000000 		.4byte	.LVL4
+ 588 017e 44030000 		.4byte	0x344
+ 589 0182 00       		.byte	0
+ 590 0183 0E       		.uleb128 0xe
+ 591 0184 59000000 		.4byte	.LASF47
+ 592 0188 01       		.byte	0x1
+ 593 0189 CA       		.byte	0xca
+ 594 018a B0000000 		.4byte	0xb0
+ 595 018e 00000000 		.4byte	.LFB4
+ 596 0192 2C000000 		.4byte	.LFE4-.LFB4
+ 597 0196 01       		.uleb128 0x1
+ 598 0197 9C       		.byte	0x9c
+ 599 0198 D3010000 		.4byte	0x1d3
+ 600 019c 0C       		.uleb128 0xc
+ 601 019d 53000000 		.4byte	.LASF24
+ 602 01a1 01       		.byte	0x1
+ 603 01a2 CC       		.byte	0xcc
+ 604 01a3 B0000000 		.4byte	0xb0
+ 605 01a7 13000000 		.4byte	.LLST1
+ 606 01ab 0C       		.uleb128 0xc
+ 607 01ac A7010000 		.4byte	.LASF25
+ 608 01b0 01       		.byte	0x1
+ 609 01b1 CD       		.byte	0xcd
+ 610 01b2 8C000000 		.4byte	0x8c
+ 611 01b6 31000000 		.4byte	.LLST2
+ 612 01ba 0C       		.uleb128 0xc
+ 613 01bb E3000000 		.4byte	.LASF26
+ 614 01bf 01       		.byte	0x1
+ 615 01c0 D0       		.byte	0xd0
+ 616 01c1 A4000000 		.4byte	0xa4
+ 617 01c5 44000000 		.4byte	.LLST3
+ 618 01c9 0D       		.uleb128 0xd
+ 619 01ca 0C000000 		.4byte	.LVL5
+ 620 01ce 4F030000 		.4byte	0x34f
+ 621 01d2 00       		.byte	0
+ 622 01d3 0F       		.uleb128 0xf
+ 623 01d4 23020000 		.4byte	.LASF27
+ 624 01d8 01       		.byte	0x1
+ 625 01d9 0201     		.2byte	0x102
+ 626 01db 00000000 		.4byte	.LFB5
+ 627 01df 28000000 		.4byte	.LFE5-.LFB5
+ 628 01e3 01       		.uleb128 0x1
+ 629 01e4 9C       		.byte	0x9c
+ 630 01e5 0B020000 		.4byte	0x20b
+ 631 01e9 10       		.uleb128 0x10
+ 632 01ea 4D000000 		.4byte	.LASF48
+ 633 01ee 01       		.byte	0x1
+ 634 01ef 0201     		.2byte	0x102
+ 635 01f1 B0000000 		.4byte	0xb0
+ 636 01f5 5B000000 		.4byte	.LLST4
+ 637 01f9 11       		.uleb128 0x11
+ 638 01fa 12000000 		.4byte	.LVL10
+ 639 01fe 5A030000 		.4byte	0x35a
+ 640 0202 0A       		.uleb128 0xa
+ 641 0203 01       		.uleb128 0x1
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccGFvthk.s 			page 19
 
 
- 721 01ec 0B       		.uleb128 0xb
- 722 01ed 66020000 		.4byte	.LASF32
- 723 01f1 01       		.byte	0x1
- 724 01f2 4C01     		.2byte	0x14c
- 725 01f4 80000000 		.4byte	0x80
- 726 01f8 02       		.uleb128 0x2
- 727 01f9 91       		.byte	0x91
- 728 01fa 77       		.sleb128 -9
- 729 01fb 00       		.byte	0
- 730 01fc 0C       		.uleb128 0xc
- 731 01fd 06000000 		.4byte	.LASF34
- 732 0201 01       		.byte	0x1
- 733 0202 6801     		.2byte	0x168
- 734 0204 80000000 		.4byte	0x80
- 735 0208 00000000 		.4byte	.LFB8
- 736 020c 1C000000 		.4byte	.LFE8-.LFB8
- 737 0210 01       		.uleb128 0x1
- 738 0211 9C       		.byte	0x9c
- 739 0212 0E       		.uleb128 0xe
- 740 0213 CA020000 		.4byte	.LASF35
- 741 0217 01       		.byte	0x1
- 742 0218 19       		.byte	0x19
- 743 0219 80000000 		.4byte	0x80
- 744 021d 05       		.uleb128 0x5
- 745 021e 03       		.byte	0x3
- 746 021f 00000000 		.4byte	QuadDec_L_initVar
- 747 0223 0F       		.uleb128 0xf
- 748 0224 7A020000 		.4byte	.LASF36
- 749 0228 03       		.byte	0x3
- 750 0229 18       		.byte	0x18
- 751 022a 2E020000 		.4byte	0x22e
- 752 022e 05       		.uleb128 0x5
- 753 022f B0000000 		.4byte	0xb0
- 754 0233 00       		.byte	0
- 755              		.section	.debug_abbrev,"",%progbits
- 756              	.Ldebug_abbrev0:
- 757 0000 01       		.uleb128 0x1
- 758 0001 11       		.uleb128 0x11
- 759 0002 01       		.byte	0x1
- 760 0003 25       		.uleb128 0x25
- 761 0004 0E       		.uleb128 0xe
- 762 0005 13       		.uleb128 0x13
- 763 0006 0B       		.uleb128 0xb
- 764 0007 03       		.uleb128 0x3
- 765 0008 0E       		.uleb128 0xe
- 766 0009 1B       		.uleb128 0x1b
- 767 000a 0E       		.uleb128 0xe
- 768 000b 55       		.uleb128 0x55
- 769 000c 17       		.uleb128 0x17
- 770 000d 11       		.uleb128 0x11
- 771 000e 01       		.uleb128 0x1
- 772 000f 10       		.uleb128 0x10
- 773 0010 17       		.uleb128 0x17
- 774 0011 00       		.byte	0
- 775 0012 00       		.byte	0
- 776 0013 02       		.uleb128 0x2
- 777 0014 24       		.uleb128 0x24
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 21
+ 642 0204 50       		.byte	0x50
+ 643 0205 03       		.uleb128 0x3
+ 644 0206 0B       		.byte	0xb
+ 645 0207 0080     		.2byte	0x8000
+ 646 0209 00       		.byte	0
+ 647 020a 00       		.byte	0
+ 648 020b 12       		.uleb128 0x12
+ 649 020c 3F020000 		.4byte	.LASF30
+ 650 0210 01       		.byte	0x1
+ 651 0211 3601     		.2byte	0x136
+ 652 0213 80000000 		.4byte	0x80
+ 653 0217 00000000 		.4byte	.LFB6
+ 654 021b 10000000 		.4byte	.LFE6-.LFB6
+ 655 021f 01       		.uleb128 0x1
+ 656 0220 9C       		.byte	0x9c
+ 657 0221 08       		.uleb128 0x8
+ 658 0222 DA020000 		.4byte	.LASF28
+ 659 0226 01       		.byte	0x1
+ 660 0227 46       		.byte	0x46
+ 661 0228 00000000 		.4byte	.LFB1
+ 662 022c 34000000 		.4byte	.LFE1-.LFB1
+ 663 0230 01       		.uleb128 0x1
+ 664 0231 9C       		.byte	0x9c
+ 665 0232 7E020000 		.4byte	0x27e
+ 666 0236 0C       		.uleb128 0xc
+ 667 0237 02020000 		.4byte	.LASF23
+ 668 023b 01       		.byte	0x1
+ 669 023c 48       		.byte	0x48
+ 670 023d 80000000 		.4byte	0x80
+ 671 0241 87000000 		.4byte	.LLST5
+ 672 0245 13       		.uleb128 0x13
+ 673 0246 EC000000 		.4byte	0xec
+ 674 024a 02000000 		.4byte	.LBB4
+ 675 024e 06000000 		.4byte	.LBE4-.LBB4
+ 676 0252 01       		.byte	0x1
+ 677 0253 4A       		.byte	0x4a
+ 678 0254 62020000 		.4byte	0x262
+ 679 0258 14       		.uleb128 0x14
+ 680 0259 F9000000 		.4byte	0xf9
+ 681 025d 9A000000 		.4byte	.LLST6
+ 682 0261 00       		.byte	0
+ 683 0262 0D       		.uleb128 0xd
+ 684 0263 0C000000 		.4byte	.LVL14
+ 685 0267 0B020000 		.4byte	0x20b
+ 686 026b 0D       		.uleb128 0xd
+ 687 026c 10000000 		.4byte	.LVL15
+ 688 0270 39030000 		.4byte	0x339
+ 689 0274 0D       		.uleb128 0xd
+ 690 0275 1E000000 		.4byte	.LVL16
+ 691 0279 44030000 		.4byte	0x344
+ 692 027d 00       		.byte	0
+ 693 027e 08       		.uleb128 0x8
+ 694 027f 13020000 		.4byte	.LASF29
+ 695 0283 01       		.byte	0x1
+ 696 0284 74       		.byte	0x74
+ 697 0285 00000000 		.4byte	.LFB2
+ 698 0289 34000000 		.4byte	.LFE2-.LFB2
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccGFvthk.s 			page 20
 
 
- 778 0015 00       		.byte	0
- 779 0016 0B       		.uleb128 0xb
- 780 0017 0B       		.uleb128 0xb
- 781 0018 3E       		.uleb128 0x3e
- 782 0019 0B       		.uleb128 0xb
- 783 001a 03       		.uleb128 0x3
- 784 001b 08       		.uleb128 0x8
- 785 001c 00       		.byte	0
- 786 001d 00       		.byte	0
- 787 001e 03       		.uleb128 0x3
- 788 001f 24       		.uleb128 0x24
- 789 0020 00       		.byte	0
- 790 0021 0B       		.uleb128 0xb
- 791 0022 0B       		.uleb128 0xb
- 792 0023 3E       		.uleb128 0x3e
- 793 0024 0B       		.uleb128 0xb
- 794 0025 03       		.uleb128 0x3
- 795 0026 0E       		.uleb128 0xe
- 796 0027 00       		.byte	0
- 797 0028 00       		.byte	0
- 798 0029 04       		.uleb128 0x4
- 799 002a 16       		.uleb128 0x16
- 800 002b 00       		.byte	0
- 801 002c 03       		.uleb128 0x3
- 802 002d 0E       		.uleb128 0xe
- 803 002e 3A       		.uleb128 0x3a
- 804 002f 0B       		.uleb128 0xb
- 805 0030 3B       		.uleb128 0x3b
- 806 0031 05       		.uleb128 0x5
- 807 0032 49       		.uleb128 0x49
- 808 0033 13       		.uleb128 0x13
- 809 0034 00       		.byte	0
- 810 0035 00       		.byte	0
- 811 0036 05       		.uleb128 0x5
- 812 0037 35       		.uleb128 0x35
- 813 0038 00       		.byte	0
- 814 0039 49       		.uleb128 0x49
- 815 003a 13       		.uleb128 0x13
- 816 003b 00       		.byte	0
- 817 003c 00       		.byte	0
- 818 003d 06       		.uleb128 0x6
- 819 003e 2E       		.uleb128 0x2e
- 820 003f 00       		.byte	0
- 821 0040 3F       		.uleb128 0x3f
- 822 0041 19       		.uleb128 0x19
- 823 0042 03       		.uleb128 0x3
- 824 0043 0E       		.uleb128 0xe
- 825 0044 3A       		.uleb128 0x3a
- 826 0045 0B       		.uleb128 0xb
- 827 0046 3B       		.uleb128 0x3b
- 828 0047 0B       		.uleb128 0xb
- 829 0048 27       		.uleb128 0x27
- 830 0049 19       		.uleb128 0x19
- 831 004a 11       		.uleb128 0x11
- 832 004b 01       		.uleb128 0x1
- 833 004c 12       		.uleb128 0x12
- 834 004d 06       		.uleb128 0x6
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 22
+ 699 028d 01       		.uleb128 0x1
+ 700 028e 9C       		.byte	0x9c
+ 701 028f C4020000 		.4byte	0x2c4
+ 702 0293 0D       		.uleb128 0xd
+ 703 0294 06000000 		.4byte	.LVL17
+ 704 0298 65030000 		.4byte	0x365
+ 705 029c 09       		.uleb128 0x9
+ 706 029d 0E000000 		.4byte	.LVL18
+ 707 02a1 5A030000 		.4byte	0x35a
+ 708 02a5 B1020000 		.4byte	0x2b1
+ 709 02a9 0A       		.uleb128 0xa
+ 710 02aa 01       		.uleb128 0x1
+ 711 02ab 50       		.byte	0x50
+ 712 02ac 03       		.uleb128 0x3
+ 713 02ad 0B       		.byte	0xb
+ 714 02ae 0080     		.2byte	0x8000
+ 715 02b0 00       		.byte	0
+ 716 02b1 0D       		.uleb128 0xd
+ 717 02b2 1E000000 		.4byte	.LVL19
+ 718 02b6 06010000 		.4byte	0x106
+ 719 02ba 15       		.uleb128 0x15
+ 720 02bb 2A000000 		.4byte	.LVL20
+ 721 02bf 21020000 		.4byte	0x221
+ 722 02c3 00       		.byte	0
+ 723 02c4 16       		.uleb128 0x16
+ 724 02c5 EC000000 		.4byte	0xec
+ 725 02c9 00000000 		.4byte	.LFB7
+ 726 02cd 10000000 		.4byte	.LFE7-.LFB7
+ 727 02d1 01       		.uleb128 0x1
+ 728 02d2 9C       		.byte	0x9c
+ 729 02d3 E1020000 		.4byte	0x2e1
+ 730 02d7 14       		.uleb128 0x14
+ 731 02d8 F9000000 		.4byte	0xf9
+ 732 02dc AE000000 		.4byte	.LLST7
+ 733 02e0 00       		.byte	0
+ 734 02e1 12       		.uleb128 0x12
+ 735 02e2 06000000 		.4byte	.LASF31
+ 736 02e6 01       		.byte	0x1
+ 737 02e7 6801     		.2byte	0x168
+ 738 02e9 80000000 		.4byte	0x80
+ 739 02ed 00000000 		.4byte	.LFB8
+ 740 02f1 10000000 		.4byte	.LFE8-.LFB8
+ 741 02f5 01       		.uleb128 0x1
+ 742 02f6 9C       		.byte	0x9c
+ 743 02f7 17       		.uleb128 0x17
+ 744 02f8 7B030000 		.4byte	.LASF32
+ 745 02fc 01       		.byte	0x1
+ 746 02fd 19       		.byte	0x19
+ 747 02fe 80000000 		.4byte	0x80
+ 748 0302 05       		.uleb128 0x5
+ 749 0303 03       		.byte	0x3
+ 750 0304 00000000 		.4byte	QuadDec_L_initVar
+ 751 0308 18       		.uleb128 0x18
+ 752 0309 16030000 		.4byte	.LASF33
+ 753 030d 03       		.byte	0x3
+ 754 030e 18       		.byte	0x18
+ 755 030f 13030000 		.4byte	0x313
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccGFvthk.s 			page 21
 
 
- 835 004e 40       		.uleb128 0x40
- 836 004f 18       		.uleb128 0x18
- 837 0050 9642     		.uleb128 0x2116
- 838 0052 19       		.uleb128 0x19
- 839 0053 00       		.byte	0
- 840 0054 00       		.byte	0
- 841 0055 07       		.uleb128 0x7
- 842 0056 2E       		.uleb128 0x2e
- 843 0057 01       		.byte	0x1
- 844 0058 3F       		.uleb128 0x3f
- 845 0059 19       		.uleb128 0x19
- 846 005a 03       		.uleb128 0x3
- 847 005b 0E       		.uleb128 0xe
- 848 005c 3A       		.uleb128 0x3a
- 849 005d 0B       		.uleb128 0xb
- 850 005e 3B       		.uleb128 0x3b
- 851 005f 0B       		.uleb128 0xb
- 852 0060 27       		.uleb128 0x27
- 853 0061 19       		.uleb128 0x19
- 854 0062 11       		.uleb128 0x11
- 855 0063 01       		.uleb128 0x1
- 856 0064 12       		.uleb128 0x12
- 857 0065 06       		.uleb128 0x6
- 858 0066 40       		.uleb128 0x40
- 859 0067 18       		.uleb128 0x18
- 860 0068 9642     		.uleb128 0x2116
- 861 006a 19       		.uleb128 0x19
- 862 006b 01       		.uleb128 0x1
- 863 006c 13       		.uleb128 0x13
- 864 006d 00       		.byte	0
- 865 006e 00       		.byte	0
- 866 006f 08       		.uleb128 0x8
- 867 0070 34       		.uleb128 0x34
- 868 0071 00       		.byte	0
- 869 0072 03       		.uleb128 0x3
- 870 0073 0E       		.uleb128 0xe
- 871 0074 3A       		.uleb128 0x3a
- 872 0075 0B       		.uleb128 0xb
- 873 0076 3B       		.uleb128 0x3b
- 874 0077 0B       		.uleb128 0xb
- 875 0078 49       		.uleb128 0x49
- 876 0079 13       		.uleb128 0x13
- 877 007a 02       		.uleb128 0x2
- 878 007b 18       		.uleb128 0x18
- 879 007c 00       		.byte	0
- 880 007d 00       		.byte	0
- 881 007e 09       		.uleb128 0x9
- 882 007f 2E       		.uleb128 0x2e
- 883 0080 01       		.byte	0x1
- 884 0081 3F       		.uleb128 0x3f
- 885 0082 19       		.uleb128 0x19
- 886 0083 03       		.uleb128 0x3
- 887 0084 0E       		.uleb128 0xe
- 888 0085 3A       		.uleb128 0x3a
- 889 0086 0B       		.uleb128 0xb
- 890 0087 3B       		.uleb128 0x3b
- 891 0088 0B       		.uleb128 0xb
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 23
+ 756 0313 05       		.uleb128 0x5
+ 757 0314 B0000000 		.4byte	0xb0
+ 758 0318 19       		.uleb128 0x19
+ 759 0319 3E000000 		.4byte	.LASF34
+ 760 031d 3E000000 		.4byte	.LASF34
+ 761 0321 04       		.byte	0x4
+ 762 0322 88       		.byte	0x88
+ 763 0323 19       		.uleb128 0x19
+ 764 0324 AD020000 		.4byte	.LASF35
+ 765 0328 AD020000 		.4byte	.LASF35
+ 766 032c 04       		.byte	0x4
+ 767 032d 8B       		.byte	0x8b
+ 768 032e 19       		.uleb128 0x19
+ 769 032f 40030000 		.4byte	.LASF36
+ 770 0333 40030000 		.4byte	.LASF36
+ 771 0337 05       		.byte	0x5
+ 772 0338 50       		.byte	0x50
+ 773 0339 19       		.uleb128 0x19
+ 774 033a 61020000 		.4byte	.LASF37
+ 775 033e 61020000 		.4byte	.LASF37
+ 776 0342 04       		.byte	0x4
+ 777 0343 7D       		.byte	0x7d
+ 778 0344 19       		.uleb128 0x19
+ 779 0345 97020000 		.4byte	.LASF38
+ 780 0349 97020000 		.4byte	.LASF38
+ 781 034d 04       		.byte	0x4
+ 782 034e 7E       		.byte	0x7e
+ 783 034f 19       		.uleb128 0x19
+ 784 0350 9C000000 		.4byte	.LASF39
+ 785 0354 9C000000 		.4byte	.LASF39
+ 786 0358 05       		.byte	0x5
+ 787 0359 5D       		.byte	0x5d
+ 788 035a 19       		.uleb128 0x19
+ 789 035b 21000000 		.4byte	.LASF40
+ 790 035f 21000000 		.4byte	.LASF40
+ 791 0363 05       		.byte	0x5
+ 792 0364 5A       		.byte	0x5a
+ 793 0365 19       		.uleb128 0x19
+ 794 0366 BE020000 		.4byte	.LASF41
+ 795 036a BE020000 		.4byte	.LASF41
+ 796 036e 05       		.byte	0x5
+ 797 036f 4F       		.byte	0x4f
+ 798 0370 00       		.byte	0
+ 799              		.section	.debug_abbrev,"",%progbits
+ 800              	.Ldebug_abbrev0:
+ 801 0000 01       		.uleb128 0x1
+ 802 0001 11       		.uleb128 0x11
+ 803 0002 01       		.byte	0x1
+ 804 0003 25       		.uleb128 0x25
+ 805 0004 0E       		.uleb128 0xe
+ 806 0005 13       		.uleb128 0x13
+ 807 0006 0B       		.uleb128 0xb
+ 808 0007 03       		.uleb128 0x3
+ 809 0008 0E       		.uleb128 0xe
+ 810 0009 1B       		.uleb128 0x1b
+ 811 000a 0E       		.uleb128 0xe
+ 812 000b 55       		.uleb128 0x55
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccGFvthk.s 			page 22
 
 
- 892 0089 27       		.uleb128 0x27
- 893 008a 19       		.uleb128 0x19
- 894 008b 49       		.uleb128 0x49
- 895 008c 13       		.uleb128 0x13
- 896 008d 11       		.uleb128 0x11
- 897 008e 01       		.uleb128 0x1
- 898 008f 12       		.uleb128 0x12
- 899 0090 06       		.uleb128 0x6
- 900 0091 40       		.uleb128 0x40
- 901 0092 18       		.uleb128 0x18
- 902 0093 9642     		.uleb128 0x2116
- 903 0095 19       		.uleb128 0x19
- 904 0096 01       		.uleb128 0x1
- 905 0097 13       		.uleb128 0x13
- 906 0098 00       		.byte	0
- 907 0099 00       		.byte	0
- 908 009a 0A       		.uleb128 0xa
- 909 009b 2E       		.uleb128 0x2e
- 910 009c 01       		.byte	0x1
- 911 009d 3F       		.uleb128 0x3f
- 912 009e 19       		.uleb128 0x19
- 913 009f 03       		.uleb128 0x3
- 914 00a0 0E       		.uleb128 0xe
- 915 00a1 3A       		.uleb128 0x3a
- 916 00a2 0B       		.uleb128 0xb
- 917 00a3 3B       		.uleb128 0x3b
- 918 00a4 05       		.uleb128 0x5
- 919 00a5 27       		.uleb128 0x27
- 920 00a6 19       		.uleb128 0x19
- 921 00a7 11       		.uleb128 0x11
- 922 00a8 01       		.uleb128 0x1
- 923 00a9 12       		.uleb128 0x12
- 924 00aa 06       		.uleb128 0x6
- 925 00ab 40       		.uleb128 0x40
- 926 00ac 18       		.uleb128 0x18
- 927 00ad 9642     		.uleb128 0x2116
- 928 00af 19       		.uleb128 0x19
- 929 00b0 01       		.uleb128 0x1
- 930 00b1 13       		.uleb128 0x13
- 931 00b2 00       		.byte	0
- 932 00b3 00       		.byte	0
- 933 00b4 0B       		.uleb128 0xb
- 934 00b5 05       		.uleb128 0x5
- 935 00b6 00       		.byte	0
- 936 00b7 03       		.uleb128 0x3
- 937 00b8 0E       		.uleb128 0xe
- 938 00b9 3A       		.uleb128 0x3a
- 939 00ba 0B       		.uleb128 0xb
- 940 00bb 3B       		.uleb128 0x3b
- 941 00bc 05       		.uleb128 0x5
- 942 00bd 49       		.uleb128 0x49
- 943 00be 13       		.uleb128 0x13
- 944 00bf 02       		.uleb128 0x2
- 945 00c0 18       		.uleb128 0x18
- 946 00c1 00       		.byte	0
- 947 00c2 00       		.byte	0
- 948 00c3 0C       		.uleb128 0xc
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 24
+ 813 000c 17       		.uleb128 0x17
+ 814 000d 11       		.uleb128 0x11
+ 815 000e 01       		.uleb128 0x1
+ 816 000f 10       		.uleb128 0x10
+ 817 0010 17       		.uleb128 0x17
+ 818 0011 00       		.byte	0
+ 819 0012 00       		.byte	0
+ 820 0013 02       		.uleb128 0x2
+ 821 0014 24       		.uleb128 0x24
+ 822 0015 00       		.byte	0
+ 823 0016 0B       		.uleb128 0xb
+ 824 0017 0B       		.uleb128 0xb
+ 825 0018 3E       		.uleb128 0x3e
+ 826 0019 0B       		.uleb128 0xb
+ 827 001a 03       		.uleb128 0x3
+ 828 001b 08       		.uleb128 0x8
+ 829 001c 00       		.byte	0
+ 830 001d 00       		.byte	0
+ 831 001e 03       		.uleb128 0x3
+ 832 001f 24       		.uleb128 0x24
+ 833 0020 00       		.byte	0
+ 834 0021 0B       		.uleb128 0xb
+ 835 0022 0B       		.uleb128 0xb
+ 836 0023 3E       		.uleb128 0x3e
+ 837 0024 0B       		.uleb128 0xb
+ 838 0025 03       		.uleb128 0x3
+ 839 0026 0E       		.uleb128 0xe
+ 840 0027 00       		.byte	0
+ 841 0028 00       		.byte	0
+ 842 0029 04       		.uleb128 0x4
+ 843 002a 16       		.uleb128 0x16
+ 844 002b 00       		.byte	0
+ 845 002c 03       		.uleb128 0x3
+ 846 002d 0E       		.uleb128 0xe
+ 847 002e 3A       		.uleb128 0x3a
+ 848 002f 0B       		.uleb128 0xb
+ 849 0030 3B       		.uleb128 0x3b
+ 850 0031 05       		.uleb128 0x5
+ 851 0032 49       		.uleb128 0x49
+ 852 0033 13       		.uleb128 0x13
+ 853 0034 00       		.byte	0
+ 854 0035 00       		.byte	0
+ 855 0036 05       		.uleb128 0x5
+ 856 0037 35       		.uleb128 0x35
+ 857 0038 00       		.byte	0
+ 858 0039 49       		.uleb128 0x49
+ 859 003a 13       		.uleb128 0x13
+ 860 003b 00       		.byte	0
+ 861 003c 00       		.byte	0
+ 862 003d 06       		.uleb128 0x6
+ 863 003e 2E       		.uleb128 0x2e
+ 864 003f 01       		.byte	0x1
+ 865 0040 3F       		.uleb128 0x3f
+ 866 0041 19       		.uleb128 0x19
+ 867 0042 03       		.uleb128 0x3
+ 868 0043 0E       		.uleb128 0xe
+ 869 0044 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccGFvthk.s 			page 23
 
 
- 949 00c4 2E       		.uleb128 0x2e
- 950 00c5 00       		.byte	0
- 951 00c6 3F       		.uleb128 0x3f
- 952 00c7 19       		.uleb128 0x19
- 953 00c8 03       		.uleb128 0x3
- 954 00c9 0E       		.uleb128 0xe
- 955 00ca 3A       		.uleb128 0x3a
- 956 00cb 0B       		.uleb128 0xb
- 957 00cc 3B       		.uleb128 0x3b
- 958 00cd 05       		.uleb128 0x5
- 959 00ce 27       		.uleb128 0x27
- 960 00cf 19       		.uleb128 0x19
- 961 00d0 49       		.uleb128 0x49
- 962 00d1 13       		.uleb128 0x13
- 963 00d2 11       		.uleb128 0x11
- 964 00d3 01       		.uleb128 0x1
- 965 00d4 12       		.uleb128 0x12
- 966 00d5 06       		.uleb128 0x6
- 967 00d6 40       		.uleb128 0x40
- 968 00d7 18       		.uleb128 0x18
- 969 00d8 9742     		.uleb128 0x2117
- 970 00da 19       		.uleb128 0x19
- 971 00db 00       		.byte	0
- 972 00dc 00       		.byte	0
- 973 00dd 0D       		.uleb128 0xd
- 974 00de 2E       		.uleb128 0x2e
- 975 00df 01       		.byte	0x1
- 976 00e0 3F       		.uleb128 0x3f
- 977 00e1 19       		.uleb128 0x19
- 978 00e2 03       		.uleb128 0x3
- 979 00e3 0E       		.uleb128 0xe
- 980 00e4 3A       		.uleb128 0x3a
- 981 00e5 0B       		.uleb128 0xb
- 982 00e6 3B       		.uleb128 0x3b
- 983 00e7 05       		.uleb128 0x5
- 984 00e8 27       		.uleb128 0x27
- 985 00e9 19       		.uleb128 0x19
- 986 00ea 11       		.uleb128 0x11
- 987 00eb 01       		.uleb128 0x1
- 988 00ec 12       		.uleb128 0x12
- 989 00ed 06       		.uleb128 0x6
- 990 00ee 40       		.uleb128 0x40
- 991 00ef 18       		.uleb128 0x18
- 992 00f0 9742     		.uleb128 0x2117
- 993 00f2 19       		.uleb128 0x19
- 994 00f3 01       		.uleb128 0x1
- 995 00f4 13       		.uleb128 0x13
- 996 00f5 00       		.byte	0
- 997 00f6 00       		.byte	0
- 998 00f7 0E       		.uleb128 0xe
- 999 00f8 34       		.uleb128 0x34
- 1000 00f9 00       		.byte	0
- 1001 00fa 03       		.uleb128 0x3
- 1002 00fb 0E       		.uleb128 0xe
- 1003 00fc 3A       		.uleb128 0x3a
- 1004 00fd 0B       		.uleb128 0xb
- 1005 00fe 3B       		.uleb128 0x3b
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 25
+ 870 0045 0B       		.uleb128 0xb
+ 871 0046 3B       		.uleb128 0x3b
+ 872 0047 05       		.uleb128 0x5
+ 873 0048 27       		.uleb128 0x27
+ 874 0049 19       		.uleb128 0x19
+ 875 004a 20       		.uleb128 0x20
+ 876 004b 0B       		.uleb128 0xb
+ 877 004c 01       		.uleb128 0x1
+ 878 004d 13       		.uleb128 0x13
+ 879 004e 00       		.byte	0
+ 880 004f 00       		.byte	0
+ 881 0050 07       		.uleb128 0x7
+ 882 0051 05       		.uleb128 0x5
+ 883 0052 00       		.byte	0
+ 884 0053 03       		.uleb128 0x3
+ 885 0054 0E       		.uleb128 0xe
+ 886 0055 3A       		.uleb128 0x3a
+ 887 0056 0B       		.uleb128 0xb
+ 888 0057 3B       		.uleb128 0x3b
+ 889 0058 05       		.uleb128 0x5
+ 890 0059 49       		.uleb128 0x49
+ 891 005a 13       		.uleb128 0x13
+ 892 005b 00       		.byte	0
+ 893 005c 00       		.byte	0
+ 894 005d 08       		.uleb128 0x8
+ 895 005e 2E       		.uleb128 0x2e
+ 896 005f 01       		.byte	0x1
+ 897 0060 3F       		.uleb128 0x3f
+ 898 0061 19       		.uleb128 0x19
+ 899 0062 03       		.uleb128 0x3
+ 900 0063 0E       		.uleb128 0xe
+ 901 0064 3A       		.uleb128 0x3a
+ 902 0065 0B       		.uleb128 0xb
+ 903 0066 3B       		.uleb128 0x3b
+ 904 0067 0B       		.uleb128 0xb
+ 905 0068 27       		.uleb128 0x27
+ 906 0069 19       		.uleb128 0x19
+ 907 006a 11       		.uleb128 0x11
+ 908 006b 01       		.uleb128 0x1
+ 909 006c 12       		.uleb128 0x12
+ 910 006d 06       		.uleb128 0x6
+ 911 006e 40       		.uleb128 0x40
+ 912 006f 18       		.uleb128 0x18
+ 913 0070 9742     		.uleb128 0x2117
+ 914 0072 19       		.uleb128 0x19
+ 915 0073 01       		.uleb128 0x1
+ 916 0074 13       		.uleb128 0x13
+ 917 0075 00       		.byte	0
+ 918 0076 00       		.byte	0
+ 919 0077 09       		.uleb128 0x9
+ 920 0078 898201   		.uleb128 0x4109
+ 921 007b 01       		.byte	0x1
+ 922 007c 11       		.uleb128 0x11
+ 923 007d 01       		.uleb128 0x1
+ 924 007e 31       		.uleb128 0x31
+ 925 007f 13       		.uleb128 0x13
+ 926 0080 01       		.uleb128 0x1
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccGFvthk.s 			page 24
 
 
- 1006 00ff 0B       		.uleb128 0xb
- 1007 0100 49       		.uleb128 0x49
- 1008 0101 13       		.uleb128 0x13
- 1009 0102 3F       		.uleb128 0x3f
- 1010 0103 19       		.uleb128 0x19
- 1011 0104 02       		.uleb128 0x2
- 1012 0105 18       		.uleb128 0x18
- 1013 0106 00       		.byte	0
- 1014 0107 00       		.byte	0
- 1015 0108 0F       		.uleb128 0xf
- 1016 0109 34       		.uleb128 0x34
- 1017 010a 00       		.byte	0
- 1018 010b 03       		.uleb128 0x3
- 1019 010c 0E       		.uleb128 0xe
- 1020 010d 3A       		.uleb128 0x3a
- 1021 010e 0B       		.uleb128 0xb
- 1022 010f 3B       		.uleb128 0x3b
- 1023 0110 0B       		.uleb128 0xb
- 1024 0111 49       		.uleb128 0x49
- 1025 0112 13       		.uleb128 0x13
- 1026 0113 3F       		.uleb128 0x3f
- 1027 0114 19       		.uleb128 0x19
- 1028 0115 3C       		.uleb128 0x3c
- 1029 0116 19       		.uleb128 0x19
- 1030 0117 00       		.byte	0
- 1031 0118 00       		.byte	0
- 1032 0119 00       		.byte	0
- 1033              		.section	.debug_aranges,"",%progbits
- 1034 0000 5C000000 		.4byte	0x5c
- 1035 0004 0200     		.2byte	0x2
- 1036 0006 00000000 		.4byte	.Ldebug_info0
- 1037 000a 04       		.byte	0x4
- 1038 000b 00       		.byte	0
- 1039 000c 0000     		.2byte	0
- 1040 000e 0000     		.2byte	0
- 1041 0010 00000000 		.4byte	.LFB0
- 1042 0014 28000000 		.4byte	.LFE0-.LFB0
- 1043 0018 00000000 		.4byte	.LFB1
- 1044 001c 48000000 		.4byte	.LFE1-.LFB1
- 1045 0020 00000000 		.4byte	.LFB2
- 1046 0024 38000000 		.4byte	.LFE2-.LFB2
- 1047 0028 00000000 		.4byte	.LFB3
- 1048 002c 40000000 		.4byte	.LFE3-.LFB3
- 1049 0030 00000000 		.4byte	.LFB4
- 1050 0034 48000000 		.4byte	.LFE4-.LFB4
- 1051 0038 00000000 		.4byte	.LFB5
- 1052 003c 38000000 		.4byte	.LFE5-.LFB5
- 1053 0040 00000000 		.4byte	.LFB6
- 1054 0044 1C000000 		.4byte	.LFE6-.LFB6
- 1055 0048 00000000 		.4byte	.LFB7
- 1056 004c 28000000 		.4byte	.LFE7-.LFB7
- 1057 0050 00000000 		.4byte	.LFB8
- 1058 0054 1C000000 		.4byte	.LFE8-.LFB8
- 1059 0058 00000000 		.4byte	0
- 1060 005c 00000000 		.4byte	0
- 1061              		.section	.debug_ranges,"",%progbits
- 1062              	.Ldebug_ranges0:
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 26
+ 927 0081 13       		.uleb128 0x13
+ 928 0082 00       		.byte	0
+ 929 0083 00       		.byte	0
+ 930 0084 0A       		.uleb128 0xa
+ 931 0085 8A8201   		.uleb128 0x410a
+ 932 0088 00       		.byte	0
+ 933 0089 02       		.uleb128 0x2
+ 934 008a 18       		.uleb128 0x18
+ 935 008b 9142     		.uleb128 0x2111
+ 936 008d 18       		.uleb128 0x18
+ 937 008e 00       		.byte	0
+ 938 008f 00       		.byte	0
+ 939 0090 0B       		.uleb128 0xb
+ 940 0091 898201   		.uleb128 0x4109
+ 941 0094 01       		.byte	0x1
+ 942 0095 11       		.uleb128 0x11
+ 943 0096 01       		.uleb128 0x1
+ 944 0097 9542     		.uleb128 0x2115
+ 945 0099 19       		.uleb128 0x19
+ 946 009a 31       		.uleb128 0x31
+ 947 009b 13       		.uleb128 0x13
+ 948 009c 00       		.byte	0
+ 949 009d 00       		.byte	0
+ 950 009e 0C       		.uleb128 0xc
+ 951 009f 34       		.uleb128 0x34
+ 952 00a0 00       		.byte	0
+ 953 00a1 03       		.uleb128 0x3
+ 954 00a2 0E       		.uleb128 0xe
+ 955 00a3 3A       		.uleb128 0x3a
+ 956 00a4 0B       		.uleb128 0xb
+ 957 00a5 3B       		.uleb128 0x3b
+ 958 00a6 0B       		.uleb128 0xb
+ 959 00a7 49       		.uleb128 0x49
+ 960 00a8 13       		.uleb128 0x13
+ 961 00a9 02       		.uleb128 0x2
+ 962 00aa 17       		.uleb128 0x17
+ 963 00ab 00       		.byte	0
+ 964 00ac 00       		.byte	0
+ 965 00ad 0D       		.uleb128 0xd
+ 966 00ae 898201   		.uleb128 0x4109
+ 967 00b1 00       		.byte	0
+ 968 00b2 11       		.uleb128 0x11
+ 969 00b3 01       		.uleb128 0x1
+ 970 00b4 31       		.uleb128 0x31
+ 971 00b5 13       		.uleb128 0x13
+ 972 00b6 00       		.byte	0
+ 973 00b7 00       		.byte	0
+ 974 00b8 0E       		.uleb128 0xe
+ 975 00b9 2E       		.uleb128 0x2e
+ 976 00ba 01       		.byte	0x1
+ 977 00bb 3F       		.uleb128 0x3f
+ 978 00bc 19       		.uleb128 0x19
+ 979 00bd 03       		.uleb128 0x3
+ 980 00be 0E       		.uleb128 0xe
+ 981 00bf 3A       		.uleb128 0x3a
+ 982 00c0 0B       		.uleb128 0xb
+ 983 00c1 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccGFvthk.s 			page 25
 
 
- 1063 0000 00000000 		.4byte	.LFB0
- 1064 0004 28000000 		.4byte	.LFE0
- 1065 0008 00000000 		.4byte	.LFB1
- 1066 000c 48000000 		.4byte	.LFE1
- 1067 0010 00000000 		.4byte	.LFB2
- 1068 0014 38000000 		.4byte	.LFE2
- 1069 0018 00000000 		.4byte	.LFB3
- 1070 001c 40000000 		.4byte	.LFE3
- 1071 0020 00000000 		.4byte	.LFB4
- 1072 0024 48000000 		.4byte	.LFE4
- 1073 0028 00000000 		.4byte	.LFB5
- 1074 002c 38000000 		.4byte	.LFE5
- 1075 0030 00000000 		.4byte	.LFB6
- 1076 0034 1C000000 		.4byte	.LFE6
- 1077 0038 00000000 		.4byte	.LFB7
- 1078 003c 28000000 		.4byte	.LFE7
- 1079 0040 00000000 		.4byte	.LFB8
- 1080 0044 1C000000 		.4byte	.LFE8
- 1081 0048 00000000 		.4byte	0
- 1082 004c 00000000 		.4byte	0
- 1083              		.section	.debug_line,"",%progbits
- 1084              	.Ldebug_line0:
- 1085 0000 20010000 		.section	.debug_str,"MS",%progbits,1
- 1085      02005900 
- 1085      00000201 
- 1085      FB0E0D00 
- 1085      01010101 
- 1086              	.LASF20:
- 1087 0000 72656733 		.ascii	"reg32\000"
- 1087      3200
- 1088              	.LASF34:
- 1089 0006 51756164 		.ascii	"QuadDec_L_GetInterruptMask\000"
- 1089      4465635F 
- 1089      4C5F4765 
- 1089      74496E74 
- 1089      65727275 
- 1090              	.LASF37:
- 1091 0021 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 1091      43313120 
- 1091      352E342E 
- 1091      31203230 
- 1091      31363036 
- 1092 0054 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 1092      20726576 
- 1092      6973696F 
- 1092      6E203233 
- 1092      37373135 
- 1093 0087 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
- 1093      66756E63 
- 1093      74696F6E 
- 1093      2D736563 
- 1093      74696F6E 
- 1094              	.LASF31:
- 1095 00af 76616C75 		.ascii	"value\000"
- 1095      6500
- 1096              	.LASF26:
- 1097 00b5 636F756E 		.ascii	"count\000"
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 27
+ 984 00c2 0B       		.uleb128 0xb
+ 985 00c3 27       		.uleb128 0x27
+ 986 00c4 19       		.uleb128 0x19
+ 987 00c5 49       		.uleb128 0x49
+ 988 00c6 13       		.uleb128 0x13
+ 989 00c7 11       		.uleb128 0x11
+ 990 00c8 01       		.uleb128 0x1
+ 991 00c9 12       		.uleb128 0x12
+ 992 00ca 06       		.uleb128 0x6
+ 993 00cb 40       		.uleb128 0x40
+ 994 00cc 18       		.uleb128 0x18
+ 995 00cd 9742     		.uleb128 0x2117
+ 996 00cf 19       		.uleb128 0x19
+ 997 00d0 01       		.uleb128 0x1
+ 998 00d1 13       		.uleb128 0x13
+ 999 00d2 00       		.byte	0
+ 1000 00d3 00       		.byte	0
+ 1001 00d4 0F       		.uleb128 0xf
+ 1002 00d5 2E       		.uleb128 0x2e
+ 1003 00d6 01       		.byte	0x1
+ 1004 00d7 3F       		.uleb128 0x3f
+ 1005 00d8 19       		.uleb128 0x19
+ 1006 00d9 03       		.uleb128 0x3
+ 1007 00da 0E       		.uleb128 0xe
+ 1008 00db 3A       		.uleb128 0x3a
+ 1009 00dc 0B       		.uleb128 0xb
+ 1010 00dd 3B       		.uleb128 0x3b
+ 1011 00de 05       		.uleb128 0x5
+ 1012 00df 27       		.uleb128 0x27
+ 1013 00e0 19       		.uleb128 0x19
+ 1014 00e1 11       		.uleb128 0x11
+ 1015 00e2 01       		.uleb128 0x1
+ 1016 00e3 12       		.uleb128 0x12
+ 1017 00e4 06       		.uleb128 0x6
+ 1018 00e5 40       		.uleb128 0x40
+ 1019 00e6 18       		.uleb128 0x18
+ 1020 00e7 9742     		.uleb128 0x2117
+ 1021 00e9 19       		.uleb128 0x19
+ 1022 00ea 01       		.uleb128 0x1
+ 1023 00eb 13       		.uleb128 0x13
+ 1024 00ec 00       		.byte	0
+ 1025 00ed 00       		.byte	0
+ 1026 00ee 10       		.uleb128 0x10
+ 1027 00ef 05       		.uleb128 0x5
+ 1028 00f0 00       		.byte	0
+ 1029 00f1 03       		.uleb128 0x3
+ 1030 00f2 0E       		.uleb128 0xe
+ 1031 00f3 3A       		.uleb128 0x3a
+ 1032 00f4 0B       		.uleb128 0xb
+ 1033 00f5 3B       		.uleb128 0x3b
+ 1034 00f6 05       		.uleb128 0x5
+ 1035 00f7 49       		.uleb128 0x49
+ 1036 00f8 13       		.uleb128 0x13
+ 1037 00f9 02       		.uleb128 0x2
+ 1038 00fa 17       		.uleb128 0x17
+ 1039 00fb 00       		.byte	0
+ 1040 00fc 00       		.byte	0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccGFvthk.s 			page 26
 
 
- 1097      7400
- 1098              	.LASF40:
- 1099 00bb 51756164 		.ascii	"QuadDec_L_GetCounter\000"
- 1099      4465635F 
- 1099      4C5F4765 
- 1099      74436F75 
- 1099      6E746572 
- 1100              	.LASF6:
- 1101 00d0 73686F72 		.ascii	"short unsigned int\000"
- 1101      7420756E 
- 1101      7369676E 
- 1101      65642069 
- 1101      6E7400
- 1102              	.LASF17:
- 1103 00e3 666C6F61 		.ascii	"float\000"
- 1103      7400
- 1104              	.LASF4:
- 1105 00e9 756E7369 		.ascii	"unsigned char\000"
- 1105      676E6564 
- 1105      20636861 
- 1105      7200
- 1106              	.LASF28:
- 1107 00f7 6877436F 		.ascii	"hwCount\000"
- 1107      756E7400 
- 1108              	.LASF19:
- 1109 00ff 72656738 		.ascii	"reg8\000"
- 1109      00
- 1110              	.LASF38:
- 1111 0104 47656E65 		.ascii	"Generated_Source\\PSoC5\\QuadDec_L.c\000"
- 1111      72617465 
- 1111      645F536F 
- 1111      75726365 
- 1111      5C50536F 
- 1112              	.LASF8:
- 1113 0127 6C6F6E67 		.ascii	"long unsigned int\000"
- 1113      20756E73 
- 1113      69676E65 
- 1113      6420696E 
- 1113      7400
- 1114              	.LASF16:
- 1115 0139 696E7433 		.ascii	"int32\000"
- 1115      3200
- 1116              	.LASF27:
- 1117 013f 746D7043 		.ascii	"tmpCnt\000"
- 1117      6E7400
- 1118              	.LASF39:
- 1119 0146 433A5C55 		.ascii	"C:\\Users\\jmspi\\OneDrive\\Documents\\GitHub\\ECE4"
- 1119      73657273 
- 1119      5C6A6D73 
- 1119      70695C4F 
- 1119      6E654472 
- 1120 0173 3139315C 		.ascii	"191\\DeliveryRobot.cydsn\000"
- 1120      44656C69 
- 1120      76657279 
- 1120      526F626F 
- 1120      742E6379 
- 1121              	.LASF21:
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 28
+ 1041 00fd 11       		.uleb128 0x11
+ 1042 00fe 898201   		.uleb128 0x4109
+ 1043 0101 01       		.byte	0x1
+ 1044 0102 11       		.uleb128 0x11
+ 1045 0103 01       		.uleb128 0x1
+ 1046 0104 31       		.uleb128 0x31
+ 1047 0105 13       		.uleb128 0x13
+ 1048 0106 00       		.byte	0
+ 1049 0107 00       		.byte	0
+ 1050 0108 12       		.uleb128 0x12
+ 1051 0109 2E       		.uleb128 0x2e
+ 1052 010a 00       		.byte	0
+ 1053 010b 3F       		.uleb128 0x3f
+ 1054 010c 19       		.uleb128 0x19
+ 1055 010d 03       		.uleb128 0x3
+ 1056 010e 0E       		.uleb128 0xe
+ 1057 010f 3A       		.uleb128 0x3a
+ 1058 0110 0B       		.uleb128 0xb
+ 1059 0111 3B       		.uleb128 0x3b
+ 1060 0112 05       		.uleb128 0x5
+ 1061 0113 27       		.uleb128 0x27
+ 1062 0114 19       		.uleb128 0x19
+ 1063 0115 49       		.uleb128 0x49
+ 1064 0116 13       		.uleb128 0x13
+ 1065 0117 11       		.uleb128 0x11
+ 1066 0118 01       		.uleb128 0x1
+ 1067 0119 12       		.uleb128 0x12
+ 1068 011a 06       		.uleb128 0x6
+ 1069 011b 40       		.uleb128 0x40
+ 1070 011c 18       		.uleb128 0x18
+ 1071 011d 9742     		.uleb128 0x2117
+ 1072 011f 19       		.uleb128 0x19
+ 1073 0120 00       		.byte	0
+ 1074 0121 00       		.byte	0
+ 1075 0122 13       		.uleb128 0x13
+ 1076 0123 1D       		.uleb128 0x1d
+ 1077 0124 01       		.byte	0x1
+ 1078 0125 31       		.uleb128 0x31
+ 1079 0126 13       		.uleb128 0x13
+ 1080 0127 11       		.uleb128 0x11
+ 1081 0128 01       		.uleb128 0x1
+ 1082 0129 12       		.uleb128 0x12
+ 1083 012a 06       		.uleb128 0x6
+ 1084 012b 58       		.uleb128 0x58
+ 1085 012c 0B       		.uleb128 0xb
+ 1086 012d 59       		.uleb128 0x59
+ 1087 012e 0B       		.uleb128 0xb
+ 1088 012f 01       		.uleb128 0x1
+ 1089 0130 13       		.uleb128 0x13
+ 1090 0131 00       		.byte	0
+ 1091 0132 00       		.byte	0
+ 1092 0133 14       		.uleb128 0x14
+ 1093 0134 05       		.uleb128 0x5
+ 1094 0135 00       		.byte	0
+ 1095 0136 31       		.uleb128 0x31
+ 1096 0137 13       		.uleb128 0x13
+ 1097 0138 02       		.uleb128 0x2
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccGFvthk.s 			page 27
 
 
- 1122 018b 51756164 		.ascii	"QuadDec_L_Init\000"
- 1122      4465635F 
- 1122      4C5F496E 
- 1122      697400
- 1123              	.LASF25:
- 1124 019a 656E6162 		.ascii	"enableInterrupts\000"
- 1124      6C65496E 
- 1124      74657272 
- 1124      75707473 
- 1124      00
- 1125              	.LASF22:
- 1126 01ab 51756164 		.ascii	"QuadDec_L_Start\000"
- 1126      4465635F 
- 1126      4C5F5374 
- 1126      61727400 
- 1127              	.LASF29:
- 1128 01bb 51756164 		.ascii	"QuadDec_L_SetCounter\000"
- 1128      4465635F 
- 1128      4C5F5365 
- 1128      74436F75 
- 1128      6E746572 
- 1129              	.LASF18:
- 1130 01d0 646F7562 		.ascii	"double\000"
- 1130      6C6500
- 1131              	.LASF33:
- 1132 01d7 51756164 		.ascii	"QuadDec_L_GetEvents\000"
- 1132      4465635F 
- 1132      4C5F4765 
- 1132      74457665 
- 1132      6E747300 
- 1133              	.LASF13:
- 1134 01eb 75696E74 		.ascii	"uint16\000"
- 1134      313600
- 1135              	.LASF14:
- 1136 01f2 75696E74 		.ascii	"uint32\000"
- 1136      333200
- 1137              	.LASF30:
- 1138 01f9 51756164 		.ascii	"QuadDec_L_SetInterruptMask\000"
- 1138      4465635F 
- 1138      4C5F5365 
- 1138      74496E74 
- 1138      65727275 
- 1139              	.LASF0:
- 1140 0214 756E7369 		.ascii	"unsigned int\000"
- 1140      676E6564 
- 1140      20696E74 
- 1140      00
- 1141              	.LASF9:
- 1142 0221 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1142      206C6F6E 
- 1142      6720756E 
- 1142      7369676E 
- 1142      65642069 
- 1143              	.LASF15:
- 1144 0238 696E7431 		.ascii	"int16\000"
- 1144      3600
- 1145              	.LASF23:
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 29
+ 1098 0139 17       		.uleb128 0x17
+ 1099 013a 00       		.byte	0
+ 1100 013b 00       		.byte	0
+ 1101 013c 15       		.uleb128 0x15
+ 1102 013d 898201   		.uleb128 0x4109
+ 1103 0140 00       		.byte	0
+ 1104 0141 11       		.uleb128 0x11
+ 1105 0142 01       		.uleb128 0x1
+ 1106 0143 9542     		.uleb128 0x2115
+ 1107 0145 19       		.uleb128 0x19
+ 1108 0146 31       		.uleb128 0x31
+ 1109 0147 13       		.uleb128 0x13
+ 1110 0148 00       		.byte	0
+ 1111 0149 00       		.byte	0
+ 1112 014a 16       		.uleb128 0x16
+ 1113 014b 2E       		.uleb128 0x2e
+ 1114 014c 01       		.byte	0x1
+ 1115 014d 31       		.uleb128 0x31
+ 1116 014e 13       		.uleb128 0x13
+ 1117 014f 11       		.uleb128 0x11
+ 1118 0150 01       		.uleb128 0x1
+ 1119 0151 12       		.uleb128 0x12
+ 1120 0152 06       		.uleb128 0x6
+ 1121 0153 40       		.uleb128 0x40
+ 1122 0154 18       		.uleb128 0x18
+ 1123 0155 9742     		.uleb128 0x2117
+ 1124 0157 19       		.uleb128 0x19
+ 1125 0158 01       		.uleb128 0x1
+ 1126 0159 13       		.uleb128 0x13
+ 1127 015a 00       		.byte	0
+ 1128 015b 00       		.byte	0
+ 1129 015c 17       		.uleb128 0x17
+ 1130 015d 34       		.uleb128 0x34
+ 1131 015e 00       		.byte	0
+ 1132 015f 03       		.uleb128 0x3
+ 1133 0160 0E       		.uleb128 0xe
+ 1134 0161 3A       		.uleb128 0x3a
+ 1135 0162 0B       		.uleb128 0xb
+ 1136 0163 3B       		.uleb128 0x3b
+ 1137 0164 0B       		.uleb128 0xb
+ 1138 0165 49       		.uleb128 0x49
+ 1139 0166 13       		.uleb128 0x13
+ 1140 0167 3F       		.uleb128 0x3f
+ 1141 0168 19       		.uleb128 0x19
+ 1142 0169 02       		.uleb128 0x2
+ 1143 016a 18       		.uleb128 0x18
+ 1144 016b 00       		.byte	0
+ 1145 016c 00       		.byte	0
+ 1146 016d 18       		.uleb128 0x18
+ 1147 016e 34       		.uleb128 0x34
+ 1148 016f 00       		.byte	0
+ 1149 0170 03       		.uleb128 0x3
+ 1150 0171 0E       		.uleb128 0xe
+ 1151 0172 3A       		.uleb128 0x3a
+ 1152 0173 0B       		.uleb128 0xb
+ 1153 0174 3B       		.uleb128 0x3b
+ 1154 0175 0B       		.uleb128 0xb
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccGFvthk.s 			page 28
 
 
- 1146 023e 51756164 		.ascii	"QuadDec_L_Enable\000"
- 1146      4465635F 
- 1146      4C5F456E 
- 1146      61626C65 
- 1146      00
- 1147              	.LASF10:
- 1148 024f 73697A65 		.ascii	"sizetype\000"
- 1148      74797065 
- 1148      00
- 1149              	.LASF1:
- 1150 0258 6C6F6E67 		.ascii	"long long int\000"
- 1150      206C6F6E 
- 1150      6720696E 
- 1150      7400
- 1151              	.LASF32:
- 1152 0266 6D61736B 		.ascii	"mask\000"
- 1152      00
- 1153              	.LASF24:
- 1154 026b 51756164 		.ascii	"QuadDec_L_Stop\000"
- 1154      4465635F 
- 1154      4C5F5374 
- 1154      6F7000
- 1155              	.LASF36:
- 1156 027a 51756164 		.ascii	"QuadDec_L_count32SoftPart\000"
- 1156      4465635F 
- 1156      4C5F636F 
- 1156      756E7433 
- 1156      32536F66 
- 1157              	.LASF5:
- 1158 0294 73686F72 		.ascii	"short int\000"
- 1158      7420696E 
- 1158      7400
- 1159              	.LASF12:
- 1160 029e 75696E74 		.ascii	"uint8\000"
- 1160      3800
- 1161              	.LASF7:
- 1162 02a4 6C6F6E67 		.ascii	"long int\000"
- 1162      20696E74 
- 1162      00
- 1163              	.LASF11:
- 1164 02ad 63686172 		.ascii	"char\000"
- 1164      00
- 1165              	.LASF2:
- 1166 02b2 6C6F6E67 		.ascii	"long double\000"
- 1166      20646F75 
- 1166      626C6500 
- 1167              	.LASF3:
- 1168 02be 7369676E 		.ascii	"signed char\000"
- 1168      65642063 
- 1168      68617200 
- 1169              	.LASF35:
- 1170 02ca 51756164 		.ascii	"QuadDec_L_initVar\000"
- 1170      4465635F 
- 1170      4C5F696E 
- 1170      69745661 
- 1170      7200
- 1171              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc4lCBFP.s 			page 30
+ 1155 0176 49       		.uleb128 0x49
+ 1156 0177 13       		.uleb128 0x13
+ 1157 0178 3F       		.uleb128 0x3f
+ 1158 0179 19       		.uleb128 0x19
+ 1159 017a 3C       		.uleb128 0x3c
+ 1160 017b 19       		.uleb128 0x19
+ 1161 017c 00       		.byte	0
+ 1162 017d 00       		.byte	0
+ 1163 017e 19       		.uleb128 0x19
+ 1164 017f 2E       		.uleb128 0x2e
+ 1165 0180 00       		.byte	0
+ 1166 0181 3F       		.uleb128 0x3f
+ 1167 0182 19       		.uleb128 0x19
+ 1168 0183 3C       		.uleb128 0x3c
+ 1169 0184 19       		.uleb128 0x19
+ 1170 0185 6E       		.uleb128 0x6e
+ 1171 0186 0E       		.uleb128 0xe
+ 1172 0187 03       		.uleb128 0x3
+ 1173 0188 0E       		.uleb128 0xe
+ 1174 0189 3A       		.uleb128 0x3a
+ 1175 018a 0B       		.uleb128 0xb
+ 1176 018b 3B       		.uleb128 0x3b
+ 1177 018c 0B       		.uleb128 0xb
+ 1178 018d 00       		.byte	0
+ 1179 018e 00       		.byte	0
+ 1180 018f 00       		.byte	0
+ 1181              		.section	.debug_loc,"",%progbits
+ 1182              	.Ldebug_loc0:
+ 1183              	.LLST0:
+ 1184 0000 0A000000 		.4byte	.LVL3
+ 1185 0004 17000000 		.4byte	.LVL4-1
+ 1186 0008 0100     		.2byte	0x1
+ 1187 000a 50       		.byte	0x50
+ 1188 000b 00000000 		.4byte	0
+ 1189 000f 00000000 		.4byte	0
+ 1190              	.LLST1:
+ 1191 0013 12000000 		.4byte	.LVL6
+ 1192 0017 16000000 		.4byte	.LVL7
+ 1193 001b 0C00     		.2byte	0xc
+ 1194 001d 70       		.byte	0x70
+ 1195 001e 80807E   		.sleb128 -32768
+ 1196 0021 40       		.byte	0x40
+ 1197 0022 24       		.byte	0x24
+ 1198 0023 40       		.byte	0x40
+ 1199 0024 26       		.byte	0x26
+ 1200 0025 73       		.byte	0x73
+ 1201 0026 00       		.sleb128 0
+ 1202 0027 22       		.byte	0x22
+ 1203 0028 9F       		.byte	0x9f
+ 1204 0029 00000000 		.4byte	0
+ 1205 002d 00000000 		.4byte	0
+ 1206              	.LLST2:
+ 1207 0031 0C000000 		.4byte	.LVL5
+ 1208 0035 16000000 		.4byte	.LVL7
+ 1209 0039 0100     		.2byte	0x1
+ 1210 003b 50       		.byte	0x50
+ 1211 003c 00000000 		.4byte	0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccGFvthk.s 			page 29
 
 
+ 1212 0040 00000000 		.4byte	0
+ 1213              	.LLST3:
+ 1214 0044 0C000000 		.4byte	.LVL5
+ 1215 0048 16000000 		.4byte	.LVL7
+ 1216 004c 0500     		.2byte	0x5
+ 1217 004e 70       		.byte	0x70
+ 1218 004f 80807E   		.sleb128 -32768
+ 1219 0052 9F       		.byte	0x9f
+ 1220 0053 00000000 		.4byte	0
+ 1221 0057 00000000 		.4byte	0
+ 1222              	.LLST4:
+ 1223 005b 00000000 		.4byte	.LVL8
+ 1224 005f 0E000000 		.4byte	.LVL9
+ 1225 0063 0100     		.2byte	0x1
+ 1226 0065 50       		.byte	0x50
+ 1227 0066 0E000000 		.4byte	.LVL9
+ 1228 006a 1C000000 		.4byte	.LVL11
+ 1229 006e 0100     		.2byte	0x1
+ 1230 0070 55       		.byte	0x55
+ 1231 0071 1C000000 		.4byte	.LVL11
+ 1232 0075 28000000 		.4byte	.LFE5
+ 1233 0079 0400     		.2byte	0x4
+ 1234 007b F3       		.byte	0xf3
+ 1235 007c 01       		.uleb128 0x1
+ 1236 007d 50       		.byte	0x50
+ 1237 007e 9F       		.byte	0x9f
+ 1238 007f 00000000 		.4byte	0
+ 1239 0083 00000000 		.4byte	0
+ 1240              	.LLST5:
+ 1241 0087 10000000 		.4byte	.LVL15
+ 1242 008b 1D000000 		.4byte	.LVL16-1
+ 1243 008f 0100     		.2byte	0x1
+ 1244 0091 50       		.byte	0x50
+ 1245 0092 00000000 		.4byte	0
+ 1246 0096 00000000 		.4byte	0
+ 1247              	.LLST6:
+ 1248 009a 00000000 		.4byte	.LVL12
+ 1249 009e 08000000 		.4byte	.LVL13
+ 1250 00a2 0200     		.2byte	0x2
+ 1251 00a4 3F       		.byte	0x3f
+ 1252 00a5 9F       		.byte	0x9f
+ 1253 00a6 00000000 		.4byte	0
+ 1254 00aa 00000000 		.4byte	0
+ 1255              	.LLST7:
+ 1256 00ae 00000000 		.4byte	.LVL21
+ 1257 00b2 06000000 		.4byte	.LVL22
+ 1258 00b6 0100     		.2byte	0x1
+ 1259 00b8 50       		.byte	0x50
+ 1260 00b9 06000000 		.4byte	.LVL22
+ 1261 00bd 10000000 		.4byte	.LFE7
+ 1262 00c1 0100     		.2byte	0x1
+ 1263 00c3 50       		.byte	0x50
+ 1264 00c4 00000000 		.4byte	0
+ 1265 00c8 00000000 		.4byte	0
+ 1266              		.section	.debug_aranges,"",%progbits
+ 1267 0000 5C000000 		.4byte	0x5c
+ 1268 0004 0200     		.2byte	0x2
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccGFvthk.s 			page 30
+
+
+ 1269 0006 00000000 		.4byte	.Ldebug_info0
+ 1270 000a 04       		.byte	0x4
+ 1271 000b 00       		.byte	0
+ 1272 000c 0000     		.2byte	0
+ 1273 000e 0000     		.2byte	0
+ 1274 0010 00000000 		.4byte	.LFB0
+ 1275 0014 24000000 		.4byte	.LFE0-.LFB0
+ 1276 0018 00000000 		.4byte	.LFB3
+ 1277 001c 28000000 		.4byte	.LFE3-.LFB3
+ 1278 0020 00000000 		.4byte	.LFB4
+ 1279 0024 2C000000 		.4byte	.LFE4-.LFB4
+ 1280 0028 00000000 		.4byte	.LFB5
+ 1281 002c 28000000 		.4byte	.LFE5-.LFB5
+ 1282 0030 00000000 		.4byte	.LFB6
+ 1283 0034 10000000 		.4byte	.LFE6-.LFB6
+ 1284 0038 00000000 		.4byte	.LFB1
+ 1285 003c 34000000 		.4byte	.LFE1-.LFB1
+ 1286 0040 00000000 		.4byte	.LFB2
+ 1287 0044 34000000 		.4byte	.LFE2-.LFB2
+ 1288 0048 00000000 		.4byte	.LFB7
+ 1289 004c 10000000 		.4byte	.LFE7-.LFB7
+ 1290 0050 00000000 		.4byte	.LFB8
+ 1291 0054 10000000 		.4byte	.LFE8-.LFB8
+ 1292 0058 00000000 		.4byte	0
+ 1293 005c 00000000 		.4byte	0
+ 1294              		.section	.debug_ranges,"",%progbits
+ 1295              	.Ldebug_ranges0:
+ 1296 0000 00000000 		.4byte	.LFB0
+ 1297 0004 24000000 		.4byte	.LFE0
+ 1298 0008 00000000 		.4byte	.LFB3
+ 1299 000c 28000000 		.4byte	.LFE3
+ 1300 0010 00000000 		.4byte	.LFB4
+ 1301 0014 2C000000 		.4byte	.LFE4
+ 1302 0018 00000000 		.4byte	.LFB5
+ 1303 001c 28000000 		.4byte	.LFE5
+ 1304 0020 00000000 		.4byte	.LFB6
+ 1305 0024 10000000 		.4byte	.LFE6
+ 1306 0028 00000000 		.4byte	.LFB1
+ 1307 002c 34000000 		.4byte	.LFE1
+ 1308 0030 00000000 		.4byte	.LFB2
+ 1309 0034 34000000 		.4byte	.LFE2
+ 1310 0038 00000000 		.4byte	.LFB7
+ 1311 003c 10000000 		.4byte	.LFE7
+ 1312 0040 00000000 		.4byte	.LFB8
+ 1313 0044 10000000 		.4byte	.LFE8
+ 1314 0048 00000000 		.4byte	0
+ 1315 004c 00000000 		.4byte	0
+ 1316              		.section	.debug_line,"",%progbits
+ 1317              	.Ldebug_line0:
+ 1318 0000 4E010000 		.section	.debug_str,"MS",%progbits,1
+ 1318      02007900 
+ 1318      00000201 
+ 1318      FB0E0D00 
+ 1318      01010101 
+ 1319              	.LASF20:
+ 1320 0000 72656733 		.ascii	"reg32\000"
+ 1320      3200
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccGFvthk.s 			page 31
+
+
+ 1321              	.LASF31:
+ 1322 0006 51756164 		.ascii	"QuadDec_L_GetInterruptMask\000"
+ 1322      4465635F 
+ 1322      4C5F4765 
+ 1322      74496E74 
+ 1322      65727275 
+ 1323              	.LASF40:
+ 1324 0021 51756164 		.ascii	"QuadDec_L_Cnt16_WriteCounter\000"
+ 1324      4465635F 
+ 1324      4C5F436E 
+ 1324      7431365F 
+ 1324      57726974 
+ 1325              	.LASF34:
+ 1326 003e 4379496E 		.ascii	"CyIntSetVector\000"
+ 1326      74536574 
+ 1326      56656374 
+ 1326      6F7200
+ 1327              	.LASF48:
+ 1328 004d 76616C75 		.ascii	"value\000"
+ 1328      6500
+ 1329              	.LASF24:
+ 1330 0053 636F756E 		.ascii	"count\000"
+ 1330      7400
+ 1331              	.LASF47:
+ 1332 0059 51756164 		.ascii	"QuadDec_L_GetCounter\000"
+ 1332      4465635F 
+ 1332      4C5F4765 
+ 1332      74436F75 
+ 1332      6E746572 
+ 1333              	.LASF6:
+ 1334 006e 73686F72 		.ascii	"short unsigned int\000"
+ 1334      7420756E 
+ 1334      7369676E 
+ 1334      65642069 
+ 1334      6E7400
+ 1335              	.LASF45:
+ 1336 0081 51756164 		.ascii	"QuadDec_L_SetInterruptMask\000"
+ 1336      4465635F 
+ 1336      4C5F5365 
+ 1336      74496E74 
+ 1336      65727275 
+ 1337              	.LASF39:
+ 1338 009c 51756164 		.ascii	"QuadDec_L_Cnt16_ReadCounter\000"
+ 1338      4465635F 
+ 1338      4C5F436E 
+ 1338      7431365F 
+ 1338      52656164 
+ 1339              	.LASF17:
+ 1340 00b8 666C6F61 		.ascii	"float\000"
+ 1340      7400
+ 1341              	.LASF9:
+ 1342 00be 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1342      206C6F6E 
+ 1342      6720756E 
+ 1342      7369676E 
+ 1342      65642069 
+ 1343              	.LASF4:
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccGFvthk.s 			page 32
+
+
+ 1344 00d5 756E7369 		.ascii	"unsigned char\000"
+ 1344      676E6564 
+ 1344      20636861 
+ 1344      7200
+ 1345              	.LASF26:
+ 1346 00e3 6877436F 		.ascii	"hwCount\000"
+ 1346      756E7400 
+ 1347              	.LASF19:
+ 1348 00eb 72656738 		.ascii	"reg8\000"
+ 1348      00
+ 1349              	.LASF43:
+ 1350 00f0 47656E65 		.ascii	"Generated_Source\\PSoC5\\QuadDec_L.c\000"
+ 1350      72617465 
+ 1350      645F536F 
+ 1350      75726365 
+ 1350      5C50536F 
+ 1351              	.LASF42:
+ 1352 0113 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1352      43313120 
+ 1352      352E342E 
+ 1352      31203230 
+ 1352      31363036 
+ 1353 0146 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1353      20726576 
+ 1353      6973696F 
+ 1353      6E203233 
+ 1353      37373135 
+ 1354 0179 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 1354      66756E63 
+ 1354      74696F6E 
+ 1354      2D736563 
+ 1354      74696F6E 
+ 1355              	.LASF16:
+ 1356 01a1 696E7433 		.ascii	"int32\000"
+ 1356      3200
+ 1357              	.LASF25:
+ 1358 01a7 746D7043 		.ascii	"tmpCnt\000"
+ 1358      6E7400
+ 1359              	.LASF44:
+ 1360 01ae 433A5C55 		.ascii	"C:\\Users\\jmspi\\OneDrive\\Documents\\GitHub\\ECE4"
+ 1360      73657273 
+ 1360      5C6A6D73 
+ 1360      70695C4F 
+ 1360      6E654472 
+ 1361 01db 3139315C 		.ascii	"191\\DeliveryRobot.cydsn\000"
+ 1361      44656C69 
+ 1361      76657279 
+ 1361      526F626F 
+ 1361      742E6379 
+ 1362              	.LASF21:
+ 1363 01f3 51756164 		.ascii	"QuadDec_L_Init\000"
+ 1363      4465635F 
+ 1363      4C5F496E 
+ 1363      697400
+ 1364              	.LASF23:
+ 1365 0202 656E6162 		.ascii	"enableInterrupts\000"
+ 1365      6C65496E 
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccGFvthk.s 			page 33
+
+
+ 1365      74657272 
+ 1365      75707473 
+ 1365      00
+ 1366              	.LASF29:
+ 1367 0213 51756164 		.ascii	"QuadDec_L_Start\000"
+ 1367      4465635F 
+ 1367      4C5F5374 
+ 1367      61727400 
+ 1368              	.LASF27:
+ 1369 0223 51756164 		.ascii	"QuadDec_L_SetCounter\000"
+ 1369      4465635F 
+ 1369      4C5F5365 
+ 1369      74436F75 
+ 1369      6E746572 
+ 1370              	.LASF18:
+ 1371 0238 646F7562 		.ascii	"double\000"
+ 1371      6C6500
+ 1372              	.LASF30:
+ 1373 023f 51756164 		.ascii	"QuadDec_L_GetEvents\000"
+ 1373      4465635F 
+ 1373      4C5F4765 
+ 1373      74457665 
+ 1373      6E747300 
+ 1374              	.LASF13:
+ 1375 0253 75696E74 		.ascii	"uint16\000"
+ 1375      313600
+ 1376              	.LASF14:
+ 1377 025a 75696E74 		.ascii	"uint32\000"
+ 1377      333200
+ 1378              	.LASF37:
+ 1379 0261 4379456E 		.ascii	"CyEnterCriticalSection\000"
+ 1379      74657243 
+ 1379      72697469 
+ 1379      63616C53 
+ 1379      65637469 
+ 1380              	.LASF8:
+ 1381 0278 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1381      20756E73 
+ 1381      69676E65 
+ 1381      6420696E 
+ 1381      7400
+ 1382              	.LASF0:
+ 1383 028a 756E7369 		.ascii	"unsigned int\000"
+ 1383      676E6564 
+ 1383      20696E74 
+ 1383      00
+ 1384              	.LASF38:
+ 1385 0297 43794578 		.ascii	"CyExitCriticalSection\000"
+ 1385      69744372 
+ 1385      69746963 
+ 1385      616C5365 
+ 1385      6374696F 
+ 1386              	.LASF35:
+ 1387 02ad 4379496E 		.ascii	"CyIntSetPriority\000"
+ 1387      74536574 
+ 1387      5072696F 
+ 1387      72697479 
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccGFvthk.s 			page 34
+
+
+ 1387      00
+ 1388              	.LASF41:
+ 1389 02be 51756164 		.ascii	"QuadDec_L_Cnt16_Start\000"
+ 1389      4465635F 
+ 1389      4C5F436E 
+ 1389      7431365F 
+ 1389      53746172 
+ 1390              	.LASF15:
+ 1391 02d4 696E7431 		.ascii	"int16\000"
+ 1391      3600
+ 1392              	.LASF28:
+ 1393 02da 51756164 		.ascii	"QuadDec_L_Enable\000"
+ 1393      4465635F 
+ 1393      4C5F456E 
+ 1393      61626C65 
+ 1393      00
+ 1394              	.LASF10:
+ 1395 02eb 73697A65 		.ascii	"sizetype\000"
+ 1395      74797065 
+ 1395      00
+ 1396              	.LASF1:
+ 1397 02f4 6C6F6E67 		.ascii	"long long int\000"
+ 1397      206C6F6E 
+ 1397      6720696E 
+ 1397      7400
+ 1398              	.LASF46:
+ 1399 0302 6D61736B 		.ascii	"mask\000"
+ 1399      00
+ 1400              	.LASF22:
+ 1401 0307 51756164 		.ascii	"QuadDec_L_Stop\000"
+ 1401      4465635F 
+ 1401      4C5F5374 
+ 1401      6F7000
+ 1402              	.LASF33:
+ 1403 0316 51756164 		.ascii	"QuadDec_L_count32SoftPart\000"
+ 1403      4465635F 
+ 1403      4C5F636F 
+ 1403      756E7433 
+ 1403      32536F66 
+ 1404              	.LASF5:
+ 1405 0330 73686F72 		.ascii	"short int\000"
+ 1405      7420696E 
+ 1405      7400
+ 1406              	.LASF12:
+ 1407 033a 75696E74 		.ascii	"uint8\000"
+ 1407      3800
+ 1408              	.LASF36:
+ 1409 0340 51756164 		.ascii	"QuadDec_L_Cnt16_Stop\000"
+ 1409      4465635F 
+ 1409      4C5F436E 
+ 1409      7431365F 
+ 1409      53746F70 
+ 1410              	.LASF7:
+ 1411 0355 6C6F6E67 		.ascii	"long int\000"
+ 1411      20696E74 
+ 1411      00
+ 1412              	.LASF11:
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccGFvthk.s 			page 35
+
+
+ 1413 035e 63686172 		.ascii	"char\000"
+ 1413      00
+ 1414              	.LASF2:
+ 1415 0363 6C6F6E67 		.ascii	"long double\000"
+ 1415      20646F75 
+ 1415      626C6500 
+ 1416              	.LASF3:
+ 1417 036f 7369676E 		.ascii	"signed char\000"
+ 1417      65642063 
+ 1417      68617200 
+ 1418              	.LASF32:
+ 1419 037b 51756164 		.ascii	"QuadDec_L_initVar\000"
+ 1419      4465635F 
+ 1419      4C5F696E 
+ 1419      69745661 
+ 1419      7200
+ 1420              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

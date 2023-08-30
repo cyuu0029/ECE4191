@@ -1,0 +1,3828 @@
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"lidarScan.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	__aeabi_dcmpgt
+  20              		.global	__aeabi_dadd
+  21              		.global	__aeabi_dcmpeq
+  22              		.global	__aeabi_dsub
+  23              		.section	.text.lidarScan_lidarScan,"ax",%progbits
+  24              		.align	1
+  25              		.global	lidarScan_lidarScan
+  26              		.thumb
+  27              		.thumb_func
+  28              		.type	lidarScan_lidarScan, %function
+  29              	lidarScan_lidarScan:
+  30              	.LFB0:
+  31              		.file 1 "VFH+\\src\\lidarScan.c"
+   1:VFH+\src/lidarScan.c **** /*
+   2:VFH+\src/lidarScan.c ****  * Academic License - for use in teaching, academic research, and meeting
+   3:VFH+\src/lidarScan.c ****  * course requirements at degree granting institutions only.  Not for
+   4:VFH+\src/lidarScan.c ****  * government, commercial, or other organizational use.
+   5:VFH+\src/lidarScan.c ****  * File: lidarScan.c
+   6:VFH+\src/lidarScan.c ****  *
+   7:VFH+\src/lidarScan.c ****  * MATLAB Coder version            : 5.3
+   8:VFH+\src/lidarScan.c ****  * C/C++ source code generated on  : 30-Aug-2023 22:51:35
+   9:VFH+\src/lidarScan.c ****  */
+  10:VFH+\src/lidarScan.c **** 
+  11:VFH+\src/lidarScan.c **** /* Include Files */
+  12:VFH+\src/lidarScan.c **** #include "lidarScan.h"
+  13:VFH+\src/lidarScan.c **** #include "mod.h"
+  14:VFH+\src/lidarScan.c **** #include "nullAssignment.h"
+  15:VFH+\src/lidarScan.c **** #include "rt_nonfinite.h"
+  16:VFH+\src/lidarScan.c **** #include "sort.h"
+  17:VFH+\src/lidarScan.c **** #include "vfhTest_emxutil.h"
+  18:VFH+\src/lidarScan.c **** #include "vfhTest_types.h"
+  19:VFH+\src/lidarScan.c **** #include "rtGetInf.h"
+  20:VFH+\src/lidarScan.c **** #include "rt_nonfinite.h"
+  21:VFH+\src/lidarScan.c **** #include <math.h>
+  22:VFH+\src/lidarScan.c **** 
+  23:VFH+\src/lidarScan.c **** /* Type Definitions */
+  24:VFH+\src/lidarScan.c **** #ifndef typedef_cell_wrap_17
+  25:VFH+\src/lidarScan.c **** #define typedef_cell_wrap_17
+  26:VFH+\src/lidarScan.c **** typedef struct {
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 2
+
+
+  27:VFH+\src/lidarScan.c ****   double f1[2];
+  28:VFH+\src/lidarScan.c **** } cell_wrap_17;
+  29:VFH+\src/lidarScan.c **** #endif /* typedef_cell_wrap_17 */
+  30:VFH+\src/lidarScan.c **** 
+  31:VFH+\src/lidarScan.c **** /* Function Definitions */
+  32:VFH+\src/lidarScan.c **** /*
+  33:VFH+\src/lidarScan.c ****  * Arguments    : const emxArray_real_T *varargin_1
+  34:VFH+\src/lidarScan.c ****  *                const emxArray_real_T *varargin_2
+  35:VFH+\src/lidarScan.c ****  *                emxArray_real_T *obj_InternalRanges
+  36:VFH+\src/lidarScan.c ****  *                emxArray_real_T *obj_InternalAngles
+  37:VFH+\src/lidarScan.c ****  *                bool *obj_ContainsOnlyFiniteData
+  38:VFH+\src/lidarScan.c ****  * Return Type  : void
+  39:VFH+\src/lidarScan.c ****  */
+  40:VFH+\src/lidarScan.c **** void lidarScan_lidarScan(const emxArray_real_T *varargin_1,
+  41:VFH+\src/lidarScan.c ****                          const emxArray_real_T *varargin_2,
+  42:VFH+\src/lidarScan.c ****                          emxArray_real_T *obj_InternalRanges,
+  43:VFH+\src/lidarScan.c ****                          emxArray_real_T *obj_InternalAngles,
+  44:VFH+\src/lidarScan.c ****                          bool *obj_ContainsOnlyFiniteData)
+  45:VFH+\src/lidarScan.c **** {
+  32              		.loc 1 45 0
+  33              		.cfi_startproc
+  34              		@ args = 4, pretend = 0, frame = 16
+  35              		@ frame_needed = 0, uses_anonymous_args = 0
+  36              	.LVL0:
+  37 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+  38              		.cfi_def_cfa_offset 36
+  39              		.cfi_offset 4, -36
+  40              		.cfi_offset 5, -32
+  41              		.cfi_offset 6, -28
+  42              		.cfi_offset 7, -24
+  43              		.cfi_offset 8, -20
+  44              		.cfi_offset 9, -16
+  45              		.cfi_offset 10, -12
+  46              		.cfi_offset 11, -8
+  47              		.cfi_offset 14, -4
+  48 0004 9046     		mov	r8, r2
+  49 0006 8146     		mov	r9, r0
+  50 0008 1E46     		mov	r6, r3
+  46:VFH+\src/lidarScan.c ****   static bool x_data[40000];
+  47:VFH+\src/lidarScan.c ****   emxArray_real_T *thetaWrap;
+  48:VFH+\src/lidarScan.c ****   emxArray_real_T *y;
+  49:VFH+\src/lidarScan.c ****   const double *varargin_1_data;
+  50:VFH+\src/lidarScan.c ****   const double *varargin_2_data;
+  51:VFH+\src/lidarScan.c ****   double *obj_InternalRanges_data;
+  52:VFH+\src/lidarScan.c ****   double *thetaWrap_data;
+  53:VFH+\src/lidarScan.c ****   int i;
+  54:VFH+\src/lidarScan.c ****   int k;
+  55:VFH+\src/lidarScan.c ****   int nx;
+  56:VFH+\src/lidarScan.c ****   bool exitg1;
+  57:VFH+\src/lidarScan.c ****   bool varargout_1;
+  58:VFH+\src/lidarScan.c ****   varargin_2_data = varargin_2->data;
+  59:VFH+\src/lidarScan.c ****   varargin_1_data = varargin_1->data;
+  60:VFH+\src/lidarScan.c ****   i = obj_InternalRanges->size[0];
+  51              		.loc 1 60 0
+  52 000a 5368     		ldr	r3, [r2, #4]
+  53              	.LVL1:
+  61:VFH+\src/lidarScan.c ****   obj_InternalRanges->size[0] = varargin_1->size[0];
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 3
+
+
+  54              		.loc 1 61 0
+  55 000c 4268     		ldr	r2, [r0, #4]
+  56              	.LVL2:
+  59:VFH+\src/lidarScan.c ****   i = obj_InternalRanges->size[0];
+  57              		.loc 1 59 0
+  58 000e 0768     		ldr	r7, [r0]
+  59              		.loc 1 61 0
+  60 0010 1268     		ldr	r2, [r2]
+  58:VFH+\src/lidarScan.c ****   varargin_1_data = varargin_1->data;
+  61              		.loc 1 58 0
+  62 0012 0D68     		ldr	r5, [r1]
+  63              	.LVL3:
+  45:VFH+\src/lidarScan.c ****   static bool x_data[40000];
+  64              		.loc 1 45 0
+  65 0014 85B0     		sub	sp, sp, #20
+  66              		.cfi_def_cfa_offset 56
+  45:VFH+\src/lidarScan.c ****   static bool x_data[40000];
+  67              		.loc 1 45 0
+  68 0016 0C46     		mov	r4, r1
+  62:VFH+\src/lidarScan.c ****   emxEnsureCapacity_real_T(obj_InternalRanges, i);
+  69              		.loc 1 62 0
+  70 0018 4046     		mov	r0, r8
+  71              	.LVL4:
+  60:VFH+\src/lidarScan.c ****   obj_InternalRanges->size[0] = varargin_1->size[0];
+  72              		.loc 1 60 0
+  73 001a 1968     		ldr	r1, [r3]
+  74              	.LVL5:
+  61:VFH+\src/lidarScan.c ****   emxEnsureCapacity_real_T(obj_InternalRanges, i);
+  75              		.loc 1 61 0
+  76 001c 1A60     		str	r2, [r3]
+  77              		.loc 1 62 0
+  78 001e FFF7FEFF 		bl	emxEnsureCapacity_real_T
+  79              	.LVL6:
+  63:VFH+\src/lidarScan.c ****   obj_InternalRanges_data = obj_InternalRanges->data;
+  64:VFH+\src/lidarScan.c ****   nx = varargin_1->size[0];
+  80              		.loc 1 64 0
+  81 0022 D9F80430 		ldr	r3, [r9, #4]
+  82 0026 D8F80020 		ldr	r2, [r8]
+  83 002a D3F800E0 		ldr	lr, [r3]
+  84              	.LVL7:
+  85 002e 083A     		subs	r2, r2, #8
+  86 0030 A7F10803 		sub	r3, r7, #8
+  65:VFH+\src/lidarScan.c ****   for (i = 0; i < nx; i++) {
+  87              		.loc 1 65 0
+  88 0034 0027     		movs	r7, #0
+  89              	.LVL8:
+  90              	.L2:
+  91              		.loc 1 65 0 is_stmt 0 discriminator 1
+  92 0036 7745     		cmp	r7, lr
+  93 0038 05DA     		bge	.L34
+  66:VFH+\src/lidarScan.c ****     obj_InternalRanges_data[i] = varargin_1_data[i];
+  94              		.loc 1 66 0 is_stmt 1 discriminator 3
+  95 003a F3E90201 		ldrd	r0, [r3, #8]!
+  65:VFH+\src/lidarScan.c ****   for (i = 0; i < nx; i++) {
+  96              		.loc 1 65 0 discriminator 3
+  97 003e 0137     		adds	r7, r7, #1
+  98              	.LVL9:
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 4
+
+
+  99              		.loc 1 66 0 discriminator 3
+ 100 0040 E2E90201 		strd	r0, [r2, #8]!
+ 101 0044 F7E7     		b	.L2
+ 102              	.L34:
+ 103 0046 083D     		subs	r5, r5, #8
+ 104              	.LVL10:
+  67:VFH+\src/lidarScan.c ****   }
+  68:VFH+\src/lidarScan.c ****   i = obj_InternalAngles->size[0];
+  69:VFH+\src/lidarScan.c ****   obj_InternalAngles->size[0] = varargin_2->size[0];
+  70:VFH+\src/lidarScan.c ****   emxEnsureCapacity_real_T(obj_InternalAngles, i);
+  71:VFH+\src/lidarScan.c ****   obj_InternalRanges_data = obj_InternalAngles->data;
+  72:VFH+\src/lidarScan.c ****   nx = varargin_2->size[0];
+  73:VFH+\src/lidarScan.c ****   for (i = 0; i < nx; i++) {
+ 105              		.loc 1 73 0
+ 106 0048 2F46     		mov	r7, r5
+ 107              	.LVL11:
+  69:VFH+\src/lidarScan.c ****   emxEnsureCapacity_real_T(obj_InternalAngles, i);
+ 108              		.loc 1 69 0
+ 109 004a 6268     		ldr	r2, [r4, #4]
+  68:VFH+\src/lidarScan.c ****   obj_InternalAngles->size[0] = varargin_2->size[0];
+ 110              		.loc 1 68 0
+ 111 004c 7368     		ldr	r3, [r6, #4]
+  69:VFH+\src/lidarScan.c ****   emxEnsureCapacity_real_T(obj_InternalAngles, i);
+ 112              		.loc 1 69 0
+ 113 004e 1268     		ldr	r2, [r2]
+  68:VFH+\src/lidarScan.c ****   obj_InternalAngles->size[0] = varargin_2->size[0];
+ 114              		.loc 1 68 0
+ 115 0050 1968     		ldr	r1, [r3]
+ 116              	.LVL12:
+  70:VFH+\src/lidarScan.c ****   obj_InternalRanges_data = obj_InternalAngles->data;
+ 117              		.loc 1 70 0
+ 118 0052 3046     		mov	r0, r6
+  69:VFH+\src/lidarScan.c ****   emxEnsureCapacity_real_T(obj_InternalAngles, i);
+ 119              		.loc 1 69 0
+ 120 0054 1A60     		str	r2, [r3]
+  70:VFH+\src/lidarScan.c ****   obj_InternalRanges_data = obj_InternalAngles->data;
+ 121              		.loc 1 70 0
+ 122 0056 FFF7FEFF 		bl	emxEnsureCapacity_real_T
+ 123              	.LVL13:
+  72:VFH+\src/lidarScan.c ****   for (i = 0; i < nx; i++) {
+ 124              		.loc 1 72 0
+ 125 005a 6368     		ldr	r3, [r4, #4]
+ 126              		.loc 1 73 0
+ 127 005c 0022     		movs	r2, #0
+  72:VFH+\src/lidarScan.c ****   for (i = 0; i < nx; i++) {
+ 128              		.loc 1 72 0
+ 129 005e D3F800E0 		ldr	lr, [r3]
+ 130              	.LVL14:
+ 131 0062 3368     		ldr	r3, [r6]
+ 132 0064 083B     		subs	r3, r3, #8
+ 133              	.LVL15:
+ 134              	.L4:
+ 135              		.loc 1 73 0 discriminator 1
+ 136 0066 7245     		cmp	r2, lr
+ 137 0068 05DA     		bge	.L35
+  74:VFH+\src/lidarScan.c ****     obj_InternalRanges_data[i] = varargin_2_data[i];
+ 138              		.loc 1 74 0 discriminator 3
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 5
+
+
+ 139 006a F7E90201 		ldrd	r0, [r7, #8]!
+  73:VFH+\src/lidarScan.c ****     obj_InternalRanges_data[i] = varargin_2_data[i];
+ 140              		.loc 1 73 0 discriminator 3
+ 141 006e 0132     		adds	r2, r2, #1
+ 142              	.LVL16:
+ 143              		.loc 1 74 0 discriminator 3
+ 144 0070 E3E90201 		strd	r0, [r3, #8]!
+ 145 0074 F7E7     		b	.L4
+ 146              	.L35:
+  75:VFH+\src/lidarScan.c ****   }
+  76:VFH+\src/lidarScan.c ****   emxInit_real_T(&y, 1);
+ 147              		.loc 1 76 0
+ 148 0076 0121     		movs	r1, #1
+ 149 0078 03A8     		add	r0, sp, #12
+ 150 007a FFF7FEFF 		bl	emxInit_real_T
+ 151              	.LVL17:
+  77:VFH+\src/lidarScan.c ****   nx = varargin_2->size[0];
+ 152              		.loc 1 77 0
+ 153 007e 6368     		ldr	r3, [r4, #4]
+  78:VFH+\src/lidarScan.c ****   i = y->size[0];
+ 154              		.loc 1 78 0
+ 155 0080 0398     		ldr	r0, [sp, #12]
+  77:VFH+\src/lidarScan.c ****   nx = varargin_2->size[0];
+ 156              		.loc 1 77 0
+ 157 0082 D3F80080 		ldr	r8, [r3]
+ 158              	.LVL18:
+ 159              		.loc 1 78 0
+ 160 0086 4368     		ldr	r3, [r0, #4]
+ 161 0088 1968     		ldr	r1, [r3]
+ 162              	.LVL19:
+  79:VFH+\src/lidarScan.c ****   y->size[0] = varargin_2->size[0];
+ 163              		.loc 1 79 0
+ 164 008a C3F80080 		str	r8, [r3]
+  80:VFH+\src/lidarScan.c ****   emxEnsureCapacity_real_T(y, i);
+ 165              		.loc 1 80 0
+ 166 008e FFF7FEFF 		bl	emxEnsureCapacity_real_T
+ 167              	.LVL20:
+  81:VFH+\src/lidarScan.c ****   obj_InternalRanges_data = y->data;
+ 168              		.loc 1 81 0
+ 169 0092 DDF80C90 		ldr	r9, [sp, #12]
+ 170              	.LVL21:
+  82:VFH+\src/lidarScan.c ****   for (k = 0; k < nx; k++) {
+ 171              		.loc 1 82 0
+ 172 0096 2A46     		mov	r2, r5
+ 173 0098 D9F80070 		ldr	r7, [r9]
+ 174 009c 0023     		movs	r3, #0
+ 175 009e 083F     		subs	r7, r7, #8
+ 176 00a0 3946     		mov	r1, r7
+ 177              	.LVL22:
+ 178              	.L6:
+ 179              		.loc 1 82 0 is_stmt 0 discriminator 1
+ 180 00a2 4345     		cmp	r3, r8
+ 181 00a4 09DA     		bge	.L36
+  83:VFH+\src/lidarScan.c ****     obj_InternalRanges_data[k] = fabs(varargin_2_data[k]);
+ 182              		.loc 1 83 0 is_stmt 1 discriminator 3
+ 183 00a6 52F8080F 		ldr	r0, [r2, #8]!
+  82:VFH+\src/lidarScan.c ****   for (k = 0; k < nx; k++) {
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 6
+
+
+ 184              		.loc 1 82 0 discriminator 3
+ 185 00aa 0133     		adds	r3, r3, #1
+ 186              	.LVL23:
+ 187              		.loc 1 83 0 discriminator 3
+ 188 00ac 41F8080F 		str	r0, [r1, #8]!
+ 189 00b0 5068     		ldr	r0, [r2, #4]
+ 190 00b2 20F00040 		bic	r0, r0, #-2147483648
+ 191 00b6 4860     		str	r0, [r1, #4]
+ 192 00b8 F3E7     		b	.L6
+ 193              	.L36:
+  84:VFH+\src/lidarScan.c ****   }
+  85:VFH+\src/lidarScan.c ****   k = y->size[0];
+ 194              		.loc 1 85 0
+ 195 00ba D9F80430 		ldr	r3, [r9, #4]
+ 196              	.LVL24:
+  86:VFH+\src/lidarScan.c ****   nx = y->size[0];
+  87:VFH+\src/lidarScan.c ****   for (i = 0; i < nx; i++) {
+ 197              		.loc 1 87 0
+ 198 00be 4FF00008 		mov	r8, #0
+ 199              	.LVL25:
+  85:VFH+\src/lidarScan.c ****   nx = y->size[0];
+ 200              		.loc 1 85 0
+ 201 00c2 D3F800A0 		ldr	r10, [r3]
+ 202              	.LVL26:
+ 203 00c6 0193     		str	r3, [sp, #4]
+ 204              	.LVL27:
+ 205              	.L8:
+ 206              		.loc 1 87 0 discriminator 1
+ 207 00c8 D045     		cmp	r8, r10
+ 208 00ca 10DA     		bge	.L37
+  88:VFH+\src/lidarScan.c ****     x_data[i] = (obj_InternalRanges_data[i] > 3.1415926535897931);
+ 209              		.loc 1 88 0 discriminator 3
+ 210 00cc 5AA3     		adr	r3, .L43
+ 211 00ce D3E90023 		ldrd	r2, [r3]
+ 212 00d2 F7E90201 		ldrd	r0, [r7, #8]!
+ 213 00d6 4FF0010B 		mov	fp, #1
+ 214 00da FFF7FEFF 		bl	__aeabi_dcmpgt
+ 215              	.LVL28:
+ 216 00de 00B9     		cbnz	r0, .L9
+ 217 00e0 8346     		mov	fp, r0
+ 218              	.L9:
+ 219 00e2 594B     		ldr	r3, .L43+16
+ 220 00e4 08F803B0 		strb	fp, [r8, r3]
+  87:VFH+\src/lidarScan.c ****     x_data[i] = (obj_InternalRanges_data[i] > 3.1415926535897931);
+ 221              		.loc 1 87 0 discriminator 3
+ 222 00e8 08F10108 		add	r8, r8, #1
+ 223              	.LVL29:
+ 224 00ec ECE7     		b	.L8
+ 225              	.L37:
+  89:VFH+\src/lidarScan.c ****   }
+  90:VFH+\src/lidarScan.c ****   varargout_1 = false;
+  91:VFH+\src/lidarScan.c ****   nx = 1;
+  92:VFH+\src/lidarScan.c ****   exitg1 = false;
+  93:VFH+\src/lidarScan.c ****   while ((!exitg1) && (nx <= k)) {
+  94:VFH+\src/lidarScan.c ****     if (x_data[nx - 1]) {
+ 226              		.loc 1 94 0
+ 227 00ee 564A     		ldr	r2, .L43+16
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 7
+
+
+ 228 00f0 0123     		movs	r3, #1
+ 229              	.LVL30:
+ 230              	.L11:
+  93:VFH+\src/lidarScan.c ****     if (x_data[nx - 1]) {
+ 231              		.loc 1 93 0
+ 232 00f2 5345     		cmp	r3, r10
+ 233 00f4 08DC     		bgt	.L14
+ 234              		.loc 1 94 0
+ 235 00f6 D118     		adds	r1, r2, r3
+ 236 00f8 11F8011C 		ldrb	r1, [r1, #-1]	@ zero_extendqisi2
+ 237 00fc 69B9     		cbnz	r1, .L12
+  95:VFH+\src/lidarScan.c ****       varargout_1 = true;
+  96:VFH+\src/lidarScan.c ****       exitg1 = true;
+  97:VFH+\src/lidarScan.c ****     } else {
+  98:VFH+\src/lidarScan.c ****       nx++;
+ 238              		.loc 1 98 0
+ 239 00fe 0133     		adds	r3, r3, #1
+ 240              	.LVL31:
+ 241 0100 F7E7     		b	.L11
+ 242              	.LVL32:
+ 243              	.L42:
+  99:VFH+\src/lidarScan.c ****     }
+ 100:VFH+\src/lidarScan.c ****   }
+ 101:VFH+\src/lidarScan.c ****   if (varargout_1) {
+ 102:VFH+\src/lidarScan.c ****     i = y->size[0];
+ 103:VFH+\src/lidarScan.c ****     y->size[0] = varargin_2->size[0];
+ 104:VFH+\src/lidarScan.c ****     emxEnsureCapacity_real_T(y, i);
+ 105:VFH+\src/lidarScan.c ****     obj_InternalRanges_data = y->data;
+ 106:VFH+\src/lidarScan.c ****     nx = varargin_2->size[0];
+ 107:VFH+\src/lidarScan.c ****     for (i = 0; i < nx; i++) {
+ 108:VFH+\src/lidarScan.c ****       obj_InternalRanges_data[i] = varargin_2_data[i] + 3.1415926535897931;
+ 109:VFH+\src/lidarScan.c ****     }
+ 110:VFH+\src/lidarScan.c ****     emxInit_real_T(&thetaWrap, 1);
+ 111:VFH+\src/lidarScan.c ****     i = thetaWrap->size[0];
+ 112:VFH+\src/lidarScan.c ****     thetaWrap->size[0] = y->size[0];
+ 113:VFH+\src/lidarScan.c ****     emxEnsureCapacity_real_T(thetaWrap, i);
+ 114:VFH+\src/lidarScan.c ****     thetaWrap_data = thetaWrap->data;
+ 115:VFH+\src/lidarScan.c ****     nx = y->size[0];
+ 116:VFH+\src/lidarScan.c ****     for (k = 0; k < nx; k++) {
+ 117:VFH+\src/lidarScan.c ****       thetaWrap_data[k] = b_mod(obj_InternalRanges_data[k]);
+ 118:VFH+\src/lidarScan.c ****     }
+ 119:VFH+\src/lidarScan.c ****     k = thetaWrap->size[0];
+ 120:VFH+\src/lidarScan.c ****     nx = thetaWrap->size[0];
+ 121:VFH+\src/lidarScan.c ****     for (i = 0; i < nx; i++) {
+ 122:VFH+\src/lidarScan.c ****       x_data[i] = (thetaWrap_data[i] == 0.0);
+ 123:VFH+\src/lidarScan.c ****     }
+ 124:VFH+\src/lidarScan.c ****     for (nx = 0; nx < k; nx++) {
+ 125:VFH+\src/lidarScan.c ****       if (x_data[nx] && (obj_InternalRanges_data[nx] > 0.0)) {
+ 126:VFH+\src/lidarScan.c ****         thetaWrap_data[nx] = 6.2831853071795862;
+ 127:VFH+\src/lidarScan.c ****       }
+ 128:VFH+\src/lidarScan.c ****     }
+ 129:VFH+\src/lidarScan.c ****     i = obj_InternalAngles->size[0];
+ 130:VFH+\src/lidarScan.c ****     obj_InternalAngles->size[0] = thetaWrap->size[0];
+ 131:VFH+\src/lidarScan.c ****     emxEnsureCapacity_real_T(obj_InternalAngles, i);
+ 132:VFH+\src/lidarScan.c ****     obj_InternalRanges_data = obj_InternalAngles->data;
+ 133:VFH+\src/lidarScan.c ****     nx = thetaWrap->size[0];
+ 134:VFH+\src/lidarScan.c ****     for (i = 0; i < nx; i++) {
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 8
+
+
+ 135:VFH+\src/lidarScan.c ****       obj_InternalRanges_data[i] = thetaWrap_data[i] - 3.1415926535897931;
+ 136:VFH+\src/lidarScan.c ****     }
+ 137:VFH+\src/lidarScan.c ****     emxFree_real_T(&thetaWrap);
+ 244              		.loc 1 137 0
+ 245 0102 02A8     		add	r0, sp, #8
+ 246 0104 FFF7FEFF 		bl	emxFree_real_T
+ 247              	.LVL33:
+ 248              	.L14:
+ 138:VFH+\src/lidarScan.c ****   }
+ 139:VFH+\src/lidarScan.c ****   emxFree_real_T(&y);
+ 249              		.loc 1 139 0
+ 250 0108 03A8     		add	r0, sp, #12
+ 251 010a FFF7FEFF 		bl	emxFree_real_T
+ 252              	.LVL34:
+ 140:VFH+\src/lidarScan.c ****   *obj_ContainsOnlyFiniteData = false;
+ 253              		.loc 1 140 0
+ 254 010e 0E9B     		ldr	r3, [sp, #56]
+ 255 0110 0022     		movs	r2, #0
+ 256 0112 1A70     		strb	r2, [r3]
+ 141:VFH+\src/lidarScan.c **** }
+ 257              		.loc 1 141 0
+ 258 0114 05B0     		add	sp, sp, #20
+ 259              		.cfi_remember_state
+ 260              		.cfi_def_cfa_offset 36
+ 261              		@ sp needed
+ 262 0116 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 263              	.LVL35:
+ 264              	.L12:
+ 265              		.cfi_restore_state
+ 103:VFH+\src/lidarScan.c ****     emxEnsureCapacity_real_T(y, i);
+ 266              		.loc 1 103 0
+ 267 011a 6368     		ldr	r3, [r4, #4]
+ 268              	.LVL36:
+ 269 011c 019A     		ldr	r2, [sp, #4]
+ 270 011e 1B68     		ldr	r3, [r3]
+ 104:VFH+\src/lidarScan.c ****     obj_InternalRanges_data = y->data;
+ 271              		.loc 1 104 0
+ 272 0120 5146     		mov	r1, r10
+ 103:VFH+\src/lidarScan.c ****     emxEnsureCapacity_real_T(y, i);
+ 273              		.loc 1 103 0
+ 274 0122 1360     		str	r3, [r2]
+ 104:VFH+\src/lidarScan.c ****     obj_InternalRanges_data = y->data;
+ 275              		.loc 1 104 0
+ 276 0124 4846     		mov	r0, r9
+ 277 0126 FFF7FEFF 		bl	emxEnsureCapacity_real_T
+ 278              	.LVL37:
+ 105:VFH+\src/lidarScan.c ****     nx = varargin_2->size[0];
+ 279              		.loc 1 105 0
+ 280 012a 039B     		ldr	r3, [sp, #12]
+ 281 012c 1F68     		ldr	r7, [r3]
+ 282              	.LVL38:
+ 106:VFH+\src/lidarScan.c ****     for (i = 0; i < nx; i++) {
+ 283              		.loc 1 106 0
+ 284 012e 6368     		ldr	r3, [r4, #4]
+ 285 0130 A7F10808 		sub	r8, r7, #8
+ 107:VFH+\src/lidarScan.c ****       obj_InternalRanges_data[i] = varargin_2_data[i] + 3.1415926535897931;
+ 286              		.loc 1 107 0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 9
+
+
+ 287 0134 C146     		mov	r9, r8
+ 106:VFH+\src/lidarScan.c ****     for (i = 0; i < nx; i++) {
+ 288              		.loc 1 106 0
+ 289 0136 D3F800A0 		ldr	r10, [r3]
+ 290              	.LVL39:
+ 107:VFH+\src/lidarScan.c ****       obj_InternalRanges_data[i] = varargin_2_data[i] + 3.1415926535897931;
+ 291              		.loc 1 107 0
+ 292 013a 0024     		movs	r4, #0
+ 293              	.LVL40:
+ 294              	.L27:
+ 107:VFH+\src/lidarScan.c ****       obj_InternalRanges_data[i] = varargin_2_data[i] + 3.1415926535897931;
+ 295              		.loc 1 107 0 is_stmt 0 discriminator 1
+ 296 013c 5445     		cmp	r4, r10
+ 297 013e 0ADA     		bge	.L38
+ 108:VFH+\src/lidarScan.c ****     }
+ 298              		.loc 1 108 0 is_stmt 1 discriminator 3
+ 299 0140 F5E90201 		ldrd	r0, [r5, #8]!
+ 300 0144 3CA3     		adr	r3, .L43
+ 301 0146 D3E90023 		ldrd	r2, [r3]
+ 302 014a FFF7FEFF 		bl	__aeabi_dadd
+ 303              	.LVL41:
+ 107:VFH+\src/lidarScan.c ****       obj_InternalRanges_data[i] = varargin_2_data[i] + 3.1415926535897931;
+ 304              		.loc 1 107 0 discriminator 3
+ 305 014e 0134     		adds	r4, r4, #1
+ 306              	.LVL42:
+ 108:VFH+\src/lidarScan.c ****     }
+ 307              		.loc 1 108 0 discriminator 3
+ 308 0150 E9E90201 		strd	r0, [r9, #8]!
+ 309 0154 F2E7     		b	.L27
+ 310              	.L38:
+ 110:VFH+\src/lidarScan.c ****     i = thetaWrap->size[0];
+ 311              		.loc 1 110 0
+ 312 0156 0121     		movs	r1, #1
+ 313 0158 02A8     		add	r0, sp, #8
+ 314 015a FFF7FEFF 		bl	emxInit_real_T
+ 315              	.LVL43:
+ 112:VFH+\src/lidarScan.c ****     emxEnsureCapacity_real_T(thetaWrap, i);
+ 316              		.loc 1 112 0
+ 317 015e 039A     		ldr	r2, [sp, #12]
+ 111:VFH+\src/lidarScan.c ****     thetaWrap->size[0] = y->size[0];
+ 318              		.loc 1 111 0
+ 319 0160 0298     		ldr	r0, [sp, #8]
+ 112:VFH+\src/lidarScan.c ****     emxEnsureCapacity_real_T(thetaWrap, i);
+ 320              		.loc 1 112 0
+ 321 0162 5268     		ldr	r2, [r2, #4]
+ 111:VFH+\src/lidarScan.c ****     thetaWrap->size[0] = y->size[0];
+ 322              		.loc 1 111 0
+ 323 0164 4368     		ldr	r3, [r0, #4]
+ 112:VFH+\src/lidarScan.c ****     emxEnsureCapacity_real_T(thetaWrap, i);
+ 324              		.loc 1 112 0
+ 325 0166 1268     		ldr	r2, [r2]
+ 111:VFH+\src/lidarScan.c ****     thetaWrap->size[0] = y->size[0];
+ 326              		.loc 1 111 0
+ 327 0168 1968     		ldr	r1, [r3]
+ 328              	.LVL44:
+ 112:VFH+\src/lidarScan.c ****     emxEnsureCapacity_real_T(thetaWrap, i);
+ 329              		.loc 1 112 0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 10
+
+
+ 330 016a 1A60     		str	r2, [r3]
+ 113:VFH+\src/lidarScan.c ****     thetaWrap_data = thetaWrap->data;
+ 331              		.loc 1 113 0
+ 332 016c FFF7FEFF 		bl	emxEnsureCapacity_real_T
+ 333              	.LVL45:
+ 114:VFH+\src/lidarScan.c ****     nx = y->size[0];
+ 334              		.loc 1 114 0
+ 335 0170 029B     		ldr	r3, [sp, #8]
+ 116:VFH+\src/lidarScan.c ****       thetaWrap_data[k] = b_mod(obj_InternalRanges_data[k]);
+ 336              		.loc 1 116 0
+ 337 0172 4FF00009 		mov	r9, #0
+ 114:VFH+\src/lidarScan.c ****     nx = y->size[0];
+ 338              		.loc 1 114 0
+ 339 0176 1C68     		ldr	r4, [r3]
+ 340              	.LVL46:
+ 115:VFH+\src/lidarScan.c ****     for (k = 0; k < nx; k++) {
+ 341              		.loc 1 115 0
+ 342 0178 039B     		ldr	r3, [sp, #12]
+ 343 017a A4F10805 		sub	r5, r4, #8
+ 116:VFH+\src/lidarScan.c ****       thetaWrap_data[k] = b_mod(obj_InternalRanges_data[k]);
+ 344              		.loc 1 116 0
+ 345 017e AA46     		mov	r10, r5
+ 346              	.LVL47:
+ 115:VFH+\src/lidarScan.c ****     for (k = 0; k < nx; k++) {
+ 347              		.loc 1 115 0
+ 348 0180 5B68     		ldr	r3, [r3, #4]
+ 349 0182 D3F800B0 		ldr	fp, [r3]
+ 350              	.LVL48:
+ 351              	.L16:
+ 116:VFH+\src/lidarScan.c ****       thetaWrap_data[k] = b_mod(obj_InternalRanges_data[k]);
+ 352              		.loc 1 116 0 discriminator 1
+ 353 0186 D945     		cmp	r9, fp
+ 354 0188 08DA     		bge	.L39
+ 117:VFH+\src/lidarScan.c ****     }
+ 355              		.loc 1 117 0 discriminator 3
+ 356 018a F8E90201 		ldrd	r0, [r8, #8]!
+ 357 018e FFF7FEFF 		bl	b_mod
+ 358              	.LVL49:
+ 116:VFH+\src/lidarScan.c ****       thetaWrap_data[k] = b_mod(obj_InternalRanges_data[k]);
+ 359              		.loc 1 116 0 discriminator 3
+ 360 0192 09F10109 		add	r9, r9, #1
+ 361              	.LVL50:
+ 117:VFH+\src/lidarScan.c ****     }
+ 362              		.loc 1 117 0 discriminator 3
+ 363 0196 EAE90201 		strd	r0, [r10, #8]!
+ 364 019a F4E7     		b	.L16
+ 365              	.L39:
+ 121:VFH+\src/lidarScan.c ****       x_data[i] = (thetaWrap_data[i] == 0.0);
+ 366              		.loc 1 121 0
+ 367 019c AA46     		mov	r10, r5
+ 119:VFH+\src/lidarScan.c ****     nx = thetaWrap->size[0];
+ 368              		.loc 1 119 0
+ 369 019e 029B     		ldr	r3, [sp, #8]
+ 121:VFH+\src/lidarScan.c ****       x_data[i] = (thetaWrap_data[i] == 0.0);
+ 370              		.loc 1 121 0
+ 371 01a0 4FF00008 		mov	r8, #0
+ 119:VFH+\src/lidarScan.c ****     nx = thetaWrap->size[0];
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 11
+
+
+ 372              		.loc 1 119 0
+ 373 01a4 5B68     		ldr	r3, [r3, #4]
+ 374 01a6 D3F80090 		ldr	r9, [r3]
+ 375              	.LVL51:
+ 376              	.L18:
+ 121:VFH+\src/lidarScan.c ****       x_data[i] = (thetaWrap_data[i] == 0.0);
+ 377              		.loc 1 121 0 discriminator 1
+ 378 01aa C845     		cmp	r8, r9
+ 379 01ac 0FDA     		bge	.L40
+ 122:VFH+\src/lidarScan.c ****     }
+ 380              		.loc 1 122 0 discriminator 3
+ 381 01ae FAE90201 		ldrd	r0, [r10, #8]!
+ 382 01b2 0022     		movs	r2, #0
+ 383 01b4 0023     		movs	r3, #0
+ 384 01b6 4FF0010B 		mov	fp, #1
+ 385 01ba FFF7FEFF 		bl	__aeabi_dcmpeq
+ 386              	.LVL52:
+ 387 01be 00B9     		cbnz	r0, .L19
+ 388 01c0 8346     		mov	fp, r0
+ 389              	.L19:
+ 390 01c2 214B     		ldr	r3, .L43+16
+ 391 01c4 08F803B0 		strb	fp, [r8, r3]
+ 121:VFH+\src/lidarScan.c ****       x_data[i] = (thetaWrap_data[i] == 0.0);
+ 392              		.loc 1 121 0 discriminator 3
+ 393 01c8 08F10108 		add	r8, r8, #1
+ 394              	.LVL53:
+ 395 01cc EDE7     		b	.L18
+ 396              	.L40:
+ 121:VFH+\src/lidarScan.c ****       x_data[i] = (thetaWrap_data[i] == 0.0);
+ 397              		.loc 1 121 0 is_stmt 0
+ 398 01ce 4FF00008 		mov	r8, #0
+ 399              	.LVL54:
+ 126:VFH+\src/lidarScan.c ****       }
+ 400              		.loc 1 126 0 is_stmt 1
+ 401 01d2 0FF26C0B 		adr	fp, .L43+8
+ 402 01d6 DBE900AB 		ldrd	r10, [fp]
+ 403              	.LVL55:
+ 404              	.L21:
+ 124:VFH+\src/lidarScan.c ****       if (x_data[nx] && (obj_InternalRanges_data[nx] > 0.0)) {
+ 405              		.loc 1 124 0 discriminator 1
+ 406 01da C845     		cmp	r8, r9
+ 407 01dc 11DA     		bge	.L41
+ 125:VFH+\src/lidarScan.c ****         thetaWrap_data[nx] = 6.2831853071795862;
+ 408              		.loc 1 125 0
+ 409 01de 1A4B     		ldr	r3, .L43+16
+ 410 01e0 13F80830 		ldrb	r3, [r3, r8]	@ zero_extendqisi2
+ 411 01e4 43B1     		cbz	r3, .L22
+ 125:VFH+\src/lidarScan.c ****         thetaWrap_data[nx] = 6.2831853071795862;
+ 412              		.loc 1 125 0 is_stmt 0 discriminator 1
+ 413 01e6 D7E90001 		ldrd	r0, [r7]
+ 414 01ea 0022     		movs	r2, #0
+ 415 01ec 0023     		movs	r3, #0
+ 416 01ee FFF7FEFF 		bl	__aeabi_dcmpgt
+ 417              	.LVL56:
+ 418 01f2 08B1     		cbz	r0, .L22
+ 126:VFH+\src/lidarScan.c ****       }
+ 419              		.loc 1 126 0 is_stmt 1
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 12
+
+
+ 420 01f4 C4E900AB 		strd	r10, [r4]
+ 421              	.L22:
+ 124:VFH+\src/lidarScan.c ****       if (x_data[nx] && (obj_InternalRanges_data[nx] > 0.0)) {
+ 422              		.loc 1 124 0 discriminator 2
+ 423 01f8 08F10108 		add	r8, r8, #1
+ 424              	.LVL57:
+ 425 01fc 0837     		adds	r7, r7, #8
+ 426 01fe 0834     		adds	r4, r4, #8
+ 427 0200 EBE7     		b	.L21
+ 428              	.L41:
+ 129:VFH+\src/lidarScan.c ****     obj_InternalAngles->size[0] = thetaWrap->size[0];
+ 429              		.loc 1 129 0
+ 430 0202 7368     		ldr	r3, [r6, #4]
+ 131:VFH+\src/lidarScan.c ****     obj_InternalRanges_data = obj_InternalAngles->data;
+ 431              		.loc 1 131 0
+ 432 0204 3046     		mov	r0, r6
+ 129:VFH+\src/lidarScan.c ****     obj_InternalAngles->size[0] = thetaWrap->size[0];
+ 433              		.loc 1 129 0
+ 434 0206 1968     		ldr	r1, [r3]
+ 435              	.LVL58:
+ 130:VFH+\src/lidarScan.c ****     emxEnsureCapacity_real_T(obj_InternalAngles, i);
+ 436              		.loc 1 130 0
+ 437 0208 C3F80090 		str	r9, [r3]
+ 131:VFH+\src/lidarScan.c ****     obj_InternalRanges_data = obj_InternalAngles->data;
+ 438              		.loc 1 131 0
+ 439 020c FFF7FEFF 		bl	emxEnsureCapacity_real_T
+ 440              	.LVL59:
+ 133:VFH+\src/lidarScan.c ****     for (i = 0; i < nx; i++) {
+ 441              		.loc 1 133 0
+ 442 0210 029B     		ldr	r3, [sp, #8]
+ 443 0212 3468     		ldr	r4, [r6]
+ 444 0214 5B68     		ldr	r3, [r3, #4]
+ 445 0216 083C     		subs	r4, r4, #8
+ 446 0218 1F68     		ldr	r7, [r3]
+ 447              	.LVL60:
+ 134:VFH+\src/lidarScan.c ****       obj_InternalRanges_data[i] = thetaWrap_data[i] - 3.1415926535897931;
+ 448              		.loc 1 134 0
+ 449 021a 0026     		movs	r6, #0
+ 450              	.LVL61:
+ 451              	.L25:
+ 134:VFH+\src/lidarScan.c ****       obj_InternalRanges_data[i] = thetaWrap_data[i] - 3.1415926535897931;
+ 452              		.loc 1 134 0 is_stmt 0 discriminator 1
+ 453 021c BE42     		cmp	r6, r7
+ 454 021e BFF670AF 		bge	.L42
+ 135:VFH+\src/lidarScan.c ****     }
+ 455              		.loc 1 135 0 is_stmt 1 discriminator 3
+ 456 0222 F5E90201 		ldrd	r0, [r5, #8]!
+ 457 0226 04A3     		adr	r3, .L43
+ 458 0228 D3E90023 		ldrd	r2, [r3]
+ 459 022c FFF7FEFF 		bl	__aeabi_dsub
+ 460              	.LVL62:
+ 134:VFH+\src/lidarScan.c ****       obj_InternalRanges_data[i] = thetaWrap_data[i] - 3.1415926535897931;
+ 461              		.loc 1 134 0 discriminator 3
+ 462 0230 0136     		adds	r6, r6, #1
+ 463              	.LVL63:
+ 135:VFH+\src/lidarScan.c ****     }
+ 464              		.loc 1 135 0 discriminator 3
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 13
+
+
+ 465 0232 E4E90201 		strd	r0, [r4, #8]!
+ 466 0236 F1E7     		b	.L25
+ 467              	.L44:
+ 468              		.align	3
+ 469              	.L43:
+ 470 0238 182D4454 		.word	1413754136
+ 471 023c FB210940 		.word	1074340347
+ 472 0240 182D4454 		.word	1413754136
+ 473 0244 FB211940 		.word	1075388923
+ 474 0248 00000000 		.word	.LANCHOR0
+ 475              		.cfi_endproc
+ 476              	.LFE0:
+ 477              		.size	lidarScan_lidarScan, .-lidarScan_lidarScan
+ 478              		.global	__aeabi_dcmpge
+ 479              		.global	__aeabi_dcmple
+ 480              		.section	.text.lidarScan_removeInvalidData,"ax",%progbits
+ 481              		.align	1
+ 482              		.global	lidarScan_removeInvalidData
+ 483              		.thumb
+ 484              		.thumb_func
+ 485              		.type	lidarScan_removeInvalidData, %function
+ 486              	lidarScan_removeInvalidData:
+ 487              	.LFB1:
+ 142:VFH+\src/lidarScan.c **** 
+ 143:VFH+\src/lidarScan.c **** /*
+ 144:VFH+\src/lidarScan.c ****  * Arguments    : const emxArray_real_T *obj_InternalRanges
+ 145:VFH+\src/lidarScan.c ****  *                const emxArray_real_T *obj_InternalAngles
+ 146:VFH+\src/lidarScan.c ****  *                const double varargin_2[2]
+ 147:VFH+\src/lidarScan.c ****  *                emxArray_real_T *objOut_InternalRanges
+ 148:VFH+\src/lidarScan.c ****  *                emxArray_real_T *objOut_InternalAngles
+ 149:VFH+\src/lidarScan.c ****  *                bool *objOut_ContainsOnlyFiniteData
+ 150:VFH+\src/lidarScan.c ****  * Return Type  : void
+ 151:VFH+\src/lidarScan.c ****  */
+ 152:VFH+\src/lidarScan.c **** void lidarScan_removeInvalidData(const emxArray_real_T *obj_InternalRanges,
+ 153:VFH+\src/lidarScan.c ****                                  const emxArray_real_T *obj_InternalAngles,
+ 154:VFH+\src/lidarScan.c ****                                  const double varargin_2[2],
+ 155:VFH+\src/lidarScan.c ****                                  emxArray_real_T *objOut_InternalRanges,
+ 156:VFH+\src/lidarScan.c ****                                  emxArray_real_T *objOut_InternalAngles,
+ 157:VFH+\src/lidarScan.c ****                                  bool *objOut_ContainsOnlyFiniteData)
+ 158:VFH+\src/lidarScan.c **** {
+ 488              		.loc 1 158 0
+ 489              		.cfi_startproc
+ 490              		@ args = 8, pretend = 0, frame = 32
+ 491              		@ frame_needed = 0, uses_anonymous_args = 0
+ 492              	.LVL64:
+ 493 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 494              		.cfi_def_cfa_offset 36
+ 495              		.cfi_offset 4, -36
+ 496              		.cfi_offset 5, -32
+ 497              		.cfi_offset 6, -28
+ 498              		.cfi_offset 7, -24
+ 499              		.cfi_offset 8, -20
+ 500              		.cfi_offset 9, -16
+ 501              		.cfi_offset 10, -12
+ 502              		.cfi_offset 11, -8
+ 503              		.cfi_offset 14, -4
+ 504 0004 8BB0     		sub	sp, sp, #44
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 14
+
+
+ 505              		.cfi_def_cfa_offset 80
+ 506              		.loc 1 158 0
+ 507 0006 1D46     		mov	r5, r3
+ 508 0008 0446     		mov	r4, r0
+ 509 000a 0F46     		mov	r7, r1
+ 510 000c 149E     		ldr	r6, [sp, #80]
+ 511 000e DDF85480 		ldr	r8, [sp, #84]
+ 512 0012 9246     		mov	r10, r2
+ 159:VFH+\src/lidarScan.c ****   static double dv[2] = {0.0, 0.0};
+ 160:VFH+\src/lidarScan.c ****   static bool b_tmp_data[40000];
+ 161:VFH+\src/lidarScan.c ****   static bool c_tmp_data[40000];
+ 162:VFH+\src/lidarScan.c ****   static bool tmp_data[40000];
+ 163:VFH+\src/lidarScan.c ****   static bool validAngleLimitIndices_data[40000];
+ 164:VFH+\src/lidarScan.c ****   static bool validIdx_data[40000];
+ 165:VFH+\src/lidarScan.c ****   static bool validRangeLimitIndices_data[40000];
+ 166:VFH+\src/lidarScan.c ****   cell_wrap_17 parsedResults[2];
+ 167:VFH+\src/lidarScan.c ****   emxArray_real_T *b_objOut_InternalAngles;
+ 168:VFH+\src/lidarScan.c ****   emxArray_real_T *b_objOut_InternalRanges;
+ 169:VFH+\src/lidarScan.c ****   double *b_objOut_InternalRanges_data;
+ 170:VFH+\src/lidarScan.c ****   double *objOut_InternalAngles_data;
+ 171:VFH+\src/lidarScan.c ****   double *objOut_InternalRanges_data;
+ 172:VFH+\src/lidarScan.c ****   int i;
+ 173:VFH+\src/lidarScan.c ****   int loop_ub;
+ 174:VFH+\src/lidarScan.c ****   int validIdx_size;
+ 175:VFH+\src/lidarScan.c ****   bool exitg1;
+ 176:VFH+\src/lidarScan.c ****   bool p;
+ 177:VFH+\src/lidarScan.c ****   dv[1U] = rtGetInf();
+ 513              		.loc 1 177 0
+ 514 0014 FFF7FEFF 		bl	rtGetInf
+ 515              	.LVL65:
+ 516 0018 DFF87092 		ldr	r9, .L104+4
+ 178:VFH+\src/lidarScan.c ****   lidarScan_lidarScan(obj_InternalRanges, obj_InternalAngles,
+ 517              		.loc 1 178 0
+ 518 001c 3346     		mov	r3, r6
+ 177:VFH+\src/lidarScan.c ****   lidarScan_lidarScan(obj_InternalRanges, obj_InternalAngles,
+ 519              		.loc 1 177 0
+ 520 001e C9E90201 		strd	r0, [r9, #8]
+ 521              		.loc 1 178 0
+ 522 0022 2A46     		mov	r2, r5
+ 523 0024 3946     		mov	r1, r7
+ 524 0026 2046     		mov	r0, r4
+ 525 0028 CDF80080 		str	r8, [sp]
+ 526 002c FFF7FEFF 		bl	lidarScan_lidarScan
+ 527              	.LVL66:
+ 179:VFH+\src/lidarScan.c ****                       objOut_InternalRanges, objOut_InternalAngles,
+ 180:VFH+\src/lidarScan.c ****                       objOut_ContainsOnlyFiniteData);
+ 181:VFH+\src/lidarScan.c ****   objOut_InternalAngles_data = objOut_InternalAngles->data;
+ 528              		.loc 1 181 0
+ 529 0030 3368     		ldr	r3, [r6]
+ 182:VFH+\src/lidarScan.c ****   objOut_InternalRanges_data = objOut_InternalRanges->data;
+ 183:VFH+\src/lidarScan.c ****   *objOut_ContainsOnlyFiniteData = true;
+ 530              		.loc 1 183 0
+ 531 0032 0122     		movs	r2, #1
+ 181:VFH+\src/lidarScan.c ****   objOut_InternalRanges_data = objOut_InternalRanges->data;
+ 532              		.loc 1 181 0
+ 533 0034 0793     		str	r3, [sp, #28]
+ 534              	.LVL67:
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 15
+
+
+ 184:VFH+\src/lidarScan.c ****   loop_ub = objOut_InternalRanges->size[0];
+ 535              		.loc 1 184 0
+ 536 0036 6B68     		ldr	r3, [r5, #4]
+ 537              	.LVL68:
+ 182:VFH+\src/lidarScan.c ****   objOut_InternalRanges_data = objOut_InternalRanges->data;
+ 538              		.loc 1 182 0
+ 539 0038 2F68     		ldr	r7, [r5]
+ 540              	.LVL69:
+ 541              		.loc 1 184 0
+ 542 003a 1C68     		ldr	r4, [r3]
+ 543              	.LVL70:
+ 183:VFH+\src/lidarScan.c ****   loop_ub = objOut_InternalRanges->size[0];
+ 544              		.loc 1 183 0
+ 545 003c 88F80020 		strb	r2, [r8]
+ 185:VFH+\src/lidarScan.c ****   for (i = 0; i < loop_ub; i++) {
+ 546              		.loc 1 185 0
+ 547 0040 0023     		movs	r3, #0
+ 186:VFH+\src/lidarScan.c ****     validRangeLimitIndices_data[i] = true;
+ 548              		.loc 1 186 0
+ 549 0042 09F11001 		add	r1, r9, #16
+ 550              	.LVL71:
+ 551              	.L46:
+ 185:VFH+\src/lidarScan.c ****   for (i = 0; i < loop_ub; i++) {
+ 552              		.loc 1 185 0 discriminator 1
+ 553 0046 A342     		cmp	r3, r4
+ 554 0048 02DA     		bge	.L94
+ 555              		.loc 1 186 0 discriminator 3
+ 556 004a 5A54     		strb	r2, [r3, r1]
+ 185:VFH+\src/lidarScan.c ****   for (i = 0; i < loop_ub; i++) {
+ 557              		.loc 1 185 0 discriminator 3
+ 558 004c 0133     		adds	r3, r3, #1
+ 559              	.LVL72:
+ 560 004e FAE7     		b	.L46
+ 561              	.L94:
+ 187:VFH+\src/lidarScan.c ****   }
+ 188:VFH+\src/lidarScan.c ****   loop_ub = objOut_InternalRanges->size[0];
+ 189:VFH+\src/lidarScan.c ****   for (i = 0; i < loop_ub; i++) {
+ 190:VFH+\src/lidarScan.c ****     validAngleLimitIndices_data[i] = true;
+ 562              		.loc 1 190 0 discriminator 1
+ 563 0050 8D4A     		ldr	r2, .L104
+ 564 0052 0023     		movs	r3, #0
+ 565              	.LVL73:
+ 566 0054 0121     		movs	r1, #1
+ 567              	.L48:
+ 568              	.LVL74:
+ 189:VFH+\src/lidarScan.c ****     validAngleLimitIndices_data[i] = true;
+ 569              		.loc 1 189 0 discriminator 1
+ 570 0056 A342     		cmp	r3, r4
+ 571 0058 02DA     		bge	.L95
+ 572              		.loc 1 190 0 discriminator 3
+ 573 005a 9954     		strb	r1, [r3, r2]
+ 189:VFH+\src/lidarScan.c ****     validAngleLimitIndices_data[i] = true;
+ 574              		.loc 1 189 0 discriminator 3
+ 575 005c 0133     		adds	r3, r3, #1
+ 576              	.LVL75:
+ 577 005e FAE7     		b	.L48
+ 578              	.L95:
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 16
+
+
+ 579              	.LVL76:
+ 191:VFH+\src/lidarScan.c ****   }
+ 192:VFH+\src/lidarScan.c ****   parsedResults[1].f1[0] = -3.1415926535897931;
+ 193:VFH+\src/lidarScan.c ****   parsedResults[1].f1[1] = 3.1415926535897931;
+ 194:VFH+\src/lidarScan.c ****   p = true;
+ 195:VFH+\src/lidarScan.c ****   loop_ub = 0;
+ 196:VFH+\src/lidarScan.c ****   exitg1 = false;
+ 197:VFH+\src/lidarScan.c ****   while ((!exitg1) && (loop_ub < 2)) {
+ 198:VFH+\src/lidarScan.c ****     if (!(varargin_2[loop_ub] == dv[loop_ub])) {
+ 580              		.loc 1 198 0
+ 581 0060 DAE90023 		ldrd	r2, [r10]
+ 582 0064 D9E90001 		ldrd	r0, [r9]
+ 583 0068 CDE90423 		strd	r2, [sp, #16]
+ 584 006c FFF7FEFF 		bl	__aeabi_dcmpeq
+ 585              	.LVL77:
+ 586 0070 38B1     		cbz	r0, .L50
+ 587              	.LVL78:
+ 588 0072 DAE90201 		ldrd	r0, [r10, #8]
+ 589 0076 854B     		ldr	r3, .L104+4
+ 590 0078 D3E90223 		ldrd	r2, [r3, #8]
+ 591 007c FFF7FEFF 		bl	__aeabi_dcmpeq
+ 592              	.LVL79:
+ 593 0080 08BB     		cbnz	r0, .L51
+ 594              	.LVL80:
+ 595              	.L50:
+ 596 0082 A7F1080B 		sub	fp, r7, #8
+ 199:VFH+\src/lidarScan.c ****       p = false;
+ 200:VFH+\src/lidarScan.c ****       exitg1 = true;
+ 201:VFH+\src/lidarScan.c ****     } else {
+ 202:VFH+\src/lidarScan.c ****       loop_ub++;
+ 203:VFH+\src/lidarScan.c ****     }
+ 204:VFH+\src/lidarScan.c ****   }
+ 205:VFH+\src/lidarScan.c ****   if (!p) {
+ 206:VFH+\src/lidarScan.c ****     loop_ub = objOut_InternalRanges->size[0];
+ 207:VFH+\src/lidarScan.c ****     for (i = 0; i < loop_ub; i++) {
+ 208:VFH+\src/lidarScan.c ****       validRangeLimitIndices_data[i] =
+ 209:VFH+\src/lidarScan.c ****           ((objOut_InternalRanges_data[i] >= varargin_2[0]) &&
+ 597              		.loc 1 209 0
+ 598 0086 4FF00009 		mov	r9, #0
+ 599              	.L53:
+ 600              	.LVL81:
+ 207:VFH+\src/lidarScan.c ****       validRangeLimitIndices_data[i] =
+ 601              		.loc 1 207 0 discriminator 2
+ 602 008a A145     		cmp	r9, r4
+ 603 008c 1BDA     		bge	.L51
+ 604              		.loc 1 209 0
+ 605 008e FBE90223 		ldrd	r2, [fp, #8]!
+ 606 0092 CDE90223 		strd	r2, [sp, #8]
+ 607 0096 DDE90201 		ldrd	r0, [sp, #8]
+ 608 009a DDE90423 		ldrd	r2, [sp, #16]
+ 609 009e FFF7FEFF 		bl	__aeabi_dcmpge
+ 610              	.LVL82:
+ 611 00a2 40B1     		cbz	r0, .L54
+ 612              		.loc 1 209 0 is_stmt 0 discriminator 1
+ 613 00a4 DAE90223 		ldrd	r2, [r10, #8]
+ 614 00a8 DDE90201 		ldrd	r0, [sp, #8]
+ 615 00ac FFF7FEFF 		bl	__aeabi_dcmple
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 17
+
+
+ 616              	.LVL83:
+ 617 00b0 0030     		adds	r0, r0, #0
+ 618 00b2 18BF     		it	ne
+ 619 00b4 0120     		movne	r0, #1
+ 620              	.L54:
+ 208:VFH+\src/lidarScan.c ****           ((objOut_InternalRanges_data[i] >= varargin_2[0]) &&
+ 621              		.loc 1 208 0 is_stmt 1 discriminator 6
+ 622 00b6 764B     		ldr	r3, .L104+8
+ 623 00b8 00F00100 		and	r0, r0, #1
+ 624 00bc 09F80300 		strb	r0, [r9, r3]
+ 207:VFH+\src/lidarScan.c ****       validRangeLimitIndices_data[i] =
+ 625              		.loc 1 207 0 discriminator 6
+ 626 00c0 09F10109 		add	r9, r9, #1
+ 627              	.LVL84:
+ 628 00c4 E1E7     		b	.L53
+ 629              	.LVL85:
+ 630              	.L51:
+ 631 00c6 083F     		subs	r7, r7, #8
+ 632              	.LVL86:
+ 633              		.loc 1 209 0
+ 634 00c8 BA46     		mov	r10, r7
+ 635              	.LVL87:
+ 210:VFH+\src/lidarScan.c ****            (objOut_InternalRanges_data[i] <= varargin_2[1]));
+ 211:VFH+\src/lidarScan.c ****     }
+ 212:VFH+\src/lidarScan.c ****   }
+ 213:VFH+\src/lidarScan.c ****   p = true;
+ 214:VFH+\src/lidarScan.c ****   loop_ub = 0;
+ 215:VFH+\src/lidarScan.c ****   exitg1 = false;
+ 216:VFH+\src/lidarScan.c ****   while ((!exitg1) && (loop_ub < 2)) {
+ 217:VFH+\src/lidarScan.c ****     if (!(parsedResults[1].f1[loop_ub] ==
+ 218:VFH+\src/lidarScan.c ****           6.2831853071795862 * (double)loop_ub + -3.1415926535897931)) {
+ 219:VFH+\src/lidarScan.c ****       p = false;
+ 220:VFH+\src/lidarScan.c ****       exitg1 = true;
+ 221:VFH+\src/lidarScan.c ****     } else {
+ 222:VFH+\src/lidarScan.c ****       loop_ub++;
+ 223:VFH+\src/lidarScan.c ****     }
+ 224:VFH+\src/lidarScan.c ****   }
+ 225:VFH+\src/lidarScan.c ****   if (!p) {
+ 226:VFH+\src/lidarScan.c ****     sort(parsedResults[1].f1);
+ 227:VFH+\src/lidarScan.c ****     loop_ub = objOut_InternalAngles->size[0];
+ 228:VFH+\src/lidarScan.c ****     for (i = 0; i < loop_ub; i++) {
+ 229:VFH+\src/lidarScan.c ****       validAngleLimitIndices_data[i] =
+ 230:VFH+\src/lidarScan.c ****           ((objOut_InternalAngles_data[i] >= parsedResults[1].f1[0]) &&
+ 231:VFH+\src/lidarScan.c ****            (objOut_InternalAngles_data[i] <= parsedResults[1].f1[1]));
+ 232:VFH+\src/lidarScan.c ****     }
+ 233:VFH+\src/lidarScan.c ****   }
+ 234:VFH+\src/lidarScan.c ****   validIdx_size = objOut_InternalRanges->size[0];
+ 235:VFH+\src/lidarScan.c ****   loop_ub = objOut_InternalRanges->size[0];
+ 236:VFH+\src/lidarScan.c ****   for (i = 0; i < loop_ub; i++) {
+ 237:VFH+\src/lidarScan.c ****     validIdx_data[i] = rtIsInf(objOut_InternalRanges_data[i]);
+ 636              		.loc 1 237 0
+ 637 00ca DFF8D4B1 		ldr	fp, .L104+24
+ 209:VFH+\src/lidarScan.c ****            (objOut_InternalRanges_data[i] <= varargin_2[1]));
+ 638              		.loc 1 209 0
+ 639 00ce 4FF00009 		mov	r9, #0
+ 640              	.L78:
+ 641              	.LVL88:
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 18
+
+
+ 236:VFH+\src/lidarScan.c ****     validIdx_data[i] = rtIsInf(objOut_InternalRanges_data[i]);
+ 642              		.loc 1 236 0 discriminator 1
+ 643 00d2 A145     		cmp	r9, r4
+ 644 00d4 08DA     		bge	.L96
+ 645              		.loc 1 237 0 discriminator 3
+ 646 00d6 FAE90201 		ldrd	r0, [r10, #8]!
+ 647 00da FFF7FEFF 		bl	rtIsInf
+ 648              	.LVL89:
+ 649 00de 0BF80900 		strb	r0, [fp, r9]
+ 236:VFH+\src/lidarScan.c ****     validIdx_data[i] = rtIsInf(objOut_InternalRanges_data[i]);
+ 650              		.loc 1 236 0 discriminator 3
+ 651 00e2 09F10109 		add	r9, r9, #1
+ 652              	.LVL90:
+ 653 00e6 F4E7     		b	.L78
+ 654              	.L96:
+ 238:VFH+\src/lidarScan.c ****   }
+ 239:VFH+\src/lidarScan.c ****   loop_ub = objOut_InternalRanges->size[0];
+ 655              		.loc 1 239 0
+ 656 00e8 6B68     		ldr	r3, [r5, #4]
+ 240:VFH+\src/lidarScan.c ****   for (i = 0; i < loop_ub; i++) {
+ 241:VFH+\src/lidarScan.c ****     tmp_data[i] = rtIsNaN(objOut_InternalRanges_data[i]);
+ 657              		.loc 1 241 0
+ 658 00ea DFF8B0B1 		ldr	fp, .L104+20
+ 239:VFH+\src/lidarScan.c ****   for (i = 0; i < loop_ub; i++) {
+ 659              		.loc 1 239 0
+ 660 00ee D3F800A0 		ldr	r10, [r3]
+ 661              	.LVL91:
+ 240:VFH+\src/lidarScan.c ****   for (i = 0; i < loop_ub; i++) {
+ 662              		.loc 1 240 0
+ 663 00f2 4FF00009 		mov	r9, #0
+ 664              	.LVL92:
+ 665              	.L59:
+ 240:VFH+\src/lidarScan.c ****   for (i = 0; i < loop_ub; i++) {
+ 666              		.loc 1 240 0 is_stmt 0 discriminator 1
+ 667 00f6 D145     		cmp	r9, r10
+ 668 00f8 08DA     		bge	.L97
+ 669              		.loc 1 241 0 is_stmt 1 discriminator 3
+ 670 00fa F7E90201 		ldrd	r0, [r7, #8]!
+ 671 00fe FFF7FEFF 		bl	rtIsNaN
+ 672              	.LVL93:
+ 673 0102 0BF80900 		strb	r0, [fp, r9]
+ 240:VFH+\src/lidarScan.c ****   for (i = 0; i < loop_ub; i++) {
+ 674              		.loc 1 240 0 discriminator 3
+ 675 0106 09F10109 		add	r9, r9, #1
+ 676              	.LVL94:
+ 677 010a F4E7     		b	.L59
+ 678              	.L97:
+ 242:VFH+\src/lidarScan.c ****   }
+ 243:VFH+\src/lidarScan.c ****   loop_ub = objOut_InternalAngles->size[0];
+ 679              		.loc 1 243 0
+ 680 010c 7368     		ldr	r3, [r6, #4]
+ 244:VFH+\src/lidarScan.c ****   for (i = 0; i < loop_ub; i++) {
+ 681              		.loc 1 244 0
+ 682 010e 0027     		movs	r7, #0
+ 243:VFH+\src/lidarScan.c ****   for (i = 0; i < loop_ub; i++) {
+ 683              		.loc 1 243 0
+ 684 0110 D3F800B0 		ldr	fp, [r3]
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 19
+
+
+ 685              	.LVL95:
+ 686 0114 079B     		ldr	r3, [sp, #28]
+ 687 0116 A3F10809 		sub	r9, r3, #8
+ 688              		.loc 1 244 0
+ 689 011a CA46     		mov	r10, r9
+ 245:VFH+\src/lidarScan.c ****     b_tmp_data[i] = rtIsInf(objOut_InternalAngles_data[i]);
+ 690              		.loc 1 245 0
+ 691 011c 5D4B     		ldr	r3, .L104+12
+ 692              	.LVL96:
+ 693              	.L61:
+ 244:VFH+\src/lidarScan.c ****   for (i = 0; i < loop_ub; i++) {
+ 694              		.loc 1 244 0 discriminator 1
+ 695 011e 5F45     		cmp	r7, fp
+ 696 0120 08DA     		bge	.L98
+ 697              		.loc 1 245 0 discriminator 3
+ 698 0122 FAE90201 		ldrd	r0, [r10, #8]!
+ 699 0126 0293     		str	r3, [sp, #8]
+ 700 0128 FFF7FEFF 		bl	rtIsInf
+ 701              	.LVL97:
+ 702 012c 029B     		ldr	r3, [sp, #8]
+ 703 012e D855     		strb	r0, [r3, r7]
+ 244:VFH+\src/lidarScan.c ****   for (i = 0; i < loop_ub; i++) {
+ 704              		.loc 1 244 0 discriminator 3
+ 705 0130 0137     		adds	r7, r7, #1
+ 706              	.LVL98:
+ 707 0132 F4E7     		b	.L61
+ 708              	.L98:
+ 246:VFH+\src/lidarScan.c ****   }
+ 247:VFH+\src/lidarScan.c ****   loop_ub = objOut_InternalAngles->size[0];
+ 709              		.loc 1 247 0
+ 710 0134 7368     		ldr	r3, [r6, #4]
+ 248:VFH+\src/lidarScan.c ****   for (i = 0; i < loop_ub; i++) {
+ 249:VFH+\src/lidarScan.c ****     c_tmp_data[i] = rtIsNaN(objOut_InternalAngles_data[i]);
+ 711              		.loc 1 249 0
+ 712 0136 DFF86CB1 		ldr	fp, .L104+28
+ 713              	.LVL99:
+ 247:VFH+\src/lidarScan.c ****   for (i = 0; i < loop_ub; i++) {
+ 714              		.loc 1 247 0
+ 715 013a D3F800A0 		ldr	r10, [r3]
+ 716              	.LVL100:
+ 248:VFH+\src/lidarScan.c ****   for (i = 0; i < loop_ub; i++) {
+ 717              		.loc 1 248 0
+ 718 013e 0027     		movs	r7, #0
+ 719              	.LVL101:
+ 720              	.L63:
+ 248:VFH+\src/lidarScan.c ****   for (i = 0; i < loop_ub; i++) {
+ 721              		.loc 1 248 0 is_stmt 0 discriminator 1
+ 722 0140 5745     		cmp	r7, r10
+ 723 0142 07DA     		bge	.L99
+ 724              		.loc 1 249 0 is_stmt 1 discriminator 3
+ 725 0144 F9E90201 		ldrd	r0, [r9, #8]!
+ 726 0148 FFF7FEFF 		bl	rtIsNaN
+ 727              	.LVL102:
+ 728 014c 0BF80700 		strb	r0, [fp, r7]
+ 248:VFH+\src/lidarScan.c ****   for (i = 0; i < loop_ub; i++) {
+ 729              		.loc 1 248 0 discriminator 3
+ 730 0150 0137     		adds	r7, r7, #1
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 20
+
+
+ 731              	.LVL103:
+ 732 0152 F5E7     		b	.L63
+ 733              	.L99:
+ 734 0154 5049     		ldr	r1, .L104+16
+ 250:VFH+\src/lidarScan.c ****   }
+ 251:VFH+\src/lidarScan.c ****   for (i = 0; i < validIdx_size; i++) {
+ 252:VFH+\src/lidarScan.c ****     validIdx_data[i] =
+ 253:VFH+\src/lidarScan.c ****         ((!validIdx_data[i]) && (!tmp_data[i]) &&
+ 735              		.loc 1 253 0
+ 736 0156 5148     		ldr	r0, .L104+20
+ 254:VFH+\src/lidarScan.c ****          ((!b_tmp_data[i]) && (!c_tmp_data[i])) &&
+ 737              		.loc 1 254 0
+ 738 0158 4E4F     		ldr	r7, .L104+12
+ 739              	.LVL104:
+ 740 015a DFF848E1 		ldr	lr, .L104+28
+ 255:VFH+\src/lidarScan.c ****          validRangeLimitIndices_data[i] && validAngleLimitIndices_data[i]);
+ 741              		.loc 1 255 0
+ 742 015e DFF830C1 		ldr	ip, .L104+8
+ 743 0162 DFF82491 		ldr	r9, .L104
+ 248:VFH+\src/lidarScan.c ****     c_tmp_data[i] = rtIsNaN(objOut_InternalAngles_data[i]);
+ 744              		.loc 1 248 0
+ 745 0166 0022     		movs	r2, #0
+ 746              	.LVL105:
+ 747              	.L65:
+ 251:VFH+\src/lidarScan.c ****     validIdx_data[i] =
+ 748              		.loc 1 251 0 discriminator 2
+ 749 0168 A242     		cmp	r2, r4
+ 750 016a 1CDA     		bge	.L100
+ 751              		.loc 1 255 0
+ 752 016c 11F8013F 		ldrb	r3, [r1, #1]!	@ zero_extendqisi2
+ 753 0170 8BB9     		cbnz	r3, .L80
+ 253:VFH+\src/lidarScan.c ****          ((!b_tmp_data[i]) && (!c_tmp_data[i])) &&
+ 754              		.loc 1 253 0
+ 755 0172 12F800A0 		ldrb	r10, [r2, r0]	@ zero_extendqisi2
+ 756 0176 BAF1000F 		cmp	r10, #0
+ 757 017a 0FD1     		bne	.L66
+ 253:VFH+\src/lidarScan.c ****          ((!b_tmp_data[i]) && (!c_tmp_data[i])) &&
+ 758              		.loc 1 253 0 is_stmt 0 discriminator 1
+ 759 017c D35D     		ldrb	r3, [r2, r7]	@ zero_extendqisi2
+ 760 017e 63B9     		cbnz	r3, .L82
+ 254:VFH+\src/lidarScan.c ****          validRangeLimitIndices_data[i] && validAngleLimitIndices_data[i]);
+ 761              		.loc 1 254 0 is_stmt 1
+ 762 0180 12F80EA0 		ldrb	r10, [r2, lr]	@ zero_extendqisi2
+ 763 0184 BAF1000F 		cmp	r10, #0
+ 764 0188 08D1     		bne	.L66
+ 254:VFH+\src/lidarScan.c ****          validRangeLimitIndices_data[i] && validAngleLimitIndices_data[i]);
+ 765              		.loc 1 254 0 is_stmt 0 discriminator 1
+ 766 018a 12F80C30 		ldrb	r3, [r2, ip]	@ zero_extendqisi2
+ 767 018e 2BB1     		cbz	r3, .L66
+ 768              		.loc 1 255 0 is_stmt 1 discriminator 3
+ 769 0190 12F80930 		ldrb	r3, [r2, r9]	@ zero_extendqisi2
+ 770 0194 02E0     		b	.L66
+ 771              	.L80:
+ 772              		.loc 1 255 0 is_stmt 0
+ 773 0196 0023     		movs	r3, #0
+ 774 0198 00E0     		b	.L66
+ 775              	.L82:
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 21
+
+
+ 776 019a 5346     		mov	r3, r10
+ 777              	.L66:
+ 252:VFH+\src/lidarScan.c ****         ((!validIdx_data[i]) && (!tmp_data[i]) &&
+ 778              		.loc 1 252 0 is_stmt 1 discriminator 5
+ 779 019c 03F00103 		and	r3, r3, #1
+ 780 01a0 0B70     		strb	r3, [r1]
+ 251:VFH+\src/lidarScan.c ****     validIdx_data[i] =
+ 781              		.loc 1 251 0 discriminator 5
+ 782 01a2 0132     		adds	r2, r2, #1
+ 783              	.LVL106:
+ 784 01a4 E0E7     		b	.L65
+ 785              	.L100:
+ 256:VFH+\src/lidarScan.c ****   }
+ 257:VFH+\src/lidarScan.c ****   p = true;
+ 258:VFH+\src/lidarScan.c ****   loop_ub = 1;
+ 259:VFH+\src/lidarScan.c ****   exitg1 = false;
+ 260:VFH+\src/lidarScan.c ****   while ((!exitg1) && (loop_ub <= validIdx_size)) {
+ 261:VFH+\src/lidarScan.c ****     if (!validIdx_data[loop_ub - 1]) {
+ 786              		.loc 1 261 0
+ 787 01a6 3E4A     		ldr	r2, .L104+24
+ 788              	.LVL107:
+ 789 01a8 0123     		movs	r3, #1
+ 790              	.L68:
+ 791              	.LVL108:
+ 260:VFH+\src/lidarScan.c ****     if (!validIdx_data[loop_ub - 1]) {
+ 792              		.loc 1 260 0
+ 793 01aa 9C42     		cmp	r4, r3
+ 794 01ac 65DB     		blt	.L72
+ 795              		.loc 1 261 0
+ 796 01ae D118     		adds	r1, r2, r3
+ 797 01b0 11F8011C 		ldrb	r1, [r1, #-1]	@ zero_extendqisi2
+ 798 01b4 11B9     		cbnz	r1, .L69
+ 799 01b6 3A49     		ldr	r1, .L104+24
+ 800 01b8 0B46     		mov	r3, r1
+ 801              	.LVL109:
+ 802 01ba 01E0     		b	.L70
+ 803              	.LVL110:
+ 804              	.L69:
+ 262:VFH+\src/lidarScan.c ****       p = false;
+ 263:VFH+\src/lidarScan.c ****       exitg1 = true;
+ 264:VFH+\src/lidarScan.c ****     } else {
+ 265:VFH+\src/lidarScan.c ****       loop_ub++;
+ 805              		.loc 1 265 0
+ 806 01bc 0133     		adds	r3, r3, #1
+ 807              	.LVL111:
+ 808 01be F4E7     		b	.L68
+ 809              	.LVL112:
+ 810              	.L70:
+ 266:VFH+\src/lidarScan.c ****     }
+ 267:VFH+\src/lidarScan.c ****   }
+ 268:VFH+\src/lidarScan.c ****   if (!p) {
+ 269:VFH+\src/lidarScan.c ****     for (i = 0; i < validIdx_size; i++) {
+ 811              		.loc 1 269 0 discriminator 1
+ 812 01c0 5A1A     		subs	r2, r3, r1
+ 813 01c2 9442     		cmp	r4, r2
+ 814 01c4 05DD     		ble	.L101
+ 270:VFH+\src/lidarScan.c ****       validIdx_data[i] = !validIdx_data[i];
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 22
+
+
+ 815              		.loc 1 270 0 discriminator 3
+ 816 01c6 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 817 01c8 82F00102 		eor	r2, r2, #1
+ 818 01cc 03F8012B 		strb	r2, [r3], #1
+ 819              	.LVL113:
+ 820 01d0 F6E7     		b	.L70
+ 821              	.L101:
+ 271:VFH+\src/lidarScan.c ****     }
+ 272:VFH+\src/lidarScan.c ****     emxInit_real_T(&b_objOut_InternalRanges, 1);
+ 822              		.loc 1 272 0
+ 823 01d2 0121     		movs	r1, #1
+ 824 01d4 09A8     		add	r0, sp, #36
+ 825 01d6 FFF7FEFF 		bl	emxInit_real_T
+ 826              	.LVL114:
+ 273:VFH+\src/lidarScan.c ****     nullAssignment(objOut_InternalRanges, validIdx_data, validIdx_size);
+ 827              		.loc 1 273 0
+ 828 01da 2246     		mov	r2, r4
+ 829 01dc 3049     		ldr	r1, .L104+24
+ 830 01de 2846     		mov	r0, r5
+ 831 01e0 FFF7FEFF 		bl	nullAssignment
+ 832              	.LVL115:
+ 274:VFH+\src/lidarScan.c ****     objOut_InternalRanges_data = objOut_InternalRanges->data;
+ 275:VFH+\src/lidarScan.c ****     nullAssignment(objOut_InternalAngles, validIdx_data, validIdx_size);
+ 833              		.loc 1 275 0
+ 834 01e4 2246     		mov	r2, r4
+ 835 01e6 2E49     		ldr	r1, .L104+24
+ 836 01e8 3046     		mov	r0, r6
+ 274:VFH+\src/lidarScan.c ****     objOut_InternalRanges_data = objOut_InternalRanges->data;
+ 837              		.loc 1 274 0
+ 838 01ea 2F68     		ldr	r7, [r5]
+ 839              	.LVL116:
+ 840              		.loc 1 275 0
+ 841 01ec FFF7FEFF 		bl	nullAssignment
+ 842              	.LVL117:
+ 276:VFH+\src/lidarScan.c ****     objOut_InternalAngles_data = objOut_InternalAngles->data;
+ 277:VFH+\src/lidarScan.c ****     i = b_objOut_InternalRanges->size[0];
+ 843              		.loc 1 277 0
+ 844 01f0 0998     		ldr	r0, [sp, #36]
+ 278:VFH+\src/lidarScan.c ****     b_objOut_InternalRanges->size[0] = objOut_InternalRanges->size[0];
+ 845              		.loc 1 278 0
+ 846 01f2 6A68     		ldr	r2, [r5, #4]
+ 277:VFH+\src/lidarScan.c ****     b_objOut_InternalRanges->size[0] = objOut_InternalRanges->size[0];
+ 847              		.loc 1 277 0
+ 848 01f4 4368     		ldr	r3, [r0, #4]
+ 849              		.loc 1 278 0
+ 850 01f6 1268     		ldr	r2, [r2]
+ 277:VFH+\src/lidarScan.c ****     b_objOut_InternalRanges->size[0] = objOut_InternalRanges->size[0];
+ 851              		.loc 1 277 0
+ 852 01f8 1968     		ldr	r1, [r3]
+ 276:VFH+\src/lidarScan.c ****     objOut_InternalAngles_data = objOut_InternalAngles->data;
+ 853              		.loc 1 276 0
+ 854 01fa 3468     		ldr	r4, [r6]
+ 855              	.LVL118:
+ 856              		.loc 1 278 0
+ 857 01fc 1A60     		str	r2, [r3]
+ 279:VFH+\src/lidarScan.c ****     emxEnsureCapacity_real_T(b_objOut_InternalRanges, i);
+ 858              		.loc 1 279 0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 23
+
+
+ 859 01fe FFF7FEFF 		bl	emxEnsureCapacity_real_T
+ 860              	.LVL119:
+ 280:VFH+\src/lidarScan.c ****     b_objOut_InternalRanges_data = b_objOut_InternalRanges->data;
+ 281:VFH+\src/lidarScan.c ****     loop_ub = objOut_InternalRanges->size[0] - 1;
+ 861              		.loc 1 281 0
+ 862 0202 6B68     		ldr	r3, [r5, #4]
+ 863 0204 A7F10802 		sub	r2, r7, #8
+ 864 0208 D3F800E0 		ldr	lr, [r3]
+ 865              	.LVL120:
+ 280:VFH+\src/lidarScan.c ****     b_objOut_InternalRanges_data = b_objOut_InternalRanges->data;
+ 866              		.loc 1 280 0
+ 867 020c 099B     		ldr	r3, [sp, #36]
+ 282:VFH+\src/lidarScan.c ****     for (i = 0; i <= loop_ub; i++) {
+ 868              		.loc 1 282 0
+ 869 020e 0027     		movs	r7, #0
+ 870              	.LVL121:
+ 871 0210 1B68     		ldr	r3, [r3]
+ 872 0212 083B     		subs	r3, r3, #8
+ 873              	.LVL122:
+ 874              	.L74:
+ 875              		.loc 1 282 0 is_stmt 0 discriminator 1
+ 876 0214 7745     		cmp	r7, lr
+ 877 0216 05DA     		bge	.L102
+ 283:VFH+\src/lidarScan.c ****       b_objOut_InternalRanges_data[i] = objOut_InternalRanges_data[i];
+ 878              		.loc 1 283 0 is_stmt 1 discriminator 3
+ 879 0218 F2E90201 		ldrd	r0, [r2, #8]!
+ 282:VFH+\src/lidarScan.c ****     for (i = 0; i <= loop_ub; i++) {
+ 880              		.loc 1 282 0 discriminator 3
+ 881 021c 0137     		adds	r7, r7, #1
+ 882              	.LVL123:
+ 883              		.loc 1 283 0 discriminator 3
+ 884 021e E3E90201 		strd	r0, [r3, #8]!
+ 885 0222 F7E7     		b	.L74
+ 886              	.L102:
+ 284:VFH+\src/lidarScan.c ****     }
+ 285:VFH+\src/lidarScan.c ****     emxInit_real_T(&b_objOut_InternalAngles, 1);
+ 887              		.loc 1 285 0
+ 888 0224 0121     		movs	r1, #1
+ 889 0226 08A8     		add	r0, sp, #32
+ 890 0228 FFF7FEFF 		bl	emxInit_real_T
+ 891              	.LVL124:
+ 286:VFH+\src/lidarScan.c ****     i = b_objOut_InternalAngles->size[0];
+ 892              		.loc 1 286 0
+ 893 022c 0898     		ldr	r0, [sp, #32]
+ 287:VFH+\src/lidarScan.c ****     b_objOut_InternalAngles->size[0] = objOut_InternalAngles->size[0];
+ 894              		.loc 1 287 0
+ 895 022e 7268     		ldr	r2, [r6, #4]
+ 286:VFH+\src/lidarScan.c ****     i = b_objOut_InternalAngles->size[0];
+ 896              		.loc 1 286 0
+ 897 0230 4368     		ldr	r3, [r0, #4]
+ 898              		.loc 1 287 0
+ 899 0232 1268     		ldr	r2, [r2]
+ 286:VFH+\src/lidarScan.c ****     i = b_objOut_InternalAngles->size[0];
+ 900              		.loc 1 286 0
+ 901 0234 1968     		ldr	r1, [r3]
+ 902              	.LVL125:
+ 903              		.loc 1 287 0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 24
+
+
+ 904 0236 1A60     		str	r2, [r3]
+ 288:VFH+\src/lidarScan.c ****     emxEnsureCapacity_real_T(b_objOut_InternalAngles, i);
+ 905              		.loc 1 288 0
+ 906 0238 FFF7FEFF 		bl	emxEnsureCapacity_real_T
+ 907              	.LVL126:
+ 289:VFH+\src/lidarScan.c ****     objOut_InternalRanges_data = b_objOut_InternalAngles->data;
+ 290:VFH+\src/lidarScan.c ****     loop_ub = objOut_InternalAngles->size[0] - 1;
+ 908              		.loc 1 290 0
+ 909 023c 7368     		ldr	r3, [r6, #4]
+ 289:VFH+\src/lidarScan.c ****     objOut_InternalRanges_data = b_objOut_InternalAngles->data;
+ 910              		.loc 1 289 0
+ 911 023e 089F     		ldr	r7, [sp, #32]
+ 912              	.LVL127:
+ 913              		.loc 1 290 0
+ 914 0240 D3F800E0 		ldr	lr, [r3]
+ 915              	.LVL128:
+ 916 0244 3B68     		ldr	r3, [r7]
+ 917 0246 A4F10802 		sub	r2, r4, #8
+ 918 024a 083B     		subs	r3, r3, #8
+ 291:VFH+\src/lidarScan.c ****     for (i = 0; i <= loop_ub; i++) {
+ 919              		.loc 1 291 0
+ 920 024c 0024     		movs	r4, #0
+ 921              	.LVL129:
+ 922              	.L76:
+ 923              		.loc 1 291 0 is_stmt 0 discriminator 1
+ 924 024e 7445     		cmp	r4, lr
+ 925 0250 05DA     		bge	.L103
+ 292:VFH+\src/lidarScan.c ****       objOut_InternalRanges_data[i] = objOut_InternalAngles_data[i];
+ 926              		.loc 1 292 0 is_stmt 1 discriminator 3
+ 927 0252 F2E90201 		ldrd	r0, [r2, #8]!
+ 291:VFH+\src/lidarScan.c ****     for (i = 0; i <= loop_ub; i++) {
+ 928              		.loc 1 291 0 discriminator 3
+ 929 0256 0134     		adds	r4, r4, #1
+ 930              	.LVL130:
+ 931              		.loc 1 292 0 discriminator 3
+ 932 0258 E3E90201 		strd	r0, [r3, #8]!
+ 933 025c F7E7     		b	.L76
+ 934              	.L103:
+ 293:VFH+\src/lidarScan.c ****     }
+ 294:VFH+\src/lidarScan.c ****     lidarScan_lidarScan(b_objOut_InternalRanges, b_objOut_InternalAngles,
+ 935              		.loc 1 294 0
+ 936 025e 3346     		mov	r3, r6
+ 937 0260 2A46     		mov	r2, r5
+ 938 0262 3946     		mov	r1, r7
+ 939 0264 0998     		ldr	r0, [sp, #36]
+ 940 0266 CDF80080 		str	r8, [sp]
+ 941 026a FFF7FEFF 		bl	lidarScan_lidarScan
+ 942              	.LVL131:
+ 295:VFH+\src/lidarScan.c ****                         objOut_InternalRanges, objOut_InternalAngles,
+ 296:VFH+\src/lidarScan.c ****                         objOut_ContainsOnlyFiniteData);
+ 297:VFH+\src/lidarScan.c ****     emxFree_real_T(&b_objOut_InternalAngles);
+ 943              		.loc 1 297 0
+ 944 026e 08A8     		add	r0, sp, #32
+ 945 0270 FFF7FEFF 		bl	emxFree_real_T
+ 946              	.LVL132:
+ 298:VFH+\src/lidarScan.c ****     emxFree_real_T(&b_objOut_InternalRanges);
+ 947              		.loc 1 298 0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 25
+
+
+ 948 0274 09A8     		add	r0, sp, #36
+ 949 0276 FFF7FEFF 		bl	emxFree_real_T
+ 950              	.LVL133:
+ 951              	.L72:
+ 299:VFH+\src/lidarScan.c ****   }
+ 300:VFH+\src/lidarScan.c ****   *objOut_ContainsOnlyFiniteData = true;
+ 952              		.loc 1 300 0
+ 953 027a 0123     		movs	r3, #1
+ 954 027c 88F80030 		strb	r3, [r8]
+ 301:VFH+\src/lidarScan.c **** }
+ 955              		.loc 1 301 0
+ 956 0280 0BB0     		add	sp, sp, #44
+ 957              		.cfi_def_cfa_offset 36
+ 958              		@ sp needed
+ 959 0282 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 960              	.LVL134:
+ 961              	.L105:
+ 962 0286 00BF     		.align	2
+ 963              	.L104:
+ 964 0288 90380100 		.word	.LANCHOR2+1824
+ 965 028c 409C0000 		.word	.LANCHOR1+904
+ 966 0290 509C0000 		.word	.LANCHOR1+920
+ 967 0294 500D0300 		.word	.LANCHOR5+192
+ 968 0298 CFD40100 		.word	.LANCHOR3+2727
+ 969 029c 10710200 		.word	.LANCHOR4+3632
+ 970 02a0 D0D40100 		.word	.LANCHOR3+2728
+ 971 02a4 90A90300 		.word	.LANCHOR6+1096
+ 972              		.cfi_endproc
+ 973              	.LFE1:
+ 974              		.size	lidarScan_removeInvalidData, .-lidarScan_removeInvalidData
+ 975              		.bss
+ 976              		.align	3
+ 977              		.set	.LANCHOR0,. + 0
+ 978              		.set	.LANCHOR1,. + 39096
+ 979              		.set	.LANCHOR2,. + 78192
+ 980              		.set	.LANCHOR3,. + 117288
+ 981              		.set	.LANCHOR4,. + 156384
+ 982              		.set	.LANCHOR5,. + 199824
+ 983              		.set	.LANCHOR6,. + 238920
+ 984              		.type	x_data.5423, %object
+ 985              		.size	x_data.5423, 40000
+ 986              	x_data.5423:
+ 987 0000 00000000 		.space	40000
+ 987      00000000 
+ 987      00000000 
+ 987      00000000 
+ 987      00000000 
+ 988              		.type	dv.5473, %object
+ 989              		.size	dv.5473, 16
+ 990              	dv.5473:
+ 991 9c40 00000000 		.space	16
+ 991      00000000 
+ 991      00000000 
+ 991      00000000 
+ 992              		.type	validRangeLimitIndices_data.5479, %object
+ 993              		.size	validRangeLimitIndices_data.5479, 40000
+ 994              	validRangeLimitIndices_data.5479:
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 26
+
+
+ 995 9c50 00000000 		.space	40000
+ 995      00000000 
+ 995      00000000 
+ 995      00000000 
+ 995      00000000 
+ 996              		.type	validAngleLimitIndices_data.5477, %object
+ 997              		.size	validAngleLimitIndices_data.5477, 40000
+ 998              	validAngleLimitIndices_data.5477:
+ 999 13890 00000000 		.space	40000
+ 999      00000000 
+ 999      00000000 
+ 999      00000000 
+ 999      00000000 
+ 1000              		.type	validIdx_data.5478, %object
+ 1001              		.size	validIdx_data.5478, 40000
+ 1002              	validIdx_data.5478:
+ 1003 1d4d0 00000000 		.space	40000
+ 1003      00000000 
+ 1003      00000000 
+ 1003      00000000 
+ 1003      00000000 
+ 1004              		.type	tmp_data.5476, %object
+ 1005              		.size	tmp_data.5476, 40000
+ 1006              	tmp_data.5476:
+ 1007 27110 00000000 		.space	40000
+ 1007      00000000 
+ 1007      00000000 
+ 1007      00000000 
+ 1007      00000000 
+ 1008              		.type	b_tmp_data.5474, %object
+ 1009              		.size	b_tmp_data.5474, 40000
+ 1010              	b_tmp_data.5474:
+ 1011 30d50 00000000 		.space	40000
+ 1011      00000000 
+ 1011      00000000 
+ 1011      00000000 
+ 1011      00000000 
+ 1012              		.type	c_tmp_data.5475, %object
+ 1013              		.size	c_tmp_data.5475, 40000
+ 1014              	c_tmp_data.5475:
+ 1015 3a990 00000000 		.space	40000
+ 1015      00000000 
+ 1015      00000000 
+ 1015      00000000 
+ 1015      00000000 
+ 1016              		.text
+ 1017              	.Letext0:
+ 1018              		.file 2 ".\\VFH+\\include/vfhTest_types.h"
+ 1019              		.file 3 ".\\VFH+\\include/vfhTest_emxutil.h"
+ 1020              		.file 4 ".\\VFH+\\include/mod.h"
+ 1021              		.file 5 ".\\VFH+\\include/rtGetInf.h"
+ 1022              		.file 6 ".\\VFH+\\include/rt_nonfinite.h"
+ 1023              		.file 7 ".\\VFH+\\include/nullAssignment.h"
+ 1024              		.section	.debug_info,"",%progbits
+ 1025              	.Ldebug_info0:
+ 1026 0000 31060000 		.4byte	0x631
+ 1027 0004 0400     		.2byte	0x4
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 27
+
+
+ 1028 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 1029 000a 04       		.byte	0x4
+ 1030 000b 01       		.uleb128 0x1
+ 1031 000c B5000000 		.4byte	.LASF62
+ 1032 0010 0C       		.byte	0xc
+ 1033 0011 3B000000 		.4byte	.LASF63
+ 1034 0015 C7030000 		.4byte	.LASF64
+ 1035 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 1036 001d 00000000 		.4byte	0
+ 1037 0021 00000000 		.4byte	.Ldebug_line0
+ 1038 0025 02       		.uleb128 0x2
+ 1039 0026 01       		.byte	0x1
+ 1040 0027 06       		.byte	0x6
+ 1041 0028 A9000000 		.4byte	.LASF0
+ 1042 002c 02       		.uleb128 0x2
+ 1043 002d 01       		.byte	0x1
+ 1044 002e 08       		.byte	0x8
+ 1045 002f 09030000 		.4byte	.LASF1
+ 1046 0033 02       		.uleb128 0x2
+ 1047 0034 02       		.byte	0x2
+ 1048 0035 05       		.byte	0x5
+ 1049 0036 1F030000 		.4byte	.LASF2
+ 1050 003a 02       		.uleb128 0x2
+ 1051 003b 02       		.byte	0x2
+ 1052 003c 07       		.byte	0x7
+ 1053 003d F7010000 		.4byte	.LASF3
+ 1054 0041 03       		.uleb128 0x3
+ 1055 0042 04       		.byte	0x4
+ 1056 0043 05       		.byte	0x5
+ 1057 0044 696E7400 		.ascii	"int\000"
+ 1058 0048 02       		.uleb128 0x2
+ 1059 0049 04       		.byte	0x4
+ 1060 004a 07       		.byte	0x7
+ 1061 004b B8010000 		.4byte	.LASF4
+ 1062 004f 02       		.uleb128 0x2
+ 1063 0050 04       		.byte	0x4
+ 1064 0051 04       		.byte	0x4
+ 1065 0052 E2020000 		.4byte	.LASF5
+ 1066 0056 02       		.uleb128 0x2
+ 1067 0057 08       		.byte	0x8
+ 1068 0058 04       		.byte	0x4
+ 1069 0059 7F010000 		.4byte	.LASF6
+ 1070 005d 02       		.uleb128 0x2
+ 1071 005e 01       		.byte	0x1
+ 1072 005f 02       		.byte	0x2
+ 1073 0060 03030000 		.4byte	.LASF7
+ 1074 0064 02       		.uleb128 0x2
+ 1075 0065 04       		.byte	0x4
+ 1076 0066 07       		.byte	0x7
+ 1077 0067 C5010000 		.4byte	.LASF8
+ 1078 006b 02       		.uleb128 0x2
+ 1079 006c 01       		.byte	0x1
+ 1080 006d 08       		.byte	0x8
+ 1081 006e C2030000 		.4byte	.LASF9
+ 1082 0072 04       		.uleb128 0x4
+ 1083 0073 34020000 		.4byte	.LASF20
+ 1084 0077 14       		.byte	0x14
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 28
+
+
+ 1085 0078 02       		.byte	0x2
+ 1086 0079 14       		.byte	0x14
+ 1087 007a BB000000 		.4byte	0xbb
+ 1088 007e 05       		.uleb128 0x5
+ 1089 007f ED010000 		.4byte	.LASF10
+ 1090 0083 02       		.byte	0x2
+ 1091 0084 15       		.byte	0x15
+ 1092 0085 BB000000 		.4byte	0xbb
+ 1093 0089 00       		.byte	0
+ 1094 008a 05       		.uleb128 0x5
+ 1095 008b F2010000 		.4byte	.LASF11
+ 1096 008f 02       		.byte	0x2
+ 1097 0090 16       		.byte	0x16
+ 1098 0091 C1000000 		.4byte	0xc1
+ 1099 0095 04       		.byte	0x4
+ 1100 0096 05       		.uleb128 0x5
+ 1101 0097 54040000 		.4byte	.LASF12
+ 1102 009b 02       		.byte	0x2
+ 1103 009c 17       		.byte	0x17
+ 1104 009d 41000000 		.4byte	0x41
+ 1105 00a1 08       		.byte	0x8
+ 1106 00a2 05       		.uleb128 0x5
+ 1107 00a3 71030000 		.4byte	.LASF13
+ 1108 00a7 02       		.byte	0x2
+ 1109 00a8 18       		.byte	0x18
+ 1110 00a9 41000000 		.4byte	0x41
+ 1111 00ad 0C       		.byte	0xc
+ 1112 00ae 05       		.uleb128 0x5
+ 1113 00af AC010000 		.4byte	.LASF14
+ 1114 00b3 02       		.byte	0x2
+ 1115 00b4 19       		.byte	0x19
+ 1116 00b5 5D000000 		.4byte	0x5d
+ 1117 00b9 10       		.byte	0x10
+ 1118 00ba 00       		.byte	0
+ 1119 00bb 06       		.uleb128 0x6
+ 1120 00bc 04       		.byte	0x4
+ 1121 00bd 56000000 		.4byte	0x56
+ 1122 00c1 06       		.uleb128 0x6
+ 1123 00c2 04       		.byte	0x4
+ 1124 00c3 41000000 		.4byte	0x41
+ 1125 00c7 07       		.uleb128 0x7
+ 1126 00c8 34020000 		.4byte	.LASF20
+ 1127 00cc 02       		.byte	0x2
+ 1128 00cd 1E       		.byte	0x1e
+ 1129 00ce 72000000 		.4byte	0x72
+ 1130 00d2 06       		.uleb128 0x6
+ 1131 00d3 04       		.byte	0x4
+ 1132 00d4 5D000000 		.4byte	0x5d
+ 1133 00d8 02       		.uleb128 0x2
+ 1134 00d9 08       		.byte	0x8
+ 1135 00da 05       		.byte	0x5
+ 1136 00db 9B000000 		.4byte	.LASF15
+ 1137 00df 02       		.uleb128 0x2
+ 1138 00e0 08       		.byte	0x8
+ 1139 00e1 04       		.byte	0x4
+ 1140 00e2 7F020000 		.4byte	.LASF16
+ 1141 00e6 02       		.uleb128 0x2
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 29
+
+
+ 1142 00e7 04       		.byte	0x4
+ 1143 00e8 05       		.byte	0x5
+ 1144 00e9 5E010000 		.4byte	.LASF17
+ 1145 00ed 02       		.uleb128 0x2
+ 1146 00ee 08       		.byte	0x8
+ 1147 00ef 07       		.byte	0x7
+ 1148 00f0 50000000 		.4byte	.LASF18
+ 1149 00f4 02       		.uleb128 0x2
+ 1150 00f5 04       		.byte	0x4
+ 1151 00f6 07       		.byte	0x7
+ 1152 00f7 76020000 		.4byte	.LASF19
+ 1153 00fb 08       		.uleb128 0x8
+ 1154 00fc 10       		.byte	0x10
+ 1155 00fd 01       		.byte	0x1
+ 1156 00fe 1A       		.byte	0x1a
+ 1157 00ff 0F010000 		.4byte	0x10f
+ 1158 0103 09       		.uleb128 0x9
+ 1159 0104 663100   		.ascii	"f1\000"
+ 1160 0107 01       		.byte	0x1
+ 1161 0108 1B       		.byte	0x1b
+ 1162 0109 0F010000 		.4byte	0x10f
+ 1163 010d 00       		.byte	0
+ 1164 010e 00       		.byte	0
+ 1165 010f 0A       		.uleb128 0xa
+ 1166 0110 56000000 		.4byte	0x56
+ 1167 0114 1F010000 		.4byte	0x11f
+ 1168 0118 0B       		.uleb128 0xb
+ 1169 0119 F4000000 		.4byte	0xf4
+ 1170 011d 01       		.byte	0x1
+ 1171 011e 00       		.byte	0
+ 1172 011f 07       		.uleb128 0x7
+ 1173 0120 CB020000 		.4byte	.LASF21
+ 1174 0124 01       		.byte	0x1
+ 1175 0125 1C       		.byte	0x1c
+ 1176 0126 FB000000 		.4byte	0xfb
+ 1177 012a 0C       		.uleb128 0xc
+ 1178 012b EF020000 		.4byte	.LASF35
+ 1179 012f 01       		.byte	0x1
+ 1180 0130 28       		.byte	0x28
+ 1181 0131 00000000 		.4byte	.LFB0
+ 1182 0135 4C020000 		.4byte	.LFE0-.LFB0
+ 1183 0139 01       		.uleb128 0x1
+ 1184 013a 9C       		.byte	0x9c
+ 1185 013b F9020000 		.4byte	0x2f9
+ 1186 013f 0D       		.uleb128 0xd
+ 1187 0140 86010000 		.4byte	.LASF22
+ 1188 0144 01       		.byte	0x1
+ 1189 0145 28       		.byte	0x28
+ 1190 0146 F9020000 		.4byte	0x2f9
+ 1191 014a 00000000 		.4byte	.LLST0
+ 1192 014e 0D       		.uleb128 0xd
+ 1193 014f 91010000 		.4byte	.LASF23
+ 1194 0153 01       		.byte	0x1
+ 1195 0154 29       		.byte	0x29
+ 1196 0155 F9020000 		.4byte	0x2f9
+ 1197 0159 2C000000 		.4byte	.LLST1
+ 1198 015d 0D       		.uleb128 0xd
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 30
+
+
+ 1199 015e 5E030000 		.4byte	.LASF24
+ 1200 0162 01       		.byte	0x1
+ 1201 0163 2A       		.byte	0x2a
+ 1202 0164 04030000 		.4byte	0x304
+ 1203 0168 71000000 		.4byte	.LLST2
+ 1204 016c 0D       		.uleb128 0xd
+ 1205 016d 43010000 		.4byte	.LASF25
+ 1206 0171 01       		.byte	0x1
+ 1207 0172 2B       		.byte	0x2b
+ 1208 0173 04030000 		.4byte	0x304
+ 1209 0177 9D000000 		.4byte	.LLST3
+ 1210 017b 0D       		.uleb128 0xd
+ 1211 017c 19020000 		.4byte	.LASF26
+ 1212 0180 01       		.byte	0x1
+ 1213 0181 2C       		.byte	0x2c
+ 1214 0182 D2000000 		.4byte	0xd2
+ 1215 0186 E2000000 		.4byte	.LLST4
+ 1216 018a 0E       		.uleb128 0xe
+ 1217 018b 26040000 		.4byte	.LASF27
+ 1218 018f 01       		.byte	0x1
+ 1219 0190 2E       		.byte	0x2e
+ 1220 0191 0A030000 		.4byte	0x30a
+ 1221 0195 05       		.uleb128 0x5
+ 1222 0196 03       		.byte	0x3
+ 1223 0197 00000000 		.4byte	x_data.5423
+ 1224 019b 0E       		.uleb128 0xe
+ 1225 019c D8020000 		.4byte	.LASF28
+ 1226 01a0 01       		.byte	0x1
+ 1227 01a1 2F       		.byte	0x2f
+ 1228 01a2 04030000 		.4byte	0x304
+ 1229 01a6 02       		.uleb128 0x2
+ 1230 01a7 91       		.byte	0x91
+ 1231 01a8 50       		.sleb128 -48
+ 1232 01a9 0F       		.uleb128 0xf
+ 1233 01aa 7900     		.ascii	"y\000"
+ 1234 01ac 01       		.byte	0x1
+ 1235 01ad 30       		.byte	0x30
+ 1236 01ae 04030000 		.4byte	0x304
+ 1237 01b2 02       		.uleb128 0x2
+ 1238 01b3 91       		.byte	0x91
+ 1239 01b4 54       		.sleb128 -44
+ 1240 01b5 10       		.uleb128 0x10
+ 1241 01b6 8B000000 		.4byte	.LASF29
+ 1242 01ba 01       		.byte	0x1
+ 1243 01bb 31       		.byte	0x31
+ 1244 01bc 1B030000 		.4byte	0x31b
+ 1245 01c0 02010000 		.4byte	.LLST5
+ 1246 01c4 10       		.uleb128 0x10
+ 1247 01c5 9C010000 		.4byte	.LASF30
+ 1248 01c9 01       		.byte	0x1
+ 1249 01ca 32       		.byte	0x32
+ 1250 01cb 1B030000 		.4byte	0x31b
+ 1251 01cf 15010000 		.4byte	.LLST6
+ 1252 01d3 10       		.uleb128 0x10
+ 1253 01d4 29030000 		.4byte	.LASF31
+ 1254 01d8 01       		.byte	0x1
+ 1255 01d9 33       		.byte	0x33
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 31
+
+
+ 1256 01da BB000000 		.4byte	0xbb
+ 1257 01de 42010000 		.4byte	.LLST7
+ 1258 01e2 10       		.uleb128 0x10
+ 1259 01e3 9B030000 		.4byte	.LASF32
+ 1260 01e7 01       		.byte	0x1
+ 1261 01e8 34       		.byte	0x34
+ 1262 01e9 BB000000 		.4byte	0xbb
+ 1263 01ed 92010000 		.4byte	.LLST8
+ 1264 01f1 11       		.uleb128 0x11
+ 1265 01f2 6900     		.ascii	"i\000"
+ 1266 01f4 01       		.byte	0x1
+ 1267 01f5 35       		.byte	0x35
+ 1268 01f6 41000000 		.4byte	0x41
+ 1269 01fa B2010000 		.4byte	.LLST9
+ 1270 01fe 11       		.uleb128 0x11
+ 1271 01ff 6B00     		.ascii	"k\000"
+ 1272 0201 01       		.byte	0x1
+ 1273 0202 36       		.byte	0x36
+ 1274 0203 41000000 		.4byte	0x41
+ 1275 0207 85020000 		.4byte	.LLST10
+ 1276 020b 11       		.uleb128 0x11
+ 1277 020c 6E7800   		.ascii	"nx\000"
+ 1278 020f 01       		.byte	0x1
+ 1279 0210 37       		.byte	0x37
+ 1280 0211 41000000 		.4byte	0x41
+ 1281 0215 D0020000 		.4byte	.LLST11
+ 1282 0219 12       		.uleb128 0x12
+ 1283 021a E8020000 		.4byte	.LASF33
+ 1284 021e 01       		.byte	0x1
+ 1285 021f 38       		.byte	0x38
+ 1286 0220 5D000000 		.4byte	0x5d
+ 1287 0224 00       		.byte	0
+ 1288 0225 12       		.uleb128 0x12
+ 1289 0226 1A040000 		.4byte	.LASF34
+ 1290 022a 01       		.byte	0x1
+ 1291 022b 39       		.byte	0x39
+ 1292 022c 5D000000 		.4byte	0x5d
+ 1293 0230 00       		.byte	0
+ 1294 0231 13       		.uleb128 0x13
+ 1295 0232 22000000 		.4byte	.LVL6
+ 1296 0236 DC050000 		.4byte	0x5dc
+ 1297 023a 45020000 		.4byte	0x245
+ 1298 023e 14       		.uleb128 0x14
+ 1299 023f 01       		.uleb128 0x1
+ 1300 0240 50       		.byte	0x50
+ 1301 0241 02       		.uleb128 0x2
+ 1302 0242 78       		.byte	0x78
+ 1303 0243 00       		.sleb128 0
+ 1304 0244 00       		.byte	0
+ 1305 0245 13       		.uleb128 0x13
+ 1306 0246 5A000000 		.4byte	.LVL13
+ 1307 024a DC050000 		.4byte	0x5dc
+ 1308 024e 59020000 		.4byte	0x259
+ 1309 0252 14       		.uleb128 0x14
+ 1310 0253 01       		.uleb128 0x1
+ 1311 0254 50       		.byte	0x50
+ 1312 0255 02       		.uleb128 0x2
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 32
+
+
+ 1313 0256 76       		.byte	0x76
+ 1314 0257 00       		.sleb128 0
+ 1315 0258 00       		.byte	0
+ 1316 0259 13       		.uleb128 0x13
+ 1317 025a 7E000000 		.4byte	.LVL17
+ 1318 025e E7050000 		.4byte	0x5e7
+ 1319 0262 72020000 		.4byte	0x272
+ 1320 0266 14       		.uleb128 0x14
+ 1321 0267 01       		.uleb128 0x1
+ 1322 0268 50       		.byte	0x50
+ 1323 0269 02       		.uleb128 0x2
+ 1324 026a 91       		.byte	0x91
+ 1325 026b 54       		.sleb128 -44
+ 1326 026c 14       		.uleb128 0x14
+ 1327 026d 01       		.uleb128 0x1
+ 1328 026e 51       		.byte	0x51
+ 1329 026f 01       		.uleb128 0x1
+ 1330 0270 31       		.byte	0x31
+ 1331 0271 00       		.byte	0
+ 1332 0272 15       		.uleb128 0x15
+ 1333 0273 92000000 		.4byte	.LVL20
+ 1334 0277 DC050000 		.4byte	0x5dc
+ 1335 027b 13       		.uleb128 0x13
+ 1336 027c 08010000 		.4byte	.LVL33
+ 1337 0280 F2050000 		.4byte	0x5f2
+ 1338 0284 8F020000 		.4byte	0x28f
+ 1339 0288 14       		.uleb128 0x14
+ 1340 0289 01       		.uleb128 0x1
+ 1341 028a 50       		.byte	0x50
+ 1342 028b 02       		.uleb128 0x2
+ 1343 028c 91       		.byte	0x91
+ 1344 028d 50       		.sleb128 -48
+ 1345 028e 00       		.byte	0
+ 1346 028f 13       		.uleb128 0x13
+ 1347 0290 0E010000 		.4byte	.LVL34
+ 1348 0294 F2050000 		.4byte	0x5f2
+ 1349 0298 A3020000 		.4byte	0x2a3
+ 1350 029c 14       		.uleb128 0x14
+ 1351 029d 01       		.uleb128 0x1
+ 1352 029e 50       		.byte	0x50
+ 1353 029f 02       		.uleb128 0x2
+ 1354 02a0 91       		.byte	0x91
+ 1355 02a1 54       		.sleb128 -44
+ 1356 02a2 00       		.byte	0
+ 1357 02a3 13       		.uleb128 0x13
+ 1358 02a4 2A010000 		.4byte	.LVL37
+ 1359 02a8 DC050000 		.4byte	0x5dc
+ 1360 02ac BD020000 		.4byte	0x2bd
+ 1361 02b0 14       		.uleb128 0x14
+ 1362 02b1 01       		.uleb128 0x1
+ 1363 02b2 50       		.byte	0x50
+ 1364 02b3 02       		.uleb128 0x2
+ 1365 02b4 79       		.byte	0x79
+ 1366 02b5 00       		.sleb128 0
+ 1367 02b6 14       		.uleb128 0x14
+ 1368 02b7 01       		.uleb128 0x1
+ 1369 02b8 51       		.byte	0x51
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 33
+
+
+ 1370 02b9 02       		.uleb128 0x2
+ 1371 02ba 7A       		.byte	0x7a
+ 1372 02bb 00       		.sleb128 0
+ 1373 02bc 00       		.byte	0
+ 1374 02bd 13       		.uleb128 0x13
+ 1375 02be 5E010000 		.4byte	.LVL43
+ 1376 02c2 E7050000 		.4byte	0x5e7
+ 1377 02c6 D6020000 		.4byte	0x2d6
+ 1378 02ca 14       		.uleb128 0x14
+ 1379 02cb 01       		.uleb128 0x1
+ 1380 02cc 50       		.byte	0x50
+ 1381 02cd 02       		.uleb128 0x2
+ 1382 02ce 91       		.byte	0x91
+ 1383 02cf 50       		.sleb128 -48
+ 1384 02d0 14       		.uleb128 0x14
+ 1385 02d1 01       		.uleb128 0x1
+ 1386 02d2 51       		.byte	0x51
+ 1387 02d3 01       		.uleb128 0x1
+ 1388 02d4 31       		.byte	0x31
+ 1389 02d5 00       		.byte	0
+ 1390 02d6 15       		.uleb128 0x15
+ 1391 02d7 70010000 		.4byte	.LVL45
+ 1392 02db DC050000 		.4byte	0x5dc
+ 1393 02df 15       		.uleb128 0x15
+ 1394 02e0 92010000 		.4byte	.LVL49
+ 1395 02e4 FD050000 		.4byte	0x5fd
+ 1396 02e8 16       		.uleb128 0x16
+ 1397 02e9 10020000 		.4byte	.LVL59
+ 1398 02ed DC050000 		.4byte	0x5dc
+ 1399 02f1 14       		.uleb128 0x14
+ 1400 02f2 01       		.uleb128 0x1
+ 1401 02f3 50       		.byte	0x50
+ 1402 02f4 02       		.uleb128 0x2
+ 1403 02f5 76       		.byte	0x76
+ 1404 02f6 00       		.sleb128 0
+ 1405 02f7 00       		.byte	0
+ 1406 02f8 00       		.byte	0
+ 1407 02f9 06       		.uleb128 0x6
+ 1408 02fa 04       		.byte	0x4
+ 1409 02fb FF020000 		.4byte	0x2ff
+ 1410 02ff 17       		.uleb128 0x17
+ 1411 0300 C7000000 		.4byte	0xc7
+ 1412 0304 06       		.uleb128 0x6
+ 1413 0305 04       		.byte	0x4
+ 1414 0306 C7000000 		.4byte	0xc7
+ 1415 030a 0A       		.uleb128 0xa
+ 1416 030b 5D000000 		.4byte	0x5d
+ 1417 030f 1B030000 		.4byte	0x31b
+ 1418 0313 18       		.uleb128 0x18
+ 1419 0314 F4000000 		.4byte	0xf4
+ 1420 0318 3F9C     		.2byte	0x9c3f
+ 1421 031a 00       		.byte	0
+ 1422 031b 06       		.uleb128 0x6
+ 1423 031c 04       		.byte	0x4
+ 1424 031d 21030000 		.4byte	0x321
+ 1425 0321 17       		.uleb128 0x17
+ 1426 0322 56000000 		.4byte	0x56
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 34
+
+
+ 1427 0326 0C       		.uleb128 0xc
+ 1428 0327 96020000 		.4byte	.LASF36
+ 1429 032b 01       		.byte	0x1
+ 1430 032c 98       		.byte	0x98
+ 1431 032d 00000000 		.4byte	.LFB1
+ 1432 0331 A8020000 		.4byte	.LFE1-.LFB1
+ 1433 0335 01       		.uleb128 0x1
+ 1434 0336 9C       		.byte	0x9c
+ 1435 0337 CC050000 		.4byte	0x5cc
+ 1436 033b 0D       		.uleb128 0xd
+ 1437 033c 5E030000 		.4byte	.LASF24
+ 1438 0340 01       		.byte	0x1
+ 1439 0341 98       		.byte	0x98
+ 1440 0342 F9020000 		.4byte	0x2f9
+ 1441 0346 5C030000 		.4byte	.LLST12
+ 1442 034a 0D       		.uleb128 0xd
+ 1443 034b 43010000 		.4byte	.LASF25
+ 1444 034f 01       		.byte	0x1
+ 1445 0350 99       		.byte	0x99
+ 1446 0351 F9020000 		.4byte	0x2f9
+ 1447 0355 88030000 		.4byte	.LLST13
+ 1448 0359 0D       		.uleb128 0xd
+ 1449 035a 91010000 		.4byte	.LASF23
+ 1450 035e 01       		.byte	0x1
+ 1451 035f 9A       		.byte	0x9a
+ 1452 0360 1B030000 		.4byte	0x31b
+ 1453 0364 B4030000 		.4byte	.LLST14
+ 1454 0368 0D       		.uleb128 0xd
+ 1455 0369 D7010000 		.4byte	.LASF37
+ 1456 036d 01       		.byte	0x1
+ 1457 036e 9B       		.byte	0x9b
+ 1458 036f 04030000 		.4byte	0x304
+ 1459 0373 E0030000 		.4byte	.LLST15
+ 1460 0377 0D       		.uleb128 0xd
+ 1461 0378 2D040000 		.4byte	.LASF38
+ 1462 037c 01       		.byte	0x1
+ 1463 037d 9C       		.byte	0x9c
+ 1464 037e 04030000 		.4byte	0x304
+ 1465 0382 0C040000 		.4byte	.LLST16
+ 1466 0386 0D       		.uleb128 0xd
+ 1467 0387 1D000000 		.4byte	.LASF39
+ 1468 038b 01       		.byte	0x1
+ 1469 038c 9D       		.byte	0x9d
+ 1470 038d D2000000 		.4byte	0xd2
+ 1471 0391 2C040000 		.4byte	.LLST17
+ 1472 0395 0F       		.uleb128 0xf
+ 1473 0396 647600   		.ascii	"dv\000"
+ 1474 0399 01       		.byte	0x1
+ 1475 039a 9F       		.byte	0x9f
+ 1476 039b 0F010000 		.4byte	0x10f
+ 1477 039f 05       		.uleb128 0x5
+ 1478 03a0 03       		.byte	0x3
+ 1479 03a1 409C0000 		.4byte	dv.5473
+ 1480 03a5 0E       		.uleb128 0xe
+ 1481 03a6 43040000 		.4byte	.LASF40
+ 1482 03aa 01       		.byte	0x1
+ 1483 03ab A0       		.byte	0xa0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 35
+
+
+ 1484 03ac 0A030000 		.4byte	0x30a
+ 1485 03b0 05       		.uleb128 0x5
+ 1486 03b1 03       		.byte	0x3
+ 1487 03b2 500D0300 		.4byte	b_tmp_data.5474
+ 1488 03b6 0E       		.uleb128 0xe
+ 1489 03b7 8B020000 		.4byte	.LASF41
+ 1490 03bb 01       		.byte	0x1
+ 1491 03bc A1       		.byte	0xa1
+ 1492 03bd 0A030000 		.4byte	0x30a
+ 1493 03c1 05       		.uleb128 0x5
+ 1494 03c2 03       		.byte	0x3
+ 1495 03c3 90A90300 		.4byte	c_tmp_data.5475
+ 1496 03c7 0E       		.uleb128 0xe
+ 1497 03c8 8C040000 		.4byte	.LASF42
+ 1498 03cc 01       		.byte	0x1
+ 1499 03cd A2       		.byte	0xa2
+ 1500 03ce 0A030000 		.4byte	0x30a
+ 1501 03d2 05       		.uleb128 0x5
+ 1502 03d3 03       		.byte	0x3
+ 1503 03d4 10710200 		.4byte	tmp_data.5476
+ 1504 03d8 0E       		.uleb128 0xe
+ 1505 03d9 70040000 		.4byte	.LASF43
+ 1506 03dd 01       		.byte	0x1
+ 1507 03de A3       		.byte	0xa3
+ 1508 03df 0A030000 		.4byte	0x30a
+ 1509 03e3 05       		.uleb128 0x5
+ 1510 03e4 03       		.byte	0x3
+ 1511 03e5 90380100 		.4byte	validAngleLimitIndices_data.5477
+ 1512 03e9 0E       		.uleb128 0xe
+ 1513 03ea 0C040000 		.4byte	.LASF44
+ 1514 03ee 01       		.byte	0x1
+ 1515 03ef A4       		.byte	0xa4
+ 1516 03f0 0A030000 		.4byte	0x30a
+ 1517 03f4 05       		.uleb128 0x5
+ 1518 03f5 03       		.byte	0x3
+ 1519 03f6 D0D40100 		.4byte	validIdx_data.5478
+ 1520 03fa 0E       		.uleb128 0xe
+ 1521 03fb 7F030000 		.4byte	.LASF45
+ 1522 03ff 01       		.byte	0x1
+ 1523 0400 A5       		.byte	0xa5
+ 1524 0401 0A030000 		.4byte	0x30a
+ 1525 0405 05       		.uleb128 0x5
+ 1526 0406 03       		.byte	0x3
+ 1527 0407 509C0000 		.4byte	validRangeLimitIndices_data.5479
+ 1528 040b 19       		.uleb128 0x19
+ 1529 040c 50030000 		.4byte	.LASF52
+ 1530 0410 01       		.byte	0x1
+ 1531 0411 A6       		.byte	0xa6
+ 1532 0412 CC050000 		.4byte	0x5cc
+ 1533 0416 0E       		.uleb128 0xe
+ 1534 0417 67010000 		.4byte	.LASF46
+ 1535 041b 01       		.byte	0x1
+ 1536 041c A7       		.byte	0xa7
+ 1537 041d 04030000 		.4byte	0x304
+ 1538 0421 02       		.uleb128 0x2
+ 1539 0422 91       		.byte	0x91
+ 1540 0423 50       		.sleb128 -48
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 36
+
+
+ 1541 0424 0E       		.uleb128 0xe
+ 1542 0425 AA030000 		.4byte	.LASF47
+ 1543 0429 01       		.byte	0x1
+ 1544 042a A8       		.byte	0xa8
+ 1545 042b 04030000 		.4byte	0x304
+ 1546 042f 02       		.uleb128 0x2
+ 1547 0430 91       		.byte	0x91
+ 1548 0431 54       		.sleb128 -44
+ 1549 0432 10       		.uleb128 0x10
+ 1550 0433 00000000 		.4byte	.LASF48
+ 1551 0437 01       		.byte	0x1
+ 1552 0438 A9       		.byte	0xa9
+ 1553 0439 BB000000 		.4byte	0xbb
+ 1554 043d 4C040000 		.4byte	.LLST18
+ 1555 0441 10       		.uleb128 0x10
+ 1556 0442 44020000 		.4byte	.LASF49
+ 1557 0446 01       		.byte	0x1
+ 1558 0447 AA       		.byte	0xaa
+ 1559 0448 BB000000 		.4byte	0xbb
+ 1560 044c 61040000 		.4byte	.LLST19
+ 1561 0450 10       		.uleb128 0x10
+ 1562 0451 67000000 		.4byte	.LASF50
+ 1563 0455 01       		.byte	0x1
+ 1564 0456 AB       		.byte	0xab
+ 1565 0457 BB000000 		.4byte	0xbb
+ 1566 045b 97040000 		.4byte	.LLST20
+ 1567 045f 11       		.uleb128 0x11
+ 1568 0460 6900     		.ascii	"i\000"
+ 1569 0462 01       		.byte	0x1
+ 1570 0463 AC       		.byte	0xac
+ 1571 0464 41000000 		.4byte	0x41
+ 1572 0468 DB040000 		.4byte	.LLST21
+ 1573 046c 10       		.uleb128 0x10
+ 1574 046d 5F020000 		.4byte	.LASF51
+ 1575 0471 01       		.byte	0x1
+ 1576 0472 AD       		.byte	0xad
+ 1577 0473 41000000 		.4byte	0x41
+ 1578 0477 C2050000 		.4byte	.LLST22
+ 1579 047b 19       		.uleb128 0x19
+ 1580 047c 62040000 		.4byte	.LASF53
+ 1581 0480 01       		.byte	0x1
+ 1582 0481 AE       		.byte	0xae
+ 1583 0482 41000000 		.4byte	0x41
+ 1584 0486 12       		.uleb128 0x12
+ 1585 0487 E8020000 		.4byte	.LASF33
+ 1586 048b 01       		.byte	0x1
+ 1587 048c AF       		.byte	0xaf
+ 1588 048d 5D000000 		.4byte	0x5d
+ 1589 0491 00       		.byte	0
+ 1590 0492 1A       		.uleb128 0x1a
+ 1591 0493 7000     		.ascii	"p\000"
+ 1592 0495 01       		.byte	0x1
+ 1593 0496 B0       		.byte	0xb0
+ 1594 0497 5D000000 		.4byte	0x5d
+ 1595 049b 01       		.byte	0x1
+ 1596 049c 15       		.uleb128 0x15
+ 1597 049d 18000000 		.4byte	.LVL65
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 37
+
+
+ 1598 04a1 08060000 		.4byte	0x608
+ 1599 04a5 13       		.uleb128 0x13
+ 1600 04a6 30000000 		.4byte	.LVL66
+ 1601 04aa 2A010000 		.4byte	0x12a
+ 1602 04ae D2040000 		.4byte	0x4d2
+ 1603 04b2 14       		.uleb128 0x14
+ 1604 04b3 01       		.uleb128 0x1
+ 1605 04b4 50       		.byte	0x50
+ 1606 04b5 02       		.uleb128 0x2
+ 1607 04b6 74       		.byte	0x74
+ 1608 04b7 00       		.sleb128 0
+ 1609 04b8 14       		.uleb128 0x14
+ 1610 04b9 01       		.uleb128 0x1
+ 1611 04ba 51       		.byte	0x51
+ 1612 04bb 02       		.uleb128 0x2
+ 1613 04bc 77       		.byte	0x77
+ 1614 04bd 00       		.sleb128 0
+ 1615 04be 14       		.uleb128 0x14
+ 1616 04bf 01       		.uleb128 0x1
+ 1617 04c0 52       		.byte	0x52
+ 1618 04c1 02       		.uleb128 0x2
+ 1619 04c2 75       		.byte	0x75
+ 1620 04c3 00       		.sleb128 0
+ 1621 04c4 14       		.uleb128 0x14
+ 1622 04c5 01       		.uleb128 0x1
+ 1623 04c6 53       		.byte	0x53
+ 1624 04c7 02       		.uleb128 0x2
+ 1625 04c8 76       		.byte	0x76
+ 1626 04c9 00       		.sleb128 0
+ 1627 04ca 14       		.uleb128 0x14
+ 1628 04cb 02       		.uleb128 0x2
+ 1629 04cc 7D       		.byte	0x7d
+ 1630 04cd 00       		.sleb128 0
+ 1631 04ce 02       		.uleb128 0x2
+ 1632 04cf 78       		.byte	0x78
+ 1633 04d0 00       		.sleb128 0
+ 1634 04d1 00       		.byte	0
+ 1635 04d2 15       		.uleb128 0x15
+ 1636 04d3 DE000000 		.4byte	.LVL89
+ 1637 04d7 13060000 		.4byte	0x613
+ 1638 04db 15       		.uleb128 0x15
+ 1639 04dc 02010000 		.4byte	.LVL93
+ 1640 04e0 1E060000 		.4byte	0x61e
+ 1641 04e4 15       		.uleb128 0x15
+ 1642 04e5 2C010000 		.4byte	.LVL97
+ 1643 04e9 13060000 		.4byte	0x613
+ 1644 04ed 15       		.uleb128 0x15
+ 1645 04ee 4C010000 		.4byte	.LVL102
+ 1646 04f2 1E060000 		.4byte	0x61e
+ 1647 04f6 13       		.uleb128 0x13
+ 1648 04f7 DA010000 		.4byte	.LVL114
+ 1649 04fb E7050000 		.4byte	0x5e7
+ 1650 04ff 0F050000 		.4byte	0x50f
+ 1651 0503 14       		.uleb128 0x14
+ 1652 0504 01       		.uleb128 0x1
+ 1653 0505 50       		.byte	0x50
+ 1654 0506 02       		.uleb128 0x2
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 38
+
+
+ 1655 0507 91       		.byte	0x91
+ 1656 0508 54       		.sleb128 -44
+ 1657 0509 14       		.uleb128 0x14
+ 1658 050a 01       		.uleb128 0x1
+ 1659 050b 51       		.byte	0x51
+ 1660 050c 01       		.uleb128 0x1
+ 1661 050d 31       		.byte	0x31
+ 1662 050e 00       		.byte	0
+ 1663 050f 13       		.uleb128 0x13
+ 1664 0510 E4010000 		.4byte	.LVL115
+ 1665 0514 29060000 		.4byte	0x629
+ 1666 0518 32050000 		.4byte	0x532
+ 1667 051c 14       		.uleb128 0x14
+ 1668 051d 01       		.uleb128 0x1
+ 1669 051e 50       		.byte	0x50
+ 1670 051f 02       		.uleb128 0x2
+ 1671 0520 75       		.byte	0x75
+ 1672 0521 00       		.sleb128 0
+ 1673 0522 14       		.uleb128 0x14
+ 1674 0523 01       		.uleb128 0x1
+ 1675 0524 51       		.byte	0x51
+ 1676 0525 05       		.uleb128 0x5
+ 1677 0526 03       		.byte	0x3
+ 1678 0527 D0D40100 		.4byte	.LANCHOR3+2728
+ 1679 052b 14       		.uleb128 0x14
+ 1680 052c 01       		.uleb128 0x1
+ 1681 052d 52       		.byte	0x52
+ 1682 052e 02       		.uleb128 0x2
+ 1683 052f 74       		.byte	0x74
+ 1684 0530 00       		.sleb128 0
+ 1685 0531 00       		.byte	0
+ 1686 0532 13       		.uleb128 0x13
+ 1687 0533 F0010000 		.4byte	.LVL117
+ 1688 0537 29060000 		.4byte	0x629
+ 1689 053b 55050000 		.4byte	0x555
+ 1690 053f 14       		.uleb128 0x14
+ 1691 0540 01       		.uleb128 0x1
+ 1692 0541 50       		.byte	0x50
+ 1693 0542 02       		.uleb128 0x2
+ 1694 0543 76       		.byte	0x76
+ 1695 0544 00       		.sleb128 0
+ 1696 0545 14       		.uleb128 0x14
+ 1697 0546 01       		.uleb128 0x1
+ 1698 0547 51       		.byte	0x51
+ 1699 0548 05       		.uleb128 0x5
+ 1700 0549 03       		.byte	0x3
+ 1701 054a D0D40100 		.4byte	.LANCHOR3+2728
+ 1702 054e 14       		.uleb128 0x14
+ 1703 054f 01       		.uleb128 0x1
+ 1704 0550 52       		.byte	0x52
+ 1705 0551 02       		.uleb128 0x2
+ 1706 0552 74       		.byte	0x74
+ 1707 0553 00       		.sleb128 0
+ 1708 0554 00       		.byte	0
+ 1709 0555 15       		.uleb128 0x15
+ 1710 0556 02020000 		.4byte	.LVL119
+ 1711 055a DC050000 		.4byte	0x5dc
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 39
+
+
+ 1712 055e 13       		.uleb128 0x13
+ 1713 055f 2C020000 		.4byte	.LVL124
+ 1714 0563 E7050000 		.4byte	0x5e7
+ 1715 0567 77050000 		.4byte	0x577
+ 1716 056b 14       		.uleb128 0x14
+ 1717 056c 01       		.uleb128 0x1
+ 1718 056d 50       		.byte	0x50
+ 1719 056e 02       		.uleb128 0x2
+ 1720 056f 91       		.byte	0x91
+ 1721 0570 50       		.sleb128 -48
+ 1722 0571 14       		.uleb128 0x14
+ 1723 0572 01       		.uleb128 0x1
+ 1724 0573 51       		.byte	0x51
+ 1725 0574 01       		.uleb128 0x1
+ 1726 0575 31       		.byte	0x31
+ 1727 0576 00       		.byte	0
+ 1728 0577 15       		.uleb128 0x15
+ 1729 0578 3C020000 		.4byte	.LVL126
+ 1730 057c DC050000 		.4byte	0x5dc
+ 1731 0580 13       		.uleb128 0x13
+ 1732 0581 6E020000 		.4byte	.LVL131
+ 1733 0585 2A010000 		.4byte	0x12a
+ 1734 0589 A7050000 		.4byte	0x5a7
+ 1735 058d 14       		.uleb128 0x14
+ 1736 058e 01       		.uleb128 0x1
+ 1737 058f 51       		.byte	0x51
+ 1738 0590 02       		.uleb128 0x2
+ 1739 0591 77       		.byte	0x77
+ 1740 0592 00       		.sleb128 0
+ 1741 0593 14       		.uleb128 0x14
+ 1742 0594 01       		.uleb128 0x1
+ 1743 0595 52       		.byte	0x52
+ 1744 0596 02       		.uleb128 0x2
+ 1745 0597 75       		.byte	0x75
+ 1746 0598 00       		.sleb128 0
+ 1747 0599 14       		.uleb128 0x14
+ 1748 059a 01       		.uleb128 0x1
+ 1749 059b 53       		.byte	0x53
+ 1750 059c 02       		.uleb128 0x2
+ 1751 059d 76       		.byte	0x76
+ 1752 059e 00       		.sleb128 0
+ 1753 059f 14       		.uleb128 0x14
+ 1754 05a0 02       		.uleb128 0x2
+ 1755 05a1 7D       		.byte	0x7d
+ 1756 05a2 00       		.sleb128 0
+ 1757 05a3 02       		.uleb128 0x2
+ 1758 05a4 78       		.byte	0x78
+ 1759 05a5 00       		.sleb128 0
+ 1760 05a6 00       		.byte	0
+ 1761 05a7 13       		.uleb128 0x13
+ 1762 05a8 74020000 		.4byte	.LVL132
+ 1763 05ac F2050000 		.4byte	0x5f2
+ 1764 05b0 BB050000 		.4byte	0x5bb
+ 1765 05b4 14       		.uleb128 0x14
+ 1766 05b5 01       		.uleb128 0x1
+ 1767 05b6 50       		.byte	0x50
+ 1768 05b7 02       		.uleb128 0x2
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 40
+
+
+ 1769 05b8 91       		.byte	0x91
+ 1770 05b9 50       		.sleb128 -48
+ 1771 05ba 00       		.byte	0
+ 1772 05bb 16       		.uleb128 0x16
+ 1773 05bc 7A020000 		.4byte	.LVL133
+ 1774 05c0 F2050000 		.4byte	0x5f2
+ 1775 05c4 14       		.uleb128 0x14
+ 1776 05c5 01       		.uleb128 0x1
+ 1777 05c6 50       		.byte	0x50
+ 1778 05c7 02       		.uleb128 0x2
+ 1779 05c8 91       		.byte	0x91
+ 1780 05c9 54       		.sleb128 -44
+ 1781 05ca 00       		.byte	0
+ 1782 05cb 00       		.byte	0
+ 1783 05cc 0A       		.uleb128 0xa
+ 1784 05cd 1F010000 		.4byte	0x11f
+ 1785 05d1 DC050000 		.4byte	0x5dc
+ 1786 05d5 0B       		.uleb128 0xb
+ 1787 05d6 F4000000 		.4byte	0xf4
+ 1788 05da 01       		.byte	0x1
+ 1789 05db 00       		.byte	0
+ 1790 05dc 1B       		.uleb128 0x1b
+ 1791 05dd B2020000 		.4byte	.LASF54
+ 1792 05e1 B2020000 		.4byte	.LASF54
+ 1793 05e5 03       		.byte	0x3
+ 1794 05e6 1C       		.byte	0x1c
+ 1795 05e7 1B       		.uleb128 0x1b
+ 1796 05e8 41030000 		.4byte	.LASF55
+ 1797 05ec 41030000 		.4byte	.LASF55
+ 1798 05f0 03       		.byte	0x3
+ 1799 05f1 24       		.byte	0x24
+ 1800 05f2 1B       		.uleb128 0x1b
+ 1801 05f3 0A020000 		.4byte	.LASF56
+ 1802 05f7 0A020000 		.4byte	.LASF56
+ 1803 05fb 03       		.byte	0x3
+ 1804 05fc 20       		.byte	0x20
+ 1805 05fd 1B       		.uleb128 0x1b
+ 1806 05fe 4E040000 		.4byte	.LASF57
+ 1807 0602 4E040000 		.4byte	.LASF57
+ 1808 0606 04       		.byte	0x4
+ 1809 0607 18       		.byte	0x18
+ 1810 0608 1B       		.uleb128 0x1b
+ 1811 0609 82000000 		.4byte	.LASF58
+ 1812 060d 82000000 		.4byte	.LASF58
+ 1813 0611 05       		.byte	0x5
+ 1814 0612 15       		.byte	0x15
+ 1815 0613 1B       		.uleb128 0x1b
+ 1816 0614 56010000 		.4byte	.LASF59
+ 1817 0618 56010000 		.4byte	.LASF59
+ 1818 061c 06       		.byte	0x6
+ 1819 061d 1C       		.byte	0x1c
+ 1820 061e 1B       		.uleb128 0x1b
+ 1821 061f 17030000 		.4byte	.LASF60
+ 1822 0623 17030000 		.4byte	.LASF60
+ 1823 0627 06       		.byte	0x6
+ 1824 0628 1E       		.byte	0x1e
+ 1825 0629 1B       		.uleb128 0x1b
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 41
+
+
+ 1826 062a 67020000 		.4byte	.LASF61
+ 1827 062e 67020000 		.4byte	.LASF61
+ 1828 0632 07       		.byte	0x7
+ 1829 0633 19       		.byte	0x19
+ 1830 0634 00       		.byte	0
+ 1831              		.section	.debug_abbrev,"",%progbits
+ 1832              	.Ldebug_abbrev0:
+ 1833 0000 01       		.uleb128 0x1
+ 1834 0001 11       		.uleb128 0x11
+ 1835 0002 01       		.byte	0x1
+ 1836 0003 25       		.uleb128 0x25
+ 1837 0004 0E       		.uleb128 0xe
+ 1838 0005 13       		.uleb128 0x13
+ 1839 0006 0B       		.uleb128 0xb
+ 1840 0007 03       		.uleb128 0x3
+ 1841 0008 0E       		.uleb128 0xe
+ 1842 0009 1B       		.uleb128 0x1b
+ 1843 000a 0E       		.uleb128 0xe
+ 1844 000b 55       		.uleb128 0x55
+ 1845 000c 17       		.uleb128 0x17
+ 1846 000d 11       		.uleb128 0x11
+ 1847 000e 01       		.uleb128 0x1
+ 1848 000f 10       		.uleb128 0x10
+ 1849 0010 17       		.uleb128 0x17
+ 1850 0011 00       		.byte	0
+ 1851 0012 00       		.byte	0
+ 1852 0013 02       		.uleb128 0x2
+ 1853 0014 24       		.uleb128 0x24
+ 1854 0015 00       		.byte	0
+ 1855 0016 0B       		.uleb128 0xb
+ 1856 0017 0B       		.uleb128 0xb
+ 1857 0018 3E       		.uleb128 0x3e
+ 1858 0019 0B       		.uleb128 0xb
+ 1859 001a 03       		.uleb128 0x3
+ 1860 001b 0E       		.uleb128 0xe
+ 1861 001c 00       		.byte	0
+ 1862 001d 00       		.byte	0
+ 1863 001e 03       		.uleb128 0x3
+ 1864 001f 24       		.uleb128 0x24
+ 1865 0020 00       		.byte	0
+ 1866 0021 0B       		.uleb128 0xb
+ 1867 0022 0B       		.uleb128 0xb
+ 1868 0023 3E       		.uleb128 0x3e
+ 1869 0024 0B       		.uleb128 0xb
+ 1870 0025 03       		.uleb128 0x3
+ 1871 0026 08       		.uleb128 0x8
+ 1872 0027 00       		.byte	0
+ 1873 0028 00       		.byte	0
+ 1874 0029 04       		.uleb128 0x4
+ 1875 002a 13       		.uleb128 0x13
+ 1876 002b 01       		.byte	0x1
+ 1877 002c 03       		.uleb128 0x3
+ 1878 002d 0E       		.uleb128 0xe
+ 1879 002e 0B       		.uleb128 0xb
+ 1880 002f 0B       		.uleb128 0xb
+ 1881 0030 3A       		.uleb128 0x3a
+ 1882 0031 0B       		.uleb128 0xb
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 42
+
+
+ 1883 0032 3B       		.uleb128 0x3b
+ 1884 0033 0B       		.uleb128 0xb
+ 1885 0034 01       		.uleb128 0x1
+ 1886 0035 13       		.uleb128 0x13
+ 1887 0036 00       		.byte	0
+ 1888 0037 00       		.byte	0
+ 1889 0038 05       		.uleb128 0x5
+ 1890 0039 0D       		.uleb128 0xd
+ 1891 003a 00       		.byte	0
+ 1892 003b 03       		.uleb128 0x3
+ 1893 003c 0E       		.uleb128 0xe
+ 1894 003d 3A       		.uleb128 0x3a
+ 1895 003e 0B       		.uleb128 0xb
+ 1896 003f 3B       		.uleb128 0x3b
+ 1897 0040 0B       		.uleb128 0xb
+ 1898 0041 49       		.uleb128 0x49
+ 1899 0042 13       		.uleb128 0x13
+ 1900 0043 38       		.uleb128 0x38
+ 1901 0044 0B       		.uleb128 0xb
+ 1902 0045 00       		.byte	0
+ 1903 0046 00       		.byte	0
+ 1904 0047 06       		.uleb128 0x6
+ 1905 0048 0F       		.uleb128 0xf
+ 1906 0049 00       		.byte	0
+ 1907 004a 0B       		.uleb128 0xb
+ 1908 004b 0B       		.uleb128 0xb
+ 1909 004c 49       		.uleb128 0x49
+ 1910 004d 13       		.uleb128 0x13
+ 1911 004e 00       		.byte	0
+ 1912 004f 00       		.byte	0
+ 1913 0050 07       		.uleb128 0x7
+ 1914 0051 16       		.uleb128 0x16
+ 1915 0052 00       		.byte	0
+ 1916 0053 03       		.uleb128 0x3
+ 1917 0054 0E       		.uleb128 0xe
+ 1918 0055 3A       		.uleb128 0x3a
+ 1919 0056 0B       		.uleb128 0xb
+ 1920 0057 3B       		.uleb128 0x3b
+ 1921 0058 0B       		.uleb128 0xb
+ 1922 0059 49       		.uleb128 0x49
+ 1923 005a 13       		.uleb128 0x13
+ 1924 005b 00       		.byte	0
+ 1925 005c 00       		.byte	0
+ 1926 005d 08       		.uleb128 0x8
+ 1927 005e 13       		.uleb128 0x13
+ 1928 005f 01       		.byte	0x1
+ 1929 0060 0B       		.uleb128 0xb
+ 1930 0061 0B       		.uleb128 0xb
+ 1931 0062 3A       		.uleb128 0x3a
+ 1932 0063 0B       		.uleb128 0xb
+ 1933 0064 3B       		.uleb128 0x3b
+ 1934 0065 0B       		.uleb128 0xb
+ 1935 0066 01       		.uleb128 0x1
+ 1936 0067 13       		.uleb128 0x13
+ 1937 0068 00       		.byte	0
+ 1938 0069 00       		.byte	0
+ 1939 006a 09       		.uleb128 0x9
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 43
+
+
+ 1940 006b 0D       		.uleb128 0xd
+ 1941 006c 00       		.byte	0
+ 1942 006d 03       		.uleb128 0x3
+ 1943 006e 08       		.uleb128 0x8
+ 1944 006f 3A       		.uleb128 0x3a
+ 1945 0070 0B       		.uleb128 0xb
+ 1946 0071 3B       		.uleb128 0x3b
+ 1947 0072 0B       		.uleb128 0xb
+ 1948 0073 49       		.uleb128 0x49
+ 1949 0074 13       		.uleb128 0x13
+ 1950 0075 38       		.uleb128 0x38
+ 1951 0076 0B       		.uleb128 0xb
+ 1952 0077 00       		.byte	0
+ 1953 0078 00       		.byte	0
+ 1954 0079 0A       		.uleb128 0xa
+ 1955 007a 01       		.uleb128 0x1
+ 1956 007b 01       		.byte	0x1
+ 1957 007c 49       		.uleb128 0x49
+ 1958 007d 13       		.uleb128 0x13
+ 1959 007e 01       		.uleb128 0x1
+ 1960 007f 13       		.uleb128 0x13
+ 1961 0080 00       		.byte	0
+ 1962 0081 00       		.byte	0
+ 1963 0082 0B       		.uleb128 0xb
+ 1964 0083 21       		.uleb128 0x21
+ 1965 0084 00       		.byte	0
+ 1966 0085 49       		.uleb128 0x49
+ 1967 0086 13       		.uleb128 0x13
+ 1968 0087 2F       		.uleb128 0x2f
+ 1969 0088 0B       		.uleb128 0xb
+ 1970 0089 00       		.byte	0
+ 1971 008a 00       		.byte	0
+ 1972 008b 0C       		.uleb128 0xc
+ 1973 008c 2E       		.uleb128 0x2e
+ 1974 008d 01       		.byte	0x1
+ 1975 008e 3F       		.uleb128 0x3f
+ 1976 008f 19       		.uleb128 0x19
+ 1977 0090 03       		.uleb128 0x3
+ 1978 0091 0E       		.uleb128 0xe
+ 1979 0092 3A       		.uleb128 0x3a
+ 1980 0093 0B       		.uleb128 0xb
+ 1981 0094 3B       		.uleb128 0x3b
+ 1982 0095 0B       		.uleb128 0xb
+ 1983 0096 27       		.uleb128 0x27
+ 1984 0097 19       		.uleb128 0x19
+ 1985 0098 11       		.uleb128 0x11
+ 1986 0099 01       		.uleb128 0x1
+ 1987 009a 12       		.uleb128 0x12
+ 1988 009b 06       		.uleb128 0x6
+ 1989 009c 40       		.uleb128 0x40
+ 1990 009d 18       		.uleb128 0x18
+ 1991 009e 9642     		.uleb128 0x2116
+ 1992 00a0 19       		.uleb128 0x19
+ 1993 00a1 01       		.uleb128 0x1
+ 1994 00a2 13       		.uleb128 0x13
+ 1995 00a3 00       		.byte	0
+ 1996 00a4 00       		.byte	0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 44
+
+
+ 1997 00a5 0D       		.uleb128 0xd
+ 1998 00a6 05       		.uleb128 0x5
+ 1999 00a7 00       		.byte	0
+ 2000 00a8 03       		.uleb128 0x3
+ 2001 00a9 0E       		.uleb128 0xe
+ 2002 00aa 3A       		.uleb128 0x3a
+ 2003 00ab 0B       		.uleb128 0xb
+ 2004 00ac 3B       		.uleb128 0x3b
+ 2005 00ad 0B       		.uleb128 0xb
+ 2006 00ae 49       		.uleb128 0x49
+ 2007 00af 13       		.uleb128 0x13
+ 2008 00b0 02       		.uleb128 0x2
+ 2009 00b1 17       		.uleb128 0x17
+ 2010 00b2 00       		.byte	0
+ 2011 00b3 00       		.byte	0
+ 2012 00b4 0E       		.uleb128 0xe
+ 2013 00b5 34       		.uleb128 0x34
+ 2014 00b6 00       		.byte	0
+ 2015 00b7 03       		.uleb128 0x3
+ 2016 00b8 0E       		.uleb128 0xe
+ 2017 00b9 3A       		.uleb128 0x3a
+ 2018 00ba 0B       		.uleb128 0xb
+ 2019 00bb 3B       		.uleb128 0x3b
+ 2020 00bc 0B       		.uleb128 0xb
+ 2021 00bd 49       		.uleb128 0x49
+ 2022 00be 13       		.uleb128 0x13
+ 2023 00bf 02       		.uleb128 0x2
+ 2024 00c0 18       		.uleb128 0x18
+ 2025 00c1 00       		.byte	0
+ 2026 00c2 00       		.byte	0
+ 2027 00c3 0F       		.uleb128 0xf
+ 2028 00c4 34       		.uleb128 0x34
+ 2029 00c5 00       		.byte	0
+ 2030 00c6 03       		.uleb128 0x3
+ 2031 00c7 08       		.uleb128 0x8
+ 2032 00c8 3A       		.uleb128 0x3a
+ 2033 00c9 0B       		.uleb128 0xb
+ 2034 00ca 3B       		.uleb128 0x3b
+ 2035 00cb 0B       		.uleb128 0xb
+ 2036 00cc 49       		.uleb128 0x49
+ 2037 00cd 13       		.uleb128 0x13
+ 2038 00ce 02       		.uleb128 0x2
+ 2039 00cf 18       		.uleb128 0x18
+ 2040 00d0 00       		.byte	0
+ 2041 00d1 00       		.byte	0
+ 2042 00d2 10       		.uleb128 0x10
+ 2043 00d3 34       		.uleb128 0x34
+ 2044 00d4 00       		.byte	0
+ 2045 00d5 03       		.uleb128 0x3
+ 2046 00d6 0E       		.uleb128 0xe
+ 2047 00d7 3A       		.uleb128 0x3a
+ 2048 00d8 0B       		.uleb128 0xb
+ 2049 00d9 3B       		.uleb128 0x3b
+ 2050 00da 0B       		.uleb128 0xb
+ 2051 00db 49       		.uleb128 0x49
+ 2052 00dc 13       		.uleb128 0x13
+ 2053 00dd 02       		.uleb128 0x2
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 45
+
+
+ 2054 00de 17       		.uleb128 0x17
+ 2055 00df 00       		.byte	0
+ 2056 00e0 00       		.byte	0
+ 2057 00e1 11       		.uleb128 0x11
+ 2058 00e2 34       		.uleb128 0x34
+ 2059 00e3 00       		.byte	0
+ 2060 00e4 03       		.uleb128 0x3
+ 2061 00e5 08       		.uleb128 0x8
+ 2062 00e6 3A       		.uleb128 0x3a
+ 2063 00e7 0B       		.uleb128 0xb
+ 2064 00e8 3B       		.uleb128 0x3b
+ 2065 00e9 0B       		.uleb128 0xb
+ 2066 00ea 49       		.uleb128 0x49
+ 2067 00eb 13       		.uleb128 0x13
+ 2068 00ec 02       		.uleb128 0x2
+ 2069 00ed 17       		.uleb128 0x17
+ 2070 00ee 00       		.byte	0
+ 2071 00ef 00       		.byte	0
+ 2072 00f0 12       		.uleb128 0x12
+ 2073 00f1 34       		.uleb128 0x34
+ 2074 00f2 00       		.byte	0
+ 2075 00f3 03       		.uleb128 0x3
+ 2076 00f4 0E       		.uleb128 0xe
+ 2077 00f5 3A       		.uleb128 0x3a
+ 2078 00f6 0B       		.uleb128 0xb
+ 2079 00f7 3B       		.uleb128 0x3b
+ 2080 00f8 0B       		.uleb128 0xb
+ 2081 00f9 49       		.uleb128 0x49
+ 2082 00fa 13       		.uleb128 0x13
+ 2083 00fb 1C       		.uleb128 0x1c
+ 2084 00fc 0B       		.uleb128 0xb
+ 2085 00fd 00       		.byte	0
+ 2086 00fe 00       		.byte	0
+ 2087 00ff 13       		.uleb128 0x13
+ 2088 0100 898201   		.uleb128 0x4109
+ 2089 0103 01       		.byte	0x1
+ 2090 0104 11       		.uleb128 0x11
+ 2091 0105 01       		.uleb128 0x1
+ 2092 0106 31       		.uleb128 0x31
+ 2093 0107 13       		.uleb128 0x13
+ 2094 0108 01       		.uleb128 0x1
+ 2095 0109 13       		.uleb128 0x13
+ 2096 010a 00       		.byte	0
+ 2097 010b 00       		.byte	0
+ 2098 010c 14       		.uleb128 0x14
+ 2099 010d 8A8201   		.uleb128 0x410a
+ 2100 0110 00       		.byte	0
+ 2101 0111 02       		.uleb128 0x2
+ 2102 0112 18       		.uleb128 0x18
+ 2103 0113 9142     		.uleb128 0x2111
+ 2104 0115 18       		.uleb128 0x18
+ 2105 0116 00       		.byte	0
+ 2106 0117 00       		.byte	0
+ 2107 0118 15       		.uleb128 0x15
+ 2108 0119 898201   		.uleb128 0x4109
+ 2109 011c 00       		.byte	0
+ 2110 011d 11       		.uleb128 0x11
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 46
+
+
+ 2111 011e 01       		.uleb128 0x1
+ 2112 011f 31       		.uleb128 0x31
+ 2113 0120 13       		.uleb128 0x13
+ 2114 0121 00       		.byte	0
+ 2115 0122 00       		.byte	0
+ 2116 0123 16       		.uleb128 0x16
+ 2117 0124 898201   		.uleb128 0x4109
+ 2118 0127 01       		.byte	0x1
+ 2119 0128 11       		.uleb128 0x11
+ 2120 0129 01       		.uleb128 0x1
+ 2121 012a 31       		.uleb128 0x31
+ 2122 012b 13       		.uleb128 0x13
+ 2123 012c 00       		.byte	0
+ 2124 012d 00       		.byte	0
+ 2125 012e 17       		.uleb128 0x17
+ 2126 012f 26       		.uleb128 0x26
+ 2127 0130 00       		.byte	0
+ 2128 0131 49       		.uleb128 0x49
+ 2129 0132 13       		.uleb128 0x13
+ 2130 0133 00       		.byte	0
+ 2131 0134 00       		.byte	0
+ 2132 0135 18       		.uleb128 0x18
+ 2133 0136 21       		.uleb128 0x21
+ 2134 0137 00       		.byte	0
+ 2135 0138 49       		.uleb128 0x49
+ 2136 0139 13       		.uleb128 0x13
+ 2137 013a 2F       		.uleb128 0x2f
+ 2138 013b 05       		.uleb128 0x5
+ 2139 013c 00       		.byte	0
+ 2140 013d 00       		.byte	0
+ 2141 013e 19       		.uleb128 0x19
+ 2142 013f 34       		.uleb128 0x34
+ 2143 0140 00       		.byte	0
+ 2144 0141 03       		.uleb128 0x3
+ 2145 0142 0E       		.uleb128 0xe
+ 2146 0143 3A       		.uleb128 0x3a
+ 2147 0144 0B       		.uleb128 0xb
+ 2148 0145 3B       		.uleb128 0x3b
+ 2149 0146 0B       		.uleb128 0xb
+ 2150 0147 49       		.uleb128 0x49
+ 2151 0148 13       		.uleb128 0x13
+ 2152 0149 00       		.byte	0
+ 2153 014a 00       		.byte	0
+ 2154 014b 1A       		.uleb128 0x1a
+ 2155 014c 34       		.uleb128 0x34
+ 2156 014d 00       		.byte	0
+ 2157 014e 03       		.uleb128 0x3
+ 2158 014f 08       		.uleb128 0x8
+ 2159 0150 3A       		.uleb128 0x3a
+ 2160 0151 0B       		.uleb128 0xb
+ 2161 0152 3B       		.uleb128 0x3b
+ 2162 0153 0B       		.uleb128 0xb
+ 2163 0154 49       		.uleb128 0x49
+ 2164 0155 13       		.uleb128 0x13
+ 2165 0156 1C       		.uleb128 0x1c
+ 2166 0157 0B       		.uleb128 0xb
+ 2167 0158 00       		.byte	0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 47
+
+
+ 2168 0159 00       		.byte	0
+ 2169 015a 1B       		.uleb128 0x1b
+ 2170 015b 2E       		.uleb128 0x2e
+ 2171 015c 00       		.byte	0
+ 2172 015d 3F       		.uleb128 0x3f
+ 2173 015e 19       		.uleb128 0x19
+ 2174 015f 3C       		.uleb128 0x3c
+ 2175 0160 19       		.uleb128 0x19
+ 2176 0161 6E       		.uleb128 0x6e
+ 2177 0162 0E       		.uleb128 0xe
+ 2178 0163 03       		.uleb128 0x3
+ 2179 0164 0E       		.uleb128 0xe
+ 2180 0165 3A       		.uleb128 0x3a
+ 2181 0166 0B       		.uleb128 0xb
+ 2182 0167 3B       		.uleb128 0x3b
+ 2183 0168 0B       		.uleb128 0xb
+ 2184 0169 00       		.byte	0
+ 2185 016a 00       		.byte	0
+ 2186 016b 00       		.byte	0
+ 2187              		.section	.debug_loc,"",%progbits
+ 2188              	.Ldebug_loc0:
+ 2189              	.LLST0:
+ 2190 0000 00000000 		.4byte	.LVL0
+ 2191 0004 1A000000 		.4byte	.LVL4
+ 2192 0008 0100     		.2byte	0x1
+ 2193 000a 50       		.byte	0x50
+ 2194 000b 1A000000 		.4byte	.LVL4
+ 2195 000f 96000000 		.4byte	.LVL21
+ 2196 0013 0100     		.2byte	0x1
+ 2197 0015 59       		.byte	0x59
+ 2198 0016 96000000 		.4byte	.LVL21
+ 2199 001a 4C020000 		.4byte	.LFE0
+ 2200 001e 0400     		.2byte	0x4
+ 2201 0020 F3       		.byte	0xf3
+ 2202 0021 01       		.uleb128 0x1
+ 2203 0022 50       		.byte	0x50
+ 2204 0023 9F       		.byte	0x9f
+ 2205 0024 00000000 		.4byte	0
+ 2206 0028 00000000 		.4byte	0
+ 2207              	.LLST1:
+ 2208 002c 00000000 		.4byte	.LVL0
+ 2209 0030 1C000000 		.4byte	.LVL5
+ 2210 0034 0100     		.2byte	0x1
+ 2211 0036 51       		.byte	0x51
+ 2212 0037 1C000000 		.4byte	.LVL5
+ 2213 003b 02010000 		.4byte	.LVL32
+ 2214 003f 0100     		.2byte	0x1
+ 2215 0041 54       		.byte	0x54
+ 2216 0042 02010000 		.4byte	.LVL32
+ 2217 0046 1A010000 		.4byte	.LVL35
+ 2218 004a 0400     		.2byte	0x4
+ 2219 004c F3       		.byte	0xf3
+ 2220 004d 01       		.uleb128 0x1
+ 2221 004e 51       		.byte	0x51
+ 2222 004f 9F       		.byte	0x9f
+ 2223 0050 1A010000 		.4byte	.LVL35
+ 2224 0054 3C010000 		.4byte	.LVL40
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 48
+
+
+ 2225 0058 0100     		.2byte	0x1
+ 2226 005a 54       		.byte	0x54
+ 2227 005b 3C010000 		.4byte	.LVL40
+ 2228 005f 4C020000 		.4byte	.LFE0
+ 2229 0063 0400     		.2byte	0x4
+ 2230 0065 F3       		.byte	0xf3
+ 2231 0066 01       		.uleb128 0x1
+ 2232 0067 51       		.byte	0x51
+ 2233 0068 9F       		.byte	0x9f
+ 2234 0069 00000000 		.4byte	0
+ 2235 006d 00000000 		.4byte	0
+ 2236              	.LLST2:
+ 2237 0071 00000000 		.4byte	.LVL0
+ 2238 0075 0E000000 		.4byte	.LVL2
+ 2239 0079 0100     		.2byte	0x1
+ 2240 007b 52       		.byte	0x52
+ 2241 007c 0E000000 		.4byte	.LVL2
+ 2242 0080 86000000 		.4byte	.LVL18
+ 2243 0084 0100     		.2byte	0x1
+ 2244 0086 58       		.byte	0x58
+ 2245 0087 86000000 		.4byte	.LVL18
+ 2246 008b 4C020000 		.4byte	.LFE0
+ 2247 008f 0400     		.2byte	0x4
+ 2248 0091 F3       		.byte	0xf3
+ 2249 0092 01       		.uleb128 0x1
+ 2250 0093 52       		.byte	0x52
+ 2251 0094 9F       		.byte	0x9f
+ 2252 0095 00000000 		.4byte	0
+ 2253 0099 00000000 		.4byte	0
+ 2254              	.LLST3:
+ 2255 009d 00000000 		.4byte	.LVL0
+ 2256 00a1 0C000000 		.4byte	.LVL1
+ 2257 00a5 0100     		.2byte	0x1
+ 2258 00a7 53       		.byte	0x53
+ 2259 00a8 0C000000 		.4byte	.LVL1
+ 2260 00ac 02010000 		.4byte	.LVL32
+ 2261 00b0 0100     		.2byte	0x1
+ 2262 00b2 56       		.byte	0x56
+ 2263 00b3 02010000 		.4byte	.LVL32
+ 2264 00b7 1A010000 		.4byte	.LVL35
+ 2265 00bb 0400     		.2byte	0x4
+ 2266 00bd F3       		.byte	0xf3
+ 2267 00be 01       		.uleb128 0x1
+ 2268 00bf 53       		.byte	0x53
+ 2269 00c0 9F       		.byte	0x9f
+ 2270 00c1 1A010000 		.4byte	.LVL35
+ 2271 00c5 1C020000 		.4byte	.LVL61
+ 2272 00c9 0100     		.2byte	0x1
+ 2273 00cb 56       		.byte	0x56
+ 2274 00cc 1C020000 		.4byte	.LVL61
+ 2275 00d0 4C020000 		.4byte	.LFE0
+ 2276 00d4 0400     		.2byte	0x4
+ 2277 00d6 F3       		.byte	0xf3
+ 2278 00d7 01       		.uleb128 0x1
+ 2279 00d8 53       		.byte	0x53
+ 2280 00d9 9F       		.byte	0x9f
+ 2281 00da 00000000 		.4byte	0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 49
+
+
+ 2282 00de 00000000 		.4byte	0
+ 2283              	.LLST4:
+ 2284 00e2 00000000 		.4byte	.LVL0
+ 2285 00e6 1A010000 		.4byte	.LVL35
+ 2286 00ea 0200     		.2byte	0x2
+ 2287 00ec 91       		.byte	0x91
+ 2288 00ed 00       		.sleb128 0
+ 2289 00ee 1A010000 		.4byte	.LVL35
+ 2290 00f2 4C020000 		.4byte	.LFE0
+ 2291 00f6 0200     		.2byte	0x2
+ 2292 00f8 91       		.byte	0x91
+ 2293 00f9 00       		.sleb128 0
+ 2294 00fa 00000000 		.4byte	0
+ 2295 00fe 00000000 		.4byte	0
+ 2296              	.LLST5:
+ 2297 0102 14000000 		.4byte	.LVL3
+ 2298 0106 36000000 		.4byte	.LVL8
+ 2299 010a 0100     		.2byte	0x1
+ 2300 010c 57       		.byte	0x57
+ 2301 010d 00000000 		.4byte	0
+ 2302 0111 00000000 		.4byte	0
+ 2303              	.LLST6:
+ 2304 0115 14000000 		.4byte	.LVL3
+ 2305 0119 48000000 		.4byte	.LVL10
+ 2306 011d 0100     		.2byte	0x1
+ 2307 011f 55       		.byte	0x55
+ 2308 0120 48000000 		.4byte	.LVL10
+ 2309 0124 02010000 		.4byte	.LVL32
+ 2310 0128 0300     		.2byte	0x3
+ 2311 012a 75       		.byte	0x75
+ 2312 012b 08       		.sleb128 8
+ 2313 012c 9F       		.byte	0x9f
+ 2314 012d 1A010000 		.4byte	.LVL35
+ 2315 0131 3C010000 		.4byte	.LVL40
+ 2316 0135 0300     		.2byte	0x3
+ 2317 0137 75       		.byte	0x75
+ 2318 0138 08       		.sleb128 8
+ 2319 0139 9F       		.byte	0x9f
+ 2320 013a 00000000 		.4byte	0
+ 2321 013e 00000000 		.4byte	0
+ 2322              	.LLST7:
+ 2323 0142 22000000 		.4byte	.LVL6
+ 2324 0146 36000000 		.4byte	.LVL8
+ 2325 014a 0200     		.2byte	0x2
+ 2326 014c 78       		.byte	0x78
+ 2327 014d 00       		.sleb128 0
+ 2328 014e 5A000000 		.4byte	.LVL13
+ 2329 0152 66000000 		.4byte	.LVL15
+ 2330 0156 0200     		.2byte	0x2
+ 2331 0158 76       		.byte	0x76
+ 2332 0159 00       		.sleb128 0
+ 2333 015a 96000000 		.4byte	.LVL21
+ 2334 015e A2000000 		.4byte	.LVL22
+ 2335 0162 0200     		.2byte	0x2
+ 2336 0164 79       		.byte	0x79
+ 2337 0165 00       		.sleb128 0
+ 2338 0166 A2000000 		.4byte	.LVL22
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 50
+
+
+ 2339 016a C8000000 		.4byte	.LVL27
+ 2340 016e 0300     		.2byte	0x3
+ 2341 0170 77       		.byte	0x77
+ 2342 0171 08       		.sleb128 8
+ 2343 0172 9F       		.byte	0x9f
+ 2344 0173 2E010000 		.4byte	.LVL38
+ 2345 0177 DA010000 		.4byte	.LVL55
+ 2346 017b 0100     		.2byte	0x1
+ 2347 017d 57       		.byte	0x57
+ 2348 017e 10020000 		.4byte	.LVL59
+ 2349 0182 1C020000 		.4byte	.LVL61
+ 2350 0186 0200     		.2byte	0x2
+ 2351 0188 76       		.byte	0x76
+ 2352 0189 00       		.sleb128 0
+ 2353 018a 00000000 		.4byte	0
+ 2354 018e 00000000 		.4byte	0
+ 2355              	.LLST8:
+ 2356 0192 78010000 		.4byte	.LVL46
+ 2357 0196 DA010000 		.4byte	.LVL55
+ 2358 019a 0100     		.2byte	0x1
+ 2359 019c 54       		.byte	0x54
+ 2360 019d DA010000 		.4byte	.LVL55
+ 2361 01a1 1C020000 		.4byte	.LVL61
+ 2362 01a5 0300     		.2byte	0x3
+ 2363 01a7 75       		.byte	0x75
+ 2364 01a8 08       		.sleb128 8
+ 2365 01a9 9F       		.byte	0x9f
+ 2366 01aa 00000000 		.4byte	0
+ 2367 01ae 00000000 		.4byte	0
+ 2368              	.LLST9:
+ 2369 01b2 1C000000 		.4byte	.LVL5
+ 2370 01b6 21000000 		.4byte	.LVL6-1
+ 2371 01ba 0100     		.2byte	0x1
+ 2372 01bc 51       		.byte	0x51
+ 2373 01bd 2E000000 		.4byte	.LVL7
+ 2374 01c1 36000000 		.4byte	.LVL8
+ 2375 01c5 0200     		.2byte	0x2
+ 2376 01c7 30       		.byte	0x30
+ 2377 01c8 9F       		.byte	0x9f
+ 2378 01c9 36000000 		.4byte	.LVL8
+ 2379 01cd 4A000000 		.4byte	.LVL11
+ 2380 01d1 0100     		.2byte	0x1
+ 2381 01d3 57       		.byte	0x57
+ 2382 01d4 52000000 		.4byte	.LVL12
+ 2383 01d8 59000000 		.4byte	.LVL13-1
+ 2384 01dc 0100     		.2byte	0x1
+ 2385 01de 51       		.byte	0x51
+ 2386 01df 62000000 		.4byte	.LVL14
+ 2387 01e3 66000000 		.4byte	.LVL15
+ 2388 01e7 0200     		.2byte	0x2
+ 2389 01e9 30       		.byte	0x30
+ 2390 01ea 9F       		.byte	0x9f
+ 2391 01eb 66000000 		.4byte	.LVL15
+ 2392 01ef 7D000000 		.4byte	.LVL17-1
+ 2393 01f3 0100     		.2byte	0x1
+ 2394 01f5 52       		.byte	0x52
+ 2395 01f6 8A000000 		.4byte	.LVL19
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 51
+
+
+ 2396 01fa 91000000 		.4byte	.LVL20-1
+ 2397 01fe 0100     		.2byte	0x1
+ 2398 0200 51       		.byte	0x51
+ 2399 0201 C6000000 		.4byte	.LVL26
+ 2400 0205 C8000000 		.4byte	.LVL27
+ 2401 0209 0200     		.2byte	0x2
+ 2402 020b 30       		.byte	0x30
+ 2403 020c 9F       		.byte	0x9f
+ 2404 020d C8000000 		.4byte	.LVL27
+ 2405 0211 02010000 		.4byte	.LVL32
+ 2406 0215 0100     		.2byte	0x1
+ 2407 0217 58       		.byte	0x58
+ 2408 0218 02010000 		.4byte	.LVL32
+ 2409 021c 08010000 		.4byte	.LVL33
+ 2410 0220 0100     		.2byte	0x1
+ 2411 0222 56       		.byte	0x56
+ 2412 0223 1A010000 		.4byte	.LVL35
+ 2413 0227 3A010000 		.4byte	.LVL39
+ 2414 022b 0100     		.2byte	0x1
+ 2415 022d 5A       		.byte	0x5a
+ 2416 022e 3A010000 		.4byte	.LVL39
+ 2417 0232 3C010000 		.4byte	.LVL40
+ 2418 0236 0200     		.2byte	0x2
+ 2419 0238 30       		.byte	0x30
+ 2420 0239 9F       		.byte	0x9f
+ 2421 023a 3C010000 		.4byte	.LVL40
+ 2422 023e 6A010000 		.4byte	.LVL44
+ 2423 0242 0100     		.2byte	0x1
+ 2424 0244 54       		.byte	0x54
+ 2425 0245 6A010000 		.4byte	.LVL44
+ 2426 0249 6F010000 		.4byte	.LVL45-1
+ 2427 024d 0100     		.2byte	0x1
+ 2428 024f 51       		.byte	0x51
+ 2429 0250 AA010000 		.4byte	.LVL51
+ 2430 0254 D2010000 		.4byte	.LVL54
+ 2431 0258 0100     		.2byte	0x1
+ 2432 025a 58       		.byte	0x58
+ 2433 025b 08020000 		.4byte	.LVL58
+ 2434 025f 0F020000 		.4byte	.LVL59-1
+ 2435 0263 0100     		.2byte	0x1
+ 2436 0265 51       		.byte	0x51
+ 2437 0266 1A020000 		.4byte	.LVL60
+ 2438 026a 1C020000 		.4byte	.LVL61
+ 2439 026e 0200     		.2byte	0x2
+ 2440 0270 30       		.byte	0x30
+ 2441 0271 9F       		.byte	0x9f
+ 2442 0272 1C020000 		.4byte	.LVL61
+ 2443 0276 4C020000 		.4byte	.LFE0
+ 2444 027a 0100     		.2byte	0x1
+ 2445 027c 56       		.byte	0x56
+ 2446 027d 00000000 		.4byte	0
+ 2447 0281 00000000 		.4byte	0
+ 2448              	.LLST10:
+ 2449 0285 96000000 		.4byte	.LVL21
+ 2450 0289 A2000000 		.4byte	.LVL22
+ 2451 028d 0200     		.2byte	0x2
+ 2452 028f 30       		.byte	0x30
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 52
+
+
+ 2453 0290 9F       		.byte	0x9f
+ 2454 0291 A2000000 		.4byte	.LVL22
+ 2455 0295 BE000000 		.4byte	.LVL24
+ 2456 0299 0100     		.2byte	0x1
+ 2457 029b 53       		.byte	0x53
+ 2458 029c C6000000 		.4byte	.LVL26
+ 2459 02a0 02010000 		.4byte	.LVL32
+ 2460 02a4 0100     		.2byte	0x1
+ 2461 02a6 5A       		.byte	0x5a
+ 2462 02a7 02010000 		.4byte	.LVL32
+ 2463 02ab 08010000 		.4byte	.LVL33
+ 2464 02af 0100     		.2byte	0x1
+ 2465 02b1 59       		.byte	0x59
+ 2466 02b2 1A010000 		.4byte	.LVL35
+ 2467 02b6 3A010000 		.4byte	.LVL39
+ 2468 02ba 0100     		.2byte	0x1
+ 2469 02bc 5A       		.byte	0x5a
+ 2470 02bd 86010000 		.4byte	.LVL48
+ 2471 02c1 4C020000 		.4byte	.LFE0
+ 2472 02c5 0100     		.2byte	0x1
+ 2473 02c7 59       		.byte	0x59
+ 2474 02c8 00000000 		.4byte	0
+ 2475 02cc 00000000 		.4byte	0
+ 2476              	.LLST11:
+ 2477 02d0 2E000000 		.4byte	.LVL7
+ 2478 02d4 59000000 		.4byte	.LVL13-1
+ 2479 02d8 0100     		.2byte	0x1
+ 2480 02da 5E       		.byte	0x5e
+ 2481 02db 62000000 		.4byte	.LVL14
+ 2482 02df 7D000000 		.4byte	.LVL17-1
+ 2483 02e3 0100     		.2byte	0x1
+ 2484 02e5 5E       		.byte	0x5e
+ 2485 02e6 86000000 		.4byte	.LVL18
+ 2486 02ea C2000000 		.4byte	.LVL25
+ 2487 02ee 0100     		.2byte	0x1
+ 2488 02f0 58       		.byte	0x58
+ 2489 02f1 C6000000 		.4byte	.LVL26
+ 2490 02f5 F2000000 		.4byte	.LVL30
+ 2491 02f9 0100     		.2byte	0x1
+ 2492 02fb 5A       		.byte	0x5a
+ 2493 02fc F2000000 		.4byte	.LVL30
+ 2494 0300 02010000 		.4byte	.LVL32
+ 2495 0304 0100     		.2byte	0x1
+ 2496 0306 53       		.byte	0x53
+ 2497 0307 02010000 		.4byte	.LVL32
+ 2498 030b 08010000 		.4byte	.LVL33
+ 2499 030f 0100     		.2byte	0x1
+ 2500 0311 57       		.byte	0x57
+ 2501 0312 1A010000 		.4byte	.LVL35
+ 2502 0316 1C010000 		.4byte	.LVL36
+ 2503 031a 0100     		.2byte	0x1
+ 2504 031c 53       		.byte	0x53
+ 2505 031d 3A010000 		.4byte	.LVL39
+ 2506 0321 80010000 		.4byte	.LVL47
+ 2507 0325 0100     		.2byte	0x1
+ 2508 0327 5A       		.byte	0x5a
+ 2509 0328 86010000 		.4byte	.LVL48
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 53
+
+
+ 2510 032c AA010000 		.4byte	.LVL51
+ 2511 0330 0100     		.2byte	0x1
+ 2512 0332 5B       		.byte	0x5b
+ 2513 0333 AA010000 		.4byte	.LVL51
+ 2514 0337 DA010000 		.4byte	.LVL55
+ 2515 033b 0100     		.2byte	0x1
+ 2516 033d 59       		.byte	0x59
+ 2517 033e DA010000 		.4byte	.LVL55
+ 2518 0342 1A020000 		.4byte	.LVL60
+ 2519 0346 0100     		.2byte	0x1
+ 2520 0348 58       		.byte	0x58
+ 2521 0349 1A020000 		.4byte	.LVL60
+ 2522 034d 4C020000 		.4byte	.LFE0
+ 2523 0351 0100     		.2byte	0x1
+ 2524 0353 57       		.byte	0x57
+ 2525 0354 00000000 		.4byte	0
+ 2526 0358 00000000 		.4byte	0
+ 2527              	.LLST12:
+ 2528 035c 00000000 		.4byte	.LVL64
+ 2529 0360 17000000 		.4byte	.LVL65-1
+ 2530 0364 0100     		.2byte	0x1
+ 2531 0366 50       		.byte	0x50
+ 2532 0367 17000000 		.4byte	.LVL65-1
+ 2533 036b 3C000000 		.4byte	.LVL70
+ 2534 036f 0100     		.2byte	0x1
+ 2535 0371 54       		.byte	0x54
+ 2536 0372 3C000000 		.4byte	.LVL70
+ 2537 0376 A8020000 		.4byte	.LFE1
+ 2538 037a 0400     		.2byte	0x4
+ 2539 037c F3       		.byte	0xf3
+ 2540 037d 01       		.uleb128 0x1
+ 2541 037e 50       		.byte	0x50
+ 2542 037f 9F       		.byte	0x9f
+ 2543 0380 00000000 		.4byte	0
+ 2544 0384 00000000 		.4byte	0
+ 2545              	.LLST13:
+ 2546 0388 00000000 		.4byte	.LVL64
+ 2547 038c 17000000 		.4byte	.LVL65-1
+ 2548 0390 0100     		.2byte	0x1
+ 2549 0392 51       		.byte	0x51
+ 2550 0393 17000000 		.4byte	.LVL65-1
+ 2551 0397 3A000000 		.4byte	.LVL69
+ 2552 039b 0100     		.2byte	0x1
+ 2553 039d 57       		.byte	0x57
+ 2554 039e 3A000000 		.4byte	.LVL69
+ 2555 03a2 A8020000 		.4byte	.LFE1
+ 2556 03a6 0400     		.2byte	0x4
+ 2557 03a8 F3       		.byte	0xf3
+ 2558 03a9 01       		.uleb128 0x1
+ 2559 03aa 51       		.byte	0x51
+ 2560 03ab 9F       		.byte	0x9f
+ 2561 03ac 00000000 		.4byte	0
+ 2562 03b0 00000000 		.4byte	0
+ 2563              	.LLST14:
+ 2564 03b4 00000000 		.4byte	.LVL64
+ 2565 03b8 17000000 		.4byte	.LVL65-1
+ 2566 03bc 0100     		.2byte	0x1
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 54
+
+
+ 2567 03be 52       		.byte	0x52
+ 2568 03bf 17000000 		.4byte	.LVL65-1
+ 2569 03c3 CA000000 		.4byte	.LVL87
+ 2570 03c7 0100     		.2byte	0x1
+ 2571 03c9 5A       		.byte	0x5a
+ 2572 03ca CA000000 		.4byte	.LVL87
+ 2573 03ce A8020000 		.4byte	.LFE1
+ 2574 03d2 0400     		.2byte	0x4
+ 2575 03d4 F3       		.byte	0xf3
+ 2576 03d5 01       		.uleb128 0x1
+ 2577 03d6 52       		.byte	0x52
+ 2578 03d7 9F       		.byte	0x9f
+ 2579 03d8 00000000 		.4byte	0
+ 2580 03dc 00000000 		.4byte	0
+ 2581              	.LLST15:
+ 2582 03e0 00000000 		.4byte	.LVL64
+ 2583 03e4 17000000 		.4byte	.LVL65-1
+ 2584 03e8 0100     		.2byte	0x1
+ 2585 03ea 53       		.byte	0x53
+ 2586 03eb 17000000 		.4byte	.LVL65-1
+ 2587 03ef 86020000 		.4byte	.LVL134
+ 2588 03f3 0100     		.2byte	0x1
+ 2589 03f5 55       		.byte	0x55
+ 2590 03f6 86020000 		.4byte	.LVL134
+ 2591 03fa A8020000 		.4byte	.LFE1
+ 2592 03fe 0400     		.2byte	0x4
+ 2593 0400 F3       		.byte	0xf3
+ 2594 0401 01       		.uleb128 0x1
+ 2595 0402 53       		.byte	0x53
+ 2596 0403 9F       		.byte	0x9f
+ 2597 0404 00000000 		.4byte	0
+ 2598 0408 00000000 		.4byte	0
+ 2599              	.LLST16:
+ 2600 040c 00000000 		.4byte	.LVL64
+ 2601 0410 86020000 		.4byte	.LVL134
+ 2602 0414 0200     		.2byte	0x2
+ 2603 0416 91       		.byte	0x91
+ 2604 0417 00       		.sleb128 0
+ 2605 0418 86020000 		.4byte	.LVL134
+ 2606 041c A8020000 		.4byte	.LFE1
+ 2607 0420 0200     		.2byte	0x2
+ 2608 0422 7D       		.byte	0x7d
+ 2609 0423 00       		.sleb128 0
+ 2610 0424 00000000 		.4byte	0
+ 2611 0428 00000000 		.4byte	0
+ 2612              	.LLST17:
+ 2613 042c 00000000 		.4byte	.LVL64
+ 2614 0430 86020000 		.4byte	.LVL134
+ 2615 0434 0200     		.2byte	0x2
+ 2616 0436 91       		.byte	0x91
+ 2617 0437 04       		.sleb128 4
+ 2618 0438 86020000 		.4byte	.LVL134
+ 2619 043c A8020000 		.4byte	.LFE1
+ 2620 0440 0200     		.2byte	0x2
+ 2621 0442 7D       		.byte	0x7d
+ 2622 0443 04       		.sleb128 4
+ 2623 0444 00000000 		.4byte	0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 55
+
+
+ 2624 0448 00000000 		.4byte	0
+ 2625              	.LLST18:
+ 2626 044c 02020000 		.4byte	.LVL119
+ 2627 0450 14020000 		.4byte	.LVL122
+ 2628 0454 0300     		.2byte	0x3
+ 2629 0456 91       		.byte	0x91
+ 2630 0457 54       		.sleb128 -44
+ 2631 0458 06       		.byte	0x6
+ 2632 0459 00000000 		.4byte	0
+ 2633 045d 00000000 		.4byte	0
+ 2634              	.LLST19:
+ 2635 0461 36000000 		.4byte	.LVL67
+ 2636 0465 38000000 		.4byte	.LVL68
+ 2637 0469 0100     		.2byte	0x1
+ 2638 046b 53       		.byte	0x53
+ 2639 046c 38000000 		.4byte	.LVL68
+ 2640 0470 6F000000 		.4byte	.LVL77-1
+ 2641 0474 0200     		.2byte	0x2
+ 2642 0476 76       		.byte	0x76
+ 2643 0477 00       		.sleb128 0
+ 2644 0478 6F000000 		.4byte	.LVL77-1
+ 2645 047c FC010000 		.4byte	.LVL118
+ 2646 0480 0200     		.2byte	0x2
+ 2647 0482 91       		.byte	0x91
+ 2648 0483 4C       		.sleb128 -52
+ 2649 0484 FC010000 		.4byte	.LVL118
+ 2650 0488 4E020000 		.4byte	.LVL129
+ 2651 048c 0100     		.2byte	0x1
+ 2652 048e 54       		.byte	0x54
+ 2653 048f 00000000 		.4byte	0
+ 2654 0493 00000000 		.4byte	0
+ 2655              	.LLST20:
+ 2656 0497 3A000000 		.4byte	.LVL69
+ 2657 049b C8000000 		.4byte	.LVL86
+ 2658 049f 0100     		.2byte	0x1
+ 2659 04a1 57       		.byte	0x57
+ 2660 04a2 C8000000 		.4byte	.LVL86
+ 2661 04a6 F6000000 		.4byte	.LVL92
+ 2662 04aa 0300     		.2byte	0x3
+ 2663 04ac 77       		.byte	0x77
+ 2664 04ad 08       		.sleb128 8
+ 2665 04ae 9F       		.byte	0x9f
+ 2666 04af EC010000 		.4byte	.LVL116
+ 2667 04b3 10020000 		.4byte	.LVL121
+ 2668 04b7 0100     		.2byte	0x1
+ 2669 04b9 57       		.byte	0x57
+ 2670 04ba 10020000 		.4byte	.LVL121
+ 2671 04be 14020000 		.4byte	.LVL122
+ 2672 04c2 0300     		.2byte	0x3
+ 2673 04c4 72       		.byte	0x72
+ 2674 04c5 08       		.sleb128 8
+ 2675 04c6 9F       		.byte	0x9f
+ 2676 04c7 40020000 		.4byte	.LVL127
+ 2677 04cb 4E020000 		.4byte	.LVL129
+ 2678 04cf 0200     		.2byte	0x2
+ 2679 04d1 77       		.byte	0x77
+ 2680 04d2 00       		.sleb128 0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 56
+
+
+ 2681 04d3 00000000 		.4byte	0
+ 2682 04d7 00000000 		.4byte	0
+ 2683              	.LLST21:
+ 2684 04db 3C000000 		.4byte	.LVL70
+ 2685 04df 46000000 		.4byte	.LVL71
+ 2686 04e3 0200     		.2byte	0x2
+ 2687 04e5 30       		.byte	0x30
+ 2688 04e6 9F       		.byte	0x9f
+ 2689 04e7 46000000 		.4byte	.LVL71
+ 2690 04eb 54000000 		.4byte	.LVL73
+ 2691 04ef 0100     		.2byte	0x1
+ 2692 04f1 53       		.byte	0x53
+ 2693 04f2 56000000 		.4byte	.LVL74
+ 2694 04f6 6F000000 		.4byte	.LVL77-1
+ 2695 04fa 0100     		.2byte	0x1
+ 2696 04fc 53       		.byte	0x53
+ 2697 04fd 8A000000 		.4byte	.LVL81
+ 2698 0501 C6000000 		.4byte	.LVL85
+ 2699 0505 0100     		.2byte	0x1
+ 2700 0507 59       		.byte	0x59
+ 2701 0508 D2000000 		.4byte	.LVL88
+ 2702 050c F2000000 		.4byte	.LVL91
+ 2703 0510 0100     		.2byte	0x1
+ 2704 0512 59       		.byte	0x59
+ 2705 0513 F2000000 		.4byte	.LVL91
+ 2706 0517 F6000000 		.4byte	.LVL92
+ 2707 051b 0200     		.2byte	0x2
+ 2708 051d 30       		.byte	0x30
+ 2709 051e 9F       		.byte	0x9f
+ 2710 051f F6000000 		.4byte	.LVL92
+ 2711 0523 14010000 		.4byte	.LVL95
+ 2712 0527 0100     		.2byte	0x1
+ 2713 0529 59       		.byte	0x59
+ 2714 052a 14010000 		.4byte	.LVL95
+ 2715 052e 1E010000 		.4byte	.LVL96
+ 2716 0532 0200     		.2byte	0x2
+ 2717 0534 30       		.byte	0x30
+ 2718 0535 9F       		.byte	0x9f
+ 2719 0536 1E010000 		.4byte	.LVL96
+ 2720 053a 3E010000 		.4byte	.LVL100
+ 2721 053e 0100     		.2byte	0x1
+ 2722 0540 57       		.byte	0x57
+ 2723 0541 3E010000 		.4byte	.LVL100
+ 2724 0545 40010000 		.4byte	.LVL101
+ 2725 0549 0200     		.2byte	0x2
+ 2726 054b 30       		.byte	0x30
+ 2727 054c 9F       		.byte	0x9f
+ 2728 054d 40010000 		.4byte	.LVL101
+ 2729 0551 5A010000 		.4byte	.LVL104
+ 2730 0555 0100     		.2byte	0x1
+ 2731 0557 57       		.byte	0x57
+ 2732 0558 68010000 		.4byte	.LVL105
+ 2733 055c A8010000 		.4byte	.LVL107
+ 2734 0560 0100     		.2byte	0x1
+ 2735 0562 52       		.byte	0x52
+ 2736 0563 C0010000 		.4byte	.LVL112
+ 2737 0567 D9010000 		.4byte	.LVL114-1
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 57
+
+
+ 2738 056b 0900     		.2byte	0x9
+ 2739 056d 73       		.byte	0x73
+ 2740 056e 00       		.sleb128 0
+ 2741 056f 03       		.byte	0x3
+ 2742 0570 D0D40100 		.4byte	validIdx_data.5478
+ 2743 0574 1C       		.byte	0x1c
+ 2744 0575 9F       		.byte	0x9f
+ 2745 0576 FC010000 		.4byte	.LVL118
+ 2746 057a 01020000 		.4byte	.LVL119-1
+ 2747 057e 0100     		.2byte	0x1
+ 2748 0580 51       		.byte	0x51
+ 2749 0581 0C020000 		.4byte	.LVL120
+ 2750 0585 14020000 		.4byte	.LVL122
+ 2751 0589 0200     		.2byte	0x2
+ 2752 058b 30       		.byte	0x30
+ 2753 058c 9F       		.byte	0x9f
+ 2754 058d 14020000 		.4byte	.LVL122
+ 2755 0591 36020000 		.4byte	.LVL125
+ 2756 0595 0100     		.2byte	0x1
+ 2757 0597 57       		.byte	0x57
+ 2758 0598 36020000 		.4byte	.LVL125
+ 2759 059c 3B020000 		.4byte	.LVL126-1
+ 2760 05a0 0100     		.2byte	0x1
+ 2761 05a2 51       		.byte	0x51
+ 2762 05a3 44020000 		.4byte	.LVL128
+ 2763 05a7 4E020000 		.4byte	.LVL129
+ 2764 05ab 0200     		.2byte	0x2
+ 2765 05ad 30       		.byte	0x30
+ 2766 05ae 9F       		.byte	0x9f
+ 2767 05af 4E020000 		.4byte	.LVL129
+ 2768 05b3 7A020000 		.4byte	.LVL133
+ 2769 05b7 0100     		.2byte	0x1
+ 2770 05b9 54       		.byte	0x54
+ 2771 05ba 00000000 		.4byte	0
+ 2772 05be 00000000 		.4byte	0
+ 2773              	.LLST22:
+ 2774 05c2 3C000000 		.4byte	.LVL70
+ 2775 05c6 60000000 		.4byte	.LVL76
+ 2776 05ca 0100     		.2byte	0x1
+ 2777 05cc 54       		.byte	0x54
+ 2778 05cd 60000000 		.4byte	.LVL76
+ 2779 05d1 72000000 		.4byte	.LVL78
+ 2780 05d5 0200     		.2byte	0x2
+ 2781 05d7 30       		.byte	0x30
+ 2782 05d8 9F       		.byte	0x9f
+ 2783 05d9 72000000 		.4byte	.LVL78
+ 2784 05dd 82000000 		.4byte	.LVL80
+ 2785 05e1 0200     		.2byte	0x2
+ 2786 05e3 31       		.byte	0x31
+ 2787 05e4 9F       		.byte	0x9f
+ 2788 05e5 C6000000 		.4byte	.LVL85
+ 2789 05e9 F2000000 		.4byte	.LVL91
+ 2790 05ed 0200     		.2byte	0x2
+ 2791 05ef 30       		.byte	0x30
+ 2792 05f0 9F       		.byte	0x9f
+ 2793 05f1 F2000000 		.4byte	.LVL91
+ 2794 05f5 14010000 		.4byte	.LVL95
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 58
+
+
+ 2795 05f9 0100     		.2byte	0x1
+ 2796 05fb 5A       		.byte	0x5a
+ 2797 05fc 14010000 		.4byte	.LVL95
+ 2798 0600 3A010000 		.4byte	.LVL99
+ 2799 0604 0100     		.2byte	0x1
+ 2800 0606 5B       		.byte	0x5b
+ 2801 0607 3E010000 		.4byte	.LVL100
+ 2802 060b 68010000 		.4byte	.LVL105
+ 2803 060f 0100     		.2byte	0x1
+ 2804 0611 5A       		.byte	0x5a
+ 2805 0612 AA010000 		.4byte	.LVL108
+ 2806 0616 BA010000 		.4byte	.LVL109
+ 2807 061a 0100     		.2byte	0x1
+ 2808 061c 53       		.byte	0x53
+ 2809 061d BC010000 		.4byte	.LVL110
+ 2810 0621 C0010000 		.4byte	.LVL112
+ 2811 0625 0100     		.2byte	0x1
+ 2812 0627 53       		.byte	0x53
+ 2813 0628 0C020000 		.4byte	.LVL120
+ 2814 062c 2B020000 		.4byte	.LVL124-1
+ 2815 0630 0300     		.2byte	0x3
+ 2816 0632 7E       		.byte	0x7e
+ 2817 0633 7F       		.sleb128 -1
+ 2818 0634 9F       		.byte	0x9f
+ 2819 0635 44020000 		.4byte	.LVL128
+ 2820 0639 6D020000 		.4byte	.LVL131-1
+ 2821 063d 0300     		.2byte	0x3
+ 2822 063f 7E       		.byte	0x7e
+ 2823 0640 7F       		.sleb128 -1
+ 2824 0641 9F       		.byte	0x9f
+ 2825 0642 00000000 		.4byte	0
+ 2826 0646 00000000 		.4byte	0
+ 2827              		.section	.debug_aranges,"",%progbits
+ 2828 0000 24000000 		.4byte	0x24
+ 2829 0004 0200     		.2byte	0x2
+ 2830 0006 00000000 		.4byte	.Ldebug_info0
+ 2831 000a 04       		.byte	0x4
+ 2832 000b 00       		.byte	0
+ 2833 000c 0000     		.2byte	0
+ 2834 000e 0000     		.2byte	0
+ 2835 0010 00000000 		.4byte	.LFB0
+ 2836 0014 4C020000 		.4byte	.LFE0-.LFB0
+ 2837 0018 00000000 		.4byte	.LFB1
+ 2838 001c A8020000 		.4byte	.LFE1-.LFB1
+ 2839 0020 00000000 		.4byte	0
+ 2840 0024 00000000 		.4byte	0
+ 2841              		.section	.debug_ranges,"",%progbits
+ 2842              	.Ldebug_ranges0:
+ 2843 0000 00000000 		.4byte	.LFB0
+ 2844 0004 4C020000 		.4byte	.LFE0
+ 2845 0008 00000000 		.4byte	.LFB1
+ 2846 000c A8020000 		.4byte	.LFE1
+ 2847 0010 00000000 		.4byte	0
+ 2848 0014 00000000 		.4byte	0
+ 2849              		.section	.debug_line,"",%progbits
+ 2850              	.Ldebug_line0:
+ 2851 0000 04030000 		.section	.debug_str,"MS",%progbits,1
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 59
+
+
+ 2851      02009F00 
+ 2851      00000201 
+ 2851      FB0E0D00 
+ 2851      01010101 
+ 2852              	.LASF48:
+ 2853 0000 625F6F62 		.ascii	"b_objOut_InternalRanges_data\000"
+ 2853      6A4F7574 
+ 2853      5F496E74 
+ 2853      65726E61 
+ 2853      6C52616E 
+ 2854              	.LASF39:
+ 2855 001d 6F626A4F 		.ascii	"objOut_ContainsOnlyFiniteData\000"
+ 2855      75745F43 
+ 2855      6F6E7461 
+ 2855      696E734F 
+ 2855      6E6C7946 
+ 2856              	.LASF63:
+ 2857 003b 5646482B 		.ascii	"VFH+\\src\\lidarScan.c\000"
+ 2857      5C737263 
+ 2857      5C6C6964 
+ 2857      61725363 
+ 2857      616E2E63 
+ 2858              	.LASF18:
+ 2859 0050 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2859      206C6F6E 
+ 2859      6720756E 
+ 2859      7369676E 
+ 2859      65642069 
+ 2860              	.LASF50:
+ 2861 0067 6F626A4F 		.ascii	"objOut_InternalRanges_data\000"
+ 2861      75745F49 
+ 2861      6E746572 
+ 2861      6E616C52 
+ 2861      616E6765 
+ 2862              	.LASF58:
+ 2863 0082 72744765 		.ascii	"rtGetInf\000"
+ 2863      74496E66 
+ 2863      00
+ 2864              	.LASF29:
+ 2865 008b 76617261 		.ascii	"varargin_1_data\000"
+ 2865      7267696E 
+ 2865      5F315F64 
+ 2865      61746100 
+ 2866              	.LASF15:
+ 2867 009b 6C6F6E67 		.ascii	"long long int\000"
+ 2867      206C6F6E 
+ 2867      6720696E 
+ 2867      7400
+ 2868              	.LASF0:
+ 2869 00a9 7369676E 		.ascii	"signed char\000"
+ 2869      65642063 
+ 2869      68617200 
+ 2870              	.LASF62:
+ 2871 00b5 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 2871      43313120 
+ 2871      352E342E 
+ 2871      31203230 
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 60
+
+
+ 2871      31363036 
+ 2872 00e8 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 2872      20726576 
+ 2872      6973696F 
+ 2872      6E203233 
+ 2872      37373135 
+ 2873 011b 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 2873      66756E63 
+ 2873      74696F6E 
+ 2873      2D736563 
+ 2873      74696F6E 
+ 2874              	.LASF25:
+ 2875 0143 6F626A5F 		.ascii	"obj_InternalAngles\000"
+ 2875      496E7465 
+ 2875      726E616C 
+ 2875      416E676C 
+ 2875      657300
+ 2876              	.LASF59:
+ 2877 0156 72744973 		.ascii	"rtIsInf\000"
+ 2877      496E6600 
+ 2878              	.LASF17:
+ 2879 015e 6C6F6E67 		.ascii	"long int\000"
+ 2879      20696E74 
+ 2879      00
+ 2880              	.LASF46:
+ 2881 0167 625F6F62 		.ascii	"b_objOut_InternalAngles\000"
+ 2881      6A4F7574 
+ 2881      5F496E74 
+ 2881      65726E61 
+ 2881      6C416E67 
+ 2882              	.LASF6:
+ 2883 017f 646F7562 		.ascii	"double\000"
+ 2883      6C6500
+ 2884              	.LASF22:
+ 2885 0186 76617261 		.ascii	"varargin_1\000"
+ 2885      7267696E 
+ 2885      5F3100
+ 2886              	.LASF23:
+ 2887 0191 76617261 		.ascii	"varargin_2\000"
+ 2887      7267696E 
+ 2887      5F3200
+ 2888              	.LASF30:
+ 2889 019c 76617261 		.ascii	"varargin_2_data\000"
+ 2889      7267696E 
+ 2889      5F325F64 
+ 2889      61746100 
+ 2890              	.LASF14:
+ 2891 01ac 63616E46 		.ascii	"canFreeData\000"
+ 2891      72656544 
+ 2891      61746100 
+ 2892              	.LASF4:
+ 2893 01b8 756E7369 		.ascii	"unsigned int\000"
+ 2893      676E6564 
+ 2893      20696E74 
+ 2893      00
+ 2894              	.LASF8:
+ 2895 01c5 6C6F6E67 		.ascii	"long unsigned int\000"
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 61
+
+
+ 2895      20756E73 
+ 2895      69676E65 
+ 2895      6420696E 
+ 2895      7400
+ 2896              	.LASF37:
+ 2897 01d7 6F626A4F 		.ascii	"objOut_InternalRanges\000"
+ 2897      75745F49 
+ 2897      6E746572 
+ 2897      6E616C52 
+ 2897      616E6765 
+ 2898              	.LASF10:
+ 2899 01ed 64617461 		.ascii	"data\000"
+ 2899      00
+ 2900              	.LASF11:
+ 2901 01f2 73697A65 		.ascii	"size\000"
+ 2901      00
+ 2902              	.LASF3:
+ 2903 01f7 73686F72 		.ascii	"short unsigned int\000"
+ 2903      7420756E 
+ 2903      7369676E 
+ 2903      65642069 
+ 2903      6E7400
+ 2904              	.LASF56:
+ 2905 020a 656D7846 		.ascii	"emxFree_real_T\000"
+ 2905      7265655F 
+ 2905      7265616C 
+ 2905      5F5400
+ 2906              	.LASF26:
+ 2907 0219 6F626A5F 		.ascii	"obj_ContainsOnlyFiniteData\000"
+ 2907      436F6E74 
+ 2907      61696E73 
+ 2907      4F6E6C79 
+ 2907      46696E69 
+ 2908              	.LASF20:
+ 2909 0234 656D7841 		.ascii	"emxArray_real_T\000"
+ 2909      72726179 
+ 2909      5F726561 
+ 2909      6C5F5400 
+ 2910              	.LASF49:
+ 2911 0244 6F626A4F 		.ascii	"objOut_InternalAngles_data\000"
+ 2911      75745F49 
+ 2911      6E746572 
+ 2911      6E616C41 
+ 2911      6E676C65 
+ 2912              	.LASF51:
+ 2913 025f 6C6F6F70 		.ascii	"loop_ub\000"
+ 2913      5F756200 
+ 2914              	.LASF61:
+ 2915 0267 6E756C6C 		.ascii	"nullAssignment\000"
+ 2915      41737369 
+ 2915      676E6D65 
+ 2915      6E7400
+ 2916              	.LASF19:
+ 2917 0276 73697A65 		.ascii	"sizetype\000"
+ 2917      74797065 
+ 2917      00
+ 2918              	.LASF16:
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 62
+
+
+ 2919 027f 6C6F6E67 		.ascii	"long double\000"
+ 2919      20646F75 
+ 2919      626C6500 
+ 2920              	.LASF41:
+ 2921 028b 635F746D 		.ascii	"c_tmp_data\000"
+ 2921      705F6461 
+ 2921      746100
+ 2922              	.LASF36:
+ 2923 0296 6C696461 		.ascii	"lidarScan_removeInvalidData\000"
+ 2923      72536361 
+ 2923      6E5F7265 
+ 2923      6D6F7665 
+ 2923      496E7661 
+ 2924              	.LASF54:
+ 2925 02b2 656D7845 		.ascii	"emxEnsureCapacity_real_T\000"
+ 2925      6E737572 
+ 2925      65436170 
+ 2925      61636974 
+ 2925      795F7265 
+ 2926              	.LASF21:
+ 2927 02cb 63656C6C 		.ascii	"cell_wrap_17\000"
+ 2927      5F777261 
+ 2927      705F3137 
+ 2927      00
+ 2928              	.LASF28:
+ 2929 02d8 74686574 		.ascii	"thetaWrap\000"
+ 2929      61577261 
+ 2929      7000
+ 2930              	.LASF5:
+ 2931 02e2 666C6F61 		.ascii	"float\000"
+ 2931      7400
+ 2932              	.LASF33:
+ 2933 02e8 65786974 		.ascii	"exitg1\000"
+ 2933      673100
+ 2934              	.LASF35:
+ 2935 02ef 6C696461 		.ascii	"lidarScan_lidarScan\000"
+ 2935      72536361 
+ 2935      6E5F6C69 
+ 2935      64617253 
+ 2935      63616E00 
+ 2936              	.LASF7:
+ 2937 0303 5F426F6F 		.ascii	"_Bool\000"
+ 2937      6C00
+ 2938              	.LASF1:
+ 2939 0309 756E7369 		.ascii	"unsigned char\000"
+ 2939      676E6564 
+ 2939      20636861 
+ 2939      7200
+ 2940              	.LASF60:
+ 2941 0317 72744973 		.ascii	"rtIsNaN\000"
+ 2941      4E614E00 
+ 2942              	.LASF2:
+ 2943 031f 73686F72 		.ascii	"short int\000"
+ 2943      7420696E 
+ 2943      7400
+ 2944              	.LASF31:
+ 2945 0329 6F626A5F 		.ascii	"obj_InternalRanges_data\000"
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 63
+
+
+ 2945      496E7465 
+ 2945      726E616C 
+ 2945      52616E67 
+ 2945      65735F64 
+ 2946              	.LASF55:
+ 2947 0341 656D7849 		.ascii	"emxInit_real_T\000"
+ 2947      6E69745F 
+ 2947      7265616C 
+ 2947      5F5400
+ 2948              	.LASF52:
+ 2949 0350 70617273 		.ascii	"parsedResults\000"
+ 2949      65645265 
+ 2949      73756C74 
+ 2949      7300
+ 2950              	.LASF24:
+ 2951 035e 6F626A5F 		.ascii	"obj_InternalRanges\000"
+ 2951      496E7465 
+ 2951      726E616C 
+ 2951      52616E67 
+ 2951      657300
+ 2952              	.LASF13:
+ 2953 0371 6E756D44 		.ascii	"numDimensions\000"
+ 2953      696D656E 
+ 2953      73696F6E 
+ 2953      7300
+ 2954              	.LASF45:
+ 2955 037f 76616C69 		.ascii	"validRangeLimitIndices_data\000"
+ 2955      6452616E 
+ 2955      67654C69 
+ 2955      6D697449 
+ 2955      6E646963 
+ 2956              	.LASF32:
+ 2957 039b 74686574 		.ascii	"thetaWrap_data\000"
+ 2957      61577261 
+ 2957      705F6461 
+ 2957      746100
+ 2958              	.LASF47:
+ 2959 03aa 625F6F62 		.ascii	"b_objOut_InternalRanges\000"
+ 2959      6A4F7574 
+ 2959      5F496E74 
+ 2959      65726E61 
+ 2959      6C52616E 
+ 2960              	.LASF9:
+ 2961 03c2 63686172 		.ascii	"char\000"
+ 2961      00
+ 2962              	.LASF64:
+ 2963 03c7 433A5C55 		.ascii	"C:\\Users\\jmspi\\OneDrive\\Documents\\GitHub\\ECE4"
+ 2963      73657273 
+ 2963      5C6A6D73 
+ 2963      70695C4F 
+ 2963      6E654472 
+ 2964 03f4 3139315C 		.ascii	"191\\DeliveryRobot.cydsn\000"
+ 2964      44656C69 
+ 2964      76657279 
+ 2964      526F626F 
+ 2964      742E6379 
+ 2965              	.LASF44:
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccgnXNFz.s 			page 64
+
+
+ 2966 040c 76616C69 		.ascii	"validIdx_data\000"
+ 2966      64496478 
+ 2966      5F646174 
+ 2966      6100
+ 2967              	.LASF34:
+ 2968 041a 76617261 		.ascii	"varargout_1\000"
+ 2968      72676F75 
+ 2968      745F3100 
+ 2969              	.LASF27:
+ 2970 0426 785F6461 		.ascii	"x_data\000"
+ 2970      746100
+ 2971              	.LASF38:
+ 2972 042d 6F626A4F 		.ascii	"objOut_InternalAngles\000"
+ 2972      75745F49 
+ 2972      6E746572 
+ 2972      6E616C41 
+ 2972      6E676C65 
+ 2973              	.LASF40:
+ 2974 0443 625F746D 		.ascii	"b_tmp_data\000"
+ 2974      705F6461 
+ 2974      746100
+ 2975              	.LASF57:
+ 2976 044e 625F6D6F 		.ascii	"b_mod\000"
+ 2976      6400
+ 2977              	.LASF12:
+ 2978 0454 616C6C6F 		.ascii	"allocatedSize\000"
+ 2978      63617465 
+ 2978      6453697A 
+ 2978      6500
+ 2979              	.LASF53:
+ 2980 0462 76616C69 		.ascii	"validIdx_size\000"
+ 2980      64496478 
+ 2980      5F73697A 
+ 2980      6500
+ 2981              	.LASF43:
+ 2982 0470 76616C69 		.ascii	"validAngleLimitIndices_data\000"
+ 2982      64416E67 
+ 2982      6C654C69 
+ 2982      6D697449 
+ 2982      6E646963 
+ 2983              	.LASF42:
+ 2984 048c 746D705F 		.ascii	"tmp_data\000"
+ 2984      64617461 
+ 2984      00
+ 2985              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

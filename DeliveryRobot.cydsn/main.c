@@ -13,10 +13,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-
 #include "vfh.h"
-//#include "polar_histogram.h"
-//#include "histogram_grid.h"
+#include "rt_nonfinite.h"
+#include "vfhTest.h"
+#include "vfhTest_emxAPI.h"
+#include "vfhTest_terminate.h"
+#include "vfhTest_types.h"
+#include "rtwtypes.h"
+#include <stddef.h>
 
 struct Motor {
     long double duty_cycle;
@@ -54,6 +58,7 @@ struct Robot {
 const long double PULSES_PER_REV = 3591.92;
 const long double POSE_UPDATE_PERIOD = 1.0/50.0; // seconds
 
+/* Function Declarations */
 void Drive_Left_Motor(long double duty_cycle);
 void Drive_Right_Motor(long double duty_cycle);
 long double angle_modulo(long double angle);
@@ -75,8 +80,6 @@ struct Robot robot;
 /* Declaration of the needed data structures. */
 grid * certainty_grid;
 sensor_data sensors;
-histogram * polar_histogram;
-control_signal_t control_signal;
   
 CY_ISR( Timer_Int_Handler ) {
     echo_distance = 65535 - Timer_Echo_ReadCapture();  // in cm
@@ -102,9 +105,7 @@ CY_ISR( Pose_Update_Int_Handler ) {
     diff = new - left_motor.enc_count;
     left_motor.enc_count = new;
     left_motor.w = M_TWOPI*diff/POSE_UPDATE_PERIOD/PULSES_PER_REV;
-    
-    
-    
+
     //Calculate and update tangential velocity of wheels
     left_motor.tangent_v = left_motor.w*left_motor.wheel_radius;
     right_motor.tangent_v = right_motor.w*right_motor.wheel_radius;
@@ -159,9 +160,6 @@ CY_ISR( Navigation_Test_Int_Handler ) {
     robot.desired_theta = angle;
 }
 
-
-
-
 int main(void)
 {
     long double wheel_r_scale = 0.9378;   
@@ -170,7 +168,7 @@ int main(void)
     left_motor.desired_w = 0;
     left_motor.wheel_radius = wheel_r_scale * 2.75;
     left_motor.enc_count = 0;
-    left_motor.Ki = 3e-6;  // TODO: determine good PI params
+    left_motor.Ki = 3e-6;  
     left_motor.Kp = 0.0025;
     
     right_motor.duty_cycle = 0;
@@ -178,12 +176,12 @@ int main(void)
     right_motor.desired_w = 0;
     right_motor.wheel_radius = wheel_r_scale * 1.001*2.75;
     right_motor.enc_count = 0;
-    right_motor.Ki = 3e-6;  // TODO: determine good PI params
+    right_motor.Ki = 3e-6;  
     right_motor.Kp = 0.0025;
     
-    robot.axle_width = 0.936*22.5; // TODO: get accurate measurement
+    robot.axle_width = 0.936*22.5; 
     robot.int_error = 0;
-    robot.Ki = 3e-5;    // TODO: determine good PI values
+    robot.Ki = 3e-5; 
     robot.Kp = 0.5;  // was previously 0.75 before changing for MS1
     robot.desired_V = 0;
     robot.desired_theta = 0;
@@ -223,98 +221,29 @@ int main(void)
         
     // initialise structures
     certainty_grid = initial_grid(65, 65, 2);
-    polar_histogram = initial_histogram(5, 20, 10, 5);
         
     /* Are the initializations ok? */
 	if (certainty_grid == NULL) return -1;
 	if (certainty_grid->cells == NULL) return -1;
-	if (polar_histogram == NULL) return -1;
-	if (polar_histogram->densities == NULL) return -1;
-    
-    /* FAKE MEASURES
-    for (int i = 0; i < 1000; i++) {
-        for( int j = 0; j<4; j++) {
-            sensors.direction[j] = (int) ((40.0 * rand()) / RAND_MAX + 90.0); // [degrees] 
-        	sensors.distance[j] = (u_long) (((65.0 * rand()) / RAND_MAX)+5.0); // [cm] 
-        }
-        for( int j = 4; j<8; j++) {
-        	sensors.direction[j] = (int) ((40.0 * rand()) / RAND_MAX); // [degrees] 
-        	sensors.distance[j] = (u_long) (((65.0 * rand()) / RAND_MAX)+5.0); // [cm]
-        }
-        update_grid(certainty_grid, 65, 65, 0, sensors);
-    }    
-    */
     
     for(;;) {
-        /*
-        long double dy = robot.goal_y - robot.y;
-        long double dx = robot.goal_x - robot.x;
-        long double dist_to_goal = sqrtl( dy*dy + dx*dx );
-        long double theta_to_goal = 180*atan2l( dy, dx )/M_PI;  // in degrees
+        //FAKE MEASURES
+        int n_measures = 8000;
+        emxArray_real_T *distances = emxCreate_real_T(1, n_measures);
+        double *distances_data = distances->data;
         
-        if(Timer_Avoidance_ReadCounter() < 950) {
-            Testing_Int_Disable();
-            if( dist_to_goal <= robot.goal_min_dist ) { 
-                robot.desired_V = 0;
-            } else {
-                robot.desired_V = dist_to_goal<15 ? 1: 10;
-                
-                grid * active = active_window(certainty_grid,robot.x,robot.y,30);
-
-                hist_update(polar_histogram, active);
-                
-                 
-                if( theta_to_goal < 0 ) { theta_to_goal += 360; }
-                robot.desired_theta = M_PI * calculate_direction2(polar_histogram, theta_to_goal) / 180;
-                free(active->cells);
-                free(active);
-                
-                sprintf(serial_output, "dx: %Lf, dy: %Lf, dtg: %Lf, ttg: %Lf, dist: %i, tmr: %i\n", dx, dy, dist_to_goal, theta_to_goal, echo_distance, Timer_Avoidance_ReadCounter());
-                UART_PutString(serial_output);
-            }
-        }
-        */
+        emxArray_real_T *angles = emxCreate_real_T(1,n_measures);
+        double *angles_data;
         
-        
-        long double dy = robot.goal_y - robot.y;
-        long double dx = robot.goal_x - robot.x;
-        long double dist_to_goal = sqrtl( dy*dy + dx*dx );
-        long double theta_to_goal = atan2l( dy, dx );
-        
-        if( dist_to_goal <= robot.goal_min_dist ) {
-            robot.desired_V = 0;
-            if( ! goal_one_reached ) {robot.desired_theta = M_PI;}
-            CyDelay(10000);
-            robot.goal_x = 0;
-            robot.goal_y = 60;
-            robot.desired_V = 7;
-        } else if(sensors.distance[0] < 30 && sensors.distance[0] <= dist_to_goal) {
-            robot.desired_theta = angle_modulo( robot.theta + M_PI/4 );
-            Timer_Avoidance_WriteCounter(65533);
-            deviated = 1;
-        } else if( sensors.distance[4] < 20 && sensors.distance[4] <= dist_to_goal ) {
-            robot.desired_theta = angle_modulo( robot.theta + M_PI/5 );
-            Timer_Avoidance_WriteCounter(65533);
-            deviated = 1;
-        } else if( (sensors.distance[4] >= 20 && sensors.distance[3] >= 7 && deviated && Timer_Avoidance_ReadCounter()<65530) || !deviated ){
-            deviated = 0;
-            robot.desired_theta = theta_to_goal;
-            if( dist_to_goal < 10 ) {
-                robot.desired_V = 2;
-            } else {
-                robot.desired_V = 7;
-            }
+        for (int i = 0; i < n_measures; i++) {
+            angles_data[i] = ((360.0 * rand()) / RAND_MAX); // [degrees] 
+            distances_data[i] = (((65.0 * rand()) / RAND_MAX)); // [cm] 
         }
         
-        
-        // if a distance was measured, print the distance and clear the flag
-        
-        sprintf(serial_output, "dx: %Lf, dy: %Lf, dtg: %Lf, ttg: %Lf, dist: %i, tmr: %i\n", dx, dy, dist_to_goal, theta_to_goal, echo_distance, Timer_Avoidance_ReadCounter());
-        //sprintf(serial_output, "desired: %lf, actual: %lf, dc:%lf, enc: %li\n", right_motor.desired_w,right_motor.w, right_motor.duty_cycle, QuadDec_R_GetCounter());
-        //sprintf(serial_output, "x: %Lf, y: %Lf, theta: %Lf\n", robot.x, robot.y, robot.theta);
-        //sprintf(serial_output, "des v: %Lf, actual_v: %Lf, desired_t: %Lf, actual_t: %Lf", robot.desired_V, robot.V, robot.desired_theta, robot.theta);
+        double direction = vfhTest(distances, angles, 0);
+        sprintf(serial_output, "chosen direction: %lf\n", direction);
         UART_PutString(serial_output);
-        
+            
         /*
         for( int y=certainty_grid->height-1; y >= 0; --y ) {
             for( int x=0; x < certainty_grid->width; ++x ) {

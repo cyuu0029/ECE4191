@@ -1,0 +1,364 @@
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cca1TJzF.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"vfhTest_initialize.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.vfhTest_initialize,"ax",%progbits
+  20              		.align	1
+  21              		.global	vfhTest_initialize
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	vfhTest_initialize, %function
+  25              	vfhTest_initialize:
+  26              	.LFB0:
+  27              		.file 1 "VFH+\\src\\vfhTest_initialize.c"
+   1:VFH+\src/vfhTest_initialize.c **** /*
+   2:VFH+\src/vfhTest_initialize.c ****  * Academic License - for use in teaching, academic research, and meeting
+   3:VFH+\src/vfhTest_initialize.c ****  * course requirements at degree granting institutions only.  Not for
+   4:VFH+\src/vfhTest_initialize.c ****  * government, commercial, or other organizational use.
+   5:VFH+\src/vfhTest_initialize.c ****  * File: vfhTest_initialize.c
+   6:VFH+\src/vfhTest_initialize.c ****  *
+   7:VFH+\src/vfhTest_initialize.c ****  * MATLAB Coder version            : 5.3
+   8:VFH+\src/vfhTest_initialize.c ****  * C/C++ source code generated on  : 30-Aug-2023 22:51:35
+   9:VFH+\src/vfhTest_initialize.c ****  */
+  10:VFH+\src/vfhTest_initialize.c **** 
+  11:VFH+\src/vfhTest_initialize.c **** /* Include Files */
+  12:VFH+\src/vfhTest_initialize.c **** #include "vfhTest_initialize.h"
+  13:VFH+\src/vfhTest_initialize.c **** #include "rt_nonfinite.h"
+  14:VFH+\src/vfhTest_initialize.c **** 
+  15:VFH+\src/vfhTest_initialize.c **** /* Function Definitions */
+  16:VFH+\src/vfhTest_initialize.c **** /*
+  17:VFH+\src/vfhTest_initialize.c ****  * Arguments    : void
+  18:VFH+\src/vfhTest_initialize.c ****  * Return Type  : void
+  19:VFH+\src/vfhTest_initialize.c ****  */
+  20:VFH+\src/vfhTest_initialize.c **** void vfhTest_initialize(void)
+  21:VFH+\src/vfhTest_initialize.c **** {
+  28              		.loc 1 21 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+  33 0000 7047     		bx	lr
+  34              		.cfi_endproc
+  35              	.LFE0:
+  36              		.size	vfhTest_initialize, .-vfhTest_initialize
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cca1TJzF.s 			page 2
+
+
+  37              		.text
+  38              	.Letext0:
+  39              		.section	.debug_info,"",%progbits
+  40              	.Ldebug_info0:
+  41 0000 A3000000 		.4byte	0xa3
+  42 0004 0400     		.2byte	0x4
+  43 0006 00000000 		.4byte	.Ldebug_abbrev0
+  44 000a 04       		.byte	0x4
+  45 000b 01       		.uleb128 0x1
+  46 000c CB000000 		.4byte	.LASF15
+  47 0010 0C       		.byte	0xc
+  48 0011 78010000 		.4byte	.LASF16
+  49 0015 58000000 		.4byte	.LASF17
+  50 0019 00000000 		.4byte	.Ldebug_ranges0+0
+  51 001d 00000000 		.4byte	0
+  52 0021 00000000 		.4byte	.Ldebug_line0
+  53 0025 02       		.uleb128 0x2
+  54 0026 01       		.byte	0x1
+  55 0027 06       		.byte	0x6
+  56 0028 6C010000 		.4byte	.LASF0
+  57 002c 02       		.uleb128 0x2
+  58 002d 01       		.byte	0x1
+  59 002e 08       		.byte	0x8
+  60 002f 1B000000 		.4byte	.LASF1
+  61 0033 02       		.uleb128 0x2
+  62 0034 02       		.byte	0x2
+  63 0035 05       		.byte	0x5
+  64 0036 A2010000 		.4byte	.LASF2
+  65 003a 02       		.uleb128 0x2
+  66 003b 02       		.byte	0x2
+  67 003c 07       		.byte	0x7
+  68 003d 59010000 		.4byte	.LASF3
+  69 0041 03       		.uleb128 0x3
+  70 0042 04       		.byte	0x4
+  71 0043 05       		.byte	0x5
+  72 0044 696E7400 		.ascii	"int\000"
+  73 0048 02       		.uleb128 0x2
+  74 0049 04       		.byte	0x4
+  75 004a 07       		.byte	0x7
+  76 004b 0E000000 		.4byte	.LASF4
+  77 004f 02       		.uleb128 0x2
+  78 0050 04       		.byte	0x4
+  79 0051 04       		.byte	0x4
+  80 0052 52000000 		.4byte	.LASF5
+  81 0056 02       		.uleb128 0x2
+  82 0057 08       		.byte	0x8
+  83 0058 04       		.byte	0x4
+  84 0059 C4000000 		.4byte	.LASF6
+  85 005d 02       		.uleb128 0x2
+  86 005e 01       		.byte	0x1
+  87 005f 02       		.byte	0x2
+  88 0060 9D000000 		.4byte	.LASF7
+  89 0064 02       		.uleb128 0x2
+  90 0065 04       		.byte	0x4
+  91 0066 07       		.byte	0x7
+  92 0067 29000000 		.4byte	.LASF8
+  93 006b 02       		.uleb128 0x2
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cca1TJzF.s 			page 3
+
+
+  94 006c 01       		.byte	0x1
+  95 006d 08       		.byte	0x8
+  96 006e A3000000 		.4byte	.LASF9
+  97 0072 02       		.uleb128 0x2
+  98 0073 08       		.byte	0x8
+  99 0074 05       		.byte	0x5
+ 100 0075 00000000 		.4byte	.LASF10
+ 101 0079 02       		.uleb128 0x2
+ 102 007a 08       		.byte	0x8
+ 103 007b 04       		.byte	0x4
+ 104 007c 96010000 		.4byte	.LASF11
+ 105 0080 02       		.uleb128 0x2
+ 106 0081 04       		.byte	0x4
+ 107 0082 05       		.byte	0x5
+ 108 0083 A8000000 		.4byte	.LASF12
+ 109 0087 02       		.uleb128 0x2
+ 110 0088 08       		.byte	0x8
+ 111 0089 07       		.byte	0x7
+ 112 008a 3B000000 		.4byte	.LASF13
+ 113 008e 02       		.uleb128 0x2
+ 114 008f 04       		.byte	0x4
+ 115 0090 07       		.byte	0x7
+ 116 0091 AC010000 		.4byte	.LASF14
+ 117 0095 04       		.uleb128 0x4
+ 118 0096 B1000000 		.4byte	.LASF18
+ 119 009a 01       		.byte	0x1
+ 120 009b 14       		.byte	0x14
+ 121 009c 00000000 		.4byte	.LFB0
+ 122 00a0 02000000 		.4byte	.LFE0-.LFB0
+ 123 00a4 01       		.uleb128 0x1
+ 124 00a5 9C       		.byte	0x9c
+ 125 00a6 00       		.byte	0
+ 126              		.section	.debug_abbrev,"",%progbits
+ 127              	.Ldebug_abbrev0:
+ 128 0000 01       		.uleb128 0x1
+ 129 0001 11       		.uleb128 0x11
+ 130 0002 01       		.byte	0x1
+ 131 0003 25       		.uleb128 0x25
+ 132 0004 0E       		.uleb128 0xe
+ 133 0005 13       		.uleb128 0x13
+ 134 0006 0B       		.uleb128 0xb
+ 135 0007 03       		.uleb128 0x3
+ 136 0008 0E       		.uleb128 0xe
+ 137 0009 1B       		.uleb128 0x1b
+ 138 000a 0E       		.uleb128 0xe
+ 139 000b 55       		.uleb128 0x55
+ 140 000c 17       		.uleb128 0x17
+ 141 000d 11       		.uleb128 0x11
+ 142 000e 01       		.uleb128 0x1
+ 143 000f 10       		.uleb128 0x10
+ 144 0010 17       		.uleb128 0x17
+ 145 0011 00       		.byte	0
+ 146 0012 00       		.byte	0
+ 147 0013 02       		.uleb128 0x2
+ 148 0014 24       		.uleb128 0x24
+ 149 0015 00       		.byte	0
+ 150 0016 0B       		.uleb128 0xb
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cca1TJzF.s 			page 4
+
+
+ 151 0017 0B       		.uleb128 0xb
+ 152 0018 3E       		.uleb128 0x3e
+ 153 0019 0B       		.uleb128 0xb
+ 154 001a 03       		.uleb128 0x3
+ 155 001b 0E       		.uleb128 0xe
+ 156 001c 00       		.byte	0
+ 157 001d 00       		.byte	0
+ 158 001e 03       		.uleb128 0x3
+ 159 001f 24       		.uleb128 0x24
+ 160 0020 00       		.byte	0
+ 161 0021 0B       		.uleb128 0xb
+ 162 0022 0B       		.uleb128 0xb
+ 163 0023 3E       		.uleb128 0x3e
+ 164 0024 0B       		.uleb128 0xb
+ 165 0025 03       		.uleb128 0x3
+ 166 0026 08       		.uleb128 0x8
+ 167 0027 00       		.byte	0
+ 168 0028 00       		.byte	0
+ 169 0029 04       		.uleb128 0x4
+ 170 002a 2E       		.uleb128 0x2e
+ 171 002b 00       		.byte	0
+ 172 002c 3F       		.uleb128 0x3f
+ 173 002d 19       		.uleb128 0x19
+ 174 002e 03       		.uleb128 0x3
+ 175 002f 0E       		.uleb128 0xe
+ 176 0030 3A       		.uleb128 0x3a
+ 177 0031 0B       		.uleb128 0xb
+ 178 0032 3B       		.uleb128 0x3b
+ 179 0033 0B       		.uleb128 0xb
+ 180 0034 27       		.uleb128 0x27
+ 181 0035 19       		.uleb128 0x19
+ 182 0036 11       		.uleb128 0x11
+ 183 0037 01       		.uleb128 0x1
+ 184 0038 12       		.uleb128 0x12
+ 185 0039 06       		.uleb128 0x6
+ 186 003a 40       		.uleb128 0x40
+ 187 003b 18       		.uleb128 0x18
+ 188 003c 9742     		.uleb128 0x2117
+ 189 003e 19       		.uleb128 0x19
+ 190 003f 00       		.byte	0
+ 191 0040 00       		.byte	0
+ 192 0041 00       		.byte	0
+ 193              		.section	.debug_aranges,"",%progbits
+ 194 0000 1C000000 		.4byte	0x1c
+ 195 0004 0200     		.2byte	0x2
+ 196 0006 00000000 		.4byte	.Ldebug_info0
+ 197 000a 04       		.byte	0x4
+ 198 000b 00       		.byte	0
+ 199 000c 0000     		.2byte	0
+ 200 000e 0000     		.2byte	0
+ 201 0010 00000000 		.4byte	.LFB0
+ 202 0014 02000000 		.4byte	.LFE0-.LFB0
+ 203 0018 00000000 		.4byte	0
+ 204 001c 00000000 		.4byte	0
+ 205              		.section	.debug_ranges,"",%progbits
+ 206              	.Ldebug_ranges0:
+ 207 0000 00000000 		.4byte	.LFB0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cca1TJzF.s 			page 5
+
+
+ 208 0004 02000000 		.4byte	.LFE0
+ 209 0008 00000000 		.4byte	0
+ 210 000c 00000000 		.4byte	0
+ 211              		.section	.debug_line,"",%progbits
+ 212              	.Ldebug_line0:
+ 213 0000 49000000 		.section	.debug_str,"MS",%progbits,1
+ 213      02003400 
+ 213      00000201 
+ 213      FB0E0D00 
+ 213      01010101 
+ 214              	.LASF10:
+ 215 0000 6C6F6E67 		.ascii	"long long int\000"
+ 215      206C6F6E 
+ 215      6720696E 
+ 215      7400
+ 216              	.LASF4:
+ 217 000e 756E7369 		.ascii	"unsigned int\000"
+ 217      676E6564 
+ 217      20696E74 
+ 217      00
+ 218              	.LASF1:
+ 219 001b 756E7369 		.ascii	"unsigned char\000"
+ 219      676E6564 
+ 219      20636861 
+ 219      7200
+ 220              	.LASF8:
+ 221 0029 6C6F6E67 		.ascii	"long unsigned int\000"
+ 221      20756E73 
+ 221      69676E65 
+ 221      6420696E 
+ 221      7400
+ 222              	.LASF13:
+ 223 003b 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 223      206C6F6E 
+ 223      6720756E 
+ 223      7369676E 
+ 223      65642069 
+ 224              	.LASF5:
+ 225 0052 666C6F61 		.ascii	"float\000"
+ 225      7400
+ 226              	.LASF17:
+ 227 0058 433A5C55 		.ascii	"C:\\Users\\jmspi\\OneDrive\\Documents\\GitHub\\ECE4"
+ 227      73657273 
+ 227      5C6A6D73 
+ 227      70695C4F 
+ 227      6E654472 
+ 228 0085 3139315C 		.ascii	"191\\DeliveryRobot.cydsn\000"
+ 228      44656C69 
+ 228      76657279 
+ 228      526F626F 
+ 228      742E6379 
+ 229              	.LASF7:
+ 230 009d 5F426F6F 		.ascii	"_Bool\000"
+ 230      6C00
+ 231              	.LASF9:
+ 232 00a3 63686172 		.ascii	"char\000"
+ 232      00
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cca1TJzF.s 			page 6
+
+
+ 233              	.LASF12:
+ 234 00a8 6C6F6E67 		.ascii	"long int\000"
+ 234      20696E74 
+ 234      00
+ 235              	.LASF18:
+ 236 00b1 76666854 		.ascii	"vfhTest_initialize\000"
+ 236      6573745F 
+ 236      696E6974 
+ 236      69616C69 
+ 236      7A6500
+ 237              	.LASF6:
+ 238 00c4 646F7562 		.ascii	"double\000"
+ 238      6C6500
+ 239              	.LASF15:
+ 240 00cb 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 240      43313120 
+ 240      352E342E 
+ 240      31203230 
+ 240      31363036 
+ 241 00fe 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 241      20726576 
+ 241      6973696F 
+ 241      6E203233 
+ 241      37373135 
+ 242 0131 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 242      66756E63 
+ 242      74696F6E 
+ 242      2D736563 
+ 242      74696F6E 
+ 243              	.LASF3:
+ 244 0159 73686F72 		.ascii	"short unsigned int\000"
+ 244      7420756E 
+ 244      7369676E 
+ 244      65642069 
+ 244      6E7400
+ 245              	.LASF0:
+ 246 016c 7369676E 		.ascii	"signed char\000"
+ 246      65642063 
+ 246      68617200 
+ 247              	.LASF16:
+ 248 0178 5646482B 		.ascii	"VFH+\\src\\vfhTest_initialize.c\000"
+ 248      5C737263 
+ 248      5C766668 
+ 248      54657374 
+ 248      5F696E69 
+ 249              	.LASF11:
+ 250 0196 6C6F6E67 		.ascii	"long double\000"
+ 250      20646F75 
+ 250      626C6500 
+ 251              	.LASF2:
+ 252 01a2 73686F72 		.ascii	"short int\000"
+ 252      7420696E 
+ 252      7400
+ 253              	.LASF14:
+ 254 01ac 73697A65 		.ascii	"sizetype\000"
+ 254      74797065 
+ 254      00
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cca1TJzF.s 			page 7
+
+
+ 255              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

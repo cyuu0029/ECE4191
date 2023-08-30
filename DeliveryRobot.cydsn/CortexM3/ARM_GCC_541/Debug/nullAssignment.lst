@@ -1,0 +1,989 @@
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccWoqQL4.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"nullAssignment.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.nullAssignment,"ax",%progbits
+  20              		.align	1
+  21              		.global	nullAssignment
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	nullAssignment, %function
+  25              	nullAssignment:
+  26              	.LFB0:
+  27              		.file 1 "VFH+\\src\\nullAssignment.c"
+   1:VFH+\src/nullAssignment.c **** /*
+   2:VFH+\src/nullAssignment.c ****  * Academic License - for use in teaching, academic research, and meeting
+   3:VFH+\src/nullAssignment.c ****  * course requirements at degree granting institutions only.  Not for
+   4:VFH+\src/nullAssignment.c ****  * government, commercial, or other organizational use.
+   5:VFH+\src/nullAssignment.c ****  * File: nullAssignment.c
+   6:VFH+\src/nullAssignment.c ****  *
+   7:VFH+\src/nullAssignment.c ****  * MATLAB Coder version            : 5.3
+   8:VFH+\src/nullAssignment.c ****  * C/C++ source code generated on  : 30-Aug-2023 22:51:35
+   9:VFH+\src/nullAssignment.c ****  */
+  10:VFH+\src/nullAssignment.c **** 
+  11:VFH+\src/nullAssignment.c **** /* Include Files */
+  12:VFH+\src/nullAssignment.c **** #include "nullAssignment.h"
+  13:VFH+\src/nullAssignment.c **** #include "rt_nonfinite.h"
+  14:VFH+\src/nullAssignment.c **** #include "vfhTest_emxutil.h"
+  15:VFH+\src/nullAssignment.c **** #include "vfhTest_types.h"
+  16:VFH+\src/nullAssignment.c **** 
+  17:VFH+\src/nullAssignment.c **** /* Function Definitions */
+  18:VFH+\src/nullAssignment.c **** /*
+  19:VFH+\src/nullAssignment.c ****  * Arguments    : emxArray_real_T *x
+  20:VFH+\src/nullAssignment.c ****  *                const bool idx_data[]
+  21:VFH+\src/nullAssignment.c ****  *                int idx_size
+  22:VFH+\src/nullAssignment.c ****  * Return Type  : void
+  23:VFH+\src/nullAssignment.c ****  */
+  24:VFH+\src/nullAssignment.c **** void nullAssignment(emxArray_real_T *x, const bool idx_data[], int idx_size)
+  25:VFH+\src/nullAssignment.c **** {
+  28              		.loc 1 25 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              	.LVL0:
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccWoqQL4.s 			page 2
+
+
+  33 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+  34              		.cfi_def_cfa_offset 32
+  35              		.cfi_offset 4, -32
+  36              		.cfi_offset 5, -28
+  37              		.cfi_offset 6, -24
+  38              		.cfi_offset 7, -20
+  39              		.cfi_offset 8, -16
+  40              		.cfi_offset 9, -12
+  41              		.cfi_offset 10, -8
+  42              		.cfi_offset 14, -4
+  43              		.loc 1 25 0
+  44 0004 8846     		mov	r8, r1
+  26:VFH+\src/nullAssignment.c ****   double *x_data;
+  27:VFH+\src/nullAssignment.c ****   int k;
+  28:VFH+\src/nullAssignment.c ****   int k0;
+  29:VFH+\src/nullAssignment.c ****   int nxin;
+  30:VFH+\src/nullAssignment.c ****   int nxout;
+  31:VFH+\src/nullAssignment.c ****   x_data = x->data;
+  32:VFH+\src/nullAssignment.c ****   nxin = x->size[0];
+  33:VFH+\src/nullAssignment.c ****   k0 = 0;
+  34:VFH+\src/nullAssignment.c ****   for (k = 0; k < idx_size; k++) {
+  45              		.loc 1 34 0
+  46 0006 4446     		mov	r4, r8
+  32:VFH+\src/nullAssignment.c ****   k0 = 0;
+  47              		.loc 1 32 0
+  48 0008 4568     		ldr	r5, [r0, #4]
+  31:VFH+\src/nullAssignment.c ****   nxin = x->size[0];
+  49              		.loc 1 31 0
+  50 000a D0F80090 		ldr	r9, [r0]
+  51              	.LVL1:
+  32:VFH+\src/nullAssignment.c ****   k0 = 0;
+  52              		.loc 1 32 0
+  53 000e 2968     		ldr	r1, [r5]
+  54              	.LVL2:
+  33:VFH+\src/nullAssignment.c ****   for (k = 0; k < idx_size; k++) {
+  55              		.loc 1 33 0
+  56 0010 0023     		movs	r3, #0
+  57              	.LVL3:
+  58              	.L2:
+  59              		.loc 1 34 0 discriminator 1
+  60 0012 C8EB0406 		rsb	r6, r8, r4
+  61              	.LVL4:
+  62 0016 B242     		cmp	r2, r6
+  63 0018 03DD     		ble	.L11
+  35:VFH+\src/nullAssignment.c ****     k0 += idx_data[k];
+  64              		.loc 1 35 0 discriminator 3
+  65 001a 14F8016B 		ldrb	r6, [r4], #1	@ zero_extendqisi2
+  66              	.LVL5:
+  67 001e 3344     		add	r3, r3, r6
+  68              	.LVL6:
+  69 0020 F7E7     		b	.L2
+  70              	.LVL7:
+  71              	.L11:
+  72 0022 CC46     		mov	ip, r9
+  36:VFH+\src/nullAssignment.c ****   }
+  37:VFH+\src/nullAssignment.c ****   nxout = x->size[0] - k0;
+  73              		.loc 1 37 0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccWoqQL4.s 			page 3
+
+
+  74 0024 CB1A     		subs	r3, r1, r3
+  75              	.LVL8:
+  38:VFH+\src/nullAssignment.c ****   k0 = -1;
+  76              		.loc 1 38 0
+  77 0026 4FF0FF3E 		mov	lr, #-1
+  39:VFH+\src/nullAssignment.c ****   for (k = 0; k < nxin; k++) {
+  78              		.loc 1 39 0
+  79 002a 0024     		movs	r4, #0
+  80              	.LVL9:
+  81              	.L4:
+  82              		.loc 1 39 0 is_stmt 0 discriminator 1
+  83 002c 8C42     		cmp	r4, r1
+  84 002e 10DA     		bge	.L12
+  40:VFH+\src/nullAssignment.c ****     if ((k + 1 > idx_size) || (!idx_data[k])) {
+  85              		.loc 1 40 0 is_stmt 1
+  86 0030 9442     		cmp	r4, r2
+  87 0032 02DA     		bge	.L5
+  88              		.loc 1 40 0 is_stmt 0 discriminator 1
+  89 0034 18F80460 		ldrb	r6, [r8, r4]	@ zero_extendqisi2
+  90 0038 3EB9     		cbnz	r6, .L6
+  91              	.L5:
+  41:VFH+\src/nullAssignment.c ****       k0++;
+  42:VFH+\src/nullAssignment.c ****       x_data[k0] = x_data[k];
+  92              		.loc 1 42 0 is_stmt 1
+  93 003a DCE90067 		ldrd	r6, [ip]
+  41:VFH+\src/nullAssignment.c ****       k0++;
+  94              		.loc 1 41 0
+  95 003e 0EF1010E 		add	lr, lr, #1
+  96              	.LVL10:
+  97              		.loc 1 42 0
+  98 0042 09EBCE0A 		add	r10, r9, lr, lsl #3
+  99 0046 CAE90067 		strd	r6, [r10]
+ 100              	.L6:
+  39:VFH+\src/nullAssignment.c ****     if ((k + 1 > idx_size) || (!idx_data[k])) {
+ 101              		.loc 1 39 0 discriminator 2
+ 102 004a 0134     		adds	r4, r4, #1
+ 103              	.LVL11:
+ 104 004c 0CF1080C 		add	ip, ip, #8
+ 105 0050 ECE7     		b	.L4
+ 106              	.L12:
+ 107              	.LVL12:
+  43:VFH+\src/nullAssignment.c ****     }
+  44:VFH+\src/nullAssignment.c ****   }
+  45:VFH+\src/nullAssignment.c ****   k0 = x->size[0];
+  46:VFH+\src/nullAssignment.c ****   if (1 > nxout) {
+ 108              		.loc 1 46 0
+ 109 0052 002B     		cmp	r3, #0
+  47:VFH+\src/nullAssignment.c ****     x->size[0] = 0;
+ 110              		.loc 1 47 0
+ 111 0054 D8BF     		it	le
+ 112 0056 0023     		movle	r3, #0
+ 113              	.LVL13:
+  48:VFH+\src/nullAssignment.c ****   } else {
+  49:VFH+\src/nullAssignment.c ****     x->size[0] = nxout;
+ 114              		.loc 1 49 0
+ 115 0058 2B60     		str	r3, [r5]
+  50:VFH+\src/nullAssignment.c ****   }
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccWoqQL4.s 			page 4
+
+
+  51:VFH+\src/nullAssignment.c ****   emxEnsureCapacity_real_T(x, k0);
+  52:VFH+\src/nullAssignment.c **** }
+ 116              		.loc 1 52 0
+ 117 005a BDE8F047 		pop	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 118              		.cfi_restore 14
+ 119              		.cfi_restore 10
+ 120              		.cfi_restore 9
+ 121              		.cfi_restore 8
+ 122              		.cfi_restore 7
+ 123              		.cfi_restore 6
+ 124              		.cfi_restore 5
+ 125              		.cfi_restore 4
+ 126              		.cfi_def_cfa_offset 0
+ 127              	.LVL14:
+  51:VFH+\src/nullAssignment.c **** }
+ 128              		.loc 1 51 0
+ 129 005e FFF7FEBF 		b	emxEnsureCapacity_real_T
+ 130              	.LVL15:
+ 131              		.cfi_endproc
+ 132              	.LFE0:
+ 133              		.size	nullAssignment, .-nullAssignment
+ 134              		.text
+ 135              	.Letext0:
+ 136              		.file 2 ".\\VFH+\\include/vfhTest_types.h"
+ 137              		.file 3 ".\\VFH+\\include/vfhTest_emxutil.h"
+ 138              		.section	.debug_info,"",%progbits
+ 139              	.Ldebug_info0:
+ 140 0000 A0010000 		.4byte	0x1a0
+ 141 0004 0400     		.2byte	0x4
+ 142 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 143 000a 04       		.byte	0x4
+ 144 000b 01       		.uleb128 0x1
+ 145 000c 4F000000 		.4byte	.LASF25
+ 146 0010 0C       		.byte	0xc
+ 147 0011 B0010000 		.4byte	.LASF26
+ 148 0015 F0000000 		.4byte	.LASF27
+ 149 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 150 001d 00000000 		.4byte	0
+ 151 0021 00000000 		.4byte	.Ldebug_line0
+ 152 0025 02       		.uleb128 0x2
+ 153 0026 01       		.byte	0x1
+ 154 0027 06       		.byte	0x6
+ 155 0028 13020000 		.4byte	.LASF0
+ 156 002c 02       		.uleb128 0x2
+ 157 002d 01       		.byte	0x1
+ 158 002e 08       		.byte	0x8
+ 159 002f 4E010000 		.4byte	.LASF1
+ 160 0033 02       		.uleb128 0x2
+ 161 0034 02       		.byte	0x2
+ 162 0035 05       		.byte	0x5
+ 163 0036 F4010000 		.4byte	.LASF2
+ 164 003a 02       		.uleb128 0x2
+ 165 003b 02       		.byte	0x2
+ 166 003c 07       		.byte	0x7
+ 167 003d DD000000 		.4byte	.LASF3
+ 168 0041 03       		.uleb128 0x3
+ 169 0042 04       		.byte	0x4
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccWoqQL4.s 			page 5
+
+
+ 170 0043 05       		.byte	0x5
+ 171 0044 696E7400 		.ascii	"int\000"
+ 172 0048 02       		.uleb128 0x2
+ 173 0049 04       		.byte	0x4
+ 174 004a 07       		.byte	0x7
+ 175 004b 8C010000 		.4byte	.LASF4
+ 176 004f 02       		.uleb128 0x2
+ 177 0050 04       		.byte	0x4
+ 178 0051 04       		.byte	0x4
+ 179 0052 2A000000 		.4byte	.LASF5
+ 180 0056 02       		.uleb128 0x2
+ 181 0057 08       		.byte	0x8
+ 182 0058 04       		.byte	0x4
+ 183 0059 5C010000 		.4byte	.LASF6
+ 184 005d 02       		.uleb128 0x2
+ 185 005e 01       		.byte	0x1
+ 186 005f 02       		.byte	0x2
+ 187 0060 1F020000 		.4byte	.LASF7
+ 188 0064 02       		.uleb128 0x2
+ 189 0065 04       		.byte	0x4
+ 190 0066 07       		.byte	0x7
+ 191 0067 7A010000 		.4byte	.LASF8
+ 192 006b 02       		.uleb128 0x2
+ 193 006c 01       		.byte	0x1
+ 194 006d 08       		.byte	0x8
+ 195 006e EF010000 		.4byte	.LASF9
+ 196 0072 04       		.uleb128 0x4
+ 197 0073 1A000000 		.4byte	.LASF28
+ 198 0077 14       		.byte	0x14
+ 199 0078 02       		.byte	0x2
+ 200 0079 14       		.byte	0x14
+ 201 007a BB000000 		.4byte	0xbb
+ 202 007e 05       		.uleb128 0x5
+ 203 007f 30000000 		.4byte	.LASF10
+ 204 0083 02       		.byte	0x2
+ 205 0084 15       		.byte	0x15
+ 206 0085 BB000000 		.4byte	0xbb
+ 207 0089 00       		.byte	0
+ 208 008a 05       		.uleb128 0x5
+ 209 008b 35000000 		.4byte	.LASF11
+ 210 008f 02       		.byte	0x2
+ 211 0090 16       		.byte	0x16
+ 212 0091 C1000000 		.4byte	0xc1
+ 213 0095 04       		.byte	0x4
+ 214 0096 05       		.uleb128 0x5
+ 215 0097 00000000 		.4byte	.LASF12
+ 216 009b 02       		.byte	0x2
+ 217 009c 17       		.byte	0x17
+ 218 009d 41000000 		.4byte	0x41
+ 219 00a1 08       		.byte	0x8
+ 220 00a2 05       		.uleb128 0x5
+ 221 00a3 63010000 		.4byte	.LASF13
+ 222 00a7 02       		.byte	0x2
+ 223 00a8 18       		.byte	0x18
+ 224 00a9 41000000 		.4byte	0x41
+ 225 00ad 0C       		.byte	0xc
+ 226 00ae 05       		.uleb128 0x5
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccWoqQL4.s 			page 6
+
+
+ 227 00af 0E000000 		.4byte	.LASF14
+ 228 00b3 02       		.byte	0x2
+ 229 00b4 19       		.byte	0x19
+ 230 00b5 5D000000 		.4byte	0x5d
+ 231 00b9 10       		.byte	0x10
+ 232 00ba 00       		.byte	0
+ 233 00bb 06       		.uleb128 0x6
+ 234 00bc 04       		.byte	0x4
+ 235 00bd 56000000 		.4byte	0x56
+ 236 00c1 06       		.uleb128 0x6
+ 237 00c2 04       		.byte	0x4
+ 238 00c3 41000000 		.4byte	0x41
+ 239 00c7 07       		.uleb128 0x7
+ 240 00c8 1A000000 		.4byte	.LASF28
+ 241 00cc 02       		.byte	0x2
+ 242 00cd 1E       		.byte	0x1e
+ 243 00ce 72000000 		.4byte	0x72
+ 244 00d2 02       		.uleb128 0x2
+ 245 00d3 08       		.byte	0x8
+ 246 00d4 05       		.byte	0x5
+ 247 00d5 E1010000 		.4byte	.LASF15
+ 248 00d9 02       		.uleb128 0x2
+ 249 00da 08       		.byte	0x8
+ 250 00db 04       		.byte	0x4
+ 251 00dc 07020000 		.4byte	.LASF16
+ 252 00e0 02       		.uleb128 0x2
+ 253 00e1 04       		.byte	0x4
+ 254 00e2 05       		.byte	0x5
+ 255 00e3 FE010000 		.4byte	.LASF17
+ 256 00e7 02       		.uleb128 0x2
+ 257 00e8 08       		.byte	0x8
+ 258 00e9 07       		.byte	0x7
+ 259 00ea 99010000 		.4byte	.LASF18
+ 260 00ee 02       		.uleb128 0x2
+ 261 00ef 04       		.byte	0x4
+ 262 00f0 07       		.byte	0x7
+ 263 00f1 CF010000 		.4byte	.LASF19
+ 264 00f5 08       		.uleb128 0x8
+ 265 00f6 40000000 		.4byte	.LASF29
+ 266 00fa 01       		.byte	0x1
+ 267 00fb 18       		.byte	0x18
+ 268 00fc 00000000 		.4byte	.LFB0
+ 269 0100 62000000 		.4byte	.LFE0-.LFB0
+ 270 0104 01       		.uleb128 0x1
+ 271 0105 9C       		.byte	0x9c
+ 272 0106 87010000 		.4byte	0x187
+ 273 010a 09       		.uleb128 0x9
+ 274 010b 7800     		.ascii	"x\000"
+ 275 010d 01       		.byte	0x1
+ 276 010e 18       		.byte	0x18
+ 277 010f 87010000 		.4byte	0x187
+ 278 0113 00000000 		.4byte	.LLST0
+ 279 0117 0A       		.uleb128 0xa
+ 280 0118 D8010000 		.4byte	.LASF20
+ 281 011c 01       		.byte	0x1
+ 282 011d 18       		.byte	0x18
+ 283 011e 8D010000 		.4byte	0x18d
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccWoqQL4.s 			page 7
+
+
+ 284 0122 21000000 		.4byte	.LLST1
+ 285 0126 0A       		.uleb128 0xa
+ 286 0127 71010000 		.4byte	.LASF21
+ 287 012b 01       		.byte	0x1
+ 288 012c 18       		.byte	0x18
+ 289 012d 41000000 		.4byte	0x41
+ 290 0131 58000000 		.4byte	.LLST2
+ 291 0135 0B       		.uleb128 0xb
+ 292 0136 25020000 		.4byte	.LASF22
+ 293 013a 01       		.byte	0x1
+ 294 013b 1A       		.byte	0x1a
+ 295 013c BB000000 		.4byte	0xbb
+ 296 0140 79000000 		.4byte	.LLST3
+ 297 0144 0C       		.uleb128 0xc
+ 298 0145 6B00     		.ascii	"k\000"
+ 299 0147 01       		.byte	0x1
+ 300 0148 1B       		.byte	0x1b
+ 301 0149 41000000 		.4byte	0x41
+ 302 014d 98000000 		.4byte	.LLST4
+ 303 0151 0C       		.uleb128 0xc
+ 304 0152 6B3000   		.ascii	"k0\000"
+ 305 0155 01       		.byte	0x1
+ 306 0156 1C       		.byte	0x1c
+ 307 0157 41000000 		.4byte	0x41
+ 308 015b FA000000 		.4byte	.LLST5
+ 309 015f 0B       		.uleb128 0xb
+ 310 0160 CA010000 		.4byte	.LASF23
+ 311 0164 01       		.byte	0x1
+ 312 0165 1D       		.byte	0x1d
+ 313 0166 41000000 		.4byte	0x41
+ 314 016a 3C010000 		.4byte	.LLST6
+ 315 016e 0B       		.uleb128 0xb
+ 316 016f 3A000000 		.4byte	.LASF24
+ 317 0173 01       		.byte	0x1
+ 318 0174 1E       		.byte	0x1e
+ 319 0175 41000000 		.4byte	0x41
+ 320 0179 4F010000 		.4byte	.LLST7
+ 321 017d 0D       		.uleb128 0xd
+ 322 017e 62000000 		.4byte	.LVL15
+ 323 0182 98010000 		.4byte	0x198
+ 324 0186 00       		.byte	0
+ 325 0187 06       		.uleb128 0x6
+ 326 0188 04       		.byte	0x4
+ 327 0189 C7000000 		.4byte	0xc7
+ 328 018d 06       		.uleb128 0x6
+ 329 018e 04       		.byte	0x4
+ 330 018f 93010000 		.4byte	0x193
+ 331 0193 0E       		.uleb128 0xe
+ 332 0194 5D000000 		.4byte	0x5d
+ 333 0198 0F       		.uleb128 0xf
+ 334 0199 35010000 		.4byte	.LASF30
+ 335 019d 35010000 		.4byte	.LASF30
+ 336 01a1 03       		.byte	0x3
+ 337 01a2 1C       		.byte	0x1c
+ 338 01a3 00       		.byte	0
+ 339              		.section	.debug_abbrev,"",%progbits
+ 340              	.Ldebug_abbrev0:
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccWoqQL4.s 			page 8
+
+
+ 341 0000 01       		.uleb128 0x1
+ 342 0001 11       		.uleb128 0x11
+ 343 0002 01       		.byte	0x1
+ 344 0003 25       		.uleb128 0x25
+ 345 0004 0E       		.uleb128 0xe
+ 346 0005 13       		.uleb128 0x13
+ 347 0006 0B       		.uleb128 0xb
+ 348 0007 03       		.uleb128 0x3
+ 349 0008 0E       		.uleb128 0xe
+ 350 0009 1B       		.uleb128 0x1b
+ 351 000a 0E       		.uleb128 0xe
+ 352 000b 55       		.uleb128 0x55
+ 353 000c 17       		.uleb128 0x17
+ 354 000d 11       		.uleb128 0x11
+ 355 000e 01       		.uleb128 0x1
+ 356 000f 10       		.uleb128 0x10
+ 357 0010 17       		.uleb128 0x17
+ 358 0011 00       		.byte	0
+ 359 0012 00       		.byte	0
+ 360 0013 02       		.uleb128 0x2
+ 361 0014 24       		.uleb128 0x24
+ 362 0015 00       		.byte	0
+ 363 0016 0B       		.uleb128 0xb
+ 364 0017 0B       		.uleb128 0xb
+ 365 0018 3E       		.uleb128 0x3e
+ 366 0019 0B       		.uleb128 0xb
+ 367 001a 03       		.uleb128 0x3
+ 368 001b 0E       		.uleb128 0xe
+ 369 001c 00       		.byte	0
+ 370 001d 00       		.byte	0
+ 371 001e 03       		.uleb128 0x3
+ 372 001f 24       		.uleb128 0x24
+ 373 0020 00       		.byte	0
+ 374 0021 0B       		.uleb128 0xb
+ 375 0022 0B       		.uleb128 0xb
+ 376 0023 3E       		.uleb128 0x3e
+ 377 0024 0B       		.uleb128 0xb
+ 378 0025 03       		.uleb128 0x3
+ 379 0026 08       		.uleb128 0x8
+ 380 0027 00       		.byte	0
+ 381 0028 00       		.byte	0
+ 382 0029 04       		.uleb128 0x4
+ 383 002a 13       		.uleb128 0x13
+ 384 002b 01       		.byte	0x1
+ 385 002c 03       		.uleb128 0x3
+ 386 002d 0E       		.uleb128 0xe
+ 387 002e 0B       		.uleb128 0xb
+ 388 002f 0B       		.uleb128 0xb
+ 389 0030 3A       		.uleb128 0x3a
+ 390 0031 0B       		.uleb128 0xb
+ 391 0032 3B       		.uleb128 0x3b
+ 392 0033 0B       		.uleb128 0xb
+ 393 0034 01       		.uleb128 0x1
+ 394 0035 13       		.uleb128 0x13
+ 395 0036 00       		.byte	0
+ 396 0037 00       		.byte	0
+ 397 0038 05       		.uleb128 0x5
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccWoqQL4.s 			page 9
+
+
+ 398 0039 0D       		.uleb128 0xd
+ 399 003a 00       		.byte	0
+ 400 003b 03       		.uleb128 0x3
+ 401 003c 0E       		.uleb128 0xe
+ 402 003d 3A       		.uleb128 0x3a
+ 403 003e 0B       		.uleb128 0xb
+ 404 003f 3B       		.uleb128 0x3b
+ 405 0040 0B       		.uleb128 0xb
+ 406 0041 49       		.uleb128 0x49
+ 407 0042 13       		.uleb128 0x13
+ 408 0043 38       		.uleb128 0x38
+ 409 0044 0B       		.uleb128 0xb
+ 410 0045 00       		.byte	0
+ 411 0046 00       		.byte	0
+ 412 0047 06       		.uleb128 0x6
+ 413 0048 0F       		.uleb128 0xf
+ 414 0049 00       		.byte	0
+ 415 004a 0B       		.uleb128 0xb
+ 416 004b 0B       		.uleb128 0xb
+ 417 004c 49       		.uleb128 0x49
+ 418 004d 13       		.uleb128 0x13
+ 419 004e 00       		.byte	0
+ 420 004f 00       		.byte	0
+ 421 0050 07       		.uleb128 0x7
+ 422 0051 16       		.uleb128 0x16
+ 423 0052 00       		.byte	0
+ 424 0053 03       		.uleb128 0x3
+ 425 0054 0E       		.uleb128 0xe
+ 426 0055 3A       		.uleb128 0x3a
+ 427 0056 0B       		.uleb128 0xb
+ 428 0057 3B       		.uleb128 0x3b
+ 429 0058 0B       		.uleb128 0xb
+ 430 0059 49       		.uleb128 0x49
+ 431 005a 13       		.uleb128 0x13
+ 432 005b 00       		.byte	0
+ 433 005c 00       		.byte	0
+ 434 005d 08       		.uleb128 0x8
+ 435 005e 2E       		.uleb128 0x2e
+ 436 005f 01       		.byte	0x1
+ 437 0060 3F       		.uleb128 0x3f
+ 438 0061 19       		.uleb128 0x19
+ 439 0062 03       		.uleb128 0x3
+ 440 0063 0E       		.uleb128 0xe
+ 441 0064 3A       		.uleb128 0x3a
+ 442 0065 0B       		.uleb128 0xb
+ 443 0066 3B       		.uleb128 0x3b
+ 444 0067 0B       		.uleb128 0xb
+ 445 0068 27       		.uleb128 0x27
+ 446 0069 19       		.uleb128 0x19
+ 447 006a 11       		.uleb128 0x11
+ 448 006b 01       		.uleb128 0x1
+ 449 006c 12       		.uleb128 0x12
+ 450 006d 06       		.uleb128 0x6
+ 451 006e 40       		.uleb128 0x40
+ 452 006f 18       		.uleb128 0x18
+ 453 0070 9742     		.uleb128 0x2117
+ 454 0072 19       		.uleb128 0x19
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccWoqQL4.s 			page 10
+
+
+ 455 0073 01       		.uleb128 0x1
+ 456 0074 13       		.uleb128 0x13
+ 457 0075 00       		.byte	0
+ 458 0076 00       		.byte	0
+ 459 0077 09       		.uleb128 0x9
+ 460 0078 05       		.uleb128 0x5
+ 461 0079 00       		.byte	0
+ 462 007a 03       		.uleb128 0x3
+ 463 007b 08       		.uleb128 0x8
+ 464 007c 3A       		.uleb128 0x3a
+ 465 007d 0B       		.uleb128 0xb
+ 466 007e 3B       		.uleb128 0x3b
+ 467 007f 0B       		.uleb128 0xb
+ 468 0080 49       		.uleb128 0x49
+ 469 0081 13       		.uleb128 0x13
+ 470 0082 02       		.uleb128 0x2
+ 471 0083 17       		.uleb128 0x17
+ 472 0084 00       		.byte	0
+ 473 0085 00       		.byte	0
+ 474 0086 0A       		.uleb128 0xa
+ 475 0087 05       		.uleb128 0x5
+ 476 0088 00       		.byte	0
+ 477 0089 03       		.uleb128 0x3
+ 478 008a 0E       		.uleb128 0xe
+ 479 008b 3A       		.uleb128 0x3a
+ 480 008c 0B       		.uleb128 0xb
+ 481 008d 3B       		.uleb128 0x3b
+ 482 008e 0B       		.uleb128 0xb
+ 483 008f 49       		.uleb128 0x49
+ 484 0090 13       		.uleb128 0x13
+ 485 0091 02       		.uleb128 0x2
+ 486 0092 17       		.uleb128 0x17
+ 487 0093 00       		.byte	0
+ 488 0094 00       		.byte	0
+ 489 0095 0B       		.uleb128 0xb
+ 490 0096 34       		.uleb128 0x34
+ 491 0097 00       		.byte	0
+ 492 0098 03       		.uleb128 0x3
+ 493 0099 0E       		.uleb128 0xe
+ 494 009a 3A       		.uleb128 0x3a
+ 495 009b 0B       		.uleb128 0xb
+ 496 009c 3B       		.uleb128 0x3b
+ 497 009d 0B       		.uleb128 0xb
+ 498 009e 49       		.uleb128 0x49
+ 499 009f 13       		.uleb128 0x13
+ 500 00a0 02       		.uleb128 0x2
+ 501 00a1 17       		.uleb128 0x17
+ 502 00a2 00       		.byte	0
+ 503 00a3 00       		.byte	0
+ 504 00a4 0C       		.uleb128 0xc
+ 505 00a5 34       		.uleb128 0x34
+ 506 00a6 00       		.byte	0
+ 507 00a7 03       		.uleb128 0x3
+ 508 00a8 08       		.uleb128 0x8
+ 509 00a9 3A       		.uleb128 0x3a
+ 510 00aa 0B       		.uleb128 0xb
+ 511 00ab 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccWoqQL4.s 			page 11
+
+
+ 512 00ac 0B       		.uleb128 0xb
+ 513 00ad 49       		.uleb128 0x49
+ 514 00ae 13       		.uleb128 0x13
+ 515 00af 02       		.uleb128 0x2
+ 516 00b0 17       		.uleb128 0x17
+ 517 00b1 00       		.byte	0
+ 518 00b2 00       		.byte	0
+ 519 00b3 0D       		.uleb128 0xd
+ 520 00b4 898201   		.uleb128 0x4109
+ 521 00b7 00       		.byte	0
+ 522 00b8 11       		.uleb128 0x11
+ 523 00b9 01       		.uleb128 0x1
+ 524 00ba 9542     		.uleb128 0x2115
+ 525 00bc 19       		.uleb128 0x19
+ 526 00bd 31       		.uleb128 0x31
+ 527 00be 13       		.uleb128 0x13
+ 528 00bf 00       		.byte	0
+ 529 00c0 00       		.byte	0
+ 530 00c1 0E       		.uleb128 0xe
+ 531 00c2 26       		.uleb128 0x26
+ 532 00c3 00       		.byte	0
+ 533 00c4 49       		.uleb128 0x49
+ 534 00c5 13       		.uleb128 0x13
+ 535 00c6 00       		.byte	0
+ 536 00c7 00       		.byte	0
+ 537 00c8 0F       		.uleb128 0xf
+ 538 00c9 2E       		.uleb128 0x2e
+ 539 00ca 00       		.byte	0
+ 540 00cb 3F       		.uleb128 0x3f
+ 541 00cc 19       		.uleb128 0x19
+ 542 00cd 3C       		.uleb128 0x3c
+ 543 00ce 19       		.uleb128 0x19
+ 544 00cf 6E       		.uleb128 0x6e
+ 545 00d0 0E       		.uleb128 0xe
+ 546 00d1 03       		.uleb128 0x3
+ 547 00d2 0E       		.uleb128 0xe
+ 548 00d3 3A       		.uleb128 0x3a
+ 549 00d4 0B       		.uleb128 0xb
+ 550 00d5 3B       		.uleb128 0x3b
+ 551 00d6 0B       		.uleb128 0xb
+ 552 00d7 00       		.byte	0
+ 553 00d8 00       		.byte	0
+ 554 00d9 00       		.byte	0
+ 555              		.section	.debug_loc,"",%progbits
+ 556              	.Ldebug_loc0:
+ 557              	.LLST0:
+ 558 0000 00000000 		.4byte	.LVL0
+ 559 0004 61000000 		.4byte	.LVL15-1
+ 560 0008 0100     		.2byte	0x1
+ 561 000a 50       		.byte	0x50
+ 562 000b 61000000 		.4byte	.LVL15-1
+ 563 000f 62000000 		.4byte	.LFE0
+ 564 0013 0400     		.2byte	0x4
+ 565 0015 F3       		.byte	0xf3
+ 566 0016 01       		.uleb128 0x1
+ 567 0017 50       		.byte	0x50
+ 568 0018 9F       		.byte	0x9f
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccWoqQL4.s 			page 12
+
+
+ 569 0019 00000000 		.4byte	0
+ 570 001d 00000000 		.4byte	0
+ 571              	.LLST1:
+ 572 0021 00000000 		.4byte	.LVL0
+ 573 0025 10000000 		.4byte	.LVL2
+ 574 0029 0100     		.2byte	0x1
+ 575 002b 51       		.byte	0x51
+ 576 002c 10000000 		.4byte	.LVL2
+ 577 0030 12000000 		.4byte	.LVL3
+ 578 0034 0100     		.2byte	0x1
+ 579 0036 54       		.byte	0x54
+ 580 0037 12000000 		.4byte	.LVL3
+ 581 003b 5E000000 		.4byte	.LVL14
+ 582 003f 0100     		.2byte	0x1
+ 583 0041 58       		.byte	0x58
+ 584 0042 5E000000 		.4byte	.LVL14
+ 585 0046 62000000 		.4byte	.LFE0
+ 586 004a 0400     		.2byte	0x4
+ 587 004c F3       		.byte	0xf3
+ 588 004d 01       		.uleb128 0x1
+ 589 004e 51       		.byte	0x51
+ 590 004f 9F       		.byte	0x9f
+ 591 0050 00000000 		.4byte	0
+ 592 0054 00000000 		.4byte	0
+ 593              	.LLST2:
+ 594 0058 00000000 		.4byte	.LVL0
+ 595 005c 61000000 		.4byte	.LVL15-1
+ 596 0060 0100     		.2byte	0x1
+ 597 0062 52       		.byte	0x52
+ 598 0063 61000000 		.4byte	.LVL15-1
+ 599 0067 62000000 		.4byte	.LFE0
+ 600 006b 0400     		.2byte	0x4
+ 601 006d F3       		.byte	0xf3
+ 602 006e 01       		.uleb128 0x1
+ 603 006f 52       		.byte	0x52
+ 604 0070 9F       		.byte	0x9f
+ 605 0071 00000000 		.4byte	0
+ 606 0075 00000000 		.4byte	0
+ 607              	.LLST3:
+ 608 0079 0E000000 		.4byte	.LVL1
+ 609 007d 5E000000 		.4byte	.LVL14
+ 610 0081 0100     		.2byte	0x1
+ 611 0083 59       		.byte	0x59
+ 612 0084 5E000000 		.4byte	.LVL14
+ 613 0088 61000000 		.4byte	.LVL15-1
+ 614 008c 0200     		.2byte	0x2
+ 615 008e 70       		.byte	0x70
+ 616 008f 00       		.sleb128 0
+ 617 0090 00000000 		.4byte	0
+ 618 0094 00000000 		.4byte	0
+ 619              	.LLST4:
+ 620 0098 10000000 		.4byte	.LVL2
+ 621 009c 12000000 		.4byte	.LVL3
+ 622 00a0 0200     		.2byte	0x2
+ 623 00a2 30       		.byte	0x30
+ 624 00a3 9F       		.byte	0x9f
+ 625 00a4 12000000 		.4byte	.LVL3
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccWoqQL4.s 			page 13
+
+
+ 626 00a8 16000000 		.4byte	.LVL4
+ 627 00ac 0600     		.2byte	0x6
+ 628 00ae 74       		.byte	0x74
+ 629 00af 00       		.sleb128 0
+ 630 00b0 78       		.byte	0x78
+ 631 00b1 00       		.sleb128 0
+ 632 00b2 1C       		.byte	0x1c
+ 633 00b3 9F       		.byte	0x9f
+ 634 00b4 16000000 		.4byte	.LVL4
+ 635 00b8 1E000000 		.4byte	.LVL5
+ 636 00bc 0100     		.2byte	0x1
+ 637 00be 56       		.byte	0x56
+ 638 00bf 1E000000 		.4byte	.LVL5
+ 639 00c3 20000000 		.4byte	.LVL6
+ 640 00c7 0700     		.2byte	0x7
+ 641 00c9 78       		.byte	0x78
+ 642 00ca 00       		.sleb128 0
+ 643 00cb 20       		.byte	0x20
+ 644 00cc 74       		.byte	0x74
+ 645 00cd 00       		.sleb128 0
+ 646 00ce 22       		.byte	0x22
+ 647 00cf 9F       		.byte	0x9f
+ 648 00d0 22000000 		.4byte	.LVL7
+ 649 00d4 26000000 		.4byte	.LVL8
+ 650 00d8 0100     		.2byte	0x1
+ 651 00da 56       		.byte	0x56
+ 652 00db 26000000 		.4byte	.LVL8
+ 653 00df 2C000000 		.4byte	.LVL9
+ 654 00e3 0200     		.2byte	0x2
+ 655 00e5 30       		.byte	0x30
+ 656 00e6 9F       		.byte	0x9f
+ 657 00e7 2C000000 		.4byte	.LVL9
+ 658 00eb 5E000000 		.4byte	.LVL14
+ 659 00ef 0100     		.2byte	0x1
+ 660 00f1 54       		.byte	0x54
+ 661 00f2 00000000 		.4byte	0
+ 662 00f6 00000000 		.4byte	0
+ 663              	.LLST5:
+ 664 00fa 10000000 		.4byte	.LVL2
+ 665 00fe 12000000 		.4byte	.LVL3
+ 666 0102 0200     		.2byte	0x2
+ 667 0104 30       		.byte	0x30
+ 668 0105 9F       		.byte	0x9f
+ 669 0106 12000000 		.4byte	.LVL3
+ 670 010a 26000000 		.4byte	.LVL8
+ 671 010e 0100     		.2byte	0x1
+ 672 0110 53       		.byte	0x53
+ 673 0111 26000000 		.4byte	.LVL8
+ 674 0115 2C000000 		.4byte	.LVL9
+ 675 0119 0300     		.2byte	0x3
+ 676 011b 09       		.byte	0x9
+ 677 011c FF       		.byte	0xff
+ 678 011d 9F       		.byte	0x9f
+ 679 011e 2C000000 		.4byte	.LVL9
+ 680 0122 52000000 		.4byte	.LVL12
+ 681 0126 0100     		.2byte	0x1
+ 682 0128 5E       		.byte	0x5e
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccWoqQL4.s 			page 14
+
+
+ 683 0129 52000000 		.4byte	.LVL12
+ 684 012d 61000000 		.4byte	.LVL15-1
+ 685 0131 0100     		.2byte	0x1
+ 686 0133 51       		.byte	0x51
+ 687 0134 00000000 		.4byte	0
+ 688 0138 00000000 		.4byte	0
+ 689              	.LLST6:
+ 690 013c 10000000 		.4byte	.LVL2
+ 691 0140 61000000 		.4byte	.LVL15-1
+ 692 0144 0100     		.2byte	0x1
+ 693 0146 51       		.byte	0x51
+ 694 0147 00000000 		.4byte	0
+ 695 014b 00000000 		.4byte	0
+ 696              	.LLST7:
+ 697 014f 26000000 		.4byte	.LVL8
+ 698 0153 58000000 		.4byte	.LVL13
+ 699 0157 0100     		.2byte	0x1
+ 700 0159 53       		.byte	0x53
+ 701 015a 00000000 		.4byte	0
+ 702 015e 00000000 		.4byte	0
+ 703              		.section	.debug_aranges,"",%progbits
+ 704 0000 1C000000 		.4byte	0x1c
+ 705 0004 0200     		.2byte	0x2
+ 706 0006 00000000 		.4byte	.Ldebug_info0
+ 707 000a 04       		.byte	0x4
+ 708 000b 00       		.byte	0
+ 709 000c 0000     		.2byte	0
+ 710 000e 0000     		.2byte	0
+ 711 0010 00000000 		.4byte	.LFB0
+ 712 0014 62000000 		.4byte	.LFE0-.LFB0
+ 713 0018 00000000 		.4byte	0
+ 714 001c 00000000 		.4byte	0
+ 715              		.section	.debug_ranges,"",%progbits
+ 716              	.Ldebug_ranges0:
+ 717 0000 00000000 		.4byte	.LFB0
+ 718 0004 62000000 		.4byte	.LFE0
+ 719 0008 00000000 		.4byte	0
+ 720 000c 00000000 		.4byte	0
+ 721              		.section	.debug_line,"",%progbits
+ 722              	.Ldebug_line0:
+ 723 0000 AD000000 		.section	.debug_str,"MS",%progbits,1
+ 723      02006700 
+ 723      00000201 
+ 723      FB0E0D00 
+ 723      01010101 
+ 724              	.LASF12:
+ 725 0000 616C6C6F 		.ascii	"allocatedSize\000"
+ 725      63617465 
+ 725      6453697A 
+ 725      6500
+ 726              	.LASF14:
+ 727 000e 63616E46 		.ascii	"canFreeData\000"
+ 727      72656544 
+ 727      61746100 
+ 728              	.LASF28:
+ 729 001a 656D7841 		.ascii	"emxArray_real_T\000"
+ 729      72726179 
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccWoqQL4.s 			page 15
+
+
+ 729      5F726561 
+ 729      6C5F5400 
+ 730              	.LASF5:
+ 731 002a 666C6F61 		.ascii	"float\000"
+ 731      7400
+ 732              	.LASF10:
+ 733 0030 64617461 		.ascii	"data\000"
+ 733      00
+ 734              	.LASF11:
+ 735 0035 73697A65 		.ascii	"size\000"
+ 735      00
+ 736              	.LASF24:
+ 737 003a 6E786F75 		.ascii	"nxout\000"
+ 737      7400
+ 738              	.LASF29:
+ 739 0040 6E756C6C 		.ascii	"nullAssignment\000"
+ 739      41737369 
+ 739      676E6D65 
+ 739      6E7400
+ 740              	.LASF25:
+ 741 004f 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 741      43313120 
+ 741      352E342E 
+ 741      31203230 
+ 741      31363036 
+ 742 0082 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 742      20726576 
+ 742      6973696F 
+ 742      6E203233 
+ 742      37373135 
+ 743 00b5 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 743      66756E63 
+ 743      74696F6E 
+ 743      2D736563 
+ 743      74696F6E 
+ 744              	.LASF3:
+ 745 00dd 73686F72 		.ascii	"short unsigned int\000"
+ 745      7420756E 
+ 745      7369676E 
+ 745      65642069 
+ 745      6E7400
+ 746              	.LASF27:
+ 747 00f0 433A5C55 		.ascii	"C:\\Users\\jmspi\\OneDrive\\Documents\\GitHub\\ECE4"
+ 747      73657273 
+ 747      5C6A6D73 
+ 747      70695C4F 
+ 747      6E654472 
+ 748 011d 3139315C 		.ascii	"191\\DeliveryRobot.cydsn\000"
+ 748      44656C69 
+ 748      76657279 
+ 748      526F626F 
+ 748      742E6379 
+ 749              	.LASF30:
+ 750 0135 656D7845 		.ascii	"emxEnsureCapacity_real_T\000"
+ 750      6E737572 
+ 750      65436170 
+ 750      61636974 
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccWoqQL4.s 			page 16
+
+
+ 750      795F7265 
+ 751              	.LASF1:
+ 752 014e 756E7369 		.ascii	"unsigned char\000"
+ 752      676E6564 
+ 752      20636861 
+ 752      7200
+ 753              	.LASF6:
+ 754 015c 646F7562 		.ascii	"double\000"
+ 754      6C6500
+ 755              	.LASF13:
+ 756 0163 6E756D44 		.ascii	"numDimensions\000"
+ 756      696D656E 
+ 756      73696F6E 
+ 756      7300
+ 757              	.LASF21:
+ 758 0171 6964785F 		.ascii	"idx_size\000"
+ 758      73697A65 
+ 758      00
+ 759              	.LASF8:
+ 760 017a 6C6F6E67 		.ascii	"long unsigned int\000"
+ 760      20756E73 
+ 760      69676E65 
+ 760      6420696E 
+ 760      7400
+ 761              	.LASF4:
+ 762 018c 756E7369 		.ascii	"unsigned int\000"
+ 762      676E6564 
+ 762      20696E74 
+ 762      00
+ 763              	.LASF18:
+ 764 0199 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 764      206C6F6E 
+ 764      6720756E 
+ 764      7369676E 
+ 764      65642069 
+ 765              	.LASF26:
+ 766 01b0 5646482B 		.ascii	"VFH+\\src\\nullAssignment.c\000"
+ 766      5C737263 
+ 766      5C6E756C 
+ 766      6C417373 
+ 766      69676E6D 
+ 767              	.LASF23:
+ 768 01ca 6E78696E 		.ascii	"nxin\000"
+ 768      00
+ 769              	.LASF19:
+ 770 01cf 73697A65 		.ascii	"sizetype\000"
+ 770      74797065 
+ 770      00
+ 771              	.LASF20:
+ 772 01d8 6964785F 		.ascii	"idx_data\000"
+ 772      64617461 
+ 772      00
+ 773              	.LASF15:
+ 774 01e1 6C6F6E67 		.ascii	"long long int\000"
+ 774      206C6F6E 
+ 774      6720696E 
+ 774      7400
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccWoqQL4.s 			page 17
+
+
+ 775              	.LASF9:
+ 776 01ef 63686172 		.ascii	"char\000"
+ 776      00
+ 777              	.LASF2:
+ 778 01f4 73686F72 		.ascii	"short int\000"
+ 778      7420696E 
+ 778      7400
+ 779              	.LASF17:
+ 780 01fe 6C6F6E67 		.ascii	"long int\000"
+ 780      20696E74 
+ 780      00
+ 781              	.LASF16:
+ 782 0207 6C6F6E67 		.ascii	"long double\000"
+ 782      20646F75 
+ 782      626C6500 
+ 783              	.LASF0:
+ 784 0213 7369676E 		.ascii	"signed char\000"
+ 784      65642063 
+ 784      68617200 
+ 785              	.LASF7:
+ 786 021f 5F426F6F 		.ascii	"_Bool\000"
+ 786      6C00
+ 787              	.LASF22:
+ 788 0225 785F6461 		.ascii	"x_data\000"
+ 788      746100
+ 789              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

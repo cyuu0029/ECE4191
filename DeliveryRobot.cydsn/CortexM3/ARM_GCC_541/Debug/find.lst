@@ -1,0 +1,659 @@
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccA1RXZg.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"find.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	__aeabi_dcmpeq
+  20              		.section	.text.eml_find,"ax",%progbits
+  21              		.align	1
+  22              		.global	eml_find
+  23              		.thumb
+  24              		.thumb_func
+  25              		.type	eml_find, %function
+  26              	eml_find:
+  27              	.LFB0:
+  28              		.file 1 "VFH+\\src\\find.c"
+   1:VFH+\src/find.c **** /*
+   2:VFH+\src/find.c ****  * Academic License - for use in teaching, academic research, and meeting
+   3:VFH+\src/find.c ****  * course requirements at degree granting institutions only.  Not for
+   4:VFH+\src/find.c ****  * government, commercial, or other organizational use.
+   5:VFH+\src/find.c ****  * File: find.c
+   6:VFH+\src/find.c ****  *
+   7:VFH+\src/find.c ****  * MATLAB Coder version            : 5.3
+   8:VFH+\src/find.c ****  * C/C++ source code generated on  : 30-Aug-2023 22:51:35
+   9:VFH+\src/find.c ****  */
+  10:VFH+\src/find.c **** 
+  11:VFH+\src/find.c **** /* Include Files */
+  12:VFH+\src/find.c **** #include "find.h"
+  13:VFH+\src/find.c **** #include "rt_nonfinite.h"
+  14:VFH+\src/find.c **** 
+  15:VFH+\src/find.c **** /* Function Definitions */
+  16:VFH+\src/find.c **** /*
+  17:VFH+\src/find.c ****  * Arguments    : const double x[181]
+  18:VFH+\src/find.c ****  *                int i_data[]
+  19:VFH+\src/find.c ****  *                int i_size[2]
+  20:VFH+\src/find.c ****  * Return Type  : void
+  21:VFH+\src/find.c ****  */
+  22:VFH+\src/find.c **** void eml_find(const double x[181], int i_data[], int i_size[2])
+  23:VFH+\src/find.c **** {
+  29              		.loc 1 23 0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              	.LVL0:
+  34 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccA1RXZg.s 			page 2
+
+
+  35              		.cfi_def_cfa_offset 24
+  36              		.cfi_offset 4, -24
+  37              		.cfi_offset 5, -20
+  38              		.cfi_offset 6, -16
+  39              		.cfi_offset 7, -12
+  40              		.cfi_offset 8, -8
+  41              		.cfi_offset 14, -4
+  42              		.loc 1 23 0
+  43 0004 8846     		mov	r8, r1
+  44 0006 1646     		mov	r6, r2
+  24:VFH+\src/find.c ****   int idx;
+  25:VFH+\src/find.c ****   int ii;
+  26:VFH+\src/find.c ****   bool exitg1;
+  27:VFH+\src/find.c ****   idx = 0;
+  28:VFH+\src/find.c ****   i_size[0] = 1;
+  45              		.loc 1 28 0
+  46 0008 0125     		movs	r5, #1
+  47 000a 1560     		str	r5, [r2]
+  48              	.LVL1:
+  49 000c A0F10807 		sub	r7, r0, #8
+  27:VFH+\src/find.c ****   i_size[0] = 1;
+  50              		.loc 1 27 0
+  51 0010 0024     		movs	r4, #0
+  52              	.LVL2:
+  53              	.L6:
+  29:VFH+\src/find.c ****   ii = 0;
+  30:VFH+\src/find.c ****   exitg1 = false;
+  31:VFH+\src/find.c ****   while ((!exitg1) && (ii < 181)) {
+  32:VFH+\src/find.c ****     if (x[ii] != 0.0) {
+  54              		.loc 1 32 0
+  55 0012 0022     		movs	r2, #0
+  56 0014 0023     		movs	r3, #0
+  57 0016 F7E90201 		ldrd	r0, [r7, #8]!
+  58 001a FFF7FEFF 		bl	__aeabi_dcmpeq
+  59              	.LVL3:
+  60 001e 38B9     		cbnz	r0, .L2
+  33:VFH+\src/find.c ****       idx++;
+  61              		.loc 1 33 0
+  62 0020 0134     		adds	r4, r4, #1
+  63              	.LVL4:
+  34:VFH+\src/find.c ****       i_data[idx - 1] = ii + 1;
+  64              		.loc 1 34 0
+  65 0022 04F18043 		add	r3, r4, #1073741824
+  66 0026 013B     		subs	r3, r3, #1
+  35:VFH+\src/find.c ****       if (idx >= 181) {
+  67              		.loc 1 35 0
+  68 0028 B42C     		cmp	r4, #180
+  34:VFH+\src/find.c ****       i_data[idx - 1] = ii + 1;
+  69              		.loc 1 34 0
+  70 002a 48F82350 		str	r5, [r8, r3, lsl #2]
+  71              		.loc 1 35 0
+  72 002e 02DC     		bgt	.L4
+  73              	.L2:
+  74              	.LVL5:
+  75 0030 0135     		adds	r5, r5, #1
+  76              	.LVL6:
+  31:VFH+\src/find.c ****     if (x[ii] != 0.0) {
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccA1RXZg.s 			page 3
+
+
+  77              		.loc 1 31 0
+  78 0032 B62D     		cmp	r5, #182
+  79 0034 EDD1     		bne	.L6
+  80              	.LVL7:
+  81              	.L4:
+  36:VFH+\src/find.c ****         exitg1 = true;
+  37:VFH+\src/find.c ****       } else {
+  38:VFH+\src/find.c ****         ii++;
+  39:VFH+\src/find.c ****       }
+  40:VFH+\src/find.c ****     } else {
+  41:VFH+\src/find.c ****       ii++;
+  42:VFH+\src/find.c ****     }
+  43:VFH+\src/find.c ****   }
+  44:VFH+\src/find.c ****   if (1 > idx) {
+  45:VFH+\src/find.c ****     i_size[1] = 0;
+  46:VFH+\src/find.c ****   } else {
+  47:VFH+\src/find.c ****     i_size[1] = idx;
+  82              		.loc 1 47 0
+  83 0036 7460     		str	r4, [r6, #4]
+  48:VFH+\src/find.c ****   }
+  49:VFH+\src/find.c **** }
+  84              		.loc 1 49 0
+  85 0038 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+  86              		.cfi_endproc
+  87              	.LFE0:
+  88              		.size	eml_find, .-eml_find
+  89              		.text
+  90              	.Letext0:
+  91              		.section	.debug_info,"",%progbits
+  92              	.Ldebug_info0:
+  93 0000 0D010000 		.4byte	0x10d
+  94 0004 0400     		.2byte	0x4
+  95 0006 00000000 		.4byte	.Ldebug_abbrev0
+  96 000a 04       		.byte	0x4
+  97 000b 01       		.uleb128 0x1
+  98 000c D6000000 		.4byte	.LASF18
+  99 0010 0C       		.byte	0xc
+ 100 0011 A2010000 		.4byte	.LASF19
+ 101 0015 6F000000 		.4byte	.LASF20
+ 102 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 103 001d 00000000 		.4byte	0
+ 104 0021 00000000 		.4byte	.Ldebug_line0
+ 105 0025 02       		.uleb128 0x2
+ 106 0026 01       		.byte	0x1
+ 107 0027 06       		.byte	0x6
+ 108 0028 77010000 		.4byte	.LASF0
+ 109 002c 02       		.uleb128 0x2
+ 110 002d 01       		.byte	0x1
+ 111 002e 08       		.byte	0x8
+ 112 002f 1B000000 		.4byte	.LASF1
+ 113 0033 02       		.uleb128 0x2
+ 114 0034 02       		.byte	0x2
+ 115 0035 05       		.byte	0x5
+ 116 0036 8F010000 		.4byte	.LASF2
+ 117 003a 02       		.uleb128 0x2
+ 118 003b 02       		.byte	0x2
+ 119 003c 07       		.byte	0x7
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccA1RXZg.s 			page 4
+
+
+ 120 003d 64010000 		.4byte	.LASF3
+ 121 0041 03       		.uleb128 0x3
+ 122 0042 04       		.byte	0x4
+ 123 0043 05       		.byte	0x5
+ 124 0044 696E7400 		.ascii	"int\000"
+ 125 0048 02       		.uleb128 0x2
+ 126 0049 04       		.byte	0x4
+ 127 004a 07       		.byte	0x7
+ 128 004b 0E000000 		.4byte	.LASF4
+ 129 004f 02       		.uleb128 0x2
+ 130 0050 04       		.byte	0x4
+ 131 0051 04       		.byte	0x4
+ 132 0052 69000000 		.4byte	.LASF5
+ 133 0056 02       		.uleb128 0x2
+ 134 0057 08       		.byte	0x8
+ 135 0058 04       		.byte	0x4
+ 136 0059 C8000000 		.4byte	.LASF6
+ 137 005d 02       		.uleb128 0x2
+ 138 005e 01       		.byte	0x1
+ 139 005f 02       		.byte	0x2
+ 140 0060 B4000000 		.4byte	.LASF7
+ 141 0064 02       		.uleb128 0x2
+ 142 0065 04       		.byte	0x4
+ 143 0066 07       		.byte	0x7
+ 144 0067 40000000 		.4byte	.LASF8
+ 145 006b 02       		.uleb128 0x2
+ 146 006c 01       		.byte	0x1
+ 147 006d 08       		.byte	0x8
+ 148 006e BA000000 		.4byte	.LASF9
+ 149 0072 02       		.uleb128 0x2
+ 150 0073 08       		.byte	0x8
+ 151 0074 05       		.byte	0x5
+ 152 0075 00000000 		.4byte	.LASF10
+ 153 0079 02       		.uleb128 0x2
+ 154 007a 08       		.byte	0x8
+ 155 007b 04       		.byte	0x4
+ 156 007c 83010000 		.4byte	.LASF11
+ 157 0080 02       		.uleb128 0x2
+ 158 0081 04       		.byte	0x4
+ 159 0082 05       		.byte	0x5
+ 160 0083 BF000000 		.4byte	.LASF12
+ 161 0087 02       		.uleb128 0x2
+ 162 0088 08       		.byte	0x8
+ 163 0089 07       		.byte	0x7
+ 164 008a 52000000 		.4byte	.LASF13
+ 165 008e 02       		.uleb128 0x2
+ 166 008f 04       		.byte	0x4
+ 167 0090 07       		.byte	0x7
+ 168 0091 99010000 		.4byte	.LASF14
+ 169 0095 04       		.uleb128 0x4
+ 170 0096 37000000 		.4byte	.LASF21
+ 171 009a 01       		.byte	0x1
+ 172 009b 16       		.byte	0x16
+ 173 009c 00000000 		.4byte	.LFB0
+ 174 00a0 3C000000 		.4byte	.LFE0-.LFB0
+ 175 00a4 01       		.uleb128 0x1
+ 176 00a5 9C       		.byte	0x9c
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccA1RXZg.s 			page 5
+
+
+ 177 00a6 FF000000 		.4byte	0xff
+ 178 00aa 05       		.uleb128 0x5
+ 179 00ab 7800     		.ascii	"x\000"
+ 180 00ad 01       		.byte	0x1
+ 181 00ae 16       		.byte	0x16
+ 182 00af FF000000 		.4byte	0xff
+ 183 00b3 00000000 		.4byte	.LLST0
+ 184 00b7 06       		.uleb128 0x6
+ 185 00b8 29000000 		.4byte	.LASF15
+ 186 00bc 01       		.byte	0x1
+ 187 00bd 16       		.byte	0x16
+ 188 00be 0A010000 		.4byte	0x10a
+ 189 00c2 21000000 		.4byte	.LLST1
+ 190 00c6 06       		.uleb128 0x6
+ 191 00c7 CF000000 		.4byte	.LASF16
+ 192 00cb 01       		.byte	0x1
+ 193 00cc 16       		.byte	0x16
+ 194 00cd 0A010000 		.4byte	0x10a
+ 195 00d1 3F000000 		.4byte	.LLST2
+ 196 00d5 07       		.uleb128 0x7
+ 197 00d6 69647800 		.ascii	"idx\000"
+ 198 00da 01       		.byte	0x1
+ 199 00db 18       		.byte	0x18
+ 200 00dc 41000000 		.4byte	0x41
+ 201 00e0 5D000000 		.4byte	.LLST3
+ 202 00e4 07       		.uleb128 0x7
+ 203 00e5 696900   		.ascii	"ii\000"
+ 204 00e8 01       		.byte	0x1
+ 205 00e9 19       		.byte	0x19
+ 206 00ea 41000000 		.4byte	0x41
+ 207 00ee 7C000000 		.4byte	.LLST4
+ 208 00f2 08       		.uleb128 0x8
+ 209 00f3 30000000 		.4byte	.LASF17
+ 210 00f7 01       		.byte	0x1
+ 211 00f8 1A       		.byte	0x1a
+ 212 00f9 5D000000 		.4byte	0x5d
+ 213 00fd 00       		.byte	0
+ 214 00fe 00       		.byte	0
+ 215 00ff 09       		.uleb128 0x9
+ 216 0100 04       		.byte	0x4
+ 217 0101 05010000 		.4byte	0x105
+ 218 0105 0A       		.uleb128 0xa
+ 219 0106 56000000 		.4byte	0x56
+ 220 010a 09       		.uleb128 0x9
+ 221 010b 04       		.byte	0x4
+ 222 010c 41000000 		.4byte	0x41
+ 223 0110 00       		.byte	0
+ 224              		.section	.debug_abbrev,"",%progbits
+ 225              	.Ldebug_abbrev0:
+ 226 0000 01       		.uleb128 0x1
+ 227 0001 11       		.uleb128 0x11
+ 228 0002 01       		.byte	0x1
+ 229 0003 25       		.uleb128 0x25
+ 230 0004 0E       		.uleb128 0xe
+ 231 0005 13       		.uleb128 0x13
+ 232 0006 0B       		.uleb128 0xb
+ 233 0007 03       		.uleb128 0x3
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccA1RXZg.s 			page 6
+
+
+ 234 0008 0E       		.uleb128 0xe
+ 235 0009 1B       		.uleb128 0x1b
+ 236 000a 0E       		.uleb128 0xe
+ 237 000b 55       		.uleb128 0x55
+ 238 000c 17       		.uleb128 0x17
+ 239 000d 11       		.uleb128 0x11
+ 240 000e 01       		.uleb128 0x1
+ 241 000f 10       		.uleb128 0x10
+ 242 0010 17       		.uleb128 0x17
+ 243 0011 00       		.byte	0
+ 244 0012 00       		.byte	0
+ 245 0013 02       		.uleb128 0x2
+ 246 0014 24       		.uleb128 0x24
+ 247 0015 00       		.byte	0
+ 248 0016 0B       		.uleb128 0xb
+ 249 0017 0B       		.uleb128 0xb
+ 250 0018 3E       		.uleb128 0x3e
+ 251 0019 0B       		.uleb128 0xb
+ 252 001a 03       		.uleb128 0x3
+ 253 001b 0E       		.uleb128 0xe
+ 254 001c 00       		.byte	0
+ 255 001d 00       		.byte	0
+ 256 001e 03       		.uleb128 0x3
+ 257 001f 24       		.uleb128 0x24
+ 258 0020 00       		.byte	0
+ 259 0021 0B       		.uleb128 0xb
+ 260 0022 0B       		.uleb128 0xb
+ 261 0023 3E       		.uleb128 0x3e
+ 262 0024 0B       		.uleb128 0xb
+ 263 0025 03       		.uleb128 0x3
+ 264 0026 08       		.uleb128 0x8
+ 265 0027 00       		.byte	0
+ 266 0028 00       		.byte	0
+ 267 0029 04       		.uleb128 0x4
+ 268 002a 2E       		.uleb128 0x2e
+ 269 002b 01       		.byte	0x1
+ 270 002c 3F       		.uleb128 0x3f
+ 271 002d 19       		.uleb128 0x19
+ 272 002e 03       		.uleb128 0x3
+ 273 002f 0E       		.uleb128 0xe
+ 274 0030 3A       		.uleb128 0x3a
+ 275 0031 0B       		.uleb128 0xb
+ 276 0032 3B       		.uleb128 0x3b
+ 277 0033 0B       		.uleb128 0xb
+ 278 0034 27       		.uleb128 0x27
+ 279 0035 19       		.uleb128 0x19
+ 280 0036 11       		.uleb128 0x11
+ 281 0037 01       		.uleb128 0x1
+ 282 0038 12       		.uleb128 0x12
+ 283 0039 06       		.uleb128 0x6
+ 284 003a 40       		.uleb128 0x40
+ 285 003b 18       		.uleb128 0x18
+ 286 003c 9642     		.uleb128 0x2116
+ 287 003e 19       		.uleb128 0x19
+ 288 003f 01       		.uleb128 0x1
+ 289 0040 13       		.uleb128 0x13
+ 290 0041 00       		.byte	0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccA1RXZg.s 			page 7
+
+
+ 291 0042 00       		.byte	0
+ 292 0043 05       		.uleb128 0x5
+ 293 0044 05       		.uleb128 0x5
+ 294 0045 00       		.byte	0
+ 295 0046 03       		.uleb128 0x3
+ 296 0047 08       		.uleb128 0x8
+ 297 0048 3A       		.uleb128 0x3a
+ 298 0049 0B       		.uleb128 0xb
+ 299 004a 3B       		.uleb128 0x3b
+ 300 004b 0B       		.uleb128 0xb
+ 301 004c 49       		.uleb128 0x49
+ 302 004d 13       		.uleb128 0x13
+ 303 004e 02       		.uleb128 0x2
+ 304 004f 17       		.uleb128 0x17
+ 305 0050 00       		.byte	0
+ 306 0051 00       		.byte	0
+ 307 0052 06       		.uleb128 0x6
+ 308 0053 05       		.uleb128 0x5
+ 309 0054 00       		.byte	0
+ 310 0055 03       		.uleb128 0x3
+ 311 0056 0E       		.uleb128 0xe
+ 312 0057 3A       		.uleb128 0x3a
+ 313 0058 0B       		.uleb128 0xb
+ 314 0059 3B       		.uleb128 0x3b
+ 315 005a 0B       		.uleb128 0xb
+ 316 005b 49       		.uleb128 0x49
+ 317 005c 13       		.uleb128 0x13
+ 318 005d 02       		.uleb128 0x2
+ 319 005e 17       		.uleb128 0x17
+ 320 005f 00       		.byte	0
+ 321 0060 00       		.byte	0
+ 322 0061 07       		.uleb128 0x7
+ 323 0062 34       		.uleb128 0x34
+ 324 0063 00       		.byte	0
+ 325 0064 03       		.uleb128 0x3
+ 326 0065 08       		.uleb128 0x8
+ 327 0066 3A       		.uleb128 0x3a
+ 328 0067 0B       		.uleb128 0xb
+ 329 0068 3B       		.uleb128 0x3b
+ 330 0069 0B       		.uleb128 0xb
+ 331 006a 49       		.uleb128 0x49
+ 332 006b 13       		.uleb128 0x13
+ 333 006c 02       		.uleb128 0x2
+ 334 006d 17       		.uleb128 0x17
+ 335 006e 00       		.byte	0
+ 336 006f 00       		.byte	0
+ 337 0070 08       		.uleb128 0x8
+ 338 0071 34       		.uleb128 0x34
+ 339 0072 00       		.byte	0
+ 340 0073 03       		.uleb128 0x3
+ 341 0074 0E       		.uleb128 0xe
+ 342 0075 3A       		.uleb128 0x3a
+ 343 0076 0B       		.uleb128 0xb
+ 344 0077 3B       		.uleb128 0x3b
+ 345 0078 0B       		.uleb128 0xb
+ 346 0079 49       		.uleb128 0x49
+ 347 007a 13       		.uleb128 0x13
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccA1RXZg.s 			page 8
+
+
+ 348 007b 1C       		.uleb128 0x1c
+ 349 007c 0B       		.uleb128 0xb
+ 350 007d 00       		.byte	0
+ 351 007e 00       		.byte	0
+ 352 007f 09       		.uleb128 0x9
+ 353 0080 0F       		.uleb128 0xf
+ 354 0081 00       		.byte	0
+ 355 0082 0B       		.uleb128 0xb
+ 356 0083 0B       		.uleb128 0xb
+ 357 0084 49       		.uleb128 0x49
+ 358 0085 13       		.uleb128 0x13
+ 359 0086 00       		.byte	0
+ 360 0087 00       		.byte	0
+ 361 0088 0A       		.uleb128 0xa
+ 362 0089 26       		.uleb128 0x26
+ 363 008a 00       		.byte	0
+ 364 008b 49       		.uleb128 0x49
+ 365 008c 13       		.uleb128 0x13
+ 366 008d 00       		.byte	0
+ 367 008e 00       		.byte	0
+ 368 008f 00       		.byte	0
+ 369              		.section	.debug_loc,"",%progbits
+ 370              	.Ldebug_loc0:
+ 371              	.LLST0:
+ 372 0000 00000000 		.4byte	.LVL0
+ 373 0004 12000000 		.4byte	.LVL2
+ 374 0008 0100     		.2byte	0x1
+ 375 000a 50       		.byte	0x50
+ 376 000b 12000000 		.4byte	.LVL2
+ 377 000f 3C000000 		.4byte	.LFE0
+ 378 0013 0400     		.2byte	0x4
+ 379 0015 F3       		.byte	0xf3
+ 380 0016 01       		.uleb128 0x1
+ 381 0017 50       		.byte	0x50
+ 382 0018 9F       		.byte	0x9f
+ 383 0019 00000000 		.4byte	0
+ 384 001d 00000000 		.4byte	0
+ 385              	.LLST1:
+ 386 0021 00000000 		.4byte	.LVL0
+ 387 0025 12000000 		.4byte	.LVL2
+ 388 0029 0100     		.2byte	0x1
+ 389 002b 51       		.byte	0x51
+ 390 002c 12000000 		.4byte	.LVL2
+ 391 0030 3C000000 		.4byte	.LFE0
+ 392 0034 0100     		.2byte	0x1
+ 393 0036 58       		.byte	0x58
+ 394 0037 00000000 		.4byte	0
+ 395 003b 00000000 		.4byte	0
+ 396              	.LLST2:
+ 397 003f 00000000 		.4byte	.LVL0
+ 398 0043 12000000 		.4byte	.LVL2
+ 399 0047 0100     		.2byte	0x1
+ 400 0049 52       		.byte	0x52
+ 401 004a 12000000 		.4byte	.LVL2
+ 402 004e 3C000000 		.4byte	.LFE0
+ 403 0052 0100     		.2byte	0x1
+ 404 0054 56       		.byte	0x56
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccA1RXZg.s 			page 9
+
+
+ 405 0055 00000000 		.4byte	0
+ 406 0059 00000000 		.4byte	0
+ 407              	.LLST3:
+ 408 005d 00000000 		.4byte	.LVL0
+ 409 0061 12000000 		.4byte	.LVL2
+ 410 0065 0200     		.2byte	0x2
+ 411 0067 30       		.byte	0x30
+ 412 0068 9F       		.byte	0x9f
+ 413 0069 12000000 		.4byte	.LVL2
+ 414 006d 3C000000 		.4byte	.LFE0
+ 415 0071 0100     		.2byte	0x1
+ 416 0073 54       		.byte	0x54
+ 417 0074 00000000 		.4byte	0
+ 418 0078 00000000 		.4byte	0
+ 419              	.LLST4:
+ 420 007c 0C000000 		.4byte	.LVL1
+ 421 0080 12000000 		.4byte	.LVL2
+ 422 0084 0200     		.2byte	0x2
+ 423 0086 30       		.byte	0x30
+ 424 0087 9F       		.byte	0x9f
+ 425 0088 12000000 		.4byte	.LVL2
+ 426 008c 30000000 		.4byte	.LVL5
+ 427 0090 0300     		.2byte	0x3
+ 428 0092 75       		.byte	0x75
+ 429 0093 7F       		.sleb128 -1
+ 430 0094 9F       		.byte	0x9f
+ 431 0095 32000000 		.4byte	.LVL6
+ 432 0099 36000000 		.4byte	.LVL7
+ 433 009d 0300     		.2byte	0x3
+ 434 009f 75       		.byte	0x75
+ 435 00a0 7F       		.sleb128 -1
+ 436 00a1 9F       		.byte	0x9f
+ 437 00a2 00000000 		.4byte	0
+ 438 00a6 00000000 		.4byte	0
+ 439              		.section	.debug_aranges,"",%progbits
+ 440 0000 1C000000 		.4byte	0x1c
+ 441 0004 0200     		.2byte	0x2
+ 442 0006 00000000 		.4byte	.Ldebug_info0
+ 443 000a 04       		.byte	0x4
+ 444 000b 00       		.byte	0
+ 445 000c 0000     		.2byte	0
+ 446 000e 0000     		.2byte	0
+ 447 0010 00000000 		.4byte	.LFB0
+ 448 0014 3C000000 		.4byte	.LFE0-.LFB0
+ 449 0018 00000000 		.4byte	0
+ 450 001c 00000000 		.4byte	0
+ 451              		.section	.debug_ranges,"",%progbits
+ 452              	.Ldebug_ranges0:
+ 453 0000 00000000 		.4byte	.LFB0
+ 454 0004 3C000000 		.4byte	.LFE0
+ 455 0008 00000000 		.4byte	0
+ 456 000c 00000000 		.4byte	0
+ 457              		.section	.debug_line,"",%progbits
+ 458              	.Ldebug_line0:
+ 459 0000 49000000 		.section	.debug_str,"MS",%progbits,1
+ 459      02002600 
+ 459      00000201 
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccA1RXZg.s 			page 10
+
+
+ 459      FB0E0D00 
+ 459      01010101 
+ 460              	.LASF10:
+ 461 0000 6C6F6E67 		.ascii	"long long int\000"
+ 461      206C6F6E 
+ 461      6720696E 
+ 461      7400
+ 462              	.LASF4:
+ 463 000e 756E7369 		.ascii	"unsigned int\000"
+ 463      676E6564 
+ 463      20696E74 
+ 463      00
+ 464              	.LASF1:
+ 465 001b 756E7369 		.ascii	"unsigned char\000"
+ 465      676E6564 
+ 465      20636861 
+ 465      7200
+ 466              	.LASF15:
+ 467 0029 695F6461 		.ascii	"i_data\000"
+ 467      746100
+ 468              	.LASF17:
+ 469 0030 65786974 		.ascii	"exitg1\000"
+ 469      673100
+ 470              	.LASF21:
+ 471 0037 656D6C5F 		.ascii	"eml_find\000"
+ 471      66696E64 
+ 471      00
+ 472              	.LASF8:
+ 473 0040 6C6F6E67 		.ascii	"long unsigned int\000"
+ 473      20756E73 
+ 473      69676E65 
+ 473      6420696E 
+ 473      7400
+ 474              	.LASF13:
+ 475 0052 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 475      206C6F6E 
+ 475      6720756E 
+ 475      7369676E 
+ 475      65642069 
+ 476              	.LASF5:
+ 477 0069 666C6F61 		.ascii	"float\000"
+ 477      7400
+ 478              	.LASF20:
+ 479 006f 433A5C55 		.ascii	"C:\\Users\\jmspi\\OneDrive\\Documents\\GitHub\\ECE4"
+ 479      73657273 
+ 479      5C6A6D73 
+ 479      70695C4F 
+ 479      6E654472 
+ 480 009c 3139315C 		.ascii	"191\\DeliveryRobot.cydsn\000"
+ 480      44656C69 
+ 480      76657279 
+ 480      526F626F 
+ 480      742E6379 
+ 481              	.LASF7:
+ 482 00b4 5F426F6F 		.ascii	"_Bool\000"
+ 482      6C00
+ 483              	.LASF9:
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccA1RXZg.s 			page 11
+
+
+ 484 00ba 63686172 		.ascii	"char\000"
+ 484      00
+ 485              	.LASF12:
+ 486 00bf 6C6F6E67 		.ascii	"long int\000"
+ 486      20696E74 
+ 486      00
+ 487              	.LASF6:
+ 488 00c8 646F7562 		.ascii	"double\000"
+ 488      6C6500
+ 489              	.LASF16:
+ 490 00cf 695F7369 		.ascii	"i_size\000"
+ 490      7A6500
+ 491              	.LASF18:
+ 492 00d6 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 492      43313120 
+ 492      352E342E 
+ 492      31203230 
+ 492      31363036 
+ 493 0109 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 493      20726576 
+ 493      6973696F 
+ 493      6E203233 
+ 493      37373135 
+ 494 013c 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 494      66756E63 
+ 494      74696F6E 
+ 494      2D736563 
+ 494      74696F6E 
+ 495              	.LASF3:
+ 496 0164 73686F72 		.ascii	"short unsigned int\000"
+ 496      7420756E 
+ 496      7369676E 
+ 496      65642069 
+ 496      6E7400
+ 497              	.LASF0:
+ 498 0177 7369676E 		.ascii	"signed char\000"
+ 498      65642063 
+ 498      68617200 
+ 499              	.LASF11:
+ 500 0183 6C6F6E67 		.ascii	"long double\000"
+ 500      20646F75 
+ 500      626C6500 
+ 501              	.LASF2:
+ 502 018f 73686F72 		.ascii	"short int\000"
+ 502      7420696E 
+ 502      7400
+ 503              	.LASF14:
+ 504 0199 73697A65 		.ascii	"sizetype\000"
+ 504      74797065 
+ 504      00
+ 505              	.LASF19:
+ 506 01a2 5646482B 		.ascii	"VFH+\\src\\find.c\000"
+ 506      5C737263 
+ 506      5C66696E 
+ 506      642E6300 
+ 507              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

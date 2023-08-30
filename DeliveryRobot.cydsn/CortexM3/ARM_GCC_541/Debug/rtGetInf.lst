@@ -1,0 +1,583 @@
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccDcPoyi.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"rtGetInf.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.rtGetInf,"ax",%progbits
+  20              		.align	1
+  21              		.global	rtGetInf
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	rtGetInf, %function
+  25              	rtGetInf:
+  26              	.LFB0:
+  27              		.file 1 "VFH+\\src\\rtGetInf.c"
+   1:VFH+\src/rtGetInf.c **** /*
+   2:VFH+\src/rtGetInf.c ****  * Academic License - for use in teaching, academic research, and meeting
+   3:VFH+\src/rtGetInf.c ****  * course requirements at degree granting institutions only.  Not for
+   4:VFH+\src/rtGetInf.c ****  * government, commercial, or other organizational use.
+   5:VFH+\src/rtGetInf.c ****  * File: rtGetInf.c
+   6:VFH+\src/rtGetInf.c ****  *
+   7:VFH+\src/rtGetInf.c ****  * MATLAB Coder version            : 5.3
+   8:VFH+\src/rtGetInf.c ****  * C/C++ source code generated on  : 30-Aug-2023 22:51:35
+   9:VFH+\src/rtGetInf.c ****  */
+  10:VFH+\src/rtGetInf.c **** 
+  11:VFH+\src/rtGetInf.c **** /*
+  12:VFH+\src/rtGetInf.c ****  * Abstract:
+  13:VFH+\src/rtGetInf.c ****  *       MATLAB for code generation function to initialize non-finite, Inf and
+  14:VFH+\src/rtGetInf.c ****  * MinusInf
+  15:VFH+\src/rtGetInf.c ****  */
+  16:VFH+\src/rtGetInf.c **** /* Include Files */
+  17:VFH+\src/rtGetInf.c **** #include "rtGetInf.h"
+  18:VFH+\src/rtGetInf.c **** #include "rt_nonfinite.h"
+  19:VFH+\src/rtGetInf.c **** 
+  20:VFH+\src/rtGetInf.c **** /*
+  21:VFH+\src/rtGetInf.c ****  * Function: rtGetInf
+  22:VFH+\src/rtGetInf.c ****  * ================================================================== Abstract:
+  23:VFH+\src/rtGetInf.c ****  *  Initialize rtInf needed by the generated code.
+  24:VFH+\src/rtGetInf.c ****  */
+  25:VFH+\src/rtGetInf.c **** real_T rtGetInf(void)
+  26:VFH+\src/rtGetInf.c **** {
+  28              		.loc 1 26 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccDcPoyi.s 			page 2
+
+
+  32              		@ link register save eliminated.
+  27:VFH+\src/rtGetInf.c ****   return rtInf;
+  28:VFH+\src/rtGetInf.c **** }
+  33              		.loc 1 28 0
+  34 0000 014B     		ldr	r3, .L2
+  35 0002 D3E90001 		ldrd	r0, [r3]
+  36 0006 7047     		bx	lr
+  37              	.L3:
+  38              		.align	2
+  39              	.L2:
+  40 0008 00000000 		.word	rtInf
+  41              		.cfi_endproc
+  42              	.LFE0:
+  43              		.size	rtGetInf, .-rtGetInf
+  44              		.section	.text.rtGetInfF,"ax",%progbits
+  45              		.align	1
+  46              		.global	rtGetInfF
+  47              		.thumb
+  48              		.thumb_func
+  49              		.type	rtGetInfF, %function
+  50              	rtGetInfF:
+  51              	.LFB1:
+  29:VFH+\src/rtGetInf.c **** 
+  30:VFH+\src/rtGetInf.c **** /*
+  31:VFH+\src/rtGetInf.c ****  * Function: rtGetInfF
+  32:VFH+\src/rtGetInf.c ****  * ================================================================= Abstract:
+  33:VFH+\src/rtGetInf.c ****  *  Initialize rtInfF needed by the generated code.
+  34:VFH+\src/rtGetInf.c ****  */
+  35:VFH+\src/rtGetInf.c **** real32_T rtGetInfF(void)
+  36:VFH+\src/rtGetInf.c **** {
+  52              		.loc 1 36 0
+  53              		.cfi_startproc
+  54              		@ args = 0, pretend = 0, frame = 0
+  55              		@ frame_needed = 0, uses_anonymous_args = 0
+  56              		@ link register save eliminated.
+  37:VFH+\src/rtGetInf.c ****   return rtInfF;
+  38:VFH+\src/rtGetInf.c **** }
+  57              		.loc 1 38 0
+  58 0000 014B     		ldr	r3, .L5
+  59 0002 1868     		ldr	r0, [r3]	@ float
+  60 0004 7047     		bx	lr
+  61              	.L6:
+  62 0006 00BF     		.align	2
+  63              	.L5:
+  64 0008 00000000 		.word	rtInfF
+  65              		.cfi_endproc
+  66              	.LFE1:
+  67              		.size	rtGetInfF, .-rtGetInfF
+  68              		.section	.text.rtGetMinusInf,"ax",%progbits
+  69              		.align	1
+  70              		.global	rtGetMinusInf
+  71              		.thumb
+  72              		.thumb_func
+  73              		.type	rtGetMinusInf, %function
+  74              	rtGetMinusInf:
+  75              	.LFB2:
+  39:VFH+\src/rtGetInf.c **** 
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccDcPoyi.s 			page 3
+
+
+  40:VFH+\src/rtGetInf.c **** /*
+  41:VFH+\src/rtGetInf.c ****  * Function: rtGetMinusInf
+  42:VFH+\src/rtGetInf.c ****  * ============================================================= Abstract:
+  43:VFH+\src/rtGetInf.c ****  *  Initialize rtMinusInf needed by the generated code.
+  44:VFH+\src/rtGetInf.c ****  */
+  45:VFH+\src/rtGetInf.c **** real_T rtGetMinusInf(void)
+  46:VFH+\src/rtGetInf.c **** {
+  76              		.loc 1 46 0
+  77              		.cfi_startproc
+  78              		@ args = 0, pretend = 0, frame = 0
+  79              		@ frame_needed = 0, uses_anonymous_args = 0
+  80              		@ link register save eliminated.
+  47:VFH+\src/rtGetInf.c ****   return rtMinusInf;
+  48:VFH+\src/rtGetInf.c **** }
+  81              		.loc 1 48 0
+  82 0000 014B     		ldr	r3, .L8
+  83 0002 D3E90001 		ldrd	r0, [r3]
+  84 0006 7047     		bx	lr
+  85              	.L9:
+  86              		.align	2
+  87              	.L8:
+  88 0008 00000000 		.word	rtMinusInf
+  89              		.cfi_endproc
+  90              	.LFE2:
+  91              		.size	rtGetMinusInf, .-rtGetMinusInf
+  92              		.section	.text.rtGetMinusInfF,"ax",%progbits
+  93              		.align	1
+  94              		.global	rtGetMinusInfF
+  95              		.thumb
+  96              		.thumb_func
+  97              		.type	rtGetMinusInfF, %function
+  98              	rtGetMinusInfF:
+  99              	.LFB3:
+  49:VFH+\src/rtGetInf.c **** 
+  50:VFH+\src/rtGetInf.c **** /*
+  51:VFH+\src/rtGetInf.c ****  * Function: rtGetMinusInfF
+  52:VFH+\src/rtGetInf.c ****  * ============================================================ Abstract:
+  53:VFH+\src/rtGetInf.c ****  *  Initialize rtMinusInfF needed by the generated code.
+  54:VFH+\src/rtGetInf.c ****  */
+  55:VFH+\src/rtGetInf.c **** real32_T rtGetMinusInfF(void)
+  56:VFH+\src/rtGetInf.c **** {
+ 100              		.loc 1 56 0
+ 101              		.cfi_startproc
+ 102              		@ args = 0, pretend = 0, frame = 0
+ 103              		@ frame_needed = 0, uses_anonymous_args = 0
+ 104              		@ link register save eliminated.
+  57:VFH+\src/rtGetInf.c ****   return rtMinusInfF;
+  58:VFH+\src/rtGetInf.c **** }
+ 105              		.loc 1 58 0
+ 106 0000 014B     		ldr	r3, .L11
+ 107 0002 1868     		ldr	r0, [r3]	@ float
+ 108 0004 7047     		bx	lr
+ 109              	.L12:
+ 110 0006 00BF     		.align	2
+ 111              	.L11:
+ 112 0008 00000000 		.word	rtMinusInfF
+ 113              		.cfi_endproc
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccDcPoyi.s 			page 4
+
+
+ 114              	.LFE3:
+ 115              		.size	rtGetMinusInfF, .-rtGetMinusInfF
+ 116              		.text
+ 117              	.Letext0:
+ 118              		.file 2 ".\\VFH+\\include/rtwtypes.h"
+ 119              		.file 3 ".\\VFH+\\include/rt_nonfinite.h"
+ 120              		.section	.debug_info,"",%progbits
+ 121              	.Ldebug_info0:
+ 122 0000 05010000 		.4byte	0x105
+ 123 0004 0400     		.2byte	0x4
+ 124 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 125 000a 04       		.byte	0x4
+ 126 000b 01       		.uleb128 0x1
+ 127 000c BD000000 		.4byte	.LASF20
+ 128 0010 0C       		.byte	0xc
+ 129 0011 93010000 		.4byte	.LASF21
+ 130 0015 4D000000 		.4byte	.LASF22
+ 131 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 132 001d 00000000 		.4byte	0
+ 133 0021 00000000 		.4byte	.Ldebug_line0
+ 134 0025 02       		.uleb128 0x2
+ 135 0026 01       		.byte	0x1
+ 136 0027 06       		.byte	0x6
+ 137 0028 A7010000 		.4byte	.LASF0
+ 138 002c 02       		.uleb128 0x2
+ 139 002d 01       		.byte	0x1
+ 140 002e 08       		.byte	0x8
+ 141 002f 1A000000 		.4byte	.LASF1
+ 142 0033 02       		.uleb128 0x2
+ 143 0034 02       		.byte	0x2
+ 144 0035 05       		.byte	0x5
+ 145 0036 80010000 		.4byte	.LASF2
+ 146 003a 02       		.uleb128 0x2
+ 147 003b 02       		.byte	0x2
+ 148 003c 07       		.byte	0x7
+ 149 003d 3A000000 		.4byte	.LASF3
+ 150 0041 03       		.uleb128 0x3
+ 151 0042 04       		.byte	0x4
+ 152 0043 05       		.byte	0x5
+ 153 0044 696E7400 		.ascii	"int\000"
+ 154 0048 02       		.uleb128 0x2
+ 155 0049 04       		.byte	0x4
+ 156 004a 07       		.byte	0x7
+ 157 004b B0000000 		.4byte	.LASF4
+ 158 004f 04       		.uleb128 0x4
+ 159 0050 8A010000 		.4byte	.LASF7
+ 160 0054 02       		.byte	0x2
+ 161 0055 2F       		.byte	0x2f
+ 162 0056 5A000000 		.4byte	0x5a
+ 163 005a 02       		.uleb128 0x2
+ 164 005b 04       		.byte	0x4
+ 165 005c 04       		.byte	0x4
+ 166 005d 14000000 		.4byte	.LASF5
+ 167 0061 02       		.uleb128 0x2
+ 168 0062 08       		.byte	0x8
+ 169 0063 04       		.byte	0x4
+ 170 0064 A3000000 		.4byte	.LASF6
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccDcPoyi.s 			page 5
+
+
+ 171 0068 04       		.uleb128 0x4
+ 172 0069 4B010000 		.4byte	.LASF8
+ 173 006d 02       		.byte	0x2
+ 174 006e 37       		.byte	0x37
+ 175 006f 61000000 		.4byte	0x61
+ 176 0073 02       		.uleb128 0x2
+ 177 0074 01       		.byte	0x1
+ 178 0075 02       		.byte	0x2
+ 179 0076 B3010000 		.4byte	.LASF9
+ 180 007a 02       		.uleb128 0x2
+ 181 007b 04       		.byte	0x4
+ 182 007c 07       		.byte	0x7
+ 183 007d 28000000 		.4byte	.LASF10
+ 184 0081 02       		.uleb128 0x2
+ 185 0082 01       		.byte	0x1
+ 186 0083 08       		.byte	0x8
+ 187 0084 7B010000 		.4byte	.LASF11
+ 188 0088 05       		.uleb128 0x5
+ 189 0089 00000000 		.4byte	.LASF12
+ 190 008d 01       		.byte	0x1
+ 191 008e 19       		.byte	0x19
+ 192 008f 68000000 		.4byte	0x68
+ 193 0093 00000000 		.4byte	.LFB0
+ 194 0097 0C000000 		.4byte	.LFE0-.LFB0
+ 195 009b 01       		.uleb128 0x1
+ 196 009c 9C       		.byte	0x9c
+ 197 009d 05       		.uleb128 0x5
+ 198 009e 99000000 		.4byte	.LASF13
+ 199 00a2 01       		.byte	0x1
+ 200 00a3 23       		.byte	0x23
+ 201 00a4 4F000000 		.4byte	0x4f
+ 202 00a8 00000000 		.4byte	.LFB1
+ 203 00ac 0C000000 		.4byte	.LFE1-.LFB1
+ 204 00b0 01       		.uleb128 0x1
+ 205 00b1 9C       		.byte	0x9c
+ 206 00b2 05       		.uleb128 0x5
+ 207 00b3 6D010000 		.4byte	.LASF14
+ 208 00b7 01       		.byte	0x1
+ 209 00b8 2D       		.byte	0x2d
+ 210 00b9 68000000 		.4byte	0x68
+ 211 00bd 00000000 		.4byte	.LFB2
+ 212 00c1 0C000000 		.4byte	.LFE2-.LFB2
+ 213 00c5 01       		.uleb128 0x1
+ 214 00c6 9C       		.byte	0x9c
+ 215 00c7 05       		.uleb128 0x5
+ 216 00c8 5E010000 		.4byte	.LASF15
+ 217 00cc 01       		.byte	0x1
+ 218 00cd 37       		.byte	0x37
+ 219 00ce 4F000000 		.4byte	0x4f
+ 220 00d2 00000000 		.4byte	.LFB3
+ 221 00d6 0C000000 		.4byte	.LFE3-.LFB3
+ 222 00da 01       		.uleb128 0x1
+ 223 00db 9C       		.byte	0x9c
+ 224 00dc 06       		.uleb128 0x6
+ 225 00dd AA000000 		.4byte	.LASF16
+ 226 00e1 03       		.byte	0x3
+ 227 00e2 15       		.byte	0x15
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccDcPoyi.s 			page 6
+
+
+ 228 00e3 68000000 		.4byte	0x68
+ 229 00e7 06       		.uleb128 0x6
+ 230 00e8 09000000 		.4byte	.LASF17
+ 231 00ec 03       		.byte	0x3
+ 232 00ed 16       		.byte	0x16
+ 233 00ee 68000000 		.4byte	0x68
+ 234 00f2 06       		.uleb128 0x6
+ 235 00f3 92000000 		.4byte	.LASF18
+ 236 00f7 03       		.byte	0x3
+ 237 00f8 18       		.byte	0x18
+ 238 00f9 4F000000 		.4byte	0x4f
+ 239 00fd 06       		.uleb128 0x6
+ 240 00fe 52010000 		.4byte	.LASF19
+ 241 0102 03       		.byte	0x3
+ 242 0103 19       		.byte	0x19
+ 243 0104 4F000000 		.4byte	0x4f
+ 244 0108 00       		.byte	0
+ 245              		.section	.debug_abbrev,"",%progbits
+ 246              	.Ldebug_abbrev0:
+ 247 0000 01       		.uleb128 0x1
+ 248 0001 11       		.uleb128 0x11
+ 249 0002 01       		.byte	0x1
+ 250 0003 25       		.uleb128 0x25
+ 251 0004 0E       		.uleb128 0xe
+ 252 0005 13       		.uleb128 0x13
+ 253 0006 0B       		.uleb128 0xb
+ 254 0007 03       		.uleb128 0x3
+ 255 0008 0E       		.uleb128 0xe
+ 256 0009 1B       		.uleb128 0x1b
+ 257 000a 0E       		.uleb128 0xe
+ 258 000b 55       		.uleb128 0x55
+ 259 000c 17       		.uleb128 0x17
+ 260 000d 11       		.uleb128 0x11
+ 261 000e 01       		.uleb128 0x1
+ 262 000f 10       		.uleb128 0x10
+ 263 0010 17       		.uleb128 0x17
+ 264 0011 00       		.byte	0
+ 265 0012 00       		.byte	0
+ 266 0013 02       		.uleb128 0x2
+ 267 0014 24       		.uleb128 0x24
+ 268 0015 00       		.byte	0
+ 269 0016 0B       		.uleb128 0xb
+ 270 0017 0B       		.uleb128 0xb
+ 271 0018 3E       		.uleb128 0x3e
+ 272 0019 0B       		.uleb128 0xb
+ 273 001a 03       		.uleb128 0x3
+ 274 001b 0E       		.uleb128 0xe
+ 275 001c 00       		.byte	0
+ 276 001d 00       		.byte	0
+ 277 001e 03       		.uleb128 0x3
+ 278 001f 24       		.uleb128 0x24
+ 279 0020 00       		.byte	0
+ 280 0021 0B       		.uleb128 0xb
+ 281 0022 0B       		.uleb128 0xb
+ 282 0023 3E       		.uleb128 0x3e
+ 283 0024 0B       		.uleb128 0xb
+ 284 0025 03       		.uleb128 0x3
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccDcPoyi.s 			page 7
+
+
+ 285 0026 08       		.uleb128 0x8
+ 286 0027 00       		.byte	0
+ 287 0028 00       		.byte	0
+ 288 0029 04       		.uleb128 0x4
+ 289 002a 16       		.uleb128 0x16
+ 290 002b 00       		.byte	0
+ 291 002c 03       		.uleb128 0x3
+ 292 002d 0E       		.uleb128 0xe
+ 293 002e 3A       		.uleb128 0x3a
+ 294 002f 0B       		.uleb128 0xb
+ 295 0030 3B       		.uleb128 0x3b
+ 296 0031 0B       		.uleb128 0xb
+ 297 0032 49       		.uleb128 0x49
+ 298 0033 13       		.uleb128 0x13
+ 299 0034 00       		.byte	0
+ 300 0035 00       		.byte	0
+ 301 0036 05       		.uleb128 0x5
+ 302 0037 2E       		.uleb128 0x2e
+ 303 0038 00       		.byte	0
+ 304 0039 3F       		.uleb128 0x3f
+ 305 003a 19       		.uleb128 0x19
+ 306 003b 03       		.uleb128 0x3
+ 307 003c 0E       		.uleb128 0xe
+ 308 003d 3A       		.uleb128 0x3a
+ 309 003e 0B       		.uleb128 0xb
+ 310 003f 3B       		.uleb128 0x3b
+ 311 0040 0B       		.uleb128 0xb
+ 312 0041 27       		.uleb128 0x27
+ 313 0042 19       		.uleb128 0x19
+ 314 0043 49       		.uleb128 0x49
+ 315 0044 13       		.uleb128 0x13
+ 316 0045 11       		.uleb128 0x11
+ 317 0046 01       		.uleb128 0x1
+ 318 0047 12       		.uleb128 0x12
+ 319 0048 06       		.uleb128 0x6
+ 320 0049 40       		.uleb128 0x40
+ 321 004a 18       		.uleb128 0x18
+ 322 004b 9742     		.uleb128 0x2117
+ 323 004d 19       		.uleb128 0x19
+ 324 004e 00       		.byte	0
+ 325 004f 00       		.byte	0
+ 326 0050 06       		.uleb128 0x6
+ 327 0051 34       		.uleb128 0x34
+ 328 0052 00       		.byte	0
+ 329 0053 03       		.uleb128 0x3
+ 330 0054 0E       		.uleb128 0xe
+ 331 0055 3A       		.uleb128 0x3a
+ 332 0056 0B       		.uleb128 0xb
+ 333 0057 3B       		.uleb128 0x3b
+ 334 0058 0B       		.uleb128 0xb
+ 335 0059 49       		.uleb128 0x49
+ 336 005a 13       		.uleb128 0x13
+ 337 005b 3F       		.uleb128 0x3f
+ 338 005c 19       		.uleb128 0x19
+ 339 005d 3C       		.uleb128 0x3c
+ 340 005e 19       		.uleb128 0x19
+ 341 005f 00       		.byte	0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccDcPoyi.s 			page 8
+
+
+ 342 0060 00       		.byte	0
+ 343 0061 00       		.byte	0
+ 344              		.section	.debug_aranges,"",%progbits
+ 345 0000 34000000 		.4byte	0x34
+ 346 0004 0200     		.2byte	0x2
+ 347 0006 00000000 		.4byte	.Ldebug_info0
+ 348 000a 04       		.byte	0x4
+ 349 000b 00       		.byte	0
+ 350 000c 0000     		.2byte	0
+ 351 000e 0000     		.2byte	0
+ 352 0010 00000000 		.4byte	.LFB0
+ 353 0014 0C000000 		.4byte	.LFE0-.LFB0
+ 354 0018 00000000 		.4byte	.LFB1
+ 355 001c 0C000000 		.4byte	.LFE1-.LFB1
+ 356 0020 00000000 		.4byte	.LFB2
+ 357 0024 0C000000 		.4byte	.LFE2-.LFB2
+ 358 0028 00000000 		.4byte	.LFB3
+ 359 002c 0C000000 		.4byte	.LFE3-.LFB3
+ 360 0030 00000000 		.4byte	0
+ 361 0034 00000000 		.4byte	0
+ 362              		.section	.debug_ranges,"",%progbits
+ 363              	.Ldebug_ranges0:
+ 364 0000 00000000 		.4byte	.LFB0
+ 365 0004 0C000000 		.4byte	.LFE0
+ 366 0008 00000000 		.4byte	.LFB1
+ 367 000c 0C000000 		.4byte	.LFE1
+ 368 0010 00000000 		.4byte	.LFB2
+ 369 0014 0C000000 		.4byte	.LFE2
+ 370 0018 00000000 		.4byte	.LFB3
+ 371 001c 0C000000 		.4byte	.LFE3
+ 372 0020 00000000 		.4byte	0
+ 373 0024 00000000 		.4byte	0
+ 374              		.section	.debug_line,"",%progbits
+ 375              	.Ldebug_line0:
+ 376 0000 9F000000 		.section	.debug_str,"MS",%progbits,1
+ 376      02005900 
+ 376      00000201 
+ 376      FB0E0D00 
+ 376      01010101 
+ 377              	.LASF12:
+ 378 0000 72744765 		.ascii	"rtGetInf\000"
+ 378      74496E66 
+ 378      00
+ 379              	.LASF17:
+ 380 0009 72744D69 		.ascii	"rtMinusInf\000"
+ 380      6E757349 
+ 380      6E6600
+ 381              	.LASF5:
+ 382 0014 666C6F61 		.ascii	"float\000"
+ 382      7400
+ 383              	.LASF1:
+ 384 001a 756E7369 		.ascii	"unsigned char\000"
+ 384      676E6564 
+ 384      20636861 
+ 384      7200
+ 385              	.LASF10:
+ 386 0028 6C6F6E67 		.ascii	"long unsigned int\000"
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccDcPoyi.s 			page 9
+
+
+ 386      20756E73 
+ 386      69676E65 
+ 386      6420696E 
+ 386      7400
+ 387              	.LASF3:
+ 388 003a 73686F72 		.ascii	"short unsigned int\000"
+ 388      7420756E 
+ 388      7369676E 
+ 388      65642069 
+ 388      6E7400
+ 389              	.LASF22:
+ 390 004d 433A5C55 		.ascii	"C:\\Users\\jmspi\\OneDrive\\Documents\\GitHub\\ECE4"
+ 390      73657273 
+ 390      5C6A6D73 
+ 390      70695C4F 
+ 390      6E654472 
+ 391 007a 3139315C 		.ascii	"191\\DeliveryRobot.cydsn\000"
+ 391      44656C69 
+ 391      76657279 
+ 391      526F626F 
+ 391      742E6379 
+ 392              	.LASF18:
+ 393 0092 7274496E 		.ascii	"rtInfF\000"
+ 393      664600
+ 394              	.LASF13:
+ 395 0099 72744765 		.ascii	"rtGetInfF\000"
+ 395      74496E66 
+ 395      4600
+ 396              	.LASF6:
+ 397 00a3 646F7562 		.ascii	"double\000"
+ 397      6C6500
+ 398              	.LASF16:
+ 399 00aa 7274496E 		.ascii	"rtInf\000"
+ 399      6600
+ 400              	.LASF4:
+ 401 00b0 756E7369 		.ascii	"unsigned int\000"
+ 401      676E6564 
+ 401      20696E74 
+ 401      00
+ 402              	.LASF20:
+ 403 00bd 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 403      43313120 
+ 403      352E342E 
+ 403      31203230 
+ 403      31363036 
+ 404 00f0 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 404      20726576 
+ 404      6973696F 
+ 404      6E203233 
+ 404      37373135 
+ 405 0123 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 405      66756E63 
+ 405      74696F6E 
+ 405      2D736563 
+ 405      74696F6E 
+ 406              	.LASF8:
+ 407 014b 7265616C 		.ascii	"real_T\000"
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccDcPoyi.s 			page 10
+
+
+ 407      5F5400
+ 408              	.LASF19:
+ 409 0152 72744D69 		.ascii	"rtMinusInfF\000"
+ 409      6E757349 
+ 409      6E664600 
+ 410              	.LASF15:
+ 411 015e 72744765 		.ascii	"rtGetMinusInfF\000"
+ 411      744D696E 
+ 411      7573496E 
+ 411      664600
+ 412              	.LASF14:
+ 413 016d 72744765 		.ascii	"rtGetMinusInf\000"
+ 413      744D696E 
+ 413      7573496E 
+ 413      6600
+ 414              	.LASF11:
+ 415 017b 63686172 		.ascii	"char\000"
+ 415      00
+ 416              	.LASF2:
+ 417 0180 73686F72 		.ascii	"short int\000"
+ 417      7420696E 
+ 417      7400
+ 418              	.LASF7:
+ 419 018a 7265616C 		.ascii	"real32_T\000"
+ 419      33325F54 
+ 419      00
+ 420              	.LASF21:
+ 421 0193 5646482B 		.ascii	"VFH+\\src\\rtGetInf.c\000"
+ 421      5C737263 
+ 421      5C727447 
+ 421      6574496E 
+ 421      662E6300 
+ 422              	.LASF0:
+ 423 01a7 7369676E 		.ascii	"signed char\000"
+ 423      65642063 
+ 423      68617200 
+ 424              	.LASF9:
+ 425 01b3 5F426F6F 		.ascii	"_Bool\000"
+ 425      6C00
+ 426              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

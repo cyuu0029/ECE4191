@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccncqdBe.s 			page 1
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccuoSlN7.s 			page 1
 
 
    1              		.syntax unified
@@ -10,7 +10,7 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccncqdBe.s 			page 1
    7              		.eabi_attribute 24, 1
    8              		.eabi_attribute 25, 1
    9              		.eabi_attribute 26, 1
-  10              		.eabi_attribute 30, 6
+  10              		.eabi_attribute 30, 4
   11              		.eabi_attribute 34, 1
   12              		.eabi_attribute 18, 4
   13              		.thumb
@@ -20,7 +20,7 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccncqdBe.s 			page 1
   17              	.Ltext0:
   18              		.cfi_sections	.debug_frame
   19              		.section	.text.UART_TXISR,"ax",%progbits
-  20              		.align	2
+  20              		.align	1
   21              		.global	UART_TXISR
   22              		.thumb
   23              		.thumb_func
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccncqdBe.s 			page 1
   28:Generated_Source\PSoC5/UART_INT.c ****     * Function Name: UART_RXISR
   29:Generated_Source\PSoC5/UART_INT.c ****     ********************************************************************************
   30:Generated_Source\PSoC5/UART_INT.c ****     *
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccncqdBe.s 			page 2
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccuoSlN7.s 			page 2
 
 
   31:Generated_Source\PSoC5/UART_INT.c ****     * Summary:
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccncqdBe.s 			page 1
   85:Generated_Source\PSoC5/UART_INT.c ****             /* Read receiver status register */
   86:Generated_Source\PSoC5/UART_INT.c ****             readStatus = UART_RXSTATUS_REG;
   87:Generated_Source\PSoC5/UART_INT.c ****             /* Copy the same status to readData variable for backward compatibility support 
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccncqdBe.s 			page 3
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccuoSlN7.s 			page 3
 
 
   88:Generated_Source\PSoC5/UART_INT.c ****             *  of the user code in UART_RXISR_ERROR` section. 
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccncqdBe.s 			page 1
  142:Generated_Source\PSoC5/UART_INT.c ****                 increment_pointer = 1u;
  143:Generated_Source\PSoC5/UART_INT.c ****             #endif /* (UART_RXHW_ADDRESS_ENABLED) */
  144:Generated_Source\PSoC5/UART_INT.c **** 
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccncqdBe.s 			page 4
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccuoSlN7.s 			page 4
 
 
  145:Generated_Source\PSoC5/UART_INT.c ****                 /* Do not increment buffer pointer when skip not addressed data */
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccncqdBe.s 			page 1
  199:Generated_Source\PSoC5/UART_INT.c ****     * Summary:
  200:Generated_Source\PSoC5/UART_INT.c ****     * Interrupt Service Routine for the TX portion of the UART
  201:Generated_Source\PSoC5/UART_INT.c ****     *
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccncqdBe.s 			page 5
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccuoSlN7.s 			page 5
 
 
  202:Generated_Source\PSoC5/UART_INT.c ****     * Parameters:
@@ -260,13 +260,7 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccncqdBe.s 			page 1
   28              		.loc 1 217 0
   29              		.cfi_startproc
   30              		@ args = 0, pretend = 0, frame = 0
-  31              		@ frame_needed = 1, uses_anonymous_args = 0
-  32              		@ link register save eliminated.
-  33 0000 80B4     		push	{r7}
-  34              		.cfi_def_cfa_offset 4
-  35              		.cfi_offset 7, -4
-  36 0002 00AF     		add	r7, sp, #0
-  37              		.cfi_def_cfa_register 7
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
  218:Generated_Source\PSoC5/UART_INT.c ****     #if(CY_PSOC3)
  219:Generated_Source\PSoC5/UART_INT.c ****         uint8 int_en;
  220:Generated_Source\PSoC5/UART_INT.c ****     #endif /* (CY_PSOC3) */
@@ -286,533 +280,514 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccncqdBe.s 			page 1
  234:Generated_Source\PSoC5/UART_INT.c ****     #endif /* (CY_PSOC3) */
  235:Generated_Source\PSoC5/UART_INT.c **** 
  236:Generated_Source\PSoC5/UART_INT.c ****         while((UART_txBufferRead != UART_txBufferWrite) &&
-  38              		.loc 1 236 0
-  39 0004 18E0     		b	.L2
-  40              	.L5:
+  32              		.loc 1 236 0
+  33 0000 114A     		ldr	r2, .L7
+ 217:Generated_Source\PSoC5/UART_INT.c ****     #if(CY_PSOC3)
+  34              		.loc 1 217 0
+  35 0002 F0B5     		push	{r4, r5, r6, r7, lr}
+  36              		.cfi_def_cfa_offset 20
+  37              		.cfi_offset 4, -20
+  38              		.cfi_offset 5, -16
+  39              		.cfi_offset 6, -12
+  40              		.cfi_offset 7, -8
+  41              		.cfi_offset 14, -4
+  42 0004 1146     		mov	r1, r2
+  43              		.loc 1 236 0
+  44 0006 114C     		ldr	r4, .L7+4
  237:Generated_Source\PSoC5/UART_INT.c ****              ((UART_TXSTATUS_REG & UART_TX_STS_FIFO_FULL) == 0u))
+  45              		.loc 1 237 0
+  46 0008 1148     		ldr	r0, .L7+8
  238:Generated_Source\PSoC5/UART_INT.c ****         {
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccuoSlN7.s 			page 6
+
+
  239:Generated_Source\PSoC5/UART_INT.c ****             /* Check pointer wrap around */
  240:Generated_Source\PSoC5/UART_INT.c ****             if(UART_txBufferRead >= UART_TX_BUFFER_SIZE)
-  41              		.loc 1 240 0
-  42 0006 154B     		ldr	r3, .L7
-  43 0008 1B88     		ldrh	r3, [r3]	@ movhi
-  44 000a 9BB2     		uxth	r3, r3
-  45 000c B3F5805F 		cmp	r3, #4096
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccncqdBe.s 			page 6
-
-
-  46 0010 02D3     		bcc	.L3
  241:Generated_Source\PSoC5/UART_INT.c ****             {
  242:Generated_Source\PSoC5/UART_INT.c ****                 UART_txBufferRead = 0u;
-  47              		.loc 1 242 0
-  48 0012 124B     		ldr	r3, .L7
-  49 0014 0022     		movs	r2, #0
-  50 0016 1A80     		strh	r2, [r3]	@ movhi
-  51              	.L3:
  243:Generated_Source\PSoC5/UART_INT.c ****             }
  244:Generated_Source\PSoC5/UART_INT.c **** 
  245:Generated_Source\PSoC5/UART_INT.c ****             UART_TXDATA_REG = UART_txBuffer[UART_txBufferRead];
-  52              		.loc 1 245 0
-  53 0018 114B     		ldr	r3, .L7+4
-  54 001a 104A     		ldr	r2, .L7
-  55 001c 1288     		ldrh	r2, [r2]	@ movhi
-  56 001e 92B2     		uxth	r2, r2
-  57 0020 1146     		mov	r1, r2
-  58 0022 104A     		ldr	r2, .L7+8
-  59 0024 525C     		ldrb	r2, [r2, r1]
-  60 0026 D2B2     		uxtb	r2, r2
-  61 0028 1A70     		strb	r2, [r3]
+  47              		.loc 1 245 0
+  48 000a 124D     		ldr	r5, .L7+12
+  49 000c 124E     		ldr	r6, .L7+16
+  50              	.L2:
+ 236:Generated_Source\PSoC5/UART_INT.c ****              ((UART_TXSTATUS_REG & UART_TX_STS_FIFO_FULL) == 0u))
+  51              		.loc 1 236 0
+  52 000e 1388     		ldrh	r3, [r2]
+  53 0010 2788     		ldrh	r7, [r4]
+  54 0012 9BB2     		uxth	r3, r3
+  55 0014 9F42     		cmp	r7, r3
+  56 0016 15D0     		beq	.L1
+ 237:Generated_Source\PSoC5/UART_INT.c ****              ((UART_TXSTATUS_REG & UART_TX_STS_FIFO_FULL) == 0u))
+  57              		.loc 1 237 0 discriminator 1
+  58 0018 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+ 236:Generated_Source\PSoC5/UART_INT.c ****              ((UART_TXSTATUS_REG & UART_TX_STS_FIFO_FULL) == 0u))
+  59              		.loc 1 236 0 discriminator 1
+  60 001a 03F00403 		and	r3, r3, #4
+  61 001e 03F0FF07 		and	r7, r3, #255
+  62 0022 7BB9     		cbnz	r3, .L1
+ 240:Generated_Source\PSoC5/UART_INT.c ****             {
+  63              		.loc 1 240 0
+  64 0024 1388     		ldrh	r3, [r2]
+  65 0026 9BB2     		uxth	r3, r3
+  66 0028 B3F5805F 		cmp	r3, #4096
+ 242:Generated_Source\PSoC5/UART_INT.c ****             }
+  67              		.loc 1 242 0
+  68 002c 28BF     		it	cs
+  69 002e 1780     		strhcs	r7, [r2]	@ movhi
+  70              		.loc 1 245 0
+  71 0030 0B88     		ldrh	r3, [r1]
+  72 0032 9BB2     		uxth	r3, r3
+  73 0034 EB5C     		ldrb	r3, [r5, r3]	@ zero_extendqisi2
+  74 0036 DBB2     		uxtb	r3, r3
+  75 0038 3370     		strb	r3, [r6]
  246:Generated_Source\PSoC5/UART_INT.c **** 
  247:Generated_Source\PSoC5/UART_INT.c ****             /* Set next pointer */
  248:Generated_Source\PSoC5/UART_INT.c ****             UART_txBufferRead++;
-  62              		.loc 1 248 0
-  63 002a 0C4B     		ldr	r3, .L7
-  64 002c 1B88     		ldrh	r3, [r3]	@ movhi
-  65 002e 9BB2     		uxth	r3, r3
-  66 0030 0133     		adds	r3, r3, #1
-  67 0032 9AB2     		uxth	r2, r3
-  68 0034 094B     		ldr	r3, .L7
-  69 0036 1A80     		strh	r2, [r3]	@ movhi
-  70              	.L2:
- 236:Generated_Source\PSoC5/UART_INT.c ****              ((UART_TXSTATUS_REG & UART_TX_STS_FIFO_FULL) == 0u))
-  71              		.loc 1 236 0
-  72 0038 084B     		ldr	r3, .L7
-  73 003a 1B88     		ldrh	r3, [r3]	@ movhi
-  74 003c 9AB2     		uxth	r2, r3
-  75 003e 0A4B     		ldr	r3, .L7+12
-  76 0040 1B88     		ldrh	r3, [r3]
-  77 0042 9A42     		cmp	r2, r3
-  78 0044 06D0     		beq	.L6
- 237:Generated_Source\PSoC5/UART_INT.c ****         {
-  79              		.loc 1 237 0 discriminator 1
-  80 0046 094B     		ldr	r3, .L7+16
-  81 0048 1B78     		ldrb	r3, [r3]
-  82 004a DBB2     		uxtb	r3, r3
-  83 004c 03F00403 		and	r3, r3, #4
- 236:Generated_Source\PSoC5/UART_INT.c ****              ((UART_TXSTATUS_REG & UART_TX_STS_FIFO_FULL) == 0u))
-  84              		.loc 1 236 0 discriminator 1
-  85 0050 002B     		cmp	r3, #0
-  86 0052 D8D0     		beq	.L5
-  87              	.L6:
- 249:Generated_Source\PSoC5/UART_INT.c ****         }
- 250:Generated_Source\PSoC5/UART_INT.c **** 
- 251:Generated_Source\PSoC5/UART_INT.c ****         /* User code required at end of ISR (Optional) */
- 252:Generated_Source\PSoC5/UART_INT.c ****         /* `#START UART_TXISR_END` */
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccncqdBe.s 			page 7
+  76              		.loc 1 248 0
+  77 003a 0B88     		ldrh	r3, [r1]
+  78 003c 0133     		adds	r3, r3, #1
+  79 003e 9BB2     		uxth	r3, r3
+  80 0040 0B80     		strh	r3, [r1]	@ movhi
+  81 0042 E4E7     		b	.L2
+  82              	.L1:
+  83 0044 F0BD     		pop	{r4, r5, r6, r7, pc}
+  84              	.L8:
+  85 0046 00BF     		.align	2
+  86              	.L7:
+  87 0048 00000000 		.word	UART_txBufferRead
+  88 004c 00000000 		.word	UART_txBufferWrite
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccuoSlN7.s 			page 7
 
 
- 253:Generated_Source\PSoC5/UART_INT.c **** 
- 254:Generated_Source\PSoC5/UART_INT.c ****         /* `#END` */
- 255:Generated_Source\PSoC5/UART_INT.c **** 
- 256:Generated_Source\PSoC5/UART_INT.c ****     #ifdef UART_TXISR_EXIT_CALLBACK
- 257:Generated_Source\PSoC5/UART_INT.c ****         UART_TXISR_ExitCallback();
- 258:Generated_Source\PSoC5/UART_INT.c ****     #endif /* UART_TXISR_EXIT_CALLBACK */
- 259:Generated_Source\PSoC5/UART_INT.c **** 
- 260:Generated_Source\PSoC5/UART_INT.c ****     #if(CY_PSOC3)
- 261:Generated_Source\PSoC5/UART_INT.c ****         EA = int_en;
- 262:Generated_Source\PSoC5/UART_INT.c ****     #endif /* (CY_PSOC3) */
- 263:Generated_Source\PSoC5/UART_INT.c ****    }
-  88              		.loc 1 263 0
-  89 0054 00BF     		nop
-  90 0056 BD46     		mov	sp, r7
-  91              		.cfi_def_cfa_register 13
-  92              		@ sp needed
-  93 0058 80BC     		pop	{r7}
-  94              		.cfi_restore 7
-  95              		.cfi_def_cfa_offset 0
-  96 005a 7047     		bx	lr
-  97              	.L8:
-  98              		.align	2
-  99              	.L7:
- 100 005c 00000000 		.word	UART_txBufferRead
- 101 0060 45650040 		.word	1073767749
- 102 0064 00000000 		.word	UART_txBuffer
- 103 0068 00000000 		.word	UART_txBufferWrite
- 104 006c 65650040 		.word	1073767781
- 105              		.cfi_endproc
- 106              	.LFE0:
- 107              		.size	UART_TXISR, .-UART_TXISR
- 108              		.text
- 109              	.Letext0:
- 110              		.file 2 "Generated_Source\\PSoC5\\cytypes.h"
- 111              		.file 3 "Generated_Source\\PSoC5\\UART.h"
- 112              		.section	.debug_info,"",%progbits
- 113              	.Ldebug_info0:
- 114 0000 04010000 		.4byte	0x104
- 115 0004 0400     		.2byte	0x4
- 116 0006 00000000 		.4byte	.Ldebug_abbrev0
- 117 000a 04       		.byte	0x4
- 118 000b 01       		.uleb128 0x1
- 119 000c 8A000000 		.4byte	.LASF20
- 120 0010 0C       		.byte	0xc
- 121 0011 62000000 		.4byte	.LASF21
- 122 0015 77010000 		.4byte	.LASF22
- 123 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 124 001d 00000000 		.4byte	0
- 125 0021 00000000 		.4byte	.Ldebug_line0
- 126 0025 02       		.uleb128 0x2
- 127 0026 01       		.byte	0x1
- 128 0027 06       		.byte	0x6
- 129 0028 6B010000 		.4byte	.LASF0
- 130 002c 02       		.uleb128 0x2
- 131 002d 01       		.byte	0x1
- 132 002e 08       		.byte	0x8
- 133 002f 18010000 		.4byte	.LASF1
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccncqdBe.s 			page 8
+  89 0050 65650040 		.word	1073767781
+  90 0054 00000000 		.word	UART_txBuffer
+  91 0058 45650040 		.word	1073767749
+  92              		.cfi_endproc
+  93              	.LFE0:
+  94              		.size	UART_TXISR, .-UART_TXISR
+  95              		.text
+  96              	.Letext0:
+  97              		.file 2 "Generated_Source\\PSoC5\\cytypes.h"
+  98              		.file 3 "Generated_Source\\PSoC5\\UART.h"
+  99              		.section	.debug_info,"",%progbits
+ 100              	.Ldebug_info0:
+ 101 0000 04010000 		.4byte	0x104
+ 102 0004 0400     		.2byte	0x4
+ 103 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 104 000a 04       		.byte	0x4
+ 105 000b 01       		.uleb128 0x1
+ 106 000c 04010000 		.4byte	.LASF20
+ 107 0010 0C       		.byte	0xc
+ 108 0011 62000000 		.4byte	.LASF21
+ 109 0015 8A000000 		.4byte	.LASF22
+ 110 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 111 001d 00000000 		.4byte	0
+ 112 0021 00000000 		.4byte	.Ldebug_line0
+ 113 0025 02       		.uleb128 0x2
+ 114 0026 01       		.byte	0x1
+ 115 0027 06       		.byte	0x6
+ 116 0028 A5010000 		.4byte	.LASF0
+ 117 002c 02       		.uleb128 0x2
+ 118 002d 01       		.byte	0x1
+ 119 002e 08       		.byte	0x8
+ 120 002f CF000000 		.4byte	.LASF1
+ 121 0033 02       		.uleb128 0x2
+ 122 0034 02       		.byte	0x2
+ 123 0035 05       		.byte	0x5
+ 124 0036 C8010000 		.4byte	.LASF2
+ 125 003a 02       		.uleb128 0x2
+ 126 003b 02       		.byte	0x2
+ 127 003c 07       		.byte	0x7
+ 128 003d 92010000 		.4byte	.LASF3
+ 129 0041 02       		.uleb128 0x2
+ 130 0042 04       		.byte	0x4
+ 131 0043 05       		.byte	0x5
+ 132 0044 E2000000 		.4byte	.LASF4
+ 133 0048 02       		.uleb128 0x2
+ 134 0049 04       		.byte	0x4
+ 135 004a 07       		.byte	0x7
+ 136 004b 39000000 		.4byte	.LASF5
+ 137 004f 02       		.uleb128 0x2
+ 138 0050 08       		.byte	0x8
+ 139 0051 05       		.byte	0x5
+ 140 0052 00000000 		.4byte	.LASF6
+ 141 0056 02       		.uleb128 0x2
+ 142 0057 08       		.byte	0x8
+ 143 0058 07       		.byte	0x7
+ 144 0059 4B000000 		.4byte	.LASF7
+ 145 005d 03       		.uleb128 0x3
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccuoSlN7.s 			page 8
 
 
- 134 0033 02       		.uleb128 0x2
- 135 0034 02       		.byte	0x2
- 136 0035 05       		.byte	0x5
- 137 0036 C8010000 		.4byte	.LASF2
- 138 003a 02       		.uleb128 0x2
- 139 003b 02       		.byte	0x2
- 140 003c 07       		.byte	0x7
- 141 003d 58010000 		.4byte	.LASF3
- 142 0041 02       		.uleb128 0x2
- 143 0042 04       		.byte	0x4
- 144 0043 05       		.byte	0x5
- 145 0044 2B010000 		.4byte	.LASF4
- 146 0048 02       		.uleb128 0x2
- 147 0049 04       		.byte	0x4
- 148 004a 07       		.byte	0x7
- 149 004b 39000000 		.4byte	.LASF5
- 150 004f 02       		.uleb128 0x2
- 151 0050 08       		.byte	0x8
- 152 0051 05       		.byte	0x5
- 153 0052 00000000 		.4byte	.LASF6
- 154 0056 02       		.uleb128 0x2
- 155 0057 08       		.byte	0x8
- 156 0058 07       		.byte	0x7
- 157 0059 4B000000 		.4byte	.LASF7
- 158 005d 03       		.uleb128 0x3
- 159 005e 04       		.byte	0x4
- 160 005f 05       		.byte	0x5
- 161 0060 696E7400 		.ascii	"int\000"
- 162 0064 02       		.uleb128 0x2
- 163 0065 04       		.byte	0x4
- 164 0066 07       		.byte	0x7
- 165 0067 0E000000 		.4byte	.LASF8
- 166 006b 04       		.uleb128 0x4
- 167 006c 33000000 		.4byte	.LASF9
- 168 0070 02       		.byte	0x2
- 169 0071 E801     		.2byte	0x1e8
- 170 0073 2C000000 		.4byte	0x2c
- 171 0077 04       		.uleb128 0x4
- 172 0078 D2010000 		.4byte	.LASF10
- 173 007c 02       		.byte	0x2
- 174 007d E901     		.2byte	0x1e9
- 175 007f 3A000000 		.4byte	0x3a
- 176 0083 02       		.uleb128 0x2
- 177 0084 04       		.byte	0x4
- 178 0085 04       		.byte	0x4
- 179 0086 84000000 		.4byte	.LASF11
- 180 008a 02       		.uleb128 0x2
- 181 008b 08       		.byte	0x8
- 182 008c 04       		.byte	0x4
- 183 008d 46010000 		.4byte	.LASF12
- 184 0091 02       		.uleb128 0x2
- 185 0092 01       		.byte	0x1
- 186 0093 08       		.byte	0x8
- 187 0094 26010000 		.4byte	.LASF13
- 188 0098 04       		.uleb128 0x4
- 189 0099 2E000000 		.4byte	.LASF14
- 190 009d 02       		.byte	0x2
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccncqdBe.s 			page 9
+ 146 005e 04       		.byte	0x4
+ 147 005f 05       		.byte	0x5
+ 148 0060 696E7400 		.ascii	"int\000"
+ 149 0064 02       		.uleb128 0x2
+ 150 0065 04       		.byte	0x4
+ 151 0066 07       		.byte	0x7
+ 152 0067 0E000000 		.4byte	.LASF8
+ 153 006b 04       		.uleb128 0x4
+ 154 006c 33000000 		.4byte	.LASF9
+ 155 0070 02       		.byte	0x2
+ 156 0071 E801     		.2byte	0x1e8
+ 157 0073 2C000000 		.4byte	0x2c
+ 158 0077 04       		.uleb128 0x4
+ 159 0078 D2010000 		.4byte	.LASF10
+ 160 007c 02       		.byte	0x2
+ 161 007d E901     		.2byte	0x1e9
+ 162 007f 3A000000 		.4byte	0x3a
+ 163 0083 02       		.uleb128 0x2
+ 164 0084 04       		.byte	0x4
+ 165 0085 04       		.byte	0x4
+ 166 0086 84000000 		.4byte	.LASF11
+ 167 008a 02       		.uleb128 0x2
+ 168 008b 08       		.byte	0x8
+ 169 008c 04       		.byte	0x4
+ 170 008d FD000000 		.4byte	.LASF12
+ 171 0091 02       		.uleb128 0x2
+ 172 0092 01       		.byte	0x1
+ 173 0093 08       		.byte	0x8
+ 174 0094 DD000000 		.4byte	.LASF13
+ 175 0098 04       		.uleb128 0x4
+ 176 0099 2E000000 		.4byte	.LASF14
+ 177 009d 02       		.byte	0x2
+ 178 009e 9202     		.2byte	0x292
+ 179 00a0 A4000000 		.4byte	0xa4
+ 180 00a4 05       		.uleb128 0x5
+ 181 00a5 6B000000 		.4byte	0x6b
+ 182 00a9 05       		.uleb128 0x5
+ 183 00aa 77000000 		.4byte	0x77
+ 184 00ae 02       		.uleb128 0x2
+ 185 00af 08       		.byte	0x8
+ 186 00b0 04       		.byte	0x4
+ 187 00b1 BC010000 		.4byte	.LASF15
+ 188 00b5 02       		.uleb128 0x2
+ 189 00b6 04       		.byte	0x4
+ 190 00b7 07       		.byte	0x7
+ 191 00b8 D9010000 		.4byte	.LASF16
+ 192 00bc 06       		.uleb128 0x6
+ 193 00bd B1010000 		.4byte	.LASF23
+ 194 00c1 01       		.byte	0x1
+ 195 00c2 D8       		.byte	0xd8
+ 196 00c3 00000000 		.4byte	.LFB0
+ 197 00c7 5C000000 		.4byte	.LFE0-.LFB0
+ 198 00cb 01       		.uleb128 0x1
+ 199 00cc 9C       		.byte	0x9c
+ 200 00cd 07       		.uleb128 0x7
+ 201 00ce A4000000 		.4byte	0xa4
+ 202 00d2 DE000000 		.4byte	0xde
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccuoSlN7.s 			page 9
 
 
- 191 009e 9202     		.2byte	0x292
- 192 00a0 A4000000 		.4byte	0xa4
- 193 00a4 05       		.uleb128 0x5
- 194 00a5 6B000000 		.4byte	0x6b
- 195 00a9 05       		.uleb128 0x5
- 196 00aa 77000000 		.4byte	0x77
- 197 00ae 02       		.uleb128 0x2
- 198 00af 08       		.byte	0x8
- 199 00b0 04       		.byte	0x4
- 200 00b1 BC010000 		.4byte	.LASF15
- 201 00b5 02       		.uleb128 0x2
- 202 00b6 04       		.byte	0x4
- 203 00b7 07       		.byte	0x7
- 204 00b8 D9010000 		.4byte	.LASF16
- 205 00bc 06       		.uleb128 0x6
- 206 00bd 4D010000 		.4byte	.LASF23
- 207 00c1 01       		.byte	0x1
- 208 00c2 D8       		.byte	0xd8
- 209 00c3 00000000 		.4byte	.LFB0
- 210 00c7 70000000 		.4byte	.LFE0-.LFB0
- 211 00cb 01       		.uleb128 0x1
- 212 00cc 9C       		.byte	0x9c
- 213 00cd 07       		.uleb128 0x7
- 214 00ce A4000000 		.4byte	0xa4
- 215 00d2 DE000000 		.4byte	0xde
- 216 00d6 08       		.uleb128 0x8
- 217 00d7 B5000000 		.4byte	0xb5
- 218 00db FF0F     		.2byte	0xfff
- 219 00dd 00       		.byte	0
- 220 00de 09       		.uleb128 0x9
- 221 00df E2010000 		.4byte	.LASF17
- 222 00e3 03       		.byte	0x3
- 223 00e4 3801     		.2byte	0x138
- 224 00e6 EA000000 		.4byte	0xea
- 225 00ea 05       		.uleb128 0x5
- 226 00eb CD000000 		.4byte	0xcd
- 227 00ef 09       		.uleb128 0x9
- 228 00f0 34010000 		.4byte	.LASF18
- 229 00f4 03       		.byte	0x3
- 230 00f5 3901     		.2byte	0x139
- 231 00f7 A9000000 		.4byte	0xa9
- 232 00fb 09       		.uleb128 0x9
- 233 00fc 1B000000 		.4byte	.LASF19
- 234 0100 03       		.byte	0x3
- 235 0101 3A01     		.2byte	0x13a
- 236 0103 77000000 		.4byte	0x77
- 237 0107 00       		.byte	0
- 238              		.section	.debug_abbrev,"",%progbits
- 239              	.Ldebug_abbrev0:
- 240 0000 01       		.uleb128 0x1
- 241 0001 11       		.uleb128 0x11
- 242 0002 01       		.byte	0x1
- 243 0003 25       		.uleb128 0x25
- 244 0004 0E       		.uleb128 0xe
- 245 0005 13       		.uleb128 0x13
- 246 0006 0B       		.uleb128 0xb
- 247 0007 03       		.uleb128 0x3
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccncqdBe.s 			page 10
+ 203 00d6 08       		.uleb128 0x8
+ 204 00d7 B5000000 		.4byte	0xb5
+ 205 00db FF0F     		.2byte	0xfff
+ 206 00dd 00       		.byte	0
+ 207 00de 09       		.uleb128 0x9
+ 208 00df E2010000 		.4byte	.LASF17
+ 209 00e3 03       		.byte	0x3
+ 210 00e4 3801     		.2byte	0x138
+ 211 00e6 EA000000 		.4byte	0xea
+ 212 00ea 05       		.uleb128 0x5
+ 213 00eb CD000000 		.4byte	0xcd
+ 214 00ef 09       		.uleb128 0x9
+ 215 00f0 EB000000 		.4byte	.LASF18
+ 216 00f4 03       		.byte	0x3
+ 217 00f5 3901     		.2byte	0x139
+ 218 00f7 A9000000 		.4byte	0xa9
+ 219 00fb 09       		.uleb128 0x9
+ 220 00fc 1B000000 		.4byte	.LASF19
+ 221 0100 03       		.byte	0x3
+ 222 0101 3A01     		.2byte	0x13a
+ 223 0103 77000000 		.4byte	0x77
+ 224 0107 00       		.byte	0
+ 225              		.section	.debug_abbrev,"",%progbits
+ 226              	.Ldebug_abbrev0:
+ 227 0000 01       		.uleb128 0x1
+ 228 0001 11       		.uleb128 0x11
+ 229 0002 01       		.byte	0x1
+ 230 0003 25       		.uleb128 0x25
+ 231 0004 0E       		.uleb128 0xe
+ 232 0005 13       		.uleb128 0x13
+ 233 0006 0B       		.uleb128 0xb
+ 234 0007 03       		.uleb128 0x3
+ 235 0008 0E       		.uleb128 0xe
+ 236 0009 1B       		.uleb128 0x1b
+ 237 000a 0E       		.uleb128 0xe
+ 238 000b 55       		.uleb128 0x55
+ 239 000c 17       		.uleb128 0x17
+ 240 000d 11       		.uleb128 0x11
+ 241 000e 01       		.uleb128 0x1
+ 242 000f 10       		.uleb128 0x10
+ 243 0010 17       		.uleb128 0x17
+ 244 0011 00       		.byte	0
+ 245 0012 00       		.byte	0
+ 246 0013 02       		.uleb128 0x2
+ 247 0014 24       		.uleb128 0x24
+ 248 0015 00       		.byte	0
+ 249 0016 0B       		.uleb128 0xb
+ 250 0017 0B       		.uleb128 0xb
+ 251 0018 3E       		.uleb128 0x3e
+ 252 0019 0B       		.uleb128 0xb
+ 253 001a 03       		.uleb128 0x3
+ 254 001b 0E       		.uleb128 0xe
+ 255 001c 00       		.byte	0
+ 256 001d 00       		.byte	0
+ 257 001e 03       		.uleb128 0x3
+ 258 001f 24       		.uleb128 0x24
+ 259 0020 00       		.byte	0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccuoSlN7.s 			page 10
 
 
- 248 0008 0E       		.uleb128 0xe
- 249 0009 1B       		.uleb128 0x1b
- 250 000a 0E       		.uleb128 0xe
- 251 000b 55       		.uleb128 0x55
- 252 000c 17       		.uleb128 0x17
- 253 000d 11       		.uleb128 0x11
- 254 000e 01       		.uleb128 0x1
- 255 000f 10       		.uleb128 0x10
- 256 0010 17       		.uleb128 0x17
- 257 0011 00       		.byte	0
- 258 0012 00       		.byte	0
- 259 0013 02       		.uleb128 0x2
- 260 0014 24       		.uleb128 0x24
- 261 0015 00       		.byte	0
- 262 0016 0B       		.uleb128 0xb
- 263 0017 0B       		.uleb128 0xb
- 264 0018 3E       		.uleb128 0x3e
- 265 0019 0B       		.uleb128 0xb
- 266 001a 03       		.uleb128 0x3
- 267 001b 0E       		.uleb128 0xe
- 268 001c 00       		.byte	0
- 269 001d 00       		.byte	0
- 270 001e 03       		.uleb128 0x3
- 271 001f 24       		.uleb128 0x24
- 272 0020 00       		.byte	0
- 273 0021 0B       		.uleb128 0xb
- 274 0022 0B       		.uleb128 0xb
- 275 0023 3E       		.uleb128 0x3e
- 276 0024 0B       		.uleb128 0xb
- 277 0025 03       		.uleb128 0x3
- 278 0026 08       		.uleb128 0x8
- 279 0027 00       		.byte	0
- 280 0028 00       		.byte	0
- 281 0029 04       		.uleb128 0x4
- 282 002a 16       		.uleb128 0x16
- 283 002b 00       		.byte	0
- 284 002c 03       		.uleb128 0x3
- 285 002d 0E       		.uleb128 0xe
- 286 002e 3A       		.uleb128 0x3a
- 287 002f 0B       		.uleb128 0xb
- 288 0030 3B       		.uleb128 0x3b
- 289 0031 05       		.uleb128 0x5
- 290 0032 49       		.uleb128 0x49
- 291 0033 13       		.uleb128 0x13
- 292 0034 00       		.byte	0
- 293 0035 00       		.byte	0
- 294 0036 05       		.uleb128 0x5
- 295 0037 35       		.uleb128 0x35
- 296 0038 00       		.byte	0
- 297 0039 49       		.uleb128 0x49
- 298 003a 13       		.uleb128 0x13
- 299 003b 00       		.byte	0
- 300 003c 00       		.byte	0
- 301 003d 06       		.uleb128 0x6
- 302 003e 2E       		.uleb128 0x2e
- 303 003f 00       		.byte	0
- 304 0040 3F       		.uleb128 0x3f
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccncqdBe.s 			page 11
+ 260 0021 0B       		.uleb128 0xb
+ 261 0022 0B       		.uleb128 0xb
+ 262 0023 3E       		.uleb128 0x3e
+ 263 0024 0B       		.uleb128 0xb
+ 264 0025 03       		.uleb128 0x3
+ 265 0026 08       		.uleb128 0x8
+ 266 0027 00       		.byte	0
+ 267 0028 00       		.byte	0
+ 268 0029 04       		.uleb128 0x4
+ 269 002a 16       		.uleb128 0x16
+ 270 002b 00       		.byte	0
+ 271 002c 03       		.uleb128 0x3
+ 272 002d 0E       		.uleb128 0xe
+ 273 002e 3A       		.uleb128 0x3a
+ 274 002f 0B       		.uleb128 0xb
+ 275 0030 3B       		.uleb128 0x3b
+ 276 0031 05       		.uleb128 0x5
+ 277 0032 49       		.uleb128 0x49
+ 278 0033 13       		.uleb128 0x13
+ 279 0034 00       		.byte	0
+ 280 0035 00       		.byte	0
+ 281 0036 05       		.uleb128 0x5
+ 282 0037 35       		.uleb128 0x35
+ 283 0038 00       		.byte	0
+ 284 0039 49       		.uleb128 0x49
+ 285 003a 13       		.uleb128 0x13
+ 286 003b 00       		.byte	0
+ 287 003c 00       		.byte	0
+ 288 003d 06       		.uleb128 0x6
+ 289 003e 2E       		.uleb128 0x2e
+ 290 003f 00       		.byte	0
+ 291 0040 3F       		.uleb128 0x3f
+ 292 0041 19       		.uleb128 0x19
+ 293 0042 03       		.uleb128 0x3
+ 294 0043 0E       		.uleb128 0xe
+ 295 0044 3A       		.uleb128 0x3a
+ 296 0045 0B       		.uleb128 0xb
+ 297 0046 3B       		.uleb128 0x3b
+ 298 0047 0B       		.uleb128 0xb
+ 299 0048 27       		.uleb128 0x27
+ 300 0049 19       		.uleb128 0x19
+ 301 004a 11       		.uleb128 0x11
+ 302 004b 01       		.uleb128 0x1
+ 303 004c 12       		.uleb128 0x12
+ 304 004d 06       		.uleb128 0x6
+ 305 004e 40       		.uleb128 0x40
+ 306 004f 18       		.uleb128 0x18
+ 307 0050 9742     		.uleb128 0x2117
+ 308 0052 19       		.uleb128 0x19
+ 309 0053 00       		.byte	0
+ 310 0054 00       		.byte	0
+ 311 0055 07       		.uleb128 0x7
+ 312 0056 01       		.uleb128 0x1
+ 313 0057 01       		.byte	0x1
+ 314 0058 49       		.uleb128 0x49
+ 315 0059 13       		.uleb128 0x13
+ 316 005a 01       		.uleb128 0x1
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccuoSlN7.s 			page 11
 
 
- 305 0041 19       		.uleb128 0x19
- 306 0042 03       		.uleb128 0x3
- 307 0043 0E       		.uleb128 0xe
- 308 0044 3A       		.uleb128 0x3a
- 309 0045 0B       		.uleb128 0xb
- 310 0046 3B       		.uleb128 0x3b
- 311 0047 0B       		.uleb128 0xb
- 312 0048 27       		.uleb128 0x27
- 313 0049 19       		.uleb128 0x19
- 314 004a 11       		.uleb128 0x11
- 315 004b 01       		.uleb128 0x1
- 316 004c 12       		.uleb128 0x12
- 317 004d 06       		.uleb128 0x6
- 318 004e 40       		.uleb128 0x40
- 319 004f 18       		.uleb128 0x18
- 320 0050 9742     		.uleb128 0x2117
- 321 0052 19       		.uleb128 0x19
- 322 0053 00       		.byte	0
- 323 0054 00       		.byte	0
- 324 0055 07       		.uleb128 0x7
- 325 0056 01       		.uleb128 0x1
- 326 0057 01       		.byte	0x1
- 327 0058 49       		.uleb128 0x49
- 328 0059 13       		.uleb128 0x13
- 329 005a 01       		.uleb128 0x1
- 330 005b 13       		.uleb128 0x13
- 331 005c 00       		.byte	0
- 332 005d 00       		.byte	0
- 333 005e 08       		.uleb128 0x8
- 334 005f 21       		.uleb128 0x21
- 335 0060 00       		.byte	0
- 336 0061 49       		.uleb128 0x49
- 337 0062 13       		.uleb128 0x13
- 338 0063 2F       		.uleb128 0x2f
- 339 0064 05       		.uleb128 0x5
- 340 0065 00       		.byte	0
- 341 0066 00       		.byte	0
- 342 0067 09       		.uleb128 0x9
- 343 0068 34       		.uleb128 0x34
- 344 0069 00       		.byte	0
- 345 006a 03       		.uleb128 0x3
- 346 006b 0E       		.uleb128 0xe
- 347 006c 3A       		.uleb128 0x3a
- 348 006d 0B       		.uleb128 0xb
- 349 006e 3B       		.uleb128 0x3b
- 350 006f 05       		.uleb128 0x5
- 351 0070 49       		.uleb128 0x49
- 352 0071 13       		.uleb128 0x13
- 353 0072 3F       		.uleb128 0x3f
- 354 0073 19       		.uleb128 0x19
- 355 0074 3C       		.uleb128 0x3c
- 356 0075 19       		.uleb128 0x19
- 357 0076 00       		.byte	0
- 358 0077 00       		.byte	0
- 359 0078 00       		.byte	0
- 360              		.section	.debug_aranges,"",%progbits
- 361 0000 1C000000 		.4byte	0x1c
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccncqdBe.s 			page 12
+ 317 005b 13       		.uleb128 0x13
+ 318 005c 00       		.byte	0
+ 319 005d 00       		.byte	0
+ 320 005e 08       		.uleb128 0x8
+ 321 005f 21       		.uleb128 0x21
+ 322 0060 00       		.byte	0
+ 323 0061 49       		.uleb128 0x49
+ 324 0062 13       		.uleb128 0x13
+ 325 0063 2F       		.uleb128 0x2f
+ 326 0064 05       		.uleb128 0x5
+ 327 0065 00       		.byte	0
+ 328 0066 00       		.byte	0
+ 329 0067 09       		.uleb128 0x9
+ 330 0068 34       		.uleb128 0x34
+ 331 0069 00       		.byte	0
+ 332 006a 03       		.uleb128 0x3
+ 333 006b 0E       		.uleb128 0xe
+ 334 006c 3A       		.uleb128 0x3a
+ 335 006d 0B       		.uleb128 0xb
+ 336 006e 3B       		.uleb128 0x3b
+ 337 006f 05       		.uleb128 0x5
+ 338 0070 49       		.uleb128 0x49
+ 339 0071 13       		.uleb128 0x13
+ 340 0072 3F       		.uleb128 0x3f
+ 341 0073 19       		.uleb128 0x19
+ 342 0074 3C       		.uleb128 0x3c
+ 343 0075 19       		.uleb128 0x19
+ 344 0076 00       		.byte	0
+ 345 0077 00       		.byte	0
+ 346 0078 00       		.byte	0
+ 347              		.section	.debug_aranges,"",%progbits
+ 348 0000 1C000000 		.4byte	0x1c
+ 349 0004 0200     		.2byte	0x2
+ 350 0006 00000000 		.4byte	.Ldebug_info0
+ 351 000a 04       		.byte	0x4
+ 352 000b 00       		.byte	0
+ 353 000c 0000     		.2byte	0
+ 354 000e 0000     		.2byte	0
+ 355 0010 00000000 		.4byte	.LFB0
+ 356 0014 5C000000 		.4byte	.LFE0-.LFB0
+ 357 0018 00000000 		.4byte	0
+ 358 001c 00000000 		.4byte	0
+ 359              		.section	.debug_ranges,"",%progbits
+ 360              	.Ldebug_ranges0:
+ 361 0000 00000000 		.4byte	.LFB0
+ 362 0004 5C000000 		.4byte	.LFE0
+ 363 0008 00000000 		.4byte	0
+ 364 000c 00000000 		.4byte	0
+ 365              		.section	.debug_line,"",%progbits
+ 366              	.Ldebug_line0:
+ 367 0000 80000000 		.section	.debug_str,"MS",%progbits,1
+ 367      02004F00 
+ 367      00000201 
+ 367      FB0E0D00 
+ 367      01010101 
+ 368              	.LASF6:
+ 369 0000 6C6F6E67 		.ascii	"long long int\000"
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccuoSlN7.s 			page 12
 
 
- 362 0004 0200     		.2byte	0x2
- 363 0006 00000000 		.4byte	.Ldebug_info0
- 364 000a 04       		.byte	0x4
- 365 000b 00       		.byte	0
- 366 000c 0000     		.2byte	0
- 367 000e 0000     		.2byte	0
- 368 0010 00000000 		.4byte	.LFB0
- 369 0014 70000000 		.4byte	.LFE0-.LFB0
- 370 0018 00000000 		.4byte	0
- 371 001c 00000000 		.4byte	0
- 372              		.section	.debug_ranges,"",%progbits
- 373              	.Ldebug_ranges0:
- 374 0000 00000000 		.4byte	.LFB0
- 375 0004 70000000 		.4byte	.LFE0
- 376 0008 00000000 		.4byte	0
- 377 000c 00000000 		.4byte	0
- 378              		.section	.debug_line,"",%progbits
- 379              	.Ldebug_line0:
- 380 0000 7C000000 		.section	.debug_str,"MS",%progbits,1
- 380      02004F00 
- 380      00000201 
- 380      FB0E0D00 
- 380      01010101 
- 381              	.LASF6:
- 382 0000 6C6F6E67 		.ascii	"long long int\000"
- 382      206C6F6E 
- 382      6720696E 
- 382      7400
- 383              	.LASF8:
- 384 000e 756E7369 		.ascii	"unsigned int\000"
- 384      676E6564 
- 384      20696E74 
- 384      00
- 385              	.LASF19:
- 386 001b 55415254 		.ascii	"UART_txBufferWrite\000"
- 386      5F747842 
- 386      75666665 
- 386      72577269 
- 386      746500
- 387              	.LASF14:
- 388 002e 72656738 		.ascii	"reg8\000"
- 388      00
- 389              	.LASF9:
- 390 0033 75696E74 		.ascii	"uint8\000"
- 390      3800
- 391              	.LASF5:
- 392 0039 6C6F6E67 		.ascii	"long unsigned int\000"
- 392      20756E73 
- 392      69676E65 
- 392      6420696E 
- 392      7400
- 393              	.LASF7:
- 394 004b 6C6F6E67 		.ascii	"long long unsigned int\000"
- 394      206C6F6E 
- 394      6720756E 
- 394      7369676E 
- 394      65642069 
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccncqdBe.s 			page 13
+ 369      206C6F6E 
+ 369      6720696E 
+ 369      7400
+ 370              	.LASF8:
+ 371 000e 756E7369 		.ascii	"unsigned int\000"
+ 371      676E6564 
+ 371      20696E74 
+ 371      00
+ 372              	.LASF19:
+ 373 001b 55415254 		.ascii	"UART_txBufferWrite\000"
+ 373      5F747842 
+ 373      75666665 
+ 373      72577269 
+ 373      746500
+ 374              	.LASF14:
+ 375 002e 72656738 		.ascii	"reg8\000"
+ 375      00
+ 376              	.LASF9:
+ 377 0033 75696E74 		.ascii	"uint8\000"
+ 377      3800
+ 378              	.LASF5:
+ 379 0039 6C6F6E67 		.ascii	"long unsigned int\000"
+ 379      20756E73 
+ 379      69676E65 
+ 379      6420696E 
+ 379      7400
+ 380              	.LASF7:
+ 381 004b 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 381      206C6F6E 
+ 381      6720756E 
+ 381      7369676E 
+ 381      65642069 
+ 382              	.LASF21:
+ 383 0062 47656E65 		.ascii	"Generated_Source\\PSoC5\\UART_INT.c\000"
+ 383      72617465 
+ 383      645F536F 
+ 383      75726365 
+ 383      5C50536F 
+ 384              	.LASF11:
+ 385 0084 666C6F61 		.ascii	"float\000"
+ 385      7400
+ 386              	.LASF22:
+ 387 008a 433A5C55 		.ascii	"C:\\Users\\jmspi\\OneDrive\\Documents\\GitHub\\ECE4"
+ 387      73657273 
+ 387      5C6A6D73 
+ 387      70695C4F 
+ 387      6E654472 
+ 388 00b7 3139315C 		.ascii	"191\\DeliveryRobot.cydsn\000"
+ 388      44656C69 
+ 388      76657279 
+ 388      526F626F 
+ 388      742E6379 
+ 389              	.LASF1:
+ 390 00cf 756E7369 		.ascii	"unsigned char\000"
+ 390      676E6564 
+ 390      20636861 
+ 390      7200
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccuoSlN7.s 			page 13
 
 
- 395              	.LASF21:
- 396 0062 47656E65 		.ascii	"Generated_Source\\PSoC5\\UART_INT.c\000"
- 396      72617465 
- 396      645F536F 
- 396      75726365 
- 396      5C50536F 
- 397              	.LASF11:
- 398 0084 666C6F61 		.ascii	"float\000"
- 398      7400
+ 391              	.LASF13:
+ 392 00dd 63686172 		.ascii	"char\000"
+ 392      00
+ 393              	.LASF4:
+ 394 00e2 6C6F6E67 		.ascii	"long int\000"
+ 394      20696E74 
+ 394      00
+ 395              	.LASF18:
+ 396 00eb 55415254 		.ascii	"UART_txBufferRead\000"
+ 396      5F747842 
+ 396      75666665 
+ 396      72526561 
+ 396      6400
+ 397              	.LASF12:
+ 398 00fd 646F7562 		.ascii	"double\000"
+ 398      6C6500
  399              	.LASF20:
- 400 008a 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 400 0104 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
  400      43313120 
  400      352E342E 
  400      31203230 
  400      31363036 
- 401 00bd 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 401 0137 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
  401      20726576 
  401      6973696F 
  401      6E203233 
  401      37373135 
- 402 00f0 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 402 016a 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
  402      66756E63 
  402      74696F6E 
  402      2D736563 
  402      74696F6E 
- 403              	.LASF1:
- 404 0118 756E7369 		.ascii	"unsigned char\000"
- 404      676E6564 
- 404      20636861 
- 404      7200
- 405              	.LASF13:
- 406 0126 63686172 		.ascii	"char\000"
- 406      00
- 407              	.LASF4:
- 408 012b 6C6F6E67 		.ascii	"long int\000"
- 408      20696E74 
- 408      00
- 409              	.LASF18:
- 410 0134 55415254 		.ascii	"UART_txBufferRead\000"
- 410      5F747842 
- 410      75666665 
- 410      72526561 
- 410      6400
- 411              	.LASF12:
- 412 0146 646F7562 		.ascii	"double\000"
- 412      6C6500
- 413              	.LASF23:
- 414 014d 55415254 		.ascii	"UART_TXISR\000"
- 414      5F545849 
- 414      535200
- 415              	.LASF3:
- 416 0158 73686F72 		.ascii	"short unsigned int\000"
- 416      7420756E 
- 416      7369676E 
- 416      65642069 
- 416      6E7400
- 417              	.LASF0:
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccncqdBe.s 			page 14
+ 403              	.LASF3:
+ 404 0192 73686F72 		.ascii	"short unsigned int\000"
+ 404      7420756E 
+ 404      7369676E 
+ 404      65642069 
+ 404      6E7400
+ 405              	.LASF0:
+ 406 01a5 7369676E 		.ascii	"signed char\000"
+ 406      65642063 
+ 406      68617200 
+ 407              	.LASF23:
+ 408 01b1 55415254 		.ascii	"UART_TXISR\000"
+ 408      5F545849 
+ 408      535200
+ 409              	.LASF15:
+ 410 01bc 6C6F6E67 		.ascii	"long double\000"
+ 410      20646F75 
+ 410      626C6500 
+ 411              	.LASF2:
+ 412 01c8 73686F72 		.ascii	"short int\000"
+ 412      7420696E 
+ 412      7400
+ 413              	.LASF10:
+ 414 01d2 75696E74 		.ascii	"uint16\000"
+ 414      313600
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccuoSlN7.s 			page 14
 
 
- 418 016b 7369676E 		.ascii	"signed char\000"
- 418      65642063 
- 418      68617200 
- 419              	.LASF22:
- 420 0177 433A5C55 		.ascii	"C:\\Users\\jmspi\\OneDrive\\Documents\\GitHub\\ECE4"
- 420      73657273 
- 420      5C6A6D73 
- 420      70695C4F 
- 420      6E654472 
- 421 01a4 3139315C 		.ascii	"191\\DeliveryRobot.cydsn\000"
- 421      44656C69 
- 421      76657279 
- 421      526F626F 
- 421      742E6379 
- 422              	.LASF15:
- 423 01bc 6C6F6E67 		.ascii	"long double\000"
- 423      20646F75 
- 423      626C6500 
- 424              	.LASF2:
- 425 01c8 73686F72 		.ascii	"short int\000"
- 425      7420696E 
- 425      7400
- 426              	.LASF10:
- 427 01d2 75696E74 		.ascii	"uint16\000"
- 427      313600
- 428              	.LASF16:
- 429 01d9 73697A65 		.ascii	"sizetype\000"
- 429      74797065 
- 429      00
- 430              	.LASF17:
- 431 01e2 55415254 		.ascii	"UART_txBuffer\000"
- 431      5F747842 
- 431      75666665 
- 431      7200
- 432              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 415              	.LASF16:
+ 416 01d9 73697A65 		.ascii	"sizetype\000"
+ 416      74797065 
+ 416      00
+ 417              	.LASF17:
+ 418 01e2 55415254 		.ascii	"UART_txBuffer\000"
+ 418      5F747842 
+ 418      75666665 
+ 418      7200
+ 419              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

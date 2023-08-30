@@ -1,0 +1,1148 @@
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccoaS5CT.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"wrapToPi.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	__aeabi_dcmpgt
+  20              		.global	__aeabi_dadd
+  21              		.global	__aeabi_dcmpeq
+  22              		.global	__aeabi_dsub
+  23              		.section	.text.wrapToPi,"ax",%progbits
+  24              		.align	1
+  25              		.global	wrapToPi
+  26              		.thumb
+  27              		.thumb_func
+  28              		.type	wrapToPi, %function
+  29              	wrapToPi:
+  30              	.LFB0:
+  31              		.file 1 "VFH+\\src\\wrapToPi.c"
+   1:VFH+\src/wrapToPi.c **** /*
+   2:VFH+\src/wrapToPi.c ****  * Academic License - for use in teaching, academic research, and meeting
+   3:VFH+\src/wrapToPi.c ****  * course requirements at degree granting institutions only.  Not for
+   4:VFH+\src/wrapToPi.c ****  * government, commercial, or other organizational use.
+   5:VFH+\src/wrapToPi.c ****  * File: wrapToPi.c
+   6:VFH+\src/wrapToPi.c ****  *
+   7:VFH+\src/wrapToPi.c ****  * MATLAB Coder version            : 5.3
+   8:VFH+\src/wrapToPi.c ****  * C/C++ source code generated on  : 30-Aug-2023 22:51:35
+   9:VFH+\src/wrapToPi.c ****  */
+  10:VFH+\src/wrapToPi.c **** 
+  11:VFH+\src/wrapToPi.c **** /* Include Files */
+  12:VFH+\src/wrapToPi.c **** #include "wrapToPi.h"
+  13:VFH+\src/wrapToPi.c **** #include "mod.h"
+  14:VFH+\src/wrapToPi.c **** #include "rt_nonfinite.h"
+  15:VFH+\src/wrapToPi.c **** #include <math.h>
+  16:VFH+\src/wrapToPi.c **** 
+  17:VFH+\src/wrapToPi.c **** /* Function Definitions */
+  18:VFH+\src/wrapToPi.c **** /*
+  19:VFH+\src/wrapToPi.c ****  * Arguments    : double theta_data[]
+  20:VFH+\src/wrapToPi.c ****  *                int theta_size[2]
+  21:VFH+\src/wrapToPi.c ****  * Return Type  : void
+  22:VFH+\src/wrapToPi.c ****  */
+  23:VFH+\src/wrapToPi.c **** void wrapToPi(double theta_data[], int theta_size[2])
+  24:VFH+\src/wrapToPi.c **** {
+  32              		.loc 1 24 0
+  33              		.cfi_startproc
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccoaS5CT.s 			page 2
+
+
+  34              		@ args = 0, pretend = 0, frame = 560
+  35              		@ frame_needed = 0, uses_anonymous_args = 0
+  36              	.LVL0:
+  37 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+  38              		.cfi_def_cfa_offset 36
+  39              		.cfi_offset 4, -36
+  40              		.cfi_offset 5, -32
+  41              		.cfi_offset 6, -28
+  42              		.cfi_offset 7, -24
+  43              		.cfi_offset 8, -20
+  44              		.cfi_offset 9, -16
+  45              		.cfi_offset 10, -12
+  46              		.cfi_offset 11, -8
+  47              		.cfi_offset 14, -4
+  48 0004 DFF87891 		ldr	r9, .L39+16
+  49 0008 A0F10804 		sub	r4, r0, #8
+  25:VFH+\src/wrapToPi.c ****   static double y_data[276];
+  26:VFH+\src/wrapToPi.c ****   int i;
+  27:VFH+\src/wrapToPi.c ****   int k;
+  28:VFH+\src/wrapToPi.c ****   int nx;
+  29:VFH+\src/wrapToPi.c ****   int y_size_idx_1;
+  30:VFH+\src/wrapToPi.c ****   bool pos_data[276];
+  31:VFH+\src/wrapToPi.c ****   bool tmp_data[276];
+  32:VFH+\src/wrapToPi.c ****   bool exitg1;
+  33:VFH+\src/wrapToPi.c ****   bool varargout_1;
+  34:VFH+\src/wrapToPi.c ****   nx = theta_size[1];
+  50              		.loc 1 34 0
+  51 000c 4F68     		ldr	r7, [r1, #4]
+  52              	.LVL1:
+  24:VFH+\src/wrapToPi.c ****   static double y_data[276];
+  53              		.loc 1 24 0
+  54 000e 0D46     		mov	r5, r1
+  35:VFH+\src/wrapToPi.c ****   y_size_idx_1 = (short)theta_size[1];
+  36:VFH+\src/wrapToPi.c ****   for (k = 0; k < nx; k++) {
+  55              		.loc 1 36 0
+  56 0010 2246     		mov	r2, r4
+  57 0012 4946     		mov	r1, r9
+  58              	.LVL2:
+  24:VFH+\src/wrapToPi.c ****   static double y_data[276];
+  59              		.loc 1 24 0
+  60 0014 ADF50D7D 		sub	sp, sp, #564
+  61              		.cfi_def_cfa_offset 600
+  24:VFH+\src/wrapToPi.c ****   static double y_data[276];
+  62              		.loc 1 24 0
+  63 0018 0190     		str	r0, [sp, #4]
+  35:VFH+\src/wrapToPi.c ****   y_size_idx_1 = (short)theta_size[1];
+  64              		.loc 1 35 0
+  65 001a 3EB2     		sxth	r6, r7
+  66              	.LVL3:
+  67              		.loc 1 36 0
+  68 001c 0023     		movs	r3, #0
+  69              	.LVL4:
+  70              	.L2:
+  71              		.loc 1 36 0 is_stmt 0 discriminator 1
+  72 001e BB42     		cmp	r3, r7
+  73 0020 09DA     		bge	.L33
+  37:VFH+\src/wrapToPi.c ****     y_data[k] = fabs(theta_data[k]);
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccoaS5CT.s 			page 3
+
+
+  74              		.loc 1 37 0 is_stmt 1 discriminator 3
+  75 0022 52F8080F 		ldr	r0, [r2, #8]!
+  36:VFH+\src/wrapToPi.c ****     y_data[k] = fabs(theta_data[k]);
+  76              		.loc 1 36 0 discriminator 3
+  77 0026 0133     		adds	r3, r3, #1
+  78              	.LVL5:
+  79              		.loc 1 37 0 discriminator 3
+  80 0028 41F8080F 		str	r0, [r1, #8]!
+  81 002c 5068     		ldr	r0, [r2, #4]
+  82 002e 20F00040 		bic	r0, r0, #-2147483648
+  83 0032 4860     		str	r0, [r1, #4]
+  84 0034 F3E7     		b	.L2
+  85              	.L33:
+  86 0036 DFF848A1 		ldr	r10, .L39+16
+  87 003a 4FF00008 		mov	r8, #0
+  88              	.LVL6:
+  89              	.L4:
+  38:VFH+\src/wrapToPi.c ****   }
+  39:VFH+\src/wrapToPi.c ****   for (i = 0; i < y_size_idx_1; i++) {
+  90              		.loc 1 39 0 discriminator 1
+  91 003e B045     		cmp	r8, r6
+  92 0040 10DA     		bge	.L34
+  40:VFH+\src/wrapToPi.c ****     pos_data[i] = (y_data[i] > 3.1415926535897931);
+  93              		.loc 1 40 0 discriminator 3
+  94 0042 4BA3     		adr	r3, .L39
+  95 0044 D3E90023 		ldrd	r2, [r3]
+  96 0048 FAE90201 		ldrd	r0, [r10, #8]!
+  97 004c 4FF0010B 		mov	fp, #1
+  98 0050 FFF7FEFF 		bl	__aeabi_dcmpgt
+  99              	.LVL7:
+ 100 0054 00B9     		cbnz	r0, .L5
+ 101 0056 8346     		mov	fp, r0
+ 102              	.L5:
+ 103 0058 02AB     		add	r3, sp, #8
+ 104 005a 03F808B0 		strb	fp, [r3, r8]
+  39:VFH+\src/wrapToPi.c ****     pos_data[i] = (y_data[i] > 3.1415926535897931);
+ 105              		.loc 1 39 0 discriminator 3
+ 106 005e 08F10108 		add	r8, r8, #1
+ 107              	.LVL8:
+ 108 0062 ECE7     		b	.L4
+ 109              	.L34:
+ 110 0064 0123     		movs	r3, #1
+ 111              	.LVL9:
+ 112              	.L7:
+  41:VFH+\src/wrapToPi.c ****   }
+  42:VFH+\src/wrapToPi.c ****   varargout_1 = false;
+  43:VFH+\src/wrapToPi.c ****   nx = 1;
+  44:VFH+\src/wrapToPi.c ****   exitg1 = false;
+  45:VFH+\src/wrapToPi.c ****   while ((!exitg1) && (nx <= y_size_idx_1)) {
+ 113              		.loc 1 45 0
+ 114 0066 B342     		cmp	r3, r6
+ 115 0068 7BDC     		bgt	.L1
+  46:VFH+\src/wrapToPi.c ****     if (pos_data[nx - 1]) {
+ 116              		.loc 1 46 0
+ 117 006a 02AA     		add	r2, sp, #8
+ 118 006c 1A44     		add	r2, r2, r3
+ 119 006e 12F8012C 		ldrb	r2, [r2, #-1]	@ zero_extendqisi2
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccoaS5CT.s 			page 4
+
+
+ 120 0072 0AB9     		cbnz	r2, .L24
+  47:VFH+\src/wrapToPi.c ****       varargout_1 = true;
+  48:VFH+\src/wrapToPi.c ****       exitg1 = true;
+  49:VFH+\src/wrapToPi.c ****     } else {
+  50:VFH+\src/wrapToPi.c ****       nx++;
+ 121              		.loc 1 50 0
+ 122 0074 0133     		adds	r3, r3, #1
+ 123              	.LVL10:
+ 124 0076 F6E7     		b	.L7
+ 125              	.L24:
+ 126 0078 A246     		mov	r10, r4
+ 127 007a DFF804B1 		ldr	fp, .L39+16
+ 128 007e 4FF00008 		mov	r8, #0
+ 129              	.LVL11:
+ 130              	.L8:
+  51:VFH+\src/wrapToPi.c ****     }
+  52:VFH+\src/wrapToPi.c ****   }
+  53:VFH+\src/wrapToPi.c ****   if (varargout_1) {
+  54:VFH+\src/wrapToPi.c ****     y_size_idx_1 = theta_size[1];
+  55:VFH+\src/wrapToPi.c ****     nx = theta_size[1];
+  56:VFH+\src/wrapToPi.c ****     for (i = 0; i < nx; i++) {
+ 131              		.loc 1 56 0 discriminator 1
+ 132 0082 B845     		cmp	r8, r7
+ 133 0084 0BDA     		bge	.L35
+  57:VFH+\src/wrapToPi.c ****       y_data[i] = theta_data[i] + 3.1415926535897931;
+ 134              		.loc 1 57 0 discriminator 3
+ 135 0086 FAE90201 		ldrd	r0, [r10, #8]!
+ 136 008a 39A3     		adr	r3, .L39
+ 137 008c D3E90023 		ldrd	r2, [r3]
+ 138 0090 FFF7FEFF 		bl	__aeabi_dadd
+ 139              	.LVL12:
+  56:VFH+\src/wrapToPi.c ****       y_data[i] = theta_data[i] + 3.1415926535897931;
+ 140              		.loc 1 56 0 discriminator 3
+ 141 0094 08F10108 		add	r8, r8, #1
+ 142              	.LVL13:
+ 143              		.loc 1 57 0 discriminator 3
+ 144 0098 EBE90201 		strd	r0, [fp, #8]!
+ 145 009c F1E7     		b	.L8
+ 146              	.L35:
+ 147 009e DFF8E0A0 		ldr	r10, .L39+16
+ 148 00a2 4FF00008 		mov	r8, #0
+ 149              	.LVL14:
+ 150              	.L11:
+  58:VFH+\src/wrapToPi.c ****     }
+  59:VFH+\src/wrapToPi.c ****     for (i = 0; i < y_size_idx_1; i++) {
+ 151              		.loc 1 59 0 discriminator 1
+ 152 00a6 B845     		cmp	r8, r7
+ 153 00a8 0FDA     		bge	.L36
+  60:VFH+\src/wrapToPi.c ****       pos_data[i] = (y_data[i] > 0.0);
+ 154              		.loc 1 60 0 discriminator 3
+ 155 00aa FAE90201 		ldrd	r0, [r10, #8]!
+ 156 00ae 0022     		movs	r2, #0
+ 157 00b0 0023     		movs	r3, #0
+ 158 00b2 4FF0010B 		mov	fp, #1
+ 159 00b6 FFF7FEFF 		bl	__aeabi_dcmpgt
+ 160              	.LVL15:
+ 161 00ba 00B9     		cbnz	r0, .L12
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccoaS5CT.s 			page 5
+
+
+ 162 00bc 8346     		mov	fp, r0
+ 163              	.L12:
+ 164 00be 02AB     		add	r3, sp, #8
+ 165 00c0 03F808B0 		strb	fp, [r3, r8]
+  59:VFH+\src/wrapToPi.c ****       pos_data[i] = (y_data[i] > 0.0);
+ 166              		.loc 1 59 0 discriminator 3
+ 167 00c4 08F10108 		add	r8, r8, #1
+ 168              	.LVL16:
+ 169 00c8 EDE7     		b	.L11
+ 170              	.L36:
+  61:VFH+\src/wrapToPi.c ****     }
+  62:VFH+\src/wrapToPi.c ****     theta_size[0] = 1;
+  63:VFH+\src/wrapToPi.c ****     theta_size[1] = (short)y_size_idx_1;
+ 171              		.loc 1 63 0
+ 172 00ca A046     		mov	r8, r4
+ 173              	.LVL17:
+  62:VFH+\src/wrapToPi.c ****     theta_size[1] = (short)y_size_idx_1;
+ 174              		.loc 1 62 0
+ 175 00cc 0123     		movs	r3, #1
+ 176              		.loc 1 63 0
+ 177 00ce 85E84800 		stmia	r5, {r3, r6}
+ 178              	.LVL18:
+  64:VFH+\src/wrapToPi.c ****     nx = theta_size[1];
+  65:VFH+\src/wrapToPi.c ****     for (k = 0; k < nx; k++) {
+ 179              		.loc 1 65 0
+ 180 00d2 0027     		movs	r7, #0
+ 181              	.LVL19:
+ 182              	.L14:
+  66:VFH+\src/wrapToPi.c ****       theta_data[k] = b_mod(y_data[k]);
+ 183              		.loc 1 66 0 discriminator 3
+ 184 00d4 F9E90201 		ldrd	r0, [r9, #8]!
+ 185 00d8 FFF7FEFF 		bl	b_mod
+ 186              	.LVL20:
+  65:VFH+\src/wrapToPi.c ****       theta_data[k] = b_mod(y_data[k]);
+ 187              		.loc 1 65 0 discriminator 3
+ 188 00dc 0137     		adds	r7, r7, #1
+ 189              	.LVL21:
+ 190 00de BE42     		cmp	r6, r7
+ 191              		.loc 1 66 0 discriminator 3
+ 192 00e0 E8E90201 		strd	r0, [r8, #8]!
+  65:VFH+\src/wrapToPi.c ****       theta_data[k] = b_mod(y_data[k]);
+ 193              		.loc 1 65 0 discriminator 3
+ 194 00e4 F6DC     		bgt	.L14
+  67:VFH+\src/wrapToPi.c ****     }
+  68:VFH+\src/wrapToPi.c ****     k = theta_size[1];
+  69:VFH+\src/wrapToPi.c ****     nx = theta_size[1];
+  70:VFH+\src/wrapToPi.c ****     for (i = 0; i < nx; i++) {
+ 195              		.loc 1 70 0
+ 196 00e6 A046     		mov	r8, r4
+  68:VFH+\src/wrapToPi.c ****     nx = theta_size[1];
+ 197              		.loc 1 68 0
+ 198 00e8 6F68     		ldr	r7, [r5, #4]
+ 199              	.LVL22:
+ 200              		.loc 1 70 0
+ 201 00ea 0026     		movs	r6, #0
+ 202              	.LVL23:
+  71:VFH+\src/wrapToPi.c ****       tmp_data[i] = (theta_data[i] == 0.0);
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccoaS5CT.s 			page 6
+
+
+ 203              		.loc 1 71 0
+ 204 00ec 0DF58E7A 		add	r10, sp, #284
+ 205              	.LVL24:
+ 206              	.L15:
+  70:VFH+\src/wrapToPi.c ****       tmp_data[i] = (theta_data[i] == 0.0);
+ 207              		.loc 1 70 0 discriminator 1
+ 208 00f0 BE42     		cmp	r6, r7
+ 209 00f2 0DDA     		bge	.L37
+ 210              		.loc 1 71 0 discriminator 3
+ 211 00f4 F8E90201 		ldrd	r0, [r8, #8]!
+ 212 00f8 0022     		movs	r2, #0
+ 213 00fa 0023     		movs	r3, #0
+ 214 00fc 4FF00109 		mov	r9, #1
+ 215 0100 FFF7FEFF 		bl	__aeabi_dcmpeq
+ 216              	.LVL25:
+ 217 0104 00B9     		cbnz	r0, .L16
+ 218 0106 8146     		mov	r9, r0
+ 219              	.L16:
+ 220 0108 06F80A90 		strb	r9, [r6, r10]
+  70:VFH+\src/wrapToPi.c ****       tmp_data[i] = (theta_data[i] == 0.0);
+ 221              		.loc 1 70 0 discriminator 3
+ 222 010c 0136     		adds	r6, r6, #1
+ 223              	.LVL26:
+ 224 010e EFE7     		b	.L15
+ 225              	.L37:
+ 226 0110 019B     		ldr	r3, [sp, #4]
+  70:VFH+\src/wrapToPi.c ****       tmp_data[i] = (theta_data[i] == 0.0);
+ 227              		.loc 1 70 0 is_stmt 0
+ 228 0112 0022     		movs	r2, #0
+  72:VFH+\src/wrapToPi.c ****     }
+  73:VFH+\src/wrapToPi.c ****     for (nx = 0; nx < k; nx++) {
+  74:VFH+\src/wrapToPi.c ****       if (tmp_data[nx] && pos_data[nx]) {
+ 229              		.loc 1 74 0 is_stmt 1
+ 230 0114 47AE     		add	r6, sp, #284
+ 231              	.LVL27:
+  75:VFH+\src/wrapToPi.c ****         theta_data[nx] = 6.2831853071795862;
+ 232              		.loc 1 75 0
+ 233 0116 18A1     		adr	r1, .L39+8
+ 234 0118 D1E90001 		ldrd	r0, [r1]
+ 235              	.LVL28:
+ 236              	.L18:
+  73:VFH+\src/wrapToPi.c ****       if (tmp_data[nx] && pos_data[nx]) {
+ 237              		.loc 1 73 0 discriminator 1
+ 238 011c BA42     		cmp	r2, r7
+ 239 011e 10DA     		bge	.L38
+  74:VFH+\src/wrapToPi.c ****         theta_data[nx] = 6.2831853071795862;
+ 240              		.loc 1 74 0
+ 241 0120 12F806E0 		ldrb	lr, [r2, r6]	@ zero_extendqisi2
+ 242 0124 BEF1000F 		cmp	lr, #0
+ 243 0128 08D0     		beq	.L19
+  74:VFH+\src/wrapToPi.c ****         theta_data[nx] = 6.2831853071795862;
+ 244              		.loc 1 74 0 is_stmt 0 discriminator 1
+ 245 012a 0DF1080E 		add	lr, sp, #8
+ 246 012e 1EF802E0 		ldrb	lr, [lr, r2]	@ zero_extendqisi2
+ 247 0132 BEF1000F 		cmp	lr, #0
+ 248 0136 01D0     		beq	.L19
+ 249              		.loc 1 75 0 is_stmt 1
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccoaS5CT.s 			page 7
+
+
+ 250 0138 C3E90001 		strd	r0, [r3]
+ 251              	.L19:
+  73:VFH+\src/wrapToPi.c ****       if (tmp_data[nx] && pos_data[nx]) {
+ 252              		.loc 1 73 0 discriminator 2
+ 253 013c 0132     		adds	r2, r2, #1
+ 254              	.LVL29:
+ 255 013e 0833     		adds	r3, r3, #8
+ 256 0140 ECE7     		b	.L18
+ 257              	.L38:
+  76:VFH+\src/wrapToPi.c ****       }
+  77:VFH+\src/wrapToPi.c ****     }
+  78:VFH+\src/wrapToPi.c ****     theta_size[0] = 1;
+ 258              		.loc 1 78 0
+ 259 0142 0123     		movs	r3, #1
+ 260 0144 2B60     		str	r3, [r5]
+ 261              	.LVL30:
+  79:VFH+\src/wrapToPi.c ****     nx = theta_size[1];
+  80:VFH+\src/wrapToPi.c ****     for (i = 0; i < nx; i++) {
+ 262              		.loc 1 80 0
+ 263 0146 0025     		movs	r5, #0
+ 264              	.LVL31:
+ 265              	.L21:
+ 266              		.loc 1 80 0 is_stmt 0 discriminator 1
+ 267 0148 BD42     		cmp	r5, r7
+ 268 014a 0ADA     		bge	.L1
+  81:VFH+\src/wrapToPi.c ****       theta_data[i] -= 3.1415926535897931;
+ 269              		.loc 1 81 0 is_stmt 1 discriminator 3
+ 270 014c F4E90201 		ldrd	r0, [r4, #8]!
+ 271 0150 07A3     		adr	r3, .L39
+ 272 0152 D3E90023 		ldrd	r2, [r3]
+ 273 0156 FFF7FEFF 		bl	__aeabi_dsub
+ 274              	.LVL32:
+  80:VFH+\src/wrapToPi.c ****       theta_data[i] -= 3.1415926535897931;
+ 275              		.loc 1 80 0 discriminator 3
+ 276 015a 0135     		adds	r5, r5, #1
+ 277              	.LVL33:
+ 278              		.loc 1 81 0 discriminator 3
+ 279 015c C4E90001 		strd	r0, [r4]
+ 280 0160 F2E7     		b	.L21
+ 281              	.LVL34:
+ 282              	.L1:
+  82:VFH+\src/wrapToPi.c ****     }
+  83:VFH+\src/wrapToPi.c ****   }
+  84:VFH+\src/wrapToPi.c **** }
+ 283              		.loc 1 84 0
+ 284 0162 0DF50D7D 		add	sp, sp, #564
+ 285              		.cfi_def_cfa_offset 36
+ 286              		@ sp needed
+ 287 0166 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 288              	.LVL35:
+ 289              	.L40:
+ 290 016a 00BFAFF3 		.align	3
+ 290      0080
+ 291              	.L39:
+ 292 0170 182D4454 		.word	1413754136
+ 293 0174 FB210940 		.word	1074340347
+ 294 0178 182D4454 		.word	1413754136
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccoaS5CT.s 			page 8
+
+
+ 295 017c FB211940 		.word	1075388923
+ 296 0180 F8FFFFFF 		.word	.LANCHOR0-8
+ 297              		.cfi_endproc
+ 298              	.LFE0:
+ 299              		.size	wrapToPi, .-wrapToPi
+ 300              		.bss
+ 301              		.align	3
+ 302              		.set	.LANCHOR0,. + 0
+ 303              		.type	y_data.5364, %object
+ 304              		.size	y_data.5364, 2208
+ 305              	y_data.5364:
+ 306 0000 00000000 		.space	2208
+ 306      00000000 
+ 306      00000000 
+ 306      00000000 
+ 306      00000000 
+ 307              		.text
+ 308              	.Letext0:
+ 309              		.file 2 ".\\VFH+\\include/mod.h"
+ 310              		.section	.debug_info,"",%progbits
+ 311              	.Ldebug_info0:
+ 312 0000 86010000 		.4byte	0x186
+ 313 0004 0400     		.2byte	0x4
+ 314 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 315 000a 04       		.byte	0x4
+ 316 000b 01       		.uleb128 0x1
+ 317 000c 4D000000 		.4byte	.LASF23
+ 318 0010 0C       		.byte	0xc
+ 319 0011 13000000 		.4byte	.LASF24
+ 320 0015 EE000000 		.4byte	.LASF25
+ 321 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 322 001d 00000000 		.4byte	0
+ 323 0021 00000000 		.4byte	.Ldebug_line0
+ 324 0025 02       		.uleb128 0x2
+ 325 0026 01       		.byte	0x1
+ 326 0027 06       		.byte	0x6
+ 327 0028 E4010000 		.4byte	.LASF0
+ 328 002c 02       		.uleb128 0x2
+ 329 002d 01       		.byte	0x1
+ 330 002e 08       		.byte	0x8
+ 331 002f 38000000 		.4byte	.LASF1
+ 332 0033 02       		.uleb128 0x2
+ 333 0034 02       		.byte	0x2
+ 334 0035 05       		.byte	0x5
+ 335 0036 C5010000 		.4byte	.LASF2
+ 336 003a 02       		.uleb128 0x2
+ 337 003b 02       		.byte	0x2
+ 338 003c 07       		.byte	0x7
+ 339 003d DB000000 		.4byte	.LASF3
+ 340 0041 03       		.uleb128 0x3
+ 341 0042 04       		.byte	0x4
+ 342 0043 05       		.byte	0x5
+ 343 0044 696E7400 		.ascii	"int\000"
+ 344 0048 02       		.uleb128 0x2
+ 345 0049 04       		.byte	0x4
+ 346 004a 07       		.byte	0x7
+ 347 004b 7C010000 		.4byte	.LASF4
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccoaS5CT.s 			page 9
+
+
+ 348 004f 02       		.uleb128 0x2
+ 349 0050 04       		.byte	0x4
+ 350 0051 04       		.byte	0x4
+ 351 0052 27000000 		.4byte	.LASF5
+ 352 0056 02       		.uleb128 0x2
+ 353 0057 08       		.byte	0x8
+ 354 0058 04       		.byte	0x4
+ 355 0059 45010000 		.4byte	.LASF6
+ 356 005d 02       		.uleb128 0x2
+ 357 005e 01       		.byte	0x1
+ 358 005f 02       		.byte	0x2
+ 359 0060 F0010000 		.4byte	.LASF7
+ 360 0064 02       		.uleb128 0x2
+ 361 0065 04       		.byte	0x4
+ 362 0066 07       		.byte	0x7
+ 363 0067 6A010000 		.4byte	.LASF8
+ 364 006b 02       		.uleb128 0x2
+ 365 006c 01       		.byte	0x1
+ 366 006d 08       		.byte	0x8
+ 367 006e C0010000 		.4byte	.LASF9
+ 368 0072 02       		.uleb128 0x2
+ 369 0073 08       		.byte	0x8
+ 370 0074 05       		.byte	0x5
+ 371 0075 B2010000 		.4byte	.LASF10
+ 372 0079 02       		.uleb128 0x2
+ 373 007a 08       		.byte	0x8
+ 374 007b 04       		.byte	0x4
+ 375 007c D8010000 		.4byte	.LASF11
+ 376 0080 02       		.uleb128 0x2
+ 377 0081 04       		.byte	0x4
+ 378 0082 05       		.byte	0x5
+ 379 0083 CF010000 		.4byte	.LASF12
+ 380 0087 02       		.uleb128 0x2
+ 381 0088 08       		.byte	0x8
+ 382 0089 07       		.byte	0x7
+ 383 008a 89010000 		.4byte	.LASF13
+ 384 008e 02       		.uleb128 0x2
+ 385 008f 04       		.byte	0x4
+ 386 0090 07       		.byte	0x7
+ 387 0091 A9010000 		.4byte	.LASF14
+ 388 0095 04       		.uleb128 0x4
+ 389 0096 33010000 		.4byte	.LASF26
+ 390 009a 01       		.byte	0x1
+ 391 009b 17       		.byte	0x17
+ 392 009c 00000000 		.4byte	.LFB0
+ 393 00a0 84010000 		.4byte	.LFE0-.LFB0
+ 394 00a4 01       		.uleb128 0x1
+ 395 00a5 9C       		.byte	0x9c
+ 396 00a6 50010000 		.4byte	0x150
+ 397 00aa 05       		.uleb128 0x5
+ 398 00ab 2D000000 		.4byte	.LASF15
+ 399 00af 01       		.byte	0x1
+ 400 00b0 17       		.byte	0x17
+ 401 00b1 50010000 		.4byte	0x150
+ 402 00b5 00000000 		.4byte	.LLST0
+ 403 00b9 05       		.uleb128 0x5
+ 404 00ba 5F010000 		.4byte	.LASF16
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccoaS5CT.s 			page 10
+
+
+ 405 00be 01       		.byte	0x1
+ 406 00bf 17       		.byte	0x17
+ 407 00c0 56010000 		.4byte	0x156
+ 408 00c4 2D000000 		.4byte	.LLST1
+ 409 00c8 06       		.uleb128 0x6
+ 410 00c9 46000000 		.4byte	.LASF17
+ 411 00cd 01       		.byte	0x1
+ 412 00ce 19       		.byte	0x19
+ 413 00cf 5C010000 		.4byte	0x15c
+ 414 00d3 05       		.uleb128 0x5
+ 415 00d4 03       		.byte	0x3
+ 416 00d5 00000000 		.4byte	y_data.5364
+ 417 00d9 07       		.uleb128 0x7
+ 418 00da 6900     		.ascii	"i\000"
+ 419 00dc 01       		.byte	0x1
+ 420 00dd 1A       		.byte	0x1a
+ 421 00de 41000000 		.4byte	0x41
+ 422 00e2 59000000 		.4byte	.LLST2
+ 423 00e6 07       		.uleb128 0x7
+ 424 00e7 6B00     		.ascii	"k\000"
+ 425 00e9 01       		.byte	0x1
+ 426 00ea 1B       		.byte	0x1b
+ 427 00eb 41000000 		.4byte	0x41
+ 428 00ef 9A000000 		.4byte	.LLST3
+ 429 00f3 07       		.uleb128 0x7
+ 430 00f4 6E7800   		.ascii	"nx\000"
+ 431 00f7 01       		.byte	0x1
+ 432 00f8 1C       		.byte	0x1c
+ 433 00f9 41000000 		.4byte	0x41
+ 434 00fd D0000000 		.4byte	.LLST4
+ 435 0101 08       		.uleb128 0x8
+ 436 0102 00000000 		.4byte	.LASF18
+ 437 0106 01       		.byte	0x1
+ 438 0107 1D       		.byte	0x1d
+ 439 0108 41000000 		.4byte	0x41
+ 440 010c 26010000 		.4byte	.LLST5
+ 441 0110 06       		.uleb128 0x6
+ 442 0111 3C010000 		.4byte	.LASF19
+ 443 0115 01       		.byte	0x1
+ 444 0116 1E       		.byte	0x1e
+ 445 0117 6D010000 		.4byte	0x16d
+ 446 011b 03       		.uleb128 0x3
+ 447 011c 91       		.byte	0x91
+ 448 011d B07B     		.sleb128 -592
+ 449 011f 06       		.uleb128 0x6
+ 450 0120 A0010000 		.4byte	.LASF20
+ 451 0124 01       		.byte	0x1
+ 452 0125 1F       		.byte	0x1f
+ 453 0126 6D010000 		.4byte	0x16d
+ 454 012a 03       		.uleb128 0x3
+ 455 012b 91       		.byte	0x91
+ 456 012c C47D     		.sleb128 -316
+ 457 012e 09       		.uleb128 0x9
+ 458 012f 4C010000 		.4byte	.LASF21
+ 459 0133 01       		.byte	0x1
+ 460 0134 20       		.byte	0x20
+ 461 0135 5D000000 		.4byte	0x5d
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccoaS5CT.s 			page 11
+
+
+ 462 0139 00       		.byte	0
+ 463 013a 09       		.uleb128 0x9
+ 464 013b 53010000 		.4byte	.LASF22
+ 465 013f 01       		.byte	0x1
+ 466 0140 21       		.byte	0x21
+ 467 0141 5D000000 		.4byte	0x5d
+ 468 0145 00       		.byte	0
+ 469 0146 0A       		.uleb128 0xa
+ 470 0147 DC000000 		.4byte	.LVL20
+ 471 014b 7E010000 		.4byte	0x17e
+ 472 014f 00       		.byte	0
+ 473 0150 0B       		.uleb128 0xb
+ 474 0151 04       		.byte	0x4
+ 475 0152 56000000 		.4byte	0x56
+ 476 0156 0B       		.uleb128 0xb
+ 477 0157 04       		.byte	0x4
+ 478 0158 41000000 		.4byte	0x41
+ 479 015c 0C       		.uleb128 0xc
+ 480 015d 56000000 		.4byte	0x56
+ 481 0161 6D010000 		.4byte	0x16d
+ 482 0165 0D       		.uleb128 0xd
+ 483 0166 8E000000 		.4byte	0x8e
+ 484 016a 1301     		.2byte	0x113
+ 485 016c 00       		.byte	0
+ 486 016d 0C       		.uleb128 0xc
+ 487 016e 5D000000 		.4byte	0x5d
+ 488 0172 7E010000 		.4byte	0x17e
+ 489 0176 0D       		.uleb128 0xd
+ 490 0177 8E000000 		.4byte	0x8e
+ 491 017b 1301     		.2byte	0x113
+ 492 017d 00       		.byte	0
+ 493 017e 0E       		.uleb128 0xe
+ 494 017f 0D000000 		.4byte	.LASF27
+ 495 0183 0D000000 		.4byte	.LASF27
+ 496 0187 02       		.byte	0x2
+ 497 0188 18       		.byte	0x18
+ 498 0189 00       		.byte	0
+ 499              		.section	.debug_abbrev,"",%progbits
+ 500              	.Ldebug_abbrev0:
+ 501 0000 01       		.uleb128 0x1
+ 502 0001 11       		.uleb128 0x11
+ 503 0002 01       		.byte	0x1
+ 504 0003 25       		.uleb128 0x25
+ 505 0004 0E       		.uleb128 0xe
+ 506 0005 13       		.uleb128 0x13
+ 507 0006 0B       		.uleb128 0xb
+ 508 0007 03       		.uleb128 0x3
+ 509 0008 0E       		.uleb128 0xe
+ 510 0009 1B       		.uleb128 0x1b
+ 511 000a 0E       		.uleb128 0xe
+ 512 000b 55       		.uleb128 0x55
+ 513 000c 17       		.uleb128 0x17
+ 514 000d 11       		.uleb128 0x11
+ 515 000e 01       		.uleb128 0x1
+ 516 000f 10       		.uleb128 0x10
+ 517 0010 17       		.uleb128 0x17
+ 518 0011 00       		.byte	0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccoaS5CT.s 			page 12
+
+
+ 519 0012 00       		.byte	0
+ 520 0013 02       		.uleb128 0x2
+ 521 0014 24       		.uleb128 0x24
+ 522 0015 00       		.byte	0
+ 523 0016 0B       		.uleb128 0xb
+ 524 0017 0B       		.uleb128 0xb
+ 525 0018 3E       		.uleb128 0x3e
+ 526 0019 0B       		.uleb128 0xb
+ 527 001a 03       		.uleb128 0x3
+ 528 001b 0E       		.uleb128 0xe
+ 529 001c 00       		.byte	0
+ 530 001d 00       		.byte	0
+ 531 001e 03       		.uleb128 0x3
+ 532 001f 24       		.uleb128 0x24
+ 533 0020 00       		.byte	0
+ 534 0021 0B       		.uleb128 0xb
+ 535 0022 0B       		.uleb128 0xb
+ 536 0023 3E       		.uleb128 0x3e
+ 537 0024 0B       		.uleb128 0xb
+ 538 0025 03       		.uleb128 0x3
+ 539 0026 08       		.uleb128 0x8
+ 540 0027 00       		.byte	0
+ 541 0028 00       		.byte	0
+ 542 0029 04       		.uleb128 0x4
+ 543 002a 2E       		.uleb128 0x2e
+ 544 002b 01       		.byte	0x1
+ 545 002c 3F       		.uleb128 0x3f
+ 546 002d 19       		.uleb128 0x19
+ 547 002e 03       		.uleb128 0x3
+ 548 002f 0E       		.uleb128 0xe
+ 549 0030 3A       		.uleb128 0x3a
+ 550 0031 0B       		.uleb128 0xb
+ 551 0032 3B       		.uleb128 0x3b
+ 552 0033 0B       		.uleb128 0xb
+ 553 0034 27       		.uleb128 0x27
+ 554 0035 19       		.uleb128 0x19
+ 555 0036 11       		.uleb128 0x11
+ 556 0037 01       		.uleb128 0x1
+ 557 0038 12       		.uleb128 0x12
+ 558 0039 06       		.uleb128 0x6
+ 559 003a 40       		.uleb128 0x40
+ 560 003b 18       		.uleb128 0x18
+ 561 003c 9642     		.uleb128 0x2116
+ 562 003e 19       		.uleb128 0x19
+ 563 003f 01       		.uleb128 0x1
+ 564 0040 13       		.uleb128 0x13
+ 565 0041 00       		.byte	0
+ 566 0042 00       		.byte	0
+ 567 0043 05       		.uleb128 0x5
+ 568 0044 05       		.uleb128 0x5
+ 569 0045 00       		.byte	0
+ 570 0046 03       		.uleb128 0x3
+ 571 0047 0E       		.uleb128 0xe
+ 572 0048 3A       		.uleb128 0x3a
+ 573 0049 0B       		.uleb128 0xb
+ 574 004a 3B       		.uleb128 0x3b
+ 575 004b 0B       		.uleb128 0xb
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccoaS5CT.s 			page 13
+
+
+ 576 004c 49       		.uleb128 0x49
+ 577 004d 13       		.uleb128 0x13
+ 578 004e 02       		.uleb128 0x2
+ 579 004f 17       		.uleb128 0x17
+ 580 0050 00       		.byte	0
+ 581 0051 00       		.byte	0
+ 582 0052 06       		.uleb128 0x6
+ 583 0053 34       		.uleb128 0x34
+ 584 0054 00       		.byte	0
+ 585 0055 03       		.uleb128 0x3
+ 586 0056 0E       		.uleb128 0xe
+ 587 0057 3A       		.uleb128 0x3a
+ 588 0058 0B       		.uleb128 0xb
+ 589 0059 3B       		.uleb128 0x3b
+ 590 005a 0B       		.uleb128 0xb
+ 591 005b 49       		.uleb128 0x49
+ 592 005c 13       		.uleb128 0x13
+ 593 005d 02       		.uleb128 0x2
+ 594 005e 18       		.uleb128 0x18
+ 595 005f 00       		.byte	0
+ 596 0060 00       		.byte	0
+ 597 0061 07       		.uleb128 0x7
+ 598 0062 34       		.uleb128 0x34
+ 599 0063 00       		.byte	0
+ 600 0064 03       		.uleb128 0x3
+ 601 0065 08       		.uleb128 0x8
+ 602 0066 3A       		.uleb128 0x3a
+ 603 0067 0B       		.uleb128 0xb
+ 604 0068 3B       		.uleb128 0x3b
+ 605 0069 0B       		.uleb128 0xb
+ 606 006a 49       		.uleb128 0x49
+ 607 006b 13       		.uleb128 0x13
+ 608 006c 02       		.uleb128 0x2
+ 609 006d 17       		.uleb128 0x17
+ 610 006e 00       		.byte	0
+ 611 006f 00       		.byte	0
+ 612 0070 08       		.uleb128 0x8
+ 613 0071 34       		.uleb128 0x34
+ 614 0072 00       		.byte	0
+ 615 0073 03       		.uleb128 0x3
+ 616 0074 0E       		.uleb128 0xe
+ 617 0075 3A       		.uleb128 0x3a
+ 618 0076 0B       		.uleb128 0xb
+ 619 0077 3B       		.uleb128 0x3b
+ 620 0078 0B       		.uleb128 0xb
+ 621 0079 49       		.uleb128 0x49
+ 622 007a 13       		.uleb128 0x13
+ 623 007b 02       		.uleb128 0x2
+ 624 007c 17       		.uleb128 0x17
+ 625 007d 00       		.byte	0
+ 626 007e 00       		.byte	0
+ 627 007f 09       		.uleb128 0x9
+ 628 0080 34       		.uleb128 0x34
+ 629 0081 00       		.byte	0
+ 630 0082 03       		.uleb128 0x3
+ 631 0083 0E       		.uleb128 0xe
+ 632 0084 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccoaS5CT.s 			page 14
+
+
+ 633 0085 0B       		.uleb128 0xb
+ 634 0086 3B       		.uleb128 0x3b
+ 635 0087 0B       		.uleb128 0xb
+ 636 0088 49       		.uleb128 0x49
+ 637 0089 13       		.uleb128 0x13
+ 638 008a 1C       		.uleb128 0x1c
+ 639 008b 0B       		.uleb128 0xb
+ 640 008c 00       		.byte	0
+ 641 008d 00       		.byte	0
+ 642 008e 0A       		.uleb128 0xa
+ 643 008f 898201   		.uleb128 0x4109
+ 644 0092 00       		.byte	0
+ 645 0093 11       		.uleb128 0x11
+ 646 0094 01       		.uleb128 0x1
+ 647 0095 31       		.uleb128 0x31
+ 648 0096 13       		.uleb128 0x13
+ 649 0097 00       		.byte	0
+ 650 0098 00       		.byte	0
+ 651 0099 0B       		.uleb128 0xb
+ 652 009a 0F       		.uleb128 0xf
+ 653 009b 00       		.byte	0
+ 654 009c 0B       		.uleb128 0xb
+ 655 009d 0B       		.uleb128 0xb
+ 656 009e 49       		.uleb128 0x49
+ 657 009f 13       		.uleb128 0x13
+ 658 00a0 00       		.byte	0
+ 659 00a1 00       		.byte	0
+ 660 00a2 0C       		.uleb128 0xc
+ 661 00a3 01       		.uleb128 0x1
+ 662 00a4 01       		.byte	0x1
+ 663 00a5 49       		.uleb128 0x49
+ 664 00a6 13       		.uleb128 0x13
+ 665 00a7 01       		.uleb128 0x1
+ 666 00a8 13       		.uleb128 0x13
+ 667 00a9 00       		.byte	0
+ 668 00aa 00       		.byte	0
+ 669 00ab 0D       		.uleb128 0xd
+ 670 00ac 21       		.uleb128 0x21
+ 671 00ad 00       		.byte	0
+ 672 00ae 49       		.uleb128 0x49
+ 673 00af 13       		.uleb128 0x13
+ 674 00b0 2F       		.uleb128 0x2f
+ 675 00b1 05       		.uleb128 0x5
+ 676 00b2 00       		.byte	0
+ 677 00b3 00       		.byte	0
+ 678 00b4 0E       		.uleb128 0xe
+ 679 00b5 2E       		.uleb128 0x2e
+ 680 00b6 00       		.byte	0
+ 681 00b7 3F       		.uleb128 0x3f
+ 682 00b8 19       		.uleb128 0x19
+ 683 00b9 3C       		.uleb128 0x3c
+ 684 00ba 19       		.uleb128 0x19
+ 685 00bb 6E       		.uleb128 0x6e
+ 686 00bc 0E       		.uleb128 0xe
+ 687 00bd 03       		.uleb128 0x3
+ 688 00be 0E       		.uleb128 0xe
+ 689 00bf 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccoaS5CT.s 			page 15
+
+
+ 690 00c0 0B       		.uleb128 0xb
+ 691 00c1 3B       		.uleb128 0x3b
+ 692 00c2 0B       		.uleb128 0xb
+ 693 00c3 00       		.byte	0
+ 694 00c4 00       		.byte	0
+ 695 00c5 00       		.byte	0
+ 696              		.section	.debug_loc,"",%progbits
+ 697              	.Ldebug_loc0:
+ 698              	.LLST0:
+ 699 0000 00000000 		.4byte	.LVL0
+ 700 0004 1E000000 		.4byte	.LVL4
+ 701 0008 0100     		.2byte	0x1
+ 702 000a 50       		.byte	0x50
+ 703 000b 1E000000 		.4byte	.LVL4
+ 704 000f 6A010000 		.4byte	.LVL35
+ 705 0013 0300     		.2byte	0x3
+ 706 0015 91       		.byte	0x91
+ 707 0016 AC7B     		.sleb128 -596
+ 708 0018 6A010000 		.4byte	.LVL35
+ 709 001c 84010000 		.4byte	.LFE0
+ 710 0020 0300     		.2byte	0x3
+ 711 0022 7D       		.byte	0x7d
+ 712 0023 AC7B     		.sleb128 -596
+ 713 0025 00000000 		.4byte	0
+ 714 0029 00000000 		.4byte	0
+ 715              	.LLST1:
+ 716 002d 00000000 		.4byte	.LVL0
+ 717 0031 14000000 		.4byte	.LVL2
+ 718 0035 0100     		.2byte	0x1
+ 719 0037 51       		.byte	0x51
+ 720 0038 14000000 		.4byte	.LVL2
+ 721 003c 48010000 		.4byte	.LVL31
+ 722 0040 0100     		.2byte	0x1
+ 723 0042 55       		.byte	0x55
+ 724 0043 48010000 		.4byte	.LVL31
+ 725 0047 84010000 		.4byte	.LFE0
+ 726 004b 0400     		.2byte	0x4
+ 727 004d F3       		.byte	0xf3
+ 728 004e 01       		.uleb128 0x1
+ 729 004f 51       		.byte	0x51
+ 730 0050 9F       		.byte	0x9f
+ 731 0051 00000000 		.4byte	0
+ 732 0055 00000000 		.4byte	0
+ 733              	.LLST2:
+ 734 0059 3E000000 		.4byte	.LVL6
+ 735 005d CC000000 		.4byte	.LVL17
+ 736 0061 0100     		.2byte	0x1
+ 737 0063 58       		.byte	0x58
+ 738 0064 EA000000 		.4byte	.LVL22
+ 739 0068 F0000000 		.4byte	.LVL24
+ 740 006c 0200     		.2byte	0x2
+ 741 006e 30       		.byte	0x30
+ 742 006f 9F       		.byte	0x9f
+ 743 0070 F0000000 		.4byte	.LVL24
+ 744 0074 16010000 		.4byte	.LVL27
+ 745 0078 0100     		.2byte	0x1
+ 746 007a 56       		.byte	0x56
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccoaS5CT.s 			page 16
+
+
+ 747 007b 46010000 		.4byte	.LVL30
+ 748 007f 48010000 		.4byte	.LVL31
+ 749 0083 0200     		.2byte	0x2
+ 750 0085 30       		.byte	0x30
+ 751 0086 9F       		.byte	0x9f
+ 752 0087 48010000 		.4byte	.LVL31
+ 753 008b 62010000 		.4byte	.LVL34
+ 754 008f 0100     		.2byte	0x1
+ 755 0091 55       		.byte	0x55
+ 756 0092 00000000 		.4byte	0
+ 757 0096 00000000 		.4byte	0
+ 758              	.LLST3:
+ 759 009a 1C000000 		.4byte	.LVL3
+ 760 009e 1E000000 		.4byte	.LVL4
+ 761 00a2 0200     		.2byte	0x2
+ 762 00a4 30       		.byte	0x30
+ 763 00a5 9F       		.byte	0x9f
+ 764 00a6 1E000000 		.4byte	.LVL4
+ 765 00aa 3E000000 		.4byte	.LVL6
+ 766 00ae 0100     		.2byte	0x1
+ 767 00b0 53       		.byte	0x53
+ 768 00b1 D2000000 		.4byte	.LVL18
+ 769 00b5 D4000000 		.4byte	.LVL19
+ 770 00b9 0200     		.2byte	0x2
+ 771 00bb 30       		.byte	0x30
+ 772 00bc 9F       		.byte	0x9f
+ 773 00bd D4000000 		.4byte	.LVL19
+ 774 00c1 62010000 		.4byte	.LVL34
+ 775 00c5 0100     		.2byte	0x1
+ 776 00c7 57       		.byte	0x57
+ 777 00c8 00000000 		.4byte	0
+ 778 00cc 00000000 		.4byte	0
+ 779              	.LLST4:
+ 780 00d0 0E000000 		.4byte	.LVL1
+ 781 00d4 66000000 		.4byte	.LVL9
+ 782 00d8 0100     		.2byte	0x1
+ 783 00da 57       		.byte	0x57
+ 784 00db 66000000 		.4byte	.LVL9
+ 785 00df 82000000 		.4byte	.LVL11
+ 786 00e3 0100     		.2byte	0x1
+ 787 00e5 53       		.byte	0x53
+ 788 00e6 D2000000 		.4byte	.LVL18
+ 789 00ea D4000000 		.4byte	.LVL19
+ 790 00ee 0200     		.2byte	0x2
+ 791 00f0 75       		.byte	0x75
+ 792 00f1 04       		.sleb128 4
+ 793 00f2 D4000000 		.4byte	.LVL19
+ 794 00f6 EA000000 		.4byte	.LVL22
+ 795 00fa 0100     		.2byte	0x1
+ 796 00fc 56       		.byte	0x56
+ 797 00fd EA000000 		.4byte	.LVL22
+ 798 0101 1C010000 		.4byte	.LVL28
+ 799 0105 0100     		.2byte	0x1
+ 800 0107 57       		.byte	0x57
+ 801 0108 1C010000 		.4byte	.LVL28
+ 802 010c 46010000 		.4byte	.LVL30
+ 803 0110 0100     		.2byte	0x1
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccoaS5CT.s 			page 17
+
+
+ 804 0112 52       		.byte	0x52
+ 805 0113 46010000 		.4byte	.LVL30
+ 806 0117 62010000 		.4byte	.LVL34
+ 807 011b 0100     		.2byte	0x1
+ 808 011d 57       		.byte	0x57
+ 809 011e 00000000 		.4byte	0
+ 810 0122 00000000 		.4byte	0
+ 811              	.LLST5:
+ 812 0126 1C000000 		.4byte	.LVL3
+ 813 012a EC000000 		.4byte	.LVL23
+ 814 012e 0100     		.2byte	0x1
+ 815 0130 56       		.byte	0x56
+ 816 0131 00000000 		.4byte	0
+ 817 0135 00000000 		.4byte	0
+ 818              		.section	.debug_aranges,"",%progbits
+ 819 0000 1C000000 		.4byte	0x1c
+ 820 0004 0200     		.2byte	0x2
+ 821 0006 00000000 		.4byte	.Ldebug_info0
+ 822 000a 04       		.byte	0x4
+ 823 000b 00       		.byte	0
+ 824 000c 0000     		.2byte	0
+ 825 000e 0000     		.2byte	0
+ 826 0010 00000000 		.4byte	.LFB0
+ 827 0014 84010000 		.4byte	.LFE0-.LFB0
+ 828 0018 00000000 		.4byte	0
+ 829 001c 00000000 		.4byte	0
+ 830              		.section	.debug_ranges,"",%progbits
+ 831              	.Ldebug_ranges0:
+ 832 0000 00000000 		.4byte	.LFB0
+ 833 0004 84010000 		.4byte	.LFE0
+ 834 0008 00000000 		.4byte	0
+ 835 000c 00000000 		.4byte	0
+ 836              		.section	.debug_line,"",%progbits
+ 837              	.Ldebug_line0:
+ 838 0000 0E010000 		.section	.debug_str,"MS",%progbits,1
+ 838      02004200 
+ 838      00000201 
+ 838      FB0E0D00 
+ 838      01010101 
+ 839              	.LASF18:
+ 840 0000 795F7369 		.ascii	"y_size_idx_1\000"
+ 840      7A655F69 
+ 840      64785F31 
+ 840      00
+ 841              	.LASF27:
+ 842 000d 625F6D6F 		.ascii	"b_mod\000"
+ 842      6400
+ 843              	.LASF24:
+ 844 0013 5646482B 		.ascii	"VFH+\\src\\wrapToPi.c\000"
+ 844      5C737263 
+ 844      5C777261 
+ 844      70546F50 
+ 844      692E6300 
+ 845              	.LASF5:
+ 846 0027 666C6F61 		.ascii	"float\000"
+ 846      7400
+ 847              	.LASF15:
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccoaS5CT.s 			page 18
+
+
+ 848 002d 74686574 		.ascii	"theta_data\000"
+ 848      615F6461 
+ 848      746100
+ 849              	.LASF1:
+ 850 0038 756E7369 		.ascii	"unsigned char\000"
+ 850      676E6564 
+ 850      20636861 
+ 850      7200
+ 851              	.LASF17:
+ 852 0046 795F6461 		.ascii	"y_data\000"
+ 852      746100
+ 853              	.LASF23:
+ 854 004d 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 854      43313120 
+ 854      352E342E 
+ 854      31203230 
+ 854      31363036 
+ 855 0080 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 855      20726576 
+ 855      6973696F 
+ 855      6E203233 
+ 855      37373135 
+ 856 00b3 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 856      66756E63 
+ 856      74696F6E 
+ 856      2D736563 
+ 856      74696F6E 
+ 857              	.LASF3:
+ 858 00db 73686F72 		.ascii	"short unsigned int\000"
+ 858      7420756E 
+ 858      7369676E 
+ 858      65642069 
+ 858      6E7400
+ 859              	.LASF25:
+ 860 00ee 433A5C55 		.ascii	"C:\\Users\\jmspi\\OneDrive\\Documents\\GitHub\\ECE4"
+ 860      73657273 
+ 860      5C6A6D73 
+ 860      70695C4F 
+ 860      6E654472 
+ 861 011b 3139315C 		.ascii	"191\\DeliveryRobot.cydsn\000"
+ 861      44656C69 
+ 861      76657279 
+ 861      526F626F 
+ 861      742E6379 
+ 862              	.LASF26:
+ 863 0133 77726170 		.ascii	"wrapToPi\000"
+ 863      546F5069 
+ 863      00
+ 864              	.LASF19:
+ 865 013c 706F735F 		.ascii	"pos_data\000"
+ 865      64617461 
+ 865      00
+ 866              	.LASF6:
+ 867 0145 646F7562 		.ascii	"double\000"
+ 867      6C6500
+ 868              	.LASF21:
+ 869 014c 65786974 		.ascii	"exitg1\000"
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccoaS5CT.s 			page 19
+
+
+ 869      673100
+ 870              	.LASF22:
+ 871 0153 76617261 		.ascii	"varargout_1\000"
+ 871      72676F75 
+ 871      745F3100 
+ 872              	.LASF16:
+ 873 015f 74686574 		.ascii	"theta_size\000"
+ 873      615F7369 
+ 873      7A6500
+ 874              	.LASF8:
+ 875 016a 6C6F6E67 		.ascii	"long unsigned int\000"
+ 875      20756E73 
+ 875      69676E65 
+ 875      6420696E 
+ 875      7400
+ 876              	.LASF4:
+ 877 017c 756E7369 		.ascii	"unsigned int\000"
+ 877      676E6564 
+ 877      20696E74 
+ 877      00
+ 878              	.LASF13:
+ 879 0189 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 879      206C6F6E 
+ 879      6720756E 
+ 879      7369676E 
+ 879      65642069 
+ 880              	.LASF20:
+ 881 01a0 746D705F 		.ascii	"tmp_data\000"
+ 881      64617461 
+ 881      00
+ 882              	.LASF14:
+ 883 01a9 73697A65 		.ascii	"sizetype\000"
+ 883      74797065 
+ 883      00
+ 884              	.LASF10:
+ 885 01b2 6C6F6E67 		.ascii	"long long int\000"
+ 885      206C6F6E 
+ 885      6720696E 
+ 885      7400
+ 886              	.LASF9:
+ 887 01c0 63686172 		.ascii	"char\000"
+ 887      00
+ 888              	.LASF2:
+ 889 01c5 73686F72 		.ascii	"short int\000"
+ 889      7420696E 
+ 889      7400
+ 890              	.LASF12:
+ 891 01cf 6C6F6E67 		.ascii	"long int\000"
+ 891      20696E74 
+ 891      00
+ 892              	.LASF11:
+ 893 01d8 6C6F6E67 		.ascii	"long double\000"
+ 893      20646F75 
+ 893      626C6500 
+ 894              	.LASF0:
+ 895 01e4 7369676E 		.ascii	"signed char\000"
+ 895      65642063 
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccoaS5CT.s 			page 20
+
+
+ 895      68617200 
+ 896              	.LASF7:
+ 897 01f0 5F426F6F 		.ascii	"_Bool\000"
+ 897      6C00
+ 898              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

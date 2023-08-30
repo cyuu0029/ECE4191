@@ -1,0 +1,1348 @@
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc3d9ecE.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"SystemCore.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	__aeabi_dmul
+  20              		.section	.text.SystemCore_setupAndReset,"ax",%progbits
+  21              		.align	1
+  22              		.global	SystemCore_setupAndReset
+  23              		.thumb
+  24              		.thumb_func
+  25              		.type	SystemCore_setupAndReset, %function
+  26              	SystemCore_setupAndReset:
+  27              	.LFB0:
+  28              		.file 1 "VFH+\\src\\SystemCore.c"
+   1:VFH+\src/SystemCore.c **** /*
+   2:VFH+\src/SystemCore.c ****  * Academic License - for use in teaching, academic research, and meeting
+   3:VFH+\src/SystemCore.c ****  * course requirements at degree granting institutions only.  Not for
+   4:VFH+\src/SystemCore.c ****  * government, commercial, or other organizational use.
+   5:VFH+\src/SystemCore.c ****  * File: SystemCore.c
+   6:VFH+\src/SystemCore.c ****  *
+   7:VFH+\src/SystemCore.c ****  * MATLAB Coder version            : 5.3
+   8:VFH+\src/SystemCore.c ****  * C/C++ source code generated on  : 30-Aug-2023 22:51:35
+   9:VFH+\src/SystemCore.c ****  */
+  10:VFH+\src/SystemCore.c **** 
+  11:VFH+\src/SystemCore.c **** /* Include Files */
+  12:VFH+\src/SystemCore.c **** #include "SystemCore.h"
+  13:VFH+\src/SystemCore.c **** #include "VectorFieldHistogramBase.h"
+  14:VFH+\src/SystemCore.c **** #include "rt_nonfinite.h"
+  15:VFH+\src/SystemCore.c **** #include "vfhTest_internal_types.h"
+  16:VFH+\src/SystemCore.c **** #include "vfhTest_types.h"
+  17:VFH+\src/SystemCore.c **** #include <string.h>
+  18:VFH+\src/SystemCore.c **** 
+  19:VFH+\src/SystemCore.c **** /* Function Definitions */
+  20:VFH+\src/SystemCore.c **** /*
+  21:VFH+\src/SystemCore.c ****  * Arguments    : controllerVFH *obj
+  22:VFH+\src/SystemCore.c ****  *                const emxArray_real_T *varargin_1
+  23:VFH+\src/SystemCore.c ****  *                const emxArray_real_T *varargin_2
+  24:VFH+\src/SystemCore.c ****  * Return Type  : void
+  25:VFH+\src/SystemCore.c ****  */
+  26:VFH+\src/SystemCore.c **** void SystemCore_setupAndReset(controllerVFH *obj,
+  27:VFH+\src/SystemCore.c ****                               const emxArray_real_T *varargin_1,
+  28:VFH+\src/SystemCore.c ****                               const emxArray_real_T *varargin_2)
+  29:VFH+\src/SystemCore.c **** {
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc3d9ecE.s 			page 2
+
+
+  29              		.loc 1 29 0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              	.LVL0:
+  30:VFH+\src/SystemCore.c ****   int i;
+  31:VFH+\src/SystemCore.c ****   obj->isInitialized = 1;
+  32:VFH+\src/SystemCore.c ****   obj->inputVarSize[0].f1[0] = 1U;
+  33:VFH+\src/SystemCore.c ****   obj->inputVarSize[0].f1[1] = (unsigned int)varargin_1->size[1];
+  34              		.loc 1 33 0
+  35 0000 4968     		ldr	r1, [r1, #4]
+  36              	.LVL1:
+  31:VFH+\src/SystemCore.c ****   obj->inputVarSize[0].f1[0] = 1U;
+  37              		.loc 1 31 0
+  38 0002 0123     		movs	r3, #1
+  29:VFH+\src/SystemCore.c ****   int i;
+  39              		.loc 1 29 0
+  40 0004 10B5     		push	{r4, lr}
+  41              		.cfi_def_cfa_offset 8
+  42              		.cfi_offset 4, -8
+  43              		.cfi_offset 14, -4
+  31:VFH+\src/SystemCore.c ****   obj->inputVarSize[0].f1[0] = 1U;
+  44              		.loc 1 31 0
+  45 0006 0360     		str	r3, [r0]
+  32:VFH+\src/SystemCore.c ****   obj->inputVarSize[0].f1[1] = (unsigned int)varargin_1->size[1];
+  46              		.loc 1 32 0
+  47 0008 4360     		str	r3, [r0, #4]
+  48              		.loc 1 33 0
+  49 000a 4968     		ldr	r1, [r1, #4]
+  34:VFH+\src/SystemCore.c ****   for (i = 0; i < 6; i++) {
+  35:VFH+\src/SystemCore.c ****     obj->inputVarSize[0].f1[i + 2] = 1U;
+  36:VFH+\src/SystemCore.c ****   }
+  37:VFH+\src/SystemCore.c ****   obj->inputVarSize[1].f1[0] = 1U;
+  38:VFH+\src/SystemCore.c ****   obj->inputVarSize[1].f1[1] = (unsigned int)varargin_2->size[1];
+  50              		.loc 1 38 0
+  51 000c 5268     		ldr	r2, [r2, #4]
+  52              	.LVL2:
+  33:VFH+\src/SystemCore.c ****   for (i = 0; i < 6; i++) {
+  53              		.loc 1 33 0
+  54 000e 8160     		str	r1, [r0, #8]
+  55              	.LVL3:
+  35:VFH+\src/SystemCore.c ****   }
+  56              		.loc 1 35 0
+  57 0010 C360     		str	r3, [r0, #12]
+  58              	.LVL4:
+  59 0012 0361     		str	r3, [r0, #16]
+  60              	.LVL5:
+  61 0014 4361     		str	r3, [r0, #20]
+  62              	.LVL6:
+  63 0016 8361     		str	r3, [r0, #24]
+  64              	.LVL7:
+  65 0018 C361     		str	r3, [r0, #28]
+  66              	.LVL8:
+  67 001a 0362     		str	r3, [r0, #32]
+  68              	.LVL9:
+  37:VFH+\src/SystemCore.c ****   obj->inputVarSize[1].f1[1] = (unsigned int)varargin_2->size[1];
+  69              		.loc 1 37 0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc3d9ecE.s 			page 3
+
+
+  70 001c 4362     		str	r3, [r0, #36]
+  71              		.loc 1 38 0
+  72 001e 5268     		ldr	r2, [r2, #4]
+  29:VFH+\src/SystemCore.c ****   int i;
+  73              		.loc 1 29 0
+  74 0020 0446     		mov	r4, r0
+  75              		.loc 1 38 0
+  76 0022 8262     		str	r2, [r0, #40]
+  77              	.LVL10:
+  39:VFH+\src/SystemCore.c ****   for (i = 0; i < 6; i++) {
+  40:VFH+\src/SystemCore.c ****     obj->inputVarSize[1].f1[i + 2] = 1U;
+  78              		.loc 1 40 0
+  79 0024 0246     		mov	r2, r0
+  80 0026 C362     		str	r3, [r0, #44]
+  81              	.LVL11:
+  82 0028 0363     		str	r3, [r0, #48]
+  83              	.LVL12:
+  84 002a 4363     		str	r3, [r0, #52]
+  85              	.LVL13:
+  86 002c 8363     		str	r3, [r0, #56]
+  87              	.LVL14:
+  88 002e C363     		str	r3, [r0, #60]
+  89              	.LVL15:
+  90 0030 00F16001 		add	r1, r0, #96
+  91 0034 42F8403F 		str	r3, [r2, #64]!
+  92              	.LVL16:
+  93              	.L2:
+  41:VFH+\src/SystemCore.c ****   }
+  42:VFH+\src/SystemCore.c ****   for (i = 0; i < 8; i++) {
+  43:VFH+\src/SystemCore.c ****     obj->inputVarSize[2].f1[i] = 1U;
+  94              		.loc 1 43 0 discriminator 3
+  95 0038 42F8043F 		str	r3, [r2, #4]!
+  42:VFH+\src/SystemCore.c ****     obj->inputVarSize[2].f1[i] = 1U;
+  96              		.loc 1 42 0 discriminator 3
+  97 003c 8A42     		cmp	r2, r1
+  98 003e FBD1     		bne	.L2
+  44:VFH+\src/SystemCore.c ****   }
+  45:VFH+\src/SystemCore.c ****   c_VectorFieldHistogramBase_setu(obj);
+  99              		.loc 1 45 0
+ 100 0040 2046     		mov	r0, r4
+ 101              	.LVL17:
+ 102 0042 FFF7FEFF 		bl	c_VectorFieldHistogramBase_setu
+ 103              	.LVL18:
+  46:VFH+\src/SystemCore.c ****   memset(&obj->BinaryHistogram[0], 0, 180U * sizeof(bool));
+ 104              		.loc 1 46 0
+ 105 0046 B422     		movs	r2, #180
+ 106 0048 0021     		movs	r1, #0
+ 107 004a 04F5CC60 		add	r0, r4, #1632
+  47:VFH+\src/SystemCore.c ****   obj->PreviousDirection *= 0.0;
+ 108              		.loc 1 47 0
+ 109 004e 04F5F964 		add	r4, r4, #1992
+ 110              	.LVL19:
+  46:VFH+\src/SystemCore.c ****   memset(&obj->BinaryHistogram[0], 0, 180U * sizeof(bool));
+ 111              		.loc 1 46 0
+ 112 0052 FFF7FEFF 		bl	memset
+ 113              	.LVL20:
+ 114              		.loc 1 47 0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc3d9ecE.s 			page 4
+
+
+ 115 0056 D4E90001 		ldrd	r0, [r4]
+ 116 005a 0022     		movs	r2, #0
+ 117 005c 0023     		movs	r3, #0
+ 118 005e FFF7FEFF 		bl	__aeabi_dmul
+ 119              	.LVL21:
+ 120 0062 C4E90001 		strd	r0, [r4]
+ 121 0066 10BD     		pop	{r4, pc}
+ 122              		.cfi_endproc
+ 123              	.LFE0:
+ 124              		.size	SystemCore_setupAndReset, .-SystemCore_setupAndReset
+ 125              		.text
+ 126              	.Letext0:
+ 127              		.file 2 ".\\VFH+\\include/vfhTest_types.h"
+ 128              		.file 3 ".\\VFH+\\include/vfhTest_internal_types.h"
+ 129              		.file 4 ".\\VFH+\\include/VectorFieldHistogramBase.h"
+ 130              		.section	.debug_info,"",%progbits
+ 131              	.Ldebug_info0:
+ 132 0000 06030000 		.4byte	0x306
+ 133 0004 0400     		.2byte	0x4
+ 134 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 135 000a 04       		.byte	0x4
+ 136 000b 01       		.uleb128 0x1
+ 137 000c FD000000 		.4byte	.LASF44
+ 138 0010 0C       		.byte	0xc
+ 139 0011 EA020000 		.4byte	.LASF45
+ 140 0015 B7010000 		.4byte	.LASF46
+ 141 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 142 001d 00000000 		.4byte	0
+ 143 0021 00000000 		.4byte	.Ldebug_line0
+ 144 0025 02       		.uleb128 0x2
+ 145 0026 01       		.byte	0x1
+ 146 0027 06       		.byte	0x6
+ 147 0028 8A030000 		.4byte	.LASF0
+ 148 002c 02       		.uleb128 0x2
+ 149 002d 01       		.byte	0x1
+ 150 002e 08       		.byte	0x8
+ 151 002f 0B020000 		.4byte	.LASF1
+ 152 0033 02       		.uleb128 0x2
+ 153 0034 02       		.byte	0x2
+ 154 0035 05       		.byte	0x5
+ 155 0036 27020000 		.4byte	.LASF2
+ 156 003a 02       		.uleb128 0x2
+ 157 003b 02       		.byte	0x2
+ 158 003c 07       		.byte	0x7
+ 159 003d 8B010000 		.4byte	.LASF3
+ 160 0041 03       		.uleb128 0x3
+ 161 0042 04       		.byte	0x4
+ 162 0043 05       		.byte	0x5
+ 163 0044 696E7400 		.ascii	"int\000"
+ 164 0048 02       		.uleb128 0x2
+ 165 0049 04       		.byte	0x4
+ 166 004a 07       		.byte	0x7
+ 167 004b 76020000 		.4byte	.LASF4
+ 168 004f 02       		.uleb128 0x2
+ 169 0050 04       		.byte	0x4
+ 170 0051 04       		.byte	0x4
+ 171 0052 C9000000 		.4byte	.LASF5
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc3d9ecE.s 			page 5
+
+
+ 172 0056 02       		.uleb128 0x2
+ 173 0057 08       		.byte	0x8
+ 174 0058 04       		.byte	0x4
+ 175 0059 20020000 		.4byte	.LASF6
+ 176 005d 02       		.uleb128 0x2
+ 177 005e 01       		.byte	0x1
+ 178 005f 02       		.byte	0x2
+ 179 0060 A3030000 		.4byte	.LASF7
+ 180 0064 02       		.uleb128 0x2
+ 181 0065 04       		.byte	0x4
+ 182 0066 07       		.byte	0x7
+ 183 0067 CA020000 		.4byte	.LASF8
+ 184 006b 02       		.uleb128 0x2
+ 185 006c 01       		.byte	0x1
+ 186 006d 08       		.byte	0x8
+ 187 006e 28030000 		.4byte	.LASF9
+ 188 0072 04       		.uleb128 0x4
+ 189 0073 B9000000 		.4byte	.LASF16
+ 190 0077 14       		.byte	0x14
+ 191 0078 02       		.byte	0x2
+ 192 0079 14       		.byte	0x14
+ 193 007a BB000000 		.4byte	0xbb
+ 194 007e 05       		.uleb128 0x5
+ 195 007f CF000000 		.4byte	.LASF10
+ 196 0083 02       		.byte	0x2
+ 197 0084 15       		.byte	0x15
+ 198 0085 BB000000 		.4byte	0xbb
+ 199 0089 00       		.byte	0
+ 200 008a 05       		.uleb128 0x5
+ 201 008b D4000000 		.4byte	.LASF11
+ 202 008f 02       		.byte	0x2
+ 203 0090 16       		.byte	0x16
+ 204 0091 C1000000 		.4byte	0xc1
+ 205 0095 04       		.byte	0x4
+ 206 0096 05       		.uleb128 0x5
+ 207 0097 DC020000 		.4byte	.LASF12
+ 208 009b 02       		.byte	0x2
+ 209 009c 17       		.byte	0x17
+ 210 009d 41000000 		.4byte	0x41
+ 211 00a1 08       		.byte	0x8
+ 212 00a2 05       		.uleb128 0x5
+ 213 00a3 31020000 		.4byte	.LASF13
+ 214 00a7 02       		.byte	0x2
+ 215 00a8 18       		.byte	0x18
+ 216 00a9 41000000 		.4byte	0x41
+ 217 00ad 0C       		.byte	0xc
+ 218 00ae 05       		.uleb128 0x5
+ 219 00af AD000000 		.4byte	.LASF14
+ 220 00b3 02       		.byte	0x2
+ 221 00b4 19       		.byte	0x19
+ 222 00b5 5D000000 		.4byte	0x5d
+ 223 00b9 10       		.byte	0x10
+ 224 00ba 00       		.byte	0
+ 225 00bb 06       		.uleb128 0x6
+ 226 00bc 04       		.byte	0x4
+ 227 00bd 56000000 		.4byte	0x56
+ 228 00c1 06       		.uleb128 0x6
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc3d9ecE.s 			page 6
+
+
+ 229 00c2 04       		.byte	0x4
+ 230 00c3 41000000 		.4byte	0x41
+ 231 00c7 07       		.uleb128 0x7
+ 232 00c8 B9000000 		.4byte	.LASF16
+ 233 00cc 02       		.byte	0x2
+ 234 00cd 1E       		.byte	0x1e
+ 235 00ce 72000000 		.4byte	0x72
+ 236 00d2 08       		.uleb128 0x8
+ 237 00d3 20       		.byte	0x20
+ 238 00d4 03       		.byte	0x3
+ 239 00d5 15       		.byte	0x15
+ 240 00d6 E6000000 		.4byte	0xe6
+ 241 00da 09       		.uleb128 0x9
+ 242 00db 663100   		.ascii	"f1\000"
+ 243 00de 03       		.byte	0x3
+ 244 00df 16       		.byte	0x16
+ 245 00e0 E6000000 		.4byte	0xe6
+ 246 00e4 00       		.byte	0
+ 247 00e5 00       		.byte	0
+ 248 00e6 0A       		.uleb128 0xa
+ 249 00e7 48000000 		.4byte	0x48
+ 250 00eb F6000000 		.4byte	0xf6
+ 251 00ef 0B       		.uleb128 0xb
+ 252 00f0 F6000000 		.4byte	0xf6
+ 253 00f4 07       		.byte	0x7
+ 254 00f5 00       		.byte	0
+ 255 00f6 02       		.uleb128 0x2
+ 256 00f7 04       		.byte	0x4
+ 257 00f8 07       		.byte	0x7
+ 258 00f9 00030000 		.4byte	.LASF15
+ 259 00fd 07       		.uleb128 0x7
+ 260 00fe 7E030000 		.4byte	.LASF17
+ 261 0102 03       		.byte	0x3
+ 262 0103 17       		.byte	0x17
+ 263 0104 D2000000 		.4byte	0xd2
+ 264 0108 0C       		.uleb128 0xc
+ 265 0109 2813     		.2byte	0x1328
+ 266 010b 03       		.byte	0x3
+ 267 010c 1C       		.byte	0x1c
+ 268 010d FD010000 		.4byte	0x1fd
+ 269 0111 05       		.uleb128 0x5
+ 270 0112 83020000 		.4byte	.LASF18
+ 271 0116 03       		.byte	0x3
+ 272 0117 1D       		.byte	0x1d
+ 273 0118 41000000 		.4byte	0x41
+ 274 011c 00       		.byte	0
+ 275 011d 05       		.uleb128 0x5
+ 276 011e 96030000 		.4byte	.LASF19
+ 277 0122 03       		.byte	0x3
+ 278 0123 1E       		.byte	0x1e
+ 279 0124 FD010000 		.4byte	0x1fd
+ 280 0128 04       		.byte	0x4
+ 281 0129 05       		.uleb128 0x5
+ 282 012a 2B000000 		.4byte	.LASF20
+ 283 012e 03       		.byte	0x3
+ 284 012f 1F       		.byte	0x1f
+ 285 0130 56000000 		.4byte	0x56
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc3d9ecE.s 			page 7
+
+
+ 286 0134 68       		.byte	0x68
+ 287 0135 05       		.uleb128 0x5
+ 288 0136 FC010000 		.4byte	.LASF21
+ 289 013a 03       		.byte	0x3
+ 290 013b 20       		.byte	0x20
+ 291 013c 0D020000 		.4byte	0x20d
+ 292 0140 70       		.byte	0x70
+ 293 0141 05       		.uleb128 0x5
+ 294 0142 D9000000 		.4byte	.LASF22
+ 295 0146 03       		.byte	0x3
+ 296 0147 21       		.byte	0x21
+ 297 0148 56000000 		.4byte	0x56
+ 298 014c 80       		.byte	0x80
+ 299 014d 05       		.uleb128 0x5
+ 300 014e 2D030000 		.4byte	.LASF23
+ 301 0152 03       		.byte	0x3
+ 302 0153 22       		.byte	0x22
+ 303 0154 56000000 		.4byte	0x56
+ 304 0158 88       		.byte	0x88
+ 305 0159 05       		.uleb128 0x5
+ 306 015a 17030000 		.4byte	.LASF24
+ 307 015e 03       		.byte	0x3
+ 308 015f 23       		.byte	0x23
+ 309 0160 56000000 		.4byte	0x56
+ 310 0164 90       		.byte	0x90
+ 311 0165 05       		.uleb128 0x5
+ 312 0166 72000000 		.4byte	.LASF25
+ 313 016a 03       		.byte	0x3
+ 314 016b 24       		.byte	0x24
+ 315 016c 56000000 		.4byte	0x56
+ 316 0170 98       		.byte	0x98
+ 317 0171 05       		.uleb128 0x5
+ 318 0172 4A020000 		.4byte	.LASF26
+ 319 0176 03       		.byte	0x3
+ 320 0177 25       		.byte	0x25
+ 321 0178 56000000 		.4byte	0x56
+ 322 017c A0       		.byte	0xa0
+ 323 017d 05       		.uleb128 0x5
+ 324 017e E5000000 		.4byte	.LASF27
+ 325 0182 03       		.byte	0x3
+ 326 0183 26       		.byte	0x26
+ 327 0184 56000000 		.4byte	0x56
+ 328 0188 A8       		.byte	0xa8
+ 329 0189 05       		.uleb128 0x5
+ 330 018a 4A030000 		.4byte	.LASF28
+ 331 018e 03       		.byte	0x3
+ 332 018f 27       		.byte	0x27
+ 333 0190 0D020000 		.4byte	0x20d
+ 334 0194 B0       		.byte	0xb0
+ 335 0195 05       		.uleb128 0x5
+ 336 0196 61020000 		.4byte	.LASF29
+ 337 019a 03       		.byte	0x3
+ 338 019b 28       		.byte	0x28
+ 339 019c 1D020000 		.4byte	0x21d
+ 340 01a0 C0       		.byte	0xc0
+ 341 01a1 0D       		.uleb128 0xd
+ 342 01a2 42000000 		.4byte	.LASF30
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc3d9ecE.s 			page 8
+
+
+ 343 01a6 03       		.byte	0x3
+ 344 01a7 29       		.byte	0x29
+ 345 01a8 2D020000 		.4byte	0x22d
+ 346 01ac 6006     		.2byte	0x660
+ 347 01ae 0D       		.uleb128 0xd
+ 348 01af BA020000 		.4byte	.LASF31
+ 349 01b3 03       		.byte	0x3
+ 350 01b4 2A       		.byte	0x2a
+ 351 01b5 2D020000 		.4byte	0x22d
+ 352 01b9 1407     		.2byte	0x714
+ 353 01bb 0D       		.uleb128 0xd
+ 354 01bc 00000000 		.4byte	.LASF32
+ 355 01c0 03       		.byte	0x3
+ 356 01c1 2B       		.byte	0x2b
+ 357 01c2 56000000 		.4byte	0x56
+ 358 01c6 C807     		.2byte	0x7c8
+ 359 01c8 0D       		.uleb128 0xd
+ 360 01c9 88000000 		.4byte	.LASF33
+ 361 01cd 03       		.byte	0x3
+ 362 01ce 2C       		.byte	0x2c
+ 363 01cf 1D020000 		.4byte	0x21d
+ 364 01d3 D007     		.2byte	0x7d0
+ 365 01d5 0D       		.uleb128 0xd
+ 366 01d6 A8020000 		.4byte	.LASF34
+ 367 01da 03       		.byte	0x3
+ 368 01db 2D       		.byte	0x2d
+ 369 01dc 56000000 		.4byte	0x56
+ 370 01e0 700D     		.2byte	0xd70
+ 371 01e2 0D       		.uleb128 0xd
+ 372 01e3 9E010000 		.4byte	.LASF35
+ 373 01e7 03       		.byte	0x3
+ 374 01e8 2E       		.byte	0x2e
+ 375 01e9 1D020000 		.4byte	0x21d
+ 376 01ed 780D     		.2byte	0xd78
+ 377 01ef 0D       		.uleb128 0xd
+ 378 01f0 9F000000 		.4byte	.LASF36
+ 379 01f4 03       		.byte	0x3
+ 380 01f5 2F       		.byte	0x2f
+ 381 01f6 0D020000 		.4byte	0x20d
+ 382 01fa 1813     		.2byte	0x1318
+ 383 01fc 00       		.byte	0
+ 384 01fd 0A       		.uleb128 0xa
+ 385 01fe FD000000 		.4byte	0xfd
+ 386 0202 0D020000 		.4byte	0x20d
+ 387 0206 0B       		.uleb128 0xb
+ 388 0207 F6000000 		.4byte	0xf6
+ 389 020b 02       		.byte	0x2
+ 390 020c 00       		.byte	0
+ 391 020d 0A       		.uleb128 0xa
+ 392 020e 56000000 		.4byte	0x56
+ 393 0212 1D020000 		.4byte	0x21d
+ 394 0216 0B       		.uleb128 0xb
+ 395 0217 F6000000 		.4byte	0xf6
+ 396 021b 01       		.byte	0x1
+ 397 021c 00       		.byte	0
+ 398 021d 0A       		.uleb128 0xa
+ 399 021e 56000000 		.4byte	0x56
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc3d9ecE.s 			page 9
+
+
+ 400 0222 2D020000 		.4byte	0x22d
+ 401 0226 0B       		.uleb128 0xb
+ 402 0227 F6000000 		.4byte	0xf6
+ 403 022b B3       		.byte	0xb3
+ 404 022c 00       		.byte	0
+ 405 022d 0A       		.uleb128 0xa
+ 406 022e 5D000000 		.4byte	0x5d
+ 407 0232 3D020000 		.4byte	0x23d
+ 408 0236 0B       		.uleb128 0xb
+ 409 0237 F6000000 		.4byte	0xf6
+ 410 023b B3       		.byte	0xb3
+ 411 023c 00       		.byte	0
+ 412 023d 07       		.uleb128 0x7
+ 413 023e 3C030000 		.4byte	.LASF37
+ 414 0242 03       		.byte	0x3
+ 415 0243 30       		.byte	0x30
+ 416 0244 08010000 		.4byte	0x108
+ 417 0248 02       		.uleb128 0x2
+ 418 0249 08       		.byte	0x8
+ 419 024a 05       		.byte	0x5
+ 420 024b 09030000 		.4byte	.LASF38
+ 421 024f 02       		.uleb128 0x2
+ 422 0250 08       		.byte	0x8
+ 423 0251 04       		.byte	0x4
+ 424 0252 72030000 		.4byte	.LASF39
+ 425 0256 02       		.uleb128 0x2
+ 426 0257 04       		.byte	0x4
+ 427 0258 05       		.byte	0x5
+ 428 0259 69030000 		.4byte	.LASF40
+ 429 025d 02       		.uleb128 0x2
+ 430 025e 08       		.byte	0x8
+ 431 025f 07       		.byte	0x7
+ 432 0260 91020000 		.4byte	.LASF41
+ 433 0264 0E       		.uleb128 0xe
+ 434 0265 12000000 		.4byte	.LASF47
+ 435 0269 01       		.byte	0x1
+ 436 026a 1A       		.byte	0x1a
+ 437 026b 00000000 		.4byte	.LFB0
+ 438 026f 68000000 		.4byte	.LFE0-.LFB0
+ 439 0273 01       		.uleb128 0x1
+ 440 0274 9C       		.byte	0x9c
+ 441 0275 E4020000 		.4byte	0x2e4
+ 442 0279 0F       		.uleb128 0xf
+ 443 027a 6F626A00 		.ascii	"obj\000"
+ 444 027e 01       		.byte	0x1
+ 445 027f 1A       		.byte	0x1a
+ 446 0280 E4020000 		.4byte	0x2e4
+ 447 0284 00000000 		.4byte	.LLST0
+ 448 0288 10       		.uleb128 0x10
+ 449 0289 3F020000 		.4byte	.LASF42
+ 450 028d 01       		.byte	0x1
+ 451 028e 1B       		.byte	0x1b
+ 452 028f EA020000 		.4byte	0x2ea
+ 453 0293 2C000000 		.4byte	.LLST1
+ 454 0297 10       		.uleb128 0x10
+ 455 0298 5E030000 		.4byte	.LASF43
+ 456 029c 01       		.byte	0x1
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc3d9ecE.s 			page 10
+
+
+ 457 029d 1C       		.byte	0x1c
+ 458 029e EA020000 		.4byte	0x2ea
+ 459 02a2 4D000000 		.4byte	.LLST2
+ 460 02a6 11       		.uleb128 0x11
+ 461 02a7 6900     		.ascii	"i\000"
+ 462 02a9 01       		.byte	0x1
+ 463 02aa 1E       		.byte	0x1e
+ 464 02ab 41000000 		.4byte	0x41
+ 465 02af 6E000000 		.4byte	.LLST3
+ 466 02b3 12       		.uleb128 0x12
+ 467 02b4 46000000 		.4byte	.LVL18
+ 468 02b8 F5020000 		.4byte	0x2f5
+ 469 02bc C7020000 		.4byte	0x2c7
+ 470 02c0 13       		.uleb128 0x13
+ 471 02c1 01       		.uleb128 0x1
+ 472 02c2 50       		.byte	0x50
+ 473 02c3 02       		.uleb128 0x2
+ 474 02c4 74       		.byte	0x74
+ 475 02c5 00       		.sleb128 0
+ 476 02c6 00       		.byte	0
+ 477 02c7 14       		.uleb128 0x14
+ 478 02c8 56000000 		.4byte	.LVL20
+ 479 02cc 00030000 		.4byte	0x300
+ 480 02d0 13       		.uleb128 0x13
+ 481 02d1 01       		.uleb128 0x1
+ 482 02d2 50       		.byte	0x50
+ 483 02d3 03       		.uleb128 0x3
+ 484 02d4 74       		.byte	0x74
+ 485 02d5 987D     		.sleb128 -360
+ 486 02d7 13       		.uleb128 0x13
+ 487 02d8 01       		.uleb128 0x1
+ 488 02d9 51       		.byte	0x51
+ 489 02da 01       		.uleb128 0x1
+ 490 02db 30       		.byte	0x30
+ 491 02dc 13       		.uleb128 0x13
+ 492 02dd 01       		.uleb128 0x1
+ 493 02de 52       		.byte	0x52
+ 494 02df 02       		.uleb128 0x2
+ 495 02e0 08       		.byte	0x8
+ 496 02e1 B4       		.byte	0xb4
+ 497 02e2 00       		.byte	0
+ 498 02e3 00       		.byte	0
+ 499 02e4 06       		.uleb128 0x6
+ 500 02e5 04       		.byte	0x4
+ 501 02e6 3D020000 		.4byte	0x23d
+ 502 02ea 06       		.uleb128 0x6
+ 503 02eb 04       		.byte	0x4
+ 504 02ec F0020000 		.4byte	0x2f0
+ 505 02f0 15       		.uleb128 0x15
+ 506 02f1 C7000000 		.4byte	0xc7
+ 507 02f5 16       		.uleb128 0x16
+ 508 02f6 52000000 		.4byte	.LASF48
+ 509 02fa 52000000 		.4byte	.LASF48
+ 510 02fe 04       		.byte	0x4
+ 511 02ff 20       		.byte	0x20
+ 512 0300 17       		.uleb128 0x17
+ 513 0301 19020000 		.4byte	.LASF49
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc3d9ecE.s 			page 11
+
+
+ 514 0305 19020000 		.4byte	.LASF49
+ 515 0309 00       		.byte	0
+ 516              		.section	.debug_abbrev,"",%progbits
+ 517              	.Ldebug_abbrev0:
+ 518 0000 01       		.uleb128 0x1
+ 519 0001 11       		.uleb128 0x11
+ 520 0002 01       		.byte	0x1
+ 521 0003 25       		.uleb128 0x25
+ 522 0004 0E       		.uleb128 0xe
+ 523 0005 13       		.uleb128 0x13
+ 524 0006 0B       		.uleb128 0xb
+ 525 0007 03       		.uleb128 0x3
+ 526 0008 0E       		.uleb128 0xe
+ 527 0009 1B       		.uleb128 0x1b
+ 528 000a 0E       		.uleb128 0xe
+ 529 000b 55       		.uleb128 0x55
+ 530 000c 17       		.uleb128 0x17
+ 531 000d 11       		.uleb128 0x11
+ 532 000e 01       		.uleb128 0x1
+ 533 000f 10       		.uleb128 0x10
+ 534 0010 17       		.uleb128 0x17
+ 535 0011 00       		.byte	0
+ 536 0012 00       		.byte	0
+ 537 0013 02       		.uleb128 0x2
+ 538 0014 24       		.uleb128 0x24
+ 539 0015 00       		.byte	0
+ 540 0016 0B       		.uleb128 0xb
+ 541 0017 0B       		.uleb128 0xb
+ 542 0018 3E       		.uleb128 0x3e
+ 543 0019 0B       		.uleb128 0xb
+ 544 001a 03       		.uleb128 0x3
+ 545 001b 0E       		.uleb128 0xe
+ 546 001c 00       		.byte	0
+ 547 001d 00       		.byte	0
+ 548 001e 03       		.uleb128 0x3
+ 549 001f 24       		.uleb128 0x24
+ 550 0020 00       		.byte	0
+ 551 0021 0B       		.uleb128 0xb
+ 552 0022 0B       		.uleb128 0xb
+ 553 0023 3E       		.uleb128 0x3e
+ 554 0024 0B       		.uleb128 0xb
+ 555 0025 03       		.uleb128 0x3
+ 556 0026 08       		.uleb128 0x8
+ 557 0027 00       		.byte	0
+ 558 0028 00       		.byte	0
+ 559 0029 04       		.uleb128 0x4
+ 560 002a 13       		.uleb128 0x13
+ 561 002b 01       		.byte	0x1
+ 562 002c 03       		.uleb128 0x3
+ 563 002d 0E       		.uleb128 0xe
+ 564 002e 0B       		.uleb128 0xb
+ 565 002f 0B       		.uleb128 0xb
+ 566 0030 3A       		.uleb128 0x3a
+ 567 0031 0B       		.uleb128 0xb
+ 568 0032 3B       		.uleb128 0x3b
+ 569 0033 0B       		.uleb128 0xb
+ 570 0034 01       		.uleb128 0x1
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc3d9ecE.s 			page 12
+
+
+ 571 0035 13       		.uleb128 0x13
+ 572 0036 00       		.byte	0
+ 573 0037 00       		.byte	0
+ 574 0038 05       		.uleb128 0x5
+ 575 0039 0D       		.uleb128 0xd
+ 576 003a 00       		.byte	0
+ 577 003b 03       		.uleb128 0x3
+ 578 003c 0E       		.uleb128 0xe
+ 579 003d 3A       		.uleb128 0x3a
+ 580 003e 0B       		.uleb128 0xb
+ 581 003f 3B       		.uleb128 0x3b
+ 582 0040 0B       		.uleb128 0xb
+ 583 0041 49       		.uleb128 0x49
+ 584 0042 13       		.uleb128 0x13
+ 585 0043 38       		.uleb128 0x38
+ 586 0044 0B       		.uleb128 0xb
+ 587 0045 00       		.byte	0
+ 588 0046 00       		.byte	0
+ 589 0047 06       		.uleb128 0x6
+ 590 0048 0F       		.uleb128 0xf
+ 591 0049 00       		.byte	0
+ 592 004a 0B       		.uleb128 0xb
+ 593 004b 0B       		.uleb128 0xb
+ 594 004c 49       		.uleb128 0x49
+ 595 004d 13       		.uleb128 0x13
+ 596 004e 00       		.byte	0
+ 597 004f 00       		.byte	0
+ 598 0050 07       		.uleb128 0x7
+ 599 0051 16       		.uleb128 0x16
+ 600 0052 00       		.byte	0
+ 601 0053 03       		.uleb128 0x3
+ 602 0054 0E       		.uleb128 0xe
+ 603 0055 3A       		.uleb128 0x3a
+ 604 0056 0B       		.uleb128 0xb
+ 605 0057 3B       		.uleb128 0x3b
+ 606 0058 0B       		.uleb128 0xb
+ 607 0059 49       		.uleb128 0x49
+ 608 005a 13       		.uleb128 0x13
+ 609 005b 00       		.byte	0
+ 610 005c 00       		.byte	0
+ 611 005d 08       		.uleb128 0x8
+ 612 005e 13       		.uleb128 0x13
+ 613 005f 01       		.byte	0x1
+ 614 0060 0B       		.uleb128 0xb
+ 615 0061 0B       		.uleb128 0xb
+ 616 0062 3A       		.uleb128 0x3a
+ 617 0063 0B       		.uleb128 0xb
+ 618 0064 3B       		.uleb128 0x3b
+ 619 0065 0B       		.uleb128 0xb
+ 620 0066 01       		.uleb128 0x1
+ 621 0067 13       		.uleb128 0x13
+ 622 0068 00       		.byte	0
+ 623 0069 00       		.byte	0
+ 624 006a 09       		.uleb128 0x9
+ 625 006b 0D       		.uleb128 0xd
+ 626 006c 00       		.byte	0
+ 627 006d 03       		.uleb128 0x3
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc3d9ecE.s 			page 13
+
+
+ 628 006e 08       		.uleb128 0x8
+ 629 006f 3A       		.uleb128 0x3a
+ 630 0070 0B       		.uleb128 0xb
+ 631 0071 3B       		.uleb128 0x3b
+ 632 0072 0B       		.uleb128 0xb
+ 633 0073 49       		.uleb128 0x49
+ 634 0074 13       		.uleb128 0x13
+ 635 0075 38       		.uleb128 0x38
+ 636 0076 0B       		.uleb128 0xb
+ 637 0077 00       		.byte	0
+ 638 0078 00       		.byte	0
+ 639 0079 0A       		.uleb128 0xa
+ 640 007a 01       		.uleb128 0x1
+ 641 007b 01       		.byte	0x1
+ 642 007c 49       		.uleb128 0x49
+ 643 007d 13       		.uleb128 0x13
+ 644 007e 01       		.uleb128 0x1
+ 645 007f 13       		.uleb128 0x13
+ 646 0080 00       		.byte	0
+ 647 0081 00       		.byte	0
+ 648 0082 0B       		.uleb128 0xb
+ 649 0083 21       		.uleb128 0x21
+ 650 0084 00       		.byte	0
+ 651 0085 49       		.uleb128 0x49
+ 652 0086 13       		.uleb128 0x13
+ 653 0087 2F       		.uleb128 0x2f
+ 654 0088 0B       		.uleb128 0xb
+ 655 0089 00       		.byte	0
+ 656 008a 00       		.byte	0
+ 657 008b 0C       		.uleb128 0xc
+ 658 008c 13       		.uleb128 0x13
+ 659 008d 01       		.byte	0x1
+ 660 008e 0B       		.uleb128 0xb
+ 661 008f 05       		.uleb128 0x5
+ 662 0090 3A       		.uleb128 0x3a
+ 663 0091 0B       		.uleb128 0xb
+ 664 0092 3B       		.uleb128 0x3b
+ 665 0093 0B       		.uleb128 0xb
+ 666 0094 01       		.uleb128 0x1
+ 667 0095 13       		.uleb128 0x13
+ 668 0096 00       		.byte	0
+ 669 0097 00       		.byte	0
+ 670 0098 0D       		.uleb128 0xd
+ 671 0099 0D       		.uleb128 0xd
+ 672 009a 00       		.byte	0
+ 673 009b 03       		.uleb128 0x3
+ 674 009c 0E       		.uleb128 0xe
+ 675 009d 3A       		.uleb128 0x3a
+ 676 009e 0B       		.uleb128 0xb
+ 677 009f 3B       		.uleb128 0x3b
+ 678 00a0 0B       		.uleb128 0xb
+ 679 00a1 49       		.uleb128 0x49
+ 680 00a2 13       		.uleb128 0x13
+ 681 00a3 38       		.uleb128 0x38
+ 682 00a4 05       		.uleb128 0x5
+ 683 00a5 00       		.byte	0
+ 684 00a6 00       		.byte	0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc3d9ecE.s 			page 14
+
+
+ 685 00a7 0E       		.uleb128 0xe
+ 686 00a8 2E       		.uleb128 0x2e
+ 687 00a9 01       		.byte	0x1
+ 688 00aa 3F       		.uleb128 0x3f
+ 689 00ab 19       		.uleb128 0x19
+ 690 00ac 03       		.uleb128 0x3
+ 691 00ad 0E       		.uleb128 0xe
+ 692 00ae 3A       		.uleb128 0x3a
+ 693 00af 0B       		.uleb128 0xb
+ 694 00b0 3B       		.uleb128 0x3b
+ 695 00b1 0B       		.uleb128 0xb
+ 696 00b2 27       		.uleb128 0x27
+ 697 00b3 19       		.uleb128 0x19
+ 698 00b4 11       		.uleb128 0x11
+ 699 00b5 01       		.uleb128 0x1
+ 700 00b6 12       		.uleb128 0x12
+ 701 00b7 06       		.uleb128 0x6
+ 702 00b8 40       		.uleb128 0x40
+ 703 00b9 18       		.uleb128 0x18
+ 704 00ba 9642     		.uleb128 0x2116
+ 705 00bc 19       		.uleb128 0x19
+ 706 00bd 01       		.uleb128 0x1
+ 707 00be 13       		.uleb128 0x13
+ 708 00bf 00       		.byte	0
+ 709 00c0 00       		.byte	0
+ 710 00c1 0F       		.uleb128 0xf
+ 711 00c2 05       		.uleb128 0x5
+ 712 00c3 00       		.byte	0
+ 713 00c4 03       		.uleb128 0x3
+ 714 00c5 08       		.uleb128 0x8
+ 715 00c6 3A       		.uleb128 0x3a
+ 716 00c7 0B       		.uleb128 0xb
+ 717 00c8 3B       		.uleb128 0x3b
+ 718 00c9 0B       		.uleb128 0xb
+ 719 00ca 49       		.uleb128 0x49
+ 720 00cb 13       		.uleb128 0x13
+ 721 00cc 02       		.uleb128 0x2
+ 722 00cd 17       		.uleb128 0x17
+ 723 00ce 00       		.byte	0
+ 724 00cf 00       		.byte	0
+ 725 00d0 10       		.uleb128 0x10
+ 726 00d1 05       		.uleb128 0x5
+ 727 00d2 00       		.byte	0
+ 728 00d3 03       		.uleb128 0x3
+ 729 00d4 0E       		.uleb128 0xe
+ 730 00d5 3A       		.uleb128 0x3a
+ 731 00d6 0B       		.uleb128 0xb
+ 732 00d7 3B       		.uleb128 0x3b
+ 733 00d8 0B       		.uleb128 0xb
+ 734 00d9 49       		.uleb128 0x49
+ 735 00da 13       		.uleb128 0x13
+ 736 00db 02       		.uleb128 0x2
+ 737 00dc 17       		.uleb128 0x17
+ 738 00dd 00       		.byte	0
+ 739 00de 00       		.byte	0
+ 740 00df 11       		.uleb128 0x11
+ 741 00e0 34       		.uleb128 0x34
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc3d9ecE.s 			page 15
+
+
+ 742 00e1 00       		.byte	0
+ 743 00e2 03       		.uleb128 0x3
+ 744 00e3 08       		.uleb128 0x8
+ 745 00e4 3A       		.uleb128 0x3a
+ 746 00e5 0B       		.uleb128 0xb
+ 747 00e6 3B       		.uleb128 0x3b
+ 748 00e7 0B       		.uleb128 0xb
+ 749 00e8 49       		.uleb128 0x49
+ 750 00e9 13       		.uleb128 0x13
+ 751 00ea 02       		.uleb128 0x2
+ 752 00eb 17       		.uleb128 0x17
+ 753 00ec 00       		.byte	0
+ 754 00ed 00       		.byte	0
+ 755 00ee 12       		.uleb128 0x12
+ 756 00ef 898201   		.uleb128 0x4109
+ 757 00f2 01       		.byte	0x1
+ 758 00f3 11       		.uleb128 0x11
+ 759 00f4 01       		.uleb128 0x1
+ 760 00f5 31       		.uleb128 0x31
+ 761 00f6 13       		.uleb128 0x13
+ 762 00f7 01       		.uleb128 0x1
+ 763 00f8 13       		.uleb128 0x13
+ 764 00f9 00       		.byte	0
+ 765 00fa 00       		.byte	0
+ 766 00fb 13       		.uleb128 0x13
+ 767 00fc 8A8201   		.uleb128 0x410a
+ 768 00ff 00       		.byte	0
+ 769 0100 02       		.uleb128 0x2
+ 770 0101 18       		.uleb128 0x18
+ 771 0102 9142     		.uleb128 0x2111
+ 772 0104 18       		.uleb128 0x18
+ 773 0105 00       		.byte	0
+ 774 0106 00       		.byte	0
+ 775 0107 14       		.uleb128 0x14
+ 776 0108 898201   		.uleb128 0x4109
+ 777 010b 01       		.byte	0x1
+ 778 010c 11       		.uleb128 0x11
+ 779 010d 01       		.uleb128 0x1
+ 780 010e 31       		.uleb128 0x31
+ 781 010f 13       		.uleb128 0x13
+ 782 0110 00       		.byte	0
+ 783 0111 00       		.byte	0
+ 784 0112 15       		.uleb128 0x15
+ 785 0113 26       		.uleb128 0x26
+ 786 0114 00       		.byte	0
+ 787 0115 49       		.uleb128 0x49
+ 788 0116 13       		.uleb128 0x13
+ 789 0117 00       		.byte	0
+ 790 0118 00       		.byte	0
+ 791 0119 16       		.uleb128 0x16
+ 792 011a 2E       		.uleb128 0x2e
+ 793 011b 00       		.byte	0
+ 794 011c 3F       		.uleb128 0x3f
+ 795 011d 19       		.uleb128 0x19
+ 796 011e 3C       		.uleb128 0x3c
+ 797 011f 19       		.uleb128 0x19
+ 798 0120 6E       		.uleb128 0x6e
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc3d9ecE.s 			page 16
+
+
+ 799 0121 0E       		.uleb128 0xe
+ 800 0122 03       		.uleb128 0x3
+ 801 0123 0E       		.uleb128 0xe
+ 802 0124 3A       		.uleb128 0x3a
+ 803 0125 0B       		.uleb128 0xb
+ 804 0126 3B       		.uleb128 0x3b
+ 805 0127 0B       		.uleb128 0xb
+ 806 0128 00       		.byte	0
+ 807 0129 00       		.byte	0
+ 808 012a 17       		.uleb128 0x17
+ 809 012b 2E       		.uleb128 0x2e
+ 810 012c 00       		.byte	0
+ 811 012d 3F       		.uleb128 0x3f
+ 812 012e 19       		.uleb128 0x19
+ 813 012f 3C       		.uleb128 0x3c
+ 814 0130 19       		.uleb128 0x19
+ 815 0131 6E       		.uleb128 0x6e
+ 816 0132 0E       		.uleb128 0xe
+ 817 0133 03       		.uleb128 0x3
+ 818 0134 0E       		.uleb128 0xe
+ 819 0135 00       		.byte	0
+ 820 0136 00       		.byte	0
+ 821 0137 00       		.byte	0
+ 822              		.section	.debug_loc,"",%progbits
+ 823              	.Ldebug_loc0:
+ 824              	.LLST0:
+ 825 0000 00000000 		.4byte	.LVL0
+ 826 0004 42000000 		.4byte	.LVL17
+ 827 0008 0100     		.2byte	0x1
+ 828 000a 50       		.byte	0x50
+ 829 000b 42000000 		.4byte	.LVL17
+ 830 000f 52000000 		.4byte	.LVL19
+ 831 0013 0100     		.2byte	0x1
+ 832 0015 54       		.byte	0x54
+ 833 0016 52000000 		.4byte	.LVL19
+ 834 001a 68000000 		.4byte	.LFE0
+ 835 001e 0400     		.2byte	0x4
+ 836 0020 74       		.byte	0x74
+ 837 0021 B870     		.sleb128 -1992
+ 838 0023 9F       		.byte	0x9f
+ 839 0024 00000000 		.4byte	0
+ 840 0028 00000000 		.4byte	0
+ 841              	.LLST1:
+ 842 002c 00000000 		.4byte	.LVL0
+ 843 0030 02000000 		.4byte	.LVL1
+ 844 0034 0100     		.2byte	0x1
+ 845 0036 51       		.byte	0x51
+ 846 0037 02000000 		.4byte	.LVL1
+ 847 003b 68000000 		.4byte	.LFE0
+ 848 003f 0400     		.2byte	0x4
+ 849 0041 F3       		.byte	0xf3
+ 850 0042 01       		.uleb128 0x1
+ 851 0043 51       		.byte	0x51
+ 852 0044 9F       		.byte	0x9f
+ 853 0045 00000000 		.4byte	0
+ 854 0049 00000000 		.4byte	0
+ 855              	.LLST2:
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc3d9ecE.s 			page 17
+
+
+ 856 004d 00000000 		.4byte	.LVL0
+ 857 0051 0E000000 		.4byte	.LVL2
+ 858 0055 0100     		.2byte	0x1
+ 859 0057 52       		.byte	0x52
+ 860 0058 0E000000 		.4byte	.LVL2
+ 861 005c 68000000 		.4byte	.LFE0
+ 862 0060 0400     		.2byte	0x4
+ 863 0062 F3       		.byte	0xf3
+ 864 0063 01       		.uleb128 0x1
+ 865 0064 52       		.byte	0x52
+ 866 0065 9F       		.byte	0x9f
+ 867 0066 00000000 		.4byte	0
+ 868 006a 00000000 		.4byte	0
+ 869              	.LLST3:
+ 870 006e 10000000 		.4byte	.LVL3
+ 871 0072 12000000 		.4byte	.LVL4
+ 872 0076 0200     		.2byte	0x2
+ 873 0078 30       		.byte	0x30
+ 874 0079 9F       		.byte	0x9f
+ 875 007a 12000000 		.4byte	.LVL4
+ 876 007e 14000000 		.4byte	.LVL5
+ 877 0082 0200     		.2byte	0x2
+ 878 0084 31       		.byte	0x31
+ 879 0085 9F       		.byte	0x9f
+ 880 0086 14000000 		.4byte	.LVL5
+ 881 008a 16000000 		.4byte	.LVL6
+ 882 008e 0200     		.2byte	0x2
+ 883 0090 32       		.byte	0x32
+ 884 0091 9F       		.byte	0x9f
+ 885 0092 16000000 		.4byte	.LVL6
+ 886 0096 18000000 		.4byte	.LVL7
+ 887 009a 0200     		.2byte	0x2
+ 888 009c 33       		.byte	0x33
+ 889 009d 9F       		.byte	0x9f
+ 890 009e 18000000 		.4byte	.LVL7
+ 891 00a2 1A000000 		.4byte	.LVL8
+ 892 00a6 0200     		.2byte	0x2
+ 893 00a8 34       		.byte	0x34
+ 894 00a9 9F       		.byte	0x9f
+ 895 00aa 1A000000 		.4byte	.LVL8
+ 896 00ae 1C000000 		.4byte	.LVL9
+ 897 00b2 0200     		.2byte	0x2
+ 898 00b4 35       		.byte	0x35
+ 899 00b5 9F       		.byte	0x9f
+ 900 00b6 1C000000 		.4byte	.LVL9
+ 901 00ba 24000000 		.4byte	.LVL10
+ 902 00be 0200     		.2byte	0x2
+ 903 00c0 36       		.byte	0x36
+ 904 00c1 9F       		.byte	0x9f
+ 905 00c2 24000000 		.4byte	.LVL10
+ 906 00c6 28000000 		.4byte	.LVL11
+ 907 00ca 0200     		.2byte	0x2
+ 908 00cc 30       		.byte	0x30
+ 909 00cd 9F       		.byte	0x9f
+ 910 00ce 28000000 		.4byte	.LVL11
+ 911 00d2 2A000000 		.4byte	.LVL12
+ 912 00d6 0200     		.2byte	0x2
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc3d9ecE.s 			page 18
+
+
+ 913 00d8 31       		.byte	0x31
+ 914 00d9 9F       		.byte	0x9f
+ 915 00da 2A000000 		.4byte	.LVL12
+ 916 00de 2C000000 		.4byte	.LVL13
+ 917 00e2 0200     		.2byte	0x2
+ 918 00e4 32       		.byte	0x32
+ 919 00e5 9F       		.byte	0x9f
+ 920 00e6 2C000000 		.4byte	.LVL13
+ 921 00ea 2E000000 		.4byte	.LVL14
+ 922 00ee 0200     		.2byte	0x2
+ 923 00f0 33       		.byte	0x33
+ 924 00f1 9F       		.byte	0x9f
+ 925 00f2 2E000000 		.4byte	.LVL14
+ 926 00f6 30000000 		.4byte	.LVL15
+ 927 00fa 0200     		.2byte	0x2
+ 928 00fc 34       		.byte	0x34
+ 929 00fd 9F       		.byte	0x9f
+ 930 00fe 30000000 		.4byte	.LVL15
+ 931 0102 38000000 		.4byte	.LVL16
+ 932 0106 0200     		.2byte	0x2
+ 933 0108 35       		.byte	0x35
+ 934 0109 9F       		.byte	0x9f
+ 935 010a 00000000 		.4byte	0
+ 936 010e 00000000 		.4byte	0
+ 937              		.section	.debug_aranges,"",%progbits
+ 938 0000 1C000000 		.4byte	0x1c
+ 939 0004 0200     		.2byte	0x2
+ 940 0006 00000000 		.4byte	.Ldebug_info0
+ 941 000a 04       		.byte	0x4
+ 942 000b 00       		.byte	0
+ 943 000c 0000     		.2byte	0
+ 944 000e 0000     		.2byte	0
+ 945 0010 00000000 		.4byte	.LFB0
+ 946 0014 68000000 		.4byte	.LFE0-.LFB0
+ 947 0018 00000000 		.4byte	0
+ 948 001c 00000000 		.4byte	0
+ 949              		.section	.debug_ranges,"",%progbits
+ 950              	.Ldebug_ranges0:
+ 951 0000 00000000 		.4byte	.LFB0
+ 952 0004 68000000 		.4byte	.LFE0
+ 953 0008 00000000 		.4byte	0
+ 954 000c 00000000 		.4byte	0
+ 955              		.section	.debug_line,"",%progbits
+ 956              	.Ldebug_line0:
+ 957 0000 BE000000 		.section	.debug_str,"MS",%progbits,1
+ 957      02008800 
+ 957      00000201 
+ 957      FB0E0D00 
+ 957      01010101 
+ 958              	.LASF32:
+ 959 0000 50726576 		.ascii	"PreviousDirection\000"
+ 959      696F7573 
+ 959      44697265 
+ 959      6374696F 
+ 959      6E00
+ 960              	.LASF47:
+ 961 0012 53797374 		.ascii	"SystemCore_setupAndReset\000"
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc3d9ecE.s 			page 19
+
+
+ 961      656D436F 
+ 961      72655F73 
+ 961      65747570 
+ 961      416E6452 
+ 962              	.LASF20:
+ 963 002b 4E617272 		.ascii	"NarrowOpeningThreshold\000"
+ 963      6F774F70 
+ 963      656E696E 
+ 963      67546872 
+ 963      6573686F 
+ 964              	.LASF30:
+ 965 0042 42696E61 		.ascii	"BinaryHistogram\000"
+ 965      72794869 
+ 965      73746F67 
+ 965      72616D00 
+ 966              	.LASF48:
+ 967 0052 635F5665 		.ascii	"c_VectorFieldHistogramBase_setu\000"
+ 967      63746F72 
+ 967      4669656C 
+ 967      64486973 
+ 967      746F6772 
+ 968              	.LASF25:
+ 969 0072 54617267 		.ascii	"TargetDirectionWeight\000"
+ 969      65744469 
+ 969      72656374 
+ 969      696F6E57 
+ 969      65696768 
+ 970              	.LASF33:
+ 971 0088 416E6775 		.ascii	"AngularSectorMidPoints\000"
+ 971      6C617253 
+ 971      6563746F 
+ 971      724D6964 
+ 971      506F696E 
+ 972              	.LASF36:
+ 973 009f 416E6775 		.ascii	"AngularLimits\000"
+ 973      6C61724C 
+ 973      696D6974 
+ 973      7300
+ 974              	.LASF14:
+ 975 00ad 63616E46 		.ascii	"canFreeData\000"
+ 975      72656544 
+ 975      61746100 
+ 976              	.LASF16:
+ 977 00b9 656D7841 		.ascii	"emxArray_real_T\000"
+ 977      72726179 
+ 977      5F726561 
+ 977      6C5F5400 
+ 978              	.LASF5:
+ 979 00c9 666C6F61 		.ascii	"float\000"
+ 979      7400
+ 980              	.LASF10:
+ 981 00cf 64617461 		.ascii	"data\000"
+ 981      00
+ 982              	.LASF11:
+ 983 00d4 73697A65 		.ascii	"size\000"
+ 983      00
+ 984              	.LASF22:
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc3d9ecE.s 			page 20
+
+
+ 985 00d9 526F626F 		.ascii	"RobotRadius\000"
+ 985      74526164 
+ 985      69757300 
+ 986              	.LASF27:
+ 987 00e5 50726576 		.ascii	"PreviousDirectionWeight\000"
+ 987      696F7573 
+ 987      44697265 
+ 987      6374696F 
+ 987      6E576569 
+ 988              	.LASF44:
+ 989 00fd 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 989      43313120 
+ 989      352E342E 
+ 989      31203230 
+ 989      31363036 
+ 990 0130 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 990      20726576 
+ 990      6973696F 
+ 990      6E203233 
+ 990      37373135 
+ 991 0163 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 991      66756E63 
+ 991      74696F6E 
+ 991      2D736563 
+ 991      74696F6E 
+ 992              	.LASF3:
+ 993 018b 73686F72 		.ascii	"short unsigned int\000"
+ 993      7420756E 
+ 993      7369676E 
+ 993      65642069 
+ 993      6E7400
+ 994              	.LASF35:
+ 995 019e 416E6775 		.ascii	"AngularSectorStartPoints\000"
+ 995      6C617253 
+ 995      6563746F 
+ 995      72537461 
+ 995      7274506F 
+ 996              	.LASF46:
+ 997 01b7 433A5C55 		.ascii	"C:\\Users\\jmspi\\OneDrive\\Documents\\GitHub\\ECE4"
+ 997      73657273 
+ 997      5C6A6D73 
+ 997      70695C4F 
+ 997      6E654472 
+ 998 01e4 3139315C 		.ascii	"191\\DeliveryRobot.cydsn\000"
+ 998      44656C69 
+ 998      76657279 
+ 998      526F626F 
+ 998      742E6379 
+ 999              	.LASF21:
+ 1000 01fc 44697374 		.ascii	"DistanceLimits\000"
+ 1000      616E6365 
+ 1000      4C696D69 
+ 1000      747300
+ 1001              	.LASF1:
+ 1002 020b 756E7369 		.ascii	"unsigned char\000"
+ 1002      676E6564 
+ 1002      20636861 
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc3d9ecE.s 			page 21
+
+
+ 1002      7200
+ 1003              	.LASF49:
+ 1004 0219 6D656D73 		.ascii	"memset\000"
+ 1004      657400
+ 1005              	.LASF6:
+ 1006 0220 646F7562 		.ascii	"double\000"
+ 1006      6C6500
+ 1007              	.LASF2:
+ 1008 0227 73686F72 		.ascii	"short int\000"
+ 1008      7420696E 
+ 1008      7400
+ 1009              	.LASF13:
+ 1010 0231 6E756D44 		.ascii	"numDimensions\000"
+ 1010      696D656E 
+ 1010      73696F6E 
+ 1010      7300
+ 1011              	.LASF42:
+ 1012 023f 76617261 		.ascii	"varargin_1\000"
+ 1012      7267696E 
+ 1012      5F3100
+ 1013              	.LASF26:
+ 1014 024a 43757272 		.ascii	"CurrentDirectionWeight\000"
+ 1014      656E7444 
+ 1014      69726563 
+ 1014      74696F6E 
+ 1014      57656967 
+ 1015              	.LASF29:
+ 1016 0261 506F6C61 		.ascii	"PolarObstacleDensity\000"
+ 1016      724F6273 
+ 1016      7461636C 
+ 1016      6544656E 
+ 1016      73697479 
+ 1017              	.LASF4:
+ 1018 0276 756E7369 		.ascii	"unsigned int\000"
+ 1018      676E6564 
+ 1018      20696E74 
+ 1018      00
+ 1019              	.LASF18:
+ 1020 0283 6973496E 		.ascii	"isInitialized\000"
+ 1020      69746961 
+ 1020      6C697A65 
+ 1020      6400
+ 1021              	.LASF41:
+ 1022 0291 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1022      206C6F6E 
+ 1022      6720756E 
+ 1022      7369676E 
+ 1022      65642069 
+ 1023              	.LASF34:
+ 1024 02a8 416E6775 		.ascii	"AngularDifference\000"
+ 1024      6C617244 
+ 1024      69666665 
+ 1024      72656E63 
+ 1024      6500
+ 1025              	.LASF31:
+ 1026 02ba 4D61736B 		.ascii	"MaskedHistogram\000"
+ 1026      65644869 
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc3d9ecE.s 			page 22
+
+
+ 1026      73746F67 
+ 1026      72616D00 
+ 1027              	.LASF8:
+ 1028 02ca 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1028      20756E73 
+ 1028      69676E65 
+ 1028      6420696E 
+ 1028      7400
+ 1029              	.LASF12:
+ 1030 02dc 616C6C6F 		.ascii	"allocatedSize\000"
+ 1030      63617465 
+ 1030      6453697A 
+ 1030      6500
+ 1031              	.LASF45:
+ 1032 02ea 5646482B 		.ascii	"VFH+\\src\\SystemCore.c\000"
+ 1032      5C737263 
+ 1032      5C537973 
+ 1032      74656D43 
+ 1032      6F72652E 
+ 1033              	.LASF15:
+ 1034 0300 73697A65 		.ascii	"sizetype\000"
+ 1034      74797065 
+ 1034      00
+ 1035              	.LASF38:
+ 1036 0309 6C6F6E67 		.ascii	"long long int\000"
+ 1036      206C6F6E 
+ 1036      6720696E 
+ 1036      7400
+ 1037              	.LASF24:
+ 1038 0317 4D696E54 		.ascii	"MinTurningRadius\000"
+ 1038      75726E69 
+ 1038      6E675261 
+ 1038      64697573 
+ 1038      00
+ 1039              	.LASF9:
+ 1040 0328 63686172 		.ascii	"char\000"
+ 1040      00
+ 1041              	.LASF23:
+ 1042 032d 53616665 		.ascii	"SafetyDistance\000"
+ 1042      74794469 
+ 1042      7374616E 
+ 1042      636500
+ 1043              	.LASF37:
+ 1044 033c 636F6E74 		.ascii	"controllerVFH\000"
+ 1044      726F6C6C 
+ 1044      65725646 
+ 1044      4800
+ 1045              	.LASF28:
+ 1046 034a 48697374 		.ascii	"HistogramThresholds\000"
+ 1046      6F677261 
+ 1046      6D546872 
+ 1046      6573686F 
+ 1046      6C647300 
+ 1047              	.LASF43:
+ 1048 035e 76617261 		.ascii	"varargin_2\000"
+ 1048      7267696E 
+ 1048      5F3200
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc3d9ecE.s 			page 23
+
+
+ 1049              	.LASF40:
+ 1050 0369 6C6F6E67 		.ascii	"long int\000"
+ 1050      20696E74 
+ 1050      00
+ 1051              	.LASF39:
+ 1052 0372 6C6F6E67 		.ascii	"long double\000"
+ 1052      20646F75 
+ 1052      626C6500 
+ 1053              	.LASF17:
+ 1054 037e 63656C6C 		.ascii	"cell_wrap_3\000"
+ 1054      5F777261 
+ 1054      705F3300 
+ 1055              	.LASF0:
+ 1056 038a 7369676E 		.ascii	"signed char\000"
+ 1056      65642063 
+ 1056      68617200 
+ 1057              	.LASF19:
+ 1058 0396 696E7075 		.ascii	"inputVarSize\000"
+ 1058      74566172 
+ 1058      53697A65 
+ 1058      00
+ 1059              	.LASF7:
+ 1060 03a3 5F426F6F 		.ascii	"_Bool\000"
+ 1060      6C00
+ 1061              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

@@ -1,0 +1,908 @@
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc8GQICf.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"repmat.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	__aeabi_d2iz
+  20              		.section	.text.repmat,"ax",%progbits
+  21              		.align	1
+  22              		.global	repmat
+  23              		.thumb
+  24              		.thumb_func
+  25              		.type	repmat, %function
+  26              	repmat:
+  27              	.LFB0:
+  28              		.file 1 "VFH+\\src\\repmat.c"
+   1:VFH+\src/repmat.c **** /*
+   2:VFH+\src/repmat.c ****  * Academic License - for use in teaching, academic research, and meeting
+   3:VFH+\src/repmat.c ****  * course requirements at degree granting institutions only.  Not for
+   4:VFH+\src/repmat.c ****  * government, commercial, or other organizational use.
+   5:VFH+\src/repmat.c ****  * File: repmat.c
+   6:VFH+\src/repmat.c ****  *
+   7:VFH+\src/repmat.c ****  * MATLAB Coder version            : 5.3
+   8:VFH+\src/repmat.c ****  * C/C++ source code generated on  : 30-Aug-2023 22:51:35
+   9:VFH+\src/repmat.c ****  */
+  10:VFH+\src/repmat.c **** 
+  11:VFH+\src/repmat.c **** /* Include Files */
+  12:VFH+\src/repmat.c **** #include "repmat.h"
+  13:VFH+\src/repmat.c **** #include "rt_nonfinite.h"
+  14:VFH+\src/repmat.c **** #include "vfhTest_emxutil.h"
+  15:VFH+\src/repmat.c **** #include "vfhTest_types.h"
+  16:VFH+\src/repmat.c **** 
+  17:VFH+\src/repmat.c **** /* Function Definitions */
+  18:VFH+\src/repmat.c **** /*
+  19:VFH+\src/repmat.c ****  * Arguments    : const double a[3]
+  20:VFH+\src/repmat.c ****  *                double varargin_1
+  21:VFH+\src/repmat.c ****  *                emxArray_real_T *b
+  22:VFH+\src/repmat.c ****  * Return Type  : void
+  23:VFH+\src/repmat.c ****  */
+  24:VFH+\src/repmat.c **** void repmat(const double a[3], double varargin_1, emxArray_real_T *b)
+  25:VFH+\src/repmat.c **** {
+  29              		.loc 1 25 0
+  30              		.cfi_startproc
+  31              		@ args = 4, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc8GQICf.s 			page 2
+
+
+  33              	.LVL0:
+  34 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+  35              		.cfi_def_cfa_offset 24
+  36              		.cfi_offset 4, -24
+  37              		.cfi_offset 5, -20
+  38              		.cfi_offset 6, -16
+  39              		.cfi_offset 7, -12
+  40              		.cfi_offset 8, -8
+  41              		.cfi_offset 14, -4
+  42              		.loc 1 25 0
+  43 0004 069F     		ldr	r7, [sp, #24]
+  44 0006 0446     		mov	r4, r0
+  26:VFH+\src/repmat.c ****   double *b_data;
+  27:VFH+\src/repmat.c ****   int ibmat;
+  28:VFH+\src/repmat.c ****   int itilerow;
+  29:VFH+\src/repmat.c ****   int jcol;
+  30:VFH+\src/repmat.c ****   int ntilerows;
+  31:VFH+\src/repmat.c ****   ntilerows = b->size[0] * b->size[1];
+  45              		.loc 1 31 0
+  46 0008 7D68     		ldr	r5, [r7, #4]
+  47 000a 95E80300 		ldmia	r5, {r0, r1}
+  48              	.LVL1:
+  49 000e 01FB00F8 		mul	r8, r1, r0
+  50              	.LVL2:
+  32:VFH+\src/repmat.c ****   b->size[0] = (unsigned short)(int)varargin_1;
+  51              		.loc 1 32 0
+  52 0012 1946     		mov	r1, r3
+  53 0014 1046     		mov	r0, r2
+  54 0016 FFF7FEFF 		bl	__aeabi_d2iz
+  55              	.LVL3:
+  56 001a 83B2     		uxth	r3, r0
+  57 001c 2B60     		str	r3, [r5]
+  33:VFH+\src/repmat.c ****   b->size[1] = 3;
+  58              		.loc 1 33 0
+  59 001e 0323     		movs	r3, #3
+  32:VFH+\src/repmat.c ****   b->size[0] = (unsigned short)(int)varargin_1;
+  60              		.loc 1 32 0
+  61 0020 0646     		mov	r6, r0
+  62              		.loc 1 33 0
+  63 0022 6B60     		str	r3, [r5, #4]
+  34:VFH+\src/repmat.c ****   emxEnsureCapacity_real_T(b, ntilerows);
+  64              		.loc 1 34 0
+  65 0024 3846     		mov	r0, r7
+  66 0026 4146     		mov	r1, r8
+  67 0028 FFF7FEFF 		bl	emxEnsureCapacity_real_T
+  68              	.LVL4:
+  69 002c 2046     		mov	r0, r4
+  70 002e 3B68     		ldr	r3, [r7]
+  71 0030 4FEAC60E 		lsl	lr, r6, #3
+  72 0034 04F11807 		add	r7, r4, #24
+  73              	.LVL5:
+  74              	.L4:
+  35:VFH+\src/repmat.c ****   b_data = b->data;
+  36:VFH+\src/repmat.c ****   ntilerows = (int)varargin_1;
+  37:VFH+\src/repmat.c ****   for (jcol = 0; jcol < 3; jcol++) {
+  38:VFH+\src/repmat.c ****     ibmat = jcol * (int)varargin_1;
+  39:VFH+\src/repmat.c ****     for (itilerow = 0; itilerow < ntilerows; itilerow++) {
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc8GQICf.s 			page 3
+
+
+  75              		.loc 1 39 0
+  76 0038 1946     		mov	r1, r3
+  77 003a 0022     		movs	r2, #0
+  78              	.LVL6:
+  79              	.L2:
+  80              		.loc 1 39 0 is_stmt 0 discriminator 1
+  81 003c B242     		cmp	r2, r6
+  82 003e 05DA     		bge	.L7
+  40:VFH+\src/repmat.c ****       b_data[ibmat + itilerow] = a[jcol];
+  83              		.loc 1 40 0 is_stmt 1 discriminator 3
+  84 0040 D0E90045 		ldrd	r4, [r0]
+  39:VFH+\src/repmat.c ****       b_data[ibmat + itilerow] = a[jcol];
+  85              		.loc 1 39 0 discriminator 3
+  86 0044 0132     		adds	r2, r2, #1
+  87              	.LVL7:
+  88              		.loc 1 40 0 discriminator 3
+  89 0046 E1E80245 		strd	r4, [r1], #8
+  90 004a F7E7     		b	.L2
+  91              	.L7:
+  92 004c 0830     		adds	r0, r0, #8
+  37:VFH+\src/repmat.c ****     ibmat = jcol * (int)varargin_1;
+  93              		.loc 1 37 0 discriminator 2
+  94 004e B842     		cmp	r0, r7
+  95 0050 7344     		add	r3, r3, lr
+  96 0052 F1D1     		bne	.L4
+  41:VFH+\src/repmat.c ****     }
+  42:VFH+\src/repmat.c ****   }
+  43:VFH+\src/repmat.c **** }
+  97              		.loc 1 43 0
+  98 0054 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+  99              		.cfi_endproc
+ 100              	.LFE0:
+ 101              		.size	repmat, .-repmat
+ 102              		.text
+ 103              	.Letext0:
+ 104              		.file 2 ".\\VFH+\\include/vfhTest_types.h"
+ 105              		.file 3 ".\\VFH+\\include/vfhTest_emxutil.h"
+ 106              		.section	.debug_info,"",%progbits
+ 107              	.Ldebug_info0:
+ 108 0000 A9010000 		.4byte	0x1a9
+ 109 0004 0400     		.2byte	0x4
+ 110 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 111 000a 04       		.byte	0x4
+ 112 000b 01       		.uleb128 0x1
+ 113 000c 47000000 		.4byte	.LASF25
+ 114 0010 0C       		.byte	0xc
+ 115 0011 CC010000 		.4byte	.LASF26
+ 116 0015 E8000000 		.4byte	.LASF27
+ 117 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 118 001d 00000000 		.4byte	0
+ 119 0021 00000000 		.4byte	.Ldebug_line0
+ 120 0025 02       		.uleb128 0x2
+ 121 0026 08       		.byte	0x8
+ 122 0027 04       		.byte	0x4
+ 123 0028 60010000 		.4byte	.LASF0
+ 124 002c 02       		.uleb128 0x2
+ 125 002d 01       		.byte	0x1
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc8GQICf.s 			page 4
+
+
+ 126 002e 06       		.byte	0x6
+ 127 002f 16020000 		.4byte	.LASF1
+ 128 0033 02       		.uleb128 0x2
+ 129 0034 01       		.byte	0x1
+ 130 0035 08       		.byte	0x8
+ 131 0036 4D010000 		.4byte	.LASF2
+ 132 003a 02       		.uleb128 0x2
+ 133 003b 02       		.byte	0x2
+ 134 003c 05       		.byte	0x5
+ 135 003d E3010000 		.4byte	.LASF3
+ 136 0041 02       		.uleb128 0x2
+ 137 0042 02       		.byte	0x2
+ 138 0043 07       		.byte	0x7
+ 139 0044 D5000000 		.4byte	.LASF4
+ 140 0048 03       		.uleb128 0x3
+ 141 0049 04       		.byte	0x4
+ 142 004a 05       		.byte	0x5
+ 143 004b 696E7400 		.ascii	"int\000"
+ 144 004f 02       		.uleb128 0x2
+ 145 0050 04       		.byte	0x4
+ 146 0051 07       		.byte	0x7
+ 147 0052 91010000 		.4byte	.LASF5
+ 148 0056 02       		.uleb128 0x2
+ 149 0057 04       		.byte	0x4
+ 150 0058 04       		.byte	0x4
+ 151 0059 37000000 		.4byte	.LASF6
+ 152 005d 02       		.uleb128 0x2
+ 153 005e 01       		.byte	0x1
+ 154 005f 02       		.byte	0x2
+ 155 0060 22020000 		.4byte	.LASF7
+ 156 0064 02       		.uleb128 0x2
+ 157 0065 04       		.byte	0x4
+ 158 0066 07       		.byte	0x7
+ 159 0067 7F010000 		.4byte	.LASF8
+ 160 006b 02       		.uleb128 0x2
+ 161 006c 01       		.byte	0x1
+ 162 006d 08       		.byte	0x8
+ 163 006e DE010000 		.4byte	.LASF9
+ 164 0072 04       		.uleb128 0x4
+ 165 0073 27000000 		.4byte	.LASF28
+ 166 0077 14       		.byte	0x14
+ 167 0078 02       		.byte	0x2
+ 168 0079 14       		.byte	0x14
+ 169 007a BB000000 		.4byte	0xbb
+ 170 007e 05       		.uleb128 0x5
+ 171 007f 3D000000 		.4byte	.LASF10
+ 172 0083 02       		.byte	0x2
+ 173 0084 15       		.byte	0x15
+ 174 0085 BB000000 		.4byte	0xbb
+ 175 0089 00       		.byte	0
+ 176 008a 05       		.uleb128 0x5
+ 177 008b 42000000 		.4byte	.LASF11
+ 178 008f 02       		.byte	0x2
+ 179 0090 16       		.byte	0x16
+ 180 0091 C1000000 		.4byte	0xc1
+ 181 0095 04       		.byte	0x4
+ 182 0096 05       		.uleb128 0x5
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc8GQICf.s 			page 5
+
+
+ 183 0097 0D000000 		.4byte	.LASF12
+ 184 009b 02       		.byte	0x2
+ 185 009c 17       		.byte	0x17
+ 186 009d 48000000 		.4byte	0x48
+ 187 00a1 08       		.byte	0x8
+ 188 00a2 05       		.uleb128 0x5
+ 189 00a3 71010000 		.4byte	.LASF13
+ 190 00a7 02       		.byte	0x2
+ 191 00a8 18       		.byte	0x18
+ 192 00a9 48000000 		.4byte	0x48
+ 193 00ad 0C       		.byte	0xc
+ 194 00ae 05       		.uleb128 0x5
+ 195 00af 1B000000 		.4byte	.LASF14
+ 196 00b3 02       		.byte	0x2
+ 197 00b4 19       		.byte	0x19
+ 198 00b5 5D000000 		.4byte	0x5d
+ 199 00b9 10       		.byte	0x10
+ 200 00ba 00       		.byte	0
+ 201 00bb 06       		.uleb128 0x6
+ 202 00bc 04       		.byte	0x4
+ 203 00bd 25000000 		.4byte	0x25
+ 204 00c1 06       		.uleb128 0x6
+ 205 00c2 04       		.byte	0x4
+ 206 00c3 48000000 		.4byte	0x48
+ 207 00c7 07       		.uleb128 0x7
+ 208 00c8 27000000 		.4byte	.LASF28
+ 209 00cc 02       		.byte	0x2
+ 210 00cd 1E       		.byte	0x1e
+ 211 00ce 72000000 		.4byte	0x72
+ 212 00d2 02       		.uleb128 0x2
+ 213 00d3 08       		.byte	0x8
+ 214 00d4 05       		.byte	0x5
+ 215 00d5 BE010000 		.4byte	.LASF15
+ 216 00d9 02       		.uleb128 0x2
+ 217 00da 08       		.byte	0x8
+ 218 00db 04       		.byte	0x4
+ 219 00dc 01020000 		.4byte	.LASF16
+ 220 00e0 02       		.uleb128 0x2
+ 221 00e1 04       		.byte	0x4
+ 222 00e2 05       		.byte	0x5
+ 223 00e3 F8010000 		.4byte	.LASF17
+ 224 00e7 02       		.uleb128 0x2
+ 225 00e8 08       		.byte	0x8
+ 226 00e9 07       		.byte	0x7
+ 227 00ea 9E010000 		.4byte	.LASF18
+ 228 00ee 02       		.uleb128 0x2
+ 229 00ef 04       		.byte	0x4
+ 230 00f0 07       		.byte	0x7
+ 231 00f1 B5010000 		.4byte	.LASF19
+ 232 00f5 08       		.uleb128 0x8
+ 233 00f6 2D010000 		.4byte	.LASF29
+ 234 00fa 01       		.byte	0x1
+ 235 00fb 18       		.byte	0x18
+ 236 00fc 00000000 		.4byte	.LFB0
+ 237 0100 58000000 		.4byte	.LFE0-.LFB0
+ 238 0104 01       		.uleb128 0x1
+ 239 0105 9C       		.byte	0x9c
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc8GQICf.s 			page 6
+
+
+ 240 0106 90010000 		.4byte	0x190
+ 241 010a 09       		.uleb128 0x9
+ 242 010b 6100     		.ascii	"a\000"
+ 243 010d 01       		.byte	0x1
+ 244 010e 18       		.byte	0x18
+ 245 010f 90010000 		.4byte	0x190
+ 246 0113 00000000 		.4byte	.LLST0
+ 247 0117 0A       		.uleb128 0xa
+ 248 0118 ED010000 		.4byte	.LASF20
+ 249 011c 01       		.byte	0x1
+ 250 011d 18       		.byte	0x18
+ 251 011e 25000000 		.4byte	0x25
+ 252 0122 2B000000 		.4byte	.LLST1
+ 253 0126 0B       		.uleb128 0xb
+ 254 0127 6200     		.ascii	"b\000"
+ 255 0129 01       		.byte	0x1
+ 256 012a 18       		.byte	0x18
+ 257 012b 9B010000 		.4byte	0x19b
+ 258 012f 02       		.uleb128 0x2
+ 259 0130 91       		.byte	0x91
+ 260 0131 00       		.sleb128 0
+ 261 0132 0C       		.uleb128 0xc
+ 262 0133 06000000 		.4byte	.LASF21
+ 263 0137 01       		.byte	0x1
+ 264 0138 1A       		.byte	0x1a
+ 265 0139 BB000000 		.4byte	0xbb
+ 266 013d 53000000 		.4byte	.LLST2
+ 267 0141 0D       		.uleb128 0xd
+ 268 0142 00000000 		.4byte	.LASF30
+ 269 0146 01       		.byte	0x1
+ 270 0147 1B       		.byte	0x1b
+ 271 0148 48000000 		.4byte	0x48
+ 272 014c 0C       		.uleb128 0xc
+ 273 014d 0D020000 		.4byte	.LASF22
+ 274 0151 01       		.byte	0x1
+ 275 0152 1C       		.byte	0x1c
+ 276 0153 48000000 		.4byte	0x48
+ 277 0157 67000000 		.4byte	.LLST3
+ 278 015b 0C       		.uleb128 0xc
+ 279 015c 5B010000 		.4byte	.LASF23
+ 280 0160 01       		.byte	0x1
+ 281 0161 1D       		.byte	0x1d
+ 282 0162 48000000 		.4byte	0x48
+ 283 0166 86000000 		.4byte	.LLST4
+ 284 016a 0C       		.uleb128 0xc
+ 285 016b 67010000 		.4byte	.LASF24
+ 286 016f 01       		.byte	0x1
+ 287 0170 1E       		.byte	0x1e
+ 288 0171 48000000 		.4byte	0x48
+ 289 0175 9A000000 		.4byte	.LLST5
+ 290 0179 0E       		.uleb128 0xe
+ 291 017a 2C000000 		.4byte	.LVL4
+ 292 017e A1010000 		.4byte	0x1a1
+ 293 0182 0F       		.uleb128 0xf
+ 294 0183 01       		.uleb128 0x1
+ 295 0184 50       		.byte	0x50
+ 296 0185 02       		.uleb128 0x2
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc8GQICf.s 			page 7
+
+
+ 297 0186 77       		.byte	0x77
+ 298 0187 00       		.sleb128 0
+ 299 0188 0F       		.uleb128 0xf
+ 300 0189 01       		.uleb128 0x1
+ 301 018a 51       		.byte	0x51
+ 302 018b 02       		.uleb128 0x2
+ 303 018c 78       		.byte	0x78
+ 304 018d 00       		.sleb128 0
+ 305 018e 00       		.byte	0
+ 306 018f 00       		.byte	0
+ 307 0190 06       		.uleb128 0x6
+ 308 0191 04       		.byte	0x4
+ 309 0192 96010000 		.4byte	0x196
+ 310 0196 10       		.uleb128 0x10
+ 311 0197 25000000 		.4byte	0x25
+ 312 019b 06       		.uleb128 0x6
+ 313 019c 04       		.byte	0x4
+ 314 019d C7000000 		.4byte	0xc7
+ 315 01a1 11       		.uleb128 0x11
+ 316 01a2 34010000 		.4byte	.LASF31
+ 317 01a6 34010000 		.4byte	.LASF31
+ 318 01aa 03       		.byte	0x3
+ 319 01ab 1C       		.byte	0x1c
+ 320 01ac 00       		.byte	0
+ 321              		.section	.debug_abbrev,"",%progbits
+ 322              	.Ldebug_abbrev0:
+ 323 0000 01       		.uleb128 0x1
+ 324 0001 11       		.uleb128 0x11
+ 325 0002 01       		.byte	0x1
+ 326 0003 25       		.uleb128 0x25
+ 327 0004 0E       		.uleb128 0xe
+ 328 0005 13       		.uleb128 0x13
+ 329 0006 0B       		.uleb128 0xb
+ 330 0007 03       		.uleb128 0x3
+ 331 0008 0E       		.uleb128 0xe
+ 332 0009 1B       		.uleb128 0x1b
+ 333 000a 0E       		.uleb128 0xe
+ 334 000b 55       		.uleb128 0x55
+ 335 000c 17       		.uleb128 0x17
+ 336 000d 11       		.uleb128 0x11
+ 337 000e 01       		.uleb128 0x1
+ 338 000f 10       		.uleb128 0x10
+ 339 0010 17       		.uleb128 0x17
+ 340 0011 00       		.byte	0
+ 341 0012 00       		.byte	0
+ 342 0013 02       		.uleb128 0x2
+ 343 0014 24       		.uleb128 0x24
+ 344 0015 00       		.byte	0
+ 345 0016 0B       		.uleb128 0xb
+ 346 0017 0B       		.uleb128 0xb
+ 347 0018 3E       		.uleb128 0x3e
+ 348 0019 0B       		.uleb128 0xb
+ 349 001a 03       		.uleb128 0x3
+ 350 001b 0E       		.uleb128 0xe
+ 351 001c 00       		.byte	0
+ 352 001d 00       		.byte	0
+ 353 001e 03       		.uleb128 0x3
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc8GQICf.s 			page 8
+
+
+ 354 001f 24       		.uleb128 0x24
+ 355 0020 00       		.byte	0
+ 356 0021 0B       		.uleb128 0xb
+ 357 0022 0B       		.uleb128 0xb
+ 358 0023 3E       		.uleb128 0x3e
+ 359 0024 0B       		.uleb128 0xb
+ 360 0025 03       		.uleb128 0x3
+ 361 0026 08       		.uleb128 0x8
+ 362 0027 00       		.byte	0
+ 363 0028 00       		.byte	0
+ 364 0029 04       		.uleb128 0x4
+ 365 002a 13       		.uleb128 0x13
+ 366 002b 01       		.byte	0x1
+ 367 002c 03       		.uleb128 0x3
+ 368 002d 0E       		.uleb128 0xe
+ 369 002e 0B       		.uleb128 0xb
+ 370 002f 0B       		.uleb128 0xb
+ 371 0030 3A       		.uleb128 0x3a
+ 372 0031 0B       		.uleb128 0xb
+ 373 0032 3B       		.uleb128 0x3b
+ 374 0033 0B       		.uleb128 0xb
+ 375 0034 01       		.uleb128 0x1
+ 376 0035 13       		.uleb128 0x13
+ 377 0036 00       		.byte	0
+ 378 0037 00       		.byte	0
+ 379 0038 05       		.uleb128 0x5
+ 380 0039 0D       		.uleb128 0xd
+ 381 003a 00       		.byte	0
+ 382 003b 03       		.uleb128 0x3
+ 383 003c 0E       		.uleb128 0xe
+ 384 003d 3A       		.uleb128 0x3a
+ 385 003e 0B       		.uleb128 0xb
+ 386 003f 3B       		.uleb128 0x3b
+ 387 0040 0B       		.uleb128 0xb
+ 388 0041 49       		.uleb128 0x49
+ 389 0042 13       		.uleb128 0x13
+ 390 0043 38       		.uleb128 0x38
+ 391 0044 0B       		.uleb128 0xb
+ 392 0045 00       		.byte	0
+ 393 0046 00       		.byte	0
+ 394 0047 06       		.uleb128 0x6
+ 395 0048 0F       		.uleb128 0xf
+ 396 0049 00       		.byte	0
+ 397 004a 0B       		.uleb128 0xb
+ 398 004b 0B       		.uleb128 0xb
+ 399 004c 49       		.uleb128 0x49
+ 400 004d 13       		.uleb128 0x13
+ 401 004e 00       		.byte	0
+ 402 004f 00       		.byte	0
+ 403 0050 07       		.uleb128 0x7
+ 404 0051 16       		.uleb128 0x16
+ 405 0052 00       		.byte	0
+ 406 0053 03       		.uleb128 0x3
+ 407 0054 0E       		.uleb128 0xe
+ 408 0055 3A       		.uleb128 0x3a
+ 409 0056 0B       		.uleb128 0xb
+ 410 0057 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc8GQICf.s 			page 9
+
+
+ 411 0058 0B       		.uleb128 0xb
+ 412 0059 49       		.uleb128 0x49
+ 413 005a 13       		.uleb128 0x13
+ 414 005b 00       		.byte	0
+ 415 005c 00       		.byte	0
+ 416 005d 08       		.uleb128 0x8
+ 417 005e 2E       		.uleb128 0x2e
+ 418 005f 01       		.byte	0x1
+ 419 0060 3F       		.uleb128 0x3f
+ 420 0061 19       		.uleb128 0x19
+ 421 0062 03       		.uleb128 0x3
+ 422 0063 0E       		.uleb128 0xe
+ 423 0064 3A       		.uleb128 0x3a
+ 424 0065 0B       		.uleb128 0xb
+ 425 0066 3B       		.uleb128 0x3b
+ 426 0067 0B       		.uleb128 0xb
+ 427 0068 27       		.uleb128 0x27
+ 428 0069 19       		.uleb128 0x19
+ 429 006a 11       		.uleb128 0x11
+ 430 006b 01       		.uleb128 0x1
+ 431 006c 12       		.uleb128 0x12
+ 432 006d 06       		.uleb128 0x6
+ 433 006e 40       		.uleb128 0x40
+ 434 006f 18       		.uleb128 0x18
+ 435 0070 9642     		.uleb128 0x2116
+ 436 0072 19       		.uleb128 0x19
+ 437 0073 01       		.uleb128 0x1
+ 438 0074 13       		.uleb128 0x13
+ 439 0075 00       		.byte	0
+ 440 0076 00       		.byte	0
+ 441 0077 09       		.uleb128 0x9
+ 442 0078 05       		.uleb128 0x5
+ 443 0079 00       		.byte	0
+ 444 007a 03       		.uleb128 0x3
+ 445 007b 08       		.uleb128 0x8
+ 446 007c 3A       		.uleb128 0x3a
+ 447 007d 0B       		.uleb128 0xb
+ 448 007e 3B       		.uleb128 0x3b
+ 449 007f 0B       		.uleb128 0xb
+ 450 0080 49       		.uleb128 0x49
+ 451 0081 13       		.uleb128 0x13
+ 452 0082 02       		.uleb128 0x2
+ 453 0083 17       		.uleb128 0x17
+ 454 0084 00       		.byte	0
+ 455 0085 00       		.byte	0
+ 456 0086 0A       		.uleb128 0xa
+ 457 0087 05       		.uleb128 0x5
+ 458 0088 00       		.byte	0
+ 459 0089 03       		.uleb128 0x3
+ 460 008a 0E       		.uleb128 0xe
+ 461 008b 3A       		.uleb128 0x3a
+ 462 008c 0B       		.uleb128 0xb
+ 463 008d 3B       		.uleb128 0x3b
+ 464 008e 0B       		.uleb128 0xb
+ 465 008f 49       		.uleb128 0x49
+ 466 0090 13       		.uleb128 0x13
+ 467 0091 02       		.uleb128 0x2
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc8GQICf.s 			page 10
+
+
+ 468 0092 17       		.uleb128 0x17
+ 469 0093 00       		.byte	0
+ 470 0094 00       		.byte	0
+ 471 0095 0B       		.uleb128 0xb
+ 472 0096 05       		.uleb128 0x5
+ 473 0097 00       		.byte	0
+ 474 0098 03       		.uleb128 0x3
+ 475 0099 08       		.uleb128 0x8
+ 476 009a 3A       		.uleb128 0x3a
+ 477 009b 0B       		.uleb128 0xb
+ 478 009c 3B       		.uleb128 0x3b
+ 479 009d 0B       		.uleb128 0xb
+ 480 009e 49       		.uleb128 0x49
+ 481 009f 13       		.uleb128 0x13
+ 482 00a0 02       		.uleb128 0x2
+ 483 00a1 18       		.uleb128 0x18
+ 484 00a2 00       		.byte	0
+ 485 00a3 00       		.byte	0
+ 486 00a4 0C       		.uleb128 0xc
+ 487 00a5 34       		.uleb128 0x34
+ 488 00a6 00       		.byte	0
+ 489 00a7 03       		.uleb128 0x3
+ 490 00a8 0E       		.uleb128 0xe
+ 491 00a9 3A       		.uleb128 0x3a
+ 492 00aa 0B       		.uleb128 0xb
+ 493 00ab 3B       		.uleb128 0x3b
+ 494 00ac 0B       		.uleb128 0xb
+ 495 00ad 49       		.uleb128 0x49
+ 496 00ae 13       		.uleb128 0x13
+ 497 00af 02       		.uleb128 0x2
+ 498 00b0 17       		.uleb128 0x17
+ 499 00b1 00       		.byte	0
+ 500 00b2 00       		.byte	0
+ 501 00b3 0D       		.uleb128 0xd
+ 502 00b4 34       		.uleb128 0x34
+ 503 00b5 00       		.byte	0
+ 504 00b6 03       		.uleb128 0x3
+ 505 00b7 0E       		.uleb128 0xe
+ 506 00b8 3A       		.uleb128 0x3a
+ 507 00b9 0B       		.uleb128 0xb
+ 508 00ba 3B       		.uleb128 0x3b
+ 509 00bb 0B       		.uleb128 0xb
+ 510 00bc 49       		.uleb128 0x49
+ 511 00bd 13       		.uleb128 0x13
+ 512 00be 00       		.byte	0
+ 513 00bf 00       		.byte	0
+ 514 00c0 0E       		.uleb128 0xe
+ 515 00c1 898201   		.uleb128 0x4109
+ 516 00c4 01       		.byte	0x1
+ 517 00c5 11       		.uleb128 0x11
+ 518 00c6 01       		.uleb128 0x1
+ 519 00c7 31       		.uleb128 0x31
+ 520 00c8 13       		.uleb128 0x13
+ 521 00c9 00       		.byte	0
+ 522 00ca 00       		.byte	0
+ 523 00cb 0F       		.uleb128 0xf
+ 524 00cc 8A8201   		.uleb128 0x410a
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc8GQICf.s 			page 11
+
+
+ 525 00cf 00       		.byte	0
+ 526 00d0 02       		.uleb128 0x2
+ 527 00d1 18       		.uleb128 0x18
+ 528 00d2 9142     		.uleb128 0x2111
+ 529 00d4 18       		.uleb128 0x18
+ 530 00d5 00       		.byte	0
+ 531 00d6 00       		.byte	0
+ 532 00d7 10       		.uleb128 0x10
+ 533 00d8 26       		.uleb128 0x26
+ 534 00d9 00       		.byte	0
+ 535 00da 49       		.uleb128 0x49
+ 536 00db 13       		.uleb128 0x13
+ 537 00dc 00       		.byte	0
+ 538 00dd 00       		.byte	0
+ 539 00de 11       		.uleb128 0x11
+ 540 00df 2E       		.uleb128 0x2e
+ 541 00e0 00       		.byte	0
+ 542 00e1 3F       		.uleb128 0x3f
+ 543 00e2 19       		.uleb128 0x19
+ 544 00e3 3C       		.uleb128 0x3c
+ 545 00e4 19       		.uleb128 0x19
+ 546 00e5 6E       		.uleb128 0x6e
+ 547 00e6 0E       		.uleb128 0xe
+ 548 00e7 03       		.uleb128 0x3
+ 549 00e8 0E       		.uleb128 0xe
+ 550 00e9 3A       		.uleb128 0x3a
+ 551 00ea 0B       		.uleb128 0xb
+ 552 00eb 3B       		.uleb128 0x3b
+ 553 00ec 0B       		.uleb128 0xb
+ 554 00ed 00       		.byte	0
+ 555 00ee 00       		.byte	0
+ 556 00ef 00       		.byte	0
+ 557              		.section	.debug_loc,"",%progbits
+ 558              	.Ldebug_loc0:
+ 559              	.LLST0:
+ 560 0000 00000000 		.4byte	.LVL0
+ 561 0004 0E000000 		.4byte	.LVL1
+ 562 0008 0100     		.2byte	0x1
+ 563 000a 50       		.byte	0x50
+ 564 000b 0E000000 		.4byte	.LVL1
+ 565 000f 38000000 		.4byte	.LVL5
+ 566 0013 0100     		.2byte	0x1
+ 567 0015 54       		.byte	0x54
+ 568 0016 38000000 		.4byte	.LVL5
+ 569 001a 58000000 		.4byte	.LFE0
+ 570 001e 0300     		.2byte	0x3
+ 571 0020 77       		.byte	0x77
+ 572 0021 68       		.sleb128 -24
+ 573 0022 9F       		.byte	0x9f
+ 574 0023 00000000 		.4byte	0
+ 575 0027 00000000 		.4byte	0
+ 576              	.LLST1:
+ 577 002b 00000000 		.4byte	.LVL0
+ 578 002f 19000000 		.4byte	.LVL3-1
+ 579 0033 0600     		.2byte	0x6
+ 580 0035 52       		.byte	0x52
+ 581 0036 93       		.byte	0x93
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc8GQICf.s 			page 12
+
+
+ 582 0037 04       		.uleb128 0x4
+ 583 0038 53       		.byte	0x53
+ 584 0039 93       		.byte	0x93
+ 585 003a 04       		.uleb128 0x4
+ 586 003b 19000000 		.4byte	.LVL3-1
+ 587 003f 58000000 		.4byte	.LFE0
+ 588 0043 0600     		.2byte	0x6
+ 589 0045 F3       		.byte	0xf3
+ 590 0046 03       		.uleb128 0x3
+ 591 0047 F5       		.byte	0xf5
+ 592 0048 02       		.uleb128 0x2
+ 593 0049 25       		.uleb128 0x25
+ 594 004a 9F       		.byte	0x9f
+ 595 004b 00000000 		.4byte	0
+ 596 004f 00000000 		.4byte	0
+ 597              	.LLST2:
+ 598 0053 2C000000 		.4byte	.LVL4
+ 599 0057 38000000 		.4byte	.LVL5
+ 600 005b 0200     		.2byte	0x2
+ 601 005d 77       		.byte	0x77
+ 602 005e 00       		.sleb128 0
+ 603 005f 00000000 		.4byte	0
+ 604 0063 00000000 		.4byte	0
+ 605              	.LLST3:
+ 606 0067 38000000 		.4byte	.LVL5
+ 607 006b 3C000000 		.4byte	.LVL6
+ 608 006f 0200     		.2byte	0x2
+ 609 0071 30       		.byte	0x30
+ 610 0072 9F       		.byte	0x9f
+ 611 0073 3C000000 		.4byte	.LVL6
+ 612 0077 58000000 		.4byte	.LFE0
+ 613 007b 0100     		.2byte	0x1
+ 614 007d 52       		.byte	0x52
+ 615 007e 00000000 		.4byte	0
+ 616 0082 00000000 		.4byte	0
+ 617              	.LLST4:
+ 618 0086 2C000000 		.4byte	.LVL4
+ 619 008a 38000000 		.4byte	.LVL5
+ 620 008e 0200     		.2byte	0x2
+ 621 0090 30       		.byte	0x30
+ 622 0091 9F       		.byte	0x9f
+ 623 0092 00000000 		.4byte	0
+ 624 0096 00000000 		.4byte	0
+ 625              	.LLST5:
+ 626 009a 12000000 		.4byte	.LVL2
+ 627 009e 2C000000 		.4byte	.LVL4
+ 628 00a2 0100     		.2byte	0x1
+ 629 00a4 58       		.byte	0x58
+ 630 00a5 2C000000 		.4byte	.LVL4
+ 631 00a9 58000000 		.4byte	.LFE0
+ 632 00ad 0100     		.2byte	0x1
+ 633 00af 56       		.byte	0x56
+ 634 00b0 00000000 		.4byte	0
+ 635 00b4 00000000 		.4byte	0
+ 636              		.section	.debug_aranges,"",%progbits
+ 637 0000 1C000000 		.4byte	0x1c
+ 638 0004 0200     		.2byte	0x2
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc8GQICf.s 			page 13
+
+
+ 639 0006 00000000 		.4byte	.Ldebug_info0
+ 640 000a 04       		.byte	0x4
+ 641 000b 00       		.byte	0
+ 642 000c 0000     		.2byte	0
+ 643 000e 0000     		.2byte	0
+ 644 0010 00000000 		.4byte	.LFB0
+ 645 0014 58000000 		.4byte	.LFE0-.LFB0
+ 646 0018 00000000 		.4byte	0
+ 647 001c 00000000 		.4byte	0
+ 648              		.section	.debug_ranges,"",%progbits
+ 649              	.Ldebug_ranges0:
+ 650 0000 00000000 		.4byte	.LFB0
+ 651 0004 58000000 		.4byte	.LFE0
+ 652 0008 00000000 		.4byte	0
+ 653 000c 00000000 		.4byte	0
+ 654              		.section	.debug_line,"",%progbits
+ 655              	.Ldebug_line0:
+ 656 0000 98000000 		.section	.debug_str,"MS",%progbits,1
+ 656      02005F00 
+ 656      00000201 
+ 656      FB0E0D00 
+ 656      01010101 
+ 657              	.LASF30:
+ 658 0000 69626D61 		.ascii	"ibmat\000"
+ 658      7400
+ 659              	.LASF21:
+ 660 0006 625F6461 		.ascii	"b_data\000"
+ 660      746100
+ 661              	.LASF12:
+ 662 000d 616C6C6F 		.ascii	"allocatedSize\000"
+ 662      63617465 
+ 662      6453697A 
+ 662      6500
+ 663              	.LASF14:
+ 664 001b 63616E46 		.ascii	"canFreeData\000"
+ 664      72656544 
+ 664      61746100 
+ 665              	.LASF28:
+ 666 0027 656D7841 		.ascii	"emxArray_real_T\000"
+ 666      72726179 
+ 666      5F726561 
+ 666      6C5F5400 
+ 667              	.LASF6:
+ 668 0037 666C6F61 		.ascii	"float\000"
+ 668      7400
+ 669              	.LASF10:
+ 670 003d 64617461 		.ascii	"data\000"
+ 670      00
+ 671              	.LASF11:
+ 672 0042 73697A65 		.ascii	"size\000"
+ 672      00
+ 673              	.LASF25:
+ 674 0047 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 674      43313120 
+ 674      352E342E 
+ 674      31203230 
+ 674      31363036 
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc8GQICf.s 			page 14
+
+
+ 675 007a 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 675      20726576 
+ 675      6973696F 
+ 675      6E203233 
+ 675      37373135 
+ 676 00ad 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 676      66756E63 
+ 676      74696F6E 
+ 676      2D736563 
+ 676      74696F6E 
+ 677              	.LASF4:
+ 678 00d5 73686F72 		.ascii	"short unsigned int\000"
+ 678      7420756E 
+ 678      7369676E 
+ 678      65642069 
+ 678      6E7400
+ 679              	.LASF27:
+ 680 00e8 433A5C55 		.ascii	"C:\\Users\\jmspi\\OneDrive\\Documents\\GitHub\\ECE4"
+ 680      73657273 
+ 680      5C6A6D73 
+ 680      70695C4F 
+ 680      6E654472 
+ 681 0115 3139315C 		.ascii	"191\\DeliveryRobot.cydsn\000"
+ 681      44656C69 
+ 681      76657279 
+ 681      526F626F 
+ 681      742E6379 
+ 682              	.LASF29:
+ 683 012d 7265706D 		.ascii	"repmat\000"
+ 683      617400
+ 684              	.LASF31:
+ 685 0134 656D7845 		.ascii	"emxEnsureCapacity_real_T\000"
+ 685      6E737572 
+ 685      65436170 
+ 685      61636974 
+ 685      795F7265 
+ 686              	.LASF2:
+ 687 014d 756E7369 		.ascii	"unsigned char\000"
+ 687      676E6564 
+ 687      20636861 
+ 687      7200
+ 688              	.LASF23:
+ 689 015b 6A636F6C 		.ascii	"jcol\000"
+ 689      00
+ 690              	.LASF0:
+ 691 0160 646F7562 		.ascii	"double\000"
+ 691      6C6500
+ 692              	.LASF24:
+ 693 0167 6E74696C 		.ascii	"ntilerows\000"
+ 693      65726F77 
+ 693      7300
+ 694              	.LASF13:
+ 695 0171 6E756D44 		.ascii	"numDimensions\000"
+ 695      696D656E 
+ 695      73696F6E 
+ 695      7300
+ 696              	.LASF8:
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc8GQICf.s 			page 15
+
+
+ 697 017f 6C6F6E67 		.ascii	"long unsigned int\000"
+ 697      20756E73 
+ 697      69676E65 
+ 697      6420696E 
+ 697      7400
+ 698              	.LASF5:
+ 699 0191 756E7369 		.ascii	"unsigned int\000"
+ 699      676E6564 
+ 699      20696E74 
+ 699      00
+ 700              	.LASF18:
+ 701 019e 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 701      206C6F6E 
+ 701      6720756E 
+ 701      7369676E 
+ 701      65642069 
+ 702              	.LASF19:
+ 703 01b5 73697A65 		.ascii	"sizetype\000"
+ 703      74797065 
+ 703      00
+ 704              	.LASF15:
+ 705 01be 6C6F6E67 		.ascii	"long long int\000"
+ 705      206C6F6E 
+ 705      6720696E 
+ 705      7400
+ 706              	.LASF26:
+ 707 01cc 5646482B 		.ascii	"VFH+\\src\\repmat.c\000"
+ 707      5C737263 
+ 707      5C726570 
+ 707      6D61742E 
+ 707      6300
+ 708              	.LASF9:
+ 709 01de 63686172 		.ascii	"char\000"
+ 709      00
+ 710              	.LASF3:
+ 711 01e3 73686F72 		.ascii	"short int\000"
+ 711      7420696E 
+ 711      7400
+ 712              	.LASF20:
+ 713 01ed 76617261 		.ascii	"varargin_1\000"
+ 713      7267696E 
+ 713      5F3100
+ 714              	.LASF17:
+ 715 01f8 6C6F6E67 		.ascii	"long int\000"
+ 715      20696E74 
+ 715      00
+ 716              	.LASF16:
+ 717 0201 6C6F6E67 		.ascii	"long double\000"
+ 717      20646F75 
+ 717      626C6500 
+ 718              	.LASF22:
+ 719 020d 6974696C 		.ascii	"itilerow\000"
+ 719      65726F77 
+ 719      00
+ 720              	.LASF1:
+ 721 0216 7369676E 		.ascii	"signed char\000"
+ 721      65642063 
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc8GQICf.s 			page 16
+
+
+ 721      68617200 
+ 722              	.LASF7:
+ 723 0222 5F426F6F 		.ascii	"_Bool\000"
+ 723      6C00
+ 724              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

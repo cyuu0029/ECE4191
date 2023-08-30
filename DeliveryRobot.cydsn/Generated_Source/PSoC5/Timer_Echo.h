@@ -41,8 +41,8 @@ extern uint8 Timer_Echo_initVar;
 #define Timer_Echo_UsingHWCaptureCounter      0u
 #define Timer_Echo_SoftwareCaptureMode        0u
 #define Timer_Echo_SoftwareTriggerMode        0u
-#define Timer_Echo_UsingHWEnable              1u
-#define Timer_Echo_EnableTriggerMode          0u
+#define Timer_Echo_UsingHWEnable              0u
+#define Timer_Echo_EnableTriggerMode          1u
 #define Timer_Echo_InterruptOnCaptureCount    1u
 #define Timer_Echo_RunModeUsed                2u
 #define Timer_Echo_ControlRegRemoved          0u
@@ -170,7 +170,7 @@ void Timer_Echo_Wakeup(void)        ;
 
 #define Timer_Echo_INIT_PERIOD             65535u
 #define Timer_Echo_INIT_CAPTURE_MODE       ((uint8)((uint8)2u << Timer_Echo_CTRL_CAP_MODE_SHIFT))
-#define Timer_Echo_INIT_TRIGGER_MODE       ((uint8)((uint8)0u << Timer_Echo_CTRL_TRIG_MODE_SHIFT))
+#define Timer_Echo_INIT_TRIGGER_MODE       ((uint8)((uint8)1u << Timer_Echo_CTRL_TRIG_MODE_SHIFT))
 #if (Timer_Echo_UsingFixedFunction)
     #define Timer_Echo_INIT_INTERRUPT_MODE (((uint8)((uint8)1u << Timer_Echo_STATUS_TC_INT_MASK_SHIFT)) | \
                                                   ((uint8)((uint8)1 << Timer_Echo_STATUS_CAPTURE_INT_MASK_SHIFT)))

@@ -1,0 +1,1916 @@
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccQIseHk.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"polar_histogram.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.initial_histogram,"ax",%progbits
+  20              		.align	2
+  21              		.global	initial_histogram
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	initial_histogram, %function
+  25              	initial_histogram:
+  26              	.LFB0:
+  27              		.file 1 "VFH\\src\\polar_histogram.c"
+   1:VFH\src/polar_histogram.c **** #include <stdlib.h>
+   2:VFH\src/polar_histogram.c **** #include <math.h>
+   3:VFH\src/polar_histogram.c **** 
+   4:VFH\src/polar_histogram.c **** 
+   5:VFH\src/polar_histogram.c **** #include "histogram_grid.h"
+   6:VFH\src/polar_histogram.c **** #include "polar_histogram.h"
+   7:VFH\src/polar_histogram.c **** 
+   8:VFH\src/polar_histogram.c **** // Converting Histogram Grid into Polar Histogram for VFH implementation.
+   9:VFH\src/polar_histogram.c **** 
+  10:VFH\src/polar_histogram.c **** histogram * initial_histogram(int alpha, double threshold, double density_a, double density_b) {
+  28              		.loc 1 10 0
+  29              		.cfi_startproc
+  30              		@ args = 16, pretend = 0, frame = 24
+  31              		@ frame_needed = 1, uses_anonymous_args = 0
+  32 0000 90B5     		push	{r4, r7, lr}
+  33              		.cfi_def_cfa_offset 12
+  34              		.cfi_offset 4, -12
+  35              		.cfi_offset 7, -8
+  36              		.cfi_offset 14, -4
+  37 0002 87B0     		sub	sp, sp, #28
+  38              		.cfi_def_cfa_offset 40
+  39 0004 00AF     		add	r7, sp, #0
+  40              		.cfi_def_cfa_register 7
+  41 0006 F860     		str	r0, [r7, #12]
+  42 0008 C7E90023 		strd	r2, [r7]
+  11:VFH\src/polar_histogram.c ****   /* Create a histogram pointer and allocate memory to it. */
+  12:VFH\src/polar_histogram.c ****   histogram * hist = malloc(sizeof(histogram));
+  43              		.loc 1 12 0
+  44 000c 3020     		movs	r0, #48
+  45 000e FFF7FEFF 		bl	malloc
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccQIseHk.s 			page 2
+
+
+  46 0012 0346     		mov	r3, r0
+  47 0014 3B61     		str	r3, [r7, #16]
+  13:VFH\src/polar_histogram.c **** 
+  14:VFH\src/polar_histogram.c ****   /* Is there enough memory for the histogram? */
+  15:VFH\src/polar_histogram.c ****   if (NULL == hist) {
+  48              		.loc 1 15 0
+  49 0016 3B69     		ldr	r3, [r7, #16]
+  50 0018 002B     		cmp	r3, #0
+  51 001a 04D1     		bne	.L2
+  16:VFH\src/polar_histogram.c ****     free(hist);
+  52              		.loc 1 16 0
+  53 001c 3869     		ldr	r0, [r7, #16]
+  54 001e FFF7FEFF 		bl	free
+  17:VFH\src/polar_histogram.c ****     return NULL;
+  55              		.loc 1 17 0
+  56 0022 0023     		movs	r3, #0
+  57 0024 42E0     		b	.L3
+  58              	.L2:
+  18:VFH\src/polar_histogram.c ****   }
+  19:VFH\src/polar_histogram.c **** 
+  20:VFH\src/polar_histogram.c ****   /* Initialize the histogram parameters. */
+  21:VFH\src/polar_histogram.c ****   hist->alpha = alpha;
+  59              		.loc 1 21 0
+  60 0026 3B69     		ldr	r3, [r7, #16]
+  61 0028 FA68     		ldr	r2, [r7, #12]
+  62 002a 1A60     		str	r2, [r3]
+  22:VFH\src/polar_histogram.c ****   hist->sectors = 360 / alpha;
+  63              		.loc 1 22 0
+  64 002c 4FF4B472 		mov	r2, #360
+  65 0030 FB68     		ldr	r3, [r7, #12]
+  66 0032 92FBF3F2 		sdiv	r2, r2, r3
+  67 0036 3B69     		ldr	r3, [r7, #16]
+  68 0038 5A60     		str	r2, [r3, #4]
+  23:VFH\src/polar_histogram.c ****   hist->threshold = threshold;
+  69              		.loc 1 23 0
+  70 003a 3A69     		ldr	r2, [r7, #16]
+  71 003c D7E90034 		ldrd	r3, [r7]
+  72 0040 C2E90234 		strd	r3, [r2, #8]
+  24:VFH\src/polar_histogram.c ****   hist->densities = malloc(hist->sectors * sizeof(double));
+  73              		.loc 1 24 0
+  74 0044 3B69     		ldr	r3, [r7, #16]
+  75 0046 5B68     		ldr	r3, [r3, #4]
+  76 0048 DB00     		lsls	r3, r3, #3
+  77 004a 1846     		mov	r0, r3
+  78 004c FFF7FEFF 		bl	malloc
+  79 0050 0346     		mov	r3, r0
+  80 0052 1A46     		mov	r2, r3
+  81 0054 3B69     		ldr	r3, [r7, #16]
+  82 0056 9A62     		str	r2, [r3, #40]
+  25:VFH\src/polar_histogram.c ****   hist->density_a = density_a;
+  83              		.loc 1 25 0
+  84 0058 3A69     		ldr	r2, [r7, #16]
+  85 005a D7E90A34 		ldrd	r3, [r7, #40]
+  86 005e C2E90634 		strd	r3, [r2, #24]
+  26:VFH\src/polar_histogram.c ****   hist->density_b = density_b;
+  87              		.loc 1 26 0
+  88 0062 3A69     		ldr	r2, [r7, #16]
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccQIseHk.s 			page 3
+
+
+  89 0064 D7E90C34 		ldrd	r3, [r7, #48]
+  90 0068 C2E90834 		strd	r3, [r2, #32]
+  27:VFH\src/polar_histogram.c **** 
+  28:VFH\src/polar_histogram.c ****   if (hist->densities == NULL) {
+  91              		.loc 1 28 0
+  92 006c 3B69     		ldr	r3, [r7, #16]
+  93 006e 9B6A     		ldr	r3, [r3, #40]
+  94 0070 002B     		cmp	r3, #0
+  95 0072 04D1     		bne	.L4
+  29:VFH\src/polar_histogram.c ****     free(hist);
+  96              		.loc 1 29 0
+  97 0074 3869     		ldr	r0, [r7, #16]
+  98 0076 FFF7FEFF 		bl	free
+  30:VFH\src/polar_histogram.c ****     return NULL;
+  99              		.loc 1 30 0
+ 100 007a 0023     		movs	r3, #0
+ 101 007c 16E0     		b	.L3
+ 102              	.L4:
+ 103              	.LBB2:
+  31:VFH\src/polar_histogram.c ****   }
+  32:VFH\src/polar_histogram.c **** 
+  33:VFH\src/polar_histogram.c ****   /* Initialize all densities to 0. */
+  34:VFH\src/polar_histogram.c ****   for (int i = 0; i < hist->sectors; ++i) {
+ 104              		.loc 1 34 0
+ 105 007e 0023     		movs	r3, #0
+ 106 0080 7B61     		str	r3, [r7, #20]
+ 107 0082 0DE0     		b	.L5
+ 108              	.L6:
+  35:VFH\src/polar_histogram.c ****     hist->densities[i] = 0;
+ 109              		.loc 1 35 0 discriminator 3
+ 110 0084 3B69     		ldr	r3, [r7, #16]
+ 111 0086 9A6A     		ldr	r2, [r3, #40]
+ 112 0088 7B69     		ldr	r3, [r7, #20]
+ 113 008a DB00     		lsls	r3, r3, #3
+ 114 008c 1A44     		add	r2, r2, r3
+ 115 008e 4FF00003 		mov	r3, #0
+ 116 0092 4FF00004 		mov	r4, #0
+ 117 0096 C2E90034 		strd	r3, [r2]
+  34:VFH\src/polar_histogram.c ****     hist->densities[i] = 0;
+ 118              		.loc 1 34 0 discriminator 3
+ 119 009a 7B69     		ldr	r3, [r7, #20]
+ 120 009c 0133     		adds	r3, r3, #1
+ 121 009e 7B61     		str	r3, [r7, #20]
+ 122              	.L5:
+  34:VFH\src/polar_histogram.c ****     hist->densities[i] = 0;
+ 123              		.loc 1 34 0 is_stmt 0 discriminator 1
+ 124 00a0 3B69     		ldr	r3, [r7, #16]
+ 125 00a2 5A68     		ldr	r2, [r3, #4]
+ 126 00a4 7B69     		ldr	r3, [r7, #20]
+ 127 00a6 9A42     		cmp	r2, r3
+ 128 00a8 ECDC     		bgt	.L6
+ 129              	.LBE2:
+  36:VFH\src/polar_histogram.c ****   }
+  37:VFH\src/polar_histogram.c **** 
+  38:VFH\src/polar_histogram.c ****   return hist;
+ 130              		.loc 1 38 0 is_stmt 1
+ 131 00aa 3B69     		ldr	r3, [r7, #16]
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccQIseHk.s 			page 4
+
+
+ 132              	.L3:
+  39:VFH\src/polar_histogram.c **** }
+ 133              		.loc 1 39 0
+ 134 00ac 1846     		mov	r0, r3
+ 135 00ae 1C37     		adds	r7, r7, #28
+ 136              		.cfi_def_cfa_offset 12
+ 137 00b0 BD46     		mov	sp, r7
+ 138              		.cfi_def_cfa_register 13
+ 139              		@ sp needed
+ 140 00b2 90BD     		pop	{r4, r7, pc}
+ 141              		.cfi_endproc
+ 142              	.LFE0:
+ 143              		.size	initial_histogram, .-initial_histogram
+ 144              		.global	__aeabi_dadd
+ 145              		.global	__aeabi_i2d
+ 146              		.global	__aeabi_dmul
+ 147              		.global	__aeabi_ddiv
+ 148              		.global	__aeabi_dcmplt
+ 149              		.global	__aeabi_ui2d
+ 150              		.global	__aeabi_dsub
+ 151              		.global	__aeabi_d2iz
+ 152              		.section	.text.hist_update,"ax",%progbits
+ 153              		.align	2
+ 154              		.global	hist_update
+ 155              		.thumb
+ 156              		.thumb_func
+ 157              		.type	hist_update, %function
+ 158              	hist_update:
+ 159              	.LFB1:
+  40:VFH\src/polar_histogram.c **** 
+  41:VFH\src/polar_histogram.c **** void hist_update(histogram * hist, grid * map) {
+ 160              		.loc 1 41 0
+ 161              		.cfi_startproc
+ 162              		@ args = 0, pretend = 0, frame = 112
+ 163              		@ frame_needed = 1, uses_anonymous_args = 0
+ 164 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 165              		.cfi_def_cfa_offset 36
+ 166              		.cfi_offset 4, -36
+ 167              		.cfi_offset 5, -32
+ 168              		.cfi_offset 6, -28
+ 169              		.cfi_offset 7, -24
+ 170              		.cfi_offset 8, -20
+ 171              		.cfi_offset 9, -16
+ 172              		.cfi_offset 10, -12
+ 173              		.cfi_offset 11, -8
+ 174              		.cfi_offset 14, -4
+ 175 0004 9DB0     		sub	sp, sp, #116
+ 176              		.cfi_def_cfa_offset 152
+ 177 0006 00AF     		add	r7, sp, #0
+ 178              		.cfi_def_cfa_register 7
+ 179 0008 F860     		str	r0, [r7, #12]
+ 180 000a B960     		str	r1, [r7, #8]
+  42:VFH\src/polar_histogram.c ****   int width = map->width;
+ 181              		.loc 1 42 0
+ 182 000c BB68     		ldr	r3, [r7, #8]
+ 183 000e 1B68     		ldr	r3, [r3]
+ 184 0010 3B64     		str	r3, [r7, #64]
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccQIseHk.s 			page 5
+
+
+  43:VFH\src/polar_histogram.c ****   int height = map->height;
+ 185              		.loc 1 43 0
+ 186 0012 BB68     		ldr	r3, [r7, #8]
+ 187 0014 5B68     		ldr	r3, [r3, #4]
+ 188 0016 FB63     		str	r3, [r7, #60]
+  44:VFH\src/polar_histogram.c ****   double dens_a = 1;
+ 189              		.loc 1 44 0
+ 190 0018 4FF00002 		mov	r2, #0
+ 191 001c B44B     		ldr	r3, .L24+16
+ 192 001e C7E90C23 		strd	r2, [r7, #48]
+  45:VFH\src/polar_histogram.c ****   double dens_b = 2 * dens_a / (M_SQRT2*(width-1));
+ 193              		.loc 1 45 0
+ 194 0022 D7E90C01 		ldrd	r0, [r7, #48]
+ 195 0026 0246     		mov	r2, r0
+ 196 0028 0B46     		mov	r3, r1
+ 197 002a FFF7FEFF 		bl	__aeabi_dadd
+ 198 002e 0246     		mov	r2, r0
+ 199 0030 0B46     		mov	r3, r1
+ 200 0032 9246     		mov	r10, r2
+ 201 0034 9B46     		mov	fp, r3
+ 202 0036 3B6C     		ldr	r3, [r7, #64]
+ 203 0038 013B     		subs	r3, r3, #1
+ 204 003a 1846     		mov	r0, r3
+ 205 003c FFF7FEFF 		bl	__aeabi_i2d
+ 206 0040 A7A3     		adr	r3, .L24
+ 207 0042 D3E90023 		ldrd	r2, [r3]
+ 208 0046 FFF7FEFF 		bl	__aeabi_dmul
+ 209 004a 0246     		mov	r2, r0
+ 210 004c 0B46     		mov	r3, r1
+ 211 004e 5046     		mov	r0, r10
+ 212 0050 5946     		mov	r1, fp
+ 213 0052 FFF7FEFF 		bl	__aeabi_ddiv
+ 214 0056 0246     		mov	r2, r0
+ 215 0058 0B46     		mov	r3, r1
+ 216 005a C7E90A23 		strd	r2, [r7, #40]
+ 217              	.LBB3:
+  46:VFH\src/polar_histogram.c **** 
+  47:VFH\src/polar_histogram.c ****   for (int i = 0; i < hist->sectors; i++) {
+ 218              		.loc 1 47 0
+ 219 005e 0023     		movs	r3, #0
+ 220 0060 FB66     		str	r3, [r7, #108]
+ 221 0062 0DE0     		b	.L8
+ 222              	.L9:
+  48:VFH\src/polar_histogram.c ****     hist->densities[i] = 0;
+ 223              		.loc 1 48 0 discriminator 3
+ 224 0064 FB68     		ldr	r3, [r7, #12]
+ 225 0066 9A6A     		ldr	r2, [r3, #40]
+ 226 0068 FB6E     		ldr	r3, [r7, #108]
+ 227 006a DB00     		lsls	r3, r3, #3
+ 228 006c D118     		adds	r1, r2, r3
+ 229 006e 4FF00002 		mov	r2, #0
+ 230 0072 4FF00003 		mov	r3, #0
+ 231 0076 C1E90023 		strd	r2, [r1]
+  47:VFH\src/polar_histogram.c ****     hist->densities[i] = 0;
+ 232              		.loc 1 47 0 discriminator 3
+ 233 007a FB6E     		ldr	r3, [r7, #108]
+ 234 007c 0133     		adds	r3, r3, #1
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccQIseHk.s 			page 6
+
+
+ 235 007e FB66     		str	r3, [r7, #108]
+ 236              	.L8:
+  47:VFH\src/polar_histogram.c ****     hist->densities[i] = 0;
+ 237              		.loc 1 47 0 is_stmt 0 discriminator 1
+ 238 0080 FB68     		ldr	r3, [r7, #12]
+ 239 0082 5A68     		ldr	r2, [r3, #4]
+ 240 0084 FB6E     		ldr	r3, [r7, #108]
+ 241 0086 9A42     		cmp	r2, r3
+ 242 0088 ECDC     		bgt	.L9
+ 243              	.LBE3:
+ 244              	.LBB4:
+  49:VFH\src/polar_histogram.c ****   }
+  50:VFH\src/polar_histogram.c **** 
+  51:VFH\src/polar_histogram.c ****   /* Calculate densities based on grid. */
+  52:VFH\src/polar_histogram.c ****   for (int i = 0; i < width; ++i) {
+ 245              		.loc 1 52 0 is_stmt 1
+ 246 008a 0023     		movs	r3, #0
+ 247 008c BB66     		str	r3, [r7, #104]
+ 248 008e EDE0     		b	.L10
+ 249              	.L15:
+ 250              	.LBB5:
+  53:VFH\src/polar_histogram.c ****     for (int j = 0; j < height; ++j) {
+ 251              		.loc 1 53 0
+ 252 0090 0023     		movs	r3, #0
+ 253 0092 7B66     		str	r3, [r7, #100]
+ 254 0094 E2E0     		b	.L11
+ 255              	.L14:
+ 256              	.LBB6:
+  54:VFH\src/polar_histogram.c **** 
+  55:VFH\src/polar_histogram.c ****       /* Calculate the angular position (beta) of this cell. */
+  56:VFH\src/polar_histogram.c ****       double beta = 180*atan2((double)(j - height/2), (double)(i - width/2))/M_PI;
+ 257              		.loc 1 56 0
+ 258 0096 FB6B     		ldr	r3, [r7, #60]
+ 259 0098 DA0F     		lsrs	r2, r3, #31
+ 260 009a 1344     		add	r3, r3, r2
+ 261 009c 5B10     		asrs	r3, r3, #1
+ 262 009e 1A46     		mov	r2, r3
+ 263 00a0 7B6E     		ldr	r3, [r7, #100]
+ 264 00a2 9B1A     		subs	r3, r3, r2
+ 265 00a4 1846     		mov	r0, r3
+ 266 00a6 FFF7FEFF 		bl	__aeabi_i2d
+ 267 00aa 8246     		mov	r10, r0
+ 268 00ac 8B46     		mov	fp, r1
+ 269 00ae 3B6C     		ldr	r3, [r7, #64]
+ 270 00b0 DA0F     		lsrs	r2, r3, #31
+ 271 00b2 1344     		add	r3, r3, r2
+ 272 00b4 5B10     		asrs	r3, r3, #1
+ 273 00b6 1A46     		mov	r2, r3
+ 274 00b8 BB6E     		ldr	r3, [r7, #104]
+ 275 00ba 9B1A     		subs	r3, r3, r2
+ 276 00bc 1846     		mov	r0, r3
+ 277 00be FFF7FEFF 		bl	__aeabi_i2d
+ 278 00c2 0246     		mov	r2, r0
+ 279 00c4 0B46     		mov	r3, r1
+ 280 00c6 5046     		mov	r0, r10
+ 281 00c8 5946     		mov	r1, fp
+ 282 00ca FFF7FEFF 		bl	atan2
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccQIseHk.s 			page 7
+
+
+ 283 00ce 4FF00002 		mov	r2, #0
+ 284 00d2 884B     		ldr	r3, .L24+20
+ 285 00d4 FFF7FEFF 		bl	__aeabi_dmul
+ 286 00d8 0246     		mov	r2, r0
+ 287 00da 0B46     		mov	r3, r1
+ 288 00dc 1046     		mov	r0, r2
+ 289 00de 1946     		mov	r1, r3
+ 290 00e0 81A3     		adr	r3, .L24+8
+ 291 00e2 D3E90023 		ldrd	r2, [r3]
+ 292 00e6 FFF7FEFF 		bl	__aeabi_ddiv
+ 293 00ea 0246     		mov	r2, r0
+ 294 00ec 0B46     		mov	r3, r1
+ 295 00ee C7E91623 		strd	r2, [r7, #88]
+  57:VFH\src/polar_histogram.c ****       if( beta < 0 ) {
+ 296              		.loc 1 57 0
+ 297 00f2 4FF00002 		mov	r2, #0
+ 298 00f6 4FF00003 		mov	r3, #0
+ 299 00fa D7E91601 		ldrd	r0, [r7, #88]
+ 300 00fe FFF7FEFF 		bl	__aeabi_dcmplt
+ 301 0102 0346     		mov	r3, r0
+ 302 0104 002B     		cmp	r3, #0
+ 303 0106 0AD0     		beq	.L12
+  58:VFH\src/polar_histogram.c ****         beta += 360;
+ 304              		.loc 1 58 0
+ 305 0108 4FF00002 		mov	r2, #0
+ 306 010c 7A4B     		ldr	r3, .L24+24
+ 307 010e D7E91601 		ldrd	r0, [r7, #88]
+ 308 0112 FFF7FEFF 		bl	__aeabi_dadd
+ 309 0116 0246     		mov	r2, r0
+ 310 0118 0B46     		mov	r3, r1
+ 311 011a C7E91623 		strd	r2, [r7, #88]
+ 312              	.L12:
+  59:VFH\src/polar_histogram.c ****     }
+  60:VFH\src/polar_histogram.c **** 
+  61:VFH\src/polar_histogram.c ****       /* Calculate the obstacle density of this cell. */
+  62:VFH\src/polar_histogram.c ****       double density = pow(map->cells[i * width + j], 2);
+ 313              		.loc 1 62 0 discriminator 2
+ 314 011e BB68     		ldr	r3, [r7, #8]
+ 315 0120 DA68     		ldr	r2, [r3, #12]
+ 316 0122 BB6E     		ldr	r3, [r7, #104]
+ 317 0124 396C     		ldr	r1, [r7, #64]
+ 318 0126 01FB03F1 		mul	r1, r1, r3
+ 319 012a 7B6E     		ldr	r3, [r7, #100]
+ 320 012c 0B44     		add	r3, r3, r1
+ 321 012e 9B00     		lsls	r3, r3, #2
+ 322 0130 1344     		add	r3, r3, r2
+ 323 0132 1B68     		ldr	r3, [r3]
+ 324 0134 1846     		mov	r0, r3
+ 325 0136 FFF7FEFF 		bl	__aeabi_ui2d
+ 326 013a 4FF00002 		mov	r2, #0
+ 327 013e 4FF08043 		mov	r3, #1073741824
+ 328 0142 FFF7FEFF 		bl	pow
+ 329 0146 C7E90801 		strd	r0, [r7, #32]
+  63:VFH\src/polar_histogram.c ****       density *= dens_a - dens_b * sqrt(pow(i - width/2, 2) + pow(j - height/2, 2));
+ 330              		.loc 1 63 0 discriminator 2
+ 331 014a 3B6C     		ldr	r3, [r7, #64]
+ 332 014c DA0F     		lsrs	r2, r3, #31
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccQIseHk.s 			page 8
+
+
+ 333 014e 1344     		add	r3, r3, r2
+ 334 0150 5B10     		asrs	r3, r3, #1
+ 335 0152 1A46     		mov	r2, r3
+ 336 0154 BB6E     		ldr	r3, [r7, #104]
+ 337 0156 9B1A     		subs	r3, r3, r2
+ 338 0158 1846     		mov	r0, r3
+ 339 015a FFF7FEFF 		bl	__aeabi_i2d
+ 340 015e 4FF00002 		mov	r2, #0
+ 341 0162 4FF08043 		mov	r3, #1073741824
+ 342 0166 FFF7FEFF 		bl	pow
+ 343 016a 8246     		mov	r10, r0
+ 344 016c 8B46     		mov	fp, r1
+ 345 016e FB6B     		ldr	r3, [r7, #60]
+ 346 0170 DA0F     		lsrs	r2, r3, #31
+ 347 0172 1344     		add	r3, r3, r2
+ 348 0174 5B10     		asrs	r3, r3, #1
+ 349 0176 1A46     		mov	r2, r3
+ 350 0178 7B6E     		ldr	r3, [r7, #100]
+ 351 017a 9B1A     		subs	r3, r3, r2
+ 352 017c 1846     		mov	r0, r3
+ 353 017e FFF7FEFF 		bl	__aeabi_i2d
+ 354 0182 4FF00002 		mov	r2, #0
+ 355 0186 4FF08043 		mov	r3, #1073741824
+ 356 018a FFF7FEFF 		bl	pow
+ 357 018e 0246     		mov	r2, r0
+ 358 0190 0B46     		mov	r3, r1
+ 359 0192 5046     		mov	r0, r10
+ 360 0194 5946     		mov	r1, fp
+ 361 0196 FFF7FEFF 		bl	__aeabi_dadd
+ 362 019a 0246     		mov	r2, r0
+ 363 019c 0B46     		mov	r3, r1
+ 364 019e 1046     		mov	r0, r2
+ 365 01a0 1946     		mov	r1, r3
+ 366 01a2 FFF7FEFF 		bl	sqrt
+ 367 01a6 D7E90A23 		ldrd	r2, [r7, #40]
+ 368 01aa FFF7FEFF 		bl	__aeabi_dmul
+ 369 01ae 0246     		mov	r2, r0
+ 370 01b0 0B46     		mov	r3, r1
+ 371 01b2 D7E90C01 		ldrd	r0, [r7, #48]
+ 372 01b6 FFF7FEFF 		bl	__aeabi_dsub
+ 373 01ba 0246     		mov	r2, r0
+ 374 01bc 0B46     		mov	r3, r1
+ 375 01be D7E90801 		ldrd	r0, [r7, #32]
+ 376 01c2 FFF7FEFF 		bl	__aeabi_dmul
+ 377 01c6 0246     		mov	r2, r0
+ 378 01c8 0B46     		mov	r3, r1
+ 379 01ca C7E90823 		strd	r2, [r7, #32]
+  64:VFH\src/polar_histogram.c **** 
+  65:VFH\src/polar_histogram.c ****       /* Add density to respective point in the histogram. */
+  66:VFH\src/polar_histogram.c ****       hist->densities[(int) floor(beta / hist->alpha)] += density;
+ 380              		.loc 1 66 0 discriminator 2
+ 381 01ce FB68     		ldr	r3, [r7, #12]
+ 382 01d0 9E6A     		ldr	r6, [r3, #40]
+ 383 01d2 FB68     		ldr	r3, [r7, #12]
+ 384 01d4 1B68     		ldr	r3, [r3]
+ 385 01d6 1846     		mov	r0, r3
+ 386 01d8 FFF7FEFF 		bl	__aeabi_i2d
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccQIseHk.s 			page 9
+
+
+ 387 01dc 0246     		mov	r2, r0
+ 388 01de 0B46     		mov	r3, r1
+ 389 01e0 D7E91601 		ldrd	r0, [r7, #88]
+ 390 01e4 FFF7FEFF 		bl	__aeabi_ddiv
+ 391 01e8 0246     		mov	r2, r0
+ 392 01ea 0B46     		mov	r3, r1
+ 393 01ec 1046     		mov	r0, r2
+ 394 01ee 1946     		mov	r1, r3
+ 395 01f0 FFF7FEFF 		bl	floor
+ 396 01f4 0246     		mov	r2, r0
+ 397 01f6 0B46     		mov	r3, r1
+ 398 01f8 1046     		mov	r0, r2
+ 399 01fa 1946     		mov	r1, r3
+ 400 01fc FFF7FEFF 		bl	__aeabi_d2iz
+ 401 0200 0346     		mov	r3, r0
+ 402 0202 DB00     		lsls	r3, r3, #3
+ 403 0204 1E44     		add	r6, r6, r3
+ 404 0206 FB68     		ldr	r3, [r7, #12]
+ 405 0208 9B6A     		ldr	r3, [r3, #40]
+ 406 020a 7B60     		str	r3, [r7, #4]
+ 407 020c FB68     		ldr	r3, [r7, #12]
+ 408 020e 1B68     		ldr	r3, [r3]
+ 409 0210 1846     		mov	r0, r3
+ 410 0212 FFF7FEFF 		bl	__aeabi_i2d
+ 411 0216 0246     		mov	r2, r0
+ 412 0218 0B46     		mov	r3, r1
+ 413 021a D7E91601 		ldrd	r0, [r7, #88]
+ 414 021e FFF7FEFF 		bl	__aeabi_ddiv
+ 415 0222 0246     		mov	r2, r0
+ 416 0224 0B46     		mov	r3, r1
+ 417 0226 1046     		mov	r0, r2
+ 418 0228 1946     		mov	r1, r3
+ 419 022a FFF7FEFF 		bl	floor
+ 420 022e 0246     		mov	r2, r0
+ 421 0230 0B46     		mov	r3, r1
+ 422 0232 1046     		mov	r0, r2
+ 423 0234 1946     		mov	r1, r3
+ 424 0236 FFF7FEFF 		bl	__aeabi_d2iz
+ 425 023a 0346     		mov	r3, r0
+ 426 023c DB00     		lsls	r3, r3, #3
+ 427 023e 7A68     		ldr	r2, [r7, #4]
+ 428 0240 1344     		add	r3, r3, r2
+ 429 0242 D3E90001 		ldrd	r0, [r3]
+ 430 0246 D7E90823 		ldrd	r2, [r7, #32]
+ 431 024a FFF7FEFF 		bl	__aeabi_dadd
+ 432 024e 0246     		mov	r2, r0
+ 433 0250 0B46     		mov	r3, r1
+ 434 0252 C6E90023 		strd	r2, [r6]
+ 435              	.LBE6:
+  53:VFH\src/polar_histogram.c **** 
+ 436              		.loc 1 53 0 discriminator 2
+ 437 0256 7B6E     		ldr	r3, [r7, #100]
+ 438 0258 0133     		adds	r3, r3, #1
+ 439 025a 7B66     		str	r3, [r7, #100]
+ 440              	.L11:
+  53:VFH\src/polar_histogram.c **** 
+ 441              		.loc 1 53 0 is_stmt 0 discriminator 1
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccQIseHk.s 			page 10
+
+
+ 442 025c 7A6E     		ldr	r2, [r7, #100]
+ 443 025e FB6B     		ldr	r3, [r7, #60]
+ 444 0260 9A42     		cmp	r2, r3
+ 445 0262 FFF618AF 		blt	.L14
+ 446              	.LBE5:
+  52:VFH\src/polar_histogram.c ****     for (int j = 0; j < height; ++j) {
+ 447              		.loc 1 52 0 is_stmt 1 discriminator 2
+ 448 0266 BB6E     		ldr	r3, [r7, #104]
+ 449 0268 0133     		adds	r3, r3, #1
+ 450 026a BB66     		str	r3, [r7, #104]
+ 451              	.L10:
+  52:VFH\src/polar_histogram.c ****     for (int j = 0; j < height; ++j) {
+ 452              		.loc 1 52 0 is_stmt 0 discriminator 1
+ 453 026c BA6E     		ldr	r2, [r7, #104]
+ 454 026e 3B6C     		ldr	r3, [r7, #64]
+ 455 0270 9A42     		cmp	r2, r3
+ 456 0272 FFF60DAF 		blt	.L15
+ 457              	.LBE4:
+  67:VFH\src/polar_histogram.c ****     }
+  68:VFH\src/polar_histogram.c ****   }
+  69:VFH\src/polar_histogram.c ****    
+  70:VFH\src/polar_histogram.c ****     /* Do histogram smoothing */
+  71:VFH\src/polar_histogram.c ****     int smoothing_size = 5;
+ 458              		.loc 1 71 0 is_stmt 1
+ 459 0276 0523     		movs	r3, #5
+ 460 0278 FB61     		str	r3, [r7, #28]
+  72:VFH\src/polar_histogram.c ****     double temp_density[hist->sectors];
+ 461              		.loc 1 72 0
+ 462 027a FB68     		ldr	r3, [r7, #12]
+ 463 027c 5968     		ldr	r1, [r3, #4]
+ 464 027e 6B46     		mov	r3, sp
+ 465 0280 9A46     		mov	r10, r3
+ 466 0282 4B1E     		subs	r3, r1, #1
+ 467 0284 BB61     		str	r3, [r7, #24]
+ 468 0286 0B46     		mov	r3, r1
+ 469 0288 1A46     		mov	r2, r3
+ 470 028a 4FF00003 		mov	r3, #0
+ 471 028e 4FEA8319 		lsl	r9, r3, #6
+ 472 0292 49EA9269 		orr	r9, r9, r2, lsr #26
+ 473 0296 4FEA8218 		lsl	r8, r2, #6
+ 474 029a 0B46     		mov	r3, r1
+ 475 029c 1A46     		mov	r2, r3
+ 476 029e 4FF00003 		mov	r3, #0
+ 477 02a2 9D01     		lsls	r5, r3, #6
+ 478 02a4 45EA9265 		orr	r5, r5, r2, lsr #26
+ 479 02a8 9401     		lsls	r4, r2, #6
+ 480 02aa 0B46     		mov	r3, r1
+ 481 02ac DB00     		lsls	r3, r3, #3
+ 482 02ae 0733     		adds	r3, r3, #7
+ 483 02b0 0733     		adds	r3, r3, #7
+ 484 02b2 DB08     		lsrs	r3, r3, #3
+ 485 02b4 DB00     		lsls	r3, r3, #3
+ 486 02b6 ADEB030D 		sub	sp, sp, r3
+ 487 02ba 6B46     		mov	r3, sp
+ 488 02bc 0733     		adds	r3, r3, #7
+ 489 02be DB08     		lsrs	r3, r3, #3
+ 490 02c0 DB00     		lsls	r3, r3, #3
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccQIseHk.s 			page 11
+
+
+ 491 02c2 7B61     		str	r3, [r7, #20]
+  73:VFH\src/polar_histogram.c ****     
+  74:VFH\src/polar_histogram.c ****     if( hist->sectors > smoothing_size ) {
+ 492              		.loc 1 74 0
+ 493 02c4 FB68     		ldr	r3, [r7, #12]
+ 494 02c6 5A68     		ldr	r2, [r3, #4]
+ 495 02c8 FB69     		ldr	r3, [r7, #28]
+ 496 02ca 9A42     		cmp	r2, r3
+ 497 02cc 40F3A280 		ble	.L16
+ 498              	.LBB7:
+ 499              	.LBB8:
+  75:VFH\src/polar_histogram.c ****         double smoothed_POD;
+  76:VFH\src/polar_histogram.c ****         
+  77:VFH\src/polar_histogram.c ****         for( int i = 0; i < hist->sectors; i++ ) {
+ 500              		.loc 1 77 0
+ 501 02d0 0023     		movs	r3, #0
+ 502 02d2 FB64     		str	r3, [r7, #76]
+ 503 02d4 98E0     		b	.L17
+ 504              	.L20:
+ 505              	.LBB9:
+  78:VFH\src/polar_histogram.c ****             for( int j = 1; j < smoothing_size; j++ ) {
+ 506              		.loc 1 78 0
+ 507 02d6 0123     		movs	r3, #1
+ 508 02d8 BB64     		str	r3, [r7, #72]
+ 509 02da 52E0     		b	.L18
+ 510              	.L25:
+ 511 02dc AFF30080 		.align	3
+ 512              	.L24:
+ 513 02e0 CD3B7F66 		.word	1719614413
+ 514 02e4 9EA0F63F 		.word	1073127582
+ 515 02e8 182D4454 		.word	1413754136
+ 516 02ec FB210940 		.word	1074340347
+ 517 02f0 0000F03F 		.word	1072693248
+ 518 02f4 00806640 		.word	1080459264
+ 519 02f8 00807640 		.word	1081507840
+ 520              	.L19:
+  79:VFH\src/polar_histogram.c ****                 smoothed_POD += (smoothing_size-j)*(hist->densities[ind_mod(i-j, hist->sectors)] + 
+ 521              		.loc 1 79 0 discriminator 3
+ 522 02fc FA69     		ldr	r2, [r7, #28]
+ 523 02fe BB6C     		ldr	r3, [r7, #72]
+ 524 0300 D31A     		subs	r3, r2, r3
+ 525 0302 1846     		mov	r0, r3
+ 526 0304 FFF7FEFF 		bl	__aeabi_i2d
+ 527 0308 8046     		mov	r8, r0
+ 528 030a 8946     		mov	r9, r1
+ 529 030c FB68     		ldr	r3, [r7, #12]
+ 530 030e 9C6A     		ldr	r4, [r3, #40]
+ 531 0310 FA6C     		ldr	r2, [r7, #76]
+ 532 0312 BB6C     		ldr	r3, [r7, #72]
+ 533 0314 D21A     		subs	r2, r2, r3
+ 534 0316 FB68     		ldr	r3, [r7, #12]
+ 535 0318 5B68     		ldr	r3, [r3, #4]
+ 536 031a 1946     		mov	r1, r3
+ 537 031c 1046     		mov	r0, r2
+ 538 031e FFF7FEFF 		bl	ind_mod
+ 539 0322 0346     		mov	r3, r0
+ 540 0324 DB00     		lsls	r3, r3, #3
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccQIseHk.s 			page 12
+
+
+ 541 0326 2344     		add	r3, r3, r4
+ 542 0328 D3E90045 		ldrd	r4, [r3]
+ 543 032c FB68     		ldr	r3, [r7, #12]
+ 544 032e 9E6A     		ldr	r6, [r3, #40]
+ 545 0330 FA6C     		ldr	r2, [r7, #76]
+ 546 0332 BB6C     		ldr	r3, [r7, #72]
+ 547 0334 1A44     		add	r2, r2, r3
+ 548 0336 FB68     		ldr	r3, [r7, #12]
+ 549 0338 5B68     		ldr	r3, [r3, #4]
+ 550 033a 1946     		mov	r1, r3
+ 551 033c 1046     		mov	r0, r2
+ 552 033e FFF7FEFF 		bl	ind_mod
+ 553 0342 0346     		mov	r3, r0
+ 554 0344 DB00     		lsls	r3, r3, #3
+ 555 0346 3344     		add	r3, r3, r6
+ 556 0348 D3E90023 		ldrd	r2, [r3]
+ 557 034c 2046     		mov	r0, r4
+ 558 034e 2946     		mov	r1, r5
+ 559 0350 FFF7FEFF 		bl	__aeabi_dadd
+ 560 0354 0346     		mov	r3, r0
+ 561 0356 0C46     		mov	r4, r1
+ 562 0358 1A46     		mov	r2, r3
+ 563 035a 2346     		mov	r3, r4
+ 564 035c 4046     		mov	r0, r8
+ 565 035e 4946     		mov	r1, r9
+ 566 0360 FFF7FEFF 		bl	__aeabi_dmul
+ 567 0364 0346     		mov	r3, r0
+ 568 0366 0C46     		mov	r4, r1
+ 569 0368 1A46     		mov	r2, r3
+ 570 036a 2346     		mov	r3, r4
+ 571 036c D7E91401 		ldrd	r0, [r7, #80]
+ 572 0370 FFF7FEFF 		bl	__aeabi_dadd
+ 573 0374 0346     		mov	r3, r0
+ 574 0376 0C46     		mov	r4, r1
+ 575 0378 C7E91434 		strd	r3, [r7, #80]
+  78:VFH\src/polar_histogram.c ****             for( int j = 1; j < smoothing_size; j++ ) {
+ 576              		.loc 1 78 0 discriminator 3
+ 577 037c BB6C     		ldr	r3, [r7, #72]
+ 578 037e 0133     		adds	r3, r3, #1
+ 579 0380 BB64     		str	r3, [r7, #72]
+ 580              	.L18:
+  78:VFH\src/polar_histogram.c ****             for( int j = 1; j < smoothing_size; j++ ) {
+ 581              		.loc 1 78 0 is_stmt 0 discriminator 1
+ 582 0382 BA6C     		ldr	r2, [r7, #72]
+ 583 0384 FB69     		ldr	r3, [r7, #28]
+ 584 0386 9A42     		cmp	r2, r3
+ 585 0388 B8DB     		blt	.L19
+ 586              	.LBE9:
+  80:VFH\src/polar_histogram.c ****             }
+  81:VFH\src/polar_histogram.c ****             smoothed_POD += smoothing_size * hist->densities[i];
+ 587              		.loc 1 81 0 is_stmt 1 discriminator 2
+ 588 038a F869     		ldr	r0, [r7, #28]
+ 589 038c FFF7FEFF 		bl	__aeabi_i2d
+ 590 0390 FB68     		ldr	r3, [r7, #12]
+ 591 0392 9A6A     		ldr	r2, [r3, #40]
+ 592 0394 FB6C     		ldr	r3, [r7, #76]
+ 593 0396 DB00     		lsls	r3, r3, #3
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccQIseHk.s 			page 13
+
+
+ 594 0398 1344     		add	r3, r3, r2
+ 595 039a 18CB     		ldmia	r3, {r3-r4}
+ 596 039c 1A46     		mov	r2, r3
+ 597 039e 2346     		mov	r3, r4
+ 598 03a0 FFF7FEFF 		bl	__aeabi_dmul
+ 599 03a4 0346     		mov	r3, r0
+ 600 03a6 0C46     		mov	r4, r1
+ 601 03a8 1A46     		mov	r2, r3
+ 602 03aa 2346     		mov	r3, r4
+ 603 03ac D7E91401 		ldrd	r0, [r7, #80]
+ 604 03b0 FFF7FEFF 		bl	__aeabi_dadd
+ 605 03b4 0346     		mov	r3, r0
+ 606 03b6 0C46     		mov	r4, r1
+ 607 03b8 C7E91434 		strd	r3, [r7, #80]
+  82:VFH\src/polar_histogram.c ****             smoothed_POD *= 1.0/(2*smoothing_size+1);
+ 608              		.loc 1 82 0 discriminator 2
+ 609 03bc FB69     		ldr	r3, [r7, #28]
+ 610 03be 5B00     		lsls	r3, r3, #1
+ 611 03c0 0133     		adds	r3, r3, #1
+ 612 03c2 1846     		mov	r0, r3
+ 613 03c4 FFF7FEFF 		bl	__aeabi_i2d
+ 614 03c8 0346     		mov	r3, r0
+ 615 03ca 0C46     		mov	r4, r1
+ 616 03cc 1A46     		mov	r2, r3
+ 617 03ce 2346     		mov	r3, r4
+ 618 03d0 4FF00000 		mov	r0, #0
+ 619 03d4 1E49     		ldr	r1, .L26
+ 620 03d6 FFF7FEFF 		bl	__aeabi_ddiv
+ 621 03da 0346     		mov	r3, r0
+ 622 03dc 0C46     		mov	r4, r1
+ 623 03de 1A46     		mov	r2, r3
+ 624 03e0 2346     		mov	r3, r4
+ 625 03e2 D7E91401 		ldrd	r0, [r7, #80]
+ 626 03e6 FFF7FEFF 		bl	__aeabi_dmul
+ 627 03ea 0346     		mov	r3, r0
+ 628 03ec 0C46     		mov	r4, r1
+ 629 03ee C7E91434 		strd	r3, [r7, #80]
+  83:VFH\src/polar_histogram.c ****             temp_density[i] = smoothed_POD;
+ 630              		.loc 1 83 0 discriminator 2
+ 631 03f2 7A69     		ldr	r2, [r7, #20]
+ 632 03f4 FB6C     		ldr	r3, [r7, #76]
+ 633 03f6 DB00     		lsls	r3, r3, #3
+ 634 03f8 1A44     		add	r2, r2, r3
+ 635 03fa D7E91434 		ldrd	r3, [r7, #80]
+ 636 03fe C2E90034 		strd	r3, [r2]
+  77:VFH\src/polar_histogram.c ****             for( int j = 1; j < smoothing_size; j++ ) {
+ 637              		.loc 1 77 0 discriminator 2
+ 638 0402 FB6C     		ldr	r3, [r7, #76]
+ 639 0404 0133     		adds	r3, r3, #1
+ 640 0406 FB64     		str	r3, [r7, #76]
+ 641              	.L17:
+  77:VFH\src/polar_histogram.c ****             for( int j = 1; j < smoothing_size; j++ ) {
+ 642              		.loc 1 77 0 is_stmt 0 discriminator 1
+ 643 0408 FB68     		ldr	r3, [r7, #12]
+ 644 040a 5A68     		ldr	r2, [r3, #4]
+ 645 040c FB6C     		ldr	r3, [r7, #76]
+ 646 040e 9A42     		cmp	r2, r3
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccQIseHk.s 			page 14
+
+
+ 647 0410 3FF761AF 		bgt	.L20
+ 648              	.L16:
+ 649              	.LBE8:
+ 650              	.LBE7:
+ 651              	.LBB10:
+  84:VFH\src/polar_histogram.c ****         }
+  85:VFH\src/polar_histogram.c ****     }
+  86:VFH\src/polar_histogram.c ****     
+  87:VFH\src/polar_histogram.c ****     for( int i=0; i < hist->sectors; i++ ) {
+ 652              		.loc 1 87 0 is_stmt 1
+ 653 0414 0023     		movs	r3, #0
+ 654 0416 7B64     		str	r3, [r7, #68]
+ 655 0418 0EE0     		b	.L21
+ 656              	.L22:
+  88:VFH\src/polar_histogram.c ****         hist->densities[i] = temp_density[i];
+ 657              		.loc 1 88 0 discriminator 3
+ 658 041a FB68     		ldr	r3, [r7, #12]
+ 659 041c 9A6A     		ldr	r2, [r3, #40]
+ 660 041e 7B6C     		ldr	r3, [r7, #68]
+ 661 0420 DB00     		lsls	r3, r3, #3
+ 662 0422 1A44     		add	r2, r2, r3
+ 663 0424 7969     		ldr	r1, [r7, #20]
+ 664 0426 7B6C     		ldr	r3, [r7, #68]
+ 665 0428 DB00     		lsls	r3, r3, #3
+ 666 042a 0B44     		add	r3, r3, r1
+ 667 042c 18CB     		ldmia	r3, {r3-r4}
+ 668 042e C2E90034 		strd	r3, [r2]
+  87:VFH\src/polar_histogram.c ****         hist->densities[i] = temp_density[i];
+ 669              		.loc 1 87 0 discriminator 3
+ 670 0432 7B6C     		ldr	r3, [r7, #68]
+ 671 0434 0133     		adds	r3, r3, #1
+ 672 0436 7B64     		str	r3, [r7, #68]
+ 673              	.L21:
+  87:VFH\src/polar_histogram.c ****         hist->densities[i] = temp_density[i];
+ 674              		.loc 1 87 0 is_stmt 0 discriminator 1
+ 675 0438 FB68     		ldr	r3, [r7, #12]
+ 676 043a 5A68     		ldr	r2, [r3, #4]
+ 677 043c 7B6C     		ldr	r3, [r7, #68]
+ 678 043e 9A42     		cmp	r2, r3
+ 679 0440 EBDC     		bgt	.L22
+ 680              	.LBE10:
+ 681 0442 D546     		mov	sp, r10
+  89:VFH\src/polar_histogram.c ****     }
+  90:VFH\src/polar_histogram.c **** }
+ 682              		.loc 1 90 0 is_stmt 1
+ 683 0444 00BF     		nop
+ 684 0446 7437     		adds	r7, r7, #116
+ 685              		.cfi_def_cfa_offset 36
+ 686 0448 BD46     		mov	sp, r7
+ 687              		.cfi_def_cfa_register 13
+ 688              		@ sp needed
+ 689 044a BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 690              	.L27:
+ 691 044e 00BF     		.align	2
+ 692              	.L26:
+ 693 0450 0000F03F 		.word	1072693248
+ 694              		.cfi_endproc
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccQIseHk.s 			page 15
+
+
+ 695              	.LFE1:
+ 696              		.size	hist_update, .-hist_update
+ 697              		.section	.text.ind_mod,"ax",%progbits
+ 698              		.align	2
+ 699              		.global	ind_mod
+ 700              		.thumb
+ 701              		.thumb_func
+ 702              		.type	ind_mod, %function
+ 703              	ind_mod:
+ 704              	.LFB2:
+  91:VFH\src/polar_histogram.c **** 
+  92:VFH\src/polar_histogram.c **** int ind_mod(int a, int b)
+  93:VFH\src/polar_histogram.c **** {
+ 705              		.loc 1 93 0
+ 706              		.cfi_startproc
+ 707              		@ args = 0, pretend = 0, frame = 16
+ 708              		@ frame_needed = 1, uses_anonymous_args = 0
+ 709              		@ link register save eliminated.
+ 710 0000 80B4     		push	{r7}
+ 711              		.cfi_def_cfa_offset 4
+ 712              		.cfi_offset 7, -4
+ 713 0002 85B0     		sub	sp, sp, #20
+ 714              		.cfi_def_cfa_offset 24
+ 715 0004 00AF     		add	r7, sp, #0
+ 716              		.cfi_def_cfa_register 7
+ 717 0006 7860     		str	r0, [r7, #4]
+ 718 0008 3960     		str	r1, [r7]
+  94:VFH\src/polar_histogram.c ****     int r = a % b;
+ 719              		.loc 1 94 0
+ 720 000a 7B68     		ldr	r3, [r7, #4]
+ 721 000c 3A68     		ldr	r2, [r7]
+ 722 000e 93FBF2F2 		sdiv	r2, r3, r2
+ 723 0012 3968     		ldr	r1, [r7]
+ 724 0014 01FB02F2 		mul	r2, r1, r2
+ 725 0018 9B1A     		subs	r3, r3, r2
+ 726 001a FB60     		str	r3, [r7, #12]
+  95:VFH\src/polar_histogram.c ****     return r < 0 ? r + b : r;
+ 727              		.loc 1 95 0
+ 728 001c FB68     		ldr	r3, [r7, #12]
+ 729 001e 002B     		cmp	r3, #0
+ 730 0020 03DA     		bge	.L29
+ 731              		.loc 1 95 0 is_stmt 0 discriminator 1
+ 732 0022 FA68     		ldr	r2, [r7, #12]
+ 733 0024 3B68     		ldr	r3, [r7]
+ 734 0026 1344     		add	r3, r3, r2
+ 735 0028 00E0     		b	.L31
+ 736              	.L29:
+ 737              		.loc 1 95 0 discriminator 2
+ 738 002a FB68     		ldr	r3, [r7, #12]
+ 739              	.L31:
+  96:VFH\src/polar_histogram.c **** }...
+ 740              		.loc 1 96 0 is_stmt 1 discriminator 5
+ 741 002c 1846     		mov	r0, r3
+ 742 002e 1437     		adds	r7, r7, #20
+ 743              		.cfi_def_cfa_offset 4
+ 744 0030 BD46     		mov	sp, r7
+ 745              		.cfi_def_cfa_register 13
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccQIseHk.s 			page 16
+
+
+ 746              		@ sp needed
+ 747 0032 80BC     		pop	{r7}
+ 748              		.cfi_restore 7
+ 749              		.cfi_def_cfa_offset 0
+ 750 0034 7047     		bx	lr
+ 751              		.cfi_endproc
+ 752              	.LFE2:
+ 753              		.size	ind_mod, .-ind_mod
+ 754 0036 00BF     		.text
+ 755              	.Letext0:
+ 756              		.file 2 ".\\VFH\\include/histogram_grid.h"
+ 757              		.file 3 ".\\VFH\\include/polar_histogram.h"
+ 758              		.section	.debug_info,"",%progbits
+ 759              	.Ldebug_info0:
+ 760 0000 75030000 		.4byte	0x375
+ 761 0004 0400     		.2byte	0x4
+ 762 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 763 000a 04       		.byte	0x4
+ 764 000b 01       		.uleb128 0x1
+ 765 000c 13000000 		.4byte	.LASF37
+ 766 0010 0C       		.byte	0xc
+ 767 0011 AE000000 		.4byte	.LASF38
+ 768 0015 30010000 		.4byte	.LASF39
+ 769 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 770 001d 00000000 		.4byte	0
+ 771 0021 00000000 		.4byte	.Ldebug_line0
+ 772 0025 02       		.uleb128 0x2
+ 773 0026 04       		.byte	0x4
+ 774 0027 07       		.byte	0x7
+ 775 0028 CE010000 		.4byte	.LASF0
+ 776 002c 03       		.uleb128 0x3
+ 777 002d 04       		.byte	0x4
+ 778 002e 05       		.byte	0x5
+ 779 002f 696E7400 		.ascii	"int\000"
+ 780 0033 02       		.uleb128 0x2
+ 781 0034 08       		.byte	0x8
+ 782 0035 05       		.byte	0x5
+ 783 0036 00000000 		.4byte	.LASF1
+ 784 003a 02       		.uleb128 0x2
+ 785 003b 08       		.byte	0x8
+ 786 003c 04       		.byte	0x4
+ 787 003d 52020000 		.4byte	.LASF2
+ 788 0041 02       		.uleb128 0x2
+ 789 0042 01       		.byte	0x1
+ 790 0043 06       		.byte	0x6
+ 791 0044 5E020000 		.4byte	.LASF3
+ 792 0048 02       		.uleb128 0x2
+ 793 0049 01       		.byte	0x1
+ 794 004a 08       		.byte	0x8
+ 795 004b E9000000 		.4byte	.LASF4
+ 796 004f 02       		.uleb128 0x2
+ 797 0050 02       		.byte	0x2
+ 798 0051 05       		.byte	0x5
+ 799 0052 95010000 		.4byte	.LASF5
+ 800 0056 02       		.uleb128 0x2
+ 801 0057 02       		.byte	0x2
+ 802 0058 07       		.byte	0x7
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccQIseHk.s 			page 17
+
+
+ 803 0059 1D010000 		.4byte	.LASF6
+ 804 005d 02       		.uleb128 0x2
+ 805 005e 04       		.byte	0x4
+ 806 005f 05       		.byte	0x5
+ 807 0060 41020000 		.4byte	.LASF7
+ 808 0064 02       		.uleb128 0x2
+ 809 0065 04       		.byte	0x4
+ 810 0066 07       		.byte	0x7
+ 811 0067 0B010000 		.4byte	.LASF8
+ 812 006b 02       		.uleb128 0x2
+ 813 006c 08       		.byte	0x8
+ 814 006d 07       		.byte	0x7
+ 815 006e EF010000 		.4byte	.LASF9
+ 816 0072 02       		.uleb128 0x2
+ 817 0073 04       		.byte	0x4
+ 818 0074 07       		.byte	0x7
+ 819 0075 06020000 		.4byte	.LASF10
+ 820 0079 02       		.uleb128 0x2
+ 821 007a 01       		.byte	0x1
+ 822 007b 08       		.byte	0x8
+ 823 007c 17020000 		.4byte	.LASF11
+ 824 0080 02       		.uleb128 0x2
+ 825 0081 08       		.byte	0x8
+ 826 0082 04       		.byte	0x4
+ 827 0083 8E010000 		.4byte	.LASF12
+ 828 0087 02       		.uleb128 0x2
+ 829 0088 04       		.byte	0x4
+ 830 0089 04       		.byte	0x4
+ 831 008a A1000000 		.4byte	.LASF13
+ 832 008e 04       		.uleb128 0x4
+ 833 008f 10       		.byte	0x10
+ 834 0090 02       		.byte	0x2
+ 835 0091 18       		.byte	0x18
+ 836 0092 C7000000 		.4byte	0xc7
+ 837 0096 05       		.uleb128 0x5
+ 838 0097 28020000 		.4byte	.LASF14
+ 839 009b 02       		.byte	0x2
+ 840 009c 19       		.byte	0x19
+ 841 009d 2C000000 		.4byte	0x2c
+ 842 00a1 00       		.byte	0
+ 843 00a2 05       		.uleb128 0x5
+ 844 00a3 75010000 		.4byte	.LASF15
+ 845 00a7 02       		.byte	0x2
+ 846 00a8 1A       		.byte	0x1a
+ 847 00a9 2C000000 		.4byte	0x2c
+ 848 00ad 04       		.byte	0x4
+ 849 00ae 05       		.uleb128 0x5
+ 850 00af 6A020000 		.4byte	.LASF16
+ 851 00b3 02       		.byte	0x2
+ 852 00b4 1B       		.byte	0x1b
+ 853 00b5 2C000000 		.4byte	0x2c
+ 854 00b9 08       		.byte	0x8
+ 855 00ba 05       		.uleb128 0x5
+ 856 00bb 2E020000 		.4byte	.LASF17
+ 857 00bf 02       		.byte	0x2
+ 858 00c0 1C       		.byte	0x1c
+ 859 00c1 C7000000 		.4byte	0xc7
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccQIseHk.s 			page 18
+
+
+ 860 00c5 0C       		.byte	0xc
+ 861 00c6 00       		.byte	0
+ 862 00c7 06       		.uleb128 0x6
+ 863 00c8 04       		.byte	0x4
+ 864 00c9 64000000 		.4byte	0x64
+ 865 00cd 07       		.uleb128 0x7
+ 866 00ce 0E000000 		.4byte	.LASF25
+ 867 00d2 02       		.byte	0x2
+ 868 00d3 1D       		.byte	0x1d
+ 869 00d4 8E000000 		.4byte	0x8e
+ 870 00d8 04       		.uleb128 0x4
+ 871 00d9 30       		.byte	0x30
+ 872 00da 03       		.byte	0x3
+ 873 00db 0C       		.byte	0xc
+ 874 00dc 35010000 		.4byte	0x135
+ 875 00e0 05       		.uleb128 0x5
+ 876 00e1 75020000 		.4byte	.LASF18
+ 877 00e5 03       		.byte	0x3
+ 878 00e6 0D       		.byte	0xd
+ 879 00e7 2C000000 		.4byte	0x2c
+ 880 00eb 00       		.byte	0
+ 881 00ec 05       		.uleb128 0x5
+ 882 00ed 86010000 		.4byte	.LASF19
+ 883 00f1 03       		.byte	0x3
+ 884 00f2 0E       		.byte	0xe
+ 885 00f3 2C000000 		.4byte	0x2c
+ 886 00f7 04       		.byte	0x4
+ 887 00f8 05       		.uleb128 0x5
+ 888 00f9 F7000000 		.4byte	.LASF20
+ 889 00fd 03       		.byte	0x3
+ 890 00fe 0F       		.byte	0xf
+ 891 00ff 80000000 		.4byte	0x80
+ 892 0103 08       		.byte	0x8
+ 893 0104 05       		.uleb128 0x5
+ 894 0105 AB010000 		.4byte	.LASF21
+ 895 0109 03       		.byte	0x3
+ 896 010a 10       		.byte	0x10
+ 897 010b 80000000 		.4byte	0x80
+ 898 010f 10       		.byte	0x10
+ 899 0110 05       		.uleb128 0x5
+ 900 0111 DB010000 		.4byte	.LASF22
+ 901 0115 03       		.byte	0x3
+ 902 0116 11       		.byte	0x11
+ 903 0117 80000000 		.4byte	0x80
+ 904 011b 18       		.byte	0x18
+ 905 011c 05       		.uleb128 0x5
+ 906 011d E5010000 		.4byte	.LASF23
+ 907 0121 03       		.byte	0x3
+ 908 0122 12       		.byte	0x12
+ 909 0123 80000000 		.4byte	0x80
+ 910 0127 20       		.byte	0x20
+ 911 0128 05       		.uleb128 0x5
+ 912 0129 01010000 		.4byte	.LASF24
+ 913 012d 03       		.byte	0x3
+ 914 012e 13       		.byte	0x13
+ 915 012f 35010000 		.4byte	0x135
+ 916 0133 28       		.byte	0x28
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccQIseHk.s 			page 19
+
+
+ 917 0134 00       		.byte	0
+ 918 0135 06       		.uleb128 0x6
+ 919 0136 04       		.byte	0x4
+ 920 0137 80000000 		.4byte	0x80
+ 921 013b 07       		.uleb128 0x7
+ 922 013c 7C010000 		.4byte	.LASF26
+ 923 0140 03       		.byte	0x3
+ 924 0141 14       		.byte	0x14
+ 925 0142 D8000000 		.4byte	0xd8
+ 926 0146 08       		.uleb128 0x8
+ 927 0147 BC010000 		.4byte	.LASF40
+ 928 014b 01       		.byte	0x1
+ 929 014c 0A       		.byte	0xa
+ 930 014d BC010000 		.4byte	0x1bc
+ 931 0151 00000000 		.4byte	.LFB0
+ 932 0155 B4000000 		.4byte	.LFE0-.LFB0
+ 933 0159 01       		.uleb128 0x1
+ 934 015a 9C       		.byte	0x9c
+ 935 015b BC010000 		.4byte	0x1bc
+ 936 015f 09       		.uleb128 0x9
+ 937 0160 75020000 		.4byte	.LASF18
+ 938 0164 01       		.byte	0x1
+ 939 0165 0A       		.byte	0xa
+ 940 0166 2C000000 		.4byte	0x2c
+ 941 016a 02       		.uleb128 0x2
+ 942 016b 91       		.byte	0x91
+ 943 016c 64       		.sleb128 -28
+ 944 016d 09       		.uleb128 0x9
+ 945 016e F7000000 		.4byte	.LASF20
+ 946 0172 01       		.byte	0x1
+ 947 0173 0A       		.byte	0xa
+ 948 0174 80000000 		.4byte	0x80
+ 949 0178 02       		.uleb128 0x2
+ 950 0179 91       		.byte	0x91
+ 951 017a 58       		.sleb128 -40
+ 952 017b 09       		.uleb128 0x9
+ 953 017c DB010000 		.4byte	.LASF22
+ 954 0180 01       		.byte	0x1
+ 955 0181 0A       		.byte	0xa
+ 956 0182 80000000 		.4byte	0x80
+ 957 0186 02       		.uleb128 0x2
+ 958 0187 91       		.byte	0x91
+ 959 0188 00       		.sleb128 0
+ 960 0189 09       		.uleb128 0x9
+ 961 018a E5010000 		.4byte	.LASF23
+ 962 018e 01       		.byte	0x1
+ 963 018f 0A       		.byte	0xa
+ 964 0190 80000000 		.4byte	0x80
+ 965 0194 02       		.uleb128 0x2
+ 966 0195 91       		.byte	0x91
+ 967 0196 08       		.sleb128 8
+ 968 0197 0A       		.uleb128 0xa
+ 969 0198 9F010000 		.4byte	.LASF27
+ 970 019c 01       		.byte	0x1
+ 971 019d 0C       		.byte	0xc
+ 972 019e BC010000 		.4byte	0x1bc
+ 973 01a2 02       		.uleb128 0x2
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccQIseHk.s 			page 20
+
+
+ 974 01a3 91       		.byte	0x91
+ 975 01a4 68       		.sleb128 -24
+ 976 01a5 0B       		.uleb128 0xb
+ 977 01a6 7E000000 		.4byte	.LBB2
+ 978 01aa 2C000000 		.4byte	.LBE2-.LBB2
+ 979 01ae 0C       		.uleb128 0xc
+ 980 01af 6900     		.ascii	"i\000"
+ 981 01b1 01       		.byte	0x1
+ 982 01b2 22       		.byte	0x22
+ 983 01b3 2C000000 		.4byte	0x2c
+ 984 01b7 02       		.uleb128 0x2
+ 985 01b8 91       		.byte	0x91
+ 986 01b9 6C       		.sleb128 -20
+ 987 01ba 00       		.byte	0
+ 988 01bb 00       		.byte	0
+ 989 01bc 06       		.uleb128 0x6
+ 990 01bd 04       		.byte	0x4
+ 991 01be 3B010000 		.4byte	0x13b
+ 992 01c2 0D       		.uleb128 0xd
+ 993 01c3 1C020000 		.4byte	.LASF35
+ 994 01c7 01       		.byte	0x1
+ 995 01c8 29       		.byte	0x29
+ 996 01c9 00000000 		.4byte	.LFB1
+ 997 01cd 54040000 		.4byte	.LFE1-.LFB1
+ 998 01d1 01       		.uleb128 0x1
+ 999 01d2 9C       		.byte	0x9c
+ 1000 01d3 24030000 		.4byte	0x324
+ 1001 01d7 09       		.uleb128 0x9
+ 1002 01d8 9F010000 		.4byte	.LASF27
+ 1003 01dc 01       		.byte	0x1
+ 1004 01dd 29       		.byte	0x29
+ 1005 01de BC010000 		.4byte	0x1bc
+ 1006 01e2 03       		.uleb128 0x3
+ 1007 01e3 91       		.byte	0x91
+ 1008 01e4 F47E     		.sleb128 -140
+ 1009 01e6 0E       		.uleb128 0xe
+ 1010 01e7 6D617000 		.ascii	"map\000"
+ 1011 01eb 01       		.byte	0x1
+ 1012 01ec 29       		.byte	0x29
+ 1013 01ed 24030000 		.4byte	0x324
+ 1014 01f1 03       		.uleb128 0x3
+ 1015 01f2 91       		.byte	0x91
+ 1016 01f3 F07E     		.sleb128 -144
+ 1017 01f5 0A       		.uleb128 0xa
+ 1018 01f6 28020000 		.4byte	.LASF14
+ 1019 01fa 01       		.byte	0x1
+ 1020 01fb 2A       		.byte	0x2a
+ 1021 01fc 2C000000 		.4byte	0x2c
+ 1022 0200 03       		.uleb128 0x3
+ 1023 0201 91       		.byte	0x91
+ 1024 0202 A87F     		.sleb128 -88
+ 1025 0204 0A       		.uleb128 0xa
+ 1026 0205 75010000 		.4byte	.LASF15
+ 1027 0209 01       		.byte	0x1
+ 1028 020a 2B       		.byte	0x2b
+ 1029 020b 2C000000 		.4byte	0x2c
+ 1030 020f 03       		.uleb128 0x3
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccQIseHk.s 			page 21
+
+
+ 1031 0210 91       		.byte	0x91
+ 1032 0211 A47F     		.sleb128 -92
+ 1033 0213 0A       		.uleb128 0xa
+ 1034 0214 A4010000 		.4byte	.LASF28
+ 1035 0218 01       		.byte	0x1
+ 1036 0219 2C       		.byte	0x2c
+ 1037 021a 80000000 		.4byte	0x80
+ 1038 021e 03       		.uleb128 0x3
+ 1039 021f 91       		.byte	0x91
+ 1040 0220 987F     		.sleb128 -104
+ 1041 0222 0A       		.uleb128 0xa
+ 1042 0223 A7000000 		.4byte	.LASF29
+ 1043 0227 01       		.byte	0x1
+ 1044 0228 2D       		.byte	0x2d
+ 1045 0229 80000000 		.4byte	0x80
+ 1046 022d 03       		.uleb128 0x3
+ 1047 022e 91       		.byte	0x91
+ 1048 022f 907F     		.sleb128 -112
+ 1049 0231 0A       		.uleb128 0xa
+ 1050 0232 C8000000 		.4byte	.LASF30
+ 1051 0236 01       		.byte	0x1
+ 1052 0237 47       		.byte	0x47
+ 1053 0238 2C000000 		.4byte	0x2c
+ 1054 023c 03       		.uleb128 0x3
+ 1055 023d 91       		.byte	0x91
+ 1056 023e 847F     		.sleb128 -124
+ 1057 0240 0A       		.uleb128 0xa
+ 1058 0241 D7000000 		.4byte	.LASF31
+ 1059 0245 01       		.byte	0x1
+ 1060 0246 48       		.byte	0x48
+ 1061 0247 2A030000 		.4byte	0x32a
+ 1062 024b 04       		.uleb128 0x4
+ 1063 024c 91       		.byte	0x91
+ 1064 024d FC7E     		.sleb128 -132
+ 1065 024f 06       		.byte	0x6
+ 1066 0250 0F       		.uleb128 0xf
+ 1067 0251 5E000000 		.4byte	.LBB3
+ 1068 0255 2C000000 		.4byte	.LBE3-.LBB3
+ 1069 0259 6A020000 		.4byte	0x26a
+ 1070 025d 0C       		.uleb128 0xc
+ 1071 025e 6900     		.ascii	"i\000"
+ 1072 0260 01       		.byte	0x1
+ 1073 0261 2F       		.byte	0x2f
+ 1074 0262 2C000000 		.4byte	0x2c
+ 1075 0266 02       		.uleb128 0x2
+ 1076 0267 91       		.byte	0x91
+ 1077 0268 54       		.sleb128 -44
+ 1078 0269 00       		.byte	0
+ 1079 026a 0F       		.uleb128 0xf
+ 1080 026b 8A000000 		.4byte	.LBB4
+ 1081 026f EC010000 		.4byte	.LBE4-.LBB4
+ 1082 0273 C1020000 		.4byte	0x2c1
+ 1083 0277 0C       		.uleb128 0xc
+ 1084 0278 6900     		.ascii	"i\000"
+ 1085 027a 01       		.byte	0x1
+ 1086 027b 34       		.byte	0x34
+ 1087 027c 2C000000 		.4byte	0x2c
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccQIseHk.s 			page 22
+
+
+ 1088 0280 02       		.uleb128 0x2
+ 1089 0281 91       		.byte	0x91
+ 1090 0282 50       		.sleb128 -48
+ 1091 0283 0B       		.uleb128 0xb
+ 1092 0284 90000000 		.4byte	.LBB5
+ 1093 0288 D6010000 		.4byte	.LBE5-.LBB5
+ 1094 028c 0C       		.uleb128 0xc
+ 1095 028d 6A00     		.ascii	"j\000"
+ 1096 028f 01       		.byte	0x1
+ 1097 0290 35       		.byte	0x35
+ 1098 0291 2C000000 		.4byte	0x2c
+ 1099 0295 02       		.uleb128 0x2
+ 1100 0296 91       		.byte	0x91
+ 1101 0297 4C       		.sleb128 -52
+ 1102 0298 0B       		.uleb128 0xb
+ 1103 0299 96000000 		.4byte	.LBB6
+ 1104 029d C0010000 		.4byte	.LBE6-.LBB6
+ 1105 02a1 0A       		.uleb128 0xa
+ 1106 02a2 E4000000 		.4byte	.LASF32
+ 1107 02a6 01       		.byte	0x1
+ 1108 02a7 38       		.byte	0x38
+ 1109 02a8 80000000 		.4byte	0x80
+ 1110 02ac 02       		.uleb128 0x2
+ 1111 02ad 91       		.byte	0x91
+ 1112 02ae 40       		.sleb128 -64
+ 1113 02af 0A       		.uleb128 0xa
+ 1114 02b0 0F020000 		.4byte	.LASF33
+ 1115 02b4 01       		.byte	0x1
+ 1116 02b5 3E       		.byte	0x3e
+ 1117 02b6 80000000 		.4byte	0x80
+ 1118 02ba 03       		.uleb128 0x3
+ 1119 02bb 91       		.byte	0x91
+ 1120 02bc 887F     		.sleb128 -120
+ 1121 02be 00       		.byte	0
+ 1122 02bf 00       		.byte	0
+ 1123 02c0 00       		.byte	0
+ 1124 02c1 0F       		.uleb128 0xf
+ 1125 02c2 D0020000 		.4byte	.LBB7
+ 1126 02c6 44010000 		.4byte	.LBE7-.LBB7
+ 1127 02ca 0C030000 		.4byte	0x30c
+ 1128 02ce 0A       		.uleb128 0xa
+ 1129 02cf 34020000 		.4byte	.LASF34
+ 1130 02d3 01       		.byte	0x1
+ 1131 02d4 4B       		.byte	0x4b
+ 1132 02d5 80000000 		.4byte	0x80
+ 1133 02d9 03       		.uleb128 0x3
+ 1134 02da 91       		.byte	0x91
+ 1135 02db B87F     		.sleb128 -72
+ 1136 02dd 0B       		.uleb128 0xb
+ 1137 02de D0020000 		.4byte	.LBB8
+ 1138 02e2 44010000 		.4byte	.LBE8-.LBB8
+ 1139 02e6 0C       		.uleb128 0xc
+ 1140 02e7 6900     		.ascii	"i\000"
+ 1141 02e9 01       		.byte	0x1
+ 1142 02ea 4D       		.byte	0x4d
+ 1143 02eb 2C000000 		.4byte	0x2c
+ 1144 02ef 03       		.uleb128 0x3
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccQIseHk.s 			page 23
+
+
+ 1145 02f0 91       		.byte	0x91
+ 1146 02f1 B47F     		.sleb128 -76
+ 1147 02f3 0B       		.uleb128 0xb
+ 1148 02f4 D6020000 		.4byte	.LBB9
+ 1149 02f8 B4000000 		.4byte	.LBE9-.LBB9
+ 1150 02fc 0C       		.uleb128 0xc
+ 1151 02fd 6A00     		.ascii	"j\000"
+ 1152 02ff 01       		.byte	0x1
+ 1153 0300 4E       		.byte	0x4e
+ 1154 0301 2C000000 		.4byte	0x2c
+ 1155 0305 03       		.uleb128 0x3
+ 1156 0306 91       		.byte	0x91
+ 1157 0307 B07F     		.sleb128 -80
+ 1158 0309 00       		.byte	0
+ 1159 030a 00       		.byte	0
+ 1160 030b 00       		.byte	0
+ 1161 030c 0B       		.uleb128 0xb
+ 1162 030d 14040000 		.4byte	.LBB10
+ 1163 0311 2E000000 		.4byte	.LBE10-.LBB10
+ 1164 0315 0C       		.uleb128 0xc
+ 1165 0316 6900     		.ascii	"i\000"
+ 1166 0318 01       		.byte	0x1
+ 1167 0319 57       		.byte	0x57
+ 1168 031a 2C000000 		.4byte	0x2c
+ 1169 031e 03       		.uleb128 0x3
+ 1170 031f 91       		.byte	0x91
+ 1171 0320 AC7F     		.sleb128 -84
+ 1172 0322 00       		.byte	0
+ 1173 0323 00       		.byte	0
+ 1174 0324 06       		.uleb128 0x6
+ 1175 0325 04       		.byte	0x4
+ 1176 0326 CD000000 		.4byte	0xcd
+ 1177 032a 10       		.uleb128 0x10
+ 1178 032b 80000000 		.4byte	0x80
+ 1179 032f 3E030000 		.4byte	0x33e
+ 1180 0333 11       		.uleb128 0x11
+ 1181 0334 72000000 		.4byte	0x72
+ 1182 0338 04       		.uleb128 0x4
+ 1183 0339 91       		.byte	0x91
+ 1184 033a 807F     		.sleb128 -128
+ 1185 033c 06       		.byte	0x6
+ 1186 033d 00       		.byte	0
+ 1187 033e 12       		.uleb128 0x12
+ 1188 033f 4A020000 		.4byte	.LASF36
+ 1189 0343 01       		.byte	0x1
+ 1190 0344 5C       		.byte	0x5c
+ 1191 0345 2C000000 		.4byte	0x2c
+ 1192 0349 00000000 		.4byte	.LFB2
+ 1193 034d 36000000 		.4byte	.LFE2-.LFB2
+ 1194 0351 01       		.uleb128 0x1
+ 1195 0352 9C       		.byte	0x9c
+ 1196 0353 0E       		.uleb128 0xe
+ 1197 0354 6100     		.ascii	"a\000"
+ 1198 0356 01       		.byte	0x1
+ 1199 0357 5C       		.byte	0x5c
+ 1200 0358 2C000000 		.4byte	0x2c
+ 1201 035c 02       		.uleb128 0x2
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccQIseHk.s 			page 24
+
+
+ 1202 035d 91       		.byte	0x91
+ 1203 035e 6C       		.sleb128 -20
+ 1204 035f 0E       		.uleb128 0xe
+ 1205 0360 6200     		.ascii	"b\000"
+ 1206 0362 01       		.byte	0x1
+ 1207 0363 5C       		.byte	0x5c
+ 1208 0364 2C000000 		.4byte	0x2c
+ 1209 0368 02       		.uleb128 0x2
+ 1210 0369 91       		.byte	0x91
+ 1211 036a 68       		.sleb128 -24
+ 1212 036b 0C       		.uleb128 0xc
+ 1213 036c 7200     		.ascii	"r\000"
+ 1214 036e 01       		.byte	0x1
+ 1215 036f 5E       		.byte	0x5e
+ 1216 0370 2C000000 		.4byte	0x2c
+ 1217 0374 02       		.uleb128 0x2
+ 1218 0375 91       		.byte	0x91
+ 1219 0376 74       		.sleb128 -12
+ 1220 0377 00       		.byte	0
+ 1221 0378 00       		.byte	0
+ 1222              		.section	.debug_abbrev,"",%progbits
+ 1223              	.Ldebug_abbrev0:
+ 1224 0000 01       		.uleb128 0x1
+ 1225 0001 11       		.uleb128 0x11
+ 1226 0002 01       		.byte	0x1
+ 1227 0003 25       		.uleb128 0x25
+ 1228 0004 0E       		.uleb128 0xe
+ 1229 0005 13       		.uleb128 0x13
+ 1230 0006 0B       		.uleb128 0xb
+ 1231 0007 03       		.uleb128 0x3
+ 1232 0008 0E       		.uleb128 0xe
+ 1233 0009 1B       		.uleb128 0x1b
+ 1234 000a 0E       		.uleb128 0xe
+ 1235 000b 55       		.uleb128 0x55
+ 1236 000c 17       		.uleb128 0x17
+ 1237 000d 11       		.uleb128 0x11
+ 1238 000e 01       		.uleb128 0x1
+ 1239 000f 10       		.uleb128 0x10
+ 1240 0010 17       		.uleb128 0x17
+ 1241 0011 00       		.byte	0
+ 1242 0012 00       		.byte	0
+ 1243 0013 02       		.uleb128 0x2
+ 1244 0014 24       		.uleb128 0x24
+ 1245 0015 00       		.byte	0
+ 1246 0016 0B       		.uleb128 0xb
+ 1247 0017 0B       		.uleb128 0xb
+ 1248 0018 3E       		.uleb128 0x3e
+ 1249 0019 0B       		.uleb128 0xb
+ 1250 001a 03       		.uleb128 0x3
+ 1251 001b 0E       		.uleb128 0xe
+ 1252 001c 00       		.byte	0
+ 1253 001d 00       		.byte	0
+ 1254 001e 03       		.uleb128 0x3
+ 1255 001f 24       		.uleb128 0x24
+ 1256 0020 00       		.byte	0
+ 1257 0021 0B       		.uleb128 0xb
+ 1258 0022 0B       		.uleb128 0xb
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccQIseHk.s 			page 25
+
+
+ 1259 0023 3E       		.uleb128 0x3e
+ 1260 0024 0B       		.uleb128 0xb
+ 1261 0025 03       		.uleb128 0x3
+ 1262 0026 08       		.uleb128 0x8
+ 1263 0027 00       		.byte	0
+ 1264 0028 00       		.byte	0
+ 1265 0029 04       		.uleb128 0x4
+ 1266 002a 13       		.uleb128 0x13
+ 1267 002b 01       		.byte	0x1
+ 1268 002c 0B       		.uleb128 0xb
+ 1269 002d 0B       		.uleb128 0xb
+ 1270 002e 3A       		.uleb128 0x3a
+ 1271 002f 0B       		.uleb128 0xb
+ 1272 0030 3B       		.uleb128 0x3b
+ 1273 0031 0B       		.uleb128 0xb
+ 1274 0032 01       		.uleb128 0x1
+ 1275 0033 13       		.uleb128 0x13
+ 1276 0034 00       		.byte	0
+ 1277 0035 00       		.byte	0
+ 1278 0036 05       		.uleb128 0x5
+ 1279 0037 0D       		.uleb128 0xd
+ 1280 0038 00       		.byte	0
+ 1281 0039 03       		.uleb128 0x3
+ 1282 003a 0E       		.uleb128 0xe
+ 1283 003b 3A       		.uleb128 0x3a
+ 1284 003c 0B       		.uleb128 0xb
+ 1285 003d 3B       		.uleb128 0x3b
+ 1286 003e 0B       		.uleb128 0xb
+ 1287 003f 49       		.uleb128 0x49
+ 1288 0040 13       		.uleb128 0x13
+ 1289 0041 38       		.uleb128 0x38
+ 1290 0042 0B       		.uleb128 0xb
+ 1291 0043 00       		.byte	0
+ 1292 0044 00       		.byte	0
+ 1293 0045 06       		.uleb128 0x6
+ 1294 0046 0F       		.uleb128 0xf
+ 1295 0047 00       		.byte	0
+ 1296 0048 0B       		.uleb128 0xb
+ 1297 0049 0B       		.uleb128 0xb
+ 1298 004a 49       		.uleb128 0x49
+ 1299 004b 13       		.uleb128 0x13
+ 1300 004c 00       		.byte	0
+ 1301 004d 00       		.byte	0
+ 1302 004e 07       		.uleb128 0x7
+ 1303 004f 16       		.uleb128 0x16
+ 1304 0050 00       		.byte	0
+ 1305 0051 03       		.uleb128 0x3
+ 1306 0052 0E       		.uleb128 0xe
+ 1307 0053 3A       		.uleb128 0x3a
+ 1308 0054 0B       		.uleb128 0xb
+ 1309 0055 3B       		.uleb128 0x3b
+ 1310 0056 0B       		.uleb128 0xb
+ 1311 0057 49       		.uleb128 0x49
+ 1312 0058 13       		.uleb128 0x13
+ 1313 0059 00       		.byte	0
+ 1314 005a 00       		.byte	0
+ 1315 005b 08       		.uleb128 0x8
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccQIseHk.s 			page 26
+
+
+ 1316 005c 2E       		.uleb128 0x2e
+ 1317 005d 01       		.byte	0x1
+ 1318 005e 3F       		.uleb128 0x3f
+ 1319 005f 19       		.uleb128 0x19
+ 1320 0060 03       		.uleb128 0x3
+ 1321 0061 0E       		.uleb128 0xe
+ 1322 0062 3A       		.uleb128 0x3a
+ 1323 0063 0B       		.uleb128 0xb
+ 1324 0064 3B       		.uleb128 0x3b
+ 1325 0065 0B       		.uleb128 0xb
+ 1326 0066 27       		.uleb128 0x27
+ 1327 0067 19       		.uleb128 0x19
+ 1328 0068 49       		.uleb128 0x49
+ 1329 0069 13       		.uleb128 0x13
+ 1330 006a 11       		.uleb128 0x11
+ 1331 006b 01       		.uleb128 0x1
+ 1332 006c 12       		.uleb128 0x12
+ 1333 006d 06       		.uleb128 0x6
+ 1334 006e 40       		.uleb128 0x40
+ 1335 006f 18       		.uleb128 0x18
+ 1336 0070 9642     		.uleb128 0x2116
+ 1337 0072 19       		.uleb128 0x19
+ 1338 0073 01       		.uleb128 0x1
+ 1339 0074 13       		.uleb128 0x13
+ 1340 0075 00       		.byte	0
+ 1341 0076 00       		.byte	0
+ 1342 0077 09       		.uleb128 0x9
+ 1343 0078 05       		.uleb128 0x5
+ 1344 0079 00       		.byte	0
+ 1345 007a 03       		.uleb128 0x3
+ 1346 007b 0E       		.uleb128 0xe
+ 1347 007c 3A       		.uleb128 0x3a
+ 1348 007d 0B       		.uleb128 0xb
+ 1349 007e 3B       		.uleb128 0x3b
+ 1350 007f 0B       		.uleb128 0xb
+ 1351 0080 49       		.uleb128 0x49
+ 1352 0081 13       		.uleb128 0x13
+ 1353 0082 02       		.uleb128 0x2
+ 1354 0083 18       		.uleb128 0x18
+ 1355 0084 00       		.byte	0
+ 1356 0085 00       		.byte	0
+ 1357 0086 0A       		.uleb128 0xa
+ 1358 0087 34       		.uleb128 0x34
+ 1359 0088 00       		.byte	0
+ 1360 0089 03       		.uleb128 0x3
+ 1361 008a 0E       		.uleb128 0xe
+ 1362 008b 3A       		.uleb128 0x3a
+ 1363 008c 0B       		.uleb128 0xb
+ 1364 008d 3B       		.uleb128 0x3b
+ 1365 008e 0B       		.uleb128 0xb
+ 1366 008f 49       		.uleb128 0x49
+ 1367 0090 13       		.uleb128 0x13
+ 1368 0091 02       		.uleb128 0x2
+ 1369 0092 18       		.uleb128 0x18
+ 1370 0093 00       		.byte	0
+ 1371 0094 00       		.byte	0
+ 1372 0095 0B       		.uleb128 0xb
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccQIseHk.s 			page 27
+
+
+ 1373 0096 0B       		.uleb128 0xb
+ 1374 0097 01       		.byte	0x1
+ 1375 0098 11       		.uleb128 0x11
+ 1376 0099 01       		.uleb128 0x1
+ 1377 009a 12       		.uleb128 0x12
+ 1378 009b 06       		.uleb128 0x6
+ 1379 009c 00       		.byte	0
+ 1380 009d 00       		.byte	0
+ 1381 009e 0C       		.uleb128 0xc
+ 1382 009f 34       		.uleb128 0x34
+ 1383 00a0 00       		.byte	0
+ 1384 00a1 03       		.uleb128 0x3
+ 1385 00a2 08       		.uleb128 0x8
+ 1386 00a3 3A       		.uleb128 0x3a
+ 1387 00a4 0B       		.uleb128 0xb
+ 1388 00a5 3B       		.uleb128 0x3b
+ 1389 00a6 0B       		.uleb128 0xb
+ 1390 00a7 49       		.uleb128 0x49
+ 1391 00a8 13       		.uleb128 0x13
+ 1392 00a9 02       		.uleb128 0x2
+ 1393 00aa 18       		.uleb128 0x18
+ 1394 00ab 00       		.byte	0
+ 1395 00ac 00       		.byte	0
+ 1396 00ad 0D       		.uleb128 0xd
+ 1397 00ae 2E       		.uleb128 0x2e
+ 1398 00af 01       		.byte	0x1
+ 1399 00b0 3F       		.uleb128 0x3f
+ 1400 00b1 19       		.uleb128 0x19
+ 1401 00b2 03       		.uleb128 0x3
+ 1402 00b3 0E       		.uleb128 0xe
+ 1403 00b4 3A       		.uleb128 0x3a
+ 1404 00b5 0B       		.uleb128 0xb
+ 1405 00b6 3B       		.uleb128 0x3b
+ 1406 00b7 0B       		.uleb128 0xb
+ 1407 00b8 27       		.uleb128 0x27
+ 1408 00b9 19       		.uleb128 0x19
+ 1409 00ba 11       		.uleb128 0x11
+ 1410 00bb 01       		.uleb128 0x1
+ 1411 00bc 12       		.uleb128 0x12
+ 1412 00bd 06       		.uleb128 0x6
+ 1413 00be 40       		.uleb128 0x40
+ 1414 00bf 18       		.uleb128 0x18
+ 1415 00c0 9642     		.uleb128 0x2116
+ 1416 00c2 19       		.uleb128 0x19
+ 1417 00c3 01       		.uleb128 0x1
+ 1418 00c4 13       		.uleb128 0x13
+ 1419 00c5 00       		.byte	0
+ 1420 00c6 00       		.byte	0
+ 1421 00c7 0E       		.uleb128 0xe
+ 1422 00c8 05       		.uleb128 0x5
+ 1423 00c9 00       		.byte	0
+ 1424 00ca 03       		.uleb128 0x3
+ 1425 00cb 08       		.uleb128 0x8
+ 1426 00cc 3A       		.uleb128 0x3a
+ 1427 00cd 0B       		.uleb128 0xb
+ 1428 00ce 3B       		.uleb128 0x3b
+ 1429 00cf 0B       		.uleb128 0xb
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccQIseHk.s 			page 28
+
+
+ 1430 00d0 49       		.uleb128 0x49
+ 1431 00d1 13       		.uleb128 0x13
+ 1432 00d2 02       		.uleb128 0x2
+ 1433 00d3 18       		.uleb128 0x18
+ 1434 00d4 00       		.byte	0
+ 1435 00d5 00       		.byte	0
+ 1436 00d6 0F       		.uleb128 0xf
+ 1437 00d7 0B       		.uleb128 0xb
+ 1438 00d8 01       		.byte	0x1
+ 1439 00d9 11       		.uleb128 0x11
+ 1440 00da 01       		.uleb128 0x1
+ 1441 00db 12       		.uleb128 0x12
+ 1442 00dc 06       		.uleb128 0x6
+ 1443 00dd 01       		.uleb128 0x1
+ 1444 00de 13       		.uleb128 0x13
+ 1445 00df 00       		.byte	0
+ 1446 00e0 00       		.byte	0
+ 1447 00e1 10       		.uleb128 0x10
+ 1448 00e2 01       		.uleb128 0x1
+ 1449 00e3 01       		.byte	0x1
+ 1450 00e4 49       		.uleb128 0x49
+ 1451 00e5 13       		.uleb128 0x13
+ 1452 00e6 01       		.uleb128 0x1
+ 1453 00e7 13       		.uleb128 0x13
+ 1454 00e8 00       		.byte	0
+ 1455 00e9 00       		.byte	0
+ 1456 00ea 11       		.uleb128 0x11
+ 1457 00eb 21       		.uleb128 0x21
+ 1458 00ec 00       		.byte	0
+ 1459 00ed 49       		.uleb128 0x49
+ 1460 00ee 13       		.uleb128 0x13
+ 1461 00ef 2F       		.uleb128 0x2f
+ 1462 00f0 18       		.uleb128 0x18
+ 1463 00f1 00       		.byte	0
+ 1464 00f2 00       		.byte	0
+ 1465 00f3 12       		.uleb128 0x12
+ 1466 00f4 2E       		.uleb128 0x2e
+ 1467 00f5 01       		.byte	0x1
+ 1468 00f6 3F       		.uleb128 0x3f
+ 1469 00f7 19       		.uleb128 0x19
+ 1470 00f8 03       		.uleb128 0x3
+ 1471 00f9 0E       		.uleb128 0xe
+ 1472 00fa 3A       		.uleb128 0x3a
+ 1473 00fb 0B       		.uleb128 0xb
+ 1474 00fc 3B       		.uleb128 0x3b
+ 1475 00fd 0B       		.uleb128 0xb
+ 1476 00fe 27       		.uleb128 0x27
+ 1477 00ff 19       		.uleb128 0x19
+ 1478 0100 49       		.uleb128 0x49
+ 1479 0101 13       		.uleb128 0x13
+ 1480 0102 11       		.uleb128 0x11
+ 1481 0103 01       		.uleb128 0x1
+ 1482 0104 12       		.uleb128 0x12
+ 1483 0105 06       		.uleb128 0x6
+ 1484 0106 40       		.uleb128 0x40
+ 1485 0107 18       		.uleb128 0x18
+ 1486 0108 9742     		.uleb128 0x2117
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccQIseHk.s 			page 29
+
+
+ 1487 010a 19       		.uleb128 0x19
+ 1488 010b 00       		.byte	0
+ 1489 010c 00       		.byte	0
+ 1490 010d 00       		.byte	0
+ 1491              		.section	.debug_aranges,"",%progbits
+ 1492 0000 2C000000 		.4byte	0x2c
+ 1493 0004 0200     		.2byte	0x2
+ 1494 0006 00000000 		.4byte	.Ldebug_info0
+ 1495 000a 04       		.byte	0x4
+ 1496 000b 00       		.byte	0
+ 1497 000c 0000     		.2byte	0
+ 1498 000e 0000     		.2byte	0
+ 1499 0010 00000000 		.4byte	.LFB0
+ 1500 0014 B4000000 		.4byte	.LFE0-.LFB0
+ 1501 0018 00000000 		.4byte	.LFB1
+ 1502 001c 54040000 		.4byte	.LFE1-.LFB1
+ 1503 0020 00000000 		.4byte	.LFB2
+ 1504 0024 36000000 		.4byte	.LFE2-.LFB2
+ 1505 0028 00000000 		.4byte	0
+ 1506 002c 00000000 		.4byte	0
+ 1507              		.section	.debug_ranges,"",%progbits
+ 1508              	.Ldebug_ranges0:
+ 1509 0000 00000000 		.4byte	.LFB0
+ 1510 0004 B4000000 		.4byte	.LFE0
+ 1511 0008 00000000 		.4byte	.LFB1
+ 1512 000c 54040000 		.4byte	.LFE1
+ 1513 0010 00000000 		.4byte	.LFB2
+ 1514 0014 36000000 		.4byte	.LFE2
+ 1515 0018 00000000 		.4byte	0
+ 1516 001c 00000000 		.4byte	0
+ 1517              		.section	.debug_line,"",%progbits
+ 1518              	.Ldebug_line0:
+ 1519 0000 6C010000 		.section	.debug_str,"MS",%progbits,1
+ 1519      02006700 
+ 1519      00000201 
+ 1519      FB0E0D00 
+ 1519      01010101 
+ 1520              	.LASF1:
+ 1521 0000 6C6F6E67 		.ascii	"long long int\000"
+ 1521      206C6F6E 
+ 1521      6720696E 
+ 1521      7400
+ 1522              	.LASF25:
+ 1523 000e 67726964 		.ascii	"grid\000"
+ 1523      00
+ 1524              	.LASF37:
+ 1525 0013 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1525      43313120 
+ 1525      352E342E 
+ 1525      31203230 
+ 1525      31363036 
+ 1526 0046 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1526      20726576 
+ 1526      6973696F 
+ 1526      6E203233 
+ 1526      37373135 
+ 1527 0079 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccQIseHk.s 			page 30
+
+
+ 1527      66756E63 
+ 1527      74696F6E 
+ 1527      2D736563 
+ 1527      74696F6E 
+ 1528              	.LASF13:
+ 1529 00a1 666C6F61 		.ascii	"float\000"
+ 1529      7400
+ 1530              	.LASF29:
+ 1531 00a7 64656E73 		.ascii	"dens_b\000"
+ 1531      5F6200
+ 1532              	.LASF38:
+ 1533 00ae 5646485C 		.ascii	"VFH\\src\\polar_histogram.c\000"
+ 1533      7372635C 
+ 1533      706F6C61 
+ 1533      725F6869 
+ 1533      73746F67 
+ 1534              	.LASF30:
+ 1535 00c8 736D6F6F 		.ascii	"smoothing_size\000"
+ 1535      7468696E 
+ 1535      675F7369 
+ 1535      7A6500
+ 1536              	.LASF31:
+ 1537 00d7 74656D70 		.ascii	"temp_density\000"
+ 1537      5F64656E 
+ 1537      73697479 
+ 1537      00
+ 1538              	.LASF32:
+ 1539 00e4 62657461 		.ascii	"beta\000"
+ 1539      00
+ 1540              	.LASF4:
+ 1541 00e9 756E7369 		.ascii	"unsigned char\000"
+ 1541      676E6564 
+ 1541      20636861 
+ 1541      7200
+ 1542              	.LASF20:
+ 1543 00f7 74687265 		.ascii	"threshold\000"
+ 1543      73686F6C 
+ 1543      6400
+ 1544              	.LASF24:
+ 1545 0101 64656E73 		.ascii	"densities\000"
+ 1545      69746965 
+ 1545      7300
+ 1546              	.LASF8:
+ 1547 010b 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1547      20756E73 
+ 1547      69676E65 
+ 1547      6420696E 
+ 1547      7400
+ 1548              	.LASF6:
+ 1549 011d 73686F72 		.ascii	"short unsigned int\000"
+ 1549      7420756E 
+ 1549      7369676E 
+ 1549      65642069 
+ 1549      6E7400
+ 1550              	.LASF39:
+ 1551 0130 433A5C55 		.ascii	"C:\\Users\\jmspi\\OneDrive\\Documents\\GitHub\\ECE4"
+ 1551      73657273 
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccQIseHk.s 			page 31
+
+
+ 1551      5C6A6D73 
+ 1551      70695C4F 
+ 1551      6E654472 
+ 1552 015d 3139315C 		.ascii	"191\\DeliveryRobot.cydsn\000"
+ 1552      44656C69 
+ 1552      76657279 
+ 1552      526F626F 
+ 1552      742E6379 
+ 1553              	.LASF15:
+ 1554 0175 68656967 		.ascii	"height\000"
+ 1554      687400
+ 1555              	.LASF26:
+ 1556 017c 68697374 		.ascii	"histogram\000"
+ 1556      6F677261 
+ 1556      6D00
+ 1557              	.LASF19:
+ 1558 0186 73656374 		.ascii	"sectors\000"
+ 1558      6F727300 
+ 1559              	.LASF12:
+ 1560 018e 646F7562 		.ascii	"double\000"
+ 1560      6C6500
+ 1561              	.LASF5:
+ 1562 0195 73686F72 		.ascii	"short int\000"
+ 1562      7420696E 
+ 1562      7400
+ 1563              	.LASF27:
+ 1564 019f 68697374 		.ascii	"hist\000"
+ 1564      00
+ 1565              	.LASF28:
+ 1566 01a4 64656E73 		.ascii	"dens_a\000"
+ 1566      5F6100
+ 1567              	.LASF21:
+ 1568 01ab 64616D70 		.ascii	"damping_constant\000"
+ 1568      696E675F 
+ 1568      636F6E73 
+ 1568      74616E74 
+ 1568      00
+ 1569              	.LASF40:
+ 1570 01bc 696E6974 		.ascii	"initial_histogram\000"
+ 1570      69616C5F 
+ 1570      68697374 
+ 1570      6F677261 
+ 1570      6D00
+ 1571              	.LASF0:
+ 1572 01ce 756E7369 		.ascii	"unsigned int\000"
+ 1572      676E6564 
+ 1572      20696E74 
+ 1572      00
+ 1573              	.LASF22:
+ 1574 01db 64656E73 		.ascii	"density_a\000"
+ 1574      6974795F 
+ 1574      6100
+ 1575              	.LASF23:
+ 1576 01e5 64656E73 		.ascii	"density_b\000"
+ 1576      6974795F 
+ 1576      6200
+ 1577              	.LASF9:
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccQIseHk.s 			page 32
+
+
+ 1578 01ef 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1578      206C6F6E 
+ 1578      6720756E 
+ 1578      7369676E 
+ 1578      65642069 
+ 1579              	.LASF10:
+ 1580 0206 73697A65 		.ascii	"sizetype\000"
+ 1580      74797065 
+ 1580      00
+ 1581              	.LASF33:
+ 1582 020f 64656E73 		.ascii	"density\000"
+ 1582      69747900 
+ 1583              	.LASF11:
+ 1584 0217 63686172 		.ascii	"char\000"
+ 1584      00
+ 1585              	.LASF35:
+ 1586 021c 68697374 		.ascii	"hist_update\000"
+ 1586      5F757064 
+ 1586      61746500 
+ 1587              	.LASF14:
+ 1588 0228 77696474 		.ascii	"width\000"
+ 1588      6800
+ 1589              	.LASF17:
+ 1590 022e 63656C6C 		.ascii	"cells\000"
+ 1590      7300
+ 1591              	.LASF34:
+ 1592 0234 736D6F6F 		.ascii	"smoothed_POD\000"
+ 1592      74686564 
+ 1592      5F504F44 
+ 1592      00
+ 1593              	.LASF7:
+ 1594 0241 6C6F6E67 		.ascii	"long int\000"
+ 1594      20696E74 
+ 1594      00
+ 1595              	.LASF36:
+ 1596 024a 696E645F 		.ascii	"ind_mod\000"
+ 1596      6D6F6400 
+ 1597              	.LASF2:
+ 1598 0252 6C6F6E67 		.ascii	"long double\000"
+ 1598      20646F75 
+ 1598      626C6500 
+ 1599              	.LASF3:
+ 1600 025e 7369676E 		.ascii	"signed char\000"
+ 1600      65642063 
+ 1600      68617200 
+ 1601              	.LASF16:
+ 1602 026a 7265736F 		.ascii	"resolution\000"
+ 1602      6C757469 
+ 1602      6F6E00
+ 1603              	.LASF18:
+ 1604 0275 616C7068 		.ascii	"alpha\000"
+ 1604      6100
+ 1605              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

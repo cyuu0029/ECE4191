@@ -6,7 +6,7 @@
     <Toolchain Name="ARM GCC Generic" Selected="True">
       <Tool Name="prebuild" Command="" Options="" />
       <Tool Name="assembler" Command="arm-none-eabi-as.exe" Options="-mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -alh=${OutputDir}/${CompileFile}.lst -g -W" />
-      <Tool Name="compiler" Command="arm-none-eabi-gcc.exe" Options="-mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -O0" />
+      <Tool Name="compiler" Command="arm-none-eabi-gcc.exe" Options="-mcpu=cortex-m3 -mthumb -I.\VFH\include -I. -IGenerated_Source\PSoC5 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -O0" />
       <Tool Name="linker" Command="arm-none-eabi-gcc.exe" Options="-mcpu=cortex-m3 -mthumb -l m -L Generated_Source\PSoC5 -Wl,-Map,${OutputDir}/${ProjectShortName}.map -T Generated_Source\PSoC5\cm3gcc.ld -specs=nano.specs -u _printf_float -Wl,--gc-sections -g -ffunction-sections -O0 -ffat-lto-objects" />
       <Tool Name="postbuild" Command="" Options="" />
     </Toolchain>
@@ -37,6 +37,9 @@
       <Folder BuildType="STRICT" Path="C:\Users\jmspi\OneDrive\Documents\GitHub\ECE4191\DeliveryRobot.cydsn">
         <Files Root="C:\Users\jmspi\OneDrive\Documents\GitHub\ECE4191\DeliveryRobot.cydsn">
           <File BuildType="BUILD" Toolchain="">main.c</File>
+          <File BuildType="BUILD" Toolchain="">VFH\src\histogram_grid.c</File>
+          <File BuildType="BUILD" Toolchain="">VFH\src\polar_histogram.c</File>
+          <File BuildType="BUILD" Toolchain="">VFH\src\vfh.c</File>
           <File BuildType="BUILD" Toolchain="">cyapicallbacks.h</File>
         </Files>
       </Folder>
@@ -186,6 +189,33 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\QuadDec_R_Cnt16_PM.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Pose_Update_Int.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Pose_Update_Int.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Clock_Testing_1.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Clock_Testing_1.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Testing_Int.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Testing_Int.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Timer_Avoidance.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Timer_Avoidance.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Timer_Avoidance_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Clock_Seconds.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Clock_Seconds.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Pin_US_Echo0_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Pin_US_Echo0.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Pin_US_Echo0.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Pin_US_Trigger0_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Pin_US_Trigger0.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Pin_US_Trigger0.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Pin_US_Echo3_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Pin_US_Echo3.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Pin_US_Echo3.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Pin_US_Echo4_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Pin_US_Echo4.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Pin_US_Echo4.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Pin_US_Trigger3_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Pin_US_Trigger3.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Pin_US_Trigger3.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Pin_US_Trigger4_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Pin_US_Trigger4.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Pin_US_Trigger4.h</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="C:\Users\jmspi\OneDrive\Documents\GitHub\ECE4191\DeliveryRobot.cydsn\Export\ARM_GCC_Generic">

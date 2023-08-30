@@ -1,0 +1,1737 @@
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc60T6yb.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"histogram_grid.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.initial_grid,"ax",%progbits
+  20              		.align	2
+  21              		.global	initial_grid
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	initial_grid, %function
+  25              	initial_grid:
+  26              	.LFB0:
+  27              		.file 1 "VFH\\src\\histogram_grid.c"
+   1:VFH\src/histogram_grid.c **** #include <assert.h>
+   2:VFH\src/histogram_grid.c **** #include <math.h>
+   3:VFH\src/histogram_grid.c **** #include <stdlib.h>
+   4:VFH\src/histogram_grid.c **** 
+   5:VFH\src/histogram_grid.c **** #include "histogram_grid.h"
+   6:VFH\src/histogram_grid.c **** 
+   7:VFH\src/histogram_grid.c **** // Histogram Grid for VFH implementation
+   8:VFH\src/histogram_grid.c **** 
+   9:VFH\src/histogram_grid.c **** grid * initial_grid(int width, int height, int resolution) {
+  28              		.loc 1 9 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 32
+  31              		@ frame_needed = 1, uses_anonymous_args = 0
+  32 0000 80B5     		push	{r7, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 7, -8
+  35              		.cfi_offset 14, -4
+  36 0002 88B0     		sub	sp, sp, #32
+  37              		.cfi_def_cfa_offset 40
+  38 0004 00AF     		add	r7, sp, #0
+  39              		.cfi_def_cfa_register 7
+  40 0006 F860     		str	r0, [r7, #12]
+  41 0008 B960     		str	r1, [r7, #8]
+  42 000a 7A60     		str	r2, [r7, #4]
+  10:VFH\src/histogram_grid.c ****   /* Source code mentions assertions for poorly defined resolution values
+  11:VFH\src/histogram_grid.c ****    * This assertion shouldn't be necessary given how well defined our environment is
+  12:VFH\src/histogram_grid.c ****   */
+  13:VFH\src/histogram_grid.c **** 
+  14:VFH\src/histogram_grid.c ****   grid * map = malloc(sizeof(grid));  // Allocate memory for grid map
+  43              		.loc 1 14 0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc60T6yb.s 			page 2
+
+
+  44 000c 1020     		movs	r0, #16
+  45 000e FFF7FEFF 		bl	malloc
+  46 0012 0346     		mov	r3, r0
+  47 0014 7B61     		str	r3, [r7, #20]
+  15:VFH\src/histogram_grid.c **** 
+  16:VFH\src/histogram_grid.c ****   // Return NULL if not enough memory
+  17:VFH\src/histogram_grid.c ****   if (map == NULL) {
+  48              		.loc 1 17 0
+  49 0016 7B69     		ldr	r3, [r7, #20]
+  50 0018 002B     		cmp	r3, #0
+  51 001a 04D1     		bne	.L2
+  18:VFH\src/histogram_grid.c ****     free(map);
+  52              		.loc 1 18 0
+  53 001c 7869     		ldr	r0, [r7, #20]
+  54 001e FFF7FEFF 		bl	free
+  19:VFH\src/histogram_grid.c ****     return NULL;
+  55              		.loc 1 19 0
+  56 0022 0023     		movs	r3, #0
+  57 0024 40E0     		b	.L3
+  58              	.L2:
+  20:VFH\src/histogram_grid.c ****   }
+  21:VFH\src/histogram_grid.c **** 
+  22:VFH\src/histogram_grid.c ****   // Define variables
+  23:VFH\src/histogram_grid.c ****   map->width = width;
+  59              		.loc 1 23 0
+  60 0026 7B69     		ldr	r3, [r7, #20]
+  61 0028 FA68     		ldr	r2, [r7, #12]
+  62 002a 1A60     		str	r2, [r3]
+  24:VFH\src/histogram_grid.c ****   map->height = height;
+  63              		.loc 1 24 0
+  64 002c 7B69     		ldr	r3, [r7, #20]
+  65 002e BA68     		ldr	r2, [r7, #8]
+  66 0030 5A60     		str	r2, [r3, #4]
+  25:VFH\src/histogram_grid.c ****   map->resolution = resolution;
+  67              		.loc 1 25 0
+  68 0032 7B69     		ldr	r3, [r7, #20]
+  69 0034 7A68     		ldr	r2, [r7, #4]
+  70 0036 9A60     		str	r2, [r3, #8]
+  26:VFH\src/histogram_grid.c ****   map->cells = malloc(width * height * sizeof(unsigned long));
+  71              		.loc 1 26 0
+  72 0038 FB68     		ldr	r3, [r7, #12]
+  73 003a BA68     		ldr	r2, [r7, #8]
+  74 003c 02FB03F3 		mul	r3, r2, r3
+  75 0040 9B00     		lsls	r3, r3, #2
+  76 0042 1846     		mov	r0, r3
+  77 0044 FFF7FEFF 		bl	malloc
+  78 0048 0346     		mov	r3, r0
+  79 004a 1A46     		mov	r2, r3
+  80 004c 7B69     		ldr	r3, [r7, #20]
+  81 004e DA60     		str	r2, [r3, #12]
+  27:VFH\src/histogram_grid.c **** 
+  28:VFH\src/histogram_grid.c ****   // Return NULL if not enough memory
+  29:VFH\src/histogram_grid.c ****   if (map->cells == NULL) {
+  82              		.loc 1 29 0
+  83 0050 7B69     		ldr	r3, [r7, #20]
+  84 0052 DB68     		ldr	r3, [r3, #12]
+  85 0054 002B     		cmp	r3, #0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc60T6yb.s 			page 3
+
+
+  86 0056 06D1     		bne	.L4
+  30:VFH\src/histogram_grid.c ****     free(map->cells);
+  87              		.loc 1 30 0
+  88 0058 7B69     		ldr	r3, [r7, #20]
+  89 005a DB68     		ldr	r3, [r3, #12]
+  90 005c 1846     		mov	r0, r3
+  91 005e FFF7FEFF 		bl	free
+  31:VFH\src/histogram_grid.c ****     return NULL;
+  92              		.loc 1 31 0
+  93 0062 0023     		movs	r3, #0
+  94 0064 20E0     		b	.L3
+  95              	.L4:
+  96              	.LBB2:
+  32:VFH\src/histogram_grid.c ****   }
+  33:VFH\src/histogram_grid.c **** 
+  34:VFH\src/histogram_grid.c ****   // Define all initial grid values to be 0 as there are no obstacles
+  35:VFH\src/histogram_grid.c ****   for (int i = 0; i < width; ++i) {
+  97              		.loc 1 35 0
+  98 0066 0023     		movs	r3, #0
+  99 0068 FB61     		str	r3, [r7, #28]
+ 100 006a 18E0     		b	.L5
+ 101              	.L8:
+ 102              	.LBB3:
+  36:VFH\src/histogram_grid.c ****     for (int j = 0; j < height; ++j) {
+ 103              		.loc 1 36 0
+ 104 006c 0023     		movs	r3, #0
+ 105 006e BB61     		str	r3, [r7, #24]
+ 106 0070 0EE0     		b	.L6
+ 107              	.L7:
+  37:VFH\src/histogram_grid.c ****       map->cells[i * width + j] = 0;    // Map grid is defined as a 1D array
+ 108              		.loc 1 37 0 discriminator 3
+ 109 0072 7B69     		ldr	r3, [r7, #20]
+ 110 0074 DA68     		ldr	r2, [r3, #12]
+ 111 0076 FB69     		ldr	r3, [r7, #28]
+ 112 0078 F968     		ldr	r1, [r7, #12]
+ 113 007a 01FB03F1 		mul	r1, r1, r3
+ 114 007e BB69     		ldr	r3, [r7, #24]
+ 115 0080 0B44     		add	r3, r3, r1
+ 116 0082 9B00     		lsls	r3, r3, #2
+ 117 0084 1344     		add	r3, r3, r2
+ 118 0086 0022     		movs	r2, #0
+ 119 0088 1A60     		str	r2, [r3]
+  36:VFH\src/histogram_grid.c ****     for (int j = 0; j < height; ++j) {
+ 120              		.loc 1 36 0 discriminator 3
+ 121 008a BB69     		ldr	r3, [r7, #24]
+ 122 008c 0133     		adds	r3, r3, #1
+ 123 008e BB61     		str	r3, [r7, #24]
+ 124              	.L6:
+  36:VFH\src/histogram_grid.c ****     for (int j = 0; j < height; ++j) {
+ 125              		.loc 1 36 0 is_stmt 0 discriminator 1
+ 126 0090 BA69     		ldr	r2, [r7, #24]
+ 127 0092 BB68     		ldr	r3, [r7, #8]
+ 128 0094 9A42     		cmp	r2, r3
+ 129 0096 ECDB     		blt	.L7
+ 130              	.LBE3:
+  35:VFH\src/histogram_grid.c ****     for (int j = 0; j < height; ++j) {
+ 131              		.loc 1 35 0 is_stmt 1 discriminator 2
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc60T6yb.s 			page 4
+
+
+ 132 0098 FB69     		ldr	r3, [r7, #28]
+ 133 009a 0133     		adds	r3, r3, #1
+ 134 009c FB61     		str	r3, [r7, #28]
+ 135              	.L5:
+  35:VFH\src/histogram_grid.c ****     for (int j = 0; j < height; ++j) {
+ 136              		.loc 1 35 0 is_stmt 0 discriminator 1
+ 137 009e FA69     		ldr	r2, [r7, #28]
+ 138 00a0 FB68     		ldr	r3, [r7, #12]
+ 139 00a2 9A42     		cmp	r2, r3
+ 140 00a4 E2DB     		blt	.L8
+ 141              	.LBE2:
+  38:VFH\src/histogram_grid.c ****     }
+  39:VFH\src/histogram_grid.c ****   }
+  40:VFH\src/histogram_grid.c **** 
+  41:VFH\src/histogram_grid.c ****   return map;
+ 142              		.loc 1 41 0 is_stmt 1
+ 143 00a6 7B69     		ldr	r3, [r7, #20]
+ 144              	.L3:
+  42:VFH\src/histogram_grid.c **** }
+ 145              		.loc 1 42 0
+ 146 00a8 1846     		mov	r0, r3
+ 147 00aa 2037     		adds	r7, r7, #32
+ 148              		.cfi_def_cfa_offset 8
+ 149 00ac BD46     		mov	sp, r7
+ 150              		.cfi_def_cfa_register 13
+ 151              		@ sp needed
+ 152 00ae 80BD     		pop	{r7, pc}
+ 153              		.cfi_endproc
+ 154              	.LFE0:
+ 155              		.size	initial_grid, .-initial_grid
+ 156              		.global	__aeabi_ui2d
+ 157              		.global	__aeabi_i2d
+ 158              		.global	__aeabi_dmul
+ 159              		.global	__aeabi_ddiv
+ 160              		.global	__aeabi_d2iz
+ 161              		.section	.text.update_grid,"ax",%progbits
+ 162              		.align	2
+ 163              		.global	update_grid
+ 164              		.thumb
+ 165              		.thumb_func
+ 166              		.type	update_grid, %function
+ 167              	update_grid:
+ 168              	.LFB1:
+  43:VFH\src/histogram_grid.c **** 
+  44:VFH\src/histogram_grid.c **** int update_grid(grid * map, int pos_x, int pos_y, int yaw, sensor_data data) {
+ 169              		.loc 1 44 0
+ 170              		.cfi_startproc
+ 171              		@ args = 40, pretend = 0, frame = 80
+ 172              		@ frame_needed = 1, uses_anonymous_args = 0
+ 173 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 174              		.cfi_def_cfa_offset 20
+ 175              		.cfi_offset 4, -20
+ 176              		.cfi_offset 5, -16
+ 177              		.cfi_offset 6, -12
+ 178              		.cfi_offset 7, -8
+ 179              		.cfi_offset 14, -4
+ 180 0002 95B0     		sub	sp, sp, #84
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc60T6yb.s 			page 5
+
+
+ 181              		.cfi_def_cfa_offset 104
+ 182 0004 00AF     		add	r7, sp, #0
+ 183              		.cfi_def_cfa_register 7
+ 184 0006 F860     		str	r0, [r7, #12]
+ 185 0008 B960     		str	r1, [r7, #8]
+ 186 000a 7A60     		str	r2, [r7, #4]
+ 187 000c 3B60     		str	r3, [r7]
+  45:VFH\src/histogram_grid.c ****   /*
+  46:VFH\src/histogram_grid.c ****    * Updates Histogram with detected obstacles.
+  47:VFH\src/histogram_grid.c ****    * Takes robot positioning and sensor measurements to determine obstacles location.
+  48:VFH\src/histogram_grid.c ****    *
+  49:VFH\src/histogram_grid.c ****    * Remember that cos() and sin() expect angles in RADIANS, not DEGREES.
+  50:VFH\src/histogram_grid.c ****   */
+  51:VFH\src/histogram_grid.c **** 
+  52:VFH\src/histogram_grid.c ****   // Check if grid map exists
+  53:VFH\src/histogram_grid.c ****   if (map == NULL) return 0;
+ 188              		.loc 1 53 0
+ 189 000e FB68     		ldr	r3, [r7, #12]
+ 190 0010 002B     		cmp	r3, #0
+ 191 0012 01D1     		bne	.L10
+ 192              		.loc 1 53 0 is_stmt 0 discriminator 1
+ 193 0014 0023     		movs	r3, #0
+ 194 0016 FDE0     		b	.L21
+ 195              	.L10:
+  54:VFH\src/histogram_grid.c ****   if (map->cells == NULL) return 0;
+ 196              		.loc 1 54 0 is_stmt 1
+ 197 0018 FB68     		ldr	r3, [r7, #12]
+ 198 001a DB68     		ldr	r3, [r3, #12]
+ 199 001c 002B     		cmp	r3, #0
+ 200 001e 01D1     		bne	.L12
+ 201              		.loc 1 54 0 is_stmt 0 discriminator 1
+ 202 0020 0023     		movs	r3, #0
+ 203 0022 F7E0     		b	.L21
+ 204              	.L12:
+ 205              	.LBB4:
+  55:VFH\src/histogram_grid.c **** 
+  56:VFH\src/histogram_grid.c ****   // Determine distance of obstacle
+  57:VFH\src/histogram_grid.c ****   double cell_distance[N_SENSORS];
+  58:VFH\src/histogram_grid.c ****   for (int i = 0; i < N_SENSORS; ++i) {
+ 206              		.loc 1 58 0 is_stmt 1
+ 207 0024 0023     		movs	r3, #0
+ 208 0026 FB64     		str	r3, [r7, #76]
+ 209 0028 1AE0     		b	.L13
+ 210              	.L14:
+  59:VFH\src/histogram_grid.c ****     cell_distance[i] = data.distance[i] / map->resolution;
+ 211              		.loc 1 59 0 discriminator 3
+ 212 002a FB6C     		ldr	r3, [r7, #76]
+ 213 002c 0433     		adds	r3, r3, #4
+ 214 002e 9B00     		lsls	r3, r3, #2
+ 215 0030 07F16802 		add	r2, r7, #104
+ 216 0034 1344     		add	r3, r3, r2
+ 217 0036 5B68     		ldr	r3, [r3, #4]
+ 218 0038 FA68     		ldr	r2, [r7, #12]
+ 219 003a 9268     		ldr	r2, [r2, #8]
+ 220 003c B3FBF2F3 		udiv	r3, r3, r2
+ 221 0040 1846     		mov	r0, r3
+ 222 0042 FFF7FEFF 		bl	__aeabi_ui2d
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc60T6yb.s 			page 6
+
+
+ 223 0046 0346     		mov	r3, r0
+ 224 0048 0C46     		mov	r4, r1
+ 225 004a FA6C     		ldr	r2, [r7, #76]
+ 226 004c D200     		lsls	r2, r2, #3
+ 227 004e 07F15001 		add	r1, r7, #80
+ 228 0052 0A44     		add	r2, r2, r1
+ 229 0054 403A     		subs	r2, r2, #64
+ 230 0056 C2E90034 		strd	r3, [r2]
+  58:VFH\src/histogram_grid.c ****     cell_distance[i] = data.distance[i] / map->resolution;
+ 231              		.loc 1 58 0 discriminator 3
+ 232 005a FB6C     		ldr	r3, [r7, #76]
+ 233 005c 0133     		adds	r3, r3, #1
+ 234 005e FB64     		str	r3, [r7, #76]
+ 235              	.L13:
+  58:VFH\src/histogram_grid.c ****     cell_distance[i] = data.distance[i] / map->resolution;
+ 236              		.loc 1 58 0 is_stmt 0 discriminator 1
+ 237 0060 FB6C     		ldr	r3, [r7, #76]
+ 238 0062 042B     		cmp	r3, #4
+ 239 0064 E1DD     		ble	.L14
+ 240              	.LBE4:
+ 241              	.LBB5:
+  60:VFH\src/histogram_grid.c ****   }
+  61:VFH\src/histogram_grid.c **** 
+  62:VFH\src/histogram_grid.c ****   int theta;
+  63:VFH\src/histogram_grid.c **** 
+  64:VFH\src/histogram_grid.c ****   for (int i = 0; i < N_SENSORS; ++i){
+ 242              		.loc 1 64 0 is_stmt 1
+ 243 0066 0023     		movs	r3, #0
+ 244 0068 7B64     		str	r3, [r7, #68]
+ 245 006a CEE0     		b	.L15
+ 246              	.L20:
+ 247              	.LBB6:
+  65:VFH\src/histogram_grid.c ****     if (yaw + data.direction[i] < 0) {
+ 248              		.loc 1 65 0
+ 249 006c 7B6C     		ldr	r3, [r7, #68]
+ 250 006e 07F16802 		add	r2, r7, #104
+ 251 0072 52F82320 		ldr	r2, [r2, r3, lsl #2]
+ 252 0076 3B68     		ldr	r3, [r7]
+ 253 0078 1344     		add	r3, r3, r2
+ 254 007a 002B     		cmp	r3, #0
+ 255 007c 0ADA     		bge	.L16
+  66:VFH\src/histogram_grid.c ****       theta = yaw + data.direction[i] + 360;
+ 256              		.loc 1 66 0
+ 257 007e 7B6C     		ldr	r3, [r7, #68]
+ 258 0080 07F16802 		add	r2, r7, #104
+ 259 0084 52F82320 		ldr	r2, [r2, r3, lsl #2]
+ 260 0088 3B68     		ldr	r3, [r7]
+ 261 008a 1344     		add	r3, r3, r2
+ 262 008c 03F5B473 		add	r3, r3, #360
+ 263 0090 BB64     		str	r3, [r7, #72]
+ 264 0092 1CE0     		b	.L17
+ 265              	.L16:
+  67:VFH\src/histogram_grid.c ****     } else if (yaw + data.direction[i] >= 360) {
+ 266              		.loc 1 67 0
+ 267 0094 7B6C     		ldr	r3, [r7, #68]
+ 268 0096 07F16802 		add	r2, r7, #104
+ 269 009a 52F82320 		ldr	r2, [r2, r3, lsl #2]
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc60T6yb.s 			page 7
+
+
+ 270 009e 3B68     		ldr	r3, [r7]
+ 271 00a0 1344     		add	r3, r3, r2
+ 272 00a2 B3F5B47F 		cmp	r3, #360
+ 273 00a6 0ADB     		blt	.L18
+  68:VFH\src/histogram_grid.c ****       theta = yaw + data.direction[i] - 360;
+ 274              		.loc 1 68 0
+ 275 00a8 7B6C     		ldr	r3, [r7, #68]
+ 276 00aa 07F16802 		add	r2, r7, #104
+ 277 00ae 52F82320 		ldr	r2, [r2, r3, lsl #2]
+ 278 00b2 3B68     		ldr	r3, [r7]
+ 279 00b4 1344     		add	r3, r3, r2
+ 280 00b6 A3F5B473 		sub	r3, r3, #360
+ 281 00ba BB64     		str	r3, [r7, #72]
+ 282 00bc 07E0     		b	.L17
+ 283              	.L18:
+  69:VFH\src/histogram_grid.c ****     } else {
+  70:VFH\src/histogram_grid.c ****       theta = yaw + data.direction[i];
+ 284              		.loc 1 70 0
+ 285 00be 7B6C     		ldr	r3, [r7, #68]
+ 286 00c0 07F16802 		add	r2, r7, #104
+ 287 00c4 52F82320 		ldr	r2, [r2, r3, lsl #2]
+ 288 00c8 3B68     		ldr	r3, [r7]
+ 289 00ca 1344     		add	r3, r3, r2
+ 290 00cc BB64     		str	r3, [r7, #72]
+ 291              	.L17:
+  71:VFH\src/histogram_grid.c ****     }
+  72:VFH\src/histogram_grid.c **** 
+  73:VFH\src/histogram_grid.c ****     int new_x = pos_x/map->resolution + (int) floor(cell_distance[i] * cos(theta * M_PI / 180));
+ 292              		.loc 1 73 0
+ 293 00ce FB68     		ldr	r3, [r7, #12]
+ 294 00d0 9B68     		ldr	r3, [r3, #8]
+ 295 00d2 BA68     		ldr	r2, [r7, #8]
+ 296 00d4 92FBF3F6 		sdiv	r6, r2, r3
+ 297 00d8 7B6C     		ldr	r3, [r7, #68]
+ 298 00da DB00     		lsls	r3, r3, #3
+ 299 00dc 07F15002 		add	r2, r7, #80
+ 300 00e0 1344     		add	r3, r3, r2
+ 301 00e2 403B     		subs	r3, r3, #64
+ 302 00e4 D3E90045 		ldrd	r4, [r3]
+ 303 00e8 B86C     		ldr	r0, [r7, #72]
+ 304 00ea FFF7FEFF 		bl	__aeabi_i2d
+ 305 00ee 4CA3     		adr	r3, .L22
+ 306 00f0 D3E90023 		ldrd	r2, [r3]
+ 307 00f4 FFF7FEFF 		bl	__aeabi_dmul
+ 308 00f8 0246     		mov	r2, r0
+ 309 00fa 0B46     		mov	r3, r1
+ 310 00fc 1046     		mov	r0, r2
+ 311 00fe 1946     		mov	r1, r3
+ 312 0100 4FF00002 		mov	r2, #0
+ 313 0104 484B     		ldr	r3, .L22+8
+ 314 0106 FFF7FEFF 		bl	__aeabi_ddiv
+ 315 010a 0246     		mov	r2, r0
+ 316 010c 0B46     		mov	r3, r1
+ 317 010e 1046     		mov	r0, r2
+ 318 0110 1946     		mov	r1, r3
+ 319 0112 FFF7FEFF 		bl	cos
+ 320 0116 0246     		mov	r2, r0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc60T6yb.s 			page 8
+
+
+ 321 0118 0B46     		mov	r3, r1
+ 322 011a 2046     		mov	r0, r4
+ 323 011c 2946     		mov	r1, r5
+ 324 011e FFF7FEFF 		bl	__aeabi_dmul
+ 325 0122 0346     		mov	r3, r0
+ 326 0124 0C46     		mov	r4, r1
+ 327 0126 1846     		mov	r0, r3
+ 328 0128 2146     		mov	r1, r4
+ 329 012a FFF7FEFF 		bl	floor
+ 330 012e 0346     		mov	r3, r0
+ 331 0130 0C46     		mov	r4, r1
+ 332 0132 1846     		mov	r0, r3
+ 333 0134 2146     		mov	r1, r4
+ 334 0136 FFF7FEFF 		bl	__aeabi_d2iz
+ 335 013a 0346     		mov	r3, r0
+ 336 013c 3344     		add	r3, r3, r6
+ 337 013e 3B64     		str	r3, [r7, #64]
+  74:VFH\src/histogram_grid.c ****     int new_y = pos_y/map->resolution + (int) floor(cell_distance[i] * sin(theta * M_PI / 180));
+ 338              		.loc 1 74 0
+ 339 0140 FB68     		ldr	r3, [r7, #12]
+ 340 0142 9B68     		ldr	r3, [r3, #8]
+ 341 0144 7A68     		ldr	r2, [r7, #4]
+ 342 0146 92FBF3F6 		sdiv	r6, r2, r3
+ 343 014a 7B6C     		ldr	r3, [r7, #68]
+ 344 014c DB00     		lsls	r3, r3, #3
+ 345 014e 07F15002 		add	r2, r7, #80
+ 346 0152 1344     		add	r3, r3, r2
+ 347 0154 403B     		subs	r3, r3, #64
+ 348 0156 D3E90045 		ldrd	r4, [r3]
+ 349 015a B86C     		ldr	r0, [r7, #72]
+ 350 015c FFF7FEFF 		bl	__aeabi_i2d
+ 351 0160 2FA3     		adr	r3, .L22
+ 352 0162 D3E90023 		ldrd	r2, [r3]
+ 353 0166 FFF7FEFF 		bl	__aeabi_dmul
+ 354 016a 0246     		mov	r2, r0
+ 355 016c 0B46     		mov	r3, r1
+ 356 016e 1046     		mov	r0, r2
+ 357 0170 1946     		mov	r1, r3
+ 358 0172 4FF00002 		mov	r2, #0
+ 359 0176 2C4B     		ldr	r3, .L22+8
+ 360 0178 FFF7FEFF 		bl	__aeabi_ddiv
+ 361 017c 0246     		mov	r2, r0
+ 362 017e 0B46     		mov	r3, r1
+ 363 0180 1046     		mov	r0, r2
+ 364 0182 1946     		mov	r1, r3
+ 365 0184 FFF7FEFF 		bl	sin
+ 366 0188 0246     		mov	r2, r0
+ 367 018a 0B46     		mov	r3, r1
+ 368 018c 2046     		mov	r0, r4
+ 369 018e 2946     		mov	r1, r5
+ 370 0190 FFF7FEFF 		bl	__aeabi_dmul
+ 371 0194 0346     		mov	r3, r0
+ 372 0196 0C46     		mov	r4, r1
+ 373 0198 1846     		mov	r0, r3
+ 374 019a 2146     		mov	r1, r4
+ 375 019c FFF7FEFF 		bl	floor
+ 376 01a0 0346     		mov	r3, r0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc60T6yb.s 			page 9
+
+
+ 377 01a2 0C46     		mov	r4, r1
+ 378 01a4 1846     		mov	r0, r3
+ 379 01a6 2146     		mov	r1, r4
+ 380 01a8 FFF7FEFF 		bl	__aeabi_d2iz
+ 381 01ac 0346     		mov	r3, r0
+ 382 01ae 3344     		add	r3, r3, r6
+ 383 01b0 FB63     		str	r3, [r7, #60]
+  75:VFH\src/histogram_grid.c ****     
+  76:VFH\src/histogram_grid.c ****     // Check if point is within grid to avoid overflow
+  77:VFH\src/histogram_grid.c ****     if (new_x < map->width && new_y < map->height && new_x >= 0 && new_y >= 0) {
+ 384              		.loc 1 77 0
+ 385 01b2 FB68     		ldr	r3, [r7, #12]
+ 386 01b4 1A68     		ldr	r2, [r3]
+ 387 01b6 3B6C     		ldr	r3, [r7, #64]
+ 388 01b8 9A42     		cmp	r2, r3
+ 389 01ba 23DD     		ble	.L19
+ 390              		.loc 1 77 0 is_stmt 0 discriminator 1
+ 391 01bc FB68     		ldr	r3, [r7, #12]
+ 392 01be 5A68     		ldr	r2, [r3, #4]
+ 393 01c0 FB6B     		ldr	r3, [r7, #60]
+ 394 01c2 9A42     		cmp	r2, r3
+ 395 01c4 1EDD     		ble	.L19
+ 396              		.loc 1 77 0 discriminator 2
+ 397 01c6 3B6C     		ldr	r3, [r7, #64]
+ 398 01c8 002B     		cmp	r3, #0
+ 399 01ca 1BDB     		blt	.L19
+ 400              		.loc 1 77 0 discriminator 3
+ 401 01cc FB6B     		ldr	r3, [r7, #60]
+ 402 01ce 002B     		cmp	r3, #0
+ 403 01d0 18DB     		blt	.L19
+  78:VFH\src/histogram_grid.c ****       map->cells[new_x * map->width + new_y] += 1;
+ 404              		.loc 1 78 0 is_stmt 1
+ 405 01d2 FB68     		ldr	r3, [r7, #12]
+ 406 01d4 DA68     		ldr	r2, [r3, #12]
+ 407 01d6 FB68     		ldr	r3, [r7, #12]
+ 408 01d8 1B68     		ldr	r3, [r3]
+ 409 01da 396C     		ldr	r1, [r7, #64]
+ 410 01dc 01FB03F1 		mul	r1, r1, r3
+ 411 01e0 FB6B     		ldr	r3, [r7, #60]
+ 412 01e2 0B44     		add	r3, r3, r1
+ 413 01e4 9B00     		lsls	r3, r3, #2
+ 414 01e6 1344     		add	r3, r3, r2
+ 415 01e8 FA68     		ldr	r2, [r7, #12]
+ 416 01ea D168     		ldr	r1, [r2, #12]
+ 417 01ec FA68     		ldr	r2, [r7, #12]
+ 418 01ee 1268     		ldr	r2, [r2]
+ 419 01f0 386C     		ldr	r0, [r7, #64]
+ 420 01f2 00FB02F0 		mul	r0, r0, r2
+ 421 01f6 FA6B     		ldr	r2, [r7, #60]
+ 422 01f8 0244     		add	r2, r2, r0
+ 423 01fa 9200     		lsls	r2, r2, #2
+ 424 01fc 0A44     		add	r2, r2, r1
+ 425 01fe 1268     		ldr	r2, [r2]
+ 426 0200 0132     		adds	r2, r2, #1
+ 427 0202 1A60     		str	r2, [r3]
+ 428              	.L19:
+ 429              	.LBE6:
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc60T6yb.s 			page 10
+
+
+  64:VFH\src/histogram_grid.c ****     if (yaw + data.direction[i] < 0) {
+ 430              		.loc 1 64 0 discriminator 2
+ 431 0204 7B6C     		ldr	r3, [r7, #68]
+ 432 0206 0133     		adds	r3, r3, #1
+ 433 0208 7B64     		str	r3, [r7, #68]
+ 434              	.L15:
+  64:VFH\src/histogram_grid.c ****     if (yaw + data.direction[i] < 0) {
+ 435              		.loc 1 64 0 is_stmt 0 discriminator 1
+ 436 020a 7B6C     		ldr	r3, [r7, #68]
+ 437 020c 042B     		cmp	r3, #4
+ 438 020e 7FF72DAF 		ble	.L20
+ 439              	.LBE5:
+  79:VFH\src/histogram_grid.c ****     } 
+  80:VFH\src/histogram_grid.c ****   }
+  81:VFH\src/histogram_grid.c **** 
+  82:VFH\src/histogram_grid.c ****   return 1;
+ 440              		.loc 1 82 0 is_stmt 1
+ 441 0212 0123     		movs	r3, #1
+ 442              	.L21:
+  83:VFH\src/histogram_grid.c **** }
+ 443              		.loc 1 83 0 discriminator 1
+ 444 0214 1846     		mov	r0, r3
+ 445 0216 5437     		adds	r7, r7, #84
+ 446              		.cfi_def_cfa_offset 20
+ 447 0218 BD46     		mov	sp, r7
+ 448              		.cfi_def_cfa_register 13
+ 449              		@ sp needed
+ 450 021a F0BD     		pop	{r4, r5, r6, r7, pc}
+ 451              	.L23:
+ 452 021c AFF30080 		.align	3
+ 453              	.L22:
+ 454 0220 182D4454 		.word	1413754136
+ 455 0224 FB210940 		.word	1074340347
+ 456 0228 00806640 		.word	1080459264
+ 457              		.cfi_endproc
+ 458              	.LFE1:
+ 459              		.size	update_grid, .-update_grid
+ 460              		.section	.text.active_window,"ax",%progbits
+ 461              		.align	2
+ 462              		.global	active_window
+ 463              		.thumb
+ 464              		.thumb_func
+ 465              		.type	active_window, %function
+ 466              	active_window:
+ 467              	.LFB2:
+  84:VFH\src/histogram_grid.c **** 
+  85:VFH\src/histogram_grid.c **** /* TODO: Finish implementing get_moving_window. */
+  86:VFH\src/histogram_grid.c **** grid * active_window(grid * map, int curr_x, int curr_y, int dimension) {
+ 468              		.loc 1 86 0
+ 469              		.cfi_startproc
+ 470              		@ args = 0, pretend = 0, frame = 40
+ 471              		@ frame_needed = 1, uses_anonymous_args = 0
+ 472 0000 80B5     		push	{r7, lr}
+ 473              		.cfi_def_cfa_offset 8
+ 474              		.cfi_offset 7, -8
+ 475              		.cfi_offset 14, -4
+ 476 0002 8AB0     		sub	sp, sp, #40
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc60T6yb.s 			page 11
+
+
+ 477              		.cfi_def_cfa_offset 48
+ 478 0004 00AF     		add	r7, sp, #0
+ 479              		.cfi_def_cfa_register 7
+ 480 0006 F860     		str	r0, [r7, #12]
+ 481 0008 B960     		str	r1, [r7, #8]
+ 482 000a 7A60     		str	r2, [r7, #4]
+ 483 000c 3B60     		str	r3, [r7]
+  87:VFH\src/histogram_grid.c ****   /*
+  88:VFH\src/histogram_grid.c ****    * Creates an active window surrounding robot.
+  89:VFH\src/histogram_grid.c ****    *
+  90:VFH\src/histogram_grid.c ****    * If grid_init returns NULL, exit the function.
+  91:VFH\src/histogram_grid.c ****   */
+  92:VFH\src/histogram_grid.c ****   grid * active = initial_grid(dimension, dimension, map->resolution);
+ 484              		.loc 1 92 0
+ 485 000e FB68     		ldr	r3, [r7, #12]
+ 486 0010 9B68     		ldr	r3, [r3, #8]
+ 487 0012 1A46     		mov	r2, r3
+ 488 0014 3968     		ldr	r1, [r7]
+ 489 0016 3868     		ldr	r0, [r7]
+ 490 0018 FFF7FEFF 		bl	initial_grid
+ 491 001c F861     		str	r0, [r7, #28]
+  93:VFH\src/histogram_grid.c **** 
+  94:VFH\src/histogram_grid.c ****   if (active != NULL) {
+ 492              		.loc 1 94 0
+ 493 001e FB69     		ldr	r3, [r7, #28]
+ 494 0020 002B     		cmp	r3, #0
+ 495 0022 57D0     		beq	.L25
+ 496              	.LBB7:
+  95:VFH\src/histogram_grid.c **** 
+  96:VFH\src/histogram_grid.c ****     /* Populate active window with existing values in grid map 
+  97:VFH\src/histogram_grid.c ****      * Original author suggests using pointers to point directly to grid map values.
+  98:VFH\src/histogram_grid.c ****      * This can be done but whether or not it is necessary is up for debate.
+  99:VFH\src/histogram_grid.c ****     
+ 100:VFH\src/histogram_grid.c ****     */
+ 101:VFH\src/histogram_grid.c ****     for (int i = 0; i < dimension; ++i) {
+ 497              		.loc 1 101 0
+ 498 0024 0023     		movs	r3, #0
+ 499 0026 7B62     		str	r3, [r7, #36]
+ 500 0028 4FE0     		b	.L26
+ 501              	.L30:
+ 502              	.LBB8:
+ 102:VFH\src/histogram_grid.c ****       for (int j = 0; j < dimension; ++j) {
+ 503              		.loc 1 102 0
+ 504 002a 0023     		movs	r3, #0
+ 505 002c 3B62     		str	r3, [r7, #32]
+ 506 002e 45E0     		b	.L27
+ 507              	.L29:
+ 508              	.LBB9:
+ 103:VFH\src/histogram_grid.c **** 
+ 104:VFH\src/histogram_grid.c ****         /* x and y are the center coordinates of the body with sensors. */
+ 105:VFH\src/histogram_grid.c ****         int grid_i = i + curr_x/map->resolution - (dimension - 1) / 2;
+ 509              		.loc 1 105 0
+ 510 0030 FB68     		ldr	r3, [r7, #12]
+ 511 0032 9B68     		ldr	r3, [r3, #8]
+ 512 0034 BA68     		ldr	r2, [r7, #8]
+ 513 0036 92FBF3F2 		sdiv	r2, r2, r3
+ 514 003a 7B6A     		ldr	r3, [r7, #36]
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc60T6yb.s 			page 12
+
+
+ 515 003c 1A44     		add	r2, r2, r3
+ 516 003e 3B68     		ldr	r3, [r7]
+ 517 0040 013B     		subs	r3, r3, #1
+ 518 0042 D90F     		lsrs	r1, r3, #31
+ 519 0044 0B44     		add	r3, r3, r1
+ 520 0046 5B10     		asrs	r3, r3, #1
+ 521 0048 D31A     		subs	r3, r2, r3
+ 522 004a BB61     		str	r3, [r7, #24]
+ 106:VFH\src/histogram_grid.c ****         int grid_j = j + curr_y/map->resolution - (dimension - 1) / 2;
+ 523              		.loc 1 106 0
+ 524 004c FB68     		ldr	r3, [r7, #12]
+ 525 004e 9B68     		ldr	r3, [r3, #8]
+ 526 0050 7A68     		ldr	r2, [r7, #4]
+ 527 0052 92FBF3F2 		sdiv	r2, r2, r3
+ 528 0056 3B6A     		ldr	r3, [r7, #32]
+ 529 0058 1A44     		add	r2, r2, r3
+ 530 005a 3B68     		ldr	r3, [r7]
+ 531 005c 013B     		subs	r3, r3, #1
+ 532 005e D90F     		lsrs	r1, r3, #31
+ 533 0060 0B44     		add	r3, r3, r1
+ 534 0062 5B10     		asrs	r3, r3, #1
+ 535 0064 D31A     		subs	r3, r2, r3
+ 536 0066 7B61     		str	r3, [r7, #20]
+ 107:VFH\src/histogram_grid.c **** 
+ 108:VFH\src/histogram_grid.c ****         /* Copy the information from the grid to the moving window. */
+ 109:VFH\src/histogram_grid.c ****         if (grid_i < map->width && grid_j < map->height && grid_i >= 0 && grid_j >= 0) {
+ 537              		.loc 1 109 0
+ 538 0068 FB68     		ldr	r3, [r7, #12]
+ 539 006a 1A68     		ldr	r2, [r3]
+ 540 006c BB69     		ldr	r3, [r7, #24]
+ 541 006e 9A42     		cmp	r2, r3
+ 542 0070 21DD     		ble	.L28
+ 543              		.loc 1 109 0 is_stmt 0 discriminator 1
+ 544 0072 FB68     		ldr	r3, [r7, #12]
+ 545 0074 5A68     		ldr	r2, [r3, #4]
+ 546 0076 7B69     		ldr	r3, [r7, #20]
+ 547 0078 9A42     		cmp	r2, r3
+ 548 007a 1CDD     		ble	.L28
+ 549              		.loc 1 109 0 discriminator 2
+ 550 007c BB69     		ldr	r3, [r7, #24]
+ 551 007e 002B     		cmp	r3, #0
+ 552 0080 19DB     		blt	.L28
+ 553              		.loc 1 109 0 discriminator 3
+ 554 0082 7B69     		ldr	r3, [r7, #20]
+ 555 0084 002B     		cmp	r3, #0
+ 556 0086 16DB     		blt	.L28
+ 110:VFH\src/histogram_grid.c ****           active->cells[i * dimension + j] = map->cells[grid_i * map->width + grid_j];
+ 557              		.loc 1 110 0 is_stmt 1
+ 558 0088 FB69     		ldr	r3, [r7, #28]
+ 559 008a DA68     		ldr	r2, [r3, #12]
+ 560 008c 7B6A     		ldr	r3, [r7, #36]
+ 561 008e 3968     		ldr	r1, [r7]
+ 562 0090 01FB03F1 		mul	r1, r1, r3
+ 563 0094 3B6A     		ldr	r3, [r7, #32]
+ 564 0096 0B44     		add	r3, r3, r1
+ 565 0098 9B00     		lsls	r3, r3, #2
+ 566 009a 1344     		add	r3, r3, r2
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc60T6yb.s 			page 13
+
+
+ 567 009c FA68     		ldr	r2, [r7, #12]
+ 568 009e D168     		ldr	r1, [r2, #12]
+ 569 00a0 FA68     		ldr	r2, [r7, #12]
+ 570 00a2 1268     		ldr	r2, [r2]
+ 571 00a4 B869     		ldr	r0, [r7, #24]
+ 572 00a6 00FB02F0 		mul	r0, r0, r2
+ 573 00aa 7A69     		ldr	r2, [r7, #20]
+ 574 00ac 0244     		add	r2, r2, r0
+ 575 00ae 9200     		lsls	r2, r2, #2
+ 576 00b0 0A44     		add	r2, r2, r1
+ 577 00b2 1268     		ldr	r2, [r2]
+ 578 00b4 1A60     		str	r2, [r3]
+ 579              	.L28:
+ 580              	.LBE9:
+ 102:VFH\src/histogram_grid.c **** 
+ 581              		.loc 1 102 0 discriminator 2
+ 582 00b6 3B6A     		ldr	r3, [r7, #32]
+ 583 00b8 0133     		adds	r3, r3, #1
+ 584 00ba 3B62     		str	r3, [r7, #32]
+ 585              	.L27:
+ 102:VFH\src/histogram_grid.c **** 
+ 586              		.loc 1 102 0 is_stmt 0 discriminator 1
+ 587 00bc 3A6A     		ldr	r2, [r7, #32]
+ 588 00be 3B68     		ldr	r3, [r7]
+ 589 00c0 9A42     		cmp	r2, r3
+ 590 00c2 B5DB     		blt	.L29
+ 591              	.LBE8:
+ 101:VFH\src/histogram_grid.c ****       for (int j = 0; j < dimension; ++j) {
+ 592              		.loc 1 101 0 is_stmt 1 discriminator 2
+ 593 00c4 7B6A     		ldr	r3, [r7, #36]
+ 594 00c6 0133     		adds	r3, r3, #1
+ 595 00c8 7B62     		str	r3, [r7, #36]
+ 596              	.L26:
+ 101:VFH\src/histogram_grid.c ****       for (int j = 0; j < dimension; ++j) {
+ 597              		.loc 1 101 0 is_stmt 0 discriminator 1
+ 598 00ca 7A6A     		ldr	r2, [r7, #36]
+ 599 00cc 3B68     		ldr	r3, [r7]
+ 600 00ce 9A42     		cmp	r2, r3
+ 601 00d0 ABDB     		blt	.L30
+ 602 00d2 04E0     		b	.L33
+ 603              	.L25:
+ 604              	.LBE7:
+ 111:VFH\src/histogram_grid.c ****         }
+ 112:VFH\src/histogram_grid.c ****       }
+ 113:VFH\src/histogram_grid.c ****     }
+ 114:VFH\src/histogram_grid.c ****   } else {
+ 115:VFH\src/histogram_grid.c ****     free(active);
+ 605              		.loc 1 115 0 is_stmt 1
+ 606 00d4 F869     		ldr	r0, [r7, #28]
+ 607 00d6 FFF7FEFF 		bl	free
+ 116:VFH\src/histogram_grid.c ****     return NULL;
+ 608              		.loc 1 116 0
+ 609 00da 0023     		movs	r3, #0
+ 610 00dc 00E0     		b	.L32
+ 611              	.L33:
+ 117:VFH\src/histogram_grid.c ****   }
+ 118:VFH\src/histogram_grid.c **** 
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc60T6yb.s 			page 14
+
+
+ 119:VFH\src/histogram_grid.c ****   return active;
+ 612              		.loc 1 119 0
+ 613 00de FB69     		ldr	r3, [r7, #28]
+ 614              	.L32:
+ 120:VFH\src/histogram_grid.c **** }
+ 615              		.loc 1 120 0
+ 616 00e0 1846     		mov	r0, r3
+ 617 00e2 2837     		adds	r7, r7, #40
+ 618              		.cfi_def_cfa_offset 8
+ 619 00e4 BD46     		mov	sp, r7
+ 620              		.cfi_def_cfa_register 13
+ 621              		@ sp needed
+ 622 00e6 80BD     		pop	{r7, pc}
+ 623              		.cfi_endproc
+ 624              	.LFE2:
+ 625              		.size	active_window, .-active_window
+ 626              		.text
+ 627              	.Letext0:
+ 628              		.file 2 ".\\VFH\\include/histogram_grid.h"
+ 629              		.section	.debug_info,"",%progbits
+ 630              	.Ldebug_info0:
+ 631 0000 3A030000 		.4byte	0x33a
+ 632 0004 0400     		.2byte	0x4
+ 633 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 634 000a 04       		.byte	0x4
+ 635 000b 01       		.uleb128 0x1
+ 636 000c 16000000 		.4byte	.LASF37
+ 637 0010 0C       		.byte	0xc
+ 638 0011 42010000 		.4byte	.LASF38
+ 639 0015 9F010000 		.4byte	.LASF39
+ 640 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 641 001d 00000000 		.4byte	0
+ 642 0021 00000000 		.4byte	.Ldebug_line0
+ 643 0025 02       		.uleb128 0x2
+ 644 0026 04       		.byte	0x4
+ 645 0027 05       		.byte	0x5
+ 646 0028 696E7400 		.ascii	"int\000"
+ 647 002c 03       		.uleb128 0x3
+ 648 002d 04       		.byte	0x4
+ 649 002e 07       		.byte	0x7
+ 650 002f 75010000 		.4byte	.LASF0
+ 651 0033 03       		.uleb128 0x3
+ 652 0034 08       		.byte	0x8
+ 653 0035 05       		.byte	0x5
+ 654 0036 F3010000 		.4byte	.LASF1
+ 655 003a 03       		.uleb128 0x3
+ 656 003b 08       		.byte	0x8
+ 657 003c 04       		.byte	0x4
+ 658 003d 34020000 		.4byte	.LASF2
+ 659 0041 03       		.uleb128 0x3
+ 660 0042 01       		.byte	0x1
+ 661 0043 06       		.byte	0x6
+ 662 0044 40020000 		.4byte	.LASF3
+ 663 0048 03       		.uleb128 0x3
+ 664 0049 01       		.byte	0x1
+ 665 004a 08       		.byte	0x8
+ 666 004b D5000000 		.4byte	.LASF4
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc60T6yb.s 			page 15
+
+
+ 667 004f 03       		.uleb128 0x3
+ 668 0050 02       		.byte	0x2
+ 669 0051 05       		.byte	0x5
+ 670 0052 38010000 		.4byte	.LASF5
+ 671 0056 03       		.uleb128 0x3
+ 672 0057 02       		.byte	0x2
+ 673 0058 07       		.byte	0x7
+ 674 0059 F5000000 		.4byte	.LASF6
+ 675 005d 03       		.uleb128 0x3
+ 676 005e 04       		.byte	0x4
+ 677 005f 05       		.byte	0x5
+ 678 0060 2B020000 		.4byte	.LASF7
+ 679 0064 03       		.uleb128 0x3
+ 680 0065 04       		.byte	0x4
+ 681 0066 07       		.byte	0x7
+ 682 0067 E3000000 		.4byte	.LASF8
+ 683 006b 03       		.uleb128 0x3
+ 684 006c 08       		.byte	0x8
+ 685 006d 07       		.byte	0x7
+ 686 006e 88010000 		.4byte	.LASF9
+ 687 0072 03       		.uleb128 0x3
+ 688 0073 04       		.byte	0x4
+ 689 0074 07       		.byte	0x7
+ 690 0075 E4010000 		.4byte	.LASF10
+ 691 0079 03       		.uleb128 0x3
+ 692 007a 01       		.byte	0x1
+ 693 007b 08       		.byte	0x8
+ 694 007c 01020000 		.4byte	.LASF11
+ 695 0080 03       		.uleb128 0x3
+ 696 0081 08       		.byte	0x8
+ 697 0082 04       		.byte	0x4
+ 698 0083 2B010000 		.4byte	.LASF12
+ 699 0087 03       		.uleb128 0x3
+ 700 0088 04       		.byte	0x4
+ 701 0089 04       		.byte	0x4
+ 702 008a CA000000 		.4byte	.LASF13
+ 703 008e 04       		.uleb128 0x4
+ 704 008f 10       		.byte	0x10
+ 705 0090 02       		.byte	0x2
+ 706 0091 18       		.byte	0x18
+ 707 0092 C7000000 		.4byte	0xc7
+ 708 0096 05       		.uleb128 0x5
+ 709 0097 0D020000 		.4byte	.LASF14
+ 710 009b 02       		.byte	0x2
+ 711 009c 19       		.byte	0x19
+ 712 009d 25000000 		.4byte	0x25
+ 713 00a1 00       		.byte	0
+ 714 00a2 05       		.uleb128 0x5
+ 715 00a3 16010000 		.4byte	.LASF15
+ 716 00a7 02       		.byte	0x2
+ 717 00a8 1A       		.byte	0x1a
+ 718 00a9 25000000 		.4byte	0x25
+ 719 00ad 04       		.byte	0x4
+ 720 00ae 05       		.uleb128 0x5
+ 721 00af 4C020000 		.4byte	.LASF16
+ 722 00b3 02       		.byte	0x2
+ 723 00b4 1B       		.byte	0x1b
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc60T6yb.s 			page 16
+
+
+ 724 00b5 25000000 		.4byte	0x25
+ 725 00b9 08       		.byte	0x8
+ 726 00ba 05       		.uleb128 0x5
+ 727 00bb B1000000 		.4byte	.LASF17
+ 728 00bf 02       		.byte	0x2
+ 729 00c0 1C       		.byte	0x1c
+ 730 00c1 C7000000 		.4byte	0xc7
+ 731 00c5 0C       		.byte	0xc
+ 732 00c6 00       		.byte	0
+ 733 00c7 06       		.uleb128 0x6
+ 734 00c8 04       		.byte	0x4
+ 735 00c9 64000000 		.4byte	0x64
+ 736 00cd 07       		.uleb128 0x7
+ 737 00ce 26020000 		.4byte	.LASF20
+ 738 00d2 02       		.byte	0x2
+ 739 00d3 1D       		.byte	0x1d
+ 740 00d4 8E000000 		.4byte	0x8e
+ 741 00d8 04       		.uleb128 0x4
+ 742 00d9 28       		.byte	0x28
+ 743 00da 02       		.byte	0x2
+ 744 00db 24       		.byte	0x24
+ 745 00dc F9000000 		.4byte	0xf9
+ 746 00e0 05       		.uleb128 0x5
+ 747 00e1 B7000000 		.4byte	.LASF18
+ 748 00e5 02       		.byte	0x2
+ 749 00e6 25       		.byte	0x25
+ 750 00e7 F9000000 		.4byte	0xf9
+ 751 00eb 00       		.byte	0
+ 752 00ec 05       		.uleb128 0x5
+ 753 00ed C1000000 		.4byte	.LASF19
+ 754 00f1 02       		.byte	0x2
+ 755 00f2 26       		.byte	0x26
+ 756 00f3 09010000 		.4byte	0x109
+ 757 00f7 14       		.byte	0x14
+ 758 00f8 00       		.byte	0
+ 759 00f9 08       		.uleb128 0x8
+ 760 00fa 25000000 		.4byte	0x25
+ 761 00fe 09010000 		.4byte	0x109
+ 762 0102 09       		.uleb128 0x9
+ 763 0103 72000000 		.4byte	0x72
+ 764 0107 04       		.byte	0x4
+ 765 0108 00       		.byte	0
+ 766 0109 08       		.uleb128 0x8
+ 767 010a 64000000 		.4byte	0x64
+ 768 010e 19010000 		.4byte	0x119
+ 769 0112 09       		.uleb128 0x9
+ 770 0113 72000000 		.4byte	0x72
+ 771 0117 04       		.byte	0x4
+ 772 0118 00       		.byte	0
+ 773 0119 07       		.uleb128 0x7
+ 774 011a 69010000 		.4byte	.LASF21
+ 775 011e 02       		.byte	0x2
+ 776 011f 27       		.byte	0x27
+ 777 0120 D8000000 		.4byte	0xd8
+ 778 0124 0A       		.uleb128 0xa
+ 779 0125 13020000 		.4byte	.LASF22
+ 780 0129 01       		.byte	0x1
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc60T6yb.s 			page 17
+
+
+ 781 012a 09       		.byte	0x9
+ 782 012b A2010000 		.4byte	0x1a2
+ 783 012f 00000000 		.4byte	.LFB0
+ 784 0133 B0000000 		.4byte	.LFE0-.LFB0
+ 785 0137 01       		.uleb128 0x1
+ 786 0138 9C       		.byte	0x9c
+ 787 0139 A2010000 		.4byte	0x1a2
+ 788 013d 0B       		.uleb128 0xb
+ 789 013e 0D020000 		.4byte	.LASF14
+ 790 0142 01       		.byte	0x1
+ 791 0143 09       		.byte	0x9
+ 792 0144 25000000 		.4byte	0x25
+ 793 0148 02       		.uleb128 0x2
+ 794 0149 91       		.byte	0x91
+ 795 014a 64       		.sleb128 -28
+ 796 014b 0B       		.uleb128 0xb
+ 797 014c 16010000 		.4byte	.LASF15
+ 798 0150 01       		.byte	0x1
+ 799 0151 09       		.byte	0x9
+ 800 0152 25000000 		.4byte	0x25
+ 801 0156 02       		.uleb128 0x2
+ 802 0157 91       		.byte	0x91
+ 803 0158 60       		.sleb128 -32
+ 804 0159 0B       		.uleb128 0xb
+ 805 015a 4C020000 		.4byte	.LASF16
+ 806 015e 01       		.byte	0x1
+ 807 015f 09       		.byte	0x9
+ 808 0160 25000000 		.4byte	0x25
+ 809 0164 02       		.uleb128 0x2
+ 810 0165 91       		.byte	0x91
+ 811 0166 5C       		.sleb128 -36
+ 812 0167 0C       		.uleb128 0xc
+ 813 0168 6D617000 		.ascii	"map\000"
+ 814 016c 01       		.byte	0x1
+ 815 016d 0E       		.byte	0xe
+ 816 016e A2010000 		.4byte	0x1a2
+ 817 0172 02       		.uleb128 0x2
+ 818 0173 91       		.byte	0x91
+ 819 0174 6C       		.sleb128 -20
+ 820 0175 0D       		.uleb128 0xd
+ 821 0176 66000000 		.4byte	.LBB2
+ 822 017a 40000000 		.4byte	.LBE2-.LBB2
+ 823 017e 0C       		.uleb128 0xc
+ 824 017f 6900     		.ascii	"i\000"
+ 825 0181 01       		.byte	0x1
+ 826 0182 23       		.byte	0x23
+ 827 0183 25000000 		.4byte	0x25
+ 828 0187 02       		.uleb128 0x2
+ 829 0188 91       		.byte	0x91
+ 830 0189 74       		.sleb128 -12
+ 831 018a 0D       		.uleb128 0xd
+ 832 018b 6C000000 		.4byte	.LBB3
+ 833 018f 2C000000 		.4byte	.LBE3-.LBB3
+ 834 0193 0C       		.uleb128 0xc
+ 835 0194 6A00     		.ascii	"j\000"
+ 836 0196 01       		.byte	0x1
+ 837 0197 24       		.byte	0x24
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc60T6yb.s 			page 18
+
+
+ 838 0198 25000000 		.4byte	0x25
+ 839 019c 02       		.uleb128 0x2
+ 840 019d 91       		.byte	0x91
+ 841 019e 70       		.sleb128 -16
+ 842 019f 00       		.byte	0
+ 843 01a0 00       		.byte	0
+ 844 01a1 00       		.byte	0
+ 845 01a2 06       		.uleb128 0x6
+ 846 01a3 04       		.byte	0x4
+ 847 01a4 CD000000 		.4byte	0xcd
+ 848 01a8 0A       		.uleb128 0xa
+ 849 01a9 00000000 		.4byte	.LASF23
+ 850 01ad 01       		.byte	0x1
+ 851 01ae 2C       		.byte	0x2c
+ 852 01af 25000000 		.4byte	0x25
+ 853 01b3 00000000 		.4byte	.LFB1
+ 854 01b7 2C020000 		.4byte	.LFE1-.LFB1
+ 855 01bb 01       		.uleb128 0x1
+ 856 01bc 9C       		.byte	0x9c
+ 857 01bd 7F020000 		.4byte	0x27f
+ 858 01c1 0E       		.uleb128 0xe
+ 859 01c2 6D617000 		.ascii	"map\000"
+ 860 01c6 01       		.byte	0x1
+ 861 01c7 2C       		.byte	0x2c
+ 862 01c8 A2010000 		.4byte	0x1a2
+ 863 01cc 03       		.uleb128 0x3
+ 864 01cd 91       		.byte	0x91
+ 865 01ce A47F     		.sleb128 -92
+ 866 01d0 0B       		.uleb128 0xb
+ 867 01d1 ED010000 		.4byte	.LASF24
+ 868 01d5 01       		.byte	0x1
+ 869 01d6 2C       		.byte	0x2c
+ 870 01d7 25000000 		.4byte	0x25
+ 871 01db 03       		.uleb128 0x3
+ 872 01dc 91       		.byte	0x91
+ 873 01dd A07F     		.sleb128 -96
+ 874 01df 0B       		.uleb128 0xb
+ 875 01e0 82010000 		.4byte	.LASF25
+ 876 01e4 01       		.byte	0x1
+ 877 01e5 2C       		.byte	0x2c
+ 878 01e6 25000000 		.4byte	0x25
+ 879 01ea 03       		.uleb128 0x3
+ 880 01eb 91       		.byte	0x91
+ 881 01ec 9C7F     		.sleb128 -100
+ 882 01ee 0E       		.uleb128 0xe
+ 883 01ef 79617700 		.ascii	"yaw\000"
+ 884 01f3 01       		.byte	0x1
+ 885 01f4 2C       		.byte	0x2c
+ 886 01f5 25000000 		.4byte	0x25
+ 887 01f9 03       		.uleb128 0x3
+ 888 01fa 91       		.byte	0x91
+ 889 01fb 987F     		.sleb128 -104
+ 890 01fd 0B       		.uleb128 0xb
+ 891 01fe D0000000 		.4byte	.LASF26
+ 892 0202 01       		.byte	0x1
+ 893 0203 2C       		.byte	0x2c
+ 894 0204 19010000 		.4byte	0x119
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc60T6yb.s 			page 19
+
+
+ 895 0208 02       		.uleb128 0x2
+ 896 0209 91       		.byte	0x91
+ 897 020a 00       		.sleb128 0
+ 898 020b 0F       		.uleb128 0xf
+ 899 020c 08010000 		.4byte	.LASF27
+ 900 0210 01       		.byte	0x1
+ 901 0211 39       		.byte	0x39
+ 902 0212 7F020000 		.4byte	0x27f
+ 903 0216 03       		.uleb128 0x3
+ 904 0217 91       		.byte	0x91
+ 905 0218 A87F     		.sleb128 -88
+ 906 021a 0F       		.uleb128 0xf
+ 907 021b AB000000 		.4byte	.LASF28
+ 908 021f 01       		.byte	0x1
+ 909 0220 3E       		.byte	0x3e
+ 910 0221 25000000 		.4byte	0x25
+ 911 0225 02       		.uleb128 0x2
+ 912 0226 91       		.byte	0x91
+ 913 0227 60       		.sleb128 -32
+ 914 0228 10       		.uleb128 0x10
+ 915 0229 24000000 		.4byte	.LBB4
+ 916 022d 42000000 		.4byte	.LBE4-.LBB4
+ 917 0231 42020000 		.4byte	0x242
+ 918 0235 0C       		.uleb128 0xc
+ 919 0236 6900     		.ascii	"i\000"
+ 920 0238 01       		.byte	0x1
+ 921 0239 3A       		.byte	0x3a
+ 922 023a 25000000 		.4byte	0x25
+ 923 023e 02       		.uleb128 0x2
+ 924 023f 91       		.byte	0x91
+ 925 0240 64       		.sleb128 -28
+ 926 0241 00       		.byte	0
+ 927 0242 0D       		.uleb128 0xd
+ 928 0243 66000000 		.4byte	.LBB5
+ 929 0247 AC010000 		.4byte	.LBE5-.LBB5
+ 930 024b 0C       		.uleb128 0xc
+ 931 024c 6900     		.ascii	"i\000"
+ 932 024e 01       		.byte	0x1
+ 933 024f 40       		.byte	0x40
+ 934 0250 25000000 		.4byte	0x25
+ 935 0254 02       		.uleb128 0x2
+ 936 0255 91       		.byte	0x91
+ 937 0256 5C       		.sleb128 -36
+ 938 0257 0D       		.uleb128 0xd
+ 939 0258 6C000000 		.4byte	.LBB6
+ 940 025c 98010000 		.4byte	.LBE6-.LBB6
+ 941 0260 0F       		.uleb128 0xf
+ 942 0261 32010000 		.4byte	.LASF29
+ 943 0265 01       		.byte	0x1
+ 944 0266 49       		.byte	0x49
+ 945 0267 25000000 		.4byte	0x25
+ 946 026b 02       		.uleb128 0x2
+ 947 026c 91       		.byte	0x91
+ 948 026d 58       		.sleb128 -40
+ 949 026e 0F       		.uleb128 0xf
+ 950 026f 20020000 		.4byte	.LASF30
+ 951 0273 01       		.byte	0x1
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc60T6yb.s 			page 20
+
+
+ 952 0274 4A       		.byte	0x4a
+ 953 0275 25000000 		.4byte	0x25
+ 954 0279 02       		.uleb128 0x2
+ 955 027a 91       		.byte	0x91
+ 956 027b 54       		.sleb128 -44
+ 957 027c 00       		.byte	0
+ 958 027d 00       		.byte	0
+ 959 027e 00       		.byte	0
+ 960 027f 08       		.uleb128 0x8
+ 961 0280 80000000 		.4byte	0x80
+ 962 0284 8F020000 		.4byte	0x28f
+ 963 0288 09       		.uleb128 0x9
+ 964 0289 72000000 		.4byte	0x72
+ 965 028d 04       		.byte	0x4
+ 966 028e 00       		.byte	0
+ 967 028f 11       		.uleb128 0x11
+ 968 0290 5B010000 		.4byte	.LASF40
+ 969 0294 01       		.byte	0x1
+ 970 0295 56       		.byte	0x56
+ 971 0296 A2010000 		.4byte	0x1a2
+ 972 029a 00000000 		.4byte	.LFB2
+ 973 029e E8000000 		.4byte	.LFE2-.LFB2
+ 974 02a2 01       		.uleb128 0x1
+ 975 02a3 9C       		.byte	0x9c
+ 976 02a4 0E       		.uleb128 0xe
+ 977 02a5 6D617000 		.ascii	"map\000"
+ 978 02a9 01       		.byte	0x1
+ 979 02aa 56       		.byte	0x56
+ 980 02ab A2010000 		.4byte	0x1a2
+ 981 02af 02       		.uleb128 0x2
+ 982 02b0 91       		.byte	0x91
+ 983 02b1 5C       		.sleb128 -36
+ 984 02b2 0B       		.uleb128 0xb
+ 985 02b3 06020000 		.4byte	.LASF31
+ 986 02b7 01       		.byte	0x1
+ 987 02b8 56       		.byte	0x56
+ 988 02b9 25000000 		.4byte	0x25
+ 989 02bd 02       		.uleb128 0x2
+ 990 02be 91       		.byte	0x91
+ 991 02bf 58       		.sleb128 -40
+ 992 02c0 0B       		.uleb128 0xb
+ 993 02c1 57020000 		.4byte	.LASF32
+ 994 02c5 01       		.byte	0x1
+ 995 02c6 56       		.byte	0x56
+ 996 02c7 25000000 		.4byte	0x25
+ 997 02cb 02       		.uleb128 0x2
+ 998 02cc 91       		.byte	0x91
+ 999 02cd 54       		.sleb128 -44
+ 1000 02ce 0B       		.uleb128 0xb
+ 1001 02cf 0C000000 		.4byte	.LASF33
+ 1002 02d3 01       		.byte	0x1
+ 1003 02d4 56       		.byte	0x56
+ 1004 02d5 25000000 		.4byte	0x25
+ 1005 02d9 02       		.uleb128 0x2
+ 1006 02da 91       		.byte	0x91
+ 1007 02db 50       		.sleb128 -48
+ 1008 02dc 0F       		.uleb128 0xf
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc60T6yb.s 			page 21
+
+
+ 1009 02dd A4000000 		.4byte	.LASF34
+ 1010 02e1 01       		.byte	0x1
+ 1011 02e2 5C       		.byte	0x5c
+ 1012 02e3 A2010000 		.4byte	0x1a2
+ 1013 02e7 02       		.uleb128 0x2
+ 1014 02e8 91       		.byte	0x91
+ 1015 02e9 6C       		.sleb128 -20
+ 1016 02ea 0D       		.uleb128 0xd
+ 1017 02eb 24000000 		.4byte	.LBB7
+ 1018 02ef B0000000 		.4byte	.LBE7-.LBB7
+ 1019 02f3 0C       		.uleb128 0xc
+ 1020 02f4 6900     		.ascii	"i\000"
+ 1021 02f6 01       		.byte	0x1
+ 1022 02f7 65       		.byte	0x65
+ 1023 02f8 25000000 		.4byte	0x25
+ 1024 02fc 02       		.uleb128 0x2
+ 1025 02fd 91       		.byte	0x91
+ 1026 02fe 74       		.sleb128 -12
+ 1027 02ff 0D       		.uleb128 0xd
+ 1028 0300 2A000000 		.4byte	.LBB8
+ 1029 0304 9A000000 		.4byte	.LBE8-.LBB8
+ 1030 0308 0C       		.uleb128 0xc
+ 1031 0309 6A00     		.ascii	"j\000"
+ 1032 030b 01       		.byte	0x1
+ 1033 030c 66       		.byte	0x66
+ 1034 030d 25000000 		.4byte	0x25
+ 1035 0311 02       		.uleb128 0x2
+ 1036 0312 91       		.byte	0x91
+ 1037 0313 70       		.sleb128 -16
+ 1038 0314 0D       		.uleb128 0xd
+ 1039 0315 30000000 		.4byte	.LBB9
+ 1040 0319 86000000 		.4byte	.LBE9-.LBB9
+ 1041 031d 0F       		.uleb128 0xf
+ 1042 031e 1D010000 		.4byte	.LASF35
+ 1043 0322 01       		.byte	0x1
+ 1044 0323 69       		.byte	0x69
+ 1045 0324 25000000 		.4byte	0x25
+ 1046 0328 02       		.uleb128 0x2
+ 1047 0329 91       		.byte	0x91
+ 1048 032a 68       		.sleb128 -24
+ 1049 032b 0F       		.uleb128 0xf
+ 1050 032c 24010000 		.4byte	.LASF36
+ 1051 0330 01       		.byte	0x1
+ 1052 0331 6A       		.byte	0x6a
+ 1053 0332 25000000 		.4byte	0x25
+ 1054 0336 02       		.uleb128 0x2
+ 1055 0337 91       		.byte	0x91
+ 1056 0338 64       		.sleb128 -28
+ 1057 0339 00       		.byte	0
+ 1058 033a 00       		.byte	0
+ 1059 033b 00       		.byte	0
+ 1060 033c 00       		.byte	0
+ 1061 033d 00       		.byte	0
+ 1062              		.section	.debug_abbrev,"",%progbits
+ 1063              	.Ldebug_abbrev0:
+ 1064 0000 01       		.uleb128 0x1
+ 1065 0001 11       		.uleb128 0x11
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc60T6yb.s 			page 22
+
+
+ 1066 0002 01       		.byte	0x1
+ 1067 0003 25       		.uleb128 0x25
+ 1068 0004 0E       		.uleb128 0xe
+ 1069 0005 13       		.uleb128 0x13
+ 1070 0006 0B       		.uleb128 0xb
+ 1071 0007 03       		.uleb128 0x3
+ 1072 0008 0E       		.uleb128 0xe
+ 1073 0009 1B       		.uleb128 0x1b
+ 1074 000a 0E       		.uleb128 0xe
+ 1075 000b 55       		.uleb128 0x55
+ 1076 000c 17       		.uleb128 0x17
+ 1077 000d 11       		.uleb128 0x11
+ 1078 000e 01       		.uleb128 0x1
+ 1079 000f 10       		.uleb128 0x10
+ 1080 0010 17       		.uleb128 0x17
+ 1081 0011 00       		.byte	0
+ 1082 0012 00       		.byte	0
+ 1083 0013 02       		.uleb128 0x2
+ 1084 0014 24       		.uleb128 0x24
+ 1085 0015 00       		.byte	0
+ 1086 0016 0B       		.uleb128 0xb
+ 1087 0017 0B       		.uleb128 0xb
+ 1088 0018 3E       		.uleb128 0x3e
+ 1089 0019 0B       		.uleb128 0xb
+ 1090 001a 03       		.uleb128 0x3
+ 1091 001b 08       		.uleb128 0x8
+ 1092 001c 00       		.byte	0
+ 1093 001d 00       		.byte	0
+ 1094 001e 03       		.uleb128 0x3
+ 1095 001f 24       		.uleb128 0x24
+ 1096 0020 00       		.byte	0
+ 1097 0021 0B       		.uleb128 0xb
+ 1098 0022 0B       		.uleb128 0xb
+ 1099 0023 3E       		.uleb128 0x3e
+ 1100 0024 0B       		.uleb128 0xb
+ 1101 0025 03       		.uleb128 0x3
+ 1102 0026 0E       		.uleb128 0xe
+ 1103 0027 00       		.byte	0
+ 1104 0028 00       		.byte	0
+ 1105 0029 04       		.uleb128 0x4
+ 1106 002a 13       		.uleb128 0x13
+ 1107 002b 01       		.byte	0x1
+ 1108 002c 0B       		.uleb128 0xb
+ 1109 002d 0B       		.uleb128 0xb
+ 1110 002e 3A       		.uleb128 0x3a
+ 1111 002f 0B       		.uleb128 0xb
+ 1112 0030 3B       		.uleb128 0x3b
+ 1113 0031 0B       		.uleb128 0xb
+ 1114 0032 01       		.uleb128 0x1
+ 1115 0033 13       		.uleb128 0x13
+ 1116 0034 00       		.byte	0
+ 1117 0035 00       		.byte	0
+ 1118 0036 05       		.uleb128 0x5
+ 1119 0037 0D       		.uleb128 0xd
+ 1120 0038 00       		.byte	0
+ 1121 0039 03       		.uleb128 0x3
+ 1122 003a 0E       		.uleb128 0xe
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc60T6yb.s 			page 23
+
+
+ 1123 003b 3A       		.uleb128 0x3a
+ 1124 003c 0B       		.uleb128 0xb
+ 1125 003d 3B       		.uleb128 0x3b
+ 1126 003e 0B       		.uleb128 0xb
+ 1127 003f 49       		.uleb128 0x49
+ 1128 0040 13       		.uleb128 0x13
+ 1129 0041 38       		.uleb128 0x38
+ 1130 0042 0B       		.uleb128 0xb
+ 1131 0043 00       		.byte	0
+ 1132 0044 00       		.byte	0
+ 1133 0045 06       		.uleb128 0x6
+ 1134 0046 0F       		.uleb128 0xf
+ 1135 0047 00       		.byte	0
+ 1136 0048 0B       		.uleb128 0xb
+ 1137 0049 0B       		.uleb128 0xb
+ 1138 004a 49       		.uleb128 0x49
+ 1139 004b 13       		.uleb128 0x13
+ 1140 004c 00       		.byte	0
+ 1141 004d 00       		.byte	0
+ 1142 004e 07       		.uleb128 0x7
+ 1143 004f 16       		.uleb128 0x16
+ 1144 0050 00       		.byte	0
+ 1145 0051 03       		.uleb128 0x3
+ 1146 0052 0E       		.uleb128 0xe
+ 1147 0053 3A       		.uleb128 0x3a
+ 1148 0054 0B       		.uleb128 0xb
+ 1149 0055 3B       		.uleb128 0x3b
+ 1150 0056 0B       		.uleb128 0xb
+ 1151 0057 49       		.uleb128 0x49
+ 1152 0058 13       		.uleb128 0x13
+ 1153 0059 00       		.byte	0
+ 1154 005a 00       		.byte	0
+ 1155 005b 08       		.uleb128 0x8
+ 1156 005c 01       		.uleb128 0x1
+ 1157 005d 01       		.byte	0x1
+ 1158 005e 49       		.uleb128 0x49
+ 1159 005f 13       		.uleb128 0x13
+ 1160 0060 01       		.uleb128 0x1
+ 1161 0061 13       		.uleb128 0x13
+ 1162 0062 00       		.byte	0
+ 1163 0063 00       		.byte	0
+ 1164 0064 09       		.uleb128 0x9
+ 1165 0065 21       		.uleb128 0x21
+ 1166 0066 00       		.byte	0
+ 1167 0067 49       		.uleb128 0x49
+ 1168 0068 13       		.uleb128 0x13
+ 1169 0069 2F       		.uleb128 0x2f
+ 1170 006a 0B       		.uleb128 0xb
+ 1171 006b 00       		.byte	0
+ 1172 006c 00       		.byte	0
+ 1173 006d 0A       		.uleb128 0xa
+ 1174 006e 2E       		.uleb128 0x2e
+ 1175 006f 01       		.byte	0x1
+ 1176 0070 3F       		.uleb128 0x3f
+ 1177 0071 19       		.uleb128 0x19
+ 1178 0072 03       		.uleb128 0x3
+ 1179 0073 0E       		.uleb128 0xe
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc60T6yb.s 			page 24
+
+
+ 1180 0074 3A       		.uleb128 0x3a
+ 1181 0075 0B       		.uleb128 0xb
+ 1182 0076 3B       		.uleb128 0x3b
+ 1183 0077 0B       		.uleb128 0xb
+ 1184 0078 27       		.uleb128 0x27
+ 1185 0079 19       		.uleb128 0x19
+ 1186 007a 49       		.uleb128 0x49
+ 1187 007b 13       		.uleb128 0x13
+ 1188 007c 11       		.uleb128 0x11
+ 1189 007d 01       		.uleb128 0x1
+ 1190 007e 12       		.uleb128 0x12
+ 1191 007f 06       		.uleb128 0x6
+ 1192 0080 40       		.uleb128 0x40
+ 1193 0081 18       		.uleb128 0x18
+ 1194 0082 9642     		.uleb128 0x2116
+ 1195 0084 19       		.uleb128 0x19
+ 1196 0085 01       		.uleb128 0x1
+ 1197 0086 13       		.uleb128 0x13
+ 1198 0087 00       		.byte	0
+ 1199 0088 00       		.byte	0
+ 1200 0089 0B       		.uleb128 0xb
+ 1201 008a 05       		.uleb128 0x5
+ 1202 008b 00       		.byte	0
+ 1203 008c 03       		.uleb128 0x3
+ 1204 008d 0E       		.uleb128 0xe
+ 1205 008e 3A       		.uleb128 0x3a
+ 1206 008f 0B       		.uleb128 0xb
+ 1207 0090 3B       		.uleb128 0x3b
+ 1208 0091 0B       		.uleb128 0xb
+ 1209 0092 49       		.uleb128 0x49
+ 1210 0093 13       		.uleb128 0x13
+ 1211 0094 02       		.uleb128 0x2
+ 1212 0095 18       		.uleb128 0x18
+ 1213 0096 00       		.byte	0
+ 1214 0097 00       		.byte	0
+ 1215 0098 0C       		.uleb128 0xc
+ 1216 0099 34       		.uleb128 0x34
+ 1217 009a 00       		.byte	0
+ 1218 009b 03       		.uleb128 0x3
+ 1219 009c 08       		.uleb128 0x8
+ 1220 009d 3A       		.uleb128 0x3a
+ 1221 009e 0B       		.uleb128 0xb
+ 1222 009f 3B       		.uleb128 0x3b
+ 1223 00a0 0B       		.uleb128 0xb
+ 1224 00a1 49       		.uleb128 0x49
+ 1225 00a2 13       		.uleb128 0x13
+ 1226 00a3 02       		.uleb128 0x2
+ 1227 00a4 18       		.uleb128 0x18
+ 1228 00a5 00       		.byte	0
+ 1229 00a6 00       		.byte	0
+ 1230 00a7 0D       		.uleb128 0xd
+ 1231 00a8 0B       		.uleb128 0xb
+ 1232 00a9 01       		.byte	0x1
+ 1233 00aa 11       		.uleb128 0x11
+ 1234 00ab 01       		.uleb128 0x1
+ 1235 00ac 12       		.uleb128 0x12
+ 1236 00ad 06       		.uleb128 0x6
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc60T6yb.s 			page 25
+
+
+ 1237 00ae 00       		.byte	0
+ 1238 00af 00       		.byte	0
+ 1239 00b0 0E       		.uleb128 0xe
+ 1240 00b1 05       		.uleb128 0x5
+ 1241 00b2 00       		.byte	0
+ 1242 00b3 03       		.uleb128 0x3
+ 1243 00b4 08       		.uleb128 0x8
+ 1244 00b5 3A       		.uleb128 0x3a
+ 1245 00b6 0B       		.uleb128 0xb
+ 1246 00b7 3B       		.uleb128 0x3b
+ 1247 00b8 0B       		.uleb128 0xb
+ 1248 00b9 49       		.uleb128 0x49
+ 1249 00ba 13       		.uleb128 0x13
+ 1250 00bb 02       		.uleb128 0x2
+ 1251 00bc 18       		.uleb128 0x18
+ 1252 00bd 00       		.byte	0
+ 1253 00be 00       		.byte	0
+ 1254 00bf 0F       		.uleb128 0xf
+ 1255 00c0 34       		.uleb128 0x34
+ 1256 00c1 00       		.byte	0
+ 1257 00c2 03       		.uleb128 0x3
+ 1258 00c3 0E       		.uleb128 0xe
+ 1259 00c4 3A       		.uleb128 0x3a
+ 1260 00c5 0B       		.uleb128 0xb
+ 1261 00c6 3B       		.uleb128 0x3b
+ 1262 00c7 0B       		.uleb128 0xb
+ 1263 00c8 49       		.uleb128 0x49
+ 1264 00c9 13       		.uleb128 0x13
+ 1265 00ca 02       		.uleb128 0x2
+ 1266 00cb 18       		.uleb128 0x18
+ 1267 00cc 00       		.byte	0
+ 1268 00cd 00       		.byte	0
+ 1269 00ce 10       		.uleb128 0x10
+ 1270 00cf 0B       		.uleb128 0xb
+ 1271 00d0 01       		.byte	0x1
+ 1272 00d1 11       		.uleb128 0x11
+ 1273 00d2 01       		.uleb128 0x1
+ 1274 00d3 12       		.uleb128 0x12
+ 1275 00d4 06       		.uleb128 0x6
+ 1276 00d5 01       		.uleb128 0x1
+ 1277 00d6 13       		.uleb128 0x13
+ 1278 00d7 00       		.byte	0
+ 1279 00d8 00       		.byte	0
+ 1280 00d9 11       		.uleb128 0x11
+ 1281 00da 2E       		.uleb128 0x2e
+ 1282 00db 01       		.byte	0x1
+ 1283 00dc 3F       		.uleb128 0x3f
+ 1284 00dd 19       		.uleb128 0x19
+ 1285 00de 03       		.uleb128 0x3
+ 1286 00df 0E       		.uleb128 0xe
+ 1287 00e0 3A       		.uleb128 0x3a
+ 1288 00e1 0B       		.uleb128 0xb
+ 1289 00e2 3B       		.uleb128 0x3b
+ 1290 00e3 0B       		.uleb128 0xb
+ 1291 00e4 27       		.uleb128 0x27
+ 1292 00e5 19       		.uleb128 0x19
+ 1293 00e6 49       		.uleb128 0x49
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc60T6yb.s 			page 26
+
+
+ 1294 00e7 13       		.uleb128 0x13
+ 1295 00e8 11       		.uleb128 0x11
+ 1296 00e9 01       		.uleb128 0x1
+ 1297 00ea 12       		.uleb128 0x12
+ 1298 00eb 06       		.uleb128 0x6
+ 1299 00ec 40       		.uleb128 0x40
+ 1300 00ed 18       		.uleb128 0x18
+ 1301 00ee 9642     		.uleb128 0x2116
+ 1302 00f0 19       		.uleb128 0x19
+ 1303 00f1 00       		.byte	0
+ 1304 00f2 00       		.byte	0
+ 1305 00f3 00       		.byte	0
+ 1306              		.section	.debug_aranges,"",%progbits
+ 1307 0000 2C000000 		.4byte	0x2c
+ 1308 0004 0200     		.2byte	0x2
+ 1309 0006 00000000 		.4byte	.Ldebug_info0
+ 1310 000a 04       		.byte	0x4
+ 1311 000b 00       		.byte	0
+ 1312 000c 0000     		.2byte	0
+ 1313 000e 0000     		.2byte	0
+ 1314 0010 00000000 		.4byte	.LFB0
+ 1315 0014 B0000000 		.4byte	.LFE0-.LFB0
+ 1316 0018 00000000 		.4byte	.LFB1
+ 1317 001c 2C020000 		.4byte	.LFE1-.LFB1
+ 1318 0020 00000000 		.4byte	.LFB2
+ 1319 0024 E8000000 		.4byte	.LFE2-.LFB2
+ 1320 0028 00000000 		.4byte	0
+ 1321 002c 00000000 		.4byte	0
+ 1322              		.section	.debug_ranges,"",%progbits
+ 1323              	.Ldebug_ranges0:
+ 1324 0000 00000000 		.4byte	.LFB0
+ 1325 0004 B0000000 		.4byte	.LFE0
+ 1326 0008 00000000 		.4byte	.LFB1
+ 1327 000c 2C020000 		.4byte	.LFE1
+ 1328 0010 00000000 		.4byte	.LFB2
+ 1329 0014 E8000000 		.4byte	.LFE2
+ 1330 0018 00000000 		.4byte	0
+ 1331 001c 00000000 		.4byte	0
+ 1332              		.section	.debug_line,"",%progbits
+ 1333              	.Ldebug_line0:
+ 1334 0000 44010000 		.section	.debug_str,"MS",%progbits,1
+ 1334      02005100 
+ 1334      00000201 
+ 1334      FB0E0D00 
+ 1334      01010101 
+ 1335              	.LASF23:
+ 1336 0000 75706461 		.ascii	"update_grid\000"
+ 1336      74655F67 
+ 1336      72696400 
+ 1337              	.LASF33:
+ 1338 000c 64696D65 		.ascii	"dimension\000"
+ 1338      6E73696F 
+ 1338      6E00
+ 1339              	.LASF37:
+ 1340 0016 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1340      43313120 
+ 1340      352E342E 
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc60T6yb.s 			page 27
+
+
+ 1340      31203230 
+ 1340      31363036 
+ 1341 0049 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1341      20726576 
+ 1341      6973696F 
+ 1341      6E203233 
+ 1341      37373135 
+ 1342 007c 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 1342      66756E63 
+ 1342      74696F6E 
+ 1342      2D736563 
+ 1342      74696F6E 
+ 1343              	.LASF34:
+ 1344 00a4 61637469 		.ascii	"active\000"
+ 1344      766500
+ 1345              	.LASF28:
+ 1346 00ab 74686574 		.ascii	"theta\000"
+ 1346      6100
+ 1347              	.LASF17:
+ 1348 00b1 63656C6C 		.ascii	"cells\000"
+ 1348      7300
+ 1349              	.LASF18:
+ 1350 00b7 64697265 		.ascii	"direction\000"
+ 1350      6374696F 
+ 1350      6E00
+ 1351              	.LASF19:
+ 1352 00c1 64697374 		.ascii	"distance\000"
+ 1352      616E6365 
+ 1352      00
+ 1353              	.LASF13:
+ 1354 00ca 666C6F61 		.ascii	"float\000"
+ 1354      7400
+ 1355              	.LASF26:
+ 1356 00d0 64617461 		.ascii	"data\000"
+ 1356      00
+ 1357              	.LASF4:
+ 1358 00d5 756E7369 		.ascii	"unsigned char\000"
+ 1358      676E6564 
+ 1358      20636861 
+ 1358      7200
+ 1359              	.LASF8:
+ 1360 00e3 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1360      20756E73 
+ 1360      69676E65 
+ 1360      6420696E 
+ 1360      7400
+ 1361              	.LASF6:
+ 1362 00f5 73686F72 		.ascii	"short unsigned int\000"
+ 1362      7420756E 
+ 1362      7369676E 
+ 1362      65642069 
+ 1362      6E7400
+ 1363              	.LASF27:
+ 1364 0108 63656C6C 		.ascii	"cell_distance\000"
+ 1364      5F646973 
+ 1364      74616E63 
+ 1364      6500
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc60T6yb.s 			page 28
+
+
+ 1365              	.LASF15:
+ 1366 0116 68656967 		.ascii	"height\000"
+ 1366      687400
+ 1367              	.LASF35:
+ 1368 011d 67726964 		.ascii	"grid_i\000"
+ 1368      5F6900
+ 1369              	.LASF36:
+ 1370 0124 67726964 		.ascii	"grid_j\000"
+ 1370      5F6A00
+ 1371              	.LASF12:
+ 1372 012b 646F7562 		.ascii	"double\000"
+ 1372      6C6500
+ 1373              	.LASF29:
+ 1374 0132 6E65775F 		.ascii	"new_x\000"
+ 1374      7800
+ 1375              	.LASF5:
+ 1376 0138 73686F72 		.ascii	"short int\000"
+ 1376      7420696E 
+ 1376      7400
+ 1377              	.LASF38:
+ 1378 0142 5646485C 		.ascii	"VFH\\src\\histogram_grid.c\000"
+ 1378      7372635C 
+ 1378      68697374 
+ 1378      6F677261 
+ 1378      6D5F6772 
+ 1379              	.LASF40:
+ 1380 015b 61637469 		.ascii	"active_window\000"
+ 1380      76655F77 
+ 1380      696E646F 
+ 1380      7700
+ 1381              	.LASF21:
+ 1382 0169 73656E73 		.ascii	"sensor_data\000"
+ 1382      6F725F64 
+ 1382      61746100 
+ 1383              	.LASF0:
+ 1384 0175 756E7369 		.ascii	"unsigned int\000"
+ 1384      676E6564 
+ 1384      20696E74 
+ 1384      00
+ 1385              	.LASF25:
+ 1386 0182 706F735F 		.ascii	"pos_y\000"
+ 1386      7900
+ 1387              	.LASF9:
+ 1388 0188 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1388      206C6F6E 
+ 1388      6720756E 
+ 1388      7369676E 
+ 1388      65642069 
+ 1389              	.LASF39:
+ 1390 019f 433A5C55 		.ascii	"C:\\Users\\jmspi\\OneDrive\\Documents\\GitHub\\ECE4"
+ 1390      73657273 
+ 1390      5C6A6D73 
+ 1390      70695C4F 
+ 1390      6E654472 
+ 1391 01cc 3139315C 		.ascii	"191\\DeliveryRobot.cydsn\000"
+ 1391      44656C69 
+ 1391      76657279 
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc60T6yb.s 			page 29
+
+
+ 1391      526F626F 
+ 1391      742E6379 
+ 1392              	.LASF10:
+ 1393 01e4 73697A65 		.ascii	"sizetype\000"
+ 1393      74797065 
+ 1393      00
+ 1394              	.LASF24:
+ 1395 01ed 706F735F 		.ascii	"pos_x\000"
+ 1395      7800
+ 1396              	.LASF1:
+ 1397 01f3 6C6F6E67 		.ascii	"long long int\000"
+ 1397      206C6F6E 
+ 1397      6720696E 
+ 1397      7400
+ 1398              	.LASF11:
+ 1399 0201 63686172 		.ascii	"char\000"
+ 1399      00
+ 1400              	.LASF31:
+ 1401 0206 63757272 		.ascii	"curr_x\000"
+ 1401      5F7800
+ 1402              	.LASF14:
+ 1403 020d 77696474 		.ascii	"width\000"
+ 1403      6800
+ 1404              	.LASF22:
+ 1405 0213 696E6974 		.ascii	"initial_grid\000"
+ 1405      69616C5F 
+ 1405      67726964 
+ 1405      00
+ 1406              	.LASF30:
+ 1407 0220 6E65775F 		.ascii	"new_y\000"
+ 1407      7900
+ 1408              	.LASF20:
+ 1409 0226 67726964 		.ascii	"grid\000"
+ 1409      00
+ 1410              	.LASF7:
+ 1411 022b 6C6F6E67 		.ascii	"long int\000"
+ 1411      20696E74 
+ 1411      00
+ 1412              	.LASF2:
+ 1413 0234 6C6F6E67 		.ascii	"long double\000"
+ 1413      20646F75 
+ 1413      626C6500 
+ 1414              	.LASF3:
+ 1415 0240 7369676E 		.ascii	"signed char\000"
+ 1415      65642063 
+ 1415      68617200 
+ 1416              	.LASF16:
+ 1417 024c 7265736F 		.ascii	"resolution\000"
+ 1417      6C757469 
+ 1417      6F6E00
+ 1418              	.LASF32:
+ 1419 0257 63757272 		.ascii	"curr_y\000"
+ 1419      5F7900
+ 1420              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

@@ -14,9 +14,8 @@
 #include <stdlib.h>
 #include <math.h>
 
-#include "vfh.h"
-//#include "polar_histogram.h"
-//#include "histogram_grid.h"
+#include "..\VFH\include\vfh.h"
+
 
 struct Motor {
     long double duty_cycle;
@@ -75,21 +74,27 @@ grid * certainty_grid;
 sensor_data sensors;
 histogram * polar_histogram;
 control_signal_t control_signal;
+
+void print_grid(grid * map);
+void print_polar_histogram(histogram * polar_histogram);
+
   
 CY_ISR( Timer_Int_Handler ) {
     echo_distance = 65535 - Timer_Echo_ReadCapture();  // in cm
     sensors.distance[mux_select] = echo_distance;
-    update_grid(certainty_grid, robot.x, robot.y, 180*robot.theta/M_PI, sensors);
+    
     
     //Timer_Echo_Stop();
     //CyDelayUs(1); // TODO: Should be able to make this shorter, one or two bus clock cycles
-    
-    Control_Reg_US_Write(++mux_select);
-    if( mux_select >= N_SENSORS ) { mux_select = 0; }
-    
+    mux_select++;
+    if ( mux_select == N_SENSORS) {
+        grid_update(certainty_grid, robot.x, robot.y, 180*robot.theta/M_PI, sensors);
+        mux_select = 0;
+    }
+    Control_Reg_US_Write(mux_select);    
     //Timer_Echo_Enable();
     
-    PWM_Trigger_WriteCounter(10000);    
+    PWM_Trigger_WriteCounter(255);    
 }
 
 CY_ISR( Pose_Update_Int_Handler ) {
@@ -187,11 +192,10 @@ int main(void)
     robot.desired_V = 0;
     robot.desired_theta = 0;
     robot.theta = 0;
-    robot.x = 0;
-    robot.y = 65;
+    robot.x = 30;
+    robot.y = 30;
     robot.goal_min_dist = 1;
-    robot.goal_x = 110;
-    robot.goal_y = 65;
+    
     
     sensors.direction[0] = 0;
     sensors.direction[1] = 45;
@@ -218,117 +222,89 @@ int main(void)
     Timer_Avoidance_Start();
     Timer_Avoidance_WriteCounter(1000); // Cause robot to start moving immediately
         
-    // initialise structures
-    certainty_grid = initial_grid(65, 65, 2);
-    polar_histogram = initial_histogram(5, 20, 10, 5);
-        
-    /* Are the initializations ok? */
-	if (certainty_grid == NULL) return -1;
-	if (certainty_grid->cells == NULL) return -1;
-	if (polar_histogram == NULL) return -1;
-	if (polar_histogram->densities == NULL) return -1;
-    
-    /*
-    for (int i = 0; i < 1000; i++) {
-        for( int j = 0; j<4; j++) {
-            sensors.direction[j] = (int) ((40.0 * rand()) / RAND_MAX + 90.0); // [degrees] 
-        	sensors.distance[j] = (u_long) (((65.0 * rand()) / RAND_MAX)+5.0); // [cm] 
-        }
-        for( int j = 4; j<8; j++) {
-        	sensors.direction[j] = (int) ((40.0 * rand()) / RAND_MAX); // [degrees] 
-        	sensors.distance[j] = (u_long) (((65.0 * rand()) / RAND_MAX)+5.0); // [cm]
-        }
-        update_grid(certainty_grid, 65, 65, 0, sensors);
-    }    
-    */
-    for(;;) {
-        long double dy = robot.goal_y - robot.y;
-        long double dx = robot.goal_x - robot.x;
-        long double dist_to_goal = sqrtl( dy*dy + dx*dx );
-        long double theta_to_goal = 180*atan2l( dy, dx )/M_PI;  // in degrees
-        
-        if(Timer_Avoidance_ReadCounter() < 950) {
-            Testing_Int_Disable();
-            if( dist_to_goal <= robot.goal_min_dist ) { 
-                robot.desired_V = 0;
-            } else {
-                robot.desired_V = dist_to_goal<15 ? 1: 1;
-                
-                grid * active = active_window(certainty_grid,robot.x,robot.y,30);
+    // Creation of VFH grid environment
+    sensors.direction[0] = 0;
+    sensors.direction[1] = 30;
+    sensors.direction[2] = 90;
+    sensors.direction[3] = 270;
+    sensors.direction[4] = 300;
+    certainty_grid = grid_create(65, 65, 2);
+    polar_histogram = polar_histogram_create(5, 20, 10, 5);
 
-                hist_update(polar_histogram, active);
-                
-                 
-                if( theta_to_goal < 0 ) { theta_to_goal += 360; }
-                robot.desired_theta = M_PI * calculate_direction2(polar_histogram, theta_to_goal) / 180;
-                free(active->cells);
-                free(active);
-                
-                sprintf(serial_output, "dx: %Lf, dy: %Lf, dtg: %Lf, ttg: %Lf, dist: %i, tmr: %i\n", dx, dy, dist_to_goal, theta_to_goal, echo_distance, Timer_Avoidance_ReadCounter());
-                UART_PutString(serial_output);
-            }
-        }
-        
-        /*
-        long double dy = robot.goal_y - robot.y;
-        long double dx = robot.goal_x - robot.x;
-        long double dist_to_goal = sqrtl( dy*dy + dx*dx );
-        long double theta_to_goal = atan2l( dy, dx );
-        
-        if( dist_to_goal <= robot.goal_min_dist ) {
-            robot.desired_V = 0;
-        } else if( echo_flag && echo_distance < 40 && echo_distance <= dist_to_goal) {
-            robot.desired_theta = angle_modulo( robot.theta - M_PI/5 );
-            Timer_Avoidance_WriteCounter(65535);
-        } else if( Timer_Avoidance_ReadCounter() < 65532 ){
-            robot.desired_theta = theta_to_goal;
-            if( dist_to_goal < 10 ) {
-                robot.desired_V = 2;
-            } else {
-                robot.desired_V = 10;
-            }
-        }
-        */
-        
-        // if a distance was measured, print the distance and clear the flag
-        
-        sprintf(serial_output, "dx: %Lf, dy: %Lf, dtg: %Lf, ttg: %Lf, dist: %i, tmr: %i\n", dx, dy, dist_to_goal, theta_to_goal, echo_distance, Timer_Avoidance_ReadCounter());
-        //sprintf(serial_output, "desired: %lf, actual: %lf, dc:%lf, enc: %li\n", right_motor.desired_w,right_motor.w, right_motor.duty_cycle, QuadDec_R_GetCounter());
-        //sprintf(serial_output, "x: %Lf, y: %Lf, theta: %Lf\n", robot.x, robot.y, robot.theta);
-        //sprintf(serial_output, "des v: %Lf, actual_v: %Lf, desired_t: %Lf, actual_t: %Lf", robot.desired_V, robot.V, robot.desired_theta, robot.theta);
+    // Check initialisation
+    if (certainty_grid == NULL) return -1;
+    if (certainty_grid->cells == NULL) return -1;
+    if (polar_histogram == NULL) return -1;
+    if (polar_histogram->densities == NULL) return -1;
+
+    // Take in initial sensor measurements
+
+    // Update Grid
+    int UPDATE_FLAG = grid_update(certainty_grid, robot.x, robot.y, robot.theta, sensors);
+    if (UPDATE_FLAG != 1) return -1;
+
+    // Print the current grid
+    print_grid(certainty_grid);
+
+    // Define Goal Coordinates
+    int N_GOALS = 2;
+    int goals[4] = {90, 90, 30, 90};
+    robot.goal_x = goals[0];
+    robot.goal_y = goals[1]; 
+    int goal_counter = 0;
+    
+    for(;;) {
+      
+        int dist_to_goal = calculate_distance_from_goal(robot.x, robot.y, robot.goal_x, robot.goal_y);
+        sprintf(serial_output, "Distance to goal: %d\n", dist_to_goal);
         UART_PutString(serial_output);
-        
-        /*
-        for( int y=certainty_grid->height-1; y >= 0; --y ) {
-            for( int x=0; x < certainty_grid->width; ++x ) {
-                sprintf(serial_output, "%lu ", certainty_grid->cells[x*certainty_grid->width+y] );
-                UART_PutString(serial_output);
+        if( dist_to_goal <= robot.goal_min_dist ) { 
+            robot.desired_V = 0;
+            if (goal_counter < N_GOALS) {
+                robot.goal_x = goals[goal_counter + 2];
+                robot.goal_y = goals[goal_counter + 2];
+                goal_counter += 2;
+                
+                // Adjust robot angle to face new goal
+                //robot.desired_theta = calculate_goal_angle(robot.x, robot.y, robot.theta, robot.goal_x, robot.goal_y); 
             }
-            UART_PutString("\n");
-        }
-        UART_PutString("\n\n\n\n\n");
-        
-        
-        for( int y=active->height-1; y >= 0; --y ) {
-            for( int x=0; x < active->width; ++x ) {
-                sprintf(serial_output, "%lu ", active->cells[x*active->width+y] );
-                UART_PutString(serial_output);
+        } else {
+            CyDelay(5000);
+            //robot.desired_V = 7;
+
+            // Testing VFH Algorithm
+            grid * active = active_window(certainty_grid, robot.x, robot.y, 20);
+
+            // Print the current active window
+            print_grid(active);
+
+            polar_histogram_update(polar_histogram, active);
+                        
+            // print_polar_histogram(polar_histogram);
+
+            // Identify candidate valleys
+            int * candidates = candidate_valley(polar_histogram);
+
+            // Find angle of drive
+            double new_theta = calculate_avoidance_angle(polar_histogram, certainty_grid, candidates, robot.x, robot.y, robot.theta, robot.goal_x, robot.goal_y);
+            if (abs(new_theta - robot.desired_theta) > 10) {
+                //robot.desired_theta = new_theta;
             }
-            UART_PutString("\n");
-        }
-        UART_PutString("\n\n\n\n\n");
-        */
-        
-        for( int i=0; i<polar_histogram->sectors; i++ ) {
-            sprintf(serial_output, "%lf\n", polar_histogram->densities[i]);
+                
+            sprintf(serial_output, "%Lf\n", robot.desired_theta);
             UART_PutString(serial_output);
-        }
-        UART_PutString("\n\n\n\n\n");
-        
-        
+
+            // Adjust velocity
+            //double adjusted_V = velocity_control(polar_histogram, robot.desired_theta);
+
+            //robot.desired_V = adjusted_V;
+
+            CyDelay(5000);
+        }    
     }
-  
 }
+  
+
 
 void Drive_Left_Motor(long double duty_cycle) {
     if (duty_cycle < -1) {
@@ -366,6 +342,31 @@ void Drive_Right_Motor(long double duty_cycle) {
 
 long double angle_modulo(long double angle) {
     return angle - M_TWOPI * floor(angle / M_TWOPI);  
+}
+
+void print_polar_histogram(histogram * polar_histogram) {
+  for (int i=0; i < polar_histogram->sectors; i++) {
+    sprintf(serial_output, "%d\n", polar_histogram->densities[i]);
+    UART_PutString(serial_output);
+  }
+  UART_PutString("\n\n\n\n\n");
+}
+
+void print_grid(grid * map) {
+  // Print map
+  int WIDTH = map->width;
+  int HEIGHT = map->height;
+
+  for (int i = 0; i < WIDTH; ++i) {
+    for (int j = 0; j < HEIGHT; ++j) {
+      sprintf(serial_output, "%d", map->cells[i * WIDTH + j]);
+      UART_PutString(serial_output);
+    }
+    sprintf(serial_output, "\n");
+    UART_PutString(serial_output);
+  }
+
+  UART_PutString("\n\n\n\n\n");
 }
 
 /* [] END OF FILE */

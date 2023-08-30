@@ -114,6 +114,7 @@ CY_ISR( Pose_Update_Int_Handler ) {
     robot.V =  (right_motor.tangent_v + left_motor.tangent_v)/2; //instantaneous tangential velocity of robot centre
 
     // update pose variables
+  
     robot.theta = angle_modulo( robot.theta + robot.w * POSE_UPDATE_PERIOD );
     robot.x = robot.x + POSE_UPDATE_PERIOD * robot.V * cos(robot.theta);
     robot.y = robot.y + POSE_UPDATE_PERIOD * robot.V * sin(robot.theta);

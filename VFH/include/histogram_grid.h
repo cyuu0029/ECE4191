@@ -34,8 +34,8 @@ typedef struct {
  * where N is the front of the robot regardless of real world orientation
  */
 typedef struct {
-  int direction[n_sensors]; /* [degrees] */
-  unsigned long distance[n_sensors]; /* [cm] */
+  int direction[N_SENSORS]; /* [degrees] */
+  unsigned long distance[N_SENSORS]; /* [cm] */
 } sensor_data;
 
 /* initial_grid: Return a pointer to an empty (all zeros) grid. NULL otherwise. */
@@ -48,4 +48,3 @@ grid * active_window(grid * map, int pos_x, int pos_y, int dimension);
 /* update_grid: Update histogram grid cells with sensor readings. */
 int update_grid(grid * map, int pos_x, int pos_y, int yaw, sensor_data data);
 
-#endif

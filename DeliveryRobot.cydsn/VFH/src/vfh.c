@@ -74,7 +74,7 @@ int calculate_direction(histogram * hist, int objective_direction) {
 }
 
 double calculate_direction2(histogram * hist, int objective_direction) {
-    int threshold = 100;
+    int threshold = 5;
     int smax = 18;
     int nsectors = hist->sectors;
     
@@ -164,8 +164,8 @@ double calculate_direction2(histogram * hist, int objective_direction) {
     
     valley * c = head_valley;
     while( c->next_valley != NULL ) {
-        sprintf(out, "start: %i, end: %i, center: %lf, width: %i\n", c->start_sector, c->end_sector, c->center_dir, c->width);
-        UART_PutString(out);
+        //sprintf(out, "start: %i, end: %i, center: %lf, width: %i\n", c->start_sector, c->end_sector, c->center_dir, c->width);
+        //UART_PutString(out);
         c = c->next_valley;
     }
     
@@ -175,7 +175,6 @@ double calculate_direction2(histogram * hist, int objective_direction) {
         return_val = best_v->center_dir;   
     } else { // wide valley
         double dist_start = modular_dist(v->start_sector, obj_sector, nsectors);
-        double dist_end = modular_dist(v->end_sector, obj_sector, nsectors);
         
         if( dist_start == best_dist ) {
             return_val = modulo( hist->alpha * best_v->start_sector + smax / 2, 360 );
@@ -184,8 +183,8 @@ double calculate_direction2(histogram * hist, int objective_direction) {
         }
     }
     
-    sprintf(out, "choosing angle: %lf\n", return_val);
-    UART_PutString(out);
+    //sprintf(out, "choosing angle: %lf\n", return_val);
+    //UART_PutString(out);
     
     // free the linked list
     valley * tmp;

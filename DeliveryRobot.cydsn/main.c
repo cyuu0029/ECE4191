@@ -65,6 +65,8 @@ uint8_t mux_select = 0;
 int32 left_wheel_count = 0;
 int32 right_wheel_count = 0;
 char serial_output[150];
+int deviated = 0;
+int goal_one_reached = 0;
 
 struct Motor left_motor;
 struct Motor right_motor;
@@ -79,17 +81,15 @@ control_signal_t control_signal;
 CY_ISR( Timer_Int_Handler ) {
     echo_distance = 65535 - Timer_Echo_ReadCapture();  // in cm
     sensors.distance[mux_select] = echo_distance;
-    update_grid(certainty_grid, robot.x, robot.y, 180*robot.theta/M_PI, sensors);
     
-    //Timer_Echo_Stop();
-    //CyDelayUs(1); // TODO: Should be able to make this shorter, one or two bus clock cycles
+    mux_select++;
+    if( mux_select == N_SENSORS ) { 
+        //update_grid(certainty_grid, robot.x, robot.y, 180*robot.theta/M_PI, sensors);
+        mux_select = 0; 
+    }
+    Control_Reg_US_Write(mux_select);
     
-    Control_Reg_US_Write(++mux_select);
-    if( mux_select >= N_SENSORS ) { mux_select = 0; }
-    
-    //Timer_Echo_Enable();
-    
-    PWM_Trigger_WriteCounter(10000);    
+    PWM_Trigger_WriteCounter(255);    
 }
 
 CY_ISR( Pose_Update_Int_Handler ) {
@@ -163,7 +163,7 @@ CY_ISR( Navigation_Test_Int_Handler ) {
 
 int main(void)
 {
-    long double wheel_r_scale = 0.9578;   
+    long double wheel_r_scale = 0.9378;   
     left_motor.duty_cycle = 0;
     left_motor.int_error = 0;
     left_motor.desired_w = 0;
@@ -180,24 +180,26 @@ int main(void)
     right_motor.Ki = 3e-6;  // TODO: determine good PI params
     right_motor.Kp = 0.0025;
     
-    robot.axle_width = 0.967*22.5; // TODO: get accurate measurement
+    robot.axle_width = 0.936*22.5; // TODO: get accurate measurement
     robot.int_error = 0;
     robot.Ki = 3e-5;    // TODO: determine good PI values
-    robot.Kp = 0.75;
+    robot.Kp = 0.5;  // was previously 0.75 before changing for MS1
     robot.desired_V = 0;
     robot.desired_theta = 0;
     robot.theta = 0;
     robot.x = 0;
-    robot.y = 65;
-    robot.goal_min_dist = 1;
-    robot.goal_x = 110;
-    robot.goal_y = 65;
+    robot.y = 0;
+    robot.goal_min_dist = 2;
+    robot.goal_x = 60;
+    robot.goal_y = 60;
     
     sensors.direction[0] = 0;
-    sensors.direction[1] = 45;
+    sensors.direction[1] = 30;
     sensors.direction[2] = 90;
     sensors.direction[3] = 270;
-    sensors.direction[4] = 315;
+    sensors.direction[4] = 330;
+    
+    sensors.distance[0] = 1000;
     
     CyGlobalIntEnable;
     
@@ -205,7 +207,7 @@ int main(void)
     Timer_Echo_Int_StartEx( Timer_Int_Handler );
     Pose_Update_Int_StartEx( Pose_Update_Int_Handler );
     Motor_PI_Int_StartEx( Motor_PI_Int_Handler );
-    Testing_Int_StartEx( Navigation_Test_Int_Handler );
+    //Testing_Int_StartEx( Navigation_Test_Int_Handler );
     
     // Start up code - enable UART, PWM and Timer used for ultrasonic module
     UART_Start();
@@ -216,7 +218,7 @@ int main(void)
     QuadDec_R_Start();
     PWM_Motor_R_Start();
     Timer_Avoidance_Start();
-    Timer_Avoidance_WriteCounter(1000); // Cause robot to start moving immediately
+    Timer_Avoidance_WriteCounter(60000); // Cause robot to start moving immediately
         
     // initialise structures
     certainty_grid = initial_grid(65, 65, 2);
@@ -228,7 +230,7 @@ int main(void)
 	if (polar_histogram == NULL) return -1;
 	if (polar_histogram->densities == NULL) return -1;
     
-    /*
+    /* FAKE MEASURES
     for (int i = 0; i < 1000; i++) {
         for( int j = 0; j<4; j++) {
             sensors.direction[j] = (int) ((40.0 * rand()) / RAND_MAX + 90.0); // [degrees] 
@@ -241,7 +243,9 @@ int main(void)
         update_grid(certainty_grid, 65, 65, 0, sensors);
     }    
     */
+    
     for(;;) {
+        /*
         long double dy = robot.goal_y - robot.y;
         long double dx = robot.goal_x - robot.x;
         long double dist_to_goal = sqrtl( dy*dy + dx*dx );
@@ -252,7 +256,7 @@ int main(void)
             if( dist_to_goal <= robot.goal_min_dist ) { 
                 robot.desired_V = 0;
             } else {
-                robot.desired_V = dist_to_goal<15 ? 1: 1;
+                robot.desired_V = dist_to_goal<15 ? 1: 10;
                 
                 grid * active = active_window(certainty_grid,robot.x,robot.y,30);
 
@@ -268,8 +272,9 @@ int main(void)
                 UART_PutString(serial_output);
             }
         }
+        */
         
-        /*
+        
         long double dy = robot.goal_y - robot.y;
         long double dx = robot.goal_x - robot.x;
         long double dist_to_goal = sqrtl( dy*dy + dx*dx );
@@ -277,18 +282,29 @@ int main(void)
         
         if( dist_to_goal <= robot.goal_min_dist ) {
             robot.desired_V = 0;
-        } else if( echo_flag && echo_distance < 40 && echo_distance <= dist_to_goal) {
-            robot.desired_theta = angle_modulo( robot.theta - M_PI/5 );
-            Timer_Avoidance_WriteCounter(65535);
-        } else if( Timer_Avoidance_ReadCounter() < 65532 ){
+            if( ! goal_one_reached ) {robot.desired_theta = M_PI;}
+            CyDelay(10000);
+            robot.goal_x = 0;
+            robot.goal_y = 60;
+            robot.desired_V = 7;
+        } else if(sensors.distance[0] < 30 && sensors.distance[0] <= dist_to_goal) {
+            robot.desired_theta = angle_modulo( robot.theta + M_PI/4 );
+            Timer_Avoidance_WriteCounter(65533);
+            deviated = 1;
+        } else if( sensors.distance[4] < 20 && sensors.distance[4] <= dist_to_goal ) {
+            robot.desired_theta = angle_modulo( robot.theta + M_PI/5 );
+            Timer_Avoidance_WriteCounter(65533);
+            deviated = 1;
+        } else if( (sensors.distance[4] >= 20 && sensors.distance[3] >= 7 && deviated && Timer_Avoidance_ReadCounter()<65530) || !deviated ){
+            deviated = 0;
             robot.desired_theta = theta_to_goal;
             if( dist_to_goal < 10 ) {
                 robot.desired_V = 2;
             } else {
-                robot.desired_V = 10;
+                robot.desired_V = 7;
             }
         }
-        */
+        
         
         // if a distance was measured, print the distance and clear the flag
         
@@ -308,7 +324,6 @@ int main(void)
         }
         UART_PutString("\n\n\n\n\n");
         
-        
         for( int y=active->height-1; y >= 0; --y ) {
             for( int x=0; x < active->width; ++x ) {
                 sprintf(serial_output, "%lu ", active->cells[x*active->width+y] );
@@ -317,14 +332,13 @@ int main(void)
             UART_PutString("\n");
         }
         UART_PutString("\n\n\n\n\n");
-        */
         
         for( int i=0; i<polar_histogram->sectors; i++ ) {
             sprintf(serial_output, "%lf\n", polar_histogram->densities[i]);
             UART_PutString(serial_output);
         }
         UART_PutString("\n\n\n\n\n");
-        
+        */
         
     }
   

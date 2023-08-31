@@ -3,14 +3,21 @@
 #include <stdbool.h>
 #include "..\Tentacles\tentacles.h"
 
-long double angle_modulo(long double angle) {
+long double calculate_angle_modulo(long double angle) {
     return angle - M_TWOPI * floor(angle / M_TWOPI);  
+}
+
+double calculate_distance_from_goal(double pos_x, double pos_y, double goal_x, double goal_y) {
+  // Calculate distance between current position and end goal
+  double distance = sqrt( pow( goal_x - pos_x, 2 ) + pow( goal_y - pos_y, 2 ) ); 
+
+  return distance;
 }
 
 bool check_collision(Sensor * sensors) {
     // Calculate whether or not the robot collides with obstacle based on ultrasonic reading
     int front_threshold = 10;
-    int other_threshold = 0.1;
+    float other_threshold = 0.1;
     for (int i=0; i < N_SENSORS; i++) {
         if (sensors->direction[i] < M_PI || sensors->direction[i] > 3*M_PI / 4) {
             if (sensors->distance[i] < front_threshold) {
@@ -27,8 +34,8 @@ bool check_collision(Sensor * sensors) {
     return false;
 }
 
-/*
-double cost_function(Tentacles * octopussy, Sensor * sensors, int v, int w, int goal_x, int goal_y, int goal_th, int pos_x, int pos_y, int pos_theta) {
+
+double tentacles_cost_function(Tentacles * octopussy, Sensor * sensors, double v, double w, double goal_x, double goal_y, double goal_th, double pos_x, double pos_y, double pos_theta) {
 
     // Extracting variables
     double dt = octopussy->dt;
@@ -54,10 +61,11 @@ double cost_function(Tentacles * octopussy, Sensor * sensors, int v, int w, int 
     e_th = atan2(sin(e_th), cos(e_th));
 
     // Calculate cost
-    double cost = alpha * ( pow(goal_x - x, 2) + pow(goal_y - y, 2)) + beta * (e_th);
+    double cost = alpha * ( pow(goal_x - pos_x, 2) + pow(goal_y - pos_y, 2)) + beta * (e_th);
     return cost;
 }
 
+/*
 double * planner(Tentacles * octopussy, Sensor * sensors, int goal_x, int goal_y, int goal_th, int pos_x, int pos_y, int pos_theta) {
     // Store cost values
     double cost[octopussy->ten_count];

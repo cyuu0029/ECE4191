@@ -1,0 +1,1992 @@
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccHCp0Lb.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"tentacles.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	__aeabi_i2d
+  20              		.global	__aeabi_dcmplt
+  21              		.global	__aeabi_dcmpgt
+  22              		.section	.text.check_collision,"ax",%progbits
+  23              		.align	2
+  24              		.global	check_collision
+  25              		.thumb
+  26              		.thumb_func
+  27              		.type	check_collision, %function
+  28              	check_collision:
+  29              	.LFB0:
+  30              		.file 1 "..\\..\\..\\..\\Users\\cyu13\\Desktop\\ECE4191\\Tentacles\\tentacles.c"
+   1:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c **** #include <stdlib.h>
+   2:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c **** #include <math.h>
+   3:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c **** #include "..\Tentacles\tentacles.h"
+   4:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c **** 
+   5:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c **** _Bool check_collision(sensor_data * sensors) {
+  31              		.loc 1 5 0
+  32              		.cfi_startproc
+  33              		@ args = 0, pretend = 0, frame = 24
+  34              		@ frame_needed = 1, uses_anonymous_args = 0
+  35 0000 90B5     		push	{r4, r7, lr}
+  36              		.cfi_def_cfa_offset 12
+  37              		.cfi_offset 4, -12
+  38              		.cfi_offset 7, -8
+  39              		.cfi_offset 14, -4
+  40 0002 87B0     		sub	sp, sp, #28
+  41              		.cfi_def_cfa_offset 40
+  42 0004 00AF     		add	r7, sp, #0
+  43              		.cfi_def_cfa_register 7
+  44 0006 7860     		str	r0, [r7, #4]
+   6:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****     // Calculate whether or not the robot collides with obstacle based on ultrasonic reading
+   7:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****     int front_threshold = 10;
+  45              		.loc 1 7 0
+  46 0008 0A23     		movs	r3, #10
+  47 000a 3B61     		str	r3, [r7, #16]
+   8:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****     double other_threshold = 0.1;
+  48              		.loc 1 8 0
+  49 000c 26A4     		adr	r4, .L13
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccHCp0Lb.s 			page 2
+
+
+  50 000e D4E90034 		ldrd	r3, [r4]
+  51 0012 C7E90234 		strd	r3, [r7, #8]
+  52              	.LBB2:
+   9:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****     for (int i=0; i < 5; i++) {
+  53              		.loc 1 9 0
+  54 0016 0023     		movs	r3, #0
+  55 0018 7B61     		str	r3, [r7, #20]
+  56 001a 3DE0     		b	.L2
+  57              	.L10:
+  10:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****         if (sensors->direction[i] < M_PI || sensors->direction[i] > 3*M_PI / 4) {
+  58              		.loc 1 10 0
+  59 001c 7B68     		ldr	r3, [r7, #4]
+  60 001e 7A69     		ldr	r2, [r7, #20]
+  61 0020 53F82230 		ldr	r3, [r3, r2, lsl #2]
+  62 0024 1846     		mov	r0, r3
+  63 0026 FFF7FEFF 		bl	__aeabi_i2d
+  64 002a 21A3     		adr	r3, .L13+8
+  65 002c D3E90023 		ldrd	r2, [r3]
+  66 0030 FFF7FEFF 		bl	__aeabi_dcmplt
+  67 0034 0346     		mov	r3, r0
+  68 0036 002B     		cmp	r3, #0
+  69 0038 0ED1     		bne	.L3
+  70              		.loc 1 10 0 is_stmt 0 discriminator 1
+  71 003a 7B68     		ldr	r3, [r7, #4]
+  72 003c 7A69     		ldr	r2, [r7, #20]
+  73 003e 53F82230 		ldr	r3, [r3, r2, lsl #2]
+  74 0042 1846     		mov	r0, r3
+  75 0044 FFF7FEFF 		bl	__aeabi_i2d
+  76 0048 1BA3     		adr	r3, .L13+16
+  77 004a D3E90023 		ldrd	r2, [r3]
+  78 004e FFF7FEFF 		bl	__aeabi_dcmpgt
+  79 0052 0346     		mov	r3, r0
+  80 0054 002B     		cmp	r3, #0
+  81 0056 0AD0     		beq	.L12
+  82              	.L3:
+  11:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****             if (sensors->distance[i] < front_threshold) {
+  83              		.loc 1 11 0 is_stmt 1
+  84 0058 7A68     		ldr	r2, [r7, #4]
+  85 005a 7B69     		ldr	r3, [r7, #20]
+  86 005c 0433     		adds	r3, r3, #4
+  87 005e 9B00     		lsls	r3, r3, #2
+  88 0060 1344     		add	r3, r3, r2
+  89 0062 5A68     		ldr	r2, [r3, #4]
+  90 0064 3B69     		ldr	r3, [r7, #16]
+  91 0066 9A42     		cmp	r2, r3
+  92 0068 13DA     		bge	.L8
+  12:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****                 return 1;
+  93              		.loc 1 12 0
+  94 006a 0123     		movs	r3, #1
+  95 006c 18E0     		b	.L7
+  96              	.L12:
+  13:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****             }
+  14:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****         } else {
+  15:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****             if (sensors->distance[i] < other_threshold) {
+  97              		.loc 1 15 0
+  98 006e 7A68     		ldr	r2, [r7, #4]
+  99 0070 7B69     		ldr	r3, [r7, #20]
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccHCp0Lb.s 			page 3
+
+
+ 100 0072 0433     		adds	r3, r3, #4
+ 101 0074 9B00     		lsls	r3, r3, #2
+ 102 0076 1344     		add	r3, r3, r2
+ 103 0078 5B68     		ldr	r3, [r3, #4]
+ 104 007a 1846     		mov	r0, r3
+ 105 007c FFF7FEFF 		bl	__aeabi_i2d
+ 106 0080 D7E90223 		ldrd	r2, [r7, #8]
+ 107 0084 FFF7FEFF 		bl	__aeabi_dcmplt
+ 108 0088 0346     		mov	r3, r0
+ 109 008a 002B     		cmp	r3, #0
+ 110 008c 01D0     		beq	.L8
+  16:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****                 return 1;
+ 111              		.loc 1 16 0
+ 112 008e 0123     		movs	r3, #1
+ 113 0090 06E0     		b	.L7
+ 114              	.L8:
+   9:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****         if (sensors->direction[i] < M_PI || sensors->direction[i] > 3*M_PI / 4) {
+ 115              		.loc 1 9 0 discriminator 2
+ 116 0092 7B69     		ldr	r3, [r7, #20]
+ 117 0094 0133     		adds	r3, r3, #1
+ 118 0096 7B61     		str	r3, [r7, #20]
+ 119              	.L2:
+   9:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****         if (sensors->direction[i] < M_PI || sensors->direction[i] > 3*M_PI / 4) {
+ 120              		.loc 1 9 0 is_stmt 0 discriminator 1
+ 121 0098 7B69     		ldr	r3, [r7, #20]
+ 122 009a 042B     		cmp	r3, #4
+ 123 009c BEDD     		ble	.L10
+ 124              	.LBE2:
+  17:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****             }
+  18:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****         }
+  19:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****         
+  20:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****     }
+  21:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c **** 
+  22:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****     return 0;
+ 125              		.loc 1 22 0 is_stmt 1
+ 126 009e 0023     		movs	r3, #0
+ 127              	.L7:
+  23:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c **** }
+ 128              		.loc 1 23 0
+ 129 00a0 1846     		mov	r0, r3
+ 130 00a2 1C37     		adds	r7, r7, #28
+ 131              		.cfi_def_cfa_offset 12
+ 132 00a4 BD46     		mov	sp, r7
+ 133              		.cfi_def_cfa_register 13
+ 134              		@ sp needed
+ 135 00a6 90BD     		pop	{r4, r7, pc}
+ 136              	.L14:
+ 137              		.align	3
+ 138              	.L13:
+ 139 00a8 9A999999 		.word	-1717986918
+ 140 00ac 9999B93F 		.word	1069128089
+ 141 00b0 182D4454 		.word	1413754136
+ 142 00b4 FB210940 		.word	1074340347
+ 143 00b8 D221337F 		.word	2134057426
+ 144 00bc 7CD90240 		.word	1073928572
+ 145              		.cfi_endproc
+ 146              	.LFE0:
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccHCp0Lb.s 			page 4
+
+
+ 147              		.size	check_collision, .-check_collision
+ 148              		.global	__aeabi_dmul
+ 149              		.global	__aeabi_dadd
+ 150              		.global	__aeabi_d2iz
+ 151              		.global	__aeabi_dsub
+ 152              		.section	.text.cost_function,"ax",%progbits
+ 153              		.align	2
+ 154              		.global	cost_function
+ 155              		.thumb
+ 156              		.thumb_func
+ 157              		.type	cost_function, %function
+ 158              	cost_function:
+ 159              	.LFB1:
+  24:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c **** 
+  25:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c **** double cost_function(tentacles * octopussy, sensor_data * sensors, int v, int w, int goal_x, int go
+ 160              		.loc 1 25 0
+ 161              		.cfi_startproc
+ 162              		@ args = 28, pretend = 0, frame = 72
+ 163              		@ frame_needed = 1, uses_anonymous_args = 0
+ 164 0000 2DE9B043 		push	{r4, r5, r7, r8, r9, lr}
+ 165              		.cfi_def_cfa_offset 24
+ 166              		.cfi_offset 4, -24
+ 167              		.cfi_offset 5, -20
+ 168              		.cfi_offset 7, -16
+ 169              		.cfi_offset 8, -12
+ 170              		.cfi_offset 9, -8
+ 171              		.cfi_offset 14, -4
+ 172 0004 92B0     		sub	sp, sp, #72
+ 173              		.cfi_def_cfa_offset 96
+ 174 0006 00AF     		add	r7, sp, #0
+ 175              		.cfi_def_cfa_register 7
+ 176 0008 F860     		str	r0, [r7, #12]
+ 177 000a B960     		str	r1, [r7, #8]
+ 178 000c 7A60     		str	r2, [r7, #4]
+ 179 000e 3B60     		str	r3, [r7]
+  26:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c **** 
+  27:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****     // Extracting variables
+  28:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****     double dt = octopussy->dt;
+ 180              		.loc 1 28 0
+ 181 0010 FB68     		ldr	r3, [r7, #12]
+ 182 0012 18CB     		ldmia	r3, {r3-r4}
+ 183 0014 C7E90E34 		strd	r3, [r7, #56]
+  29:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****     double steps = octopussy->steps;
+ 184              		.loc 1 29 0
+ 185 0018 FB68     		ldr	r3, [r7, #12]
+ 186 001a 03F10804 		add	r4, r3, #8
+ 187 001e D4E90034 		ldrd	r3, [r4]
+ 188 0022 C7E90C34 		strd	r3, [r7, #48]
+  30:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****     double alpha = octopussy->alpha;
+ 189              		.loc 1 30 0
+ 190 0026 FB68     		ldr	r3, [r7, #12]
+ 191 0028 03F11004 		add	r4, r3, #16
+ 192 002c D4E90034 		ldrd	r3, [r4]
+ 193 0030 C7E90A34 		strd	r3, [r7, #40]
+  31:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****     double beta = octopussy->beta;
+ 194              		.loc 1 31 0
+ 195 0034 FB68     		ldr	r3, [r7, #12]
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccHCp0Lb.s 			page 5
+
+
+ 196 0036 03F11804 		add	r4, r3, #24
+ 197 003a D4E90034 		ldrd	r3, [r4]
+ 198 003e C7E90834 		strd	r3, [r7, #32]
+ 199              	.LBB3:
+  32:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c **** 
+  33:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****     // Define variables
+  34:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c **** 
+  35:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****     // Allocate space for different trajectories
+  36:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****     for (int i=0; i < steps; i++) {
+ 200              		.loc 1 36 0
+ 201 0042 0023     		movs	r3, #0
+ 202 0044 7B64     		str	r3, [r7, #68]
+ 203 0046 80E0     		b	.L16
+ 204              	.L19:
+  37:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****         pos_x = pos_x + dt * v * cos(pos_theta);
+ 205              		.loc 1 37 0
+ 206 0048 386F     		ldr	r0, [r7, #112]
+ 207 004a FFF7FEFF 		bl	__aeabi_i2d
+ 208 004e 0446     		mov	r4, r0
+ 209 0050 0D46     		mov	r5, r1
+ 210 0052 7868     		ldr	r0, [r7, #4]
+ 211 0054 FFF7FEFF 		bl	__aeabi_i2d
+ 212 0058 D7E90E23 		ldrd	r2, [r7, #56]
+ 213 005c FFF7FEFF 		bl	__aeabi_dmul
+ 214 0060 0246     		mov	r2, r0
+ 215 0062 0B46     		mov	r3, r1
+ 216 0064 9046     		mov	r8, r2
+ 217 0066 9946     		mov	r9, r3
+ 218 0068 B86F     		ldr	r0, [r7, #120]
+ 219 006a FFF7FEFF 		bl	__aeabi_i2d
+ 220 006e 0246     		mov	r2, r0
+ 221 0070 0B46     		mov	r3, r1
+ 222 0072 1046     		mov	r0, r2
+ 223 0074 1946     		mov	r1, r3
+ 224 0076 FFF7FEFF 		bl	cos
+ 225 007a 0246     		mov	r2, r0
+ 226 007c 0B46     		mov	r3, r1
+ 227 007e 4046     		mov	r0, r8
+ 228 0080 4946     		mov	r1, r9
+ 229 0082 FFF7FEFF 		bl	__aeabi_dmul
+ 230 0086 0246     		mov	r2, r0
+ 231 0088 0B46     		mov	r3, r1
+ 232 008a 2046     		mov	r0, r4
+ 233 008c 2946     		mov	r1, r5
+ 234 008e FFF7FEFF 		bl	__aeabi_dadd
+ 235 0092 0346     		mov	r3, r0
+ 236 0094 0C46     		mov	r4, r1
+ 237 0096 1846     		mov	r0, r3
+ 238 0098 2146     		mov	r1, r4
+ 239 009a FFF7FEFF 		bl	__aeabi_d2iz
+ 240 009e 0346     		mov	r3, r0
+ 241 00a0 3B67     		str	r3, [r7, #112]
+  38:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****         pos_y = pos_y + dt * v * sin(pos_theta);
+ 242              		.loc 1 38 0
+ 243 00a2 786F     		ldr	r0, [r7, #116]
+ 244 00a4 FFF7FEFF 		bl	__aeabi_i2d
+ 245 00a8 0446     		mov	r4, r0
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccHCp0Lb.s 			page 6
+
+
+ 246 00aa 0D46     		mov	r5, r1
+ 247 00ac 7868     		ldr	r0, [r7, #4]
+ 248 00ae FFF7FEFF 		bl	__aeabi_i2d
+ 249 00b2 D7E90E23 		ldrd	r2, [r7, #56]
+ 250 00b6 FFF7FEFF 		bl	__aeabi_dmul
+ 251 00ba 0246     		mov	r2, r0
+ 252 00bc 0B46     		mov	r3, r1
+ 253 00be 9046     		mov	r8, r2
+ 254 00c0 9946     		mov	r9, r3
+ 255 00c2 B86F     		ldr	r0, [r7, #120]
+ 256 00c4 FFF7FEFF 		bl	__aeabi_i2d
+ 257 00c8 0246     		mov	r2, r0
+ 258 00ca 0B46     		mov	r3, r1
+ 259 00cc 1046     		mov	r0, r2
+ 260 00ce 1946     		mov	r1, r3
+ 261 00d0 FFF7FEFF 		bl	sin
+ 262 00d4 0246     		mov	r2, r0
+ 263 00d6 0B46     		mov	r3, r1
+ 264 00d8 4046     		mov	r0, r8
+ 265 00da 4946     		mov	r1, r9
+ 266 00dc FFF7FEFF 		bl	__aeabi_dmul
+ 267 00e0 0246     		mov	r2, r0
+ 268 00e2 0B46     		mov	r3, r1
+ 269 00e4 2046     		mov	r0, r4
+ 270 00e6 2946     		mov	r1, r5
+ 271 00e8 FFF7FEFF 		bl	__aeabi_dadd
+ 272 00ec 0346     		mov	r3, r0
+ 273 00ee 0C46     		mov	r4, r1
+ 274 00f0 1846     		mov	r0, r3
+ 275 00f2 2146     		mov	r1, r4
+ 276 00f4 FFF7FEFF 		bl	__aeabi_d2iz
+ 277 00f8 0346     		mov	r3, r0
+ 278 00fa 7B67     		str	r3, [r7, #116]
+  39:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****         pos_theta = pos_theta + w * dt;
+ 279              		.loc 1 39 0
+ 280 00fc B86F     		ldr	r0, [r7, #120]
+ 281 00fe FFF7FEFF 		bl	__aeabi_i2d
+ 282 0102 0446     		mov	r4, r0
+ 283 0104 0D46     		mov	r5, r1
+ 284 0106 3868     		ldr	r0, [r7]
+ 285 0108 FFF7FEFF 		bl	__aeabi_i2d
+ 286 010c D7E90E23 		ldrd	r2, [r7, #56]
+ 287 0110 FFF7FEFF 		bl	__aeabi_dmul
+ 288 0114 0246     		mov	r2, r0
+ 289 0116 0B46     		mov	r3, r1
+ 290 0118 2046     		mov	r0, r4
+ 291 011a 2946     		mov	r1, r5
+ 292 011c FFF7FEFF 		bl	__aeabi_dadd
+ 293 0120 0346     		mov	r3, r0
+ 294 0122 0C46     		mov	r4, r1
+ 295 0124 1846     		mov	r0, r3
+ 296 0126 2146     		mov	r1, r4
+ 297 0128 FFF7FEFF 		bl	__aeabi_d2iz
+ 298 012c 0346     		mov	r3, r0
+ 299 012e BB67     		str	r3, [r7, #120]
+  40:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c **** 
+  41:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****         if (check_collision(sensors)) {
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccHCp0Lb.s 			page 7
+
+
+ 300              		.loc 1 41 0
+ 301 0130 B868     		ldr	r0, [r7, #8]
+ 302 0132 FFF7FEFF 		bl	check_collision
+ 303 0136 0346     		mov	r3, r0
+ 304 0138 002B     		cmp	r3, #0
+ 305 013a 03D0     		beq	.L17
+  42:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****             return 10000000000;
+ 306              		.loc 1 42 0
+ 307 013c 3CA4     		adr	r4, .L20
+ 308 013e D4E90034 		ldrd	r3, [r4]
+ 309 0142 6CE0     		b	.L18
+ 310              	.L17:
+  36:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****         pos_x = pos_x + dt * v * cos(pos_theta);
+ 311              		.loc 1 36 0 discriminator 2
+ 312 0144 7B6C     		ldr	r3, [r7, #68]
+ 313 0146 0133     		adds	r3, r3, #1
+ 314 0148 7B64     		str	r3, [r7, #68]
+ 315              	.L16:
+  36:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****         pos_x = pos_x + dt * v * cos(pos_theta);
+ 316              		.loc 1 36 0 is_stmt 0 discriminator 1
+ 317 014a 786C     		ldr	r0, [r7, #68]
+ 318 014c FFF7FEFF 		bl	__aeabi_i2d
+ 319 0150 D7E90C23 		ldrd	r2, [r7, #48]
+ 320 0154 FFF7FEFF 		bl	__aeabi_dcmplt
+ 321 0158 0346     		mov	r3, r0
+ 322 015a 002B     		cmp	r3, #0
+ 323 015c 7FF474AF 		bne	.L19
+ 324              	.LBE3:
+  43:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****         }
+  44:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****     }
+  45:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c **** 
+  46:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****     // Wrap angle error -pi, pi
+  47:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****     double e_th = goal_th - pos_theta;
+ 325              		.loc 1 47 0 is_stmt 1
+ 326 0160 B86F     		ldr	r0, [r7, #120]
+ 327 0162 FFF7FEFF 		bl	__aeabi_i2d
+ 328 0166 0346     		mov	r3, r0
+ 329 0168 0C46     		mov	r4, r1
+ 330 016a 1A46     		mov	r2, r3
+ 331 016c 2346     		mov	r3, r4
+ 332 016e D7E91A01 		ldrd	r0, [r7, #104]
+ 333 0172 FFF7FEFF 		bl	__aeabi_dsub
+ 334 0176 0346     		mov	r3, r0
+ 335 0178 0C46     		mov	r4, r1
+ 336 017a C7E90634 		strd	r3, [r7, #24]
+  48:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****     e_th = atan2(sin(e_th), cos(e_th));
+ 337              		.loc 1 48 0
+ 338 017e D7E90601 		ldrd	r0, [r7, #24]
+ 339 0182 FFF7FEFF 		bl	sin
+ 340 0186 0446     		mov	r4, r0
+ 341 0188 0D46     		mov	r5, r1
+ 342 018a D7E90601 		ldrd	r0, [r7, #24]
+ 343 018e FFF7FEFF 		bl	cos
+ 344 0192 0246     		mov	r2, r0
+ 345 0194 0B46     		mov	r3, r1
+ 346 0196 2046     		mov	r0, r4
+ 347 0198 2946     		mov	r1, r5
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccHCp0Lb.s 			page 8
+
+
+ 348 019a FFF7FEFF 		bl	atan2
+ 349 019e C7E90601 		strd	r0, [r7, #24]
+  49:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c **** 
+  50:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****     // Calculate cost
+  51:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****     double cost = alpha * ( pow(goal_x - pos_x, 2) + pow(goal_y - pos_y, 2)) + beta * (e_th);
+ 350              		.loc 1 51 0
+ 351 01a2 3A6E     		ldr	r2, [r7, #96]
+ 352 01a4 3B6F     		ldr	r3, [r7, #112]
+ 353 01a6 D31A     		subs	r3, r2, r3
+ 354 01a8 1846     		mov	r0, r3
+ 355 01aa FFF7FEFF 		bl	__aeabi_i2d
+ 356 01ae 4FF00002 		mov	r2, #0
+ 357 01b2 4FF08043 		mov	r3, #1073741824
+ 358 01b6 FFF7FEFF 		bl	pow
+ 359 01ba 0446     		mov	r4, r0
+ 360 01bc 0D46     		mov	r5, r1
+ 361 01be 7A6E     		ldr	r2, [r7, #100]
+ 362 01c0 7B6F     		ldr	r3, [r7, #116]
+ 363 01c2 D31A     		subs	r3, r2, r3
+ 364 01c4 1846     		mov	r0, r3
+ 365 01c6 FFF7FEFF 		bl	__aeabi_i2d
+ 366 01ca 4FF00002 		mov	r2, #0
+ 367 01ce 4FF08043 		mov	r3, #1073741824
+ 368 01d2 FFF7FEFF 		bl	pow
+ 369 01d6 0246     		mov	r2, r0
+ 370 01d8 0B46     		mov	r3, r1
+ 371 01da 2046     		mov	r0, r4
+ 372 01dc 2946     		mov	r1, r5
+ 373 01de FFF7FEFF 		bl	__aeabi_dadd
+ 374 01e2 0346     		mov	r3, r0
+ 375 01e4 0C46     		mov	r4, r1
+ 376 01e6 1846     		mov	r0, r3
+ 377 01e8 2146     		mov	r1, r4
+ 378 01ea D7E90A23 		ldrd	r2, [r7, #40]
+ 379 01ee FFF7FEFF 		bl	__aeabi_dmul
+ 380 01f2 0346     		mov	r3, r0
+ 381 01f4 0C46     		mov	r4, r1
+ 382 01f6 2546     		mov	r5, r4
+ 383 01f8 1C46     		mov	r4, r3
+ 384 01fa D7E90623 		ldrd	r2, [r7, #24]
+ 385 01fe D7E90801 		ldrd	r0, [r7, #32]
+ 386 0202 FFF7FEFF 		bl	__aeabi_dmul
+ 387 0206 0246     		mov	r2, r0
+ 388 0208 0B46     		mov	r3, r1
+ 389 020a 2046     		mov	r0, r4
+ 390 020c 2946     		mov	r1, r5
+ 391 020e FFF7FEFF 		bl	__aeabi_dadd
+ 392 0212 0346     		mov	r3, r0
+ 393 0214 0C46     		mov	r4, r1
+ 394 0216 C7E90434 		strd	r3, [r7, #16]
+  52:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****     return cost;
+ 395              		.loc 1 52 0
+ 396 021a D7E90434 		ldrd	r3, [r7, #16]
+ 397              	.L18:
+  53:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c **** }
+ 398              		.loc 1 53 0
+ 399 021e 1846     		mov	r0, r3
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccHCp0Lb.s 			page 9
+
+
+ 400 0220 2146     		mov	r1, r4
+ 401 0222 4837     		adds	r7, r7, #72
+ 402              		.cfi_def_cfa_offset 24
+ 403 0224 BD46     		mov	sp, r7
+ 404              		.cfi_def_cfa_register 13
+ 405              		@ sp needed
+ 406 0226 BDE8B083 		pop	{r4, r5, r7, r8, r9, pc}
+ 407              	.L21:
+ 408 022a 00BFAFF3 		.align	3
+ 408      0080
+ 409              	.L20:
+ 410 0230 00000020 		.word	536870912
+ 411 0234 5FA00242 		.word	1107468383
+ 412              		.cfi_endproc
+ 413              	.LFE1:
+ 414              		.size	cost_function, .-cost_function
+ 415              		.section	.text.planner,"ax",%progbits
+ 416              		.align	2
+ 417              		.global	planner
+ 418              		.thumb
+ 419              		.thumb_func
+ 420              		.type	planner, %function
+ 421              	planner:
+ 422              	.LFB2:
+  54:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c **** 
+  55:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c **** double * planner(tentacles * octopussy, sensor_data * sensors, int goal_x, int goal_y, double goal_
+ 423              		.loc 1 55 0
+ 424              		.cfi_startproc
+ 425              		@ args = 20, pretend = 0, frame = 48
+ 426              		@ frame_needed = 1, uses_anonymous_args = 0
+ 427 0000 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
+ 428              		.cfi_def_cfa_offset 28
+ 429              		.cfi_offset 4, -28
+ 430              		.cfi_offset 5, -24
+ 431              		.cfi_offset 6, -20
+ 432              		.cfi_offset 7, -16
+ 433              		.cfi_offset 8, -12
+ 434              		.cfi_offset 9, -8
+ 435              		.cfi_offset 14, -4
+ 436 0004 95B0     		sub	sp, sp, #84
+ 437              		.cfi_def_cfa_offset 112
+ 438 0006 08AF     		add	r7, sp, #32
+ 439              		.cfi_def_cfa 7, 80
+ 440 0008 F860     		str	r0, [r7, #12]
+ 441 000a B960     		str	r1, [r7, #8]
+ 442 000c 7A60     		str	r2, [r7, #4]
+ 443 000e 3B60     		str	r3, [r7]
+ 444              		.loc 1 55 0
+ 445 0010 6B46     		mov	r3, sp
+ 446 0012 1E46     		mov	r6, r3
+  56:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****     // Store cost values
+  57:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****     int cost[octopussy->ten_count];
+ 447              		.loc 1 57 0
+ 448 0014 FB68     		ldr	r3, [r7, #12]
+ 449 0016 196A     		ldr	r1, [r3, #32]
+ 450 0018 4B1E     		subs	r3, r1, #1
+ 451 001a BB61     		str	r3, [r7, #24]
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccHCp0Lb.s 			page 10
+
+
+ 452 001c 0B46     		mov	r3, r1
+ 453 001e 1A46     		mov	r2, r3
+ 454 0020 4FF00003 		mov	r3, #0
+ 455 0024 4FEA4319 		lsl	r9, r3, #5
+ 456 0028 49EAD269 		orr	r9, r9, r2, lsr #27
+ 457 002c 4FEA4218 		lsl	r8, r2, #5
+ 458 0030 0B46     		mov	r3, r1
+ 459 0032 1A46     		mov	r2, r3
+ 460 0034 4FF00003 		mov	r3, #0
+ 461 0038 5D01     		lsls	r5, r3, #5
+ 462 003a 45EAD265 		orr	r5, r5, r2, lsr #27
+ 463 003e 5401     		lsls	r4, r2, #5
+ 464 0040 0B46     		mov	r3, r1
+ 465 0042 9B00     		lsls	r3, r3, #2
+ 466 0044 0333     		adds	r3, r3, #3
+ 467 0046 0733     		adds	r3, r3, #7
+ 468 0048 DB08     		lsrs	r3, r3, #3
+ 469 004a DB00     		lsls	r3, r3, #3
+ 470 004c ADEB030D 		sub	sp, sp, r3
+ 471 0050 08AB     		add	r3, sp, #32
+ 472 0052 0333     		adds	r3, r3, #3
+ 473 0054 9B08     		lsrs	r3, r3, #2
+ 474 0056 9B00     		lsls	r3, r3, #2
+ 475 0058 7B61     		str	r3, [r7, #20]
+  58:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c **** 
+  59:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****     // Tentacles oooooh lala
+  60:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****     int t_c = 0;
+ 476              		.loc 1 60 0
+ 477 005a 0023     		movs	r3, #0
+ 478 005c FB62     		str	r3, [r7, #44]
+  61:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****     int min_combo;
+  62:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****     int min_cost = 1000000;
+ 479              		.loc 1 62 0
+ 480 005e 3B4B     		ldr	r3, .L29
+ 481 0060 7B62     		str	r3, [r7, #36]
+ 482              	.LBB4:
+  63:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c **** 
+  64:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****     for (int i = 0; i < octopussy->ten_count; i++) {
+ 483              		.loc 1 64 0
+ 484 0062 0023     		movs	r3, #0
+ 485 0064 3B62     		str	r3, [r7, #32]
+ 486 0066 49E0     		b	.L23
+ 487              	.L25:
+  65:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****         cost[i] = cost_function(octopussy, sensors, octopussy->ten[t_c], octopussy->ten[t_c + 1], g
+ 488              		.loc 1 65 0
+ 489 0068 FA68     		ldr	r2, [r7, #12]
+ 490 006a FB6A     		ldr	r3, [r7, #44]
+ 491 006c 0533     		adds	r3, r3, #5
+ 492 006e DB00     		lsls	r3, r3, #3
+ 493 0070 1344     		add	r3, r3, r2
+ 494 0072 18CB     		ldmia	r3, {r3-r4}
+ 495 0074 1846     		mov	r0, r3
+ 496 0076 2146     		mov	r1, r4
+ 497 0078 FFF7FEFF 		bl	__aeabi_d2iz
+ 498 007c 0546     		mov	r5, r0
+ 499 007e FB6A     		ldr	r3, [r7, #44]
+ 500 0080 0133     		adds	r3, r3, #1
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccHCp0Lb.s 			page 11
+
+
+ 501 0082 FA68     		ldr	r2, [r7, #12]
+ 502 0084 0533     		adds	r3, r3, #5
+ 503 0086 DB00     		lsls	r3, r3, #3
+ 504 0088 1344     		add	r3, r3, r2
+ 505 008a 18CB     		ldmia	r3, {r3-r4}
+ 506 008c 1846     		mov	r0, r3
+ 507 008e 2146     		mov	r1, r4
+ 508 0090 FFF7FEFF 		bl	__aeabi_d2iz
+ 509 0094 0246     		mov	r2, r0
+ 510 0096 3B6E     		ldr	r3, [r7, #96]
+ 511 0098 0693     		str	r3, [sp, #24]
+ 512 009a FB6D     		ldr	r3, [r7, #92]
+ 513 009c 0593     		str	r3, [sp, #20]
+ 514 009e BB6D     		ldr	r3, [r7, #88]
+ 515 00a0 0493     		str	r3, [sp, #16]
+ 516 00a2 D7E91434 		ldrd	r3, [r7, #80]
+ 517 00a6 CDE90234 		strd	r3, [sp, #8]
+ 518 00aa 3B68     		ldr	r3, [r7]
+ 519 00ac 0193     		str	r3, [sp, #4]
+ 520 00ae 7B68     		ldr	r3, [r7, #4]
+ 521 00b0 0093     		str	r3, [sp]
+ 522 00b2 1346     		mov	r3, r2
+ 523 00b4 2A46     		mov	r2, r5
+ 524 00b6 B968     		ldr	r1, [r7, #8]
+ 525 00b8 F868     		ldr	r0, [r7, #12]
+ 526 00ba FFF7FEFF 		bl	cost_function
+ 527 00be 0346     		mov	r3, r0
+ 528 00c0 0C46     		mov	r4, r1
+ 529 00c2 1846     		mov	r0, r3
+ 530 00c4 2146     		mov	r1, r4
+ 531 00c6 FFF7FEFF 		bl	__aeabi_d2iz
+ 532 00ca 0146     		mov	r1, r0
+ 533 00cc 7B69     		ldr	r3, [r7, #20]
+ 534 00ce 3A6A     		ldr	r2, [r7, #32]
+ 535 00d0 43F82210 		str	r1, [r3, r2, lsl #2]
+  66:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****         if (cost[i] < min_cost) {
+ 536              		.loc 1 66 0
+ 537 00d4 7B69     		ldr	r3, [r7, #20]
+ 538 00d6 3A6A     		ldr	r2, [r7, #32]
+ 539 00d8 53F82220 		ldr	r2, [r3, r2, lsl #2]
+ 540 00dc 7B6A     		ldr	r3, [r7, #36]
+ 541 00de 9A42     		cmp	r2, r3
+ 542 00e0 06DA     		bge	.L24
+  67:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****             min_cost = cost[i];
+ 543              		.loc 1 67 0
+ 544 00e2 7B69     		ldr	r3, [r7, #20]
+ 545 00e4 3A6A     		ldr	r2, [r7, #32]
+ 546 00e6 53F82230 		ldr	r3, [r3, r2, lsl #2]
+ 547 00ea 7B62     		str	r3, [r7, #36]
+  68:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****             min_combo = t_c;
+ 548              		.loc 1 68 0
+ 549 00ec FB6A     		ldr	r3, [r7, #44]
+ 550 00ee BB62     		str	r3, [r7, #40]
+ 551              	.L24:
+  69:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****         }
+  70:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****         t_c += 2;
+ 552              		.loc 1 70 0 discriminator 2
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccHCp0Lb.s 			page 12
+
+
+ 553 00f0 FB6A     		ldr	r3, [r7, #44]
+ 554 00f2 0233     		adds	r3, r3, #2
+ 555 00f4 FB62     		str	r3, [r7, #44]
+  64:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****         cost[i] = cost_function(octopussy, sensors, octopussy->ten[t_c], octopussy->ten[t_c + 1], g
+ 556              		.loc 1 64 0 discriminator 2
+ 557 00f6 3B6A     		ldr	r3, [r7, #32]
+ 558 00f8 0133     		adds	r3, r3, #1
+ 559 00fa 3B62     		str	r3, [r7, #32]
+ 560              	.L23:
+  64:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****         cost[i] = cost_function(octopussy, sensors, octopussy->ten[t_c], octopussy->ten[t_c + 1], g
+ 561              		.loc 1 64 0 is_stmt 0 discriminator 1
+ 562 00fc FB68     		ldr	r3, [r7, #12]
+ 563 00fe 1A6A     		ldr	r2, [r3, #32]
+ 564 0100 3B6A     		ldr	r3, [r7, #32]
+ 565 0102 9A42     		cmp	r2, r3
+ 566 0104 B0DC     		bgt	.L25
+ 567              	.LBE4:
+  71:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****     }
+  72:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c **** 
+  73:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****     // Identify best tentacle SHEEEEEEEEEESH
+  74:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****     double *combo = malloc(2);
+ 568              		.loc 1 74 0 is_stmt 1
+ 569 0106 0220     		movs	r0, #2
+ 570 0108 FFF7FEFF 		bl	malloc
+ 571 010c 0346     		mov	r3, r0
+ 572 010e 3B61     		str	r3, [r7, #16]
+ 573              	.LBB5:
+  75:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****     for (int i = min_combo; i < min_combo + 2; i++) {
+ 574              		.loc 1 75 0
+ 575 0110 BB6A     		ldr	r3, [r7, #40]
+ 576 0112 FB61     		str	r3, [r7, #28]
+ 577 0114 0EE0     		b	.L26
+ 578              	.L27:
+  76:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****         combo[i] = octopussy->ten[i];
+ 579              		.loc 1 76 0 discriminator 3
+ 580 0116 FB69     		ldr	r3, [r7, #28]
+ 581 0118 DB00     		lsls	r3, r3, #3
+ 582 011a 3A69     		ldr	r2, [r7, #16]
+ 583 011c 1A44     		add	r2, r2, r3
+ 584 011e F968     		ldr	r1, [r7, #12]
+ 585 0120 FB69     		ldr	r3, [r7, #28]
+ 586 0122 0533     		adds	r3, r3, #5
+ 587 0124 DB00     		lsls	r3, r3, #3
+ 588 0126 0B44     		add	r3, r3, r1
+ 589 0128 18CB     		ldmia	r3, {r3-r4}
+ 590 012a C2E90034 		strd	r3, [r2]
+  75:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****     for (int i = min_combo; i < min_combo + 2; i++) {
+ 591              		.loc 1 75 0 discriminator 3
+ 592 012e FB69     		ldr	r3, [r7, #28]
+ 593 0130 0133     		adds	r3, r3, #1
+ 594 0132 FB61     		str	r3, [r7, #28]
+ 595              	.L26:
+  75:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****     for (int i = min_combo; i < min_combo + 2; i++) {
+ 596              		.loc 1 75 0 is_stmt 0 discriminator 1
+ 597 0134 BB6A     		ldr	r3, [r7, #40]
+ 598 0136 9A1C     		adds	r2, r3, #2
+ 599 0138 FB69     		ldr	r3, [r7, #28]
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccHCp0Lb.s 			page 13
+
+
+ 600 013a 9A42     		cmp	r2, r3
+ 601 013c EBDC     		bgt	.L27
+ 602              	.LBE5:
+  77:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****     }
+  78:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****     return combo;
+ 603              		.loc 1 78 0 is_stmt 1
+ 604 013e 3B69     		ldr	r3, [r7, #16]
+ 605 0140 B546     		mov	sp, r6
+  79:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c **** }
+ 606              		.loc 1 79 0
+ 607 0142 1846     		mov	r0, r3
+ 608 0144 3437     		adds	r7, r7, #52
+ 609              		.cfi_def_cfa_offset 28
+ 610 0146 BD46     		mov	sp, r7
+ 611              		.cfi_def_cfa_register 13
+ 612              		@ sp needed
+ 613 0148 BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 614              	.L30:
+ 615              		.align	2
+ 616              	.L29:
+ 617 014c 40420F00 		.word	1000000
+ 618              		.cfi_endproc
+ 619              	.LFE2:
+ 620              		.size	planner, .-planner
+ 621              		.section	.text.calculate_distance_from_goal,"ax",%progbits
+ 622              		.align	2
+ 623              		.global	calculate_distance_from_goal
+ 624              		.thumb
+ 625              		.thumb_func
+ 626              		.type	calculate_distance_from_goal, %function
+ 627              	calculate_distance_from_goal:
+ 628              	.LFB3:
+  80:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c **** 
+  81:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c **** double calculate_distance_from_goal(double pos_x, double pos_y, double goal_x, double goal_y) {
+ 629              		.loc 1 81 0
+ 630              		.cfi_startproc
+ 631              		@ args = 16, pretend = 0, frame = 40
+ 632              		@ frame_needed = 1, uses_anonymous_args = 0
+ 633 0000 90B5     		push	{r4, r7, lr}
+ 634              		.cfi_def_cfa_offset 12
+ 635              		.cfi_offset 4, -12
+ 636              		.cfi_offset 7, -8
+ 637              		.cfi_offset 14, -4
+ 638 0002 8BB0     		sub	sp, sp, #44
+ 639              		.cfi_def_cfa_offset 56
+ 640 0004 00AF     		add	r7, sp, #0
+ 641              		.cfi_def_cfa_register 7
+ 642 0006 C7E90201 		strd	r0, [r7, #8]
+ 643 000a C7E90023 		strd	r2, [r7]
+  82:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****   // Calculate distance between current position and end goal
+  83:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****   double dist_x = pow(goal_x - pos_x, 2);
+ 644              		.loc 1 83 0
+ 645 000e D7E90223 		ldrd	r2, [r7, #8]
+ 646 0012 D7E90E01 		ldrd	r0, [r7, #56]
+ 647 0016 FFF7FEFF 		bl	__aeabi_dsub
+ 648 001a 0346     		mov	r3, r0
+ 649 001c 0C46     		mov	r4, r1
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccHCp0Lb.s 			page 14
+
+
+ 650 001e 1846     		mov	r0, r3
+ 651 0020 2146     		mov	r1, r4
+ 652 0022 4FF00002 		mov	r2, #0
+ 653 0026 4FF08043 		mov	r3, #1073741824
+ 654 002a FFF7FEFF 		bl	pow
+ 655 002e C7E90801 		strd	r0, [r7, #32]
+  84:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****   double dist_y = pow( goal_y - pos_y, 2 ); 
+ 656              		.loc 1 84 0
+ 657 0032 D7E90023 		ldrd	r2, [r7]
+ 658 0036 D7E91001 		ldrd	r0, [r7, #64]
+ 659 003a FFF7FEFF 		bl	__aeabi_dsub
+ 660 003e 0346     		mov	r3, r0
+ 661 0040 0C46     		mov	r4, r1
+ 662 0042 1846     		mov	r0, r3
+ 663 0044 2146     		mov	r1, r4
+ 664 0046 4FF00002 		mov	r2, #0
+ 665 004a 4FF08043 		mov	r3, #1073741824
+ 666 004e FFF7FEFF 		bl	pow
+ 667 0052 C7E90601 		strd	r0, [r7, #24]
+  85:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****   
+  86:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****   double distance = sqrt(dist_x + dist_y);
+ 668              		.loc 1 86 0
+ 669 0056 D7E90623 		ldrd	r2, [r7, #24]
+ 670 005a D7E90801 		ldrd	r0, [r7, #32]
+ 671 005e FFF7FEFF 		bl	__aeabi_dadd
+ 672 0062 0346     		mov	r3, r0
+ 673 0064 0C46     		mov	r4, r1
+ 674 0066 1846     		mov	r0, r3
+ 675 0068 2146     		mov	r1, r4
+ 676 006a FFF7FEFF 		bl	sqrt
+ 677 006e C7E90401 		strd	r0, [r7, #16]
+  87:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c ****   return distance;
+ 678              		.loc 1 87 0
+ 679 0072 D7E90434 		ldrd	r3, [r7, #16]
+  88:..\..\..\..\Users\cyu13\Desktop\ECE4191\Tentacles/tentacles.c **** }...
+ 680              		.loc 1 88 0
+ 681 0076 1846     		mov	r0, r3
+ 682 0078 2146     		mov	r1, r4
+ 683 007a 2C37     		adds	r7, r7, #44
+ 684              		.cfi_def_cfa_offset 12
+ 685 007c BD46     		mov	sp, r7
+ 686              		.cfi_def_cfa_register 13
+ 687              		@ sp needed
+ 688 007e 90BD     		pop	{r4, r7, pc}
+ 689              		.cfi_endproc
+ 690              	.LFE3:
+ 691              		.size	calculate_distance_from_goal, .-calculate_distance_from_goal
+ 692              		.text
+ 693              	.Letext0:
+ 694              		.file 2 "c:\\users\\cyu13\\desktop\\ece4191\\tentacles\\tentacles.h"
+ 695              		.section	.debug_info,"",%progbits
+ 696              	.Ldebug_info0:
+ 697 0000 46040000 		.4byte	0x446
+ 698 0004 0400     		.2byte	0x4
+ 699 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 700 000a 04       		.byte	0x4
+ 701 000b 01       		.uleb128 0x1
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccHCp0Lb.s 			page 15
+
+
+ 702 000c 36020000 		.4byte	.LASF43
+ 703 0010 0C       		.byte	0xc
+ 704 0011 F0010000 		.4byte	.LASF44
+ 705 0015 C1000000 		.4byte	.LASF45
+ 706 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 707 001d 00000000 		.4byte	0
+ 708 0021 00000000 		.4byte	.Ldebug_line0
+ 709 0025 02       		.uleb128 0x2
+ 710 0026 04       		.byte	0x4
+ 711 0027 07       		.byte	0x7
+ 712 0028 49000000 		.4byte	.LASF0
+ 713 002c 03       		.uleb128 0x3
+ 714 002d 04       		.byte	0x4
+ 715 002e 05       		.byte	0x5
+ 716 002f 696E7400 		.ascii	"int\000"
+ 717 0033 02       		.uleb128 0x2
+ 718 0034 08       		.byte	0x8
+ 719 0035 05       		.byte	0x5
+ 720 0036 6F010000 		.4byte	.LASF1
+ 721 003a 02       		.uleb128 0x2
+ 722 003b 08       		.byte	0x8
+ 723 003c 04       		.byte	0x4
+ 724 003d BE010000 		.4byte	.LASF2
+ 725 0041 02       		.uleb128 0x2
+ 726 0042 01       		.byte	0x1
+ 727 0043 06       		.byte	0x6
+ 728 0044 D2010000 		.4byte	.LASF3
+ 729 0048 02       		.uleb128 0x2
+ 730 0049 01       		.byte	0x1
+ 731 004a 08       		.byte	0x8
+ 732 004b 7F000000 		.4byte	.LASF4
+ 733 004f 02       		.uleb128 0x2
+ 734 0050 02       		.byte	0x2
+ 735 0051 05       		.byte	0x5
+ 736 0052 9C010000 		.4byte	.LASF5
+ 737 0056 02       		.uleb128 0x2
+ 738 0057 02       		.byte	0x2
+ 739 0058 07       		.byte	0x7
+ 740 0059 9F000000 		.4byte	.LASF6
+ 741 005d 02       		.uleb128 0x2
+ 742 005e 04       		.byte	0x4
+ 743 005f 05       		.byte	0x5
+ 744 0060 B5010000 		.4byte	.LASF7
+ 745 0064 02       		.uleb128 0x2
+ 746 0065 04       		.byte	0x4
+ 747 0066 07       		.byte	0x7
+ 748 0067 8D000000 		.4byte	.LASF8
+ 749 006b 02       		.uleb128 0x2
+ 750 006c 08       		.byte	0x8
+ 751 006d 07       		.byte	0x7
+ 752 006e 2F010000 		.4byte	.LASF9
+ 753 0072 02       		.uleb128 0x2
+ 754 0073 04       		.byte	0x4
+ 755 0074 07       		.byte	0x7
+ 756 0075 60010000 		.4byte	.LASF10
+ 757 0079 02       		.uleb128 0x2
+ 758 007a 01       		.byte	0x1
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccHCp0Lb.s 			page 16
+
+
+ 759 007b 08       		.byte	0x8
+ 760 007c 7D010000 		.4byte	.LASF11
+ 761 0080 02       		.uleb128 0x2
+ 762 0081 08       		.byte	0x8
+ 763 0082 04       		.byte	0x4
+ 764 0083 B2000000 		.4byte	.LASF12
+ 765 0087 02       		.uleb128 0x2
+ 766 0088 04       		.byte	0x4
+ 767 0089 04       		.byte	0x4
+ 768 008a 79000000 		.4byte	.LASF13
+ 769 008e 04       		.uleb128 0x4
+ 770 008f 28       		.byte	0x28
+ 771 0090 02       		.byte	0x2
+ 772 0091 09       		.byte	0x9
+ 773 0092 AF000000 		.4byte	0xaf
+ 774 0096 05       		.uleb128 0x5
+ 775 0097 56000000 		.4byte	.LASF14
+ 776 009b 02       		.byte	0x2
+ 777 009c 0A       		.byte	0xa
+ 778 009d AF000000 		.4byte	0xaf
+ 779 00a1 00       		.byte	0
+ 780 00a2 05       		.uleb128 0x5
+ 781 00a3 60000000 		.4byte	.LASF15
+ 782 00a7 02       		.byte	0x2
+ 783 00a8 0B       		.byte	0xb
+ 784 00a9 AF000000 		.4byte	0xaf
+ 785 00ad 14       		.byte	0x14
+ 786 00ae 00       		.byte	0
+ 787 00af 06       		.uleb128 0x6
+ 788 00b0 2C000000 		.4byte	0x2c
+ 789 00b4 BF000000 		.4byte	0xbf
+ 790 00b8 07       		.uleb128 0x7
+ 791 00b9 72000000 		.4byte	0x72
+ 792 00bd 04       		.byte	0x4
+ 793 00be 00       		.byte	0
+ 794 00bf 08       		.uleb128 0x8
+ 795 00c0 F7000000 		.4byte	.LASF20
+ 796 00c4 02       		.byte	0x2
+ 797 00c5 0C       		.byte	0xc
+ 798 00c6 8E000000 		.4byte	0x8e
+ 799 00ca 04       		.uleb128 0x4
+ 800 00cb A8       		.byte	0xa8
+ 801 00cc 02       		.byte	0x2
+ 802 00cd 0E       		.byte	0xe
+ 803 00ce 1A010000 		.4byte	0x11a
+ 804 00d2 09       		.uleb128 0x9
+ 805 00d3 647400   		.ascii	"dt\000"
+ 806 00d6 02       		.byte	0x2
+ 807 00d7 0F       		.byte	0xf
+ 808 00d8 80000000 		.4byte	0x80
+ 809 00dc 00       		.byte	0
+ 810 00dd 05       		.uleb128 0x5
+ 811 00de 0E000000 		.4byte	.LASF16
+ 812 00e2 02       		.byte	0x2
+ 813 00e3 10       		.byte	0x10
+ 814 00e4 80000000 		.4byte	0x80
+ 815 00e8 08       		.byte	0x8
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccHCp0Lb.s 			page 17
+
+
+ 816 00e9 05       		.uleb128 0x5
+ 817 00ea DE010000 		.4byte	.LASF17
+ 818 00ee 02       		.byte	0x2
+ 819 00ef 11       		.byte	0x11
+ 820 00f0 80000000 		.4byte	0x80
+ 821 00f4 10       		.byte	0x10
+ 822 00f5 05       		.uleb128 0x5
+ 823 00f6 2A010000 		.4byte	.LASF18
+ 824 00fa 02       		.byte	0x2
+ 825 00fb 12       		.byte	0x12
+ 826 00fc 80000000 		.4byte	0x80
+ 827 0100 18       		.byte	0x18
+ 828 0101 05       		.uleb128 0x5
+ 829 0102 20010000 		.4byte	.LASF19
+ 830 0106 02       		.byte	0x2
+ 831 0107 13       		.byte	0x13
+ 832 0108 2C000000 		.4byte	0x2c
+ 833 010c 20       		.byte	0x20
+ 834 010d 09       		.uleb128 0x9
+ 835 010e 74656E00 		.ascii	"ten\000"
+ 836 0112 02       		.byte	0x2
+ 837 0113 14       		.byte	0x14
+ 838 0114 1A010000 		.4byte	0x11a
+ 839 0118 28       		.byte	0x28
+ 840 0119 00       		.byte	0
+ 841 011a 06       		.uleb128 0x6
+ 842 011b 80000000 		.4byte	0x80
+ 843 011f 2A010000 		.4byte	0x12a
+ 844 0123 07       		.uleb128 0x7
+ 845 0124 72000000 		.4byte	0x72
+ 846 0128 0F       		.byte	0xf
+ 847 0129 00       		.byte	0
+ 848 012a 08       		.uleb128 0x8
+ 849 012b A6010000 		.4byte	.LASF21
+ 850 012f 02       		.byte	0x2
+ 851 0130 16       		.byte	0x16
+ 852 0131 CA000000 		.4byte	0xca
+ 853 0135 0A       		.uleb128 0xa
+ 854 0136 69000000 		.4byte	.LASF25
+ 855 013a 01       		.byte	0x1
+ 856 013b 05       		.byte	0x5
+ 857 013c 8F010000 		.4byte	0x18f
+ 858 0140 00000000 		.4byte	.LFB0
+ 859 0144 C0000000 		.4byte	.LFE0-.LFB0
+ 860 0148 01       		.uleb128 0x1
+ 861 0149 9C       		.byte	0x9c
+ 862 014a 8F010000 		.4byte	0x18f
+ 863 014e 0B       		.uleb128 0xb
+ 864 014f 2E020000 		.4byte	.LASF27
+ 865 0153 01       		.byte	0x1
+ 866 0154 05       		.byte	0x5
+ 867 0155 96010000 		.4byte	0x196
+ 868 0159 02       		.uleb128 0x2
+ 869 015a 91       		.byte	0x91
+ 870 015b 5C       		.sleb128 -36
+ 871 015c 0C       		.uleb128 0xc
+ 872 015d 46010000 		.4byte	.LASF22
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccHCp0Lb.s 			page 18
+
+
+ 873 0161 01       		.byte	0x1
+ 874 0162 07       		.byte	0x7
+ 875 0163 2C000000 		.4byte	0x2c
+ 876 0167 02       		.uleb128 0x2
+ 877 0168 91       		.byte	0x91
+ 878 0169 68       		.sleb128 -24
+ 879 016a 0C       		.uleb128 0xc
+ 880 016b 8C010000 		.4byte	.LASF23
+ 881 016f 01       		.byte	0x1
+ 882 0170 08       		.byte	0x8
+ 883 0171 80000000 		.4byte	0x80
+ 884 0175 02       		.uleb128 0x2
+ 885 0176 91       		.byte	0x91
+ 886 0177 60       		.sleb128 -32
+ 887 0178 0D       		.uleb128 0xd
+ 888 0179 16000000 		.4byte	.LBB2
+ 889 017d 88000000 		.4byte	.LBE2-.LBB2
+ 890 0181 0E       		.uleb128 0xe
+ 891 0182 6900     		.ascii	"i\000"
+ 892 0184 01       		.byte	0x1
+ 893 0185 09       		.byte	0x9
+ 894 0186 2C000000 		.4byte	0x2c
+ 895 018a 02       		.uleb128 0x2
+ 896 018b 91       		.byte	0x91
+ 897 018c 6C       		.sleb128 -20
+ 898 018d 00       		.byte	0
+ 899 018e 00       		.byte	0
+ 900 018f 02       		.uleb128 0x2
+ 901 0190 01       		.byte	0x1
+ 902 0191 02       		.byte	0x2
+ 903 0192 E4010000 		.4byte	.LASF24
+ 904 0196 0F       		.uleb128 0xf
+ 905 0197 04       		.byte	0x4
+ 906 0198 BF000000 		.4byte	0xbf
+ 907 019c 0A       		.uleb128 0xa
+ 908 019d 00000000 		.4byte	.LASF26
+ 909 01a1 01       		.byte	0x1
+ 910 01a2 19       		.byte	0x19
+ 911 01a3 80000000 		.4byte	0x80
+ 912 01a7 00000000 		.4byte	.LFB1
+ 913 01ab 38020000 		.4byte	.LFE1-.LFB1
+ 914 01af 01       		.uleb128 0x1
+ 915 01b0 9C       		.byte	0x9c
+ 916 01b1 AD020000 		.4byte	0x2ad
+ 917 01b5 0B       		.uleb128 0xb
+ 918 01b6 14000000 		.4byte	.LASF28
+ 919 01ba 01       		.byte	0x1
+ 920 01bb 19       		.byte	0x19
+ 921 01bc AD020000 		.4byte	0x2ad
+ 922 01c0 03       		.uleb128 0x3
+ 923 01c1 91       		.byte	0x91
+ 924 01c2 AC7F     		.sleb128 -84
+ 925 01c4 0B       		.uleb128 0xb
+ 926 01c5 2E020000 		.4byte	.LASF27
+ 927 01c9 01       		.byte	0x1
+ 928 01ca 19       		.byte	0x19
+ 929 01cb 96010000 		.4byte	0x196
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccHCp0Lb.s 			page 19
+
+
+ 930 01cf 03       		.uleb128 0x3
+ 931 01d0 91       		.byte	0x91
+ 932 01d1 A87F     		.sleb128 -88
+ 933 01d3 10       		.uleb128 0x10
+ 934 01d4 7600     		.ascii	"v\000"
+ 935 01d6 01       		.byte	0x1
+ 936 01d7 19       		.byte	0x19
+ 937 01d8 2C000000 		.4byte	0x2c
+ 938 01dc 03       		.uleb128 0x3
+ 939 01dd 91       		.byte	0x91
+ 940 01de A47F     		.sleb128 -92
+ 941 01e0 10       		.uleb128 0x10
+ 942 01e1 7700     		.ascii	"w\000"
+ 943 01e3 01       		.byte	0x1
+ 944 01e4 19       		.byte	0x19
+ 945 01e5 2C000000 		.4byte	0x2c
+ 946 01e9 03       		.uleb128 0x3
+ 947 01ea 91       		.byte	0x91
+ 948 01eb A07F     		.sleb128 -96
+ 949 01ed 0B       		.uleb128 0xb
+ 950 01ee 1E000000 		.4byte	.LASF29
+ 951 01f2 01       		.byte	0x1
+ 952 01f3 19       		.byte	0x19
+ 953 01f4 2C000000 		.4byte	0x2c
+ 954 01f8 02       		.uleb128 0x2
+ 955 01f9 91       		.byte	0x91
+ 956 01fa 00       		.sleb128 0
+ 957 01fb 0B       		.uleb128 0xb
+ 958 01fc 25000000 		.4byte	.LASF30
+ 959 0200 01       		.byte	0x1
+ 960 0201 19       		.byte	0x19
+ 961 0202 2C000000 		.4byte	0x2c
+ 962 0206 02       		.uleb128 0x2
+ 963 0207 91       		.byte	0x91
+ 964 0208 04       		.sleb128 4
+ 965 0209 0B       		.uleb128 0xb
+ 966 020a CA010000 		.4byte	.LASF31
+ 967 020e 01       		.byte	0x1
+ 968 020f 19       		.byte	0x19
+ 969 0210 80000000 		.4byte	0x80
+ 970 0214 02       		.uleb128 0x2
+ 971 0215 91       		.byte	0x91
+ 972 0216 08       		.sleb128 8
+ 973 0217 0B       		.uleb128 0xb
+ 974 0218 69010000 		.4byte	.LASF32
+ 975 021c 01       		.byte	0x1
+ 976 021d 19       		.byte	0x19
+ 977 021e 2C000000 		.4byte	0x2c
+ 978 0222 02       		.uleb128 0x2
+ 979 0223 91       		.byte	0x91
+ 980 0224 10       		.sleb128 16
+ 981 0225 0B       		.uleb128 0xb
+ 982 0226 43000000 		.4byte	.LASF33
+ 983 022a 01       		.byte	0x1
+ 984 022b 19       		.byte	0x19
+ 985 022c 2C000000 		.4byte	0x2c
+ 986 0230 02       		.uleb128 0x2
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccHCp0Lb.s 			page 20
+
+
+ 987 0231 91       		.byte	0x91
+ 988 0232 14       		.sleb128 20
+ 989 0233 0B       		.uleb128 0xb
+ 990 0234 56010000 		.4byte	.LASF34
+ 991 0238 01       		.byte	0x1
+ 992 0239 19       		.byte	0x19
+ 993 023a 2C000000 		.4byte	0x2c
+ 994 023e 02       		.uleb128 0x2
+ 995 023f 91       		.byte	0x91
+ 996 0240 18       		.sleb128 24
+ 997 0241 0E       		.uleb128 0xe
+ 998 0242 647400   		.ascii	"dt\000"
+ 999 0245 01       		.byte	0x1
+ 1000 0246 1C       		.byte	0x1c
+ 1001 0247 80000000 		.4byte	0x80
+ 1002 024b 02       		.uleb128 0x2
+ 1003 024c 91       		.byte	0x91
+ 1004 024d 58       		.sleb128 -40
+ 1005 024e 0C       		.uleb128 0xc
+ 1006 024f 0E000000 		.4byte	.LASF16
+ 1007 0253 01       		.byte	0x1
+ 1008 0254 1D       		.byte	0x1d
+ 1009 0255 80000000 		.4byte	0x80
+ 1010 0259 02       		.uleb128 0x2
+ 1011 025a 91       		.byte	0x91
+ 1012 025b 50       		.sleb128 -48
+ 1013 025c 0C       		.uleb128 0xc
+ 1014 025d DE010000 		.4byte	.LASF17
+ 1015 0261 01       		.byte	0x1
+ 1016 0262 1E       		.byte	0x1e
+ 1017 0263 80000000 		.4byte	0x80
+ 1018 0267 02       		.uleb128 0x2
+ 1019 0268 91       		.byte	0x91
+ 1020 0269 48       		.sleb128 -56
+ 1021 026a 0C       		.uleb128 0xc
+ 1022 026b 2A010000 		.4byte	.LASF18
+ 1023 026f 01       		.byte	0x1
+ 1024 0270 1F       		.byte	0x1f
+ 1025 0271 80000000 		.4byte	0x80
+ 1026 0275 02       		.uleb128 0x2
+ 1027 0276 91       		.byte	0x91
+ 1028 0277 40       		.sleb128 -64
+ 1029 0278 0C       		.uleb128 0xc
+ 1030 0279 B0010000 		.4byte	.LASF35
+ 1031 027d 01       		.byte	0x1
+ 1032 027e 2F       		.byte	0x2f
+ 1033 027f 80000000 		.4byte	0x80
+ 1034 0283 03       		.uleb128 0x3
+ 1035 0284 91       		.byte	0x91
+ 1036 0285 B87F     		.sleb128 -72
+ 1037 0287 0C       		.uleb128 0xc
+ 1038 0288 F2000000 		.4byte	.LASF36
+ 1039 028c 01       		.byte	0x1
+ 1040 028d 33       		.byte	0x33
+ 1041 028e 80000000 		.4byte	0x80
+ 1042 0292 03       		.uleb128 0x3
+ 1043 0293 91       		.byte	0x91
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccHCp0Lb.s 			page 21
+
+
+ 1044 0294 B07F     		.sleb128 -80
+ 1045 0296 0D       		.uleb128 0xd
+ 1046 0297 42000000 		.4byte	.LBB3
+ 1047 029b 1E010000 		.4byte	.LBE3-.LBB3
+ 1048 029f 0E       		.uleb128 0xe
+ 1049 02a0 6900     		.ascii	"i\000"
+ 1050 02a2 01       		.byte	0x1
+ 1051 02a3 24       		.byte	0x24
+ 1052 02a4 2C000000 		.4byte	0x2c
+ 1053 02a8 02       		.uleb128 0x2
+ 1054 02a9 91       		.byte	0x91
+ 1055 02aa 64       		.sleb128 -28
+ 1056 02ab 00       		.byte	0
+ 1057 02ac 00       		.byte	0
+ 1058 02ad 0F       		.uleb128 0xf
+ 1059 02ae 04       		.byte	0x4
+ 1060 02af 2A010000 		.4byte	0x12a
+ 1061 02b3 0A       		.uleb128 0xa
+ 1062 02b4 B9000000 		.4byte	.LASF37
+ 1063 02b8 01       		.byte	0x1
+ 1064 02b9 37       		.byte	0x37
+ 1065 02ba B8030000 		.4byte	0x3b8
+ 1066 02be 00000000 		.4byte	.LFB2
+ 1067 02c2 50010000 		.4byte	.LFE2-.LFB2
+ 1068 02c6 01       		.uleb128 0x1
+ 1069 02c7 9C       		.byte	0x9c
+ 1070 02c8 B8030000 		.4byte	0x3b8
+ 1071 02cc 0B       		.uleb128 0xb
+ 1072 02cd 14000000 		.4byte	.LASF28
+ 1073 02d1 01       		.byte	0x1
+ 1074 02d2 37       		.byte	0x37
+ 1075 02d3 AD020000 		.4byte	0x2ad
+ 1076 02d7 03       		.uleb128 0x3
+ 1077 02d8 91       		.byte	0x91
+ 1078 02d9 BC7F     		.sleb128 -68
+ 1079 02db 0B       		.uleb128 0xb
+ 1080 02dc 2E020000 		.4byte	.LASF27
+ 1081 02e0 01       		.byte	0x1
+ 1082 02e1 37       		.byte	0x37
+ 1083 02e2 96010000 		.4byte	0x196
+ 1084 02e6 03       		.uleb128 0x3
+ 1085 02e7 91       		.byte	0x91
+ 1086 02e8 B87F     		.sleb128 -72
+ 1087 02ea 0B       		.uleb128 0xb
+ 1088 02eb 1E000000 		.4byte	.LASF29
+ 1089 02ef 01       		.byte	0x1
+ 1090 02f0 37       		.byte	0x37
+ 1091 02f1 2C000000 		.4byte	0x2c
+ 1092 02f5 03       		.uleb128 0x3
+ 1093 02f6 91       		.byte	0x91
+ 1094 02f7 B47F     		.sleb128 -76
+ 1095 02f9 0B       		.uleb128 0xb
+ 1096 02fa 25000000 		.4byte	.LASF30
+ 1097 02fe 01       		.byte	0x1
+ 1098 02ff 37       		.byte	0x37
+ 1099 0300 2C000000 		.4byte	0x2c
+ 1100 0304 03       		.uleb128 0x3
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccHCp0Lb.s 			page 22
+
+
+ 1101 0305 91       		.byte	0x91
+ 1102 0306 B07F     		.sleb128 -80
+ 1103 0308 0B       		.uleb128 0xb
+ 1104 0309 CA010000 		.4byte	.LASF31
+ 1105 030d 01       		.byte	0x1
+ 1106 030e 37       		.byte	0x37
+ 1107 030f 80000000 		.4byte	0x80
+ 1108 0313 02       		.uleb128 0x2
+ 1109 0314 91       		.byte	0x91
+ 1110 0315 00       		.sleb128 0
+ 1111 0316 0B       		.uleb128 0xb
+ 1112 0317 69010000 		.4byte	.LASF32
+ 1113 031b 01       		.byte	0x1
+ 1114 031c 37       		.byte	0x37
+ 1115 031d 2C000000 		.4byte	0x2c
+ 1116 0321 02       		.uleb128 0x2
+ 1117 0322 91       		.byte	0x91
+ 1118 0323 08       		.sleb128 8
+ 1119 0324 0B       		.uleb128 0xb
+ 1120 0325 43000000 		.4byte	.LASF33
+ 1121 0329 01       		.byte	0x1
+ 1122 032a 37       		.byte	0x37
+ 1123 032b 2C000000 		.4byte	0x2c
+ 1124 032f 02       		.uleb128 0x2
+ 1125 0330 91       		.byte	0x91
+ 1126 0331 0C       		.sleb128 12
+ 1127 0332 0B       		.uleb128 0xb
+ 1128 0333 56010000 		.4byte	.LASF34
+ 1129 0337 01       		.byte	0x1
+ 1130 0338 37       		.byte	0x37
+ 1131 0339 2C000000 		.4byte	0x2c
+ 1132 033d 02       		.uleb128 0x2
+ 1133 033e 91       		.byte	0x91
+ 1134 033f 10       		.sleb128 16
+ 1135 0340 0C       		.uleb128 0xc
+ 1136 0341 F2000000 		.4byte	.LASF36
+ 1137 0345 01       		.byte	0x1
+ 1138 0346 39       		.byte	0x39
+ 1139 0347 BE030000 		.4byte	0x3be
+ 1140 034b 03       		.uleb128 0x3
+ 1141 034c 91       		.byte	0x91
+ 1142 034d 44       		.sleb128 -60
+ 1143 034e 06       		.byte	0x6
+ 1144 034f 0E       		.uleb128 0xe
+ 1145 0350 745F6300 		.ascii	"t_c\000"
+ 1146 0354 01       		.byte	0x1
+ 1147 0355 3C       		.byte	0x3c
+ 1148 0356 2C000000 		.4byte	0x2c
+ 1149 035a 02       		.uleb128 0x2
+ 1150 035b 91       		.byte	0x91
+ 1151 035c 5C       		.sleb128 -36
+ 1152 035d 0C       		.uleb128 0xc
+ 1153 035e 82010000 		.4byte	.LASF38
+ 1154 0362 01       		.byte	0x1
+ 1155 0363 3D       		.byte	0x3d
+ 1156 0364 2C000000 		.4byte	0x2c
+ 1157 0368 02       		.uleb128 0x2
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccHCp0Lb.s 			page 23
+
+
+ 1158 0369 91       		.byte	0x91
+ 1159 036a 58       		.sleb128 -40
+ 1160 036b 0C       		.uleb128 0xc
+ 1161 036c 3A000000 		.4byte	.LASF39
+ 1162 0370 01       		.byte	0x1
+ 1163 0371 3E       		.byte	0x3e
+ 1164 0372 2C000000 		.4byte	0x2c
+ 1165 0376 02       		.uleb128 0x2
+ 1166 0377 91       		.byte	0x91
+ 1167 0378 54       		.sleb128 -44
+ 1168 0379 0C       		.uleb128 0xc
+ 1169 037a EA010000 		.4byte	.LASF40
+ 1170 037e 01       		.byte	0x1
+ 1171 037f 4A       		.byte	0x4a
+ 1172 0380 B8030000 		.4byte	0x3b8
+ 1173 0384 02       		.uleb128 0x2
+ 1174 0385 91       		.byte	0x91
+ 1175 0386 40       		.sleb128 -64
+ 1176 0387 11       		.uleb128 0x11
+ 1177 0388 62000000 		.4byte	.LBB4
+ 1178 038c A4000000 		.4byte	.LBE4-.LBB4
+ 1179 0390 A1030000 		.4byte	0x3a1
+ 1180 0394 0E       		.uleb128 0xe
+ 1181 0395 6900     		.ascii	"i\000"
+ 1182 0397 01       		.byte	0x1
+ 1183 0398 40       		.byte	0x40
+ 1184 0399 2C000000 		.4byte	0x2c
+ 1185 039d 02       		.uleb128 0x2
+ 1186 039e 91       		.byte	0x91
+ 1187 039f 50       		.sleb128 -48
+ 1188 03a0 00       		.byte	0
+ 1189 03a1 0D       		.uleb128 0xd
+ 1190 03a2 10010000 		.4byte	.LBB5
+ 1191 03a6 2E000000 		.4byte	.LBE5-.LBB5
+ 1192 03aa 0E       		.uleb128 0xe
+ 1193 03ab 6900     		.ascii	"i\000"
+ 1194 03ad 01       		.byte	0x1
+ 1195 03ae 4B       		.byte	0x4b
+ 1196 03af 2C000000 		.4byte	0x2c
+ 1197 03b3 02       		.uleb128 0x2
+ 1198 03b4 91       		.byte	0x91
+ 1199 03b5 4C       		.sleb128 -52
+ 1200 03b6 00       		.byte	0
+ 1201 03b7 00       		.byte	0
+ 1202 03b8 0F       		.uleb128 0xf
+ 1203 03b9 04       		.byte	0x4
+ 1204 03ba 80000000 		.4byte	0x80
+ 1205 03be 06       		.uleb128 0x6
+ 1206 03bf 2C000000 		.4byte	0x2c
+ 1207 03c3 D1030000 		.4byte	0x3d1
+ 1208 03c7 12       		.uleb128 0x12
+ 1209 03c8 72000000 		.4byte	0x72
+ 1210 03cc 03       		.uleb128 0x3
+ 1211 03cd 91       		.byte	0x91
+ 1212 03ce 48       		.sleb128 -56
+ 1213 03cf 06       		.byte	0x6
+ 1214 03d0 00       		.byte	0
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccHCp0Lb.s 			page 24
+
+
+ 1215 03d1 13       		.uleb128 0x13
+ 1216 03d2 03010000 		.4byte	.LASF46
+ 1217 03d6 01       		.byte	0x1
+ 1218 03d7 51       		.byte	0x51
+ 1219 03d8 80000000 		.4byte	0x80
+ 1220 03dc 00000000 		.4byte	.LFB3
+ 1221 03e0 80000000 		.4byte	.LFE3-.LFB3
+ 1222 03e4 01       		.uleb128 0x1
+ 1223 03e5 9C       		.byte	0x9c
+ 1224 03e6 0B       		.uleb128 0xb
+ 1225 03e7 69010000 		.4byte	.LASF32
+ 1226 03eb 01       		.byte	0x1
+ 1227 03ec 51       		.byte	0x51
+ 1228 03ed 80000000 		.4byte	0x80
+ 1229 03f1 02       		.uleb128 0x2
+ 1230 03f2 91       		.byte	0x91
+ 1231 03f3 50       		.sleb128 -48
+ 1232 03f4 0B       		.uleb128 0xb
+ 1233 03f5 43000000 		.4byte	.LASF33
+ 1234 03f9 01       		.byte	0x1
+ 1235 03fa 51       		.byte	0x51
+ 1236 03fb 80000000 		.4byte	0x80
+ 1237 03ff 02       		.uleb128 0x2
+ 1238 0400 91       		.byte	0x91
+ 1239 0401 48       		.sleb128 -56
+ 1240 0402 0B       		.uleb128 0xb
+ 1241 0403 1E000000 		.4byte	.LASF29
+ 1242 0407 01       		.byte	0x1
+ 1243 0408 51       		.byte	0x51
+ 1244 0409 80000000 		.4byte	0x80
+ 1245 040d 02       		.uleb128 0x2
+ 1246 040e 91       		.byte	0x91
+ 1247 040f 00       		.sleb128 0
+ 1248 0410 0B       		.uleb128 0xb
+ 1249 0411 25000000 		.4byte	.LASF30
+ 1250 0415 01       		.byte	0x1
+ 1251 0416 51       		.byte	0x51
+ 1252 0417 80000000 		.4byte	0x80
+ 1253 041b 02       		.uleb128 0x2
+ 1254 041c 91       		.byte	0x91
+ 1255 041d 08       		.sleb128 8
+ 1256 041e 0C       		.uleb128 0xc
+ 1257 041f 2C000000 		.4byte	.LASF41
+ 1258 0423 01       		.byte	0x1
+ 1259 0424 53       		.byte	0x53
+ 1260 0425 80000000 		.4byte	0x80
+ 1261 0429 02       		.uleb128 0x2
+ 1262 042a 91       		.byte	0x91
+ 1263 042b 68       		.sleb128 -24
+ 1264 042c 0C       		.uleb128 0xc
+ 1265 042d 33000000 		.4byte	.LASF42
+ 1266 0431 01       		.byte	0x1
+ 1267 0432 54       		.byte	0x54
+ 1268 0433 80000000 		.4byte	0x80
+ 1269 0437 02       		.uleb128 0x2
+ 1270 0438 91       		.byte	0x91
+ 1271 0439 60       		.sleb128 -32
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccHCp0Lb.s 			page 25
+
+
+ 1272 043a 0C       		.uleb128 0xc
+ 1273 043b 60000000 		.4byte	.LASF15
+ 1274 043f 01       		.byte	0x1
+ 1275 0440 56       		.byte	0x56
+ 1276 0441 80000000 		.4byte	0x80
+ 1277 0445 02       		.uleb128 0x2
+ 1278 0446 91       		.byte	0x91
+ 1279 0447 58       		.sleb128 -40
+ 1280 0448 00       		.byte	0
+ 1281 0449 00       		.byte	0
+ 1282              		.section	.debug_abbrev,"",%progbits
+ 1283              	.Ldebug_abbrev0:
+ 1284 0000 01       		.uleb128 0x1
+ 1285 0001 11       		.uleb128 0x11
+ 1286 0002 01       		.byte	0x1
+ 1287 0003 25       		.uleb128 0x25
+ 1288 0004 0E       		.uleb128 0xe
+ 1289 0005 13       		.uleb128 0x13
+ 1290 0006 0B       		.uleb128 0xb
+ 1291 0007 03       		.uleb128 0x3
+ 1292 0008 0E       		.uleb128 0xe
+ 1293 0009 1B       		.uleb128 0x1b
+ 1294 000a 0E       		.uleb128 0xe
+ 1295 000b 55       		.uleb128 0x55
+ 1296 000c 17       		.uleb128 0x17
+ 1297 000d 11       		.uleb128 0x11
+ 1298 000e 01       		.uleb128 0x1
+ 1299 000f 10       		.uleb128 0x10
+ 1300 0010 17       		.uleb128 0x17
+ 1301 0011 00       		.byte	0
+ 1302 0012 00       		.byte	0
+ 1303 0013 02       		.uleb128 0x2
+ 1304 0014 24       		.uleb128 0x24
+ 1305 0015 00       		.byte	0
+ 1306 0016 0B       		.uleb128 0xb
+ 1307 0017 0B       		.uleb128 0xb
+ 1308 0018 3E       		.uleb128 0x3e
+ 1309 0019 0B       		.uleb128 0xb
+ 1310 001a 03       		.uleb128 0x3
+ 1311 001b 0E       		.uleb128 0xe
+ 1312 001c 00       		.byte	0
+ 1313 001d 00       		.byte	0
+ 1314 001e 03       		.uleb128 0x3
+ 1315 001f 24       		.uleb128 0x24
+ 1316 0020 00       		.byte	0
+ 1317 0021 0B       		.uleb128 0xb
+ 1318 0022 0B       		.uleb128 0xb
+ 1319 0023 3E       		.uleb128 0x3e
+ 1320 0024 0B       		.uleb128 0xb
+ 1321 0025 03       		.uleb128 0x3
+ 1322 0026 08       		.uleb128 0x8
+ 1323 0027 00       		.byte	0
+ 1324 0028 00       		.byte	0
+ 1325 0029 04       		.uleb128 0x4
+ 1326 002a 13       		.uleb128 0x13
+ 1327 002b 01       		.byte	0x1
+ 1328 002c 0B       		.uleb128 0xb
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccHCp0Lb.s 			page 26
+
+
+ 1329 002d 0B       		.uleb128 0xb
+ 1330 002e 3A       		.uleb128 0x3a
+ 1331 002f 0B       		.uleb128 0xb
+ 1332 0030 3B       		.uleb128 0x3b
+ 1333 0031 0B       		.uleb128 0xb
+ 1334 0032 01       		.uleb128 0x1
+ 1335 0033 13       		.uleb128 0x13
+ 1336 0034 00       		.byte	0
+ 1337 0035 00       		.byte	0
+ 1338 0036 05       		.uleb128 0x5
+ 1339 0037 0D       		.uleb128 0xd
+ 1340 0038 00       		.byte	0
+ 1341 0039 03       		.uleb128 0x3
+ 1342 003a 0E       		.uleb128 0xe
+ 1343 003b 3A       		.uleb128 0x3a
+ 1344 003c 0B       		.uleb128 0xb
+ 1345 003d 3B       		.uleb128 0x3b
+ 1346 003e 0B       		.uleb128 0xb
+ 1347 003f 49       		.uleb128 0x49
+ 1348 0040 13       		.uleb128 0x13
+ 1349 0041 38       		.uleb128 0x38
+ 1350 0042 0B       		.uleb128 0xb
+ 1351 0043 00       		.byte	0
+ 1352 0044 00       		.byte	0
+ 1353 0045 06       		.uleb128 0x6
+ 1354 0046 01       		.uleb128 0x1
+ 1355 0047 01       		.byte	0x1
+ 1356 0048 49       		.uleb128 0x49
+ 1357 0049 13       		.uleb128 0x13
+ 1358 004a 01       		.uleb128 0x1
+ 1359 004b 13       		.uleb128 0x13
+ 1360 004c 00       		.byte	0
+ 1361 004d 00       		.byte	0
+ 1362 004e 07       		.uleb128 0x7
+ 1363 004f 21       		.uleb128 0x21
+ 1364 0050 00       		.byte	0
+ 1365 0051 49       		.uleb128 0x49
+ 1366 0052 13       		.uleb128 0x13
+ 1367 0053 2F       		.uleb128 0x2f
+ 1368 0054 0B       		.uleb128 0xb
+ 1369 0055 00       		.byte	0
+ 1370 0056 00       		.byte	0
+ 1371 0057 08       		.uleb128 0x8
+ 1372 0058 16       		.uleb128 0x16
+ 1373 0059 00       		.byte	0
+ 1374 005a 03       		.uleb128 0x3
+ 1375 005b 0E       		.uleb128 0xe
+ 1376 005c 3A       		.uleb128 0x3a
+ 1377 005d 0B       		.uleb128 0xb
+ 1378 005e 3B       		.uleb128 0x3b
+ 1379 005f 0B       		.uleb128 0xb
+ 1380 0060 49       		.uleb128 0x49
+ 1381 0061 13       		.uleb128 0x13
+ 1382 0062 00       		.byte	0
+ 1383 0063 00       		.byte	0
+ 1384 0064 09       		.uleb128 0x9
+ 1385 0065 0D       		.uleb128 0xd
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccHCp0Lb.s 			page 27
+
+
+ 1386 0066 00       		.byte	0
+ 1387 0067 03       		.uleb128 0x3
+ 1388 0068 08       		.uleb128 0x8
+ 1389 0069 3A       		.uleb128 0x3a
+ 1390 006a 0B       		.uleb128 0xb
+ 1391 006b 3B       		.uleb128 0x3b
+ 1392 006c 0B       		.uleb128 0xb
+ 1393 006d 49       		.uleb128 0x49
+ 1394 006e 13       		.uleb128 0x13
+ 1395 006f 38       		.uleb128 0x38
+ 1396 0070 0B       		.uleb128 0xb
+ 1397 0071 00       		.byte	0
+ 1398 0072 00       		.byte	0
+ 1399 0073 0A       		.uleb128 0xa
+ 1400 0074 2E       		.uleb128 0x2e
+ 1401 0075 01       		.byte	0x1
+ 1402 0076 3F       		.uleb128 0x3f
+ 1403 0077 19       		.uleb128 0x19
+ 1404 0078 03       		.uleb128 0x3
+ 1405 0079 0E       		.uleb128 0xe
+ 1406 007a 3A       		.uleb128 0x3a
+ 1407 007b 0B       		.uleb128 0xb
+ 1408 007c 3B       		.uleb128 0x3b
+ 1409 007d 0B       		.uleb128 0xb
+ 1410 007e 27       		.uleb128 0x27
+ 1411 007f 19       		.uleb128 0x19
+ 1412 0080 49       		.uleb128 0x49
+ 1413 0081 13       		.uleb128 0x13
+ 1414 0082 11       		.uleb128 0x11
+ 1415 0083 01       		.uleb128 0x1
+ 1416 0084 12       		.uleb128 0x12
+ 1417 0085 06       		.uleb128 0x6
+ 1418 0086 40       		.uleb128 0x40
+ 1419 0087 18       		.uleb128 0x18
+ 1420 0088 9642     		.uleb128 0x2116
+ 1421 008a 19       		.uleb128 0x19
+ 1422 008b 01       		.uleb128 0x1
+ 1423 008c 13       		.uleb128 0x13
+ 1424 008d 00       		.byte	0
+ 1425 008e 00       		.byte	0
+ 1426 008f 0B       		.uleb128 0xb
+ 1427 0090 05       		.uleb128 0x5
+ 1428 0091 00       		.byte	0
+ 1429 0092 03       		.uleb128 0x3
+ 1430 0093 0E       		.uleb128 0xe
+ 1431 0094 3A       		.uleb128 0x3a
+ 1432 0095 0B       		.uleb128 0xb
+ 1433 0096 3B       		.uleb128 0x3b
+ 1434 0097 0B       		.uleb128 0xb
+ 1435 0098 49       		.uleb128 0x49
+ 1436 0099 13       		.uleb128 0x13
+ 1437 009a 02       		.uleb128 0x2
+ 1438 009b 18       		.uleb128 0x18
+ 1439 009c 00       		.byte	0
+ 1440 009d 00       		.byte	0
+ 1441 009e 0C       		.uleb128 0xc
+ 1442 009f 34       		.uleb128 0x34
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccHCp0Lb.s 			page 28
+
+
+ 1443 00a0 00       		.byte	0
+ 1444 00a1 03       		.uleb128 0x3
+ 1445 00a2 0E       		.uleb128 0xe
+ 1446 00a3 3A       		.uleb128 0x3a
+ 1447 00a4 0B       		.uleb128 0xb
+ 1448 00a5 3B       		.uleb128 0x3b
+ 1449 00a6 0B       		.uleb128 0xb
+ 1450 00a7 49       		.uleb128 0x49
+ 1451 00a8 13       		.uleb128 0x13
+ 1452 00a9 02       		.uleb128 0x2
+ 1453 00aa 18       		.uleb128 0x18
+ 1454 00ab 00       		.byte	0
+ 1455 00ac 00       		.byte	0
+ 1456 00ad 0D       		.uleb128 0xd
+ 1457 00ae 0B       		.uleb128 0xb
+ 1458 00af 01       		.byte	0x1
+ 1459 00b0 11       		.uleb128 0x11
+ 1460 00b1 01       		.uleb128 0x1
+ 1461 00b2 12       		.uleb128 0x12
+ 1462 00b3 06       		.uleb128 0x6
+ 1463 00b4 00       		.byte	0
+ 1464 00b5 00       		.byte	0
+ 1465 00b6 0E       		.uleb128 0xe
+ 1466 00b7 34       		.uleb128 0x34
+ 1467 00b8 00       		.byte	0
+ 1468 00b9 03       		.uleb128 0x3
+ 1469 00ba 08       		.uleb128 0x8
+ 1470 00bb 3A       		.uleb128 0x3a
+ 1471 00bc 0B       		.uleb128 0xb
+ 1472 00bd 3B       		.uleb128 0x3b
+ 1473 00be 0B       		.uleb128 0xb
+ 1474 00bf 49       		.uleb128 0x49
+ 1475 00c0 13       		.uleb128 0x13
+ 1476 00c1 02       		.uleb128 0x2
+ 1477 00c2 18       		.uleb128 0x18
+ 1478 00c3 00       		.byte	0
+ 1479 00c4 00       		.byte	0
+ 1480 00c5 0F       		.uleb128 0xf
+ 1481 00c6 0F       		.uleb128 0xf
+ 1482 00c7 00       		.byte	0
+ 1483 00c8 0B       		.uleb128 0xb
+ 1484 00c9 0B       		.uleb128 0xb
+ 1485 00ca 49       		.uleb128 0x49
+ 1486 00cb 13       		.uleb128 0x13
+ 1487 00cc 00       		.byte	0
+ 1488 00cd 00       		.byte	0
+ 1489 00ce 10       		.uleb128 0x10
+ 1490 00cf 05       		.uleb128 0x5
+ 1491 00d0 00       		.byte	0
+ 1492 00d1 03       		.uleb128 0x3
+ 1493 00d2 08       		.uleb128 0x8
+ 1494 00d3 3A       		.uleb128 0x3a
+ 1495 00d4 0B       		.uleb128 0xb
+ 1496 00d5 3B       		.uleb128 0x3b
+ 1497 00d6 0B       		.uleb128 0xb
+ 1498 00d7 49       		.uleb128 0x49
+ 1499 00d8 13       		.uleb128 0x13
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccHCp0Lb.s 			page 29
+
+
+ 1500 00d9 02       		.uleb128 0x2
+ 1501 00da 18       		.uleb128 0x18
+ 1502 00db 00       		.byte	0
+ 1503 00dc 00       		.byte	0
+ 1504 00dd 11       		.uleb128 0x11
+ 1505 00de 0B       		.uleb128 0xb
+ 1506 00df 01       		.byte	0x1
+ 1507 00e0 11       		.uleb128 0x11
+ 1508 00e1 01       		.uleb128 0x1
+ 1509 00e2 12       		.uleb128 0x12
+ 1510 00e3 06       		.uleb128 0x6
+ 1511 00e4 01       		.uleb128 0x1
+ 1512 00e5 13       		.uleb128 0x13
+ 1513 00e6 00       		.byte	0
+ 1514 00e7 00       		.byte	0
+ 1515 00e8 12       		.uleb128 0x12
+ 1516 00e9 21       		.uleb128 0x21
+ 1517 00ea 00       		.byte	0
+ 1518 00eb 49       		.uleb128 0x49
+ 1519 00ec 13       		.uleb128 0x13
+ 1520 00ed 2F       		.uleb128 0x2f
+ 1521 00ee 18       		.uleb128 0x18
+ 1522 00ef 00       		.byte	0
+ 1523 00f0 00       		.byte	0
+ 1524 00f1 13       		.uleb128 0x13
+ 1525 00f2 2E       		.uleb128 0x2e
+ 1526 00f3 01       		.byte	0x1
+ 1527 00f4 3F       		.uleb128 0x3f
+ 1528 00f5 19       		.uleb128 0x19
+ 1529 00f6 03       		.uleb128 0x3
+ 1530 00f7 0E       		.uleb128 0xe
+ 1531 00f8 3A       		.uleb128 0x3a
+ 1532 00f9 0B       		.uleb128 0xb
+ 1533 00fa 3B       		.uleb128 0x3b
+ 1534 00fb 0B       		.uleb128 0xb
+ 1535 00fc 27       		.uleb128 0x27
+ 1536 00fd 19       		.uleb128 0x19
+ 1537 00fe 49       		.uleb128 0x49
+ 1538 00ff 13       		.uleb128 0x13
+ 1539 0100 11       		.uleb128 0x11
+ 1540 0101 01       		.uleb128 0x1
+ 1541 0102 12       		.uleb128 0x12
+ 1542 0103 06       		.uleb128 0x6
+ 1543 0104 40       		.uleb128 0x40
+ 1544 0105 18       		.uleb128 0x18
+ 1545 0106 9642     		.uleb128 0x2116
+ 1546 0108 19       		.uleb128 0x19
+ 1547 0109 00       		.byte	0
+ 1548 010a 00       		.byte	0
+ 1549 010b 00       		.byte	0
+ 1550              		.section	.debug_aranges,"",%progbits
+ 1551 0000 34000000 		.4byte	0x34
+ 1552 0004 0200     		.2byte	0x2
+ 1553 0006 00000000 		.4byte	.Ldebug_info0
+ 1554 000a 04       		.byte	0x4
+ 1555 000b 00       		.byte	0
+ 1556 000c 0000     		.2byte	0
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccHCp0Lb.s 			page 30
+
+
+ 1557 000e 0000     		.2byte	0
+ 1558 0010 00000000 		.4byte	.LFB0
+ 1559 0014 C0000000 		.4byte	.LFE0-.LFB0
+ 1560 0018 00000000 		.4byte	.LFB1
+ 1561 001c 38020000 		.4byte	.LFE1-.LFB1
+ 1562 0020 00000000 		.4byte	.LFB2
+ 1563 0024 50010000 		.4byte	.LFE2-.LFB2
+ 1564 0028 00000000 		.4byte	.LFB3
+ 1565 002c 80000000 		.4byte	.LFE3-.LFB3
+ 1566 0030 00000000 		.4byte	0
+ 1567 0034 00000000 		.4byte	0
+ 1568              		.section	.debug_ranges,"",%progbits
+ 1569              	.Ldebug_ranges0:
+ 1570 0000 00000000 		.4byte	.LFB0
+ 1571 0004 C0000000 		.4byte	.LFE0
+ 1572 0008 00000000 		.4byte	.LFB1
+ 1573 000c 38020000 		.4byte	.LFE1
+ 1574 0010 00000000 		.4byte	.LFB2
+ 1575 0014 50010000 		.4byte	.LFE2
+ 1576 0018 00000000 		.4byte	.LFB3
+ 1577 001c 80000000 		.4byte	.LFE3
+ 1578 0020 00000000 		.4byte	0
+ 1579 0024 00000000 		.4byte	0
+ 1580              		.section	.debug_line,"",%progbits
+ 1581              	.Ldebug_line0:
+ 1582 0000 53010000 		.section	.debug_str,"MS",%progbits,1
+ 1582      02008C00 
+ 1582      00000201 
+ 1582      FB0E0D00 
+ 1582      01010101 
+ 1583              	.LASF26:
+ 1584 0000 636F7374 		.ascii	"cost_function\000"
+ 1584      5F66756E 
+ 1584      6374696F 
+ 1584      6E00
+ 1585              	.LASF16:
+ 1586 000e 73746570 		.ascii	"steps\000"
+ 1586      7300
+ 1587              	.LASF28:
+ 1588 0014 6F63746F 		.ascii	"octopussy\000"
+ 1588      70757373 
+ 1588      7900
+ 1589              	.LASF29:
+ 1590 001e 676F616C 		.ascii	"goal_x\000"
+ 1590      5F7800
+ 1591              	.LASF30:
+ 1592 0025 676F616C 		.ascii	"goal_y\000"
+ 1592      5F7900
+ 1593              	.LASF41:
+ 1594 002c 64697374 		.ascii	"dist_x\000"
+ 1594      5F7800
+ 1595              	.LASF42:
+ 1596 0033 64697374 		.ascii	"dist_y\000"
+ 1596      5F7900
+ 1597              	.LASF39:
+ 1598 003a 6D696E5F 		.ascii	"min_cost\000"
+ 1598      636F7374 
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccHCp0Lb.s 			page 31
+
+
+ 1598      00
+ 1599              	.LASF33:
+ 1600 0043 706F735F 		.ascii	"pos_y\000"
+ 1600      7900
+ 1601              	.LASF0:
+ 1602 0049 756E7369 		.ascii	"unsigned int\000"
+ 1602      676E6564 
+ 1602      20696E74 
+ 1602      00
+ 1603              	.LASF14:
+ 1604 0056 64697265 		.ascii	"direction\000"
+ 1604      6374696F 
+ 1604      6E00
+ 1605              	.LASF15:
+ 1606 0060 64697374 		.ascii	"distance\000"
+ 1606      616E6365 
+ 1606      00
+ 1607              	.LASF25:
+ 1608 0069 63686563 		.ascii	"check_collision\000"
+ 1608      6B5F636F 
+ 1608      6C6C6973 
+ 1608      696F6E00 
+ 1609              	.LASF13:
+ 1610 0079 666C6F61 		.ascii	"float\000"
+ 1610      7400
+ 1611              	.LASF4:
+ 1612 007f 756E7369 		.ascii	"unsigned char\000"
+ 1612      676E6564 
+ 1612      20636861 
+ 1612      7200
+ 1613              	.LASF8:
+ 1614 008d 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1614      20756E73 
+ 1614      69676E65 
+ 1614      6420696E 
+ 1614      7400
+ 1615              	.LASF6:
+ 1616 009f 73686F72 		.ascii	"short unsigned int\000"
+ 1616      7420756E 
+ 1616      7369676E 
+ 1616      65642069 
+ 1616      6E7400
+ 1617              	.LASF12:
+ 1618 00b2 646F7562 		.ascii	"double\000"
+ 1618      6C6500
+ 1619              	.LASF37:
+ 1620 00b9 706C616E 		.ascii	"planner\000"
+ 1620      6E657200 
+ 1621              	.LASF45:
+ 1622 00c1 433A5C74 		.ascii	"C:\\temp\\jacob_branch\\ECE4191\\DeliveryRobot.cyds"
+ 1622      656D705C 
+ 1622      6A61636F 
+ 1622      625F6272 
+ 1622      616E6368 
+ 1623 00f0 6E00     		.ascii	"n\000"
+ 1624              	.LASF36:
+ 1625 00f2 636F7374 		.ascii	"cost\000"
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccHCp0Lb.s 			page 32
+
+
+ 1625      00
+ 1626              	.LASF20:
+ 1627 00f7 73656E73 		.ascii	"sensor_data\000"
+ 1627      6F725F64 
+ 1627      61746100 
+ 1628              	.LASF46:
+ 1629 0103 63616C63 		.ascii	"calculate_distance_from_goal\000"
+ 1629      756C6174 
+ 1629      655F6469 
+ 1629      7374616E 
+ 1629      63655F66 
+ 1630              	.LASF19:
+ 1631 0120 74656E5F 		.ascii	"ten_count\000"
+ 1631      636F756E 
+ 1631      7400
+ 1632              	.LASF18:
+ 1633 012a 62657461 		.ascii	"beta\000"
+ 1633      00
+ 1634              	.LASF9:
+ 1635 012f 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1635      206C6F6E 
+ 1635      6720756E 
+ 1635      7369676E 
+ 1635      65642069 
+ 1636              	.LASF22:
+ 1637 0146 66726F6E 		.ascii	"front_threshold\000"
+ 1637      745F7468 
+ 1637      72657368 
+ 1637      6F6C6400 
+ 1638              	.LASF34:
+ 1639 0156 706F735F 		.ascii	"pos_theta\000"
+ 1639      74686574 
+ 1639      6100
+ 1640              	.LASF10:
+ 1641 0160 73697A65 		.ascii	"sizetype\000"
+ 1641      74797065 
+ 1641      00
+ 1642              	.LASF32:
+ 1643 0169 706F735F 		.ascii	"pos_x\000"
+ 1643      7800
+ 1644              	.LASF1:
+ 1645 016f 6C6F6E67 		.ascii	"long long int\000"
+ 1645      206C6F6E 
+ 1645      6720696E 
+ 1645      7400
+ 1646              	.LASF11:
+ 1647 017d 63686172 		.ascii	"char\000"
+ 1647      00
+ 1648              	.LASF38:
+ 1649 0182 6D696E5F 		.ascii	"min_combo\000"
+ 1649      636F6D62 
+ 1649      6F00
+ 1650              	.LASF23:
+ 1651 018c 6F746865 		.ascii	"other_threshold\000"
+ 1651      725F7468 
+ 1651      72657368 
+ 1651      6F6C6400 
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccHCp0Lb.s 			page 33
+
+
+ 1652              	.LASF5:
+ 1653 019c 73686F72 		.ascii	"short int\000"
+ 1653      7420696E 
+ 1653      7400
+ 1654              	.LASF21:
+ 1655 01a6 74656E74 		.ascii	"tentacles\000"
+ 1655      61636C65 
+ 1655      7300
+ 1656              	.LASF35:
+ 1657 01b0 655F7468 		.ascii	"e_th\000"
+ 1657      00
+ 1658              	.LASF7:
+ 1659 01b5 6C6F6E67 		.ascii	"long int\000"
+ 1659      20696E74 
+ 1659      00
+ 1660              	.LASF2:
+ 1661 01be 6C6F6E67 		.ascii	"long double\000"
+ 1661      20646F75 
+ 1661      626C6500 
+ 1662              	.LASF31:
+ 1663 01ca 676F616C 		.ascii	"goal_th\000"
+ 1663      5F746800 
+ 1664              	.LASF3:
+ 1665 01d2 7369676E 		.ascii	"signed char\000"
+ 1665      65642063 
+ 1665      68617200 
+ 1666              	.LASF17:
+ 1667 01de 616C7068 		.ascii	"alpha\000"
+ 1667      6100
+ 1668              	.LASF24:
+ 1669 01e4 5F426F6F 		.ascii	"_Bool\000"
+ 1669      6C00
+ 1670              	.LASF40:
+ 1671 01ea 636F6D62 		.ascii	"combo\000"
+ 1671      6F00
+ 1672              	.LASF44:
+ 1673 01f0 2E2E5C2E 		.ascii	"..\\..\\..\\..\\Users\\cyu13\\Desktop\\ECE4191\\Ten"
+ 1673      2E5C2E2E 
+ 1673      5C2E2E5C 
+ 1673      55736572 
+ 1673      735C6379 
+ 1674 021b 7461636C 		.ascii	"tacles\\tentacles.c\000"
+ 1674      65735C74 
+ 1674      656E7461 
+ 1674      636C6573 
+ 1674      2E6300
+ 1675              	.LASF27:
+ 1676 022e 73656E73 		.ascii	"sensors\000"
+ 1676      6F727300 
+ 1677              	.LASF43:
+ 1678 0236 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1678      43313120 
+ 1678      352E342E 
+ 1678      31203230 
+ 1678      31363036 
+ 1679 0269 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1679      20726576 
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccHCp0Lb.s 			page 34
+
+
+ 1679      6973696F 
+ 1679      6E203233 
+ 1679      37373135 
+ 1680 029c 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 1680      66756E63 
+ 1680      74696F6E 
+ 1680      2D736563 
+ 1680      74696F6E 
+ 1681              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 1
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 1
 
 
    1              		.syntax unified
@@ -30,35 +30,35 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 1
   27              		.type	calculate_direction, %function
   28              	calculate_direction:
   29              	.LFB0:
-  30              		.file 1 "..\\VFH\\src\\vfh.c"
-   1:..\VFH\src/vfh.c **** /*
-   2:..\VFH\src/vfh.c **** ** Virtual Field Histogram
-   3:..\VFH\src/vfh.c **** **
-   4:..\VFH\src/vfh.c **** ** vfh.c
-   5:..\VFH\src/vfh.c **** **
-   6:..\VFH\src/vfh.c **** ** Author: Carlos Agarie Junior
-   7:..\VFH\src/vfh.c **** **
-   8:..\VFH\src/vfh.c **** ** This is an implementation of the Virtual Field Histogram algorithm, developed
-   9:..\VFH\src/vfh.c **** ** by J. Borenstein and Y.Koren in 1990.
-  10:..\VFH\src/vfh.c **** */
-  11:..\VFH\src/vfh.c **** 
-  12:..\VFH\src/vfh.c **** #include <stdlib.h>
-  13:..\VFH\src/vfh.c **** #include <math.h>
-  14:..\VFH\src/vfh.c **** #include "..\VFH\include\vfh.h"
-  15:..\VFH\src/vfh.c **** 
-  16:..\VFH\src/vfh.c **** /* Helpers. */
-  17:..\VFH\src/vfh.c **** 
-  18:..\VFH\src/vfh.c **** //
-  19:..\VFH\src/vfh.c **** // Control signals.
-  20:..\VFH\src/vfh.c **** //
-  21:..\VFH\src/vfh.c **** 
-  22:..\VFH\src/vfh.c **** /* TODO: Improve the direction calculation. Re-read the paper. */
-  23:..\VFH\src/vfh.c **** int calculate_direction(histogram * hist, int objective_direction) {
+  30              		.file 1 "..\\..\\..\\..\\Users\\cyu13\\Desktop\\ECE4191\\VFH\\src\\vfh.c"
+   1:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** /*
+   2:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** ** Virtual Field Histogram
+   3:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** **
+   4:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** ** vfh.c
+   5:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** **
+   6:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** ** Author: Carlos Agarie Junior
+   7:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** **
+   8:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** ** This is an implementation of the Virtual Field Histogram algorithm, developed
+   9:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** ** by J. Borenstein and Y.Koren in 1990.
+  10:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** */
+  11:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** 
+  12:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** #include <stdlib.h>
+  13:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** #include <math.h>
+  14:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** #include "..\VFH\include\vfh.h"
+  15:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** 
+  16:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** /* Helpers. */
+  17:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** 
+  18:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** //
+  19:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** // Control signals.
+  20:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** //
+  21:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** 
+  22:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** /* TODO: Improve the direction calculation. Re-read the paper. */
+  23:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** int calculate_direction(histogram * hist, int objective_direction) {
   31              		.loc 1 23 0
   32              		.cfi_startproc
   33              		@ args = 0, pretend = 0, frame = 24
   34              		@ frame_needed = 1, uses_anonymous_args = 0
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 2
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 2
 
 
   35 0000 90B5     		push	{r4, r7, lr}
@@ -72,14 +72,14 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 1
   43              		.cfi_def_cfa_register 7
   44 0006 7860     		str	r0, [r7, #4]
   45 0008 3960     		str	r1, [r7]
-  24:..\VFH\src/vfh.c ****   int sector, best_direction = -1;
+  24:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   int sector, best_direction = -1;
   46              		.loc 1 24 0
   47 000a 4FF0FF33 		mov	r3, #-1
   48 000e 3B61     		str	r3, [r7, #16]
-  25:..\VFH\src/vfh.c ****   int dist_best_and_obj, dist_sector_and_obj; /* Just to improve readability. */
-  26:..\VFH\src/vfh.c **** 
-  27:..\VFH\src/vfh.c ****   // The objective_direction is given in DEGREES and mapped to a sector.
-  28:..\VFH\src/vfh.c ****   objective_direction = (int) floor(objective_direction / hist->alpha);
+  25:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   int dist_best_and_obj, dist_sector_and_obj; /* Just to improve readability. */
+  26:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** 
+  27:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   // The objective_direction is given in DEGREES and mapped to a sector.
+  28:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   objective_direction = (int) floor(objective_direction / hist->alpha);
   49              		.loc 1 28 0
   50 0010 7B68     		ldr	r3, [r7, #4]
   51 0012 1B68     		ldr	r3, [r3]
@@ -99,26 +99,26 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 1
   65 0034 FFF7FEFF 		bl	__aeabi_d2iz
   66 0038 0346     		mov	r3, r0
   67 003a 3B60     		str	r3, [r7]
-  29:..\VFH\src/vfh.c **** 
-  30:..\VFH\src/vfh.c **** 
-  31:..\VFH\src/vfh.c ****   // Search the densities array and return the most similar to the objective
-  32:..\VFH\src/vfh.c ****   // direction that is below the threshold.
-  33:..\VFH\src/vfh.c **** 
-  34:..\VFH\src/vfh.c ****   for (sector = 0; sector < hist->sectors; ++sector) {
+  29:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** 
+  30:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** 
+  31:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   // Search the densities array and return the most similar to the objective
+  32:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   // direction that is below the threshold.
+  33:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** 
+  34:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   for (sector = 0; sector < hist->sectors; ++sector) {
   68              		.loc 1 34 0
   69 003c 0023     		movs	r3, #0
   70 003e 7B61     		str	r3, [r7, #20]
   71 0040 31E0     		b	.L2
   72              	.L6:
-  35:..\VFH\src/vfh.c **** 
-  36:..\VFH\src/vfh.c ****     if (hist->densities[sector] < hist->threshold) {
+  35:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** 
+  36:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****     if (hist->densities[sector] < hist->threshold) {
   73              		.loc 1 36 0
   74 0042 7B68     		ldr	r3, [r7, #4]
   75 0044 9A6A     		ldr	r2, [r3, #40]
   76 0046 7B69     		ldr	r3, [r7, #20]
   77 0048 9B00     		lsls	r3, r3, #2
   78 004a 1344     		add	r3, r3, r2
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 3
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 3
 
 
   79 004c 1B68     		ldr	r3, [r3]
@@ -133,8 +133,8 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 1
   88 0066 0346     		mov	r3, r0
   89 0068 002B     		cmp	r3, #0
   90 006a 19D0     		beq	.L3
-  37:..\VFH\src/vfh.c **** 
-  38:..\VFH\src/vfh.c ****       dist_best_and_obj = modular_dist(best_direction, objective_direction, hist->sectors);
+  37:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** 
+  38:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****       dist_best_and_obj = modular_dist(best_direction, objective_direction, hist->sectors);
   91              		.loc 1 38 0
   92 006c 7B68     		ldr	r3, [r7, #4]
   93 006e 5B68     		ldr	r3, [r3, #4]
@@ -143,7 +143,7 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 1
   96 0074 3869     		ldr	r0, [r7, #16]
   97 0076 FFF7FEFF 		bl	modular_dist
   98 007a F860     		str	r0, [r7, #12]
-  39:..\VFH\src/vfh.c ****       dist_sector_and_obj = modular_dist(sector, objective_direction, hist->sectors);
+  39:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****       dist_sector_and_obj = modular_dist(sector, objective_direction, hist->sectors);
   99              		.loc 1 39 0
  100 007c 7B68     		ldr	r3, [r7, #4]
  101 007e 5B68     		ldr	r3, [r3, #4]
@@ -152,9 +152,9 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 1
  104 0084 7869     		ldr	r0, [r7, #20]
  105 0086 FFF7FEFF 		bl	modular_dist
  106 008a B860     		str	r0, [r7, #8]
-  40:..\VFH\src/vfh.c **** 
-  41:..\VFH\src/vfh.c ****       /* If dist_a < dist_sector_and_obj, we maintain the current best_direction. */
-  42:..\VFH\src/vfh.c ****       if (-1 == best_direction || dist_sector_and_obj < dist_best_and_obj) {
+  40:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** 
+  41:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****       /* If dist_a < dist_sector_and_obj, we maintain the current best_direction. */
+  42:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****       if (-1 == best_direction || dist_sector_and_obj < dist_best_and_obj) {
  107              		.loc 1 42 0
  108 008c 3B69     		ldr	r3, [r7, #16]
  109 008e B3F1FF3F 		cmp	r3, #-1
@@ -165,20 +165,20 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 1
  114 0098 9A42     		cmp	r2, r3
  115 009a 01DA     		bge	.L3
  116              	.L5:
-  43:..\VFH\src/vfh.c ****         /* This serves as initialization. */
-  44:..\VFH\src/vfh.c ****         best_direction = sector;
+  43:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****         /* This serves as initialization. */
+  44:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****         best_direction = sector;
  117              		.loc 1 44 0 is_stmt 1
  118 009c 7B69     		ldr	r3, [r7, #20]
  119 009e 3B61     		str	r3, [r7, #16]
  120              	.L3:
-  34:..\VFH\src/vfh.c **** 
+  34:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** 
  121              		.loc 1 34 0 discriminator 2
  122 00a0 7B69     		ldr	r3, [r7, #20]
  123 00a2 0133     		adds	r3, r3, #1
  124 00a4 7B61     		str	r3, [r7, #20]
  125              	.L2:
-  34:..\VFH\src/vfh.c **** 
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 4
+  34:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** 
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 4
 
 
  126              		.loc 1 34 0 is_stmt 0 discriminator 1
@@ -187,12 +187,12 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 1
  129 00aa 7B69     		ldr	r3, [r7, #20]
  130 00ac 9A42     		cmp	r2, r3
  131 00ae C8DC     		bgt	.L6
-  45:..\VFH\src/vfh.c ****       }
-  46:..\VFH\src/vfh.c ****     }
-  47:..\VFH\src/vfh.c ****   }
-  48:..\VFH\src/vfh.c **** 
-  49:..\VFH\src/vfh.c ****   /* Map the best_direction into degrees. */
-  50:..\VFH\src/vfh.c ****   return (int) floor(best_direction * hist->alpha);
+  45:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****       }
+  46:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****     }
+  47:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   }
+  48:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** 
+  49:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   /* Map the best_direction into degrees. */
+  50:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   return (int) floor(best_direction * hist->alpha);
  132              		.loc 1 50 0 is_stmt 1
  133 00b0 7B68     		ldr	r3, [r7, #4]
  134 00b2 1B68     		ldr	r3, [r3]
@@ -211,7 +211,7 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 1
  147 00d2 2146     		mov	r1, r4
  148 00d4 FFF7FEFF 		bl	__aeabi_d2iz
  149 00d8 0346     		mov	r3, r0
-  51:..\VFH\src/vfh.c **** }
+  51:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** }
  150              		.loc 1 51 0
  151 00da 1846     		mov	r0, r3
  152 00dc 1C37     		adds	r7, r7, #28
@@ -233,12 +233,12 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 1
  168              		.type	calculate_goal_angle, %function
  169              	calculate_goal_angle:
  170              	.LFB1:
-  52:..\VFH\src/vfh.c **** 
-  53:..\VFH\src/vfh.c **** double calculate_goal_angle(double pos_x, double pos_y, double pos_yaw, double goal_x, double goal_
+  52:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** 
+  53:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** double calculate_goal_angle(double pos_x, double pos_y, double pos_yaw, double goal_x, double goal_
  171              		.loc 1 53 0
  172              		.cfi_startproc
  173              		@ args = 24, pretend = 0, frame = 56
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 5
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 5
 
 
  174              		@ frame_needed = 1, uses_anonymous_args = 0
@@ -254,8 +254,8 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 1
  184              		.cfi_def_cfa_register 7
  185 0006 C7E90201 		strd	r0, [r7, #8]
  186 000a C7E90023 		strd	r2, [r7]
-  54:..\VFH\src/vfh.c ****   // Calculate the angle from current position to goal
-  55:..\VFH\src/vfh.c ****   double goal_angle = atan2(goal_y - pos_y, goal_x - pos_x);
+  54:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   // Calculate the angle from current position to goal
+  55:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   double goal_angle = atan2(goal_y - pos_y, goal_x - pos_x);
  187              		.loc 1 55 0
  188 000e D7E90023 		ldrd	r2, [r7]
  189 0012 D7E91601 		ldrd	r0, [r7, #88]
@@ -273,10 +273,10 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 1
  201 0034 2946     		mov	r1, r5
  202 0036 FFF7FEFF 		bl	atan2
  203 003a C7E90A01 		strd	r0, [r7, #40]
-  56:..\VFH\src/vfh.c **** 
-  57:..\VFH\src/vfh.c ****   // Calculate robot rotation to point towards goal with respect to current heading
-  58:..\VFH\src/vfh.c ****   double rotation;
-  59:..\VFH\src/vfh.c ****   double alpha_rot = goal_angle - pos_yaw;
+  56:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** 
+  57:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   // Calculate robot rotation to point towards goal with respect to current heading
+  58:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   double rotation;
+  59:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   double alpha_rot = goal_angle - pos_yaw;
  204              		.loc 1 59 0
  205 003e D7E91223 		ldrd	r2, [r7, #72]
  206 0042 D7E90A01 		ldrd	r0, [r7, #40]
@@ -284,7 +284,7 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 1
  208 004a 0346     		mov	r3, r0
  209 004c 0C46     		mov	r4, r1
  210 004e C7E90834 		strd	r3, [r7, #32]
-  60:..\VFH\src/vfh.c ****   double beta_rot = alpha_rot + 2 * M_PI;
+  60:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   double beta_rot = alpha_rot + 2 * M_PI;
  211              		.loc 1 60 0
  212 0052 35A3     		adr	r3, .L22
  213 0054 D3E90023 		ldrd	r2, [r3]
@@ -293,21 +293,21 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 1
  216 0060 0346     		mov	r3, r0
  217 0062 0C46     		mov	r4, r1
  218 0064 C7E90634 		strd	r3, [r7, #24]
-  61:..\VFH\src/vfh.c ****   double gamma_rot = alpha_rot - 2 * M_PI;
+  61:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   double gamma_rot = alpha_rot - 2 * M_PI;
  219              		.loc 1 61 0
  220 0068 2FA3     		adr	r3, .L22
  221 006a D3E90023 		ldrd	r2, [r3]
  222 006e D7E90801 		ldrd	r0, [r7, #32]
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 6
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 6
 
 
  223 0072 FFF7FEFF 		bl	__aeabi_dsub
  224 0076 0346     		mov	r3, r0
  225 0078 0C46     		mov	r4, r1
  226 007a C7E90434 		strd	r3, [r7, #16]
-  62:..\VFH\src/vfh.c **** 
-  63:..\VFH\src/vfh.c ****   // Find shortest rotation required
-  64:..\VFH\src/vfh.c ****   if (alpha_rot < beta_rot & alpha_rot < gamma_rot) {
+  62:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** 
+  63:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   // Find shortest rotation required
+  64:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   if (alpha_rot < beta_rot & alpha_rot < gamma_rot) {
  227              		.loc 1 64 0
  228 007e 0123     		movs	r3, #1
  229 0080 1C46     		mov	r4, r3
@@ -337,13 +337,13 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 1
  253 00b8 DBB2     		uxtb	r3, r3
  254 00ba 002B     		cmp	r3, #0
  255 00bc 04D0     		beq	.L12
-  65:..\VFH\src/vfh.c ****     rotation = alpha_rot;
+  65:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****     rotation = alpha_rot;
  256              		.loc 1 65 0
  257 00be D7E90834 		ldrd	r3, [r7, #32]
  258 00c2 C7E90C34 		strd	r3, [r7, #48]
  259 00c6 11E0     		b	.L13
  260              	.L12:
-  66:..\VFH\src/vfh.c ****   } else if (beta_rot < gamma_rot) {
+  66:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   } else if (beta_rot < gamma_rot) {
  261              		.loc 1 66 0
  262 00c8 D7E90423 		ldrd	r2, [r7, #16]
  263 00cc D7E90601 		ldrd	r0, [r7, #24]
@@ -351,24 +351,24 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 1
  265 00d4 0346     		mov	r3, r0
  266 00d6 002B     		cmp	r3, #0
  267 00d8 04D0     		beq	.L21
-  67:..\VFH\src/vfh.c ****     rotation = beta_rot;
+  67:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****     rotation = beta_rot;
  268              		.loc 1 67 0
  269 00da D7E90634 		ldrd	r3, [r7, #24]
  270 00de C7E90C34 		strd	r3, [r7, #48]
  271 00e2 03E0     		b	.L13
  272              	.L21:
-  68:..\VFH\src/vfh.c ****   } else {
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 7
+  68:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   } else {
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 7
 
 
-  69:..\VFH\src/vfh.c ****     rotation = gamma_rot;
+  69:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****     rotation = gamma_rot;
  273              		.loc 1 69 0
  274 00e4 D7E90434 		ldrd	r3, [r7, #16]
  275 00e8 C7E90C34 		strd	r3, [r7, #48]
  276              	.L13:
-  70:..\VFH\src/vfh.c ****   }
-  71:..\VFH\src/vfh.c **** 
-  72:..\VFH\src/vfh.c ****   if (rotation < 0) {
+  70:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   }
+  71:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** 
+  72:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   if (rotation < 0) {
  277              		.loc 1 72 0
  278 00ec 4FF00002 		mov	r2, #0
  279 00f0 4FF00003 		mov	r3, #0
@@ -377,7 +377,7 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 1
  282 00fc 0346     		mov	r3, r0
  283 00fe 002B     		cmp	r3, #0
  284 0100 0AD0     		beq	.L16
-  73:..\VFH\src/vfh.c ****     rotation = rotation + 2 * M_PI;
+  73:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****     rotation = rotation + 2 * M_PI;
  285              		.loc 1 73 0
  286 0102 09A3     		adr	r3, .L22
  287 0104 D3E90023 		ldrd	r2, [r3]
@@ -387,13 +387,13 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 1
  291 0112 0C46     		mov	r4, r1
  292 0114 C7E90C34 		strd	r3, [r7, #48]
  293              	.L16:
-  74:..\VFH\src/vfh.c ****   }
-  75:..\VFH\src/vfh.c **** 
-  76:..\VFH\src/vfh.c ****   return rotation;
+  74:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   }
+  75:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** 
+  76:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   return rotation;
  294              		.loc 1 76 0
  295 0118 D7E90C34 		ldrd	r3, [r7, #48]
-  77:..\VFH\src/vfh.c ****   
-  78:..\VFH\src/vfh.c **** }
+  77:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   
+  78:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** }
  296              		.loc 1 78 0
  297 011c 1846     		mov	r0, r3
  298 011e 2146     		mov	r1, r4
@@ -418,12 +418,12 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 1
  317              		.thumb_func
  318              		.type	calculate_distance_from_goal, %function
  319              	calculate_distance_from_goal:
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 8
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 8
 
 
  320              	.LFB2:
-  79:..\VFH\src/vfh.c **** 
-  80:..\VFH\src/vfh.c **** double calculate_distance_from_goal(double pos_x, double pos_y, double goal_x, double goal_y) {
+  79:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** 
+  80:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** double calculate_distance_from_goal(double pos_x, double pos_y, double goal_x, double goal_y) {
  321              		.loc 1 80 0
  322              		.cfi_startproc
  323              		@ args = 16, pretend = 0, frame = 24
@@ -440,8 +440,8 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 1
  334              		.cfi_def_cfa_register 7
  335 0006 C7E90201 		strd	r0, [r7, #8]
  336 000a C7E90023 		strd	r2, [r7]
-  81:..\VFH\src/vfh.c ****   // Calculate distance between current position and end goal
-  82:..\VFH\src/vfh.c ****   double distance = sqrt( pow( goal_x - pos_x, 2 ) + pow( goal_y - pos_y, 2 ) ); 
+  81:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   // Calculate distance between current position and end goal
+  82:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   double distance = sqrt( pow( goal_x - pos_x, 2 ) + pow( goal_y - pos_y, 2 ) ); 
  337              		.loc 1 82 0
  338 000e D7E90223 		ldrd	r2, [r7, #8]
  339 0012 D7E90A01 		ldrd	r0, [r7, #40]
@@ -476,14 +476,14 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 1
  368 0064 2146     		mov	r1, r4
  369 0066 FFF7FEFF 		bl	sqrt
  370 006a C7E90401 		strd	r0, [r7, #16]
-  83:..\VFH\src/vfh.c **** 
-  84:..\VFH\src/vfh.c ****   return distance;
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 9
+  83:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** 
+  84:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   return distance;
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 9
 
 
  371              		.loc 1 84 0
  372 006e D7E90434 		ldrd	r3, [r7, #16]
-  85:..\VFH\src/vfh.c **** }
+  85:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** }
  373              		.loc 1 85 0
  374 0072 1846     		mov	r0, r3
  375 0074 2146     		mov	r1, r4
@@ -497,1837 +497,1957 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 1
  383              	.LFE2:
  384              		.size	calculate_distance_from_goal, .-calculate_distance_from_goal
  385              		.global	__aeabi_ddiv
- 386              		.global	__aeabi_dcmple
- 387              		.section	.text.calculate_avoidance_angle,"ax",%progbits
- 388              		.align	2
- 389              		.global	calculate_avoidance_angle
- 390              		.thumb
- 391              		.thumb_func
- 392              		.type	calculate_avoidance_angle, %function
- 393              	calculate_avoidance_angle:
- 394              	.LFB3:
-  86:..\VFH\src/vfh.c **** 
-  87:..\VFH\src/vfh.c **** 
-  88:..\VFH\src/vfh.c **** double calculate_avoidance_angle(histogram * hist, grid * map, int * candidate_lst, double pos_x, d
- 395              		.loc 1 88 0
- 396              		.cfi_startproc
- 397              		@ args = 40, pretend = 0, frame = 72
- 398              		@ frame_needed = 1, uses_anonymous_args = 0
- 399 0000 90B5     		push	{r4, r7, lr}
- 400              		.cfi_def_cfa_offset 12
- 401              		.cfi_offset 4, -12
- 402              		.cfi_offset 7, -8
- 403              		.cfi_offset 14, -4
- 404 0002 99B0     		sub	sp, sp, #100
- 405              		.cfi_def_cfa_offset 112
- 406 0004 06AF     		add	r7, sp, #24
- 407              		.cfi_def_cfa 7, 88
- 408 0006 F860     		str	r0, [r7, #12]
- 409 0008 B960     		str	r1, [r7, #8]
- 410 000a 7A60     		str	r2, [r7, #4]
-  89:..\VFH\src/vfh.c ****   /* Retrieves the angle that the robot must drive towards. */
-  90:..\VFH\src/vfh.c ****   int s_max = 18;
- 411              		.loc 1 90 0
- 412 000c 1223     		movs	r3, #18
- 413 000e BB62     		str	r3, [r7, #40]
-  91:..\VFH\src/vfh.c ****   int valley_threshold = 3; // NEEDS TO BE ADJUSTED
- 414              		.loc 1 91 0
- 415 0010 0323     		movs	r3, #3
- 416 0012 7B62     		str	r3, [r7, #36]
-  92:..\VFH\src/vfh.c ****   int lst_length = sizeof(candidate_lst) / sizeof(int);
- 417              		.loc 1 92 0
- 418 0014 0123     		movs	r3, #1
- 419 0016 3B62     		str	r3, [r7, #32]
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 10
+ 386              		.global	__aeabi_dmul
+ 387              		.global	__aeabi_dcmpeq
+ 388              		.global	__aeabi_dcmpgt
+ 389              		.section	.text.calculate_avoidance_angle,"ax",%progbits
+ 390              		.align	2
+ 391              		.global	calculate_avoidance_angle
+ 392              		.thumb
+ 393              		.thumb_func
+ 394              		.type	calculate_avoidance_angle, %function
+ 395              	calculate_avoidance_angle:
+ 396              	.LFB3:
+  86:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** 
+  87:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** 
+  88:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** double calculate_avoidance_angle(histogram * hist, grid * map, int * candidate_lst, double pos_x, d
+ 397              		.loc 1 88 0
+ 398              		.cfi_startproc
+ 399              		@ args = 40, pretend = 0, frame = 96
+ 400              		@ frame_needed = 1, uses_anonymous_args = 0
+ 401 0000 B0B5     		push	{r4, r5, r7, lr}
+ 402              		.cfi_def_cfa_offset 16
+ 403              		.cfi_offset 4, -16
+ 404              		.cfi_offset 5, -12
+ 405              		.cfi_offset 7, -8
+ 406              		.cfi_offset 14, -4
+ 407 0002 9EB0     		sub	sp, sp, #120
+ 408              		.cfi_def_cfa_offset 136
+ 409 0004 06AF     		add	r7, sp, #24
+ 410              		.cfi_def_cfa 7, 112
+ 411 0006 F860     		str	r0, [r7, #12]
+ 412 0008 B960     		str	r1, [r7, #8]
+ 413 000a 7A60     		str	r2, [r7, #4]
+  89:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   /* Retrieves the angle that the robot must drive towards. */
+  90:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   int s_max = 18;
+ 414              		.loc 1 90 0
+ 415 000c 1223     		movs	r3, #18
+ 416 000e 7B63     		str	r3, [r7, #52]
+  91:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   int valley_threshold = 10; // NEEDS TO BE ADJUSTED
+ 417              		.loc 1 91 0
+ 418 0010 0A23     		movs	r3, #10
+ 419 0012 3B63     		str	r3, [r7, #48]
+  92:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   int lst_length = sizeof(candidate_lst) / sizeof(int);
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 10
 
 
-  93:..\VFH\src/vfh.c **** 
-  94:..\VFH\src/vfh.c ****   double goal_angle = calculate_goal_angle(pos_x, pos_y, pos_yaw, goal_x, goal_y);
- 420              		.loc 1 94 0
- 421 0018 D7E91E34 		ldrd	r3, [r7, #120]
- 422 001c CDE90434 		strd	r3, [sp, #16]
- 423 0020 D7E91C34 		ldrd	r3, [r7, #112]
- 424 0024 CDE90234 		strd	r3, [sp, #8]
- 425 0028 D7E91A34 		ldrd	r3, [r7, #104]
- 426 002c CDE90034 		strd	r3, [sp]
- 427 0030 D7E91823 		ldrd	r2, [r7, #96]
- 428 0034 D7E91601 		ldrd	r0, [r7, #88]
- 429 0038 FFF7FEFF 		bl	calculate_goal_angle
- 430 003c C7E90601 		strd	r0, [r7, #24]
-  95:..\VFH\src/vfh.c ****   int goal_sector = round(goal_angle / hist->alpha);
- 431              		.loc 1 95 0
- 432 0040 FB68     		ldr	r3, [r7, #12]
- 433 0042 1B68     		ldr	r3, [r3]
- 434 0044 1846     		mov	r0, r3
- 435 0046 FFF7FEFF 		bl	__aeabi_i2d
- 436 004a 0346     		mov	r3, r0
- 437 004c 0C46     		mov	r4, r1
- 438 004e 1A46     		mov	r2, r3
- 439 0050 2346     		mov	r3, r4
- 440 0052 D7E90601 		ldrd	r0, [r7, #24]
- 441 0056 FFF7FEFF 		bl	__aeabi_ddiv
- 442 005a 0346     		mov	r3, r0
- 443 005c 0C46     		mov	r4, r1
- 444 005e 1846     		mov	r0, r3
- 445 0060 2146     		mov	r1, r4
- 446 0062 FFF7FEFF 		bl	round
- 447 0066 0346     		mov	r3, r0
- 448 0068 0C46     		mov	r4, r1
- 449 006a 1846     		mov	r0, r3
- 450 006c 2146     		mov	r1, r4
- 451 006e FFF7FEFF 		bl	__aeabi_d2iz
- 452 0072 0346     		mov	r3, r0
- 453 0074 7B61     		str	r3, [r7, #20]
-  96:..\VFH\src/vfh.c ****   int abs_min = 1000;
- 454              		.loc 1 96 0
- 455 0076 4FF47A73 		mov	r3, #1000
- 456 007a 7B64     		str	r3, [r7, #68]
- 457              	.LBB2:
-  97:..\VFH\src/vfh.c ****   int k_n, k_f;
-  98:..\VFH\src/vfh.c **** 
-  99:..\VFH\src/vfh.c ****   for (int i = 0; i < lst_length; i++) {
- 458              		.loc 1 99 0
- 459 007c 0023     		movs	r3, #0
- 460 007e BB63     		str	r3, [r7, #56]
- 461 0080 39E0     		b	.L27
- 462              	.L31:
- 463              	.LBB3:
- 100:..\VFH\src/vfh.c ****     int idx = candidate_lst[i];
- 464              		.loc 1 100 0
- 465 0082 BB6B     		ldr	r3, [r7, #56]
- 466 0084 9B00     		lsls	r3, r3, #2
- 467 0086 7A68     		ldr	r2, [r7, #4]
- 468 0088 1344     		add	r3, r3, r2
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 11
+ 420              		.loc 1 92 0
+ 421 0014 0123     		movs	r3, #1
+ 422 0016 FB62     		str	r3, [r7, #44]
+  93:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** 
+  94:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   double goal_angle = calculate_goal_angle(pos_x, pos_y, pos_yaw, goal_x, goal_y);
+ 423              		.loc 1 94 0
+ 424 0018 D7E92434 		ldrd	r3, [r7, #144]
+ 425 001c CDE90434 		strd	r3, [sp, #16]
+ 426 0020 D7E92234 		ldrd	r3, [r7, #136]
+ 427 0024 CDE90234 		strd	r3, [sp, #8]
+ 428 0028 D7E92034 		ldrd	r3, [r7, #128]
+ 429 002c CDE90034 		strd	r3, [sp]
+ 430 0030 D7E91E23 		ldrd	r2, [r7, #120]
+ 431 0034 D7E91C01 		ldrd	r0, [r7, #112]
+ 432 0038 FFF7FEFF 		bl	calculate_goal_angle
+ 433 003c C7E90801 		strd	r0, [r7, #32]
+  95:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   double goal_sector = round(goal_angle / M_PI * hist->alpha / 180);
+ 434              		.loc 1 95 0
+ 435 0040 A5A3     		adr	r3, .L54
+ 436 0042 D3E90023 		ldrd	r2, [r3]
+ 437 0046 D7E90801 		ldrd	r0, [r7, #32]
+ 438 004a FFF7FEFF 		bl	__aeabi_ddiv
+ 439 004e 0346     		mov	r3, r0
+ 440 0050 0C46     		mov	r4, r1
+ 441 0052 2546     		mov	r5, r4
+ 442 0054 1C46     		mov	r4, r3
+ 443 0056 FB68     		ldr	r3, [r7, #12]
+ 444 0058 1B68     		ldr	r3, [r3]
+ 445 005a 1846     		mov	r0, r3
+ 446 005c FFF7FEFF 		bl	__aeabi_i2d
+ 447 0060 0246     		mov	r2, r0
+ 448 0062 0B46     		mov	r3, r1
+ 449 0064 2046     		mov	r0, r4
+ 450 0066 2946     		mov	r1, r5
+ 451 0068 FFF7FEFF 		bl	__aeabi_dmul
+ 452 006c 0346     		mov	r3, r0
+ 453 006e 0C46     		mov	r4, r1
+ 454 0070 1846     		mov	r0, r3
+ 455 0072 2146     		mov	r1, r4
+ 456 0074 4FF00002 		mov	r2, #0
+ 457 0078 994B     		ldr	r3, .L54+8
+ 458 007a FFF7FEFF 		bl	__aeabi_ddiv
+ 459 007e 0346     		mov	r3, r0
+ 460 0080 0C46     		mov	r4, r1
+ 461 0082 1846     		mov	r0, r3
+ 462 0084 2146     		mov	r1, r4
+ 463 0086 FFF7FEFF 		bl	round
+ 464 008a C7E90601 		strd	r0, [r7, #24]
+  96:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   int abs_min = 1000;
+ 465              		.loc 1 96 0
+ 466 008e 4FF47A73 		mov	r3, #1000
+ 467 0092 FB65     		str	r3, [r7, #92]
+ 468              	.LBB2:
+  97:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   int k_n, k_f;
+  98:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** 
+  99:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   for (int i = 0; i < lst_length; i++) {
+ 469              		.loc 1 99 0
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 11
 
 
- 469 008a 1B68     		ldr	r3, [r3]
- 470 008c 3B61     		str	r3, [r7, #16]
- 101:..\VFH\src/vfh.c **** 
- 102:..\VFH\src/vfh.c ****     // Calculating the minimum distance between the goal sector and the candidate valley
- 103:..\VFH\src/vfh.c ****     int min_distance;
- 104:..\VFH\src/vfh.c ****     if (abs(idx - goal_sector) < abs(abs(idx - goal_sector) - hist->sectors)) {
- 471              		.loc 1 104 0
- 472 008e 3A69     		ldr	r2, [r7, #16]
- 473 0090 7B69     		ldr	r3, [r7, #20]
- 474 0092 D31A     		subs	r3, r2, r3
- 475 0094 83EAE372 		eor	r2, r3, r3, asr #31
- 476 0098 A2EBE372 		sub	r2, r2, r3, asr #31
- 477 009c 3969     		ldr	r1, [r7, #16]
- 478 009e 7B69     		ldr	r3, [r7, #20]
- 479 00a0 CB1A     		subs	r3, r1, r3
- 480 00a2 83EAE371 		eor	r1, r3, r3, asr #31
- 481 00a6 A1EBE371 		sub	r1, r1, r3, asr #31
- 482 00aa FB68     		ldr	r3, [r7, #12]
- 483 00ac 5B68     		ldr	r3, [r3, #4]
- 484 00ae CB1A     		subs	r3, r1, r3
- 485 00b0 002B     		cmp	r3, #0
- 486 00b2 B8BF     		it	lt
- 487 00b4 5B42     		rsblt	r3, r3, #0
- 488 00b6 9A42     		cmp	r2, r3
- 489 00b8 07DA     		bge	.L28
- 105:..\VFH\src/vfh.c ****       min_distance = abs(idx - goal_sector);
- 490              		.loc 1 105 0
- 491 00ba 3A69     		ldr	r2, [r7, #16]
- 492 00bc 7B69     		ldr	r3, [r7, #20]
- 493 00be D31A     		subs	r3, r2, r3
- 494 00c0 002B     		cmp	r3, #0
- 495 00c2 B8BF     		it	lt
- 496 00c4 5B42     		rsblt	r3, r3, #0
- 497 00c6 7B63     		str	r3, [r7, #52]
- 498 00c8 0AE0     		b	.L29
- 499              	.L28:
- 106:..\VFH\src/vfh.c ****     } else {
- 107:..\VFH\src/vfh.c ****       min_distance = (abs(idx - goal_sector) - hist->sectors);
- 500              		.loc 1 107 0
- 501 00ca 3A69     		ldr	r2, [r7, #16]
- 502 00cc 7B69     		ldr	r3, [r7, #20]
- 503 00ce D31A     		subs	r3, r2, r3
- 504 00d0 83EAE372 		eor	r2, r3, r3, asr #31
- 505 00d4 A2EBE372 		sub	r2, r2, r3, asr #31
- 506 00d8 FB68     		ldr	r3, [r7, #12]
- 507 00da 5B68     		ldr	r3, [r3, #4]
- 508 00dc D31A     		subs	r3, r2, r3
- 509 00de 7B63     		str	r3, [r7, #52]
- 510              	.L29:
- 108:..\VFH\src/vfh.c ****     }
- 109:..\VFH\src/vfh.c **** 
- 110:..\VFH\src/vfh.c ****     if (min_distance < abs_min) {
- 511              		.loc 1 110 0
- 512 00e0 7A6B     		ldr	r2, [r7, #52]
- 513 00e2 7B6C     		ldr	r3, [r7, #68]
- 514 00e4 9A42     		cmp	r2, r3
- 515 00e6 03DA     		bge	.L30
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 12
+ 470 0094 0023     		movs	r3, #0
+ 471 0096 3B65     		str	r3, [r7, #80]
+ 472 0098 65E0     		b	.L27
+ 473              	.L31:
+ 474              	.LBB3:
+ 100:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****     int idx = candidate_lst[i];
+ 475              		.loc 1 100 0
+ 476 009a 3B6D     		ldr	r3, [r7, #80]
+ 477 009c 9B00     		lsls	r3, r3, #2
+ 478 009e 7A68     		ldr	r2, [r7, #4]
+ 479 00a0 1344     		add	r3, r3, r2
+ 480 00a2 1B68     		ldr	r3, [r3]
+ 481 00a4 7B61     		str	r3, [r7, #20]
+ 101:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** 
+ 102:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****     // Calculating the minimum distance between the goal sector and the candidate valley
+ 103:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****     int min_distance;
+ 104:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****     if (abs(idx - goal_sector) < abs(abs(idx - goal_sector) - hist->sectors)) {
+ 482              		.loc 1 104 0
+ 483 00a6 7869     		ldr	r0, [r7, #20]
+ 484 00a8 FFF7FEFF 		bl	__aeabi_i2d
+ 485 00ac D7E90623 		ldrd	r2, [r7, #24]
+ 486 00b0 FFF7FEFF 		bl	__aeabi_dsub
+ 487 00b4 0346     		mov	r3, r0
+ 488 00b6 0C46     		mov	r4, r1
+ 489 00b8 1846     		mov	r0, r3
+ 490 00ba 2146     		mov	r1, r4
+ 491 00bc FFF7FEFF 		bl	__aeabi_d2iz
+ 492 00c0 0346     		mov	r3, r0
+ 493 00c2 83EAE374 		eor	r4, r3, r3, asr #31
+ 494 00c6 A4EBE374 		sub	r4, r4, r3, asr #31
+ 495 00ca 7869     		ldr	r0, [r7, #20]
+ 496 00cc FFF7FEFF 		bl	__aeabi_i2d
+ 497 00d0 D7E90623 		ldrd	r2, [r7, #24]
+ 498 00d4 FFF7FEFF 		bl	__aeabi_dsub
+ 499 00d8 0246     		mov	r2, r0
+ 500 00da 0B46     		mov	r3, r1
+ 501 00dc 1046     		mov	r0, r2
+ 502 00de 1946     		mov	r1, r3
+ 503 00e0 FFF7FEFF 		bl	__aeabi_d2iz
+ 504 00e4 0346     		mov	r3, r0
+ 505 00e6 83EAE372 		eor	r2, r3, r3, asr #31
+ 506 00ea A2EBE372 		sub	r2, r2, r3, asr #31
+ 507 00ee FB68     		ldr	r3, [r7, #12]
+ 508 00f0 5B68     		ldr	r3, [r3, #4]
+ 509 00f2 D31A     		subs	r3, r2, r3
+ 510 00f4 002B     		cmp	r3, #0
+ 511 00f6 B8BF     		it	lt
+ 512 00f8 5B42     		rsblt	r3, r3, #0
+ 513 00fa 9C42     		cmp	r4, r3
+ 514 00fc 12DA     		bge	.L28
+ 105:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****       min_distance = abs(idx - goal_sector);
+ 515              		.loc 1 105 0
+ 516 00fe 7869     		ldr	r0, [r7, #20]
+ 517 0100 FFF7FEFF 		bl	__aeabi_i2d
+ 518 0104 D7E90623 		ldrd	r2, [r7, #24]
+ 519 0108 FFF7FEFF 		bl	__aeabi_dsub
+ 520 010c 0346     		mov	r3, r0
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 12
 
 
- 111:..\VFH\src/vfh.c ****       abs_min = min_distance;
- 516              		.loc 1 111 0
- 517 00e8 7B6B     		ldr	r3, [r7, #52]
- 518 00ea 7B64     		str	r3, [r7, #68]
- 112:..\VFH\src/vfh.c ****       k_n = idx;
- 519              		.loc 1 112 0
- 520 00ec 3B69     		ldr	r3, [r7, #16]
- 521 00ee 3B64     		str	r3, [r7, #64]
- 522              	.L30:
- 523              	.LBE3:
-  99:..\VFH\src/vfh.c ****     int idx = candidate_lst[i];
- 524              		.loc 1 99 0 discriminator 2
- 525 00f0 BB6B     		ldr	r3, [r7, #56]
- 526 00f2 0133     		adds	r3, r3, #1
- 527 00f4 BB63     		str	r3, [r7, #56]
- 528              	.L27:
-  99:..\VFH\src/vfh.c ****     int idx = candidate_lst[i];
- 529              		.loc 1 99 0 is_stmt 0 discriminator 1
- 530 00f6 BA6B     		ldr	r2, [r7, #56]
- 531 00f8 3B6A     		ldr	r3, [r7, #32]
- 532 00fa 9A42     		cmp	r2, r3
- 533 00fc C1DB     		blt	.L31
- 534              	.LBE2:
- 113:..\VFH\src/vfh.c ****     }
- 114:..\VFH\src/vfh.c ****   }
- 115:..\VFH\src/vfh.c **** 
- 116:..\VFH\src/vfh.c ****   if (k_n == goal_sector) {
- 535              		.loc 1 116 0 is_stmt 1
- 536 00fe 3A6C     		ldr	r2, [r7, #64]
- 537 0100 7B69     		ldr	r3, [r7, #20]
- 538 0102 9A42     		cmp	r2, r3
- 539 0104 0AD1     		bne	.L32
- 117:..\VFH\src/vfh.c ****     return goal_sector * hist->alpha;
- 540              		.loc 1 117 0
- 541 0106 FB68     		ldr	r3, [r7, #12]
- 542 0108 1B68     		ldr	r3, [r3]
- 543 010a 7A69     		ldr	r2, [r7, #20]
- 544 010c 02FB03F3 		mul	r3, r2, r3
- 545 0110 1846     		mov	r0, r3
- 546 0112 FFF7FEFF 		bl	__aeabi_i2d
- 547 0116 0346     		mov	r3, r0
- 548 0118 0C46     		mov	r4, r1
- 549 011a A4E0     		b	.L33
- 550              	.L32:
- 118:..\VFH\src/vfh.c **** 
- 119:..\VFH\src/vfh.c ****   } else if (k_n > goal_sector) {
- 551              		.loc 1 119 0
- 552 011c 3A6C     		ldr	r2, [r7, #64]
- 553 011e 7B69     		ldr	r3, [r7, #20]
- 554 0120 9A42     		cmp	r2, r3
- 555 0122 50DD     		ble	.L34
- 556              	.LBB4:
- 120:..\VFH\src/vfh.c ****     // See how big the valley is and then select the middle
- 121:..\VFH\src/vfh.c ****     for (int i=1; i < s_max; i++) {
- 557              		.loc 1 121 0
- 558 0124 0123     		movs	r3, #1
- 559 0126 3B63     		str	r3, [r7, #48]
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 13
+ 521 010e 0C46     		mov	r4, r1
+ 522 0110 1846     		mov	r0, r3
+ 523 0112 2146     		mov	r1, r4
+ 524 0114 FFF7FEFF 		bl	__aeabi_d2iz
+ 525 0118 0346     		mov	r3, r0
+ 526 011a 002B     		cmp	r3, #0
+ 527 011c B8BF     		it	lt
+ 528 011e 5B42     		rsblt	r3, r3, #0
+ 529 0120 FB64     		str	r3, [r7, #76]
+ 530 0122 15E0     		b	.L29
+ 531              	.L28:
+ 106:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****     } else {
+ 107:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****       min_distance = (abs(idx - goal_sector) - hist->sectors);
+ 532              		.loc 1 107 0
+ 533 0124 7869     		ldr	r0, [r7, #20]
+ 534 0126 FFF7FEFF 		bl	__aeabi_i2d
+ 535 012a D7E90623 		ldrd	r2, [r7, #24]
+ 536 012e FFF7FEFF 		bl	__aeabi_dsub
+ 537 0132 0346     		mov	r3, r0
+ 538 0134 0C46     		mov	r4, r1
+ 539 0136 1846     		mov	r0, r3
+ 540 0138 2146     		mov	r1, r4
+ 541 013a FFF7FEFF 		bl	__aeabi_d2iz
+ 542 013e 0346     		mov	r3, r0
+ 543 0140 83EAE372 		eor	r2, r3, r3, asr #31
+ 544 0144 A2EBE372 		sub	r2, r2, r3, asr #31
+ 545 0148 FB68     		ldr	r3, [r7, #12]
+ 546 014a 5B68     		ldr	r3, [r3, #4]
+ 547 014c D31A     		subs	r3, r2, r3
+ 548 014e FB64     		str	r3, [r7, #76]
+ 549              	.L29:
+ 108:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****     }
+ 109:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** 
+ 110:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****     if (min_distance < abs_min) {
+ 550              		.loc 1 110 0
+ 551 0150 FA6C     		ldr	r2, [r7, #76]
+ 552 0152 FB6D     		ldr	r3, [r7, #92]
+ 553 0154 9A42     		cmp	r2, r3
+ 554 0156 03DA     		bge	.L30
+ 111:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****       abs_min = min_distance;
+ 555              		.loc 1 111 0
+ 556 0158 FB6C     		ldr	r3, [r7, #76]
+ 557 015a FB65     		str	r3, [r7, #92]
+ 112:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****       k_n = idx;
+ 558              		.loc 1 112 0
+ 559 015c 7B69     		ldr	r3, [r7, #20]
+ 560 015e BB65     		str	r3, [r7, #88]
+ 561              	.L30:
+ 562              	.LBE3:
+  99:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****     int idx = candidate_lst[i];
+ 563              		.loc 1 99 0 discriminator 2
+ 564 0160 3B6D     		ldr	r3, [r7, #80]
+ 565 0162 0133     		adds	r3, r3, #1
+ 566 0164 3B65     		str	r3, [r7, #80]
+ 567              	.L27:
+  99:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****     int idx = candidate_lst[i];
+ 568              		.loc 1 99 0 is_stmt 0 discriminator 1
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 13
 
 
- 560 0128 31E0     		b	.L35
- 561              	.L38:
- 122:..\VFH\src/vfh.c ****       if ( (hist->densities[(k_n + i) % hist->sectors] < valley_threshold) && ( ((k_n + i) % hist->
- 562              		.loc 1 122 0
- 563 012a FB68     		ldr	r3, [r7, #12]
- 564 012c 996A     		ldr	r1, [r3, #40]
- 565 012e 3A6C     		ldr	r2, [r7, #64]
- 566 0130 3B6B     		ldr	r3, [r7, #48]
- 567 0132 1344     		add	r3, r3, r2
- 568 0134 FA68     		ldr	r2, [r7, #12]
- 569 0136 5268     		ldr	r2, [r2, #4]
- 570 0138 93FBF2F0 		sdiv	r0, r3, r2
- 571 013c 02FB00F2 		mul	r2, r2, r0
- 572 0140 9B1A     		subs	r3, r3, r2
- 573 0142 9B00     		lsls	r3, r3, #2
- 574 0144 0B44     		add	r3, r3, r1
- 575 0146 1A68     		ldr	r2, [r3]
- 576 0148 7B6A     		ldr	r3, [r7, #36]
- 577 014a 9A42     		cmp	r2, r3
- 578 014c 23DA     		bge	.L36
- 579              		.loc 1 122 0 is_stmt 0 discriminator 1
- 580 014e 3A6C     		ldr	r2, [r7, #64]
- 581 0150 3B6B     		ldr	r3, [r7, #48]
- 582 0152 1344     		add	r3, r3, r2
- 583 0154 FA68     		ldr	r2, [r7, #12]
- 584 0156 5268     		ldr	r2, [r2, #4]
- 585 0158 93FBF2F1 		sdiv	r1, r3, r2
- 586 015c 02FB01F2 		mul	r2, r2, r1
- 587 0160 9B1A     		subs	r3, r3, r2
- 588 0162 FA68     		ldr	r2, [r7, #12]
- 589 0164 1268     		ldr	r2, [r2]
- 590 0166 02FB03F3 		mul	r3, r2, r3
- 591 016a 1846     		mov	r0, r3
- 592 016c FFF7FEFF 		bl	__aeabi_i2d
- 593 0170 3FA3     		adr	r3, .L45
- 594 0172 D3E90023 		ldrd	r2, [r3]
- 595 0176 FFF7FEFF 		bl	__aeabi_dcmple
- 596 017a 0346     		mov	r3, r0
- 597 017c 002B     		cmp	r3, #0
- 598 017e 0AD0     		beq	.L36
- 123:..\VFH\src/vfh.c ****         k_f = k_n + i;
- 599              		.loc 1 123 0 is_stmt 1 discriminator 2
- 600 0180 3A6C     		ldr	r2, [r7, #64]
- 601 0182 3B6B     		ldr	r3, [r7, #48]
- 602 0184 1344     		add	r3, r3, r2
- 603 0186 FB63     		str	r3, [r7, #60]
- 121:..\VFH\src/vfh.c ****       if ( (hist->densities[(k_n + i) % hist->sectors] < valley_threshold) && ( ((k_n + i) % hist->
- 604              		.loc 1 121 0 discriminator 2
- 605 0188 3B6B     		ldr	r3, [r7, #48]
- 606 018a 0133     		adds	r3, r3, #1
- 607 018c 3B63     		str	r3, [r7, #48]
- 608              	.L35:
- 121:..\VFH\src/vfh.c ****       if ( (hist->densities[(k_n + i) % hist->sectors] < valley_threshold) && ( ((k_n + i) % hist->
- 609              		.loc 1 121 0 is_stmt 0 discriminator 1
- 610 018e 3A6B     		ldr	r2, [r7, #48]
- 611 0190 BB6A     		ldr	r3, [r7, #40]
- 612 0192 9A42     		cmp	r2, r3
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 14
+ 569 0166 3A6D     		ldr	r2, [r7, #80]
+ 570 0168 FB6A     		ldr	r3, [r7, #44]
+ 571 016a 9A42     		cmp	r2, r3
+ 572 016c 95DB     		blt	.L31
+ 573              	.LBE2:
+ 113:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****     }
+ 114:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   }
+ 115:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** 
+ 116:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   double final_angle;
+ 117:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** 
+ 118:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   if (k_n == goal_sector) {
+ 574              		.loc 1 118 0 is_stmt 1
+ 575 016e B86D     		ldr	r0, [r7, #88]
+ 576 0170 FFF7FEFF 		bl	__aeabi_i2d
+ 577 0174 D7E90623 		ldrd	r2, [r7, #24]
+ 578 0178 FFF7FEFF 		bl	__aeabi_dcmpeq
+ 579 017c 0346     		mov	r3, r0
+ 580 017e 002B     		cmp	r3, #0
+ 581 0180 0DD0     		beq	.L50
+ 119:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****     final_angle = goal_sector * hist->alpha;
+ 582              		.loc 1 119 0
+ 583 0182 FB68     		ldr	r3, [r7, #12]
+ 584 0184 1B68     		ldr	r3, [r3]
+ 585 0186 1846     		mov	r0, r3
+ 586 0188 FFF7FEFF 		bl	__aeabi_i2d
+ 587 018c D7E90623 		ldrd	r2, [r7, #24]
+ 588 0190 FFF7FEFF 		bl	__aeabi_dmul
+ 589 0194 0346     		mov	r3, r0
+ 590 0196 0C46     		mov	r4, r1
+ 591 0198 C7E91034 		strd	r3, [r7, #64]
+ 592 019c BCE0     		b	.L34
+ 593              	.L50:
+ 120:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** 
+ 121:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   } else if (k_n > goal_sector) {
+ 594              		.loc 1 121 0
+ 595 019e B86D     		ldr	r0, [r7, #88]
+ 596 01a0 FFF7FEFF 		bl	__aeabi_i2d
+ 597 01a4 D7E90623 		ldrd	r2, [r7, #24]
+ 598 01a8 FFF7FEFF 		bl	__aeabi_dcmpgt
+ 599 01ac 0346     		mov	r3, r0
+ 600 01ae 002B     		cmp	r3, #0
+ 601 01b0 55D0     		beq	.L51
+ 602              	.LBB4:
+ 122:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****     // See how big the valley is and then select the middle
+ 123:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****     for (int i=1; i < s_max; i++) {
+ 603              		.loc 1 123 0
+ 604 01b2 0123     		movs	r3, #1
+ 605 01b4 FB63     		str	r3, [r7, #60]
+ 606 01b6 32E0     		b	.L37
+ 607              	.L41:
+ 124:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****       if ( (hist->densities[(k_n + i) % hist->sectors] < valley_threshold) & ( ((k_n + i) % hist->s
+ 608              		.loc 1 124 0
+ 609 01b8 FB68     		ldr	r3, [r7, #12]
+ 610 01ba 996A     		ldr	r1, [r3, #40]
+ 611 01bc BA6D     		ldr	r2, [r7, #88]
+ 612 01be FB6B     		ldr	r3, [r7, #60]
+ 613 01c0 1344     		add	r3, r3, r2
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 14
 
 
- 613 0194 C9DB     		blt	.L38
- 614              	.L36:
- 615              	.LBE4:
- 124:..\VFH\src/vfh.c ****       } else {
- 125:..\VFH\src/vfh.c ****         break;
- 126:..\VFH\src/vfh.c ****       }
- 127:..\VFH\src/vfh.c ****     }
- 128:..\VFH\src/vfh.c **** 
- 129:..\VFH\src/vfh.c ****     return ((k_n + k_f) / 2 % hist->sectors) * hist->alpha;
- 616              		.loc 1 129 0 is_stmt 1
- 617 0196 3A6C     		ldr	r2, [r7, #64]
- 618 0198 FB6B     		ldr	r3, [r7, #60]
- 619 019a 1344     		add	r3, r3, r2
- 620 019c DA0F     		lsrs	r2, r3, #31
- 621 019e 1344     		add	r3, r3, r2
- 622 01a0 5B10     		asrs	r3, r3, #1
- 623 01a2 1A46     		mov	r2, r3
- 624 01a4 FB68     		ldr	r3, [r7, #12]
- 625 01a6 5B68     		ldr	r3, [r3, #4]
- 626 01a8 92FBF3F1 		sdiv	r1, r2, r3
- 627 01ac 03FB01F3 		mul	r3, r3, r1
- 628 01b0 D31A     		subs	r3, r2, r3
- 629 01b2 FA68     		ldr	r2, [r7, #12]
- 630 01b4 1268     		ldr	r2, [r2]
- 631 01b6 02FB03F3 		mul	r3, r2, r3
- 632 01ba 1846     		mov	r0, r3
- 633 01bc FFF7FEFF 		bl	__aeabi_i2d
- 634 01c0 0346     		mov	r3, r0
- 635 01c2 0C46     		mov	r4, r1
- 636 01c4 4FE0     		b	.L33
- 637              	.L34:
- 638              	.LBB5:
- 130:..\VFH\src/vfh.c **** 
- 131:..\VFH\src/vfh.c ****   } else {
- 132:..\VFH\src/vfh.c ****     // See how big the valley is and then select the middle
- 133:..\VFH\src/vfh.c ****     for (int i=1; i < s_max; i++) {
- 639              		.loc 1 133 0
- 640 01c6 0123     		movs	r3, #1
- 641 01c8 FB62     		str	r3, [r7, #44]
- 642 01ca 31E0     		b	.L39
- 643              	.L42:
- 134:..\VFH\src/vfh.c ****       if ( (hist->densities[(k_n + i) % hist->sectors] < valley_threshold) && ( ((k_n + i) % hist->
- 644              		.loc 1 134 0
- 645 01cc FB68     		ldr	r3, [r7, #12]
- 646 01ce 996A     		ldr	r1, [r3, #40]
- 647 01d0 3A6C     		ldr	r2, [r7, #64]
- 648 01d2 FB6A     		ldr	r3, [r7, #44]
- 649 01d4 1344     		add	r3, r3, r2
- 650 01d6 FA68     		ldr	r2, [r7, #12]
- 651 01d8 5268     		ldr	r2, [r2, #4]
- 652 01da 93FBF2F0 		sdiv	r0, r3, r2
- 653 01de 02FB00F2 		mul	r2, r2, r0
- 654 01e2 9B1A     		subs	r3, r3, r2
- 655 01e4 9B00     		lsls	r3, r3, #2
- 656 01e6 0B44     		add	r3, r3, r1
- 657 01e8 1A68     		ldr	r2, [r3]
- 658 01ea 7B6A     		ldr	r3, [r7, #36]
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 15
+ 614 01c2 FA68     		ldr	r2, [r7, #12]
+ 615 01c4 5268     		ldr	r2, [r2, #4]
+ 616 01c6 93FBF2F0 		sdiv	r0, r3, r2
+ 617 01ca 02FB00F2 		mul	r2, r2, r0
+ 618 01ce 9B1A     		subs	r3, r3, r2
+ 619 01d0 9B00     		lsls	r3, r3, #2
+ 620 01d2 0B44     		add	r3, r3, r1
+ 621 01d4 1A68     		ldr	r2, [r3]
+ 622 01d6 3B6B     		ldr	r3, [r7, #48]
+ 623 01d8 9A42     		cmp	r2, r3
+ 624 01da B4BF     		ite	lt
+ 625 01dc 0123     		movlt	r3, #1
+ 626 01de 0023     		movge	r3, #0
+ 627 01e0 D9B2     		uxtb	r1, r3
+ 628 01e2 BA6D     		ldr	r2, [r7, #88]
+ 629 01e4 FB6B     		ldr	r3, [r7, #60]
+ 630 01e6 1344     		add	r3, r3, r2
+ 631 01e8 FA68     		ldr	r2, [r7, #12]
+ 632 01ea 5268     		ldr	r2, [r2, #4]
+ 633 01ec 93FBF2F0 		sdiv	r0, r3, r2
+ 634 01f0 02FB00F2 		mul	r2, r2, r0
+ 635 01f4 9B1A     		subs	r3, r3, r2
+ 636 01f6 FA68     		ldr	r2, [r7, #12]
+ 637 01f8 1268     		ldr	r2, [r2]
+ 638 01fa 02FB03F3 		mul	r3, r2, r3
+ 639 01fe 5A2B     		cmp	r3, #90
+ 640 0200 D4BF     		ite	le
+ 641 0202 0123     		movle	r3, #1
+ 642 0204 0023     		movgt	r3, #0
+ 643 0206 DBB2     		uxtb	r3, r3
+ 644 0208 0B40     		ands	r3, r3, r1
+ 645 020a DBB2     		uxtb	r3, r3
+ 646 020c 002B     		cmp	r3, #0
+ 647 020e 0BD0     		beq	.L52
+ 125:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****         k_f = k_n + i;
+ 648              		.loc 1 125 0
+ 649 0210 BA6D     		ldr	r2, [r7, #88]
+ 650 0212 FB6B     		ldr	r3, [r7, #60]
+ 651 0214 1344     		add	r3, r3, r2
+ 652 0216 7B65     		str	r3, [r7, #84]
+ 123:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****       if ( (hist->densities[(k_n + i) % hist->sectors] < valley_threshold) & ( ((k_n + i) % hist->s
+ 653              		.loc 1 123 0
+ 654 0218 FB6B     		ldr	r3, [r7, #60]
+ 655 021a 0133     		adds	r3, r3, #1
+ 656 021c FB63     		str	r3, [r7, #60]
+ 657              	.L37:
+ 123:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****       if ( (hist->densities[(k_n + i) % hist->sectors] < valley_threshold) & ( ((k_n + i) % hist->s
+ 658              		.loc 1 123 0 is_stmt 0 discriminator 1
+ 659 021e FA6B     		ldr	r2, [r7, #60]
+ 660 0220 7B6B     		ldr	r3, [r7, #52]
+ 661 0222 9A42     		cmp	r2, r3
+ 662 0224 C8DB     		blt	.L41
+ 663 0226 00E0     		b	.L40
+ 664              	.L52:
+ 126:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****       } else {
+ 127:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****         break;
+ 665              		.loc 1 127 0 is_stmt 1
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 15
 
 
- 659 01ec 9A42     		cmp	r2, r3
- 660 01ee 23DA     		bge	.L40
- 661              		.loc 1 134 0 is_stmt 0 discriminator 1
- 662 01f0 3A6C     		ldr	r2, [r7, #64]
- 663 01f2 FB6A     		ldr	r3, [r7, #44]
- 664 01f4 1344     		add	r3, r3, r2
- 665 01f6 FA68     		ldr	r2, [r7, #12]
- 666 01f8 5268     		ldr	r2, [r2, #4]
- 667 01fa 93FBF2F1 		sdiv	r1, r3, r2
- 668 01fe 02FB01F2 		mul	r2, r2, r1
- 669 0202 9B1A     		subs	r3, r3, r2
- 670 0204 FA68     		ldr	r2, [r7, #12]
- 671 0206 1268     		ldr	r2, [r2]
- 672 0208 02FB03F3 		mul	r3, r2, r3
- 673 020c 1846     		mov	r0, r3
- 674 020e FFF7FEFF 		bl	__aeabi_i2d
- 675 0212 19A3     		adr	r3, .L45+8
- 676 0214 D3E90023 		ldrd	r2, [r3]
- 677 0218 FFF7FEFF 		bl	__aeabi_dcmple
- 678 021c 0346     		mov	r3, r0
- 679 021e 002B     		cmp	r3, #0
- 680 0220 0AD0     		beq	.L40
- 135:..\VFH\src/vfh.c ****         k_f = k_n - i;
- 681              		.loc 1 135 0 is_stmt 1 discriminator 2
- 682 0222 3A6C     		ldr	r2, [r7, #64]
- 683 0224 FB6A     		ldr	r3, [r7, #44]
- 684 0226 D31A     		subs	r3, r2, r3
- 685 0228 FB63     		str	r3, [r7, #60]
- 133:..\VFH\src/vfh.c ****       if ( (hist->densities[(k_n + i) % hist->sectors] < valley_threshold) && ( ((k_n + i) % hist->
- 686              		.loc 1 133 0 discriminator 2
- 687 022a FB6A     		ldr	r3, [r7, #44]
- 688 022c 0133     		adds	r3, r3, #1
- 689 022e FB62     		str	r3, [r7, #44]
- 690              	.L39:
- 133:..\VFH\src/vfh.c ****       if ( (hist->densities[(k_n + i) % hist->sectors] < valley_threshold) && ( ((k_n + i) % hist->
- 691              		.loc 1 133 0 is_stmt 0 discriminator 1
- 692 0230 FA6A     		ldr	r2, [r7, #44]
- 693 0232 BB6A     		ldr	r3, [r7, #40]
- 694 0234 9A42     		cmp	r2, r3
- 695 0236 C9DB     		blt	.L42
- 696              	.L40:
- 697              	.LBE5:
- 136:..\VFH\src/vfh.c ****       } else {
- 137:..\VFH\src/vfh.c ****         break;
- 138:..\VFH\src/vfh.c ****       }
- 139:..\VFH\src/vfh.c ****     }
- 140:..\VFH\src/vfh.c **** 
- 141:..\VFH\src/vfh.c ****     return ((k_n + k_f) / 2 % hist->sectors) * hist->alpha;
- 698              		.loc 1 141 0 is_stmt 1
- 699 0238 3A6C     		ldr	r2, [r7, #64]
- 700 023a FB6B     		ldr	r3, [r7, #60]
- 701 023c 1344     		add	r3, r3, r2
- 702 023e DA0F     		lsrs	r2, r3, #31
- 703 0240 1344     		add	r3, r3, r2
- 704 0242 5B10     		asrs	r3, r3, #1
- 705 0244 1A46     		mov	r2, r3
- 706 0246 FB68     		ldr	r3, [r7, #12]
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 16
+ 666 0228 00BF     		nop
+ 667              	.L40:
+ 668              	.LBE4:
+ 128:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****       }
+ 129:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****     }
+ 130:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****     final_angle = ((k_n + k_f) / 2 % hist->sectors) * hist->alpha;
+ 669              		.loc 1 130 0
+ 670 022a BA6D     		ldr	r2, [r7, #88]
+ 671 022c 7B6D     		ldr	r3, [r7, #84]
+ 672 022e 1344     		add	r3, r3, r2
+ 673 0230 DA0F     		lsrs	r2, r3, #31
+ 674 0232 1344     		add	r3, r3, r2
+ 675 0234 5B10     		asrs	r3, r3, #1
+ 676 0236 1A46     		mov	r2, r3
+ 677 0238 FB68     		ldr	r3, [r7, #12]
+ 678 023a 5B68     		ldr	r3, [r3, #4]
+ 679 023c 92FBF3F1 		sdiv	r1, r2, r3
+ 680 0240 03FB01F3 		mul	r3, r3, r1
+ 681 0244 D31A     		subs	r3, r2, r3
+ 682 0246 FA68     		ldr	r2, [r7, #12]
+ 683 0248 1268     		ldr	r2, [r2]
+ 684 024a 02FB03F3 		mul	r3, r2, r3
+ 685 024e 1846     		mov	r0, r3
+ 686 0250 FFF7FEFF 		bl	__aeabi_i2d
+ 687 0254 0346     		mov	r3, r0
+ 688 0256 0C46     		mov	r4, r1
+ 689 0258 C7E91034 		strd	r3, [r7, #64]
+ 690 025c 5CE0     		b	.L34
+ 691              	.L51:
+ 692              	.LBB5:
+ 131:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** 
+ 132:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   } else {
+ 133:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****     // See how big the valley is and then select the middle
+ 134:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****     for (int i=1; i < s_max; i++) {
+ 693              		.loc 1 134 0
+ 694 025e 0123     		movs	r3, #1
+ 695 0260 BB63     		str	r3, [r7, #56]
+ 696 0262 33E0     		b	.L42
+ 697              	.L46:
+ 135:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****       if ( (hist->densities[(k_n + i) % hist->sectors] < valley_threshold) & ( ((k_n + i) % hist->s
+ 698              		.loc 1 135 0
+ 699 0264 FB68     		ldr	r3, [r7, #12]
+ 700 0266 996A     		ldr	r1, [r3, #40]
+ 701 0268 BA6D     		ldr	r2, [r7, #88]
+ 702 026a BB6B     		ldr	r3, [r7, #56]
+ 703 026c 1344     		add	r3, r3, r2
+ 704 026e FA68     		ldr	r2, [r7, #12]
+ 705 0270 5268     		ldr	r2, [r2, #4]
+ 706 0272 93FBF2F0 		sdiv	r0, r3, r2
+ 707 0276 02FB00F2 		mul	r2, r2, r0
+ 708 027a 9B1A     		subs	r3, r3, r2
+ 709 027c 9B00     		lsls	r3, r3, #2
+ 710 027e 0B44     		add	r3, r3, r1
+ 711 0280 1A68     		ldr	r2, [r3]
+ 712 0282 3B6B     		ldr	r3, [r7, #48]
+ 713 0284 9A42     		cmp	r2, r3
+ 714 0286 B4BF     		ite	lt
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 16
 
 
- 707 0248 5B68     		ldr	r3, [r3, #4]
- 708 024a 92FBF3F1 		sdiv	r1, r2, r3
- 709 024e 03FB01F3 		mul	r3, r3, r1
- 710 0252 D31A     		subs	r3, r2, r3
- 711 0254 FA68     		ldr	r2, [r7, #12]
- 712 0256 1268     		ldr	r2, [r2]
- 713 0258 02FB03F3 		mul	r3, r2, r3
- 714 025c 1846     		mov	r0, r3
- 715 025e FFF7FEFF 		bl	__aeabi_i2d
- 716 0262 0346     		mov	r3, r0
- 717 0264 0C46     		mov	r4, r1
- 718              	.L33:
- 142:..\VFH\src/vfh.c ****   }
- 143:..\VFH\src/vfh.c **** }
- 719              		.loc 1 143 0
- 720 0266 1846     		mov	r0, r3
- 721 0268 2146     		mov	r1, r4
- 722 026a 4C37     		adds	r7, r7, #76
- 723              		.cfi_def_cfa_offset 12
- 724 026c BD46     		mov	sp, r7
- 725              		.cfi_def_cfa_register 13
- 726              		@ sp needed
- 727 026e 90BD     		pop	{r4, r7, pc}
- 728              	.L46:
- 729              		.align	3
- 730              	.L45:
- 731 0270 182D4454 		.word	1413754136
- 732 0274 FB210940 		.word	1074340347
- 733 0278 D221337F 		.word	2134057426
- 734 027c 7CD90240 		.word	1073928572
- 735              		.cfi_endproc
- 736              	.LFE3:
- 737              		.size	calculate_avoidance_angle, .-calculate_avoidance_angle
- 738              		.section	.text.velocity_control,"ax",%progbits
- 739              		.align	2
- 740              		.global	velocity_control
- 741              		.thumb
- 742              		.thumb_func
- 743              		.type	velocity_control, %function
- 744              	velocity_control:
- 745              	.LFB4:
- 144:..\VFH\src/vfh.c **** 
- 145:..\VFH\src/vfh.c **** double velocity_control(histogram * hist, double direction) {
- 746              		.loc 1 145 0
- 747              		.cfi_startproc
- 748              		@ args = 0, pretend = 0, frame = 48
- 749              		@ frame_needed = 1, uses_anonymous_args = 0
- 750 0000 90B5     		push	{r4, r7, lr}
- 751              		.cfi_def_cfa_offset 12
- 752              		.cfi_offset 4, -12
- 753              		.cfi_offset 7, -8
- 754              		.cfi_offset 14, -4
- 755 0002 8DB0     		sub	sp, sp, #52
- 756              		.cfi_def_cfa_offset 64
- 757 0004 00AF     		add	r7, sp, #0
- 758              		.cfi_def_cfa_register 7
- 759 0006 F860     		str	r0, [r7, #12]
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 17
+ 715 0288 0123     		movlt	r3, #1
+ 716 028a 0023     		movge	r3, #0
+ 717 028c D9B2     		uxtb	r1, r3
+ 718 028e BA6D     		ldr	r2, [r7, #88]
+ 719 0290 BB6B     		ldr	r3, [r7, #56]
+ 720 0292 1344     		add	r3, r3, r2
+ 721 0294 FA68     		ldr	r2, [r7, #12]
+ 722 0296 5268     		ldr	r2, [r2, #4]
+ 723 0298 93FBF2F0 		sdiv	r0, r3, r2
+ 724 029c 02FB00F2 		mul	r2, r2, r0
+ 725 02a0 9B1A     		subs	r3, r3, r2
+ 726 02a2 FA68     		ldr	r2, [r7, #12]
+ 727 02a4 1268     		ldr	r2, [r2]
+ 728 02a6 02FB03F3 		mul	r3, r2, r3
+ 729 02aa B3F5877F 		cmp	r3, #270
+ 730 02ae D4BF     		ite	le
+ 731 02b0 0123     		movle	r3, #1
+ 732 02b2 0023     		movgt	r3, #0
+ 733 02b4 DBB2     		uxtb	r3, r3
+ 734 02b6 0B40     		ands	r3, r3, r1
+ 735 02b8 DBB2     		uxtb	r3, r3
+ 736 02ba 002B     		cmp	r3, #0
+ 737 02bc 12D0     		beq	.L53
+ 136:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****         k_f = k_n - i;
+ 738              		.loc 1 136 0
+ 739 02be BA6D     		ldr	r2, [r7, #88]
+ 740 02c0 BB6B     		ldr	r3, [r7, #56]
+ 741 02c2 D31A     		subs	r3, r2, r3
+ 742 02c4 7B65     		str	r3, [r7, #84]
+ 134:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****       if ( (hist->densities[(k_n + i) % hist->sectors] < valley_threshold) & ( ((k_n + i) % hist->s
+ 743              		.loc 1 134 0
+ 744 02c6 BB6B     		ldr	r3, [r7, #56]
+ 745 02c8 0133     		adds	r3, r3, #1
+ 746 02ca BB63     		str	r3, [r7, #56]
+ 747              	.L42:
+ 134:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****       if ( (hist->densities[(k_n + i) % hist->sectors] < valley_threshold) & ( ((k_n + i) % hist->s
+ 748              		.loc 1 134 0 is_stmt 0 discriminator 1
+ 749 02cc BA6B     		ldr	r2, [r7, #56]
+ 750 02ce 7B6B     		ldr	r3, [r7, #52]
+ 751 02d0 9A42     		cmp	r2, r3
+ 752 02d2 C7DB     		blt	.L46
+ 753 02d4 07E0     		b	.L45
+ 754              	.L55:
+ 755 02d6 00BF     		.align	3
+ 756              	.L54:
+ 757 02d8 182D4454 		.word	1413754136
+ 758 02dc FB210940 		.word	1074340347
+ 759 02e0 00806640 		.word	1080459264
+ 760              	.L53:
+ 137:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****       } else {
+ 138:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****         break;
+ 761              		.loc 1 138 0 is_stmt 1
+ 762 02e4 00BF     		nop
+ 763              	.L45:
+ 764              	.LBE5:
+ 139:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****       }
+ 140:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****     }
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 17
 
 
- 760 0008 C7E90023 		strd	r2, [r7]
- 146:..\VFH\src/vfh.c ****   // Max velocity
- 147:..\VFH\src/vfh.c ****   int V_MAX = 10;
- 761              		.loc 1 147 0
- 762 000c 0A23     		movs	r3, #10
- 763 000e BB62     		str	r3, [r7, #40]
- 148:..\VFH\src/vfh.c **** 
- 149:..\VFH\src/vfh.c ****   // Convert the direction of travel into sector index
- 150:..\VFH\src/vfh.c ****   int h_idx = floor(direction / hist->alpha);
- 764              		.loc 1 150 0
- 765 0010 FB68     		ldr	r3, [r7, #12]
- 766 0012 1B68     		ldr	r3, [r3]
- 767 0014 1846     		mov	r0, r3
- 768 0016 FFF7FEFF 		bl	__aeabi_i2d
- 769 001a 0346     		mov	r3, r0
- 770 001c 0C46     		mov	r4, r1
- 771 001e 1A46     		mov	r2, r3
- 772 0020 2346     		mov	r3, r4
- 773 0022 D7E90001 		ldrd	r0, [r7]
- 774 0026 FFF7FEFF 		bl	__aeabi_ddiv
- 775 002a 0346     		mov	r3, r0
- 776 002c 0C46     		mov	r4, r1
- 777 002e 1846     		mov	r0, r3
- 778 0030 2146     		mov	r1, r4
- 779 0032 FFF7FEFF 		bl	floor
- 780 0036 0346     		mov	r3, r0
- 781 0038 0C46     		mov	r4, r1
- 782 003a 1846     		mov	r0, r3
- 783 003c 2146     		mov	r1, r4
- 784 003e FFF7FEFF 		bl	__aeabi_d2iz
- 785 0042 0346     		mov	r3, r0
- 786 0044 7B62     		str	r3, [r7, #36]
- 151:..\VFH\src/vfh.c **** 
- 152:..\VFH\src/vfh.c ****   // Retrieve polar histogram density at this sector
- 153:..\VFH\src/vfh.c ****   int h_c = hist->densities[h_idx];
- 787              		.loc 1 153 0
- 788 0046 FB68     		ldr	r3, [r7, #12]
- 789 0048 9A6A     		ldr	r2, [r3, #40]
- 790 004a 7B6A     		ldr	r3, [r7, #36]
- 791 004c 9B00     		lsls	r3, r3, #2
- 792 004e 1344     		add	r3, r3, r2
- 793 0050 1B68     		ldr	r3, [r3]
- 794 0052 3B62     		str	r3, [r7, #32]
- 154:..\VFH\src/vfh.c **** 
- 155:..\VFH\src/vfh.c ****   // NOTE: If h_c > 0, that indicates that an obstacles lies ahead of the robot
- 156:..\VFH\src/vfh.c **** 
- 157:..\VFH\src/vfh.c ****   // Define h_m which is an empirically determined constant. h_cc later must be less than h_m
- 158:..\VFH\src/vfh.c ****   int h_m = 123;
- 795              		.loc 1 158 0
- 796 0054 7B23     		movs	r3, #123
- 797 0056 FB61     		str	r3, [r7, #28]
- 159:..\VFH\src/vfh.c **** 
- 160:..\VFH\src/vfh.c ****   int h_cc;
- 161:..\VFH\src/vfh.c ****   if (h_c > h_m) {
- 798              		.loc 1 161 0
- 799 0058 3A6A     		ldr	r2, [r7, #32]
- 800 005a FB69     		ldr	r3, [r7, #28]
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 18
+ 141:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****     final_angle = ((k_n + k_f) / 2 % hist->sectors) * hist->alpha;
+ 765              		.loc 1 141 0
+ 766 02e6 BA6D     		ldr	r2, [r7, #88]
+ 767 02e8 7B6D     		ldr	r3, [r7, #84]
+ 768 02ea 1344     		add	r3, r3, r2
+ 769 02ec DA0F     		lsrs	r2, r3, #31
+ 770 02ee 1344     		add	r3, r3, r2
+ 771 02f0 5B10     		asrs	r3, r3, #1
+ 772 02f2 1A46     		mov	r2, r3
+ 773 02f4 FB68     		ldr	r3, [r7, #12]
+ 774 02f6 5B68     		ldr	r3, [r3, #4]
+ 775 02f8 92FBF3F1 		sdiv	r1, r2, r3
+ 776 02fc 03FB01F3 		mul	r3, r3, r1
+ 777 0300 D31A     		subs	r3, r2, r3
+ 778 0302 FA68     		ldr	r2, [r7, #12]
+ 779 0304 1268     		ldr	r2, [r2]
+ 780 0306 02FB03F3 		mul	r3, r2, r3
+ 781 030a 1846     		mov	r0, r3
+ 782 030c FFF7FEFF 		bl	__aeabi_i2d
+ 783 0310 0346     		mov	r3, r0
+ 784 0312 0C46     		mov	r4, r1
+ 785 0314 C7E91034 		strd	r3, [r7, #64]
+ 786              	.L34:
+ 142:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   }
+ 143:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   return M_PI * final_angle / 180;
+ 787              		.loc 1 143 0
+ 788 0318 0BA3     		adr	r3, .L56
+ 789 031a D3E90023 		ldrd	r2, [r3]
+ 790 031e D7E91001 		ldrd	r0, [r7, #64]
+ 791 0322 FFF7FEFF 		bl	__aeabi_dmul
+ 792 0326 0346     		mov	r3, r0
+ 793 0328 0C46     		mov	r4, r1
+ 794 032a 1846     		mov	r0, r3
+ 795 032c 2146     		mov	r1, r4
+ 796 032e 4FF00002 		mov	r2, #0
+ 797 0332 074B     		ldr	r3, .L56+8
+ 798 0334 FFF7FEFF 		bl	__aeabi_ddiv
+ 799 0338 0346     		mov	r3, r0
+ 800 033a 0C46     		mov	r4, r1
+ 144:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** }
+ 801              		.loc 1 144 0
+ 802 033c 1846     		mov	r0, r3
+ 803 033e 2146     		mov	r1, r4
+ 804 0340 6037     		adds	r7, r7, #96
+ 805              		.cfi_def_cfa_offset 16
+ 806 0342 BD46     		mov	sp, r7
+ 807              		.cfi_def_cfa_register 13
+ 808              		@ sp needed
+ 809 0344 B0BD     		pop	{r4, r5, r7, pc}
+ 810              	.L57:
+ 811 0346 00BF     		.align	3
+ 812              	.L56:
+ 813 0348 182D4454 		.word	1413754136
+ 814 034c FB210940 		.word	1074340347
+ 815 0350 00806640 		.word	1080459264
+ 816              		.cfi_endproc
+ 817              	.LFE3:
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 18
 
 
- 801 005c 9A42     		cmp	r2, r3
- 802 005e 02DD     		ble	.L48
- 162:..\VFH\src/vfh.c ****     h_cc = h_m;
- 803              		.loc 1 162 0
- 804 0060 FB69     		ldr	r3, [r7, #28]
- 805 0062 FB62     		str	r3, [r7, #44]
- 806 0064 01E0     		b	.L49
- 807              	.L48:
- 163:..\VFH\src/vfh.c ****   } else {
- 164:..\VFH\src/vfh.c ****     h_cc = h_c;
- 808              		.loc 1 164 0
- 809 0066 3B6A     		ldr	r3, [r7, #32]
- 810 0068 FB62     		str	r3, [r7, #44]
- 811              	.L49:
- 165:..\VFH\src/vfh.c ****   }
- 166:..\VFH\src/vfh.c ****   double speed_reduction = V_MAX * (1 - (h_cc / h_m));
- 812              		.loc 1 166 0
- 813 006a FA6A     		ldr	r2, [r7, #44]
- 814 006c FB69     		ldr	r3, [r7, #28]
- 815 006e 92FBF3F3 		sdiv	r3, r2, r3
- 816 0072 C3F10103 		rsb	r3, r3, #1
- 817 0076 BA6A     		ldr	r2, [r7, #40]
- 818 0078 02FB03F3 		mul	r3, r2, r3
- 819 007c 1846     		mov	r0, r3
- 820 007e FFF7FEFF 		bl	__aeabi_i2d
- 821 0082 0346     		mov	r3, r0
- 822 0084 0C46     		mov	r4, r1
- 823 0086 C7E90434 		strd	r3, [r7, #16]
- 167:..\VFH\src/vfh.c **** 
- 168:..\VFH\src/vfh.c ****   // Further reduce speed to anticipate obstacles
- 169:..\VFH\src/vfh.c ****   
- 170:..\VFH\src/vfh.c ****   return speed_reduction;
- 824              		.loc 1 170 0
- 825 008a D7E90434 		ldrd	r3, [r7, #16]
- 171:..\VFH\src/vfh.c **** }
- 826              		.loc 1 171 0
- 827 008e 1846     		mov	r0, r3
- 828 0090 2146     		mov	r1, r4
- 829 0092 3437     		adds	r7, r7, #52
- 830              		.cfi_def_cfa_offset 12
- 831 0094 BD46     		mov	sp, r7
- 832              		.cfi_def_cfa_register 13
- 833              		@ sp needed
- 834 0096 90BD     		pop	{r4, r7, pc}
- 835              		.cfi_endproc
- 836              	.LFE4:
- 837              		.size	velocity_control, .-velocity_control
- 838              		.text
- 839              	.Letext0:
- 840              		.file 2 "./..\\VFH\\include\\vfh.h"
- 841              		.section	.debug_info,"",%progbits
- 842              	.Ldebug_info0:
- 843 0000 B3040000 		.4byte	0x4b3
- 844 0004 0400     		.2byte	0x4
- 845 0006 00000000 		.4byte	.Ldebug_abbrev0
- 846 000a 04       		.byte	0x4
- 847 000b 01       		.uleb128 0x1
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 19
+ 818              		.size	calculate_avoidance_angle, .-calculate_avoidance_angle
+ 819              		.section	.text.velocity_control,"ax",%progbits
+ 820              		.align	2
+ 821              		.global	velocity_control
+ 822              		.thumb
+ 823              		.thumb_func
+ 824              		.type	velocity_control, %function
+ 825              	velocity_control:
+ 826              	.LFB4:
+ 145:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** 
+ 146:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** double velocity_control(histogram * hist, double direction) {
+ 827              		.loc 1 146 0
+ 828              		.cfi_startproc
+ 829              		@ args = 0, pretend = 0, frame = 48
+ 830              		@ frame_needed = 1, uses_anonymous_args = 0
+ 831 0000 90B5     		push	{r4, r7, lr}
+ 832              		.cfi_def_cfa_offset 12
+ 833              		.cfi_offset 4, -12
+ 834              		.cfi_offset 7, -8
+ 835              		.cfi_offset 14, -4
+ 836 0002 8DB0     		sub	sp, sp, #52
+ 837              		.cfi_def_cfa_offset 64
+ 838 0004 00AF     		add	r7, sp, #0
+ 839              		.cfi_def_cfa_register 7
+ 840 0006 F860     		str	r0, [r7, #12]
+ 841 0008 C7E90023 		strd	r2, [r7]
+ 147:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   // Max velocity
+ 148:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   int V_MAX = 10;
+ 842              		.loc 1 148 0
+ 843 000c 0A23     		movs	r3, #10
+ 844 000e BB62     		str	r3, [r7, #40]
+ 149:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** 
+ 150:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   // Convert the direction of travel into sector index
+ 151:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   int h_idx = floor(direction / hist->alpha);
+ 845              		.loc 1 151 0
+ 846 0010 FB68     		ldr	r3, [r7, #12]
+ 847 0012 1B68     		ldr	r3, [r3]
+ 848 0014 1846     		mov	r0, r3
+ 849 0016 FFF7FEFF 		bl	__aeabi_i2d
+ 850 001a 0346     		mov	r3, r0
+ 851 001c 0C46     		mov	r4, r1
+ 852 001e 1A46     		mov	r2, r3
+ 853 0020 2346     		mov	r3, r4
+ 854 0022 D7E90001 		ldrd	r0, [r7]
+ 855 0026 FFF7FEFF 		bl	__aeabi_ddiv
+ 856 002a 0346     		mov	r3, r0
+ 857 002c 0C46     		mov	r4, r1
+ 858 002e 1846     		mov	r0, r3
+ 859 0030 2146     		mov	r1, r4
+ 860 0032 FFF7FEFF 		bl	floor
+ 861 0036 0346     		mov	r3, r0
+ 862 0038 0C46     		mov	r4, r1
+ 863 003a 1846     		mov	r0, r3
+ 864 003c 2146     		mov	r1, r4
+ 865 003e FFF7FEFF 		bl	__aeabi_d2iz
+ 866 0042 0346     		mov	r3, r0
+ 867 0044 7B62     		str	r3, [r7, #36]
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 19
 
 
- 848 000c 4E000000 		.4byte	.LASF60
- 849 0010 0C       		.byte	0xc
- 850 0011 06030000 		.4byte	.LASF61
- 851 0015 55030000 		.4byte	.LASF62
- 852 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 853 001d 00000000 		.4byte	0
- 854 0021 00000000 		.4byte	.Ldebug_line0
- 855 0025 02       		.uleb128 0x2
- 856 0026 04       		.byte	0x4
- 857 0027 07       		.byte	0x7
- 858 0028 83010000 		.4byte	.LASF0
- 859 002c 03       		.uleb128 0x3
- 860 002d 04       		.byte	0x4
- 861 002e 05       		.byte	0x5
- 862 002f 696E7400 		.ascii	"int\000"
- 863 0033 02       		.uleb128 0x2
- 864 0034 08       		.byte	0x8
- 865 0035 05       		.byte	0x5
- 866 0036 FD000000 		.4byte	.LASF1
- 867 003a 02       		.uleb128 0x2
- 868 003b 08       		.byte	0x8
- 869 003c 04       		.byte	0x4
- 870 003d 07020000 		.4byte	.LASF2
- 871 0041 02       		.uleb128 0x2
- 872 0042 01       		.byte	0x1
- 873 0043 06       		.byte	0x6
- 874 0044 0B010000 		.4byte	.LASF3
- 875 0048 02       		.uleb128 0x2
- 876 0049 01       		.byte	0x1
- 877 004a 08       		.byte	0x8
- 878 004b 9B020000 		.4byte	.LASF4
- 879 004f 02       		.uleb128 0x2
- 880 0050 02       		.byte	0x2
- 881 0051 05       		.byte	0x5
- 882 0052 A9020000 		.4byte	.LASF5
- 883 0056 02       		.uleb128 0x2
- 884 0057 02       		.byte	0x2
- 885 0058 07       		.byte	0x7
- 886 0059 A8010000 		.4byte	.LASF6
- 887 005d 02       		.uleb128 0x2
- 888 005e 04       		.byte	0x4
- 889 005f 05       		.byte	0x5
- 890 0060 1D010000 		.4byte	.LASF7
- 891 0064 02       		.uleb128 0x2
- 892 0065 04       		.byte	0x4
- 893 0066 07       		.byte	0x7
- 894 0067 90010000 		.4byte	.LASF8
- 895 006b 02       		.uleb128 0x2
- 896 006c 08       		.byte	0x8
- 897 006d 07       		.byte	0x7
- 898 006e E6000000 		.4byte	.LASF9
- 899 0072 02       		.uleb128 0x2
- 900 0073 04       		.byte	0x4
- 901 0074 07       		.byte	0x7
- 902 0075 FE010000 		.4byte	.LASF10
- 903 0079 02       		.uleb128 0x2
- 904 007a 01       		.byte	0x1
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 20
+ 152:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** 
+ 153:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   // Retrieve polar histogram density at this sector
+ 154:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   int h_c = hist->densities[h_idx];
+ 868              		.loc 1 154 0
+ 869 0046 FB68     		ldr	r3, [r7, #12]
+ 870 0048 9A6A     		ldr	r2, [r3, #40]
+ 871 004a 7B6A     		ldr	r3, [r7, #36]
+ 872 004c 9B00     		lsls	r3, r3, #2
+ 873 004e 1344     		add	r3, r3, r2
+ 874 0050 1B68     		ldr	r3, [r3]
+ 875 0052 3B62     		str	r3, [r7, #32]
+ 155:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** 
+ 156:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   // NOTE: If h_c > 0, that indicates that an obstacles lies ahead of the robot
+ 157:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** 
+ 158:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   // Define h_m which is an empirically determined constant. h_cc later must be less than h_m
+ 159:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   int h_m = h_c + 0.5;
+ 876              		.loc 1 159 0
+ 877 0054 386A     		ldr	r0, [r7, #32]
+ 878 0056 FFF7FEFF 		bl	__aeabi_i2d
+ 879 005a 4FF00002 		mov	r2, #0
+ 880 005e 154B     		ldr	r3, .L62
+ 881 0060 FFF7FEFF 		bl	__aeabi_dadd
+ 882 0064 0346     		mov	r3, r0
+ 883 0066 0C46     		mov	r4, r1
+ 884 0068 1846     		mov	r0, r3
+ 885 006a 2146     		mov	r1, r4
+ 886 006c FFF7FEFF 		bl	__aeabi_d2iz
+ 887 0070 0346     		mov	r3, r0
+ 888 0072 FB61     		str	r3, [r7, #28]
+ 160:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** 
+ 161:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   int h_cc;
+ 162:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   if (h_c > h_m) {
+ 889              		.loc 1 162 0
+ 890 0074 3A6A     		ldr	r2, [r7, #32]
+ 891 0076 FB69     		ldr	r3, [r7, #28]
+ 892 0078 9A42     		cmp	r2, r3
+ 893 007a 02DD     		ble	.L59
+ 163:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****     h_cc = h_m;
+ 894              		.loc 1 163 0
+ 895 007c FB69     		ldr	r3, [r7, #28]
+ 896 007e FB62     		str	r3, [r7, #44]
+ 897 0080 01E0     		b	.L60
+ 898              	.L59:
+ 164:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   } else {
+ 165:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****     h_cc = h_c;
+ 899              		.loc 1 165 0
+ 900 0082 3B6A     		ldr	r3, [r7, #32]
+ 901 0084 FB62     		str	r3, [r7, #44]
+ 902              	.L60:
+ 166:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   }
+ 167:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   double speed_reduction = V_MAX * (1 - (h_cc / h_m));
+ 903              		.loc 1 167 0
+ 904 0086 FA6A     		ldr	r2, [r7, #44]
+ 905 0088 FB69     		ldr	r3, [r7, #28]
+ 906 008a 92FBF3F3 		sdiv	r3, r2, r3
+ 907 008e C3F10103 		rsb	r3, r3, #1
+ 908 0092 BA6A     		ldr	r2, [r7, #40]
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 20
 
 
- 905 007b 08       		.byte	0x8
- 906 007c 17030000 		.4byte	.LASF11
- 907 0080 02       		.uleb128 0x2
- 908 0081 08       		.byte	0x8
- 909 0082 04       		.byte	0x4
- 910 0083 32010000 		.4byte	.LASF12
- 911 0087 02       		.uleb128 0x2
- 912 0088 04       		.byte	0x4
- 913 0089 04       		.byte	0x4
- 914 008a 74020000 		.4byte	.LASF13
- 915 008e 04       		.uleb128 0x4
- 916 008f 10       		.byte	0x10
- 917 0090 02       		.byte	0x2
- 918 0091 16       		.byte	0x16
- 919 0092 C7000000 		.4byte	0xc7
- 920 0096 05       		.uleb128 0x5
- 921 0097 A2010000 		.4byte	.LASF14
- 922 009b 02       		.byte	0x2
- 923 009c 17       		.byte	0x17
- 924 009d 2C000000 		.4byte	0x2c
- 925 00a1 00       		.byte	0
- 926 00a2 05       		.uleb128 0x5
- 927 00a3 86030000 		.4byte	.LASF15
- 928 00a7 02       		.byte	0x2
- 929 00a8 18       		.byte	0x18
- 930 00a9 2C000000 		.4byte	0x2c
- 931 00ad 04       		.byte	0x4
- 932 00ae 05       		.uleb128 0x5
- 933 00af DA020000 		.4byte	.LASF16
- 934 00b3 02       		.byte	0x2
- 935 00b4 19       		.byte	0x19
- 936 00b5 2C000000 		.4byte	0x2c
- 937 00b9 08       		.byte	0x8
- 938 00ba 05       		.uleb128 0x5
- 939 00bb F8010000 		.4byte	.LASF17
- 940 00bf 02       		.byte	0x2
- 941 00c0 1A       		.byte	0x1a
- 942 00c1 C7000000 		.4byte	0xc7
- 943 00c5 0C       		.byte	0xc
- 944 00c6 00       		.byte	0
- 945 00c7 06       		.uleb128 0x6
- 946 00c8 04       		.byte	0x4
- 947 00c9 2C000000 		.4byte	0x2c
- 948 00cd 07       		.uleb128 0x7
- 949 00ce 2D020000 		.4byte	.LASF25
- 950 00d2 02       		.byte	0x2
- 951 00d3 1B       		.byte	0x1b
- 952 00d4 8E000000 		.4byte	0x8e
- 953 00d8 04       		.uleb128 0x4
- 954 00d9 30       		.byte	0x30
- 955 00da 02       		.byte	0x2
- 956 00db 3C       		.byte	0x3c
- 957 00dc 35010000 		.4byte	0x135
- 958 00e0 05       		.uleb128 0x5
- 959 00e1 17010000 		.4byte	.LASF18
- 960 00e5 02       		.byte	0x2
- 961 00e6 3D       		.byte	0x3d
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 21
+ 909 0094 02FB03F3 		mul	r3, r2, r3
+ 910 0098 1846     		mov	r0, r3
+ 911 009a FFF7FEFF 		bl	__aeabi_i2d
+ 912 009e 0346     		mov	r3, r0
+ 913 00a0 0C46     		mov	r4, r1
+ 914 00a2 C7E90434 		strd	r3, [r7, #16]
+ 168:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** 
+ 169:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   // Further reduce speed to anticipate obstacles
+ 170:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   
+ 171:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c ****   return speed_reduction;
+ 915              		.loc 1 171 0
+ 916 00a6 D7E90434 		ldrd	r3, [r7, #16]
+ 172:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/vfh.c **** }
+ 917              		.loc 1 172 0
+ 918 00aa 1846     		mov	r0, r3
+ 919 00ac 2146     		mov	r1, r4
+ 920 00ae 3437     		adds	r7, r7, #52
+ 921              		.cfi_def_cfa_offset 12
+ 922 00b0 BD46     		mov	sp, r7
+ 923              		.cfi_def_cfa_register 13
+ 924              		@ sp needed
+ 925 00b2 90BD     		pop	{r4, r7, pc}
+ 926              	.L63:
+ 927              		.align	2
+ 928              	.L62:
+ 929 00b4 0000E03F 		.word	1071644672
+ 930              		.cfi_endproc
+ 931              	.LFE4:
+ 932              		.size	velocity_control, .-velocity_control
+ 933              		.text
+ 934              	.Letext0:
+ 935              		.file 2 "./..\\VFH\\include\\vfh.h"
+ 936              		.section	.debug_info,"",%progbits
+ 937              	.Ldebug_info0:
+ 938 0000 C9040000 		.4byte	0x4c9
+ 939 0004 0400     		.2byte	0x4
+ 940 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 941 000a 04       		.byte	0x4
+ 942 000b 01       		.uleb128 0x1
+ 943 000c 4E000000 		.4byte	.LASF61
+ 944 0010 0C       		.byte	0xc
+ 945 0011 50030000 		.4byte	.LASF62
+ 946 0015 86030000 		.4byte	.LASF63
+ 947 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 948 001d 00000000 		.4byte	0
+ 949 0021 00000000 		.4byte	.Ldebug_line0
+ 950 0025 02       		.uleb128 0x2
+ 951 0026 04       		.byte	0x4
+ 952 0027 07       		.byte	0x7
+ 953 0028 83010000 		.4byte	.LASF0
+ 954 002c 03       		.uleb128 0x3
+ 955 002d 04       		.byte	0x4
+ 956 002e 05       		.byte	0x5
+ 957 002f 696E7400 		.ascii	"int\000"
+ 958 0033 02       		.uleb128 0x2
+ 959 0034 08       		.byte	0x8
+ 960 0035 05       		.byte	0x5
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 21
 
 
- 962 00e7 2C000000 		.4byte	0x2c
- 963 00eb 00       		.byte	0
- 964 00ec 05       		.uleb128 0x5
- 965 00ed D2020000 		.4byte	.LASF19
- 966 00f1 02       		.byte	0x2
- 967 00f2 3E       		.byte	0x3e
- 968 00f3 2C000000 		.4byte	0x2c
- 969 00f7 04       		.byte	0x4
- 970 00f8 05       		.uleb128 0x5
- 971 00f9 91020000 		.4byte	.LASF20
- 972 00fd 02       		.byte	0x2
- 973 00fe 3F       		.byte	0x3f
- 974 00ff 80000000 		.4byte	0x80
- 975 0103 08       		.byte	0x8
- 976 0104 05       		.uleb128 0x5
- 977 0105 72010000 		.4byte	.LASF21
- 978 0109 02       		.byte	0x2
- 979 010a 40       		.byte	0x40
- 980 010b 80000000 		.4byte	0x80
- 981 010f 10       		.byte	0x10
- 982 0110 05       		.uleb128 0x5
- 983 0111 60020000 		.4byte	.LASF22
- 984 0115 02       		.byte	0x2
- 985 0116 41       		.byte	0x41
- 986 0117 80000000 		.4byte	0x80
- 987 011b 18       		.byte	0x18
- 988 011c 05       		.uleb128 0x5
- 989 011d 6A020000 		.4byte	.LASF23
- 990 0121 02       		.byte	0x2
- 991 0122 42       		.byte	0x42
- 992 0123 80000000 		.4byte	0x80
- 993 0127 20       		.byte	0x20
- 994 0128 05       		.uleb128 0x5
- 995 0129 68010000 		.4byte	.LASF24
- 996 012d 02       		.byte	0x2
- 997 012e 43       		.byte	0x43
- 998 012f C7000000 		.4byte	0xc7
- 999 0133 28       		.byte	0x28
- 1000 0134 00       		.byte	0
- 1001 0135 07       		.uleb128 0x7
- 1002 0136 21000000 		.4byte	.LASF26
- 1003 013a 02       		.byte	0x2
- 1004 013b 44       		.byte	0x44
- 1005 013c D8000000 		.4byte	0xd8
- 1006 0140 08       		.uleb128 0x8
- 1007 0141 32020000 		.4byte	.LASF33
- 1008 0145 01       		.byte	0x1
- 1009 0146 17       		.byte	0x17
- 1010 0147 2C000000 		.4byte	0x2c
- 1011 014b 00000000 		.4byte	.LFB0
- 1012 014f E2000000 		.4byte	.LFE0-.LFB0
- 1013 0153 01       		.uleb128 0x1
- 1014 0154 9C       		.byte	0x9c
- 1015 0155 AE010000 		.4byte	0x1ae
- 1016 0159 09       		.uleb128 0x9
- 1017 015a BB010000 		.4byte	.LASF27
- 1018 015e 01       		.byte	0x1
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 22
+ 961 0036 FD000000 		.4byte	.LASF1
+ 962 003a 02       		.uleb128 0x2
+ 963 003b 08       		.byte	0x8
+ 964 003c 04       		.byte	0x4
+ 965 003d 07020000 		.4byte	.LASF2
+ 966 0041 02       		.uleb128 0x2
+ 967 0042 01       		.byte	0x1
+ 968 0043 06       		.byte	0x6
+ 969 0044 0B010000 		.4byte	.LASF3
+ 970 0048 02       		.uleb128 0x2
+ 971 0049 01       		.byte	0x1
+ 972 004a 08       		.byte	0x8
+ 973 004b 9B020000 		.4byte	.LASF4
+ 974 004f 02       		.uleb128 0x2
+ 975 0050 02       		.byte	0x2
+ 976 0051 05       		.byte	0x5
+ 977 0052 A9020000 		.4byte	.LASF5
+ 978 0056 02       		.uleb128 0x2
+ 979 0057 02       		.byte	0x2
+ 980 0058 07       		.byte	0x7
+ 981 0059 A8010000 		.4byte	.LASF6
+ 982 005d 02       		.uleb128 0x2
+ 983 005e 04       		.byte	0x4
+ 984 005f 05       		.byte	0x5
+ 985 0060 1D010000 		.4byte	.LASF7
+ 986 0064 02       		.uleb128 0x2
+ 987 0065 04       		.byte	0x4
+ 988 0066 07       		.byte	0x7
+ 989 0067 90010000 		.4byte	.LASF8
+ 990 006b 02       		.uleb128 0x2
+ 991 006c 08       		.byte	0x8
+ 992 006d 07       		.byte	0x7
+ 993 006e E6000000 		.4byte	.LASF9
+ 994 0072 02       		.uleb128 0x2
+ 995 0073 04       		.byte	0x4
+ 996 0074 07       		.byte	0x7
+ 997 0075 FE010000 		.4byte	.LASF10
+ 998 0079 02       		.uleb128 0x2
+ 999 007a 01       		.byte	0x1
+ 1000 007b 08       		.byte	0x8
+ 1001 007c 12030000 		.4byte	.LASF11
+ 1002 0080 02       		.uleb128 0x2
+ 1003 0081 08       		.byte	0x8
+ 1004 0082 04       		.byte	0x4
+ 1005 0083 32010000 		.4byte	.LASF12
+ 1006 0087 02       		.uleb128 0x2
+ 1007 0088 04       		.byte	0x4
+ 1008 0089 04       		.byte	0x4
+ 1009 008a 74020000 		.4byte	.LASF13
+ 1010 008e 04       		.uleb128 0x4
+ 1011 008f 10       		.byte	0x10
+ 1012 0090 02       		.byte	0x2
+ 1013 0091 16       		.byte	0x16
+ 1014 0092 C7000000 		.4byte	0xc7
+ 1015 0096 05       		.uleb128 0x5
+ 1016 0097 A2010000 		.4byte	.LASF14
+ 1017 009b 02       		.byte	0x2
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 22
 
 
- 1019 015f 17       		.byte	0x17
- 1020 0160 AE010000 		.4byte	0x1ae
- 1021 0164 02       		.uleb128 0x2
- 1022 0165 91       		.byte	0x91
- 1023 0166 5C       		.sleb128 -36
- 1024 0167 09       		.uleb128 0x9
- 1025 0168 F2020000 		.4byte	.LASF28
- 1026 016c 01       		.byte	0x1
- 1027 016d 17       		.byte	0x17
- 1028 016e 2C000000 		.4byte	0x2c
- 1029 0172 02       		.uleb128 0x2
- 1030 0173 91       		.byte	0x91
- 1031 0174 58       		.sleb128 -40
- 1032 0175 0A       		.uleb128 0xa
- 1033 0176 DD010000 		.4byte	.LASF29
- 1034 017a 01       		.byte	0x1
- 1035 017b 18       		.byte	0x18
- 1036 017c 2C000000 		.4byte	0x2c
- 1037 0180 02       		.uleb128 0x2
- 1038 0181 91       		.byte	0x91
- 1039 0182 6C       		.sleb128 -20
- 1040 0183 0A       		.uleb128 0xa
- 1041 0184 B3020000 		.4byte	.LASF30
- 1042 0188 01       		.byte	0x1
- 1043 0189 18       		.byte	0x18
- 1044 018a 2C000000 		.4byte	0x2c
- 1045 018e 02       		.uleb128 0x2
- 1046 018f 91       		.byte	0x91
- 1047 0190 68       		.sleb128 -24
- 1048 0191 0A       		.uleb128 0xa
- 1049 0192 56010000 		.4byte	.LASF31
- 1050 0196 01       		.byte	0x1
- 1051 0197 19       		.byte	0x19
- 1052 0198 2C000000 		.4byte	0x2c
- 1053 019c 02       		.uleb128 0x2
- 1054 019d 91       		.byte	0x91
- 1055 019e 64       		.sleb128 -28
- 1056 019f 0A       		.uleb128 0xa
- 1057 01a0 E4010000 		.4byte	.LASF32
- 1058 01a4 01       		.byte	0x1
- 1059 01a5 19       		.byte	0x19
- 1060 01a6 2C000000 		.4byte	0x2c
- 1061 01aa 02       		.uleb128 0x2
- 1062 01ab 91       		.byte	0x91
- 1063 01ac 60       		.sleb128 -32
- 1064 01ad 00       		.byte	0
- 1065 01ae 06       		.uleb128 0x6
- 1066 01af 04       		.byte	0x4
- 1067 01b0 35010000 		.4byte	0x135
- 1068 01b4 08       		.uleb128 0x8
- 1069 01b5 39010000 		.4byte	.LASF34
- 1070 01b9 01       		.byte	0x1
- 1071 01ba 35       		.byte	0x35
- 1072 01bb 80000000 		.4byte	0x80
- 1073 01bf 00000000 		.4byte	.LFB1
- 1074 01c3 30010000 		.4byte	.LFE1-.LFB1
- 1075 01c7 01       		.uleb128 0x1
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 23
+ 1018 009c 17       		.byte	0x17
+ 1019 009d 25000000 		.4byte	0x25
+ 1020 00a1 00       		.byte	0
+ 1021 00a2 05       		.uleb128 0x5
+ 1022 00a3 B7030000 		.4byte	.LASF15
+ 1023 00a7 02       		.byte	0x2
+ 1024 00a8 18       		.byte	0x18
+ 1025 00a9 25000000 		.4byte	0x25
+ 1026 00ad 04       		.byte	0x4
+ 1027 00ae 05       		.uleb128 0x5
+ 1028 00af DA020000 		.4byte	.LASF16
+ 1029 00b3 02       		.byte	0x2
+ 1030 00b4 19       		.byte	0x19
+ 1031 00b5 25000000 		.4byte	0x25
+ 1032 00b9 08       		.byte	0x8
+ 1033 00ba 05       		.uleb128 0x5
+ 1034 00bb F8010000 		.4byte	.LASF17
+ 1035 00bf 02       		.byte	0x2
+ 1036 00c0 1A       		.byte	0x1a
+ 1037 00c1 C7000000 		.4byte	0xc7
+ 1038 00c5 0C       		.byte	0xc
+ 1039 00c6 00       		.byte	0
+ 1040 00c7 06       		.uleb128 0x6
+ 1041 00c8 04       		.byte	0x4
+ 1042 00c9 25000000 		.4byte	0x25
+ 1043 00cd 07       		.uleb128 0x7
+ 1044 00ce 2D020000 		.4byte	.LASF25
+ 1045 00d2 02       		.byte	0x2
+ 1046 00d3 1B       		.byte	0x1b
+ 1047 00d4 8E000000 		.4byte	0x8e
+ 1048 00d8 04       		.uleb128 0x4
+ 1049 00d9 30       		.byte	0x30
+ 1050 00da 02       		.byte	0x2
+ 1051 00db 39       		.byte	0x39
+ 1052 00dc 35010000 		.4byte	0x135
+ 1053 00e0 05       		.uleb128 0x5
+ 1054 00e1 17010000 		.4byte	.LASF18
+ 1055 00e5 02       		.byte	0x2
+ 1056 00e6 3A       		.byte	0x3a
+ 1057 00e7 2C000000 		.4byte	0x2c
+ 1058 00eb 00       		.byte	0
+ 1059 00ec 05       		.uleb128 0x5
+ 1060 00ed D2020000 		.4byte	.LASF19
+ 1061 00f1 02       		.byte	0x2
+ 1062 00f2 3B       		.byte	0x3b
+ 1063 00f3 2C000000 		.4byte	0x2c
+ 1064 00f7 04       		.byte	0x4
+ 1065 00f8 05       		.uleb128 0x5
+ 1066 00f9 91020000 		.4byte	.LASF20
+ 1067 00fd 02       		.byte	0x2
+ 1068 00fe 3C       		.byte	0x3c
+ 1069 00ff 80000000 		.4byte	0x80
+ 1070 0103 08       		.byte	0x8
+ 1071 0104 05       		.uleb128 0x5
+ 1072 0105 72010000 		.4byte	.LASF21
+ 1073 0109 02       		.byte	0x2
+ 1074 010a 3D       		.byte	0x3d
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 23
 
 
- 1076 01c8 9C       		.byte	0x9c
- 1077 01c9 5B020000 		.4byte	0x25b
- 1078 01cd 09       		.uleb128 0x9
- 1079 01ce 54020000 		.4byte	.LASF35
- 1080 01d2 01       		.byte	0x1
- 1081 01d3 35       		.byte	0x35
- 1082 01d4 80000000 		.4byte	0x80
- 1083 01d8 02       		.uleb128 0x2
- 1084 01d9 91       		.byte	0x91
- 1085 01da 40       		.sleb128 -64
- 1086 01db 09       		.uleb128 0x9
- 1087 01dc 5A020000 		.4byte	.LASF36
- 1088 01e0 01       		.byte	0x1
- 1089 01e1 35       		.byte	0x35
- 1090 01e2 80000000 		.4byte	0x80
- 1091 01e6 03       		.uleb128 0x3
- 1092 01e7 91       		.byte	0x91
- 1093 01e8 B87F     		.sleb128 -72
- 1094 01ea 09       		.uleb128 0x9
- 1095 01eb 4E010000 		.4byte	.LASF37
- 1096 01ef 01       		.byte	0x1
- 1097 01f0 35       		.byte	0x35
- 1098 01f1 80000000 		.4byte	0x80
- 1099 01f5 02       		.uleb128 0x2
- 1100 01f6 91       		.byte	0x91
- 1101 01f7 00       		.sleb128 0
- 1102 01f8 09       		.uleb128 0x9
- 1103 01f9 83020000 		.4byte	.LASF38
- 1104 01fd 01       		.byte	0x1
- 1105 01fe 35       		.byte	0x35
- 1106 01ff 80000000 		.4byte	0x80
- 1107 0203 02       		.uleb128 0x2
- 1108 0204 91       		.byte	0x91
- 1109 0205 08       		.sleb128 8
- 1110 0206 09       		.uleb128 0x9
- 1111 0207 8A020000 		.4byte	.LASF39
- 1112 020b 01       		.byte	0x1
- 1113 020c 35       		.byte	0x35
- 1114 020d 80000000 		.4byte	0x80
- 1115 0211 02       		.uleb128 0x2
- 1116 0212 91       		.byte	0x91
- 1117 0213 10       		.sleb128 16
- 1118 0214 0A       		.uleb128 0xa
- 1119 0215 C2020000 		.4byte	.LASF40
- 1120 0219 01       		.byte	0x1
- 1121 021a 37       		.byte	0x37
- 1122 021b 80000000 		.4byte	0x80
- 1123 021f 02       		.uleb128 0x2
- 1124 0220 91       		.byte	0x91
- 1125 0221 60       		.sleb128 -32
- 1126 0222 0A       		.uleb128 0xa
- 1127 0223 35030000 		.4byte	.LASF41
- 1128 0227 01       		.byte	0x1
- 1129 0228 3A       		.byte	0x3a
- 1130 0229 80000000 		.4byte	0x80
- 1131 022d 02       		.uleb128 0x2
- 1132 022e 91       		.byte	0x91
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 24
+ 1075 010b 80000000 		.4byte	0x80
+ 1076 010f 10       		.byte	0x10
+ 1077 0110 05       		.uleb128 0x5
+ 1078 0111 60020000 		.4byte	.LASF22
+ 1079 0115 02       		.byte	0x2
+ 1080 0116 3E       		.byte	0x3e
+ 1081 0117 80000000 		.4byte	0x80
+ 1082 011b 18       		.byte	0x18
+ 1083 011c 05       		.uleb128 0x5
+ 1084 011d 6A020000 		.4byte	.LASF23
+ 1085 0121 02       		.byte	0x2
+ 1086 0122 3F       		.byte	0x3f
+ 1087 0123 80000000 		.4byte	0x80
+ 1088 0127 20       		.byte	0x20
+ 1089 0128 05       		.uleb128 0x5
+ 1090 0129 68010000 		.4byte	.LASF24
+ 1091 012d 02       		.byte	0x2
+ 1092 012e 40       		.byte	0x40
+ 1093 012f 35010000 		.4byte	0x135
+ 1094 0133 28       		.byte	0x28
+ 1095 0134 00       		.byte	0
+ 1096 0135 06       		.uleb128 0x6
+ 1097 0136 04       		.byte	0x4
+ 1098 0137 2C000000 		.4byte	0x2c
+ 1099 013b 07       		.uleb128 0x7
+ 1100 013c 21000000 		.4byte	.LASF26
+ 1101 0140 02       		.byte	0x2
+ 1102 0141 41       		.byte	0x41
+ 1103 0142 D8000000 		.4byte	0xd8
+ 1104 0146 08       		.uleb128 0x8
+ 1105 0147 32020000 		.4byte	.LASF33
+ 1106 014b 01       		.byte	0x1
+ 1107 014c 17       		.byte	0x17
+ 1108 014d 2C000000 		.4byte	0x2c
+ 1109 0151 00000000 		.4byte	.LFB0
+ 1110 0155 E2000000 		.4byte	.LFE0-.LFB0
+ 1111 0159 01       		.uleb128 0x1
+ 1112 015a 9C       		.byte	0x9c
+ 1113 015b B4010000 		.4byte	0x1b4
+ 1114 015f 09       		.uleb128 0x9
+ 1115 0160 BB010000 		.4byte	.LASF27
+ 1116 0164 01       		.byte	0x1
+ 1117 0165 17       		.byte	0x17
+ 1118 0166 B4010000 		.4byte	0x1b4
+ 1119 016a 02       		.uleb128 0x2
+ 1120 016b 91       		.byte	0x91
+ 1121 016c 5C       		.sleb128 -36
+ 1122 016d 09       		.uleb128 0x9
+ 1123 016e FE020000 		.4byte	.LASF28
+ 1124 0172 01       		.byte	0x1
+ 1125 0173 17       		.byte	0x17
+ 1126 0174 2C000000 		.4byte	0x2c
+ 1127 0178 02       		.uleb128 0x2
+ 1128 0179 91       		.byte	0x91
+ 1129 017a 58       		.sleb128 -40
+ 1130 017b 0A       		.uleb128 0xa
+ 1131 017c DD010000 		.4byte	.LASF29
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 24
 
 
- 1133 022f 68       		.sleb128 -24
- 1134 0230 0A       		.uleb128 0xa
- 1135 0231 2B030000 		.4byte	.LASF42
- 1136 0235 01       		.byte	0x1
- 1137 0236 3B       		.byte	0x3b
- 1138 0237 80000000 		.4byte	0x80
- 1139 023b 02       		.uleb128 0x2
- 1140 023c 91       		.byte	0x91
- 1141 023d 58       		.sleb128 -40
- 1142 023e 0A       		.uleb128 0xa
- 1143 023f 7A020000 		.4byte	.LASF43
- 1144 0243 01       		.byte	0x1
- 1145 0244 3C       		.byte	0x3c
- 1146 0245 80000000 		.4byte	0x80
- 1147 0249 02       		.uleb128 0x2
- 1148 024a 91       		.byte	0x91
- 1149 024b 50       		.sleb128 -48
- 1150 024c 0A       		.uleb128 0xa
- 1151 024d DC000000 		.4byte	.LASF44
- 1152 0251 01       		.byte	0x1
- 1153 0252 3D       		.byte	0x3d
- 1154 0253 80000000 		.4byte	0x80
- 1155 0257 02       		.uleb128 0x2
- 1156 0258 91       		.byte	0x91
- 1157 0259 48       		.sleb128 -56
- 1158 025a 00       		.byte	0
- 1159 025b 08       		.uleb128 0x8
- 1160 025c C0010000 		.4byte	.LASF45
- 1161 0260 01       		.byte	0x1
- 1162 0261 50       		.byte	0x50
- 1163 0262 80000000 		.4byte	0x80
- 1164 0266 00000000 		.4byte	.LFB2
- 1165 026a 7C000000 		.4byte	.LFE2-.LFB2
- 1166 026e 01       		.uleb128 0x1
- 1167 026f 9C       		.byte	0x9c
- 1168 0270 BB020000 		.4byte	0x2bb
- 1169 0274 09       		.uleb128 0x9
- 1170 0275 54020000 		.4byte	.LASF35
- 1171 0279 01       		.byte	0x1
- 1172 027a 50       		.byte	0x50
- 1173 027b 80000000 		.4byte	0x80
- 1174 027f 02       		.uleb128 0x2
- 1175 0280 91       		.byte	0x91
- 1176 0281 60       		.sleb128 -32
- 1177 0282 09       		.uleb128 0x9
- 1178 0283 5A020000 		.4byte	.LASF36
- 1179 0287 01       		.byte	0x1
- 1180 0288 50       		.byte	0x50
- 1181 0289 80000000 		.4byte	0x80
- 1182 028d 02       		.uleb128 0x2
- 1183 028e 91       		.byte	0x91
- 1184 028f 58       		.sleb128 -40
- 1185 0290 09       		.uleb128 0x9
- 1186 0291 83020000 		.4byte	.LASF38
- 1187 0295 01       		.byte	0x1
- 1188 0296 50       		.byte	0x50
- 1189 0297 80000000 		.4byte	0x80
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 25
+ 1132 0180 01       		.byte	0x1
+ 1133 0181 18       		.byte	0x18
+ 1134 0182 2C000000 		.4byte	0x2c
+ 1135 0186 02       		.uleb128 0x2
+ 1136 0187 91       		.byte	0x91
+ 1137 0188 6C       		.sleb128 -20
+ 1138 0189 0A       		.uleb128 0xa
+ 1139 018a B3020000 		.4byte	.LASF30
+ 1140 018e 01       		.byte	0x1
+ 1141 018f 18       		.byte	0x18
+ 1142 0190 2C000000 		.4byte	0x2c
+ 1143 0194 02       		.uleb128 0x2
+ 1144 0195 91       		.byte	0x91
+ 1145 0196 68       		.sleb128 -24
+ 1146 0197 0A       		.uleb128 0xa
+ 1147 0198 56010000 		.4byte	.LASF31
+ 1148 019c 01       		.byte	0x1
+ 1149 019d 19       		.byte	0x19
+ 1150 019e 2C000000 		.4byte	0x2c
+ 1151 01a2 02       		.uleb128 0x2
+ 1152 01a3 91       		.byte	0x91
+ 1153 01a4 64       		.sleb128 -28
+ 1154 01a5 0A       		.uleb128 0xa
+ 1155 01a6 E4010000 		.4byte	.LASF32
+ 1156 01aa 01       		.byte	0x1
+ 1157 01ab 19       		.byte	0x19
+ 1158 01ac 2C000000 		.4byte	0x2c
+ 1159 01b0 02       		.uleb128 0x2
+ 1160 01b1 91       		.byte	0x91
+ 1161 01b2 60       		.sleb128 -32
+ 1162 01b3 00       		.byte	0
+ 1163 01b4 06       		.uleb128 0x6
+ 1164 01b5 04       		.byte	0x4
+ 1165 01b6 3B010000 		.4byte	0x13b
+ 1166 01ba 08       		.uleb128 0x8
+ 1167 01bb 39010000 		.4byte	.LASF34
+ 1168 01bf 01       		.byte	0x1
+ 1169 01c0 35       		.byte	0x35
+ 1170 01c1 80000000 		.4byte	0x80
+ 1171 01c5 00000000 		.4byte	.LFB1
+ 1172 01c9 30010000 		.4byte	.LFE1-.LFB1
+ 1173 01cd 01       		.uleb128 0x1
+ 1174 01ce 9C       		.byte	0x9c
+ 1175 01cf 61020000 		.4byte	0x261
+ 1176 01d3 09       		.uleb128 0x9
+ 1177 01d4 54020000 		.4byte	.LASF35
+ 1178 01d8 01       		.byte	0x1
+ 1179 01d9 35       		.byte	0x35
+ 1180 01da 80000000 		.4byte	0x80
+ 1181 01de 02       		.uleb128 0x2
+ 1182 01df 91       		.byte	0x91
+ 1183 01e0 40       		.sleb128 -64
+ 1184 01e1 09       		.uleb128 0x9
+ 1185 01e2 5A020000 		.4byte	.LASF36
+ 1186 01e6 01       		.byte	0x1
+ 1187 01e7 35       		.byte	0x35
+ 1188 01e8 80000000 		.4byte	0x80
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 25
 
 
- 1190 029b 02       		.uleb128 0x2
- 1191 029c 91       		.byte	0x91
- 1192 029d 00       		.sleb128 0
- 1193 029e 09       		.uleb128 0x9
- 1194 029f 8A020000 		.4byte	.LASF39
- 1195 02a3 01       		.byte	0x1
- 1196 02a4 50       		.byte	0x50
- 1197 02a5 80000000 		.4byte	0x80
- 1198 02a9 02       		.uleb128 0x2
- 1199 02aa 91       		.byte	0x91
- 1200 02ab 08       		.sleb128 8
- 1201 02ac 0A       		.uleb128 0xa
- 1202 02ad 22030000 		.4byte	.LASF46
- 1203 02b1 01       		.byte	0x1
- 1204 02b2 52       		.byte	0x52
- 1205 02b3 80000000 		.4byte	0x80
- 1206 02b7 02       		.uleb128 0x2
- 1207 02b8 91       		.byte	0x91
- 1208 02b9 68       		.sleb128 -24
- 1209 02ba 00       		.byte	0
- 1210 02bb 08       		.uleb128 0x8
- 1211 02bc 13020000 		.4byte	.LASF47
- 1212 02c0 01       		.byte	0x1
- 1213 02c1 58       		.byte	0x58
- 1214 02c2 80000000 		.4byte	0x80
- 1215 02c6 00000000 		.4byte	.LFB3
- 1216 02ca 80020000 		.4byte	.LFE3-.LFB3
- 1217 02ce 01       		.uleb128 0x1
- 1218 02cf 9C       		.byte	0x9c
- 1219 02d0 2A040000 		.4byte	0x42a
- 1220 02d4 09       		.uleb128 0x9
- 1221 02d5 BB010000 		.4byte	.LASF27
- 1222 02d9 01       		.byte	0x1
- 1223 02da 58       		.byte	0x58
- 1224 02db AE010000 		.4byte	0x1ae
- 1225 02df 03       		.uleb128 0x3
- 1226 02e0 91       		.byte	0x91
- 1227 02e1 B47F     		.sleb128 -76
- 1228 02e3 0B       		.uleb128 0xb
- 1229 02e4 6D617000 		.ascii	"map\000"
- 1230 02e8 01       		.byte	0x1
- 1231 02e9 58       		.byte	0x58
- 1232 02ea 2A040000 		.4byte	0x42a
- 1233 02ee 03       		.uleb128 0x3
- 1234 02ef 91       		.byte	0x91
- 1235 02f0 B07F     		.sleb128 -80
- 1236 02f2 09       		.uleb128 0x9
- 1237 02f3 46020000 		.4byte	.LASF48
- 1238 02f7 01       		.byte	0x1
- 1239 02f8 58       		.byte	0x58
- 1240 02f9 C7000000 		.4byte	0xc7
- 1241 02fd 03       		.uleb128 0x3
- 1242 02fe 91       		.byte	0x91
- 1243 02ff AC7F     		.sleb128 -84
- 1244 0301 09       		.uleb128 0x9
- 1245 0302 54020000 		.4byte	.LASF35
- 1246 0306 01       		.byte	0x1
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 26
+ 1189 01ec 03       		.uleb128 0x3
+ 1190 01ed 91       		.byte	0x91
+ 1191 01ee B87F     		.sleb128 -72
+ 1192 01f0 09       		.uleb128 0x9
+ 1193 01f1 4E010000 		.4byte	.LASF37
+ 1194 01f5 01       		.byte	0x1
+ 1195 01f6 35       		.byte	0x35
+ 1196 01f7 80000000 		.4byte	0x80
+ 1197 01fb 02       		.uleb128 0x2
+ 1198 01fc 91       		.byte	0x91
+ 1199 01fd 00       		.sleb128 0
+ 1200 01fe 09       		.uleb128 0x9
+ 1201 01ff 83020000 		.4byte	.LASF38
+ 1202 0203 01       		.byte	0x1
+ 1203 0204 35       		.byte	0x35
+ 1204 0205 80000000 		.4byte	0x80
+ 1205 0209 02       		.uleb128 0x2
+ 1206 020a 91       		.byte	0x91
+ 1207 020b 08       		.sleb128 8
+ 1208 020c 09       		.uleb128 0x9
+ 1209 020d 8A020000 		.4byte	.LASF39
+ 1210 0211 01       		.byte	0x1
+ 1211 0212 35       		.byte	0x35
+ 1212 0213 80000000 		.4byte	0x80
+ 1213 0217 02       		.uleb128 0x2
+ 1214 0218 91       		.byte	0x91
+ 1215 0219 10       		.sleb128 16
+ 1216 021a 0A       		.uleb128 0xa
+ 1217 021b C2020000 		.4byte	.LASF40
+ 1218 021f 01       		.byte	0x1
+ 1219 0220 37       		.byte	0x37
+ 1220 0221 80000000 		.4byte	0x80
+ 1221 0225 02       		.uleb128 0x2
+ 1222 0226 91       		.byte	0x91
+ 1223 0227 60       		.sleb128 -32
+ 1224 0228 0A       		.uleb128 0xa
+ 1225 0229 30030000 		.4byte	.LASF41
+ 1226 022d 01       		.byte	0x1
+ 1227 022e 3A       		.byte	0x3a
+ 1228 022f 80000000 		.4byte	0x80
+ 1229 0233 02       		.uleb128 0x2
+ 1230 0234 91       		.byte	0x91
+ 1231 0235 68       		.sleb128 -24
+ 1232 0236 0A       		.uleb128 0xa
+ 1233 0237 26030000 		.4byte	.LASF42
+ 1234 023b 01       		.byte	0x1
+ 1235 023c 3B       		.byte	0x3b
+ 1236 023d 80000000 		.4byte	0x80
+ 1237 0241 02       		.uleb128 0x2
+ 1238 0242 91       		.byte	0x91
+ 1239 0243 58       		.sleb128 -40
+ 1240 0244 0A       		.uleb128 0xa
+ 1241 0245 7A020000 		.4byte	.LASF43
+ 1242 0249 01       		.byte	0x1
+ 1243 024a 3C       		.byte	0x3c
+ 1244 024b 80000000 		.4byte	0x80
+ 1245 024f 02       		.uleb128 0x2
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 26
 
 
- 1247 0307 58       		.byte	0x58
- 1248 0308 80000000 		.4byte	0x80
- 1249 030c 02       		.uleb128 0x2
- 1250 030d 91       		.byte	0x91
- 1251 030e 00       		.sleb128 0
- 1252 030f 09       		.uleb128 0x9
- 1253 0310 5A020000 		.4byte	.LASF36
- 1254 0314 01       		.byte	0x1
- 1255 0315 58       		.byte	0x58
- 1256 0316 80000000 		.4byte	0x80
- 1257 031a 02       		.uleb128 0x2
- 1258 031b 91       		.byte	0x91
- 1259 031c 08       		.sleb128 8
- 1260 031d 09       		.uleb128 0x9
- 1261 031e 4E010000 		.4byte	.LASF37
- 1262 0322 01       		.byte	0x1
- 1263 0323 58       		.byte	0x58
- 1264 0324 80000000 		.4byte	0x80
- 1265 0328 02       		.uleb128 0x2
- 1266 0329 91       		.byte	0x91
- 1267 032a 10       		.sleb128 16
- 1268 032b 09       		.uleb128 0x9
- 1269 032c 83020000 		.4byte	.LASF38
- 1270 0330 01       		.byte	0x1
- 1271 0331 58       		.byte	0x58
- 1272 0332 80000000 		.4byte	0x80
- 1273 0336 02       		.uleb128 0x2
- 1274 0337 91       		.byte	0x91
- 1275 0338 18       		.sleb128 24
- 1276 0339 09       		.uleb128 0x9
- 1277 033a 8A020000 		.4byte	.LASF39
- 1278 033e 01       		.byte	0x1
- 1279 033f 58       		.byte	0x58
- 1280 0340 80000000 		.4byte	0x80
- 1281 0344 02       		.uleb128 0x2
- 1282 0345 91       		.byte	0x91
- 1283 0346 20       		.sleb128 32
- 1284 0347 0A       		.uleb128 0xa
- 1285 0348 4F030000 		.4byte	.LASF49
- 1286 034c 01       		.byte	0x1
- 1287 034d 5A       		.byte	0x5a
- 1288 034e 2C000000 		.4byte	0x2c
- 1289 0352 02       		.uleb128 0x2
- 1290 0353 91       		.byte	0x91
- 1291 0354 50       		.sleb128 -48
- 1292 0355 0A       		.uleb128 0xa
- 1293 0356 00000000 		.4byte	.LASF50
- 1294 035a 01       		.byte	0x1
- 1295 035b 5B       		.byte	0x5b
- 1296 035c 2C000000 		.4byte	0x2c
- 1297 0360 02       		.uleb128 0x2
- 1298 0361 91       		.byte	0x91
- 1299 0362 4C       		.sleb128 -52
- 1300 0363 0A       		.uleb128 0xa
- 1301 0364 44030000 		.4byte	.LASF51
- 1302 0368 01       		.byte	0x1
- 1303 0369 5C       		.byte	0x5c
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 27
+ 1246 0250 91       		.byte	0x91
+ 1247 0251 50       		.sleb128 -48
+ 1248 0252 0A       		.uleb128 0xa
+ 1249 0253 DC000000 		.4byte	.LASF44
+ 1250 0257 01       		.byte	0x1
+ 1251 0258 3D       		.byte	0x3d
+ 1252 0259 80000000 		.4byte	0x80
+ 1253 025d 02       		.uleb128 0x2
+ 1254 025e 91       		.byte	0x91
+ 1255 025f 48       		.sleb128 -56
+ 1256 0260 00       		.byte	0
+ 1257 0261 08       		.uleb128 0x8
+ 1258 0262 C0010000 		.4byte	.LASF45
+ 1259 0266 01       		.byte	0x1
+ 1260 0267 50       		.byte	0x50
+ 1261 0268 80000000 		.4byte	0x80
+ 1262 026c 00000000 		.4byte	.LFB2
+ 1263 0270 7C000000 		.4byte	.LFE2-.LFB2
+ 1264 0274 01       		.uleb128 0x1
+ 1265 0275 9C       		.byte	0x9c
+ 1266 0276 C1020000 		.4byte	0x2c1
+ 1267 027a 09       		.uleb128 0x9
+ 1268 027b 54020000 		.4byte	.LASF35
+ 1269 027f 01       		.byte	0x1
+ 1270 0280 50       		.byte	0x50
+ 1271 0281 80000000 		.4byte	0x80
+ 1272 0285 02       		.uleb128 0x2
+ 1273 0286 91       		.byte	0x91
+ 1274 0287 60       		.sleb128 -32
+ 1275 0288 09       		.uleb128 0x9
+ 1276 0289 5A020000 		.4byte	.LASF36
+ 1277 028d 01       		.byte	0x1
+ 1278 028e 50       		.byte	0x50
+ 1279 028f 80000000 		.4byte	0x80
+ 1280 0293 02       		.uleb128 0x2
+ 1281 0294 91       		.byte	0x91
+ 1282 0295 58       		.sleb128 -40
+ 1283 0296 09       		.uleb128 0x9
+ 1284 0297 83020000 		.4byte	.LASF38
+ 1285 029b 01       		.byte	0x1
+ 1286 029c 50       		.byte	0x50
+ 1287 029d 80000000 		.4byte	0x80
+ 1288 02a1 02       		.uleb128 0x2
+ 1289 02a2 91       		.byte	0x91
+ 1290 02a3 00       		.sleb128 0
+ 1291 02a4 09       		.uleb128 0x9
+ 1292 02a5 8A020000 		.4byte	.LASF39
+ 1293 02a9 01       		.byte	0x1
+ 1294 02aa 50       		.byte	0x50
+ 1295 02ab 80000000 		.4byte	0x80
+ 1296 02af 02       		.uleb128 0x2
+ 1297 02b0 91       		.byte	0x91
+ 1298 02b1 08       		.sleb128 8
+ 1299 02b2 0A       		.uleb128 0xa
+ 1300 02b3 1D030000 		.4byte	.LASF46
+ 1301 02b7 01       		.byte	0x1
+ 1302 02b8 52       		.byte	0x52
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 27
 
 
- 1304 036a 2C000000 		.4byte	0x2c
- 1305 036e 02       		.uleb128 0x2
- 1306 036f 91       		.byte	0x91
- 1307 0370 48       		.sleb128 -56
- 1308 0371 0A       		.uleb128 0xa
- 1309 0372 C2020000 		.4byte	.LASF40
- 1310 0376 01       		.byte	0x1
- 1311 0377 5E       		.byte	0x5e
- 1312 0378 80000000 		.4byte	0x80
- 1313 037c 02       		.uleb128 0x2
- 1314 037d 91       		.byte	0x91
- 1315 037e 40       		.sleb128 -64
- 1316 037f 0A       		.uleb128 0xa
- 1317 0380 26010000 		.4byte	.LASF52
- 1318 0384 01       		.byte	0x1
- 1319 0385 5F       		.byte	0x5f
- 1320 0386 2C000000 		.4byte	0x2c
- 1321 038a 03       		.uleb128 0x3
- 1322 038b 91       		.byte	0x91
- 1323 038c BC7F     		.sleb128 -68
- 1324 038e 0A       		.uleb128 0xa
- 1325 038f 2B000000 		.4byte	.LASF53
- 1326 0393 01       		.byte	0x1
- 1327 0394 60       		.byte	0x60
- 1328 0395 2C000000 		.4byte	0x2c
- 1329 0399 02       		.uleb128 0x2
- 1330 039a 91       		.byte	0x91
- 1331 039b 6C       		.sleb128 -20
- 1332 039c 0C       		.uleb128 0xc
- 1333 039d 6B5F6E00 		.ascii	"k_n\000"
- 1334 03a1 01       		.byte	0x1
- 1335 03a2 61       		.byte	0x61
- 1336 03a3 2C000000 		.4byte	0x2c
- 1337 03a7 02       		.uleb128 0x2
- 1338 03a8 91       		.byte	0x91
- 1339 03a9 68       		.sleb128 -24
- 1340 03aa 0C       		.uleb128 0xc
- 1341 03ab 6B5F6600 		.ascii	"k_f\000"
- 1342 03af 01       		.byte	0x1
- 1343 03b0 61       		.byte	0x61
- 1344 03b1 2C000000 		.4byte	0x2c
- 1345 03b5 02       		.uleb128 0x2
- 1346 03b6 91       		.byte	0x91
- 1347 03b7 64       		.sleb128 -28
- 1348 03b8 0D       		.uleb128 0xd
- 1349 03b9 7C000000 		.4byte	.LBB2
- 1350 03bd 82000000 		.4byte	.LBE2-.LBB2
- 1351 03c1 F9030000 		.4byte	0x3f9
- 1352 03c5 0C       		.uleb128 0xc
- 1353 03c6 6900     		.ascii	"i\000"
- 1354 03c8 01       		.byte	0x1
- 1355 03c9 63       		.byte	0x63
- 1356 03ca 2C000000 		.4byte	0x2c
- 1357 03ce 02       		.uleb128 0x2
- 1358 03cf 91       		.byte	0x91
- 1359 03d0 60       		.sleb128 -32
- 1360 03d1 0E       		.uleb128 0xe
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 28
+ 1303 02b9 80000000 		.4byte	0x80
+ 1304 02bd 02       		.uleb128 0x2
+ 1305 02be 91       		.byte	0x91
+ 1306 02bf 68       		.sleb128 -24
+ 1307 02c0 00       		.byte	0
+ 1308 02c1 08       		.uleb128 0x8
+ 1309 02c2 13020000 		.4byte	.LASF47
+ 1310 02c6 01       		.byte	0x1
+ 1311 02c7 58       		.byte	0x58
+ 1312 02c8 80000000 		.4byte	0x80
+ 1313 02cc 00000000 		.4byte	.LFB3
+ 1314 02d0 54030000 		.4byte	.LFE3-.LFB3
+ 1315 02d4 01       		.uleb128 0x1
+ 1316 02d5 9C       		.byte	0x9c
+ 1317 02d6 40040000 		.4byte	0x440
+ 1318 02da 09       		.uleb128 0x9
+ 1319 02db BB010000 		.4byte	.LASF27
+ 1320 02df 01       		.byte	0x1
+ 1321 02e0 58       		.byte	0x58
+ 1322 02e1 B4010000 		.4byte	0x1b4
+ 1323 02e5 03       		.uleb128 0x3
+ 1324 02e6 91       		.byte	0x91
+ 1325 02e7 9C7F     		.sleb128 -100
+ 1326 02e9 0B       		.uleb128 0xb
+ 1327 02ea 6D617000 		.ascii	"map\000"
+ 1328 02ee 01       		.byte	0x1
+ 1329 02ef 58       		.byte	0x58
+ 1330 02f0 40040000 		.4byte	0x440
+ 1331 02f4 03       		.uleb128 0x3
+ 1332 02f5 91       		.byte	0x91
+ 1333 02f6 987F     		.sleb128 -104
+ 1334 02f8 09       		.uleb128 0x9
+ 1335 02f9 46020000 		.4byte	.LASF48
+ 1336 02fd 01       		.byte	0x1
+ 1337 02fe 58       		.byte	0x58
+ 1338 02ff 35010000 		.4byte	0x135
+ 1339 0303 03       		.uleb128 0x3
+ 1340 0304 91       		.byte	0x91
+ 1341 0305 947F     		.sleb128 -108
+ 1342 0307 09       		.uleb128 0x9
+ 1343 0308 54020000 		.4byte	.LASF35
+ 1344 030c 01       		.byte	0x1
+ 1345 030d 58       		.byte	0x58
+ 1346 030e 80000000 		.4byte	0x80
+ 1347 0312 02       		.uleb128 0x2
+ 1348 0313 91       		.byte	0x91
+ 1349 0314 00       		.sleb128 0
+ 1350 0315 09       		.uleb128 0x9
+ 1351 0316 5A020000 		.4byte	.LASF36
+ 1352 031a 01       		.byte	0x1
+ 1353 031b 58       		.byte	0x58
+ 1354 031c 80000000 		.4byte	0x80
+ 1355 0320 02       		.uleb128 0x2
+ 1356 0321 91       		.byte	0x91
+ 1357 0322 08       		.sleb128 8
+ 1358 0323 09       		.uleb128 0x9
+ 1359 0324 4E010000 		.4byte	.LASF37
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 28
 
 
- 1361 03d2 82000000 		.4byte	.LBB3
- 1362 03d6 6E000000 		.4byte	.LBE3-.LBB3
- 1363 03da 0C       		.uleb128 0xc
- 1364 03db 69647800 		.ascii	"idx\000"
- 1365 03df 01       		.byte	0x1
- 1366 03e0 64       		.byte	0x64
- 1367 03e1 2C000000 		.4byte	0x2c
- 1368 03e5 03       		.uleb128 0x3
- 1369 03e6 91       		.byte	0x91
- 1370 03e7 B87F     		.sleb128 -72
- 1371 03e9 0A       		.uleb128 0xa
- 1372 03ea E5020000 		.4byte	.LASF54
- 1373 03ee 01       		.byte	0x1
- 1374 03ef 67       		.byte	0x67
- 1375 03f0 2C000000 		.4byte	0x2c
- 1376 03f4 02       		.uleb128 0x2
- 1377 03f5 91       		.byte	0x91
- 1378 03f6 5C       		.sleb128 -36
- 1379 03f7 00       		.byte	0
- 1380 03f8 00       		.byte	0
- 1381 03f9 0D       		.uleb128 0xd
- 1382 03fa 24010000 		.4byte	.LBB4
- 1383 03fe 72000000 		.4byte	.LBE4-.LBB4
- 1384 0402 13040000 		.4byte	0x413
- 1385 0406 0C       		.uleb128 0xc
- 1386 0407 6900     		.ascii	"i\000"
- 1387 0409 01       		.byte	0x1
- 1388 040a 79       		.byte	0x79
- 1389 040b 2C000000 		.4byte	0x2c
- 1390 040f 02       		.uleb128 0x2
- 1391 0410 91       		.byte	0x91
- 1392 0411 58       		.sleb128 -40
- 1393 0412 00       		.byte	0
- 1394 0413 0E       		.uleb128 0xe
- 1395 0414 C6010000 		.4byte	.LBB5
- 1396 0418 72000000 		.4byte	.LBE5-.LBB5
- 1397 041c 0C       		.uleb128 0xc
- 1398 041d 6900     		.ascii	"i\000"
- 1399 041f 01       		.byte	0x1
- 1400 0420 85       		.byte	0x85
- 1401 0421 2C000000 		.4byte	0x2c
- 1402 0425 02       		.uleb128 0x2
- 1403 0426 91       		.byte	0x91
- 1404 0427 54       		.sleb128 -44
- 1405 0428 00       		.byte	0
- 1406 0429 00       		.byte	0
- 1407 042a 06       		.uleb128 0x6
- 1408 042b 04       		.byte	0x4
- 1409 042c CD000000 		.4byte	0xcd
- 1410 0430 0F       		.uleb128 0xf
- 1411 0431 33000000 		.4byte	.LASF63
- 1412 0435 01       		.byte	0x1
- 1413 0436 91       		.byte	0x91
- 1414 0437 80000000 		.4byte	0x80
- 1415 043b 00000000 		.4byte	.LFB4
- 1416 043f 98000000 		.4byte	.LFE4-.LFB4
- 1417 0443 01       		.uleb128 0x1
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 29
+ 1360 0328 01       		.byte	0x1
+ 1361 0329 58       		.byte	0x58
+ 1362 032a 80000000 		.4byte	0x80
+ 1363 032e 02       		.uleb128 0x2
+ 1364 032f 91       		.byte	0x91
+ 1365 0330 10       		.sleb128 16
+ 1366 0331 09       		.uleb128 0x9
+ 1367 0332 83020000 		.4byte	.LASF38
+ 1368 0336 01       		.byte	0x1
+ 1369 0337 58       		.byte	0x58
+ 1370 0338 80000000 		.4byte	0x80
+ 1371 033c 02       		.uleb128 0x2
+ 1372 033d 91       		.byte	0x91
+ 1373 033e 18       		.sleb128 24
+ 1374 033f 09       		.uleb128 0x9
+ 1375 0340 8A020000 		.4byte	.LASF39
+ 1376 0344 01       		.byte	0x1
+ 1377 0345 58       		.byte	0x58
+ 1378 0346 80000000 		.4byte	0x80
+ 1379 034a 02       		.uleb128 0x2
+ 1380 034b 91       		.byte	0x91
+ 1381 034c 20       		.sleb128 32
+ 1382 034d 0A       		.uleb128 0xa
+ 1383 034e 4A030000 		.4byte	.LASF49
+ 1384 0352 01       		.byte	0x1
+ 1385 0353 5A       		.byte	0x5a
+ 1386 0354 2C000000 		.4byte	0x2c
+ 1387 0358 02       		.uleb128 0x2
+ 1388 0359 91       		.byte	0x91
+ 1389 035a 44       		.sleb128 -60
+ 1390 035b 0A       		.uleb128 0xa
+ 1391 035c 00000000 		.4byte	.LASF50
+ 1392 0360 01       		.byte	0x1
+ 1393 0361 5B       		.byte	0x5b
+ 1394 0362 2C000000 		.4byte	0x2c
+ 1395 0366 02       		.uleb128 0x2
+ 1396 0367 91       		.byte	0x91
+ 1397 0368 40       		.sleb128 -64
+ 1398 0369 0A       		.uleb128 0xa
+ 1399 036a 3F030000 		.4byte	.LASF51
+ 1400 036e 01       		.byte	0x1
+ 1401 036f 5C       		.byte	0x5c
+ 1402 0370 2C000000 		.4byte	0x2c
+ 1403 0374 03       		.uleb128 0x3
+ 1404 0375 91       		.byte	0x91
+ 1405 0376 BC7F     		.sleb128 -68
+ 1406 0378 0A       		.uleb128 0xa
+ 1407 0379 C2020000 		.4byte	.LASF40
+ 1408 037d 01       		.byte	0x1
+ 1409 037e 5E       		.byte	0x5e
+ 1410 037f 80000000 		.4byte	0x80
+ 1411 0383 03       		.uleb128 0x3
+ 1412 0384 91       		.byte	0x91
+ 1413 0385 B07F     		.sleb128 -80
+ 1414 0387 0A       		.uleb128 0xa
+ 1415 0388 26010000 		.4byte	.LASF52
+ 1416 038c 01       		.byte	0x1
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 29
 
 
- 1418 0444 9C       		.byte	0x9c
- 1419 0445 09       		.uleb128 0x9
- 1420 0446 BB010000 		.4byte	.LASF27
- 1421 044a 01       		.byte	0x1
- 1422 044b 91       		.byte	0x91
- 1423 044c AE010000 		.4byte	0x1ae
- 1424 0450 02       		.uleb128 0x2
- 1425 0451 91       		.byte	0x91
- 1426 0452 4C       		.sleb128 -52
- 1427 0453 09       		.uleb128 0x9
- 1428 0454 44000000 		.4byte	.LASF55
- 1429 0458 01       		.byte	0x1
- 1430 0459 91       		.byte	0x91
- 1431 045a 80000000 		.4byte	0x80
- 1432 045e 02       		.uleb128 0x2
- 1433 045f 91       		.byte	0x91
- 1434 0460 40       		.sleb128 -64
- 1435 0461 0A       		.uleb128 0xa
- 1436 0462 3E030000 		.4byte	.LASF56
- 1437 0466 01       		.byte	0x1
- 1438 0467 93       		.byte	0x93
- 1439 0468 2C000000 		.4byte	0x2c
- 1440 046c 02       		.uleb128 0x2
- 1441 046d 91       		.byte	0x91
- 1442 046e 68       		.sleb128 -24
- 1443 046f 0A       		.uleb128 0xa
- 1444 0470 1C030000 		.4byte	.LASF57
- 1445 0474 01       		.byte	0x1
- 1446 0475 96       		.byte	0x96
- 1447 0476 2C000000 		.4byte	0x2c
- 1448 047a 02       		.uleb128 0x2
- 1449 047b 91       		.byte	0x91
- 1450 047c 64       		.sleb128 -28
- 1451 047d 0C       		.uleb128 0xc
- 1452 047e 685F6300 		.ascii	"h_c\000"
- 1453 0482 01       		.byte	0x1
- 1454 0483 99       		.byte	0x99
- 1455 0484 2C000000 		.4byte	0x2c
- 1456 0488 02       		.uleb128 0x2
- 1457 0489 91       		.byte	0x91
- 1458 048a 60       		.sleb128 -32
- 1459 048b 0C       		.uleb128 0xc
- 1460 048c 685F6D00 		.ascii	"h_m\000"
- 1461 0490 01       		.byte	0x1
- 1462 0491 9E       		.byte	0x9e
- 1463 0492 2C000000 		.4byte	0x2c
- 1464 0496 02       		.uleb128 0x2
- 1465 0497 91       		.byte	0x91
- 1466 0498 5C       		.sleb128 -36
- 1467 0499 0A       		.uleb128 0xa
- 1468 049a CD020000 		.4byte	.LASF58
- 1469 049e 01       		.byte	0x1
- 1470 049f A0       		.byte	0xa0
- 1471 04a0 2C000000 		.4byte	0x2c
- 1472 04a4 02       		.uleb128 0x2
- 1473 04a5 91       		.byte	0x91
- 1474 04a6 6C       		.sleb128 -20
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 30
+ 1417 038d 5F       		.byte	0x5f
+ 1418 038e 80000000 		.4byte	0x80
+ 1419 0392 03       		.uleb128 0x3
+ 1420 0393 91       		.byte	0x91
+ 1421 0394 A87F     		.sleb128 -88
+ 1422 0396 0A       		.uleb128 0xa
+ 1423 0397 2B000000 		.4byte	.LASF53
+ 1424 039b 01       		.byte	0x1
+ 1425 039c 60       		.byte	0x60
+ 1426 039d 2C000000 		.4byte	0x2c
+ 1427 03a1 02       		.uleb128 0x2
+ 1428 03a2 91       		.byte	0x91
+ 1429 03a3 6C       		.sleb128 -20
+ 1430 03a4 0C       		.uleb128 0xc
+ 1431 03a5 6B5F6E00 		.ascii	"k_n\000"
+ 1432 03a9 01       		.byte	0x1
+ 1433 03aa 61       		.byte	0x61
+ 1434 03ab 2C000000 		.4byte	0x2c
+ 1435 03af 02       		.uleb128 0x2
+ 1436 03b0 91       		.byte	0x91
+ 1437 03b1 68       		.sleb128 -24
+ 1438 03b2 0C       		.uleb128 0xc
+ 1439 03b3 6B5F6600 		.ascii	"k_f\000"
+ 1440 03b7 01       		.byte	0x1
+ 1441 03b8 61       		.byte	0x61
+ 1442 03b9 2C000000 		.4byte	0x2c
+ 1443 03bd 02       		.uleb128 0x2
+ 1444 03be 91       		.byte	0x91
+ 1445 03bf 64       		.sleb128 -28
+ 1446 03c0 0A       		.uleb128 0xa
+ 1447 03c1 F2020000 		.4byte	.LASF54
+ 1448 03c5 01       		.byte	0x1
+ 1449 03c6 74       		.byte	0x74
+ 1450 03c7 80000000 		.4byte	0x80
+ 1451 03cb 02       		.uleb128 0x2
+ 1452 03cc 91       		.byte	0x91
+ 1453 03cd 50       		.sleb128 -48
+ 1454 03ce 0D       		.uleb128 0xd
+ 1455 03cf 94000000 		.4byte	.LBB2
+ 1456 03d3 DA000000 		.4byte	.LBE2-.LBB2
+ 1457 03d7 0F040000 		.4byte	0x40f
+ 1458 03db 0C       		.uleb128 0xc
+ 1459 03dc 6900     		.ascii	"i\000"
+ 1460 03de 01       		.byte	0x1
+ 1461 03df 63       		.byte	0x63
+ 1462 03e0 2C000000 		.4byte	0x2c
+ 1463 03e4 02       		.uleb128 0x2
+ 1464 03e5 91       		.byte	0x91
+ 1465 03e6 60       		.sleb128 -32
+ 1466 03e7 0E       		.uleb128 0xe
+ 1467 03e8 9A000000 		.4byte	.LBB3
+ 1468 03ec C6000000 		.4byte	.LBE3-.LBB3
+ 1469 03f0 0C       		.uleb128 0xc
+ 1470 03f1 69647800 		.ascii	"idx\000"
+ 1471 03f5 01       		.byte	0x1
+ 1472 03f6 64       		.byte	0x64
+ 1473 03f7 2C000000 		.4byte	0x2c
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 30
 
 
- 1475 04a7 0A       		.uleb128 0xa
- 1476 04a8 11000000 		.4byte	.LASF59
- 1477 04ac 01       		.byte	0x1
- 1478 04ad A6       		.byte	0xa6
- 1479 04ae 80000000 		.4byte	0x80
- 1480 04b2 02       		.uleb128 0x2
- 1481 04b3 91       		.byte	0x91
- 1482 04b4 50       		.sleb128 -48
- 1483 04b5 00       		.byte	0
- 1484 04b6 00       		.byte	0
- 1485              		.section	.debug_abbrev,"",%progbits
- 1486              	.Ldebug_abbrev0:
- 1487 0000 01       		.uleb128 0x1
- 1488 0001 11       		.uleb128 0x11
- 1489 0002 01       		.byte	0x1
- 1490 0003 25       		.uleb128 0x25
- 1491 0004 0E       		.uleb128 0xe
- 1492 0005 13       		.uleb128 0x13
- 1493 0006 0B       		.uleb128 0xb
- 1494 0007 03       		.uleb128 0x3
- 1495 0008 0E       		.uleb128 0xe
- 1496 0009 1B       		.uleb128 0x1b
- 1497 000a 0E       		.uleb128 0xe
- 1498 000b 55       		.uleb128 0x55
- 1499 000c 17       		.uleb128 0x17
- 1500 000d 11       		.uleb128 0x11
- 1501 000e 01       		.uleb128 0x1
- 1502 000f 10       		.uleb128 0x10
- 1503 0010 17       		.uleb128 0x17
- 1504 0011 00       		.byte	0
- 1505 0012 00       		.byte	0
- 1506 0013 02       		.uleb128 0x2
- 1507 0014 24       		.uleb128 0x24
- 1508 0015 00       		.byte	0
- 1509 0016 0B       		.uleb128 0xb
- 1510 0017 0B       		.uleb128 0xb
- 1511 0018 3E       		.uleb128 0x3e
- 1512 0019 0B       		.uleb128 0xb
- 1513 001a 03       		.uleb128 0x3
- 1514 001b 0E       		.uleb128 0xe
- 1515 001c 00       		.byte	0
- 1516 001d 00       		.byte	0
- 1517 001e 03       		.uleb128 0x3
- 1518 001f 24       		.uleb128 0x24
- 1519 0020 00       		.byte	0
- 1520 0021 0B       		.uleb128 0xb
- 1521 0022 0B       		.uleb128 0xb
- 1522 0023 3E       		.uleb128 0x3e
- 1523 0024 0B       		.uleb128 0xb
- 1524 0025 03       		.uleb128 0x3
- 1525 0026 08       		.uleb128 0x8
- 1526 0027 00       		.byte	0
- 1527 0028 00       		.byte	0
- 1528 0029 04       		.uleb128 0x4
- 1529 002a 13       		.uleb128 0x13
- 1530 002b 01       		.byte	0x1
- 1531 002c 0B       		.uleb128 0xb
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 31
+ 1474 03fb 03       		.uleb128 0x3
+ 1475 03fc 91       		.byte	0x91
+ 1476 03fd A47F     		.sleb128 -92
+ 1477 03ff 0A       		.uleb128 0xa
+ 1478 0400 E5020000 		.4byte	.LASF55
+ 1479 0404 01       		.byte	0x1
+ 1480 0405 67       		.byte	0x67
+ 1481 0406 2C000000 		.4byte	0x2c
+ 1482 040a 02       		.uleb128 0x2
+ 1483 040b 91       		.byte	0x91
+ 1484 040c 5C       		.sleb128 -36
+ 1485 040d 00       		.byte	0
+ 1486 040e 00       		.byte	0
+ 1487 040f 0D       		.uleb128 0xd
+ 1488 0410 B2010000 		.4byte	.LBB4
+ 1489 0414 78000000 		.4byte	.LBE4-.LBB4
+ 1490 0418 29040000 		.4byte	0x429
+ 1491 041c 0C       		.uleb128 0xc
+ 1492 041d 6900     		.ascii	"i\000"
+ 1493 041f 01       		.byte	0x1
+ 1494 0420 7B       		.byte	0x7b
+ 1495 0421 2C000000 		.4byte	0x2c
+ 1496 0425 02       		.uleb128 0x2
+ 1497 0426 91       		.byte	0x91
+ 1498 0427 4C       		.sleb128 -52
+ 1499 0428 00       		.byte	0
+ 1500 0429 0E       		.uleb128 0xe
+ 1501 042a 5E020000 		.4byte	.LBB5
+ 1502 042e 88000000 		.4byte	.LBE5-.LBB5
+ 1503 0432 0C       		.uleb128 0xc
+ 1504 0433 6900     		.ascii	"i\000"
+ 1505 0435 01       		.byte	0x1
+ 1506 0436 86       		.byte	0x86
+ 1507 0437 2C000000 		.4byte	0x2c
+ 1508 043b 02       		.uleb128 0x2
+ 1509 043c 91       		.byte	0x91
+ 1510 043d 48       		.sleb128 -56
+ 1511 043e 00       		.byte	0
+ 1512 043f 00       		.byte	0
+ 1513 0440 06       		.uleb128 0x6
+ 1514 0441 04       		.byte	0x4
+ 1515 0442 CD000000 		.4byte	0xcd
+ 1516 0446 0F       		.uleb128 0xf
+ 1517 0447 33000000 		.4byte	.LASF64
+ 1518 044b 01       		.byte	0x1
+ 1519 044c 92       		.byte	0x92
+ 1520 044d 80000000 		.4byte	0x80
+ 1521 0451 00000000 		.4byte	.LFB4
+ 1522 0455 B8000000 		.4byte	.LFE4-.LFB4
+ 1523 0459 01       		.uleb128 0x1
+ 1524 045a 9C       		.byte	0x9c
+ 1525 045b 09       		.uleb128 0x9
+ 1526 045c BB010000 		.4byte	.LASF27
+ 1527 0460 01       		.byte	0x1
+ 1528 0461 92       		.byte	0x92
+ 1529 0462 B4010000 		.4byte	0x1b4
+ 1530 0466 02       		.uleb128 0x2
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 31
 
 
- 1532 002d 0B       		.uleb128 0xb
- 1533 002e 3A       		.uleb128 0x3a
- 1534 002f 0B       		.uleb128 0xb
- 1535 0030 3B       		.uleb128 0x3b
- 1536 0031 0B       		.uleb128 0xb
- 1537 0032 01       		.uleb128 0x1
- 1538 0033 13       		.uleb128 0x13
- 1539 0034 00       		.byte	0
- 1540 0035 00       		.byte	0
- 1541 0036 05       		.uleb128 0x5
- 1542 0037 0D       		.uleb128 0xd
- 1543 0038 00       		.byte	0
- 1544 0039 03       		.uleb128 0x3
- 1545 003a 0E       		.uleb128 0xe
- 1546 003b 3A       		.uleb128 0x3a
- 1547 003c 0B       		.uleb128 0xb
- 1548 003d 3B       		.uleb128 0x3b
- 1549 003e 0B       		.uleb128 0xb
- 1550 003f 49       		.uleb128 0x49
- 1551 0040 13       		.uleb128 0x13
- 1552 0041 38       		.uleb128 0x38
- 1553 0042 0B       		.uleb128 0xb
- 1554 0043 00       		.byte	0
- 1555 0044 00       		.byte	0
- 1556 0045 06       		.uleb128 0x6
- 1557 0046 0F       		.uleb128 0xf
- 1558 0047 00       		.byte	0
- 1559 0048 0B       		.uleb128 0xb
- 1560 0049 0B       		.uleb128 0xb
- 1561 004a 49       		.uleb128 0x49
- 1562 004b 13       		.uleb128 0x13
- 1563 004c 00       		.byte	0
- 1564 004d 00       		.byte	0
- 1565 004e 07       		.uleb128 0x7
- 1566 004f 16       		.uleb128 0x16
- 1567 0050 00       		.byte	0
- 1568 0051 03       		.uleb128 0x3
- 1569 0052 0E       		.uleb128 0xe
- 1570 0053 3A       		.uleb128 0x3a
- 1571 0054 0B       		.uleb128 0xb
- 1572 0055 3B       		.uleb128 0x3b
- 1573 0056 0B       		.uleb128 0xb
- 1574 0057 49       		.uleb128 0x49
- 1575 0058 13       		.uleb128 0x13
- 1576 0059 00       		.byte	0
- 1577 005a 00       		.byte	0
- 1578 005b 08       		.uleb128 0x8
- 1579 005c 2E       		.uleb128 0x2e
- 1580 005d 01       		.byte	0x1
- 1581 005e 3F       		.uleb128 0x3f
- 1582 005f 19       		.uleb128 0x19
- 1583 0060 03       		.uleb128 0x3
- 1584 0061 0E       		.uleb128 0xe
- 1585 0062 3A       		.uleb128 0x3a
- 1586 0063 0B       		.uleb128 0xb
- 1587 0064 3B       		.uleb128 0x3b
- 1588 0065 0B       		.uleb128 0xb
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 32
+ 1531 0467 91       		.byte	0x91
+ 1532 0468 4C       		.sleb128 -52
+ 1533 0469 09       		.uleb128 0x9
+ 1534 046a 44000000 		.4byte	.LASF56
+ 1535 046e 01       		.byte	0x1
+ 1536 046f 92       		.byte	0x92
+ 1537 0470 80000000 		.4byte	0x80
+ 1538 0474 02       		.uleb128 0x2
+ 1539 0475 91       		.byte	0x91
+ 1540 0476 40       		.sleb128 -64
+ 1541 0477 0A       		.uleb128 0xa
+ 1542 0478 39030000 		.4byte	.LASF57
+ 1543 047c 01       		.byte	0x1
+ 1544 047d 94       		.byte	0x94
+ 1545 047e 2C000000 		.4byte	0x2c
+ 1546 0482 02       		.uleb128 0x2
+ 1547 0483 91       		.byte	0x91
+ 1548 0484 68       		.sleb128 -24
+ 1549 0485 0A       		.uleb128 0xa
+ 1550 0486 17030000 		.4byte	.LASF58
+ 1551 048a 01       		.byte	0x1
+ 1552 048b 97       		.byte	0x97
+ 1553 048c 2C000000 		.4byte	0x2c
+ 1554 0490 02       		.uleb128 0x2
+ 1555 0491 91       		.byte	0x91
+ 1556 0492 64       		.sleb128 -28
+ 1557 0493 0C       		.uleb128 0xc
+ 1558 0494 685F6300 		.ascii	"h_c\000"
+ 1559 0498 01       		.byte	0x1
+ 1560 0499 9A       		.byte	0x9a
+ 1561 049a 2C000000 		.4byte	0x2c
+ 1562 049e 02       		.uleb128 0x2
+ 1563 049f 91       		.byte	0x91
+ 1564 04a0 60       		.sleb128 -32
+ 1565 04a1 0C       		.uleb128 0xc
+ 1566 04a2 685F6D00 		.ascii	"h_m\000"
+ 1567 04a6 01       		.byte	0x1
+ 1568 04a7 9F       		.byte	0x9f
+ 1569 04a8 2C000000 		.4byte	0x2c
+ 1570 04ac 02       		.uleb128 0x2
+ 1571 04ad 91       		.byte	0x91
+ 1572 04ae 5C       		.sleb128 -36
+ 1573 04af 0A       		.uleb128 0xa
+ 1574 04b0 CD020000 		.4byte	.LASF59
+ 1575 04b4 01       		.byte	0x1
+ 1576 04b5 A1       		.byte	0xa1
+ 1577 04b6 2C000000 		.4byte	0x2c
+ 1578 04ba 02       		.uleb128 0x2
+ 1579 04bb 91       		.byte	0x91
+ 1580 04bc 6C       		.sleb128 -20
+ 1581 04bd 0A       		.uleb128 0xa
+ 1582 04be 11000000 		.4byte	.LASF60
+ 1583 04c2 01       		.byte	0x1
+ 1584 04c3 A7       		.byte	0xa7
+ 1585 04c4 80000000 		.4byte	0x80
+ 1586 04c8 02       		.uleb128 0x2
+ 1587 04c9 91       		.byte	0x91
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 32
 
 
- 1589 0066 27       		.uleb128 0x27
- 1590 0067 19       		.uleb128 0x19
- 1591 0068 49       		.uleb128 0x49
- 1592 0069 13       		.uleb128 0x13
- 1593 006a 11       		.uleb128 0x11
- 1594 006b 01       		.uleb128 0x1
- 1595 006c 12       		.uleb128 0x12
- 1596 006d 06       		.uleb128 0x6
- 1597 006e 40       		.uleb128 0x40
- 1598 006f 18       		.uleb128 0x18
- 1599 0070 9642     		.uleb128 0x2116
- 1600 0072 19       		.uleb128 0x19
- 1601 0073 01       		.uleb128 0x1
- 1602 0074 13       		.uleb128 0x13
- 1603 0075 00       		.byte	0
- 1604 0076 00       		.byte	0
- 1605 0077 09       		.uleb128 0x9
- 1606 0078 05       		.uleb128 0x5
- 1607 0079 00       		.byte	0
- 1608 007a 03       		.uleb128 0x3
- 1609 007b 0E       		.uleb128 0xe
- 1610 007c 3A       		.uleb128 0x3a
- 1611 007d 0B       		.uleb128 0xb
- 1612 007e 3B       		.uleb128 0x3b
- 1613 007f 0B       		.uleb128 0xb
- 1614 0080 49       		.uleb128 0x49
- 1615 0081 13       		.uleb128 0x13
- 1616 0082 02       		.uleb128 0x2
- 1617 0083 18       		.uleb128 0x18
- 1618 0084 00       		.byte	0
- 1619 0085 00       		.byte	0
- 1620 0086 0A       		.uleb128 0xa
- 1621 0087 34       		.uleb128 0x34
- 1622 0088 00       		.byte	0
- 1623 0089 03       		.uleb128 0x3
- 1624 008a 0E       		.uleb128 0xe
- 1625 008b 3A       		.uleb128 0x3a
- 1626 008c 0B       		.uleb128 0xb
- 1627 008d 3B       		.uleb128 0x3b
- 1628 008e 0B       		.uleb128 0xb
- 1629 008f 49       		.uleb128 0x49
- 1630 0090 13       		.uleb128 0x13
- 1631 0091 02       		.uleb128 0x2
- 1632 0092 18       		.uleb128 0x18
- 1633 0093 00       		.byte	0
- 1634 0094 00       		.byte	0
- 1635 0095 0B       		.uleb128 0xb
- 1636 0096 05       		.uleb128 0x5
- 1637 0097 00       		.byte	0
- 1638 0098 03       		.uleb128 0x3
- 1639 0099 08       		.uleb128 0x8
- 1640 009a 3A       		.uleb128 0x3a
- 1641 009b 0B       		.uleb128 0xb
- 1642 009c 3B       		.uleb128 0x3b
- 1643 009d 0B       		.uleb128 0xb
- 1644 009e 49       		.uleb128 0x49
- 1645 009f 13       		.uleb128 0x13
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 33
+ 1588 04ca 50       		.sleb128 -48
+ 1589 04cb 00       		.byte	0
+ 1590 04cc 00       		.byte	0
+ 1591              		.section	.debug_abbrev,"",%progbits
+ 1592              	.Ldebug_abbrev0:
+ 1593 0000 01       		.uleb128 0x1
+ 1594 0001 11       		.uleb128 0x11
+ 1595 0002 01       		.byte	0x1
+ 1596 0003 25       		.uleb128 0x25
+ 1597 0004 0E       		.uleb128 0xe
+ 1598 0005 13       		.uleb128 0x13
+ 1599 0006 0B       		.uleb128 0xb
+ 1600 0007 03       		.uleb128 0x3
+ 1601 0008 0E       		.uleb128 0xe
+ 1602 0009 1B       		.uleb128 0x1b
+ 1603 000a 0E       		.uleb128 0xe
+ 1604 000b 55       		.uleb128 0x55
+ 1605 000c 17       		.uleb128 0x17
+ 1606 000d 11       		.uleb128 0x11
+ 1607 000e 01       		.uleb128 0x1
+ 1608 000f 10       		.uleb128 0x10
+ 1609 0010 17       		.uleb128 0x17
+ 1610 0011 00       		.byte	0
+ 1611 0012 00       		.byte	0
+ 1612 0013 02       		.uleb128 0x2
+ 1613 0014 24       		.uleb128 0x24
+ 1614 0015 00       		.byte	0
+ 1615 0016 0B       		.uleb128 0xb
+ 1616 0017 0B       		.uleb128 0xb
+ 1617 0018 3E       		.uleb128 0x3e
+ 1618 0019 0B       		.uleb128 0xb
+ 1619 001a 03       		.uleb128 0x3
+ 1620 001b 0E       		.uleb128 0xe
+ 1621 001c 00       		.byte	0
+ 1622 001d 00       		.byte	0
+ 1623 001e 03       		.uleb128 0x3
+ 1624 001f 24       		.uleb128 0x24
+ 1625 0020 00       		.byte	0
+ 1626 0021 0B       		.uleb128 0xb
+ 1627 0022 0B       		.uleb128 0xb
+ 1628 0023 3E       		.uleb128 0x3e
+ 1629 0024 0B       		.uleb128 0xb
+ 1630 0025 03       		.uleb128 0x3
+ 1631 0026 08       		.uleb128 0x8
+ 1632 0027 00       		.byte	0
+ 1633 0028 00       		.byte	0
+ 1634 0029 04       		.uleb128 0x4
+ 1635 002a 13       		.uleb128 0x13
+ 1636 002b 01       		.byte	0x1
+ 1637 002c 0B       		.uleb128 0xb
+ 1638 002d 0B       		.uleb128 0xb
+ 1639 002e 3A       		.uleb128 0x3a
+ 1640 002f 0B       		.uleb128 0xb
+ 1641 0030 3B       		.uleb128 0x3b
+ 1642 0031 0B       		.uleb128 0xb
+ 1643 0032 01       		.uleb128 0x1
+ 1644 0033 13       		.uleb128 0x13
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 33
 
 
- 1646 00a0 02       		.uleb128 0x2
- 1647 00a1 18       		.uleb128 0x18
- 1648 00a2 00       		.byte	0
- 1649 00a3 00       		.byte	0
- 1650 00a4 0C       		.uleb128 0xc
- 1651 00a5 34       		.uleb128 0x34
- 1652 00a6 00       		.byte	0
- 1653 00a7 03       		.uleb128 0x3
- 1654 00a8 08       		.uleb128 0x8
- 1655 00a9 3A       		.uleb128 0x3a
- 1656 00aa 0B       		.uleb128 0xb
- 1657 00ab 3B       		.uleb128 0x3b
- 1658 00ac 0B       		.uleb128 0xb
- 1659 00ad 49       		.uleb128 0x49
- 1660 00ae 13       		.uleb128 0x13
- 1661 00af 02       		.uleb128 0x2
- 1662 00b0 18       		.uleb128 0x18
- 1663 00b1 00       		.byte	0
- 1664 00b2 00       		.byte	0
- 1665 00b3 0D       		.uleb128 0xd
- 1666 00b4 0B       		.uleb128 0xb
- 1667 00b5 01       		.byte	0x1
- 1668 00b6 11       		.uleb128 0x11
- 1669 00b7 01       		.uleb128 0x1
- 1670 00b8 12       		.uleb128 0x12
- 1671 00b9 06       		.uleb128 0x6
- 1672 00ba 01       		.uleb128 0x1
- 1673 00bb 13       		.uleb128 0x13
- 1674 00bc 00       		.byte	0
- 1675 00bd 00       		.byte	0
- 1676 00be 0E       		.uleb128 0xe
- 1677 00bf 0B       		.uleb128 0xb
- 1678 00c0 01       		.byte	0x1
- 1679 00c1 11       		.uleb128 0x11
- 1680 00c2 01       		.uleb128 0x1
- 1681 00c3 12       		.uleb128 0x12
- 1682 00c4 06       		.uleb128 0x6
- 1683 00c5 00       		.byte	0
- 1684 00c6 00       		.byte	0
- 1685 00c7 0F       		.uleb128 0xf
- 1686 00c8 2E       		.uleb128 0x2e
- 1687 00c9 01       		.byte	0x1
- 1688 00ca 3F       		.uleb128 0x3f
- 1689 00cb 19       		.uleb128 0x19
- 1690 00cc 03       		.uleb128 0x3
- 1691 00cd 0E       		.uleb128 0xe
- 1692 00ce 3A       		.uleb128 0x3a
- 1693 00cf 0B       		.uleb128 0xb
- 1694 00d0 3B       		.uleb128 0x3b
- 1695 00d1 0B       		.uleb128 0xb
- 1696 00d2 27       		.uleb128 0x27
- 1697 00d3 19       		.uleb128 0x19
- 1698 00d4 49       		.uleb128 0x49
- 1699 00d5 13       		.uleb128 0x13
- 1700 00d6 11       		.uleb128 0x11
- 1701 00d7 01       		.uleb128 0x1
- 1702 00d8 12       		.uleb128 0x12
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 34
+ 1645 0034 00       		.byte	0
+ 1646 0035 00       		.byte	0
+ 1647 0036 05       		.uleb128 0x5
+ 1648 0037 0D       		.uleb128 0xd
+ 1649 0038 00       		.byte	0
+ 1650 0039 03       		.uleb128 0x3
+ 1651 003a 0E       		.uleb128 0xe
+ 1652 003b 3A       		.uleb128 0x3a
+ 1653 003c 0B       		.uleb128 0xb
+ 1654 003d 3B       		.uleb128 0x3b
+ 1655 003e 0B       		.uleb128 0xb
+ 1656 003f 49       		.uleb128 0x49
+ 1657 0040 13       		.uleb128 0x13
+ 1658 0041 38       		.uleb128 0x38
+ 1659 0042 0B       		.uleb128 0xb
+ 1660 0043 00       		.byte	0
+ 1661 0044 00       		.byte	0
+ 1662 0045 06       		.uleb128 0x6
+ 1663 0046 0F       		.uleb128 0xf
+ 1664 0047 00       		.byte	0
+ 1665 0048 0B       		.uleb128 0xb
+ 1666 0049 0B       		.uleb128 0xb
+ 1667 004a 49       		.uleb128 0x49
+ 1668 004b 13       		.uleb128 0x13
+ 1669 004c 00       		.byte	0
+ 1670 004d 00       		.byte	0
+ 1671 004e 07       		.uleb128 0x7
+ 1672 004f 16       		.uleb128 0x16
+ 1673 0050 00       		.byte	0
+ 1674 0051 03       		.uleb128 0x3
+ 1675 0052 0E       		.uleb128 0xe
+ 1676 0053 3A       		.uleb128 0x3a
+ 1677 0054 0B       		.uleb128 0xb
+ 1678 0055 3B       		.uleb128 0x3b
+ 1679 0056 0B       		.uleb128 0xb
+ 1680 0057 49       		.uleb128 0x49
+ 1681 0058 13       		.uleb128 0x13
+ 1682 0059 00       		.byte	0
+ 1683 005a 00       		.byte	0
+ 1684 005b 08       		.uleb128 0x8
+ 1685 005c 2E       		.uleb128 0x2e
+ 1686 005d 01       		.byte	0x1
+ 1687 005e 3F       		.uleb128 0x3f
+ 1688 005f 19       		.uleb128 0x19
+ 1689 0060 03       		.uleb128 0x3
+ 1690 0061 0E       		.uleb128 0xe
+ 1691 0062 3A       		.uleb128 0x3a
+ 1692 0063 0B       		.uleb128 0xb
+ 1693 0064 3B       		.uleb128 0x3b
+ 1694 0065 0B       		.uleb128 0xb
+ 1695 0066 27       		.uleb128 0x27
+ 1696 0067 19       		.uleb128 0x19
+ 1697 0068 49       		.uleb128 0x49
+ 1698 0069 13       		.uleb128 0x13
+ 1699 006a 11       		.uleb128 0x11
+ 1700 006b 01       		.uleb128 0x1
+ 1701 006c 12       		.uleb128 0x12
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 34
 
 
- 1703 00d9 06       		.uleb128 0x6
- 1704 00da 40       		.uleb128 0x40
- 1705 00db 18       		.uleb128 0x18
- 1706 00dc 9642     		.uleb128 0x2116
- 1707 00de 19       		.uleb128 0x19
- 1708 00df 00       		.byte	0
- 1709 00e0 00       		.byte	0
- 1710 00e1 00       		.byte	0
- 1711              		.section	.debug_aranges,"",%progbits
- 1712 0000 3C000000 		.4byte	0x3c
- 1713 0004 0200     		.2byte	0x2
- 1714 0006 00000000 		.4byte	.Ldebug_info0
- 1715 000a 04       		.byte	0x4
- 1716 000b 00       		.byte	0
- 1717 000c 0000     		.2byte	0
- 1718 000e 0000     		.2byte	0
- 1719 0010 00000000 		.4byte	.LFB0
- 1720 0014 E2000000 		.4byte	.LFE0-.LFB0
- 1721 0018 00000000 		.4byte	.LFB1
- 1722 001c 30010000 		.4byte	.LFE1-.LFB1
- 1723 0020 00000000 		.4byte	.LFB2
- 1724 0024 7C000000 		.4byte	.LFE2-.LFB2
- 1725 0028 00000000 		.4byte	.LFB3
- 1726 002c 80020000 		.4byte	.LFE3-.LFB3
- 1727 0030 00000000 		.4byte	.LFB4
- 1728 0034 98000000 		.4byte	.LFE4-.LFB4
- 1729 0038 00000000 		.4byte	0
- 1730 003c 00000000 		.4byte	0
- 1731              		.section	.debug_ranges,"",%progbits
- 1732              	.Ldebug_ranges0:
- 1733 0000 00000000 		.4byte	.LFB0
- 1734 0004 E2000000 		.4byte	.LFE0
- 1735 0008 00000000 		.4byte	.LFB1
- 1736 000c 30010000 		.4byte	.LFE1
- 1737 0010 00000000 		.4byte	.LFB2
- 1738 0014 7C000000 		.4byte	.LFE2
- 1739 0018 00000000 		.4byte	.LFB3
- 1740 001c 80020000 		.4byte	.LFE3
- 1741 0020 00000000 		.4byte	.LFB4
- 1742 0024 98000000 		.4byte	.LFE4
- 1743 0028 00000000 		.4byte	0
- 1744 002c 00000000 		.4byte	0
- 1745              		.section	.debug_line,"",%progbits
- 1746              	.Ldebug_line0:
- 1747 0000 39010000 		.section	.debug_str,"MS",%progbits,1
- 1747      02004100 
- 1747      00000201 
- 1747      FB0E0D00 
- 1747      01010101 
- 1748              	.LASF50:
- 1749 0000 76616C6C 		.ascii	"valley_threshold\000"
- 1749      65795F74 
- 1749      68726573 
- 1749      686F6C64 
- 1749      00
- 1750              	.LASF59:
- 1751 0011 73706565 		.ascii	"speed_reduction\000"
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 35
+ 1702 006d 06       		.uleb128 0x6
+ 1703 006e 40       		.uleb128 0x40
+ 1704 006f 18       		.uleb128 0x18
+ 1705 0070 9642     		.uleb128 0x2116
+ 1706 0072 19       		.uleb128 0x19
+ 1707 0073 01       		.uleb128 0x1
+ 1708 0074 13       		.uleb128 0x13
+ 1709 0075 00       		.byte	0
+ 1710 0076 00       		.byte	0
+ 1711 0077 09       		.uleb128 0x9
+ 1712 0078 05       		.uleb128 0x5
+ 1713 0079 00       		.byte	0
+ 1714 007a 03       		.uleb128 0x3
+ 1715 007b 0E       		.uleb128 0xe
+ 1716 007c 3A       		.uleb128 0x3a
+ 1717 007d 0B       		.uleb128 0xb
+ 1718 007e 3B       		.uleb128 0x3b
+ 1719 007f 0B       		.uleb128 0xb
+ 1720 0080 49       		.uleb128 0x49
+ 1721 0081 13       		.uleb128 0x13
+ 1722 0082 02       		.uleb128 0x2
+ 1723 0083 18       		.uleb128 0x18
+ 1724 0084 00       		.byte	0
+ 1725 0085 00       		.byte	0
+ 1726 0086 0A       		.uleb128 0xa
+ 1727 0087 34       		.uleb128 0x34
+ 1728 0088 00       		.byte	0
+ 1729 0089 03       		.uleb128 0x3
+ 1730 008a 0E       		.uleb128 0xe
+ 1731 008b 3A       		.uleb128 0x3a
+ 1732 008c 0B       		.uleb128 0xb
+ 1733 008d 3B       		.uleb128 0x3b
+ 1734 008e 0B       		.uleb128 0xb
+ 1735 008f 49       		.uleb128 0x49
+ 1736 0090 13       		.uleb128 0x13
+ 1737 0091 02       		.uleb128 0x2
+ 1738 0092 18       		.uleb128 0x18
+ 1739 0093 00       		.byte	0
+ 1740 0094 00       		.byte	0
+ 1741 0095 0B       		.uleb128 0xb
+ 1742 0096 05       		.uleb128 0x5
+ 1743 0097 00       		.byte	0
+ 1744 0098 03       		.uleb128 0x3
+ 1745 0099 08       		.uleb128 0x8
+ 1746 009a 3A       		.uleb128 0x3a
+ 1747 009b 0B       		.uleb128 0xb
+ 1748 009c 3B       		.uleb128 0x3b
+ 1749 009d 0B       		.uleb128 0xb
+ 1750 009e 49       		.uleb128 0x49
+ 1751 009f 13       		.uleb128 0x13
+ 1752 00a0 02       		.uleb128 0x2
+ 1753 00a1 18       		.uleb128 0x18
+ 1754 00a2 00       		.byte	0
+ 1755 00a3 00       		.byte	0
+ 1756 00a4 0C       		.uleb128 0xc
+ 1757 00a5 34       		.uleb128 0x34
+ 1758 00a6 00       		.byte	0
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 35
 
 
- 1751      645F7265 
- 1751      64756374 
- 1751      696F6E00 
- 1752              	.LASF26:
- 1753 0021 68697374 		.ascii	"histogram\000"
- 1753      6F677261 
- 1753      6D00
- 1754              	.LASF53:
- 1755 002b 6162735F 		.ascii	"abs_min\000"
- 1755      6D696E00 
- 1756              	.LASF63:
- 1757 0033 76656C6F 		.ascii	"velocity_control\000"
- 1757      63697479 
- 1757      5F636F6E 
- 1757      74726F6C 
- 1757      00
- 1758              	.LASF55:
- 1759 0044 64697265 		.ascii	"direction\000"
- 1759      6374696F 
- 1759      6E00
- 1760              	.LASF60:
- 1761 004e 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 1761      43313120 
- 1761      352E342E 
- 1761      31203230 
- 1761      31363036 
- 1762 0081 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 1762      20726576 
- 1762      6973696F 
- 1762      6E203233 
- 1762      37373135 
- 1763 00b4 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
- 1763      66756E63 
- 1763      74696F6E 
- 1763      2D736563 
- 1763      74696F6E 
- 1764              	.LASF44:
- 1765 00dc 67616D6D 		.ascii	"gamma_rot\000"
- 1765      615F726F 
- 1765      7400
- 1766              	.LASF9:
- 1767 00e6 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1767      206C6F6E 
- 1767      6720756E 
- 1767      7369676E 
- 1767      65642069 
- 1768              	.LASF1:
- 1769 00fd 6C6F6E67 		.ascii	"long long int\000"
- 1769      206C6F6E 
- 1769      6720696E 
- 1769      7400
- 1770              	.LASF3:
- 1771 010b 7369676E 		.ascii	"signed char\000"
- 1771      65642063 
- 1771      68617200 
- 1772              	.LASF18:
- 1773 0117 616C7068 		.ascii	"alpha\000"
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 36
+ 1759 00a7 03       		.uleb128 0x3
+ 1760 00a8 08       		.uleb128 0x8
+ 1761 00a9 3A       		.uleb128 0x3a
+ 1762 00aa 0B       		.uleb128 0xb
+ 1763 00ab 3B       		.uleb128 0x3b
+ 1764 00ac 0B       		.uleb128 0xb
+ 1765 00ad 49       		.uleb128 0x49
+ 1766 00ae 13       		.uleb128 0x13
+ 1767 00af 02       		.uleb128 0x2
+ 1768 00b0 18       		.uleb128 0x18
+ 1769 00b1 00       		.byte	0
+ 1770 00b2 00       		.byte	0
+ 1771 00b3 0D       		.uleb128 0xd
+ 1772 00b4 0B       		.uleb128 0xb
+ 1773 00b5 01       		.byte	0x1
+ 1774 00b6 11       		.uleb128 0x11
+ 1775 00b7 01       		.uleb128 0x1
+ 1776 00b8 12       		.uleb128 0x12
+ 1777 00b9 06       		.uleb128 0x6
+ 1778 00ba 01       		.uleb128 0x1
+ 1779 00bb 13       		.uleb128 0x13
+ 1780 00bc 00       		.byte	0
+ 1781 00bd 00       		.byte	0
+ 1782 00be 0E       		.uleb128 0xe
+ 1783 00bf 0B       		.uleb128 0xb
+ 1784 00c0 01       		.byte	0x1
+ 1785 00c1 11       		.uleb128 0x11
+ 1786 00c2 01       		.uleb128 0x1
+ 1787 00c3 12       		.uleb128 0x12
+ 1788 00c4 06       		.uleb128 0x6
+ 1789 00c5 00       		.byte	0
+ 1790 00c6 00       		.byte	0
+ 1791 00c7 0F       		.uleb128 0xf
+ 1792 00c8 2E       		.uleb128 0x2e
+ 1793 00c9 01       		.byte	0x1
+ 1794 00ca 3F       		.uleb128 0x3f
+ 1795 00cb 19       		.uleb128 0x19
+ 1796 00cc 03       		.uleb128 0x3
+ 1797 00cd 0E       		.uleb128 0xe
+ 1798 00ce 3A       		.uleb128 0x3a
+ 1799 00cf 0B       		.uleb128 0xb
+ 1800 00d0 3B       		.uleb128 0x3b
+ 1801 00d1 0B       		.uleb128 0xb
+ 1802 00d2 27       		.uleb128 0x27
+ 1803 00d3 19       		.uleb128 0x19
+ 1804 00d4 49       		.uleb128 0x49
+ 1805 00d5 13       		.uleb128 0x13
+ 1806 00d6 11       		.uleb128 0x11
+ 1807 00d7 01       		.uleb128 0x1
+ 1808 00d8 12       		.uleb128 0x12
+ 1809 00d9 06       		.uleb128 0x6
+ 1810 00da 40       		.uleb128 0x40
+ 1811 00db 18       		.uleb128 0x18
+ 1812 00dc 9642     		.uleb128 0x2116
+ 1813 00de 19       		.uleb128 0x19
+ 1814 00df 00       		.byte	0
+ 1815 00e0 00       		.byte	0
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 36
 
 
- 1773      6100
- 1774              	.LASF7:
- 1775 011d 6C6F6E67 		.ascii	"long int\000"
- 1775      20696E74 
- 1775      00
- 1776              	.LASF52:
- 1777 0126 676F616C 		.ascii	"goal_sector\000"
- 1777      5F736563 
- 1777      746F7200 
- 1778              	.LASF12:
- 1779 0132 646F7562 		.ascii	"double\000"
- 1779      6C6500
- 1780              	.LASF34:
- 1781 0139 63616C63 		.ascii	"calculate_goal_angle\000"
- 1781      756C6174 
- 1781      655F676F 
- 1781      616C5F61 
- 1781      6E676C65 
- 1782              	.LASF37:
- 1783 014e 706F735F 		.ascii	"pos_yaw\000"
- 1783      79617700 
- 1784              	.LASF31:
- 1785 0156 64697374 		.ascii	"dist_best_and_obj\000"
- 1785      5F626573 
- 1785      745F616E 
- 1785      645F6F62 
- 1785      6A00
- 1786              	.LASF24:
- 1787 0168 64656E73 		.ascii	"densities\000"
- 1787      69746965 
- 1787      7300
- 1788              	.LASF21:
- 1789 0172 64616D70 		.ascii	"damping_constant\000"
- 1789      696E675F 
- 1789      636F6E73 
- 1789      74616E74 
- 1789      00
- 1790              	.LASF0:
- 1791 0183 756E7369 		.ascii	"unsigned int\000"
- 1791      676E6564 
- 1791      20696E74 
- 1791      00
- 1792              	.LASF8:
- 1793 0190 6C6F6E67 		.ascii	"long unsigned int\000"
- 1793      20756E73 
- 1793      69676E65 
- 1793      6420696E 
- 1793      7400
- 1794              	.LASF14:
- 1795 01a2 77696474 		.ascii	"width\000"
- 1795      6800
- 1796              	.LASF6:
- 1797 01a8 73686F72 		.ascii	"short unsigned int\000"
- 1797      7420756E 
- 1797      7369676E 
- 1797      65642069 
- 1797      6E7400
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 37
+ 1816 00e1 00       		.byte	0
+ 1817              		.section	.debug_aranges,"",%progbits
+ 1818 0000 3C000000 		.4byte	0x3c
+ 1819 0004 0200     		.2byte	0x2
+ 1820 0006 00000000 		.4byte	.Ldebug_info0
+ 1821 000a 04       		.byte	0x4
+ 1822 000b 00       		.byte	0
+ 1823 000c 0000     		.2byte	0
+ 1824 000e 0000     		.2byte	0
+ 1825 0010 00000000 		.4byte	.LFB0
+ 1826 0014 E2000000 		.4byte	.LFE0-.LFB0
+ 1827 0018 00000000 		.4byte	.LFB1
+ 1828 001c 30010000 		.4byte	.LFE1-.LFB1
+ 1829 0020 00000000 		.4byte	.LFB2
+ 1830 0024 7C000000 		.4byte	.LFE2-.LFB2
+ 1831 0028 00000000 		.4byte	.LFB3
+ 1832 002c 54030000 		.4byte	.LFE3-.LFB3
+ 1833 0030 00000000 		.4byte	.LFB4
+ 1834 0034 B8000000 		.4byte	.LFE4-.LFB4
+ 1835 0038 00000000 		.4byte	0
+ 1836 003c 00000000 		.4byte	0
+ 1837              		.section	.debug_ranges,"",%progbits
+ 1838              	.Ldebug_ranges0:
+ 1839 0000 00000000 		.4byte	.LFB0
+ 1840 0004 E2000000 		.4byte	.LFE0
+ 1841 0008 00000000 		.4byte	.LFB1
+ 1842 000c 30010000 		.4byte	.LFE1
+ 1843 0010 00000000 		.4byte	.LFB2
+ 1844 0014 7C000000 		.4byte	.LFE2
+ 1845 0018 00000000 		.4byte	.LFB3
+ 1846 001c 54030000 		.4byte	.LFE3
+ 1847 0020 00000000 		.4byte	.LFB4
+ 1848 0024 B8000000 		.4byte	.LFE4
+ 1849 0028 00000000 		.4byte	0
+ 1850 002c 00000000 		.4byte	0
+ 1851              		.section	.debug_line,"",%progbits
+ 1852              	.Ldebug_line0:
+ 1853 0000 48010000 		.section	.debug_str,"MS",%progbits,1
+ 1853      02006600 
+ 1853      00000201 
+ 1853      FB0E0D00 
+ 1853      01010101 
+ 1854              	.LASF50:
+ 1855 0000 76616C6C 		.ascii	"valley_threshold\000"
+ 1855      65795F74 
+ 1855      68726573 
+ 1855      686F6C64 
+ 1855      00
+ 1856              	.LASF60:
+ 1857 0011 73706565 		.ascii	"speed_reduction\000"
+ 1857      645F7265 
+ 1857      64756374 
+ 1857      696F6E00 
+ 1858              	.LASF26:
+ 1859 0021 68697374 		.ascii	"histogram\000"
+ 1859      6F677261 
+ 1859      6D00
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 37
 
 
- 1798              	.LASF27:
- 1799 01bb 68697374 		.ascii	"hist\000"
- 1799      00
- 1800              	.LASF45:
- 1801 01c0 63616C63 		.ascii	"calculate_distance_from_goal\000"
- 1801      756C6174 
- 1801      655F6469 
- 1801      7374616E 
- 1801      63655F66 
- 1802              	.LASF29:
- 1803 01dd 73656374 		.ascii	"sector\000"
- 1803      6F7200
- 1804              	.LASF32:
- 1805 01e4 64697374 		.ascii	"dist_sector_and_obj\000"
- 1805      5F736563 
- 1805      746F725F 
- 1805      616E645F 
- 1805      6F626A00 
- 1806              	.LASF17:
- 1807 01f8 63656C6C 		.ascii	"cells\000"
- 1807      7300
- 1808              	.LASF10:
- 1809 01fe 73697A65 		.ascii	"sizetype\000"
- 1809      74797065 
- 1809      00
- 1810              	.LASF2:
- 1811 0207 6C6F6E67 		.ascii	"long double\000"
- 1811      20646F75 
- 1811      626C6500 
- 1812              	.LASF47:
- 1813 0213 63616C63 		.ascii	"calculate_avoidance_angle\000"
- 1813      756C6174 
- 1813      655F6176 
- 1813      6F696461 
- 1813      6E63655F 
- 1814              	.LASF25:
- 1815 022d 67726964 		.ascii	"grid\000"
- 1815      00
- 1816              	.LASF33:
- 1817 0232 63616C63 		.ascii	"calculate_direction\000"
- 1817      756C6174 
- 1817      655F6469 
- 1817      72656374 
- 1817      696F6E00 
- 1818              	.LASF48:
- 1819 0246 63616E64 		.ascii	"candidate_lst\000"
- 1819      69646174 
- 1819      655F6C73 
- 1819      7400
- 1820              	.LASF35:
- 1821 0254 706F735F 		.ascii	"pos_x\000"
- 1821      7800
- 1822              	.LASF36:
- 1823 025a 706F735F 		.ascii	"pos_y\000"
- 1823      7900
- 1824              	.LASF22:
- 1825 0260 64656E73 		.ascii	"density_a\000"
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 38
-
-
- 1825      6974795F 
- 1825      6100
- 1826              	.LASF23:
- 1827 026a 64656E73 		.ascii	"density_b\000"
- 1827      6974795F 
- 1827      6200
- 1828              	.LASF13:
- 1829 0274 666C6F61 		.ascii	"float\000"
- 1829      7400
- 1830              	.LASF43:
- 1831 027a 62657461 		.ascii	"beta_rot\000"
- 1831      5F726F74 
- 1831      00
- 1832              	.LASF38:
- 1833 0283 676F616C 		.ascii	"goal_x\000"
- 1833      5F7800
- 1834              	.LASF39:
- 1835 028a 676F616C 		.ascii	"goal_y\000"
- 1835      5F7900
- 1836              	.LASF20:
- 1837 0291 74687265 		.ascii	"threshold\000"
- 1837      73686F6C 
- 1837      6400
- 1838              	.LASF4:
- 1839 029b 756E7369 		.ascii	"unsigned char\000"
- 1839      676E6564 
- 1839      20636861 
- 1839      7200
- 1840              	.LASF5:
- 1841 02a9 73686F72 		.ascii	"short int\000"
- 1841      7420696E 
- 1841      7400
- 1842              	.LASF30:
- 1843 02b3 62657374 		.ascii	"best_direction\000"
- 1843      5F646972 
- 1843      65637469 
- 1843      6F6E00
- 1844              	.LASF40:
- 1845 02c2 676F616C 		.ascii	"goal_angle\000"
- 1845      5F616E67 
- 1845      6C6500
- 1846              	.LASF58:
- 1847 02cd 685F6363 		.ascii	"h_cc\000"
- 1847      00
- 1848              	.LASF19:
- 1849 02d2 73656374 		.ascii	"sectors\000"
- 1849      6F727300 
- 1850              	.LASF16:
- 1851 02da 7265736F 		.ascii	"resolution\000"
- 1851      6C757469 
- 1851      6F6E00
- 1852              	.LASF54:
- 1853 02e5 6D696E5F 		.ascii	"min_distance\000"
- 1853      64697374 
- 1853      616E6365 
- 1853      00
- 1854              	.LASF28:
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cctMBZIu.s 			page 39
-
-
- 1855 02f2 6F626A65 		.ascii	"objective_direction\000"
- 1855      63746976 
- 1855      655F6469 
- 1855      72656374 
- 1855      696F6E00 
- 1856              	.LASF61:
- 1857 0306 2E2E5C56 		.ascii	"..\\VFH\\src\\vfh.c\000"
- 1857      46485C73 
- 1857      72635C76 
- 1857      66682E63 
- 1857      00
- 1858              	.LASF11:
- 1859 0317 63686172 		.ascii	"char\000"
- 1859      00
- 1860              	.LASF57:
- 1861 031c 685F6964 		.ascii	"h_idx\000"
- 1861      7800
- 1862              	.LASF46:
- 1863 0322 64697374 		.ascii	"distance\000"
- 1863      616E6365 
+ 1860              	.LASF53:
+ 1861 002b 6162735F 		.ascii	"abs_min\000"
+ 1861      6D696E00 
+ 1862              	.LASF64:
+ 1863 0033 76656C6F 		.ascii	"velocity_control\000"
+ 1863      63697479 
+ 1863      5F636F6E 
+ 1863      74726F6C 
  1863      00
- 1864              	.LASF42:
- 1865 032b 616C7068 		.ascii	"alpha_rot\000"
- 1865      615F726F 
- 1865      7400
- 1866              	.LASF41:
- 1867 0335 726F7461 		.ascii	"rotation\000"
- 1867      74696F6E 
- 1867      00
- 1868              	.LASF56:
- 1869 033e 565F4D41 		.ascii	"V_MAX\000"
- 1869      5800
- 1870              	.LASF51:
- 1871 0344 6C73745F 		.ascii	"lst_length\000"
- 1871      6C656E67 
- 1871      746800
- 1872              	.LASF49:
- 1873 034f 735F6D61 		.ascii	"s_max\000"
- 1873      7800
- 1874              	.LASF62:
- 1875 0355 433A5C74 		.ascii	"C:\\temp\\jacob_branch\\ECE4191\\DeliveryRobot.cyds"
- 1875      656D705C 
- 1875      6A61636F 
- 1875      625F6272 
- 1875      616E6368 
- 1876 0384 6E00     		.ascii	"n\000"
- 1877              	.LASF15:
- 1878 0386 68656967 		.ascii	"height\000"
- 1878      687400
- 1879              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 1864              	.LASF56:
+ 1865 0044 64697265 		.ascii	"direction\000"
+ 1865      6374696F 
+ 1865      6E00
+ 1866              	.LASF61:
+ 1867 004e 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1867      43313120 
+ 1867      352E342E 
+ 1867      31203230 
+ 1867      31363036 
+ 1868 0081 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1868      20726576 
+ 1868      6973696F 
+ 1868      6E203233 
+ 1868      37373135 
+ 1869 00b4 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 1869      66756E63 
+ 1869      74696F6E 
+ 1869      2D736563 
+ 1869      74696F6E 
+ 1870              	.LASF44:
+ 1871 00dc 67616D6D 		.ascii	"gamma_rot\000"
+ 1871      615F726F 
+ 1871      7400
+ 1872              	.LASF9:
+ 1873 00e6 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1873      206C6F6E 
+ 1873      6720756E 
+ 1873      7369676E 
+ 1873      65642069 
+ 1874              	.LASF1:
+ 1875 00fd 6C6F6E67 		.ascii	"long long int\000"
+ 1875      206C6F6E 
+ 1875      6720696E 
+ 1875      7400
+ 1876              	.LASF3:
+ 1877 010b 7369676E 		.ascii	"signed char\000"
+ 1877      65642063 
+ 1877      68617200 
+ 1878              	.LASF18:
+ 1879 0117 616C7068 		.ascii	"alpha\000"
+ 1879      6100
+ 1880              	.LASF7:
+ 1881 011d 6C6F6E67 		.ascii	"long int\000"
+ 1881      20696E74 
+ 1881      00
+ 1882              	.LASF52:
+ 1883 0126 676F616C 		.ascii	"goal_sector\000"
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 38
+
+
+ 1883      5F736563 
+ 1883      746F7200 
+ 1884              	.LASF12:
+ 1885 0132 646F7562 		.ascii	"double\000"
+ 1885      6C6500
+ 1886              	.LASF34:
+ 1887 0139 63616C63 		.ascii	"calculate_goal_angle\000"
+ 1887      756C6174 
+ 1887      655F676F 
+ 1887      616C5F61 
+ 1887      6E676C65 
+ 1888              	.LASF37:
+ 1889 014e 706F735F 		.ascii	"pos_yaw\000"
+ 1889      79617700 
+ 1890              	.LASF31:
+ 1891 0156 64697374 		.ascii	"dist_best_and_obj\000"
+ 1891      5F626573 
+ 1891      745F616E 
+ 1891      645F6F62 
+ 1891      6A00
+ 1892              	.LASF24:
+ 1893 0168 64656E73 		.ascii	"densities\000"
+ 1893      69746965 
+ 1893      7300
+ 1894              	.LASF21:
+ 1895 0172 64616D70 		.ascii	"damping_constant\000"
+ 1895      696E675F 
+ 1895      636F6E73 
+ 1895      74616E74 
+ 1895      00
+ 1896              	.LASF0:
+ 1897 0183 756E7369 		.ascii	"unsigned int\000"
+ 1897      676E6564 
+ 1897      20696E74 
+ 1897      00
+ 1898              	.LASF8:
+ 1899 0190 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1899      20756E73 
+ 1899      69676E65 
+ 1899      6420696E 
+ 1899      7400
+ 1900              	.LASF14:
+ 1901 01a2 77696474 		.ascii	"width\000"
+ 1901      6800
+ 1902              	.LASF6:
+ 1903 01a8 73686F72 		.ascii	"short unsigned int\000"
+ 1903      7420756E 
+ 1903      7369676E 
+ 1903      65642069 
+ 1903      6E7400
+ 1904              	.LASF27:
+ 1905 01bb 68697374 		.ascii	"hist\000"
+ 1905      00
+ 1906              	.LASF45:
+ 1907 01c0 63616C63 		.ascii	"calculate_distance_from_goal\000"
+ 1907      756C6174 
+ 1907      655F6469 
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 39
+
+
+ 1907      7374616E 
+ 1907      63655F66 
+ 1908              	.LASF29:
+ 1909 01dd 73656374 		.ascii	"sector\000"
+ 1909      6F7200
+ 1910              	.LASF32:
+ 1911 01e4 64697374 		.ascii	"dist_sector_and_obj\000"
+ 1911      5F736563 
+ 1911      746F725F 
+ 1911      616E645F 
+ 1911      6F626A00 
+ 1912              	.LASF17:
+ 1913 01f8 63656C6C 		.ascii	"cells\000"
+ 1913      7300
+ 1914              	.LASF10:
+ 1915 01fe 73697A65 		.ascii	"sizetype\000"
+ 1915      74797065 
+ 1915      00
+ 1916              	.LASF2:
+ 1917 0207 6C6F6E67 		.ascii	"long double\000"
+ 1917      20646F75 
+ 1917      626C6500 
+ 1918              	.LASF47:
+ 1919 0213 63616C63 		.ascii	"calculate_avoidance_angle\000"
+ 1919      756C6174 
+ 1919      655F6176 
+ 1919      6F696461 
+ 1919      6E63655F 
+ 1920              	.LASF25:
+ 1921 022d 67726964 		.ascii	"grid\000"
+ 1921      00
+ 1922              	.LASF33:
+ 1923 0232 63616C63 		.ascii	"calculate_direction\000"
+ 1923      756C6174 
+ 1923      655F6469 
+ 1923      72656374 
+ 1923      696F6E00 
+ 1924              	.LASF48:
+ 1925 0246 63616E64 		.ascii	"candidate_lst\000"
+ 1925      69646174 
+ 1925      655F6C73 
+ 1925      7400
+ 1926              	.LASF35:
+ 1927 0254 706F735F 		.ascii	"pos_x\000"
+ 1927      7800
+ 1928              	.LASF36:
+ 1929 025a 706F735F 		.ascii	"pos_y\000"
+ 1929      7900
+ 1930              	.LASF22:
+ 1931 0260 64656E73 		.ascii	"density_a\000"
+ 1931      6974795F 
+ 1931      6100
+ 1932              	.LASF23:
+ 1933 026a 64656E73 		.ascii	"density_b\000"
+ 1933      6974795F 
+ 1933      6200
+ 1934              	.LASF13:
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 40
+
+
+ 1935 0274 666C6F61 		.ascii	"float\000"
+ 1935      7400
+ 1936              	.LASF43:
+ 1937 027a 62657461 		.ascii	"beta_rot\000"
+ 1937      5F726F74 
+ 1937      00
+ 1938              	.LASF38:
+ 1939 0283 676F616C 		.ascii	"goal_x\000"
+ 1939      5F7800
+ 1940              	.LASF39:
+ 1941 028a 676F616C 		.ascii	"goal_y\000"
+ 1941      5F7900
+ 1942              	.LASF20:
+ 1943 0291 74687265 		.ascii	"threshold\000"
+ 1943      73686F6C 
+ 1943      6400
+ 1944              	.LASF4:
+ 1945 029b 756E7369 		.ascii	"unsigned char\000"
+ 1945      676E6564 
+ 1945      20636861 
+ 1945      7200
+ 1946              	.LASF5:
+ 1947 02a9 73686F72 		.ascii	"short int\000"
+ 1947      7420696E 
+ 1947      7400
+ 1948              	.LASF30:
+ 1949 02b3 62657374 		.ascii	"best_direction\000"
+ 1949      5F646972 
+ 1949      65637469 
+ 1949      6F6E00
+ 1950              	.LASF40:
+ 1951 02c2 676F616C 		.ascii	"goal_angle\000"
+ 1951      5F616E67 
+ 1951      6C6500
+ 1952              	.LASF59:
+ 1953 02cd 685F6363 		.ascii	"h_cc\000"
+ 1953      00
+ 1954              	.LASF19:
+ 1955 02d2 73656374 		.ascii	"sectors\000"
+ 1955      6F727300 
+ 1956              	.LASF16:
+ 1957 02da 7265736F 		.ascii	"resolution\000"
+ 1957      6C757469 
+ 1957      6F6E00
+ 1958              	.LASF55:
+ 1959 02e5 6D696E5F 		.ascii	"min_distance\000"
+ 1959      64697374 
+ 1959      616E6365 
+ 1959      00
+ 1960              	.LASF54:
+ 1961 02f2 66696E61 		.ascii	"final_angle\000"
+ 1961      6C5F616E 
+ 1961      676C6500 
+ 1962              	.LASF28:
+ 1963 02fe 6F626A65 		.ascii	"objective_direction\000"
+ 1963      63746976 
+ 1963      655F6469 
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccCt7MXj.s 			page 41
+
+
+ 1963      72656374 
+ 1963      696F6E00 
+ 1964              	.LASF11:
+ 1965 0312 63686172 		.ascii	"char\000"
+ 1965      00
+ 1966              	.LASF58:
+ 1967 0317 685F6964 		.ascii	"h_idx\000"
+ 1967      7800
+ 1968              	.LASF46:
+ 1969 031d 64697374 		.ascii	"distance\000"
+ 1969      616E6365 
+ 1969      00
+ 1970              	.LASF42:
+ 1971 0326 616C7068 		.ascii	"alpha_rot\000"
+ 1971      615F726F 
+ 1971      7400
+ 1972              	.LASF41:
+ 1973 0330 726F7461 		.ascii	"rotation\000"
+ 1973      74696F6E 
+ 1973      00
+ 1974              	.LASF57:
+ 1975 0339 565F4D41 		.ascii	"V_MAX\000"
+ 1975      5800
+ 1976              	.LASF51:
+ 1977 033f 6C73745F 		.ascii	"lst_length\000"
+ 1977      6C656E67 
+ 1977      746800
+ 1978              	.LASF49:
+ 1979 034a 735F6D61 		.ascii	"s_max\000"
+ 1979      7800
+ 1980              	.LASF62:
+ 1981 0350 2E2E5C2E 		.ascii	"..\\..\\..\\..\\Users\\cyu13\\Desktop\\ECE4191\\VFH"
+ 1981      2E5C2E2E 
+ 1981      5C2E2E5C 
+ 1981      55736572 
+ 1981      735C6379 
+ 1982 037b 5C737263 		.ascii	"\\src\\vfh.c\000"
+ 1982      5C766668 
+ 1982      2E6300
+ 1983              	.LASF63:
+ 1984 0386 433A5C74 		.ascii	"C:\\temp\\jacob_branch\\ECE4191\\DeliveryRobot.cyds"
+ 1984      656D705C 
+ 1984      6A61636F 
+ 1984      625F6272 
+ 1984      616E6368 
+ 1985 03b5 6E00     		.ascii	"n\000"
+ 1986              	.LASF15:
+ 1987 03b7 68656967 		.ascii	"height\000"
+ 1987      687400
+ 1988              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

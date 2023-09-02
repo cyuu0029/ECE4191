@@ -1,0 +1,1044 @@
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccRBCQ1E.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"robot.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	__aeabi_dmul
+  20              		.section	.text.motor_create,"ax",%progbits
+  21              		.align	2
+  22              		.global	motor_create
+  23              		.thumb
+  24              		.thumb_func
+  25              		.type	motor_create, %function
+  26              	motor_create:
+  27              	.LFB1:
+  28              		.file 1 "..\\Robot\\robot.c"
+   1:..\Robot/robot.c **** #include "robot.h"
+   2:..\Robot/robot.c **** 
+   3:..\Robot/robot.c **** void *motor_create(Motor * motorola, long double wheel_r_scale, long double K_i, long double K_p) {
+  29              		.loc 1 3 0
+  30              		.cfi_startproc
+  31              		@ args = 16, pretend = 0, frame = 16
+  32              		@ frame_needed = 1, uses_anonymous_args = 0
+  33 0000 90B5     		push	{r4, r7, lr}
+  34              		.cfi_def_cfa_offset 12
+  35              		.cfi_offset 4, -12
+  36              		.cfi_offset 7, -8
+  37              		.cfi_offset 14, -4
+  38 0002 85B0     		sub	sp, sp, #20
+  39              		.cfi_def_cfa_offset 32
+  40 0004 00AF     		add	r7, sp, #0
+  41              		.cfi_def_cfa_register 7
+  42 0006 F860     		str	r0, [r7, #12]
+  43 0008 C7E90023 		strd	r2, [r7]
+   4:..\Robot/robot.c ****     motorola->duty_cycle = 0;
+  44              		.loc 1 4 0
+  45 000c FA68     		ldr	r2, [r7, #12]
+  46 000e 4FF00003 		mov	r3, #0
+  47 0012 4FF00004 		mov	r4, #0
+  48 0016 C2E90034 		strd	r3, [r2]
+   5:..\Robot/robot.c ****     motorola->int_error = 0;
+  49              		.loc 1 5 0
+  50 001a FA68     		ldr	r2, [r7, #12]
+  51 001c 4FF00003 		mov	r3, #0
+  52 0020 4FF00004 		mov	r4, #0
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccRBCQ1E.s 			page 2
+
+
+  53 0024 C2E90234 		strd	r3, [r2, #8]
+   6:..\Robot/robot.c ****     motorola->desired_w = 0;
+  54              		.loc 1 6 0
+  55 0028 FA68     		ldr	r2, [r7, #12]
+  56 002a 4FF00003 		mov	r3, #0
+  57 002e 4FF00004 		mov	r4, #0
+  58 0032 C2E90834 		strd	r3, [r2, #32]
+   7:..\Robot/robot.c ****     motorola->wheel_radius = wheel_r_scale * 2.75;
+  59              		.loc 1 7 0
+  60 0036 4FF00002 		mov	r2, #0
+  61 003a 0E4B     		ldr	r3, .L3
+  62 003c D7E90001 		ldrd	r0, [r7]
+  63 0040 FFF7FEFF 		bl	__aeabi_dmul
+  64 0044 0346     		mov	r3, r0
+  65 0046 0C46     		mov	r4, r1
+  66 0048 FA68     		ldr	r2, [r7, #12]
+  67 004a C2E90E34 		strd	r3, [r2, #56]
+   8:..\Robot/robot.c ****     motorola->enc_count = 0;
+  68              		.loc 1 8 0
+  69 004e FB68     		ldr	r3, [r7, #12]
+  70 0050 0022     		movs	r2, #0
+  71 0052 1A64     		str	r2, [r3, #64]
+   9:..\Robot/robot.c ****     motorola->Ki = K_i;  // TODO: determine good PI params
+  72              		.loc 1 9 0
+  73 0054 FA68     		ldr	r2, [r7, #12]
+  74 0056 D7E90834 		ldrd	r3, [r7, #32]
+  75 005a C2E90A34 		strd	r3, [r2, #40]
+  10:..\Robot/robot.c ****     motorola->Kp = K_p;
+  76              		.loc 1 10 0
+  77 005e FA68     		ldr	r2, [r7, #12]
+  78 0060 D7E90A34 		ldrd	r3, [r7, #40]
+  79 0064 C2E90C34 		strd	r3, [r2, #48]
+  11:..\Robot/robot.c ****     
+  12:..\Robot/robot.c ****     return (motorola);
+  80              		.loc 1 12 0
+  81 0068 FB68     		ldr	r3, [r7, #12]
+  13:..\Robot/robot.c **** }
+  82              		.loc 1 13 0
+  83 006a 1846     		mov	r0, r3
+  84 006c 1437     		adds	r7, r7, #20
+  85              		.cfi_def_cfa_offset 12
+  86 006e BD46     		mov	sp, r7
+  87              		.cfi_def_cfa_register 13
+  88              		@ sp needed
+  89 0070 90BD     		pop	{r4, r7, pc}
+  90              	.L4:
+  91 0072 00BF     		.align	2
+  92              	.L3:
+  93 0074 00000640 		.word	1074135040
+  94              		.cfi_endproc
+  95              	.LFE1:
+  96              		.size	motor_create, .-motor_create
+  97              		.section	.text.robot_create,"ax",%progbits
+  98              		.align	2
+  99              		.global	robot_create
+ 100              		.thumb
+ 101              		.thumb_func
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccRBCQ1E.s 			page 3
+
+
+ 102              		.type	robot_create, %function
+ 103              	robot_create:
+ 104              	.LFB2:
+  14:..\Robot/robot.c **** 
+  15:..\Robot/robot.c **** void *robot_create(Robot * bender, long double robot_axle_width, long double K_i, long double K_p, 
+ 105              		.loc 1 15 0
+ 106              		.cfi_startproc
+ 107              		@ args = 40, pretend = 0, frame = 16
+ 108              		@ frame_needed = 1, uses_anonymous_args = 0
+ 109              		@ link register save eliminated.
+ 110 0000 90B4     		push	{r4, r7}
+ 111              		.cfi_def_cfa_offset 8
+ 112              		.cfi_offset 4, -8
+ 113              		.cfi_offset 7, -4
+ 114 0002 84B0     		sub	sp, sp, #16
+ 115              		.cfi_def_cfa_offset 24
+ 116 0004 00AF     		add	r7, sp, #0
+ 117              		.cfi_def_cfa_register 7
+ 118 0006 F860     		str	r0, [r7, #12]
+ 119 0008 C7E90023 		strd	r2, [r7]
+  16:..\Robot/robot.c ****     bender->axle_width = robot_axle_width; 
+ 120              		.loc 1 16 0
+ 121 000c FA68     		ldr	r2, [r7, #12]
+ 122 000e D7E90034 		ldrd	r3, [r7]
+ 123 0012 C2E90034 		strd	r3, [r2]
+  17:..\Robot/robot.c ****     bender->int_error = 0;
+ 124              		.loc 1 17 0
+ 125 0016 FA68     		ldr	r2, [r7, #12]
+ 126 0018 4FF00003 		mov	r3, #0
+ 127 001c 4FF00004 		mov	r4, #0
+ 128 0020 C2E91434 		strd	r3, [r2, #80]
+  18:..\Robot/robot.c ****     bender->Ki = K_i;    // TODO: determine good PI values
+ 129              		.loc 1 18 0
+ 130 0024 FA68     		ldr	r2, [r7, #12]
+ 131 0026 D7E90634 		ldrd	r3, [r7, #24]
+ 132 002a C2E91034 		strd	r3, [r2, #64]
+  19:..\Robot/robot.c ****     bender->Kp = K_p;
+ 133              		.loc 1 19 0
+ 134 002e FA68     		ldr	r2, [r7, #12]
+ 135 0030 D7E90834 		ldrd	r3, [r7, #32]
+ 136 0034 C2E91234 		strd	r3, [r2, #72]
+  20:..\Robot/robot.c ****     bender->desired_v = 0;
+ 137              		.loc 1 20 0
+ 138 0038 FA68     		ldr	r2, [r7, #12]
+ 139 003a 4FF00003 		mov	r3, #0
+ 140 003e 4FF00004 		mov	r4, #0
+ 141 0042 C2E90C34 		strd	r3, [r2, #48]
+  21:..\Robot/robot.c ****     bender->desired_theta = 0;
+ 142              		.loc 1 21 0
+ 143 0046 FA68     		ldr	r2, [r7, #12]
+ 144 0048 4FF00003 		mov	r3, #0
+ 145 004c 4FF00004 		mov	r4, #0
+ 146 0050 C2E90E34 		strd	r3, [r2, #56]
+  22:..\Robot/robot.c ****     bender->theta = 0;
+ 147              		.loc 1 22 0
+ 148 0054 FA68     		ldr	r2, [r7, #12]
+ 149 0056 4FF00003 		mov	r3, #0
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccRBCQ1E.s 			page 4
+
+
+ 150 005a 4FF00004 		mov	r4, #0
+ 151 005e C2E90234 		strd	r3, [r2, #8]
+  23:..\Robot/robot.c ****     bender->x = x;
+ 152              		.loc 1 23 0
+ 153 0062 FA68     		ldr	r2, [r7, #12]
+ 154 0064 D7E90C34 		ldrd	r3, [r7, #48]
+ 155 0068 C2E90434 		strd	r3, [r2, #16]
+  24:..\Robot/robot.c ****     bender->y = y;
+ 156              		.loc 1 24 0
+ 157 006c FA68     		ldr	r2, [r7, #12]
+ 158 006e D7E90E34 		ldrd	r3, [r7, #56]
+ 159 0072 C2E90634 		strd	r3, [r2, #24]
+  25:..\Robot/robot.c ****     bender->goal_min_dist = minimum;
+ 160              		.loc 1 25 0
+ 161 0076 FA68     		ldr	r2, [r7, #12]
+ 162 0078 D7E90A34 		ldrd	r3, [r7, #40]
+ 163 007c C2E91A34 		strd	r3, [r2, #104]
+  26:..\Robot/robot.c ****     bender->goal_x = 0;
+ 164              		.loc 1 26 0
+ 165 0080 FA68     		ldr	r2, [r7, #12]
+ 166 0082 4FF00003 		mov	r3, #0
+ 167 0086 4FF00004 		mov	r4, #0
+ 168 008a C2E91634 		strd	r3, [r2, #88]
+  27:..\Robot/robot.c ****     bender->goal_y = 0;
+ 169              		.loc 1 27 0
+ 170 008e FA68     		ldr	r2, [r7, #12]
+ 171 0090 4FF00003 		mov	r3, #0
+ 172 0094 4FF00004 		mov	r4, #0
+ 173 0098 C2E91834 		strd	r3, [r2, #96]
+  28:..\Robot/robot.c ****     
+  29:..\Robot/robot.c ****     return (bender);
+ 174              		.loc 1 29 0
+ 175 009c FB68     		ldr	r3, [r7, #12]
+  30:..\Robot/robot.c **** }...
+ 176              		.loc 1 30 0
+ 177 009e 1846     		mov	r0, r3
+ 178 00a0 1037     		adds	r7, r7, #16
+ 179              		.cfi_def_cfa_offset 8
+ 180 00a2 BD46     		mov	sp, r7
+ 181              		.cfi_def_cfa_register 13
+ 182              		@ sp needed
+ 183 00a4 90BC     		pop	{r4, r7}
+ 184              		.cfi_restore 7
+ 185              		.cfi_restore 4
+ 186              		.cfi_def_cfa_offset 0
+ 187 00a6 7047     		bx	lr
+ 188              		.cfi_endproc
+ 189              	.LFE2:
+ 190              		.size	robot_create, .-robot_create
+ 191              		.text
+ 192              	.Letext0:
+ 193              		.file 2 "..\\Robot\\robot.h"
+ 194              		.section	.debug_info,"",%progbits
+ 195              	.Ldebug_info0:
+ 196 0000 91020000 		.4byte	0x291
+ 197 0004 0400     		.2byte	0x4
+ 198 0006 00000000 		.4byte	.Ldebug_abbrev0
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccRBCQ1E.s 			page 5
+
+
+ 199 000a 04       		.byte	0x4
+ 200 000b 01       		.uleb128 0x1
+ 201 000c E0010000 		.4byte	.LASF36
+ 202 0010 0C       		.byte	0xc
+ 203 0011 BA010000 		.4byte	.LASF37
+ 204 0015 DE000000 		.4byte	.LASF38
+ 205 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 206 001d 00000000 		.4byte	0
+ 207 0021 00000000 		.4byte	.Ldebug_line0
+ 208 0025 02       		.uleb128 0x2
+ 209 0026 01       		.byte	0x1
+ 210 0027 06       		.byte	0x6
+ 211 0028 A7010000 		.4byte	.LASF0
+ 212 002c 02       		.uleb128 0x2
+ 213 002d 01       		.byte	0x1
+ 214 002e 08       		.byte	0x8
+ 215 002f 4C000000 		.4byte	.LASF1
+ 216 0033 02       		.uleb128 0x2
+ 217 0034 02       		.byte	0x2
+ 218 0035 05       		.byte	0x5
+ 219 0036 68010000 		.4byte	.LASF2
+ 220 003a 02       		.uleb128 0x2
+ 221 003b 02       		.byte	0x2
+ 222 003c 07       		.byte	0x7
+ 223 003d 80000000 		.4byte	.LASF3
+ 224 0041 02       		.uleb128 0x2
+ 225 0042 04       		.byte	0x4
+ 226 0043 05       		.byte	0x5
+ 227 0044 8C010000 		.4byte	.LASF4
+ 228 0048 02       		.uleb128 0x2
+ 229 0049 04       		.byte	0x4
+ 230 004a 07       		.byte	0x7
+ 231 004b 6E000000 		.4byte	.LASF5
+ 232 004f 02       		.uleb128 0x2
+ 233 0050 08       		.byte	0x8
+ 234 0051 05       		.byte	0x5
+ 235 0052 55010000 		.4byte	.LASF6
+ 236 0056 02       		.uleb128 0x2
+ 237 0057 08       		.byte	0x8
+ 238 0058 07       		.byte	0x7
+ 239 0059 C7000000 		.4byte	.LASF7
+ 240 005d 03       		.uleb128 0x3
+ 241 005e 04       		.byte	0x4
+ 242 005f 05       		.byte	0x5
+ 243 0060 696E7400 		.ascii	"int\000"
+ 244 0064 02       		.uleb128 0x2
+ 245 0065 04       		.byte	0x4
+ 246 0066 07       		.byte	0x7
+ 247 0067 BA000000 		.4byte	.LASF8
+ 248 006b 02       		.uleb128 0x2
+ 249 006c 08       		.byte	0x8
+ 250 006d 04       		.byte	0x4
+ 251 006e 95010000 		.4byte	.LASF9
+ 252 0072 04       		.uleb128 0x4
+ 253 0073 04       		.byte	0x4
+ 254 0074 02       		.uleb128 0x2
+ 255 0075 04       		.byte	0x4
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccRBCQ1E.s 			page 6
+
+
+ 256 0076 07       		.byte	0x7
+ 257 0077 4C010000 		.4byte	.LASF10
+ 258 007b 02       		.uleb128 0x2
+ 259 007c 01       		.byte	0x1
+ 260 007d 08       		.byte	0x8
+ 261 007e 63010000 		.4byte	.LASF11
+ 262 0082 02       		.uleb128 0x2
+ 263 0083 08       		.byte	0x8
+ 264 0084 04       		.byte	0x4
+ 265 0085 9B000000 		.4byte	.LASF12
+ 266 0089 02       		.uleb128 0x2
+ 267 008a 04       		.byte	0x4
+ 268 008b 04       		.byte	0x4
+ 269 008c 38000000 		.4byte	.LASF13
+ 270 0090 05       		.uleb128 0x5
+ 271 0091 48       		.byte	0x48
+ 272 0092 02       		.byte	0x2
+ 273 0093 0E       		.byte	0xe
+ 274 0094 01010000 		.4byte	0x101
+ 275 0098 06       		.uleb128 0x6
+ 276 0099 AF000000 		.4byte	.LASF14
+ 277 009d 02       		.byte	0x2
+ 278 009e 0F       		.byte	0xf
+ 279 009f 6B000000 		.4byte	0x6b
+ 280 00a3 00       		.byte	0
+ 281 00a4 06       		.uleb128 0x6
+ 282 00a5 42010000 		.4byte	.LASF15
+ 283 00a9 02       		.byte	0x2
+ 284 00aa 10       		.byte	0x10
+ 285 00ab 6B000000 		.4byte	0x6b
+ 286 00af 08       		.byte	0x8
+ 287 00b0 07       		.uleb128 0x7
+ 288 00b1 7700     		.ascii	"w\000"
+ 289 00b3 02       		.byte	0x2
+ 290 00b4 11       		.byte	0x11
+ 291 00b5 6B000000 		.4byte	0x6b
+ 292 00b9 10       		.byte	0x10
+ 293 00ba 06       		.uleb128 0x6
+ 294 00bb 1A000000 		.4byte	.LASF16
+ 295 00bf 02       		.byte	0x2
+ 296 00c0 12       		.byte	0x12
+ 297 00c1 6B000000 		.4byte	0x6b
+ 298 00c5 18       		.byte	0x18
+ 299 00c6 06       		.uleb128 0x6
+ 300 00c7 38010000 		.4byte	.LASF17
+ 301 00cb 02       		.byte	0x2
+ 302 00cc 13       		.byte	0x13
+ 303 00cd 6B000000 		.4byte	0x6b
+ 304 00d1 20       		.byte	0x20
+ 305 00d2 07       		.uleb128 0x7
+ 306 00d3 4B6900   		.ascii	"Ki\000"
+ 307 00d6 02       		.byte	0x2
+ 308 00d7 14       		.byte	0x14
+ 309 00d8 6B000000 		.4byte	0x6b
+ 310 00dc 28       		.byte	0x28
+ 311 00dd 07       		.uleb128 0x7
+ 312 00de 4B7000   		.ascii	"Kp\000"
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccRBCQ1E.s 			page 7
+
+
+ 313 00e1 02       		.byte	0x2
+ 314 00e2 15       		.byte	0x15
+ 315 00e3 6B000000 		.4byte	0x6b
+ 316 00e7 30       		.byte	0x30
+ 317 00e8 06       		.uleb128 0x6
+ 318 00e9 0D000000 		.4byte	.LASF18
+ 319 00ed 02       		.byte	0x2
+ 320 00ee 16       		.byte	0x16
+ 321 00ef 82000000 		.4byte	0x82
+ 322 00f3 38       		.byte	0x38
+ 323 00f4 06       		.uleb128 0x6
+ 324 00f5 CB010000 		.4byte	.LASF19
+ 325 00f9 02       		.byte	0x2
+ 326 00fa 17       		.byte	0x17
+ 327 00fb 5D000000 		.4byte	0x5d
+ 328 00ff 40       		.byte	0x40
+ 329 0100 00       		.byte	0
+ 330 0101 08       		.uleb128 0x8
+ 331 0102 A1010000 		.4byte	.LASF27
+ 332 0106 02       		.byte	0x2
+ 333 0107 19       		.byte	0x19
+ 334 0108 90000000 		.4byte	0x90
+ 335 010c 05       		.uleb128 0x5
+ 336 010d 70       		.byte	0x70
+ 337 010e 02       		.byte	0x2
+ 338 010f 1B       		.byte	0x1b
+ 339 0110 B3010000 		.4byte	0x1b3
+ 340 0114 06       		.uleb128 0x6
+ 341 0115 D5010000 		.4byte	.LASF20
+ 342 0119 02       		.byte	0x2
+ 343 011a 1D       		.byte	0x1d
+ 344 011b 6B000000 		.4byte	0x6b
+ 345 011f 00       		.byte	0
+ 346 0120 06       		.uleb128 0x6
+ 347 0121 07000000 		.4byte	.LASF21
+ 348 0125 02       		.byte	0x2
+ 349 0126 20       		.byte	0x20
+ 350 0127 6B000000 		.4byte	0x6b
+ 351 012b 08       		.byte	0x8
+ 352 012c 07       		.uleb128 0x7
+ 353 012d 7800     		.ascii	"x\000"
+ 354 012f 02       		.byte	0x2
+ 355 0130 21       		.byte	0x21
+ 356 0131 6B000000 		.4byte	0x6b
+ 357 0135 10       		.byte	0x10
+ 358 0136 07       		.uleb128 0x7
+ 359 0137 7900     		.ascii	"y\000"
+ 360 0139 02       		.byte	0x2
+ 361 013a 22       		.byte	0x22
+ 362 013b 6B000000 		.4byte	0x6b
+ 363 013f 18       		.byte	0x18
+ 364 0140 07       		.uleb128 0x7
+ 365 0141 7600     		.ascii	"v\000"
+ 366 0143 02       		.byte	0x2
+ 367 0144 25       		.byte	0x25
+ 368 0145 6B000000 		.4byte	0x6b
+ 369 0149 20       		.byte	0x20
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccRBCQ1E.s 			page 8
+
+
+ 370 014a 07       		.uleb128 0x7
+ 371 014b 7700     		.ascii	"w\000"
+ 372 014d 02       		.byte	0x2
+ 373 014e 26       		.byte	0x26
+ 374 014f 6B000000 		.4byte	0x6b
+ 375 0153 28       		.byte	0x28
+ 376 0154 06       		.uleb128 0x6
+ 377 0155 2E010000 		.4byte	.LASF22
+ 378 0159 02       		.byte	0x2
+ 379 015a 29       		.byte	0x29
+ 380 015b 6B000000 		.4byte	0x6b
+ 381 015f 30       		.byte	0x30
+ 382 0160 06       		.uleb128 0x6
+ 383 0161 60000000 		.4byte	.LASF23
+ 384 0165 02       		.byte	0x2
+ 385 0166 2A       		.byte	0x2a
+ 386 0167 6B000000 		.4byte	0x6b
+ 387 016b 38       		.byte	0x38
+ 388 016c 07       		.uleb128 0x7
+ 389 016d 4B6900   		.ascii	"Ki\000"
+ 390 0170 02       		.byte	0x2
+ 391 0171 2D       		.byte	0x2d
+ 392 0172 6B000000 		.4byte	0x6b
+ 393 0176 40       		.byte	0x40
+ 394 0177 07       		.uleb128 0x7
+ 395 0178 4B7000   		.ascii	"Kp\000"
+ 396 017b 02       		.byte	0x2
+ 397 017c 2E       		.byte	0x2e
+ 398 017d 6B000000 		.4byte	0x6b
+ 399 0181 48       		.byte	0x48
+ 400 0182 06       		.uleb128 0x6
+ 401 0183 42010000 		.4byte	.LASF15
+ 402 0187 02       		.byte	0x2
+ 403 0188 2F       		.byte	0x2f
+ 404 0189 6B000000 		.4byte	0x6b
+ 405 018d 50       		.byte	0x50
+ 406 018e 06       		.uleb128 0x6
+ 407 018f 31000000 		.4byte	.LASF24
+ 408 0193 02       		.byte	0x2
+ 409 0194 32       		.byte	0x32
+ 410 0195 6B000000 		.4byte	0x6b
+ 411 0199 58       		.byte	0x58
+ 412 019a 06       		.uleb128 0x6
+ 413 019b 00000000 		.4byte	.LASF25
+ 414 019f 02       		.byte	0x2
+ 415 01a0 33       		.byte	0x33
+ 416 01a1 6B000000 		.4byte	0x6b
+ 417 01a5 60       		.byte	0x60
+ 418 01a6 06       		.uleb128 0x6
+ 419 01a7 3E000000 		.4byte	.LASF26
+ 420 01ab 02       		.byte	0x2
+ 421 01ac 34       		.byte	0x34
+ 422 01ad 6B000000 		.4byte	0x6b
+ 423 01b1 68       		.byte	0x68
+ 424 01b2 00       		.byte	0
+ 425 01b3 08       		.uleb128 0x8
+ 426 01b4 5A000000 		.4byte	.LASF28
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccRBCQ1E.s 			page 9
+
+
+ 427 01b8 02       		.byte	0x2
+ 428 01b9 36       		.byte	0x36
+ 429 01ba 0C010000 		.4byte	0x10c
+ 430 01be 09       		.uleb128 0x9
+ 431 01bf 24000000 		.4byte	.LASF31
+ 432 01c3 01       		.byte	0x1
+ 433 01c4 03       		.byte	0x3
+ 434 01c5 72000000 		.4byte	0x72
+ 435 01c9 00000000 		.4byte	.LFB1
+ 436 01cd 78000000 		.4byte	.LFE1-.LFB1
+ 437 01d1 01       		.uleb128 0x1
+ 438 01d2 9C       		.byte	0x9c
+ 439 01d3 10020000 		.4byte	0x210
+ 440 01d7 0A       		.uleb128 0xa
+ 441 01d8 72010000 		.4byte	.LASF29
+ 442 01dc 01       		.byte	0x1
+ 443 01dd 03       		.byte	0x3
+ 444 01de 10020000 		.4byte	0x210
+ 445 01e2 02       		.uleb128 0x2
+ 446 01e3 91       		.byte	0x91
+ 447 01e4 6C       		.sleb128 -20
+ 448 01e5 0A       		.uleb128 0xa
+ 449 01e6 20010000 		.4byte	.LASF30
+ 450 01ea 01       		.byte	0x1
+ 451 01eb 03       		.byte	0x3
+ 452 01ec 6B000000 		.4byte	0x6b
+ 453 01f0 02       		.uleb128 0x2
+ 454 01f1 91       		.byte	0x91
+ 455 01f2 60       		.sleb128 -32
+ 456 01f3 0B       		.uleb128 0xb
+ 457 01f4 4B5F6900 		.ascii	"K_i\000"
+ 458 01f8 01       		.byte	0x1
+ 459 01f9 03       		.byte	0x3
+ 460 01fa 6B000000 		.4byte	0x6b
+ 461 01fe 02       		.uleb128 0x2
+ 462 01ff 91       		.byte	0x91
+ 463 0200 00       		.sleb128 0
+ 464 0201 0B       		.uleb128 0xb
+ 465 0202 4B5F7000 		.ascii	"K_p\000"
+ 466 0206 01       		.byte	0x1
+ 467 0207 03       		.byte	0x3
+ 468 0208 6B000000 		.4byte	0x6b
+ 469 020c 02       		.uleb128 0x2
+ 470 020d 91       		.byte	0x91
+ 471 020e 08       		.sleb128 8
+ 472 020f 00       		.byte	0
+ 473 0210 0C       		.uleb128 0xc
+ 474 0211 04       		.byte	0x4
+ 475 0212 01010000 		.4byte	0x101
+ 476 0216 0D       		.uleb128 0xd
+ 477 0217 A2000000 		.4byte	.LASF32
+ 478 021b 01       		.byte	0x1
+ 479 021c 0F       		.byte	0xf
+ 480 021d 72000000 		.4byte	0x72
+ 481 0221 00000000 		.4byte	.LFB2
+ 482 0225 A8000000 		.4byte	.LFE2-.LFB2
+ 483 0229 01       		.uleb128 0x1
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccRBCQ1E.s 			page 10
+
+
+ 484 022a 9C       		.byte	0x9c
+ 485 022b 8E020000 		.4byte	0x28e
+ 486 022f 0A       		.uleb128 0xa
+ 487 0230 B3010000 		.4byte	.LASF33
+ 488 0234 01       		.byte	0x1
+ 489 0235 0F       		.byte	0xf
+ 490 0236 8E020000 		.4byte	0x28e
+ 491 023a 02       		.uleb128 0x2
+ 492 023b 91       		.byte	0x91
+ 493 023c 74       		.sleb128 -12
+ 494 023d 0A       		.uleb128 0xa
+ 495 023e 7B010000 		.4byte	.LASF34
+ 496 0242 01       		.byte	0x1
+ 497 0243 0F       		.byte	0xf
+ 498 0244 6B000000 		.4byte	0x6b
+ 499 0248 02       		.uleb128 0x2
+ 500 0249 91       		.byte	0x91
+ 501 024a 68       		.sleb128 -24
+ 502 024b 0B       		.uleb128 0xb
+ 503 024c 4B5F6900 		.ascii	"K_i\000"
+ 504 0250 01       		.byte	0x1
+ 505 0251 0F       		.byte	0xf
+ 506 0252 6B000000 		.4byte	0x6b
+ 507 0256 02       		.uleb128 0x2
+ 508 0257 91       		.byte	0x91
+ 509 0258 00       		.sleb128 0
+ 510 0259 0B       		.uleb128 0xb
+ 511 025a 4B5F7000 		.ascii	"K_p\000"
+ 512 025e 01       		.byte	0x1
+ 513 025f 0F       		.byte	0xf
+ 514 0260 6B000000 		.4byte	0x6b
+ 515 0264 02       		.uleb128 0x2
+ 516 0265 91       		.byte	0x91
+ 517 0266 08       		.sleb128 8
+ 518 0267 0A       		.uleb128 0xa
+ 519 0268 93000000 		.4byte	.LASF35
+ 520 026c 01       		.byte	0x1
+ 521 026d 0F       		.byte	0xf
+ 522 026e 6B000000 		.4byte	0x6b
+ 523 0272 02       		.uleb128 0x2
+ 524 0273 91       		.byte	0x91
+ 525 0274 10       		.sleb128 16
+ 526 0275 0B       		.uleb128 0xb
+ 527 0276 7800     		.ascii	"x\000"
+ 528 0278 01       		.byte	0x1
+ 529 0279 0F       		.byte	0xf
+ 530 027a 6B000000 		.4byte	0x6b
+ 531 027e 02       		.uleb128 0x2
+ 532 027f 91       		.byte	0x91
+ 533 0280 18       		.sleb128 24
+ 534 0281 0B       		.uleb128 0xb
+ 535 0282 7900     		.ascii	"y\000"
+ 536 0284 01       		.byte	0x1
+ 537 0285 0F       		.byte	0xf
+ 538 0286 6B000000 		.4byte	0x6b
+ 539 028a 02       		.uleb128 0x2
+ 540 028b 91       		.byte	0x91
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccRBCQ1E.s 			page 11
+
+
+ 541 028c 20       		.sleb128 32
+ 542 028d 00       		.byte	0
+ 543 028e 0C       		.uleb128 0xc
+ 544 028f 04       		.byte	0x4
+ 545 0290 B3010000 		.4byte	0x1b3
+ 546 0294 00       		.byte	0
+ 547              		.section	.debug_abbrev,"",%progbits
+ 548              	.Ldebug_abbrev0:
+ 549 0000 01       		.uleb128 0x1
+ 550 0001 11       		.uleb128 0x11
+ 551 0002 01       		.byte	0x1
+ 552 0003 25       		.uleb128 0x25
+ 553 0004 0E       		.uleb128 0xe
+ 554 0005 13       		.uleb128 0x13
+ 555 0006 0B       		.uleb128 0xb
+ 556 0007 03       		.uleb128 0x3
+ 557 0008 0E       		.uleb128 0xe
+ 558 0009 1B       		.uleb128 0x1b
+ 559 000a 0E       		.uleb128 0xe
+ 560 000b 55       		.uleb128 0x55
+ 561 000c 17       		.uleb128 0x17
+ 562 000d 11       		.uleb128 0x11
+ 563 000e 01       		.uleb128 0x1
+ 564 000f 10       		.uleb128 0x10
+ 565 0010 17       		.uleb128 0x17
+ 566 0011 00       		.byte	0
+ 567 0012 00       		.byte	0
+ 568 0013 02       		.uleb128 0x2
+ 569 0014 24       		.uleb128 0x24
+ 570 0015 00       		.byte	0
+ 571 0016 0B       		.uleb128 0xb
+ 572 0017 0B       		.uleb128 0xb
+ 573 0018 3E       		.uleb128 0x3e
+ 574 0019 0B       		.uleb128 0xb
+ 575 001a 03       		.uleb128 0x3
+ 576 001b 0E       		.uleb128 0xe
+ 577 001c 00       		.byte	0
+ 578 001d 00       		.byte	0
+ 579 001e 03       		.uleb128 0x3
+ 580 001f 24       		.uleb128 0x24
+ 581 0020 00       		.byte	0
+ 582 0021 0B       		.uleb128 0xb
+ 583 0022 0B       		.uleb128 0xb
+ 584 0023 3E       		.uleb128 0x3e
+ 585 0024 0B       		.uleb128 0xb
+ 586 0025 03       		.uleb128 0x3
+ 587 0026 08       		.uleb128 0x8
+ 588 0027 00       		.byte	0
+ 589 0028 00       		.byte	0
+ 590 0029 04       		.uleb128 0x4
+ 591 002a 0F       		.uleb128 0xf
+ 592 002b 00       		.byte	0
+ 593 002c 0B       		.uleb128 0xb
+ 594 002d 0B       		.uleb128 0xb
+ 595 002e 00       		.byte	0
+ 596 002f 00       		.byte	0
+ 597 0030 05       		.uleb128 0x5
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccRBCQ1E.s 			page 12
+
+
+ 598 0031 13       		.uleb128 0x13
+ 599 0032 01       		.byte	0x1
+ 600 0033 0B       		.uleb128 0xb
+ 601 0034 0B       		.uleb128 0xb
+ 602 0035 3A       		.uleb128 0x3a
+ 603 0036 0B       		.uleb128 0xb
+ 604 0037 3B       		.uleb128 0x3b
+ 605 0038 0B       		.uleb128 0xb
+ 606 0039 01       		.uleb128 0x1
+ 607 003a 13       		.uleb128 0x13
+ 608 003b 00       		.byte	0
+ 609 003c 00       		.byte	0
+ 610 003d 06       		.uleb128 0x6
+ 611 003e 0D       		.uleb128 0xd
+ 612 003f 00       		.byte	0
+ 613 0040 03       		.uleb128 0x3
+ 614 0041 0E       		.uleb128 0xe
+ 615 0042 3A       		.uleb128 0x3a
+ 616 0043 0B       		.uleb128 0xb
+ 617 0044 3B       		.uleb128 0x3b
+ 618 0045 0B       		.uleb128 0xb
+ 619 0046 49       		.uleb128 0x49
+ 620 0047 13       		.uleb128 0x13
+ 621 0048 38       		.uleb128 0x38
+ 622 0049 0B       		.uleb128 0xb
+ 623 004a 00       		.byte	0
+ 624 004b 00       		.byte	0
+ 625 004c 07       		.uleb128 0x7
+ 626 004d 0D       		.uleb128 0xd
+ 627 004e 00       		.byte	0
+ 628 004f 03       		.uleb128 0x3
+ 629 0050 08       		.uleb128 0x8
+ 630 0051 3A       		.uleb128 0x3a
+ 631 0052 0B       		.uleb128 0xb
+ 632 0053 3B       		.uleb128 0x3b
+ 633 0054 0B       		.uleb128 0xb
+ 634 0055 49       		.uleb128 0x49
+ 635 0056 13       		.uleb128 0x13
+ 636 0057 38       		.uleb128 0x38
+ 637 0058 0B       		.uleb128 0xb
+ 638 0059 00       		.byte	0
+ 639 005a 00       		.byte	0
+ 640 005b 08       		.uleb128 0x8
+ 641 005c 16       		.uleb128 0x16
+ 642 005d 00       		.byte	0
+ 643 005e 03       		.uleb128 0x3
+ 644 005f 0E       		.uleb128 0xe
+ 645 0060 3A       		.uleb128 0x3a
+ 646 0061 0B       		.uleb128 0xb
+ 647 0062 3B       		.uleb128 0x3b
+ 648 0063 0B       		.uleb128 0xb
+ 649 0064 49       		.uleb128 0x49
+ 650 0065 13       		.uleb128 0x13
+ 651 0066 00       		.byte	0
+ 652 0067 00       		.byte	0
+ 653 0068 09       		.uleb128 0x9
+ 654 0069 2E       		.uleb128 0x2e
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccRBCQ1E.s 			page 13
+
+
+ 655 006a 01       		.byte	0x1
+ 656 006b 3F       		.uleb128 0x3f
+ 657 006c 19       		.uleb128 0x19
+ 658 006d 03       		.uleb128 0x3
+ 659 006e 0E       		.uleb128 0xe
+ 660 006f 3A       		.uleb128 0x3a
+ 661 0070 0B       		.uleb128 0xb
+ 662 0071 3B       		.uleb128 0x3b
+ 663 0072 0B       		.uleb128 0xb
+ 664 0073 27       		.uleb128 0x27
+ 665 0074 19       		.uleb128 0x19
+ 666 0075 49       		.uleb128 0x49
+ 667 0076 13       		.uleb128 0x13
+ 668 0077 11       		.uleb128 0x11
+ 669 0078 01       		.uleb128 0x1
+ 670 0079 12       		.uleb128 0x12
+ 671 007a 06       		.uleb128 0x6
+ 672 007b 40       		.uleb128 0x40
+ 673 007c 18       		.uleb128 0x18
+ 674 007d 9642     		.uleb128 0x2116
+ 675 007f 19       		.uleb128 0x19
+ 676 0080 01       		.uleb128 0x1
+ 677 0081 13       		.uleb128 0x13
+ 678 0082 00       		.byte	0
+ 679 0083 00       		.byte	0
+ 680 0084 0A       		.uleb128 0xa
+ 681 0085 05       		.uleb128 0x5
+ 682 0086 00       		.byte	0
+ 683 0087 03       		.uleb128 0x3
+ 684 0088 0E       		.uleb128 0xe
+ 685 0089 3A       		.uleb128 0x3a
+ 686 008a 0B       		.uleb128 0xb
+ 687 008b 3B       		.uleb128 0x3b
+ 688 008c 0B       		.uleb128 0xb
+ 689 008d 49       		.uleb128 0x49
+ 690 008e 13       		.uleb128 0x13
+ 691 008f 02       		.uleb128 0x2
+ 692 0090 18       		.uleb128 0x18
+ 693 0091 00       		.byte	0
+ 694 0092 00       		.byte	0
+ 695 0093 0B       		.uleb128 0xb
+ 696 0094 05       		.uleb128 0x5
+ 697 0095 00       		.byte	0
+ 698 0096 03       		.uleb128 0x3
+ 699 0097 08       		.uleb128 0x8
+ 700 0098 3A       		.uleb128 0x3a
+ 701 0099 0B       		.uleb128 0xb
+ 702 009a 3B       		.uleb128 0x3b
+ 703 009b 0B       		.uleb128 0xb
+ 704 009c 49       		.uleb128 0x49
+ 705 009d 13       		.uleb128 0x13
+ 706 009e 02       		.uleb128 0x2
+ 707 009f 18       		.uleb128 0x18
+ 708 00a0 00       		.byte	0
+ 709 00a1 00       		.byte	0
+ 710 00a2 0C       		.uleb128 0xc
+ 711 00a3 0F       		.uleb128 0xf
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccRBCQ1E.s 			page 14
+
+
+ 712 00a4 00       		.byte	0
+ 713 00a5 0B       		.uleb128 0xb
+ 714 00a6 0B       		.uleb128 0xb
+ 715 00a7 49       		.uleb128 0x49
+ 716 00a8 13       		.uleb128 0x13
+ 717 00a9 00       		.byte	0
+ 718 00aa 00       		.byte	0
+ 719 00ab 0D       		.uleb128 0xd
+ 720 00ac 2E       		.uleb128 0x2e
+ 721 00ad 01       		.byte	0x1
+ 722 00ae 3F       		.uleb128 0x3f
+ 723 00af 19       		.uleb128 0x19
+ 724 00b0 03       		.uleb128 0x3
+ 725 00b1 0E       		.uleb128 0xe
+ 726 00b2 3A       		.uleb128 0x3a
+ 727 00b3 0B       		.uleb128 0xb
+ 728 00b4 3B       		.uleb128 0x3b
+ 729 00b5 0B       		.uleb128 0xb
+ 730 00b6 27       		.uleb128 0x27
+ 731 00b7 19       		.uleb128 0x19
+ 732 00b8 49       		.uleb128 0x49
+ 733 00b9 13       		.uleb128 0x13
+ 734 00ba 11       		.uleb128 0x11
+ 735 00bb 01       		.uleb128 0x1
+ 736 00bc 12       		.uleb128 0x12
+ 737 00bd 06       		.uleb128 0x6
+ 738 00be 40       		.uleb128 0x40
+ 739 00bf 18       		.uleb128 0x18
+ 740 00c0 9742     		.uleb128 0x2117
+ 741 00c2 19       		.uleb128 0x19
+ 742 00c3 01       		.uleb128 0x1
+ 743 00c4 13       		.uleb128 0x13
+ 744 00c5 00       		.byte	0
+ 745 00c6 00       		.byte	0
+ 746 00c7 00       		.byte	0
+ 747              		.section	.debug_aranges,"",%progbits
+ 748 0000 24000000 		.4byte	0x24
+ 749 0004 0200     		.2byte	0x2
+ 750 0006 00000000 		.4byte	.Ldebug_info0
+ 751 000a 04       		.byte	0x4
+ 752 000b 00       		.byte	0
+ 753 000c 0000     		.2byte	0
+ 754 000e 0000     		.2byte	0
+ 755 0010 00000000 		.4byte	.LFB1
+ 756 0014 78000000 		.4byte	.LFE1-.LFB1
+ 757 0018 00000000 		.4byte	.LFB2
+ 758 001c A8000000 		.4byte	.LFE2-.LFB2
+ 759 0020 00000000 		.4byte	0
+ 760 0024 00000000 		.4byte	0
+ 761              		.section	.debug_ranges,"",%progbits
+ 762              	.Ldebug_ranges0:
+ 763 0000 00000000 		.4byte	.LFB1
+ 764 0004 78000000 		.4byte	.LFE1
+ 765 0008 00000000 		.4byte	.LFB2
+ 766 000c A8000000 		.4byte	.LFE2
+ 767 0010 00000000 		.4byte	0
+ 768 0014 00000000 		.4byte	0
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccRBCQ1E.s 			page 15
+
+
+ 769              		.section	.debug_line,"",%progbits
+ 770              	.Ldebug_line0:
+ 771 0000 6B000000 		.section	.debug_str,"MS",%progbits,1
+ 771      02003200 
+ 771      00000201 
+ 771      FB0E0D00 
+ 771      01010101 
+ 772              	.LASF25:
+ 773 0000 676F616C 		.ascii	"goal_y\000"
+ 773      5F7900
+ 774              	.LASF21:
+ 775 0007 74686574 		.ascii	"theta\000"
+ 775      6100
+ 776              	.LASF18:
+ 777 000d 77686565 		.ascii	"wheel_radius\000"
+ 777      6C5F7261 
+ 777      64697573 
+ 777      00
+ 778              	.LASF16:
+ 779 001a 74616E67 		.ascii	"tangent_v\000"
+ 779      656E745F 
+ 779      7600
+ 780              	.LASF31:
+ 781 0024 6D6F746F 		.ascii	"motor_create\000"
+ 781      725F6372 
+ 781      65617465 
+ 781      00
+ 782              	.LASF24:
+ 783 0031 676F616C 		.ascii	"goal_x\000"
+ 783      5F7800
+ 784              	.LASF13:
+ 785 0038 666C6F61 		.ascii	"float\000"
+ 785      7400
+ 786              	.LASF26:
+ 787 003e 676F616C 		.ascii	"goal_min_dist\000"
+ 787      5F6D696E 
+ 787      5F646973 
+ 787      7400
+ 788              	.LASF1:
+ 789 004c 756E7369 		.ascii	"unsigned char\000"
+ 789      676E6564 
+ 789      20636861 
+ 789      7200
+ 790              	.LASF28:
+ 791 005a 526F626F 		.ascii	"Robot\000"
+ 791      7400
+ 792              	.LASF23:
+ 793 0060 64657369 		.ascii	"desired_theta\000"
+ 793      7265645F 
+ 793      74686574 
+ 793      6100
+ 794              	.LASF5:
+ 795 006e 6C6F6E67 		.ascii	"long unsigned int\000"
+ 795      20756E73 
+ 795      69676E65 
+ 795      6420696E 
+ 795      7400
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccRBCQ1E.s 			page 16
+
+
+ 796              	.LASF3:
+ 797 0080 73686F72 		.ascii	"short unsigned int\000"
+ 797      7420756E 
+ 797      7369676E 
+ 797      65642069 
+ 797      6E7400
+ 798              	.LASF35:
+ 799 0093 6D696E69 		.ascii	"minimum\000"
+ 799      6D756D00 
+ 800              	.LASF12:
+ 801 009b 646F7562 		.ascii	"double\000"
+ 801      6C6500
+ 802              	.LASF32:
+ 803 00a2 726F626F 		.ascii	"robot_create\000"
+ 803      745F6372 
+ 803      65617465 
+ 803      00
+ 804              	.LASF14:
+ 805 00af 64757479 		.ascii	"duty_cycle\000"
+ 805      5F637963 
+ 805      6C6500
+ 806              	.LASF8:
+ 807 00ba 756E7369 		.ascii	"unsigned int\000"
+ 807      676E6564 
+ 807      20696E74 
+ 807      00
+ 808              	.LASF7:
+ 809 00c7 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 809      206C6F6E 
+ 809      6720756E 
+ 809      7369676E 
+ 809      65642069 
+ 810              	.LASF38:
+ 811 00de 433A5C55 		.ascii	"C:\\Users\\cyu13\\Desktop\\ECE4191 GitHub\\ECE4191\\"
+ 811      73657273 
+ 811      5C637975 
+ 811      31335C44 
+ 811      65736B74 
+ 812 010c 44656C69 		.ascii	"DeliveryRobot.cydsn\000"
+ 812      76657279 
+ 812      526F626F 
+ 812      742E6379 
+ 812      64736E00 
+ 813              	.LASF30:
+ 814 0120 77686565 		.ascii	"wheel_r_scale\000"
+ 814      6C5F725F 
+ 814      7363616C 
+ 814      6500
+ 815              	.LASF22:
+ 816 012e 64657369 		.ascii	"desired_v\000"
+ 816      7265645F 
+ 816      7600
+ 817              	.LASF17:
+ 818 0138 64657369 		.ascii	"desired_w\000"
+ 818      7265645F 
+ 818      7700
+ 819              	.LASF15:
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccRBCQ1E.s 			page 17
+
+
+ 820 0142 696E745F 		.ascii	"int_error\000"
+ 820      6572726F 
+ 820      7200
+ 821              	.LASF10:
+ 822 014c 73697A65 		.ascii	"sizetype\000"
+ 822      74797065 
+ 822      00
+ 823              	.LASF6:
+ 824 0155 6C6F6E67 		.ascii	"long long int\000"
+ 824      206C6F6E 
+ 824      6720696E 
+ 824      7400
+ 825              	.LASF11:
+ 826 0163 63686172 		.ascii	"char\000"
+ 826      00
+ 827              	.LASF2:
+ 828 0168 73686F72 		.ascii	"short int\000"
+ 828      7420696E 
+ 828      7400
+ 829              	.LASF29:
+ 830 0172 6D6F746F 		.ascii	"motorola\000"
+ 830      726F6C61 
+ 830      00
+ 831              	.LASF34:
+ 832 017b 726F626F 		.ascii	"robot_axle_width\000"
+ 832      745F6178 
+ 832      6C655F77 
+ 832      69647468 
+ 832      00
+ 833              	.LASF4:
+ 834 018c 6C6F6E67 		.ascii	"long int\000"
+ 834      20696E74 
+ 834      00
+ 835              	.LASF9:
+ 836 0195 6C6F6E67 		.ascii	"long double\000"
+ 836      20646F75 
+ 836      626C6500 
+ 837              	.LASF27:
+ 838 01a1 4D6F746F 		.ascii	"Motor\000"
+ 838      7200
+ 839              	.LASF0:
+ 840 01a7 7369676E 		.ascii	"signed char\000"
+ 840      65642063 
+ 840      68617200 
+ 841              	.LASF33:
+ 842 01b3 62656E64 		.ascii	"bender\000"
+ 842      657200
+ 843              	.LASF37:
+ 844 01ba 2E2E5C52 		.ascii	"..\\Robot\\robot.c\000"
+ 844      6F626F74 
+ 844      5C726F62 
+ 844      6F742E63 
+ 844      00
+ 845              	.LASF19:
+ 846 01cb 656E635F 		.ascii	"enc_count\000"
+ 846      636F756E 
+ 846      7400
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccRBCQ1E.s 			page 18
+
+
+ 847              	.LASF20:
+ 848 01d5 61786C65 		.ascii	"axle_width\000"
+ 848      5F776964 
+ 848      746800
+ 849              	.LASF36:
+ 850 01e0 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 850      43313120 
+ 850      352E342E 
+ 850      31203230 
+ 850      31363036 
+ 851 0213 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 851      20726576 
+ 851      6973696F 
+ 851      6E203233 
+ 851      37373135 
+ 852 0246 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 852      66756E63 
+ 852      74696F6E 
+ 852      2D736563 
+ 852      74696F6E 
+ 853              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

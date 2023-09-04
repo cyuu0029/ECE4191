@@ -5,7 +5,8 @@
 */
 
 /*===========================================================================*/
-
+#include <stdlib.h>
+#include <math.h>
 #include "helper.h"
 
 long double calculate_angle_modulo(long double angle) {
@@ -30,7 +31,7 @@ double calculate_goal_angle(double pos_x, double pos_y, double pos_yaw, double g
   double gamma_rot = alpha_rot - 2 * M_PI;
 
   // Find shortest rotation required
-  if (alpha_rot < beta_rot & alpha_rot < gamma_rot) {
+  if (alpha_rot < beta_rot && alpha_rot < gamma_rot) {
     rotation = alpha_rot;
   } else if (beta_rot < gamma_rot) {
     rotation = beta_rot;

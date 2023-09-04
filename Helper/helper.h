@@ -6,9 +6,11 @@
 
 /*===========================================================================*/
 
+#ifndef N_SENSORS
 #define N_SENSORS 5     // Number of Ultrasonic Sensors
+#endif
 
-#ifndef M_PI    // Pi, duh!
+#ifndef M_PI        // Pi, duh!
 #define M_PI 3.141592653589793238462643383279502884196      
 #endif
 
@@ -18,6 +20,13 @@
 
 #ifndef M_E     // Exponential, duh!
 #define M_E 2.71828182845904523536
+#endif
+
+#ifndef Sensor
+typedef struct {
+  int direction[5]; /* [degrees] */
+  int distance[5]; /* [cm] */
+} Sensor;
 #endif
 
 long double calculate_angle_modulo(long double angle);

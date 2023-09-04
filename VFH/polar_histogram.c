@@ -91,7 +91,6 @@ void polar_histogram_update(histogram *hist, grid *map)
 
 int * candidate_valley(histogram * smoothed_histogram) {
   /* Selects the candidate valley based on the produced Polar Histogram */
-  // NOTE: THIS IMPLEMENTATION IS NOT VER
   int * candidate_idx = (int *)malloc(smoothed_histogram->sectors * sizeof(int));
   int lst_length = sizeof(candidate_idx) / sizeof(int);
   int idx_counter = 0;

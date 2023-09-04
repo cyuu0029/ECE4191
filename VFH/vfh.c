@@ -7,13 +7,19 @@
 #include <stdlib.h>
 #include <math.h>
 #include "vfh.h"
-#include "..\Helper\helper.h"
 
-double calculate_avoidance_angle(histogram * hist, grid * map, int * candidate_lst, double pos_x, double pos_y, double pos_yaw, double goal_x, double goal_y) {
+double calculate_avoidance_angle(histogram * hist, Robot * robot, int * candidate_lst) {
   /* Retrieves the angle that the robot must drive towards. */
   int s_max = 18;
   int valley_threshold = 3; // NEEDS TO BE ADJUSTED
   int lst_length = sizeof(candidate_lst) / sizeof(int);
+
+  // Retrive useful variables
+  double pos_x = robot->x;
+  double pos_y = robot->y;
+  double pos_yaw = robot-> theta;
+  double goal_x = robot->goal_x;
+  double goal_y = robot->goal_y;
 
   double goal_angle = calculate_goal_angle(pos_x, pos_y, pos_yaw, goal_x, goal_y);
   int goal_sector = round(goal_angle / hist->alpha);

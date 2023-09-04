@@ -6,11 +6,7 @@
 
 /*===========================================================================*/
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-#include <stdint.h>
-
+#ifndef Motor
 typedef struct {
     long double duty_cycle;
     long double int_error;  // integrated error
@@ -24,6 +20,9 @@ typedef struct {
 
 } Motor;
 
+#endif
+
+#ifndef Robot
 typedef struct {
     // Physical measurement
     long double axle_width; // in cm
@@ -52,6 +51,8 @@ typedef struct {
     long double goal_min_dist; // specifies a threshold of minimum distance to goal at which robot will stop
 
 } Robot;
+
+#endif
 
 void *motor_create(Motor * motorola, long double wheel_r_scale, long double K_i, long double K_p);
 

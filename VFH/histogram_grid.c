@@ -1,8 +1,7 @@
 #include <assert.h>
 #include <math.h>
 #include <stdlib.h>
-
-#include "..\VFH\include\vfh.h"
+#include "vfh.h"
 
 // Histogram Grid for VFH implementation
 
@@ -41,7 +40,7 @@ grid * grid_create(int width, int height, int resolution) {
   return map;
 }
 
-int grid_update(grid * map, int pos_x, int pos_y, int yaw, sensor_data data) {
+int grid_update(grid * map, Sensor * sensors, Robot * robot) {
   /*
    * Updates Histogram with detected obstacles.
    * Takes robot positioning and sensor measurements to determine obstacles location.
@@ -53,31 +52,39 @@ int grid_update(grid * map, int pos_x, int pos_y, int yaw, sensor_data data) {
   if (map == NULL) return 0;
   if (map->cells == NULL) return 0;
 
+  // Extract needed variables from structure
+  double pos_x = robot->x;
+  double pos_y = robot->y;
+  double yaw = robot->theta;
+
   // Determine distance of obstacle
   double cell_distance[N_SENSORS];
   for (int i = 0; i < N_SENSORS; ++i) {
-    cell_distance[i] = data.distance[i] / map->resolution;
+    cell_distance[i] = sensors->distance[i] / map->resolution;
   }
 
   // Determine cell location of obstacles
   double cell_location[N_SENSORS];
-  int theta;
+  double theta; 
+  double robot_radians;
 
   for (int i = 0; i < N_SENSORS; ++i){
-    if (yaw + data.direction[i] < 0) {
-      theta = yaw + data.direction[i] + 360;
-    } else if (yaw + data.direction[i] >= 360) {
-      theta = yaw + data.direction[i] - 360;
+    // Convert sensor angle into radians
+    robot_radians = M_PI * sensors->direction[i] / 180;
+    if (yaw + robot_radians < 0) {
+      theta = yaw + robot_radians + M_TWOPI;
+    } else if (yaw + robot_radians >= M_TWOPI) {
+      theta = yaw + robot_radians - M_TWOPI;
     } else {
-      theta = yaw + data.direction[i];
+      theta = yaw + robot_radians;
     }
-
-    int new_x = pos_x/map->resolution + (int) floor(cell_distance[i] * cos(theta * M_PI / 180));
-    int new_y = pos_y/map->resolution + (int) floor(cell_distance[i] * sin(theta * M_PI / 180));
-
+    
+    double new_x = pos_x/map->resolution + floor(cell_distance[i] * cos(theta));
+    double new_y = pos_y/map->resolution + floor(cell_distance[i] * sin(theta));
+    
     // Check if point is within grid to avoid overflow
     if (new_x < map->width && new_y < map->height) {
-      map->cells[new_x * map->width + new_y] += 1;
+      map->cells[(int) new_x * map->width + (int) new_y] += 1;
     } 
   }
 

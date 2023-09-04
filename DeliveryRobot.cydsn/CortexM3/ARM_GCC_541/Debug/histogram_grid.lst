@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQqdygb.s 			page 1
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQ9ZhnQ.s 			page 1
 
 
    1              		.syntax unified
@@ -27,17 +27,16 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQqdygb.s 			page 1
   24              		.type	grid_create, %function
   25              	grid_create:
   26              	.LFB0:
-  27              		.file 1 "..\\..\\..\\..\\Users\\cyu13\\Desktop\\ECE4191\\VFH\\src\\histogram_grid.c"
-   1:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c **** #include <assert.h>
-   2:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c **** #include <math.h>
-   3:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c **** #include <stdlib.h>
-   4:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c **** 
-   5:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c **** #include "..\VFH\include\vfh.h"
-   6:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c **** 
-   7:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c **** // Histogram Grid for VFH implementation
-   8:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c **** 
-   9:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c **** grid * grid_create(int width, int height, int resolution) {
-  28              		.loc 1 9 0
+  27              		.file 1 "..\\VFH\\histogram_grid.c"
+   1:..\VFH/histogram_grid.c **** #include <assert.h>
+   2:..\VFH/histogram_grid.c **** #include <math.h>
+   3:..\VFH/histogram_grid.c **** #include <stdlib.h>
+   4:..\VFH/histogram_grid.c **** #include "vfh.h"
+   5:..\VFH/histogram_grid.c **** 
+   6:..\VFH/histogram_grid.c **** // Histogram Grid for VFH implementation
+   7:..\VFH/histogram_grid.c **** 
+   8:..\VFH/histogram_grid.c **** grid * grid_create(int width, int height, int resolution) {
+  28              		.loc 1 8 0
   29              		.cfi_startproc
   30              		@ args = 0, pretend = 0, frame = 32
   31              		@ frame_needed = 1, uses_anonymous_args = 0
@@ -52,55 +51,55 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQqdygb.s 			page 1
   40 0006 F860     		str	r0, [r7, #12]
   41 0008 B960     		str	r1, [r7, #8]
   42 000a 7A60     		str	r2, [r7, #4]
-  10:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   /* Source code mentions assertions for poorly defined resolution values
-  11:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****    * This assertion shouldn't be necessary given how well defined our environment is
-  12:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   */
-  13:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c **** 
-  14:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   grid * map = malloc(sizeof(grid));  // Allocate memory for grid map
-  43              		.loc 1 14 0
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQqdygb.s 			page 2
-
-
+   9:..\VFH/histogram_grid.c ****   /* Source code mentions assertions for poorly defined resolution values
+  10:..\VFH/histogram_grid.c ****    * This assertion shouldn't be necessary given how well defined our environment is
+  11:..\VFH/histogram_grid.c ****   */
+  12:..\VFH/histogram_grid.c **** 
+  13:..\VFH/histogram_grid.c ****   grid * map = malloc(sizeof(grid));  // Allocate memory for grid map
+  43              		.loc 1 13 0
   44 000c 1020     		movs	r0, #16
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQ9ZhnQ.s 			page 2
+
+
   45 000e FFF7FEFF 		bl	malloc
   46 0012 0346     		mov	r3, r0
   47 0014 7B61     		str	r3, [r7, #20]
-  15:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c **** 
-  16:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   // Return NULL if not enough memory
-  17:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   if (map == NULL) {
-  48              		.loc 1 17 0
+  14:..\VFH/histogram_grid.c **** 
+  15:..\VFH/histogram_grid.c ****   // Return NULL if not enough memory
+  16:..\VFH/histogram_grid.c ****   if (map == NULL) {
+  48              		.loc 1 16 0
   49 0016 7B69     		ldr	r3, [r7, #20]
   50 0018 002B     		cmp	r3, #0
   51 001a 04D1     		bne	.L2
-  18:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****     free(map);
-  52              		.loc 1 18 0
+  17:..\VFH/histogram_grid.c ****     free(map);
+  52              		.loc 1 17 0
   53 001c 7869     		ldr	r0, [r7, #20]
   54 001e FFF7FEFF 		bl	free
-  19:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****     return NULL;
-  55              		.loc 1 19 0
+  18:..\VFH/histogram_grid.c ****     return NULL;
+  55              		.loc 1 18 0
   56 0022 0023     		movs	r3, #0
   57 0024 40E0     		b	.L3
   58              	.L2:
-  20:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   }
-  21:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c **** 
-  22:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   // Define variables
-  23:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   map->width = width;
-  59              		.loc 1 23 0
-  60 0026 FA68     		ldr	r2, [r7, #12]
-  61 0028 7B69     		ldr	r3, [r7, #20]
+  19:..\VFH/histogram_grid.c ****   }
+  20:..\VFH/histogram_grid.c **** 
+  21:..\VFH/histogram_grid.c ****   // Define variables
+  22:..\VFH/histogram_grid.c ****   map->width = width;
+  59              		.loc 1 22 0
+  60 0026 7B69     		ldr	r3, [r7, #20]
+  61 0028 FA68     		ldr	r2, [r7, #12]
   62 002a 1A60     		str	r2, [r3]
-  24:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   map->height = height;
-  63              		.loc 1 24 0
-  64 002c BA68     		ldr	r2, [r7, #8]
-  65 002e 7B69     		ldr	r3, [r7, #20]
+  23:..\VFH/histogram_grid.c ****   map->height = height;
+  63              		.loc 1 23 0
+  64 002c 7B69     		ldr	r3, [r7, #20]
+  65 002e BA68     		ldr	r2, [r7, #8]
   66 0030 5A60     		str	r2, [r3, #4]
-  25:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   map->resolution = resolution;
-  67              		.loc 1 25 0
-  68 0032 7A68     		ldr	r2, [r7, #4]
-  69 0034 7B69     		ldr	r3, [r7, #20]
+  24:..\VFH/histogram_grid.c ****   map->resolution = resolution;
+  67              		.loc 1 24 0
+  68 0032 7B69     		ldr	r3, [r7, #20]
+  69 0034 7A68     		ldr	r2, [r7, #4]
   70 0036 9A60     		str	r2, [r3, #8]
-  26:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   map->cells = malloc(width * height * sizeof(int));
-  71              		.loc 1 26 0
+  25:..\VFH/histogram_grid.c ****   map->cells = malloc(width * height * sizeof(int));
+  71              		.loc 1 25 0
   72 0038 FB68     		ldr	r3, [r7, #12]
   73 003a BA68     		ldr	r2, [r7, #8]
   74 003c 02FB03F3 		mul	r3, r2, r3
@@ -111,47 +110,47 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQqdygb.s 			page 1
   79 004a 1A46     		mov	r2, r3
   80 004c 7B69     		ldr	r3, [r7, #20]
   81 004e DA60     		str	r2, [r3, #12]
-  27:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c **** 
-  28:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   // Return NULL if not enough memory
-  29:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   if (map->cells == NULL) {
-  82              		.loc 1 29 0
+  26:..\VFH/histogram_grid.c **** 
+  27:..\VFH/histogram_grid.c ****   // Return NULL if not enough memory
+  28:..\VFH/histogram_grid.c ****   if (map->cells == NULL) {
+  82              		.loc 1 28 0
   83 0050 7B69     		ldr	r3, [r7, #20]
   84 0052 DB68     		ldr	r3, [r3, #12]
   85 0054 002B     		cmp	r3, #0
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQqdygb.s 			page 3
-
-
   86 0056 06D1     		bne	.L4
-  30:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****     free(map->cells);
-  87              		.loc 1 30 0
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQ9ZhnQ.s 			page 3
+
+
+  29:..\VFH/histogram_grid.c ****     free(map->cells);
+  87              		.loc 1 29 0
   88 0058 7B69     		ldr	r3, [r7, #20]
   89 005a DB68     		ldr	r3, [r3, #12]
   90 005c 1846     		mov	r0, r3
   91 005e FFF7FEFF 		bl	free
-  31:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****     return NULL;
-  92              		.loc 1 31 0
+  30:..\VFH/histogram_grid.c ****     return NULL;
+  92              		.loc 1 30 0
   93 0062 0023     		movs	r3, #0
   94 0064 20E0     		b	.L3
   95              	.L4:
   96              	.LBB2:
-  32:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   }
-  33:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c **** 
-  34:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   // Define all initial grid values to be 0 as there are no obstacles
-  35:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   for (int i = 0; i < width; ++i) {
-  97              		.loc 1 35 0
+  31:..\VFH/histogram_grid.c ****   }
+  32:..\VFH/histogram_grid.c **** 
+  33:..\VFH/histogram_grid.c ****   // Define all initial grid values to be 0 as there are no obstacles
+  34:..\VFH/histogram_grid.c ****   for (int i = 0; i < width; ++i) {
+  97              		.loc 1 34 0
   98 0066 0023     		movs	r3, #0
   99 0068 FB61     		str	r3, [r7, #28]
  100 006a 18E0     		b	.L5
  101              	.L8:
  102              	.LBB3:
-  36:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****     for (int j = 0; j < height; ++j) {
- 103              		.loc 1 36 0
+  35:..\VFH/histogram_grid.c ****     for (int j = 0; j < height; ++j) {
+ 103              		.loc 1 35 0
  104 006c 0023     		movs	r3, #0
  105 006e BB61     		str	r3, [r7, #24]
  106 0070 0EE0     		b	.L6
  107              	.L7:
-  37:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****       map->cells[i * width + j] = 0;    // Map grid is defined as a 1D array
- 108              		.loc 1 37 0 discriminator 3
+  36:..\VFH/histogram_grid.c ****       map->cells[i * width + j] = 0;    // Map grid is defined as a 1D array
+ 108              		.loc 1 36 0 discriminator 3
  109 0072 7B69     		ldr	r3, [r7, #20]
  110 0074 DA68     		ldr	r2, [r3, #12]
  111 0076 FB69     		ldr	r3, [r7, #28]
@@ -163,44 +162,44 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQqdygb.s 			page 1
  117 0084 1344     		add	r3, r3, r2
  118 0086 0022     		movs	r2, #0
  119 0088 1A60     		str	r2, [r3]
-  36:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****     for (int j = 0; j < height; ++j) {
- 120              		.loc 1 36 0 discriminator 3
+  35:..\VFH/histogram_grid.c ****     for (int j = 0; j < height; ++j) {
+ 120              		.loc 1 35 0 discriminator 3
  121 008a BB69     		ldr	r3, [r7, #24]
  122 008c 0133     		adds	r3, r3, #1
  123 008e BB61     		str	r3, [r7, #24]
  124              	.L6:
-  36:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****     for (int j = 0; j < height; ++j) {
- 125              		.loc 1 36 0 is_stmt 0 discriminator 1
+  35:..\VFH/histogram_grid.c ****     for (int j = 0; j < height; ++j) {
+ 125              		.loc 1 35 0 is_stmt 0 discriminator 1
  126 0090 BA69     		ldr	r2, [r7, #24]
  127 0092 BB68     		ldr	r3, [r7, #8]
  128 0094 9A42     		cmp	r2, r3
  129 0096 ECDB     		blt	.L7
  130              	.LBE3:
-  35:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****     for (int j = 0; j < height; ++j) {
- 131              		.loc 1 35 0 is_stmt 1 discriminator 2
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQqdygb.s 			page 4
-
-
+  34:..\VFH/histogram_grid.c ****     for (int j = 0; j < height; ++j) {
+ 131              		.loc 1 34 0 is_stmt 1 discriminator 2
  132 0098 FB69     		ldr	r3, [r7, #28]
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQ9ZhnQ.s 			page 4
+
+
  133 009a 0133     		adds	r3, r3, #1
  134 009c FB61     		str	r3, [r7, #28]
  135              	.L5:
-  35:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****     for (int j = 0; j < height; ++j) {
- 136              		.loc 1 35 0 is_stmt 0 discriminator 1
+  34:..\VFH/histogram_grid.c ****     for (int j = 0; j < height; ++j) {
+ 136              		.loc 1 34 0 is_stmt 0 discriminator 1
  137 009e FA69     		ldr	r2, [r7, #28]
  138 00a0 FB68     		ldr	r3, [r7, #12]
  139 00a2 9A42     		cmp	r2, r3
  140 00a4 E2DB     		blt	.L8
  141              	.LBE2:
-  38:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****     }
-  39:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   }
-  40:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c **** 
-  41:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   return map;
- 142              		.loc 1 41 0 is_stmt 1
+  37:..\VFH/histogram_grid.c ****     }
+  38:..\VFH/histogram_grid.c ****   }
+  39:..\VFH/histogram_grid.c **** 
+  40:..\VFH/histogram_grid.c ****   return map;
+ 142              		.loc 1 40 0 is_stmt 1
  143 00a6 7B69     		ldr	r3, [r7, #20]
  144              	.L3:
-  42:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c **** }
- 145              		.loc 1 42 0
+  41:..\VFH/histogram_grid.c **** }
+ 145              		.loc 1 41 0
  146 00a8 1846     		mov	r0, r3
  147 00aa 2037     		adds	r7, r7, #32
  148              		.cfi_def_cfa_offset 8
@@ -211,1540 +210,1852 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQqdygb.s 			page 1
  153              		.cfi_endproc
  154              	.LFE0:
  155              		.size	grid_create, .-grid_create
- 156              		.global	__aeabi_ui2d
- 157              		.global	__aeabi_i2d
+ 156              		.global	__aeabi_i2d
+ 157              		.global	__aeabi_dmul
  158              		.global	__aeabi_ddiv
- 159              		.global	__aeabi_d2iz
- 160              		.global	__aeabi_dmul
- 161              		.section	.text.grid_update,"ax",%progbits
- 162              		.align	2
- 163              		.global	grid_update
- 164              		.thumb
- 165              		.thumb_func
- 166              		.type	grid_update, %function
- 167              	grid_update:
- 168              	.LFB1:
-  43:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c **** 
-  44:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c **** int grid_update(grid * map, int pos_x, int pos_y, int yaw, sensor_data data) {
- 169              		.loc 1 44 0
- 170              		.cfi_startproc
- 171              		@ args = 40, pretend = 0, frame = 120
- 172              		@ frame_needed = 1, uses_anonymous_args = 0
- 173 0000 F0B5     		push	{r4, r5, r6, r7, lr}
- 174              		.cfi_def_cfa_offset 20
- 175              		.cfi_offset 4, -20
- 176              		.cfi_offset 5, -16
- 177              		.cfi_offset 6, -12
- 178              		.cfi_offset 7, -8
- 179              		.cfi_offset 14, -4
- 180 0002 9FB0     		sub	sp, sp, #124
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQqdygb.s 			page 5
+ 159              		.global	__aeabi_dadd
+ 160              		.global	__aeabi_dcmplt
+ 161              		.global	__aeabi_dcmpge
+ 162              		.global	__aeabi_dsub
+ 163              		.global	__aeabi_dcmpgt
+ 164              		.global	__aeabi_d2iz
+ 165              		.section	.text.grid_update,"ax",%progbits
+ 166              		.align	2
+ 167              		.global	grid_update
+ 168              		.thumb
+ 169              		.thumb_func
+ 170              		.type	grid_update, %function
+ 171              	grid_update:
+ 172              	.LFB1:
+  42:..\VFH/histogram_grid.c **** 
+  43:..\VFH/histogram_grid.c **** int grid_update(grid * map, Sensor * sensors, Robot * robot) {
+ 173              		.loc 1 43 0
+ 174              		.cfi_startproc
+ 175              		@ args = 0, pretend = 0, frame = 184
+ 176              		@ frame_needed = 1, uses_anonymous_args = 0
+ 177 0000 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
+ 178              		.cfi_def_cfa_offset 28
+ 179              		.cfi_offset 4, -28
+ 180              		.cfi_offset 5, -24
+ 181              		.cfi_offset 6, -20
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQ9ZhnQ.s 			page 5
 
 
- 181              		.cfi_def_cfa_offset 144
- 182 0004 00AF     		add	r7, sp, #0
- 183              		.cfi_def_cfa_register 7
- 184 0006 F860     		str	r0, [r7, #12]
- 185 0008 B960     		str	r1, [r7, #8]
- 186 000a 7A60     		str	r2, [r7, #4]
- 187 000c 3B60     		str	r3, [r7]
-  45:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   /*
-  46:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****    * Updates Histogram with detected obstacles.
-  47:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****    * Takes robot positioning and sensor measurements to determine obstacles location.
-  48:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****    *
-  49:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****    * Remember that cos() and sin() expect angles in RADIANS, not DEGREES.
-  50:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   */
-  51:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c **** 
-  52:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   // Check if grid map exists
-  53:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   if (map == NULL) return 0;
- 188              		.loc 1 53 0
- 189 000e FB68     		ldr	r3, [r7, #12]
- 190 0010 002B     		cmp	r3, #0
- 191 0012 01D1     		bne	.L10
- 192              		.loc 1 53 0 is_stmt 0 discriminator 1
- 193 0014 0023     		movs	r3, #0
- 194 0016 0CE1     		b	.L21
- 195              	.L10:
-  54:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   if (map->cells == NULL) return 0;
- 196              		.loc 1 54 0 is_stmt 1
- 197 0018 FB68     		ldr	r3, [r7, #12]
- 198 001a DB68     		ldr	r3, [r3, #12]
- 199 001c 002B     		cmp	r3, #0
- 200 001e 01D1     		bne	.L12
- 201              		.loc 1 54 0 is_stmt 0 discriminator 1
- 202 0020 0023     		movs	r3, #0
- 203 0022 06E1     		b	.L21
- 204              	.L12:
- 205              	.LBB4:
-  55:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c **** 
-  56:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   // Determine distance of obstacle
-  57:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   double cell_distance[N_SENSORS];
-  58:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   for (int i = 0; i < N_SENSORS; ++i) {
- 206              		.loc 1 58 0 is_stmt 1
- 207 0024 0023     		movs	r3, #0
- 208 0026 7B67     		str	r3, [r7, #116]
- 209 0028 1BE0     		b	.L13
- 210              	.L14:
-  59:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****     cell_distance[i] = data.distance[i] / map->resolution;
- 211              		.loc 1 59 0 discriminator 3
- 212 002a 7B6F     		ldr	r3, [r7, #116]
- 213 002c 0433     		adds	r3, r3, #4
- 214 002e 9B00     		lsls	r3, r3, #2
- 215 0030 07F19002 		add	r2, r7, #144
- 216 0034 1344     		add	r3, r3, r2
- 217 0036 5B68     		ldr	r3, [r3, #4]
- 218 0038 1A46     		mov	r2, r3
- 219 003a FB68     		ldr	r3, [r7, #12]
- 220 003c 9B68     		ldr	r3, [r3, #8]
- 221 003e B2FBF3F3 		udiv	r3, r2, r3
- 222 0042 1846     		mov	r0, r3
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQqdygb.s 			page 6
+ 182              		.cfi_offset 7, -16
+ 183              		.cfi_offset 8, -12
+ 184              		.cfi_offset 9, -8
+ 185              		.cfi_offset 14, -4
+ 186 0004 AFB0     		sub	sp, sp, #188
+ 187              		.cfi_def_cfa_offset 216
+ 188 0006 00AF     		add	r7, sp, #0
+ 189              		.cfi_def_cfa_register 7
+ 190 0008 F860     		str	r0, [r7, #12]
+ 191 000a B960     		str	r1, [r7, #8]
+ 192 000c 7A60     		str	r2, [r7, #4]
+  44:..\VFH/histogram_grid.c ****   /*
+  45:..\VFH/histogram_grid.c ****    * Updates Histogram with detected obstacles.
+  46:..\VFH/histogram_grid.c ****    * Takes robot positioning and sensor measurements to determine obstacles location.
+  47:..\VFH/histogram_grid.c ****    *
+  48:..\VFH/histogram_grid.c ****    * Remember that cos() and sin() expect angles in RADIANS, not DEGREES.
+  49:..\VFH/histogram_grid.c ****   */
+  50:..\VFH/histogram_grid.c **** 
+  51:..\VFH/histogram_grid.c ****   // Check if grid map exists
+  52:..\VFH/histogram_grid.c ****   if (map == NULL) return 0;
+ 193              		.loc 1 52 0
+ 194 000e FB68     		ldr	r3, [r7, #12]
+ 195 0010 002B     		cmp	r3, #0
+ 196 0012 01D1     		bne	.L10
+ 197              		.loc 1 52 0 is_stmt 0 discriminator 1
+ 198 0014 0023     		movs	r3, #0
+ 199 0016 9BE1     		b	.L25
+ 200              	.L10:
+  53:..\VFH/histogram_grid.c ****   if (map->cells == NULL) return 0;
+ 201              		.loc 1 53 0 is_stmt 1
+ 202 0018 FB68     		ldr	r3, [r7, #12]
+ 203 001a DB68     		ldr	r3, [r3, #12]
+ 204 001c 002B     		cmp	r3, #0
+ 205 001e 01D1     		bne	.L12
+ 206              		.loc 1 53 0 is_stmt 0 discriminator 1
+ 207 0020 0023     		movs	r3, #0
+ 208 0022 95E1     		b	.L25
+ 209              	.L12:
+  54:..\VFH/histogram_grid.c **** 
+  55:..\VFH/histogram_grid.c ****   // Extract needed variables from structure
+  56:..\VFH/histogram_grid.c ****   double pos_x = robot->x;
+ 210              		.loc 1 56 0 is_stmt 1
+ 211 0024 7B68     		ldr	r3, [r7, #4]
+ 212 0026 03F11004 		add	r4, r3, #16
+ 213 002a D4E90034 		ldrd	r3, [r4]
+ 214 002e C7E92634 		strd	r3, [r7, #152]
+  57:..\VFH/histogram_grid.c ****   double pos_y = robot->y;
+ 215              		.loc 1 57 0
+ 216 0032 7B68     		ldr	r3, [r7, #4]
+ 217 0034 03F11804 		add	r4, r3, #24
+ 218 0038 D4E90034 		ldrd	r3, [r4]
+ 219 003c C7E92434 		strd	r3, [r7, #144]
+  58:..\VFH/histogram_grid.c ****   double yaw = robot->theta;
+ 220              		.loc 1 58 0
+ 221 0040 7B68     		ldr	r3, [r7, #4]
+ 222 0042 03F10804 		add	r4, r3, #8
+ 223 0046 D4E90034 		ldrd	r3, [r4]
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQ9ZhnQ.s 			page 6
 
 
- 223 0044 FFF7FEFF 		bl	__aeabi_ui2d
- 224 0048 0346     		mov	r3, r0
- 225 004a 0C46     		mov	r4, r1
- 226 004c 7A6F     		ldr	r2, [r7, #116]
- 227 004e D200     		lsls	r2, r2, #3
- 228 0050 07F17801 		add	r1, r7, #120
- 229 0054 0A44     		add	r2, r2, r1
- 230 0056 403A     		subs	r2, r2, #64
- 231 0058 C2E90034 		strd	r3, [r2]
-  58:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****     cell_distance[i] = data.distance[i] / map->resolution;
- 232              		.loc 1 58 0 discriminator 3
- 233 005c 7B6F     		ldr	r3, [r7, #116]
- 234 005e 0133     		adds	r3, r3, #1
- 235 0060 7B67     		str	r3, [r7, #116]
- 236              	.L13:
-  58:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****     cell_distance[i] = data.distance[i] / map->resolution;
- 237              		.loc 1 58 0 is_stmt 0 discriminator 1
- 238 0062 7B6F     		ldr	r3, [r7, #116]
- 239 0064 042B     		cmp	r3, #4
- 240 0066 E0DD     		ble	.L14
- 241              	.LBE4:
-  60:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   }
-  61:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c **** 
-  62:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   // Determine cell location of obstacles
-  63:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   double cell_location[N_SENSORS];
-  64:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   int theta;
-  65:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   yaw = 180 * yaw / M_PI;
- 242              		.loc 1 65 0 is_stmt 1
- 243 0068 3B68     		ldr	r3, [r7]
- 244 006a B422     		movs	r2, #180
- 245 006c 02FB03F3 		mul	r3, r2, r3
- 246 0070 1846     		mov	r0, r3
- 247 0072 FFF7FEFF 		bl	__aeabi_i2d
- 248 0076 72A3     		adr	r3, .L22
- 249 0078 D3E90023 		ldrd	r2, [r3]
- 250 007c FFF7FEFF 		bl	__aeabi_ddiv
- 251 0080 0346     		mov	r3, r0
- 252 0082 0C46     		mov	r4, r1
- 253 0084 1846     		mov	r0, r3
- 254 0086 2146     		mov	r1, r4
- 255 0088 FFF7FEFF 		bl	__aeabi_d2iz
- 256 008c 0346     		mov	r3, r0
- 257 008e 3B60     		str	r3, [r7]
- 258              	.LBB5:
-  66:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   for (int i = 0; i < N_SENSORS; ++i){
- 259              		.loc 1 66 0
- 260 0090 0023     		movs	r3, #0
- 261 0092 FB66     		str	r3, [r7, #108]
- 262 0094 C8E0     		b	.L15
- 263              	.L20:
- 264              	.LBB6:
-  67:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****     if (yaw + data.direction[i] < 0) {
- 265              		.loc 1 67 0
- 266 0096 FB6E     		ldr	r3, [r7, #108]
- 267 0098 07F19002 		add	r2, r7, #144
- 268 009c 52F82320 		ldr	r2, [r2, r3, lsl #2]
- 269 00a0 3B68     		ldr	r3, [r7]
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQqdygb.s 			page 7
+ 224 004a C7E92234 		strd	r3, [r7, #136]
+ 225              	.LBB4:
+  59:..\VFH/histogram_grid.c **** 
+  60:..\VFH/histogram_grid.c ****   // Determine distance of obstacle
+  61:..\VFH/histogram_grid.c ****   double cell_distance[N_SENSORS];
+  62:..\VFH/histogram_grid.c ****   for (int i = 0; i < N_SENSORS; ++i) {
+ 226              		.loc 1 62 0
+ 227 004e 0023     		movs	r3, #0
+ 228 0050 C7F8B430 		str	r3, [r7, #180]
+ 229 0054 1DE0     		b	.L13
+ 230              	.L14:
+  63:..\VFH/histogram_grid.c ****     cell_distance[i] = sensors->distance[i] / map->resolution;
+ 231              		.loc 1 63 0 discriminator 3
+ 232 0056 BA68     		ldr	r2, [r7, #8]
+ 233 0058 D7F8B430 		ldr	r3, [r7, #180]
+ 234 005c 0433     		adds	r3, r3, #4
+ 235 005e 9B00     		lsls	r3, r3, #2
+ 236 0060 1344     		add	r3, r3, r2
+ 237 0062 5A68     		ldr	r2, [r3, #4]
+ 238 0064 FB68     		ldr	r3, [r7, #12]
+ 239 0066 9B68     		ldr	r3, [r3, #8]
+ 240 0068 92FBF3F3 		sdiv	r3, r2, r3
+ 241 006c 1846     		mov	r0, r3
+ 242 006e FFF7FEFF 		bl	__aeabi_i2d
+ 243 0072 0346     		mov	r3, r0
+ 244 0074 0C46     		mov	r4, r1
+ 245 0076 D7F8B420 		ldr	r2, [r7, #180]
+ 246 007a D200     		lsls	r2, r2, #3
+ 247 007c 07F1B801 		add	r1, r7, #184
+ 248 0080 0A44     		add	r2, r2, r1
+ 249 0082 803A     		subs	r2, r2, #128
+ 250 0084 C2E90034 		strd	r3, [r2]
+  62:..\VFH/histogram_grid.c ****     cell_distance[i] = sensors->distance[i] / map->resolution;
+ 251              		.loc 1 62 0 discriminator 3
+ 252 0088 D7F8B430 		ldr	r3, [r7, #180]
+ 253 008c 0133     		adds	r3, r3, #1
+ 254 008e C7F8B430 		str	r3, [r7, #180]
+ 255              	.L13:
+  62:..\VFH/histogram_grid.c ****     cell_distance[i] = sensors->distance[i] / map->resolution;
+ 256              		.loc 1 62 0 is_stmt 0 discriminator 1
+ 257 0092 D7F8B430 		ldr	r3, [r7, #180]
+ 258 0096 042B     		cmp	r3, #4
+ 259 0098 DDDD     		ble	.L14
+ 260              	.LBE4:
+ 261              	.LBB5:
+  64:..\VFH/histogram_grid.c ****   }
+  65:..\VFH/histogram_grid.c **** 
+  66:..\VFH/histogram_grid.c ****   // Determine cell location of obstacles
+  67:..\VFH/histogram_grid.c ****   double cell_location[N_SENSORS];
+  68:..\VFH/histogram_grid.c ****   double theta; 
+  69:..\VFH/histogram_grid.c ****   double robot_radians;
+  70:..\VFH/histogram_grid.c **** 
+  71:..\VFH/histogram_grid.c ****   for (int i = 0; i < N_SENSORS; ++i){
+ 262              		.loc 1 71 0 is_stmt 1
+ 263 009a 0023     		movs	r3, #0
+ 264 009c C7F8A430 		str	r3, [r7, #164]
+ 265 00a0 50E1     		b	.L15
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQ9ZhnQ.s 			page 7
 
 
- 270 00a2 1344     		add	r3, r3, r2
- 271 00a4 002B     		cmp	r3, #0
- 272 00a6 0ADA     		bge	.L16
-  68:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****       theta = yaw + data.direction[i] + 360;
- 273              		.loc 1 68 0
- 274 00a8 FB6E     		ldr	r3, [r7, #108]
- 275 00aa 07F19002 		add	r2, r7, #144
- 276 00ae 52F82320 		ldr	r2, [r2, r3, lsl #2]
- 277 00b2 3B68     		ldr	r3, [r7]
- 278 00b4 1344     		add	r3, r3, r2
- 279 00b6 03F5B473 		add	r3, r3, #360
- 280 00ba 3B67     		str	r3, [r7, #112]
- 281 00bc 1CE0     		b	.L17
- 282              	.L16:
-  69:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****     } else if (yaw + data.direction[i] >= 360) {
- 283              		.loc 1 69 0
- 284 00be FB6E     		ldr	r3, [r7, #108]
- 285 00c0 07F19002 		add	r2, r7, #144
- 286 00c4 52F82320 		ldr	r2, [r2, r3, lsl #2]
- 287 00c8 3B68     		ldr	r3, [r7]
- 288 00ca 1344     		add	r3, r3, r2
- 289 00cc B3F5B47F 		cmp	r3, #360
- 290 00d0 0ADB     		blt	.L18
-  70:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****       theta = yaw + data.direction[i] - 360;
- 291              		.loc 1 70 0
- 292 00d2 FB6E     		ldr	r3, [r7, #108]
- 293 00d4 07F19002 		add	r2, r7, #144
- 294 00d8 52F82320 		ldr	r2, [r2, r3, lsl #2]
- 295 00dc 3B68     		ldr	r3, [r7]
- 296 00de 1344     		add	r3, r3, r2
- 297 00e0 A3F5B473 		sub	r3, r3, #360
- 298 00e4 3B67     		str	r3, [r7, #112]
- 299 00e6 07E0     		b	.L17
- 300              	.L18:
-  71:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****     } else {
-  72:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****       theta = yaw + data.direction[i];
- 301              		.loc 1 72 0
- 302 00e8 FB6E     		ldr	r3, [r7, #108]
- 303 00ea 07F19002 		add	r2, r7, #144
- 304 00ee 52F82320 		ldr	r2, [r2, r3, lsl #2]
- 305 00f2 3B68     		ldr	r3, [r7]
- 306 00f4 1344     		add	r3, r3, r2
- 307 00f6 3B67     		str	r3, [r7, #112]
- 308              	.L17:
-  73:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****     }
-  74:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c **** 
-  75:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****     int new_x = pos_x/map->resolution + (int) floor(cell_distance[i] * cos(theta * M_PI / 180));
- 309              		.loc 1 75 0
- 310 00f8 BA68     		ldr	r2, [r7, #8]
- 311 00fa FB68     		ldr	r3, [r7, #12]
- 312 00fc 9B68     		ldr	r3, [r3, #8]
- 313 00fe B2FBF3F6 		udiv	r6, r2, r3
- 314 0102 FB6E     		ldr	r3, [r7, #108]
- 315 0104 DB00     		lsls	r3, r3, #3
- 316 0106 07F17802 		add	r2, r7, #120
- 317 010a 1344     		add	r3, r3, r2
- 318 010c 403B     		subs	r3, r3, #64
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQqdygb.s 			page 8
+ 266              	.L24:
+ 267              	.LBB6:
+  72:..\VFH/histogram_grid.c ****     // Convert sensor angle into radians
+  73:..\VFH/histogram_grid.c ****     robot_radians = M_PI * sensors->direction[i] / 180;
+ 268              		.loc 1 73 0
+ 269 00a2 BB68     		ldr	r3, [r7, #8]
+ 270 00a4 D7F8A420 		ldr	r2, [r7, #164]
+ 271 00a8 53F82230 		ldr	r3, [r3, r2, lsl #2]
+ 272 00ac 1846     		mov	r0, r3
+ 273 00ae FFF7FEFF 		bl	__aeabi_i2d
+ 274 00b2 ABA3     		adr	r3, .L32
+ 275 00b4 D3E90023 		ldrd	r2, [r3]
+ 276 00b8 FFF7FEFF 		bl	__aeabi_dmul
+ 277 00bc 0346     		mov	r3, r0
+ 278 00be 0C46     		mov	r4, r1
+ 279 00c0 1846     		mov	r0, r3
+ 280 00c2 2146     		mov	r1, r4
+ 281 00c4 4FF00002 		mov	r2, #0
+ 282 00c8 A94B     		ldr	r3, .L32+16
+ 283 00ca FFF7FEFF 		bl	__aeabi_ddiv
+ 284 00ce 0346     		mov	r3, r0
+ 285 00d0 0C46     		mov	r4, r1
+ 286 00d2 C7E92034 		strd	r3, [r7, #128]
+  74:..\VFH/histogram_grid.c ****     if (yaw + robot_radians < 0) {
+ 287              		.loc 1 74 0
+ 288 00d6 D7E92023 		ldrd	r2, [r7, #128]
+ 289 00da D7E92201 		ldrd	r0, [r7, #136]
+ 290 00de FFF7FEFF 		bl	__aeabi_dadd
+ 291 00e2 0346     		mov	r3, r0
+ 292 00e4 0C46     		mov	r4, r1
+ 293 00e6 1846     		mov	r0, r3
+ 294 00e8 2146     		mov	r1, r4
+ 295 00ea 4FF00002 		mov	r2, #0
+ 296 00ee 4FF00003 		mov	r3, #0
+ 297 00f2 FFF7FEFF 		bl	__aeabi_dcmplt
+ 298 00f6 0346     		mov	r3, r0
+ 299 00f8 002B     		cmp	r3, #0
+ 300 00fa 13D0     		beq	.L30
+  75:..\VFH/histogram_grid.c ****       theta = yaw + robot_radians + M_TWOPI;
+ 301              		.loc 1 75 0
+ 302 00fc D7E92023 		ldrd	r2, [r7, #128]
+ 303 0100 D7E92201 		ldrd	r0, [r7, #136]
+ 304 0104 FFF7FEFF 		bl	__aeabi_dadd
+ 305 0108 0346     		mov	r3, r0
+ 306 010a 0C46     		mov	r4, r1
+ 307 010c 1846     		mov	r0, r3
+ 308 010e 2146     		mov	r1, r4
+ 309 0110 95A3     		adr	r3, .L32+8
+ 310 0112 D3E90023 		ldrd	r2, [r3]
+ 311 0116 FFF7FEFF 		bl	__aeabi_dadd
+ 312 011a 0346     		mov	r3, r0
+ 313 011c 0C46     		mov	r4, r1
+ 314 011e C7E92A34 		strd	r3, [r7, #168]
+ 315 0122 2FE0     		b	.L18
+ 316              	.L30:
+  76:..\VFH/histogram_grid.c ****     } else if (yaw + robot_radians >= M_TWOPI) {
+ 317              		.loc 1 76 0
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQ9ZhnQ.s 			page 8
 
 
- 319 010e D3E90045 		ldrd	r4, [r3]
- 320 0112 386F     		ldr	r0, [r7, #112]
- 321 0114 FFF7FEFF 		bl	__aeabi_i2d
- 322 0118 49A3     		adr	r3, .L22
- 323 011a D3E90023 		ldrd	r2, [r3]
- 324 011e FFF7FEFF 		bl	__aeabi_dmul
- 325 0122 0246     		mov	r2, r0
- 326 0124 0B46     		mov	r3, r1
- 327 0126 1046     		mov	r0, r2
- 328 0128 1946     		mov	r1, r3
- 329 012a 4FF00002 		mov	r2, #0
- 330 012e 464B     		ldr	r3, .L22+8
- 331 0130 FFF7FEFF 		bl	__aeabi_ddiv
- 332 0134 0246     		mov	r2, r0
- 333 0136 0B46     		mov	r3, r1
- 334 0138 1046     		mov	r0, r2
- 335 013a 1946     		mov	r1, r3
- 336 013c FFF7FEFF 		bl	cos
- 337 0140 0246     		mov	r2, r0
- 338 0142 0B46     		mov	r3, r1
- 339 0144 2046     		mov	r0, r4
- 340 0146 2946     		mov	r1, r5
- 341 0148 FFF7FEFF 		bl	__aeabi_dmul
- 342 014c 0346     		mov	r3, r0
- 343 014e 0C46     		mov	r4, r1
- 344 0150 1846     		mov	r0, r3
- 345 0152 2146     		mov	r1, r4
- 346 0154 FFF7FEFF 		bl	floor
- 347 0158 0346     		mov	r3, r0
- 348 015a 0C46     		mov	r4, r1
- 349 015c 1846     		mov	r0, r3
- 350 015e 2146     		mov	r1, r4
- 351 0160 FFF7FEFF 		bl	__aeabi_d2iz
- 352 0164 0346     		mov	r3, r0
- 353 0166 3344     		add	r3, r3, r6
- 354 0168 BB66     		str	r3, [r7, #104]
-  76:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****     int new_y = pos_y/map->resolution + (int) floor(cell_distance[i] * sin(theta * M_PI / 180));
- 355              		.loc 1 76 0
- 356 016a 7A68     		ldr	r2, [r7, #4]
- 357 016c FB68     		ldr	r3, [r7, #12]
- 358 016e 9B68     		ldr	r3, [r3, #8]
- 359 0170 B2FBF3F6 		udiv	r6, r2, r3
- 360 0174 FB6E     		ldr	r3, [r7, #108]
- 361 0176 DB00     		lsls	r3, r3, #3
- 362 0178 07F17802 		add	r2, r7, #120
- 363 017c 1344     		add	r3, r3, r2
- 364 017e 403B     		subs	r3, r3, #64
- 365 0180 D3E90045 		ldrd	r4, [r3]
- 366 0184 386F     		ldr	r0, [r7, #112]
- 367 0186 FFF7FEFF 		bl	__aeabi_i2d
- 368 018a 2DA3     		adr	r3, .L22
- 369 018c D3E90023 		ldrd	r2, [r3]
- 370 0190 FFF7FEFF 		bl	__aeabi_dmul
- 371 0194 0246     		mov	r2, r0
- 372 0196 0B46     		mov	r3, r1
- 373 0198 1046     		mov	r0, r2
- 374 019a 1946     		mov	r1, r3
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQqdygb.s 			page 9
+ 318 0124 D7E92023 		ldrd	r2, [r7, #128]
+ 319 0128 D7E92201 		ldrd	r0, [r7, #136]
+ 320 012c FFF7FEFF 		bl	__aeabi_dadd
+ 321 0130 0346     		mov	r3, r0
+ 322 0132 0C46     		mov	r4, r1
+ 323 0134 1846     		mov	r0, r3
+ 324 0136 2146     		mov	r1, r4
+ 325 0138 8BA3     		adr	r3, .L32+8
+ 326 013a D3E90023 		ldrd	r2, [r3]
+ 327 013e FFF7FEFF 		bl	__aeabi_dcmpge
+ 328 0142 0346     		mov	r3, r0
+ 329 0144 002B     		cmp	r3, #0
+ 330 0146 13D0     		beq	.L31
+  77:..\VFH/histogram_grid.c ****       theta = yaw + robot_radians - M_TWOPI;
+ 331              		.loc 1 77 0
+ 332 0148 D7E92023 		ldrd	r2, [r7, #128]
+ 333 014c D7E92201 		ldrd	r0, [r7, #136]
+ 334 0150 FFF7FEFF 		bl	__aeabi_dadd
+ 335 0154 0346     		mov	r3, r0
+ 336 0156 0C46     		mov	r4, r1
+ 337 0158 1846     		mov	r0, r3
+ 338 015a 2146     		mov	r1, r4
+ 339 015c 82A3     		adr	r3, .L32+8
+ 340 015e D3E90023 		ldrd	r2, [r3]
+ 341 0162 FFF7FEFF 		bl	__aeabi_dsub
+ 342 0166 0346     		mov	r3, r0
+ 343 0168 0C46     		mov	r4, r1
+ 344 016a C7E92A34 		strd	r3, [r7, #168]
+ 345 016e 09E0     		b	.L18
+ 346              	.L31:
+  78:..\VFH/histogram_grid.c ****     } else {
+  79:..\VFH/histogram_grid.c ****       theta = yaw + robot_radians;
+ 347              		.loc 1 79 0
+ 348 0170 D7E92023 		ldrd	r2, [r7, #128]
+ 349 0174 D7E92201 		ldrd	r0, [r7, #136]
+ 350 0178 FFF7FEFF 		bl	__aeabi_dadd
+ 351 017c 0346     		mov	r3, r0
+ 352 017e 0C46     		mov	r4, r1
+ 353 0180 C7E92A34 		strd	r3, [r7, #168]
+ 354              	.L18:
+  80:..\VFH/histogram_grid.c ****     }
+  81:..\VFH/histogram_grid.c ****     
+  82:..\VFH/histogram_grid.c ****     double cos_theta = cell_distance[i] * cos(theta);
+ 355              		.loc 1 82 0
+ 356 0184 D7F8A430 		ldr	r3, [r7, #164]
+ 357 0188 DB00     		lsls	r3, r3, #3
+ 358 018a 07F1B802 		add	r2, r7, #184
+ 359 018e 1344     		add	r3, r3, r2
+ 360 0190 803B     		subs	r3, r3, #128
+ 361 0192 D3E90045 		ldrd	r4, [r3]
+ 362 0196 D7E92A01 		ldrd	r0, [r7, #168]
+ 363 019a FFF7FEFF 		bl	cos
+ 364 019e 0246     		mov	r2, r0
+ 365 01a0 0B46     		mov	r3, r1
+ 366 01a2 2046     		mov	r0, r4
+ 367 01a4 2946     		mov	r1, r5
+ 368 01a6 FFF7FEFF 		bl	__aeabi_dmul
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQ9ZhnQ.s 			page 9
 
 
- 375 019c 4FF00002 		mov	r2, #0
- 376 01a0 294B     		ldr	r3, .L22+8
- 377 01a2 FFF7FEFF 		bl	__aeabi_ddiv
- 378 01a6 0246     		mov	r2, r0
- 379 01a8 0B46     		mov	r3, r1
- 380 01aa 1046     		mov	r0, r2
- 381 01ac 1946     		mov	r1, r3
- 382 01ae FFF7FEFF 		bl	sin
- 383 01b2 0246     		mov	r2, r0
- 384 01b4 0B46     		mov	r3, r1
- 385 01b6 2046     		mov	r0, r4
- 386 01b8 2946     		mov	r1, r5
- 387 01ba FFF7FEFF 		bl	__aeabi_dmul
- 388 01be 0346     		mov	r3, r0
- 389 01c0 0C46     		mov	r4, r1
- 390 01c2 1846     		mov	r0, r3
- 391 01c4 2146     		mov	r1, r4
- 392 01c6 FFF7FEFF 		bl	floor
- 393 01ca 0346     		mov	r3, r0
- 394 01cc 0C46     		mov	r4, r1
- 395 01ce 1846     		mov	r0, r3
- 396 01d0 2146     		mov	r1, r4
- 397 01d2 FFF7FEFF 		bl	__aeabi_d2iz
- 398 01d6 0346     		mov	r3, r0
- 399 01d8 3344     		add	r3, r3, r6
- 400 01da 7B66     		str	r3, [r7, #100]
-  77:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c **** 
-  78:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****     // Check if point is within grid to avoid overflow
-  79:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****     if (new_x < map->width && new_y < map->height) {
- 401              		.loc 1 79 0
- 402 01dc FB68     		ldr	r3, [r7, #12]
- 403 01de 1A68     		ldr	r2, [r3]
- 404 01e0 BB6E     		ldr	r3, [r7, #104]
- 405 01e2 9A42     		cmp	r2, r3
- 406 01e4 1DD9     		bls	.L19
- 407              		.loc 1 79 0 is_stmt 0 discriminator 1
- 408 01e6 FB68     		ldr	r3, [r7, #12]
- 409 01e8 5A68     		ldr	r2, [r3, #4]
- 410 01ea 7B6E     		ldr	r3, [r7, #100]
- 411 01ec 9A42     		cmp	r2, r3
- 412 01ee 18D9     		bls	.L19
-  80:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****       map->cells[new_x * map->width + new_y] += 1;
- 413              		.loc 1 80 0 is_stmt 1
- 414 01f0 FB68     		ldr	r3, [r7, #12]
- 415 01f2 DA68     		ldr	r2, [r3, #12]
- 416 01f4 FB68     		ldr	r3, [r7, #12]
- 417 01f6 1B68     		ldr	r3, [r3]
- 418 01f8 B96E     		ldr	r1, [r7, #104]
- 419 01fa 01FB03F1 		mul	r1, r1, r3
- 420 01fe 7B6E     		ldr	r3, [r7, #100]
- 421 0200 0B44     		add	r3, r3, r1
- 422 0202 9B00     		lsls	r3, r3, #2
- 423 0204 1344     		add	r3, r3, r2
- 424 0206 FA68     		ldr	r2, [r7, #12]
- 425 0208 D168     		ldr	r1, [r2, #12]
- 426 020a FA68     		ldr	r2, [r7, #12]
- 427 020c 1268     		ldr	r2, [r2]
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQqdygb.s 			page 10
+ 369 01aa 0346     		mov	r3, r0
+ 370 01ac 0C46     		mov	r4, r1
+ 371 01ae C7E91E34 		strd	r3, [r7, #120]
+  83:..\VFH/histogram_grid.c ****     double sin_theta = cell_distance[i] * sin(theta);
+ 372              		.loc 1 83 0
+ 373 01b2 D7F8A430 		ldr	r3, [r7, #164]
+ 374 01b6 DB00     		lsls	r3, r3, #3
+ 375 01b8 07F1B802 		add	r2, r7, #184
+ 376 01bc 1344     		add	r3, r3, r2
+ 377 01be 803B     		subs	r3, r3, #128
+ 378 01c0 D3E90045 		ldrd	r4, [r3]
+ 379 01c4 D7E92A01 		ldrd	r0, [r7, #168]
+ 380 01c8 FFF7FEFF 		bl	sin
+ 381 01cc 0246     		mov	r2, r0
+ 382 01ce 0B46     		mov	r3, r1
+ 383 01d0 2046     		mov	r0, r4
+ 384 01d2 2946     		mov	r1, r5
+ 385 01d4 FFF7FEFF 		bl	__aeabi_dmul
+ 386 01d8 0346     		mov	r3, r0
+ 387 01da 0C46     		mov	r4, r1
+ 388 01dc C7E91C34 		strd	r3, [r7, #112]
+  84:..\VFH/histogram_grid.c ****     double new_x = pos_x/map->resolution + floor(cell_distance[i] * cos(theta));
+ 389              		.loc 1 84 0
+ 390 01e0 FB68     		ldr	r3, [r7, #12]
+ 391 01e2 9B68     		ldr	r3, [r3, #8]
+ 392 01e4 1846     		mov	r0, r3
+ 393 01e6 FFF7FEFF 		bl	__aeabi_i2d
+ 394 01ea 0346     		mov	r3, r0
+ 395 01ec 0C46     		mov	r4, r1
+ 396 01ee 1A46     		mov	r2, r3
+ 397 01f0 2346     		mov	r3, r4
+ 398 01f2 D7E92601 		ldrd	r0, [r7, #152]
+ 399 01f6 FFF7FEFF 		bl	__aeabi_ddiv
+ 400 01fa 0346     		mov	r3, r0
+ 401 01fc 0C46     		mov	r4, r1
+ 402 01fe 9846     		mov	r8, r3
+ 403 0200 A146     		mov	r9, r4
+ 404 0202 D7F8A430 		ldr	r3, [r7, #164]
+ 405 0206 DB00     		lsls	r3, r3, #3
+ 406 0208 07F1B802 		add	r2, r7, #184
+ 407 020c 1344     		add	r3, r3, r2
+ 408 020e 803B     		subs	r3, r3, #128
+ 409 0210 D3E90045 		ldrd	r4, [r3]
+ 410 0214 D7E92A01 		ldrd	r0, [r7, #168]
+ 411 0218 FFF7FEFF 		bl	cos
+ 412 021c 0246     		mov	r2, r0
+ 413 021e 0B46     		mov	r3, r1
+ 414 0220 2046     		mov	r0, r4
+ 415 0222 2946     		mov	r1, r5
+ 416 0224 FFF7FEFF 		bl	__aeabi_dmul
+ 417 0228 0346     		mov	r3, r0
+ 418 022a 0C46     		mov	r4, r1
+ 419 022c 1846     		mov	r0, r3
+ 420 022e 2146     		mov	r1, r4
+ 421 0230 FFF7FEFF 		bl	floor
+ 422 0234 0346     		mov	r3, r0
+ 423 0236 0C46     		mov	r4, r1
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQ9ZhnQ.s 			page 10
 
 
- 428 020e B86E     		ldr	r0, [r7, #104]
- 429 0210 00FB02F0 		mul	r0, r0, r2
- 430 0214 7A6E     		ldr	r2, [r7, #100]
- 431 0216 0244     		add	r2, r2, r0
- 432 0218 9200     		lsls	r2, r2, #2
- 433 021a 0A44     		add	r2, r2, r1
- 434 021c 1268     		ldr	r2, [r2]
- 435 021e 0132     		adds	r2, r2, #1
- 436 0220 1A60     		str	r2, [r3]
- 437              	.L19:
- 438              	.LBE6:
-  66:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****     if (yaw + data.direction[i] < 0) {
- 439              		.loc 1 66 0 discriminator 2
- 440 0222 FB6E     		ldr	r3, [r7, #108]
- 441 0224 0133     		adds	r3, r3, #1
- 442 0226 FB66     		str	r3, [r7, #108]
- 443              	.L15:
-  66:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****     if (yaw + data.direction[i] < 0) {
- 444              		.loc 1 66 0 is_stmt 0 discriminator 1
- 445 0228 FB6E     		ldr	r3, [r7, #108]
- 446 022a 042B     		cmp	r3, #4
- 447 022c 7FF733AF 		ble	.L20
- 448              	.LBE5:
-  81:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****     } 
-  82:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   }
-  83:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c **** 
-  84:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   return 1;
- 449              		.loc 1 84 0 is_stmt 1
- 450 0230 0123     		movs	r3, #1
- 451              	.L21:
-  85:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c **** }
- 452              		.loc 1 85 0 discriminator 1
- 453 0232 1846     		mov	r0, r3
- 454 0234 7C37     		adds	r7, r7, #124
- 455              		.cfi_def_cfa_offset 20
- 456 0236 BD46     		mov	sp, r7
- 457              		.cfi_def_cfa_register 13
- 458              		@ sp needed
- 459 0238 F0BD     		pop	{r4, r5, r6, r7, pc}
- 460              	.L23:
- 461 023a 00BFAFF3 		.align	3
- 461      0080
- 462              	.L22:
- 463 0240 182D4454 		.word	1413754136
- 464 0244 FB210940 		.word	1074340347
- 465 0248 00806640 		.word	1080459264
- 466              		.cfi_endproc
- 467              	.LFE1:
- 468              		.size	grid_update, .-grid_update
- 469              		.section	.text.active_window,"ax",%progbits
- 470              		.align	2
- 471              		.global	active_window
- 472              		.thumb
- 473              		.thumb_func
- 474              		.type	active_window, %function
- 475              	active_window:
- 476              	.LFB2:
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQqdygb.s 			page 11
+ 424 0238 1A46     		mov	r2, r3
+ 425 023a 2346     		mov	r3, r4
+ 426 023c 4046     		mov	r0, r8
+ 427 023e 4946     		mov	r1, r9
+ 428 0240 FFF7FEFF 		bl	__aeabi_dadd
+ 429 0244 0346     		mov	r3, r0
+ 430 0246 0C46     		mov	r4, r1
+ 431 0248 C7E91A34 		strd	r3, [r7, #104]
+  85:..\VFH/histogram_grid.c ****     double new_y = pos_y/map->resolution + floor(cell_distance[i] * sin(theta));
+ 432              		.loc 1 85 0
+ 433 024c FB68     		ldr	r3, [r7, #12]
+ 434 024e 9B68     		ldr	r3, [r3, #8]
+ 435 0250 1846     		mov	r0, r3
+ 436 0252 FFF7FEFF 		bl	__aeabi_i2d
+ 437 0256 0346     		mov	r3, r0
+ 438 0258 0C46     		mov	r4, r1
+ 439 025a 1A46     		mov	r2, r3
+ 440 025c 2346     		mov	r3, r4
+ 441 025e D7E92401 		ldrd	r0, [r7, #144]
+ 442 0262 FFF7FEFF 		bl	__aeabi_ddiv
+ 443 0266 0346     		mov	r3, r0
+ 444 0268 0C46     		mov	r4, r1
+ 445 026a 9846     		mov	r8, r3
+ 446 026c A146     		mov	r9, r4
+ 447 026e D7F8A430 		ldr	r3, [r7, #164]
+ 448 0272 DB00     		lsls	r3, r3, #3
+ 449 0274 07F1B802 		add	r2, r7, #184
+ 450 0278 1344     		add	r3, r3, r2
+ 451 027a 803B     		subs	r3, r3, #128
+ 452 027c D3E90045 		ldrd	r4, [r3]
+ 453 0280 D7E92A01 		ldrd	r0, [r7, #168]
+ 454 0284 FFF7FEFF 		bl	sin
+ 455 0288 0246     		mov	r2, r0
+ 456 028a 0B46     		mov	r3, r1
+ 457 028c 2046     		mov	r0, r4
+ 458 028e 2946     		mov	r1, r5
+ 459 0290 FFF7FEFF 		bl	__aeabi_dmul
+ 460 0294 0346     		mov	r3, r0
+ 461 0296 0C46     		mov	r4, r1
+ 462 0298 1846     		mov	r0, r3
+ 463 029a 2146     		mov	r1, r4
+ 464 029c FFF7FEFF 		bl	floor
+ 465 02a0 0346     		mov	r3, r0
+ 466 02a2 0C46     		mov	r4, r1
+ 467 02a4 1A46     		mov	r2, r3
+ 468 02a6 2346     		mov	r3, r4
+ 469 02a8 4046     		mov	r0, r8
+ 470 02aa 4946     		mov	r1, r9
+ 471 02ac FFF7FEFF 		bl	__aeabi_dadd
+ 472 02b0 0346     		mov	r3, r0
+ 473 02b2 0C46     		mov	r4, r1
+ 474 02b4 C7E91834 		strd	r3, [r7, #96]
+  86:..\VFH/histogram_grid.c ****     
+  87:..\VFH/histogram_grid.c ****     // Check if point is within grid to avoid overflow
+  88:..\VFH/histogram_grid.c ****     if (new_x < map->width && new_y < map->height) {
+ 475              		.loc 1 88 0
+ 476 02b8 FB68     		ldr	r3, [r7, #12]
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQ9ZhnQ.s 			page 11
 
 
-  86:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c **** 
-  87:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c **** /* TODO: Finish implementing get_moving_window. */
-  88:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c **** grid * active_window(grid * map, int curr_x, int curr_y, int dimension) {
- 477              		.loc 1 88 0
- 478              		.cfi_startproc
- 479              		@ args = 0, pretend = 0, frame = 40
- 480              		@ frame_needed = 1, uses_anonymous_args = 0
- 481 0000 80B5     		push	{r7, lr}
- 482              		.cfi_def_cfa_offset 8
- 483              		.cfi_offset 7, -8
- 484              		.cfi_offset 14, -4
- 485 0002 8AB0     		sub	sp, sp, #40
- 486              		.cfi_def_cfa_offset 48
- 487 0004 00AF     		add	r7, sp, #0
- 488              		.cfi_def_cfa_register 7
- 489 0006 F860     		str	r0, [r7, #12]
- 490 0008 B960     		str	r1, [r7, #8]
- 491 000a 7A60     		str	r2, [r7, #4]
- 492 000c 3B60     		str	r3, [r7]
-  89:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   /*
-  90:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****    * Creates an active window surrounding robot.
-  91:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****    *
-  92:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****    * If grid_init returns NULL, exit the function.
-  93:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   */
-  94:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   grid * active = grid_create(dimension, dimension, map->resolution);
- 493              		.loc 1 94 0
- 494 000e FB68     		ldr	r3, [r7, #12]
- 495 0010 9B68     		ldr	r3, [r3, #8]
- 496 0012 1A46     		mov	r2, r3
- 497 0014 3968     		ldr	r1, [r7]
- 498 0016 3868     		ldr	r0, [r7]
- 499 0018 FFF7FEFF 		bl	grid_create
- 500 001c F861     		str	r0, [r7, #28]
-  95:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c **** 
-  96:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   if (active != NULL) {
- 501              		.loc 1 96 0
- 502 001e FB69     		ldr	r3, [r7, #28]
- 503 0020 002B     		cmp	r3, #0
- 504 0022 51D0     		beq	.L25
- 505              	.LBB7:
-  97:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c **** 
-  98:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****     /* Populate active window with existing values in grid map 
-  99:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****      * Original author suggests using pointers to point directly to grid map values.
- 100:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****      * This can be done but whether or not it is necessary is up for debate.
- 101:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****     
- 102:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****     */
- 103:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****     for (int i = 0; i < dimension; ++i) {
- 506              		.loc 1 103 0
- 507 0024 0023     		movs	r3, #0
- 508 0026 7B62     		str	r3, [r7, #36]
- 509 0028 49E0     		b	.L26
- 510              	.L30:
- 511              	.LBB8:
- 104:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****       for (int j = 0; j < dimension; ++j) {
- 512              		.loc 1 104 0
- 513 002a 0023     		movs	r3, #0
- 514 002c 3B62     		str	r3, [r7, #32]
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQqdygb.s 			page 12
+ 477 02ba 1B68     		ldr	r3, [r3]
+ 478 02bc 1846     		mov	r0, r3
+ 479 02be FFF7FEFF 		bl	__aeabi_i2d
+ 480 02c2 D7E91A23 		ldrd	r2, [r7, #104]
+ 481 02c6 FFF7FEFF 		bl	__aeabi_dcmpgt
+ 482 02ca 0346     		mov	r3, r0
+ 483 02cc 002B     		cmp	r3, #0
+ 484 02ce 34D0     		beq	.L21
+ 485              		.loc 1 88 0 is_stmt 0 discriminator 1
+ 486 02d0 FB68     		ldr	r3, [r7, #12]
+ 487 02d2 5B68     		ldr	r3, [r3, #4]
+ 488 02d4 1846     		mov	r0, r3
+ 489 02d6 FFF7FEFF 		bl	__aeabi_i2d
+ 490 02da D7E91823 		ldrd	r2, [r7, #96]
+ 491 02de FFF7FEFF 		bl	__aeabi_dcmpgt
+ 492 02e2 0346     		mov	r3, r0
+ 493 02e4 002B     		cmp	r3, #0
+ 494 02e6 28D0     		beq	.L21
+  89:..\VFH/histogram_grid.c ****       map->cells[(int) new_x * map->width + (int) new_y] += 1;
+ 495              		.loc 1 89 0 is_stmt 1
+ 496 02e8 FB68     		ldr	r3, [r7, #12]
+ 497 02ea DC68     		ldr	r4, [r3, #12]
+ 498 02ec D7E91A01 		ldrd	r0, [r7, #104]
+ 499 02f0 FFF7FEFF 		bl	__aeabi_d2iz
+ 500 02f4 0246     		mov	r2, r0
+ 501 02f6 FB68     		ldr	r3, [r7, #12]
+ 502 02f8 1B68     		ldr	r3, [r3]
+ 503 02fa 03FB02F5 		mul	r5, r3, r2
+ 504 02fe D7E91801 		ldrd	r0, [r7, #96]
+ 505 0302 FFF7FEFF 		bl	__aeabi_d2iz
+ 506 0306 0346     		mov	r3, r0
+ 507 0308 2B44     		add	r3, r3, r5
+ 508 030a 9B00     		lsls	r3, r3, #2
+ 509 030c 1C44     		add	r4, r4, r3
+ 510 030e FB68     		ldr	r3, [r7, #12]
+ 511 0310 DD68     		ldr	r5, [r3, #12]
+ 512 0312 D7E91A01 		ldrd	r0, [r7, #104]
+ 513 0316 FFF7FEFF 		bl	__aeabi_d2iz
+ 514 031a 0246     		mov	r2, r0
+ 515 031c FB68     		ldr	r3, [r7, #12]
+ 516 031e 1B68     		ldr	r3, [r3]
+ 517 0320 03FB02F6 		mul	r6, r3, r2
+ 518 0324 D7E91801 		ldrd	r0, [r7, #96]
+ 519 0328 FFF7FEFF 		bl	__aeabi_d2iz
+ 520 032c 0346     		mov	r3, r0
+ 521 032e 3344     		add	r3, r3, r6
+ 522 0330 9B00     		lsls	r3, r3, #2
+ 523 0332 2B44     		add	r3, r3, r5
+ 524 0334 1B68     		ldr	r3, [r3]
+ 525 0336 0133     		adds	r3, r3, #1
+ 526 0338 2360     		str	r3, [r4]
+ 527              	.L21:
+ 528              	.LBE6:
+  71:..\VFH/histogram_grid.c ****     // Convert sensor angle into radians
+ 529              		.loc 1 71 0 discriminator 2
+ 530 033a D7F8A430 		ldr	r3, [r7, #164]
+ 531 033e 0133     		adds	r3, r3, #1
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQ9ZhnQ.s 			page 12
 
 
- 515 002e 3FE0     		b	.L27
- 516              	.L29:
- 517              	.LBB9:
- 105:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c **** 
- 106:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****         /* x and y are the center coordinates of the robot body with sensors. */
- 107:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****         int grid_i = i + curr_x/map->resolution + (dimension - 1) / 2;
- 518              		.loc 1 107 0
- 519 0030 BA68     		ldr	r2, [r7, #8]
- 520 0032 FB68     		ldr	r3, [r7, #12]
- 521 0034 9B68     		ldr	r3, [r3, #8]
- 522 0036 B2FBF3F2 		udiv	r2, r2, r3
- 523 003a 7B6A     		ldr	r3, [r7, #36]
- 524 003c 1A44     		add	r2, r2, r3
- 525 003e 3B68     		ldr	r3, [r7]
- 526 0040 013B     		subs	r3, r3, #1
- 527 0042 D90F     		lsrs	r1, r3, #31
- 528 0044 0B44     		add	r3, r3, r1
- 529 0046 5B10     		asrs	r3, r3, #1
- 530 0048 1344     		add	r3, r3, r2
- 531 004a BB61     		str	r3, [r7, #24]
- 108:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****         int grid_j = j + curr_y/map->resolution + (dimension - 1) / 2;
- 532              		.loc 1 108 0
- 533 004c 7A68     		ldr	r2, [r7, #4]
- 534 004e FB68     		ldr	r3, [r7, #12]
- 535 0050 9B68     		ldr	r3, [r3, #8]
- 536 0052 B2FBF3F2 		udiv	r2, r2, r3
- 537 0056 3B6A     		ldr	r3, [r7, #32]
- 538 0058 1A44     		add	r2, r2, r3
- 539 005a 3B68     		ldr	r3, [r7]
- 540 005c 013B     		subs	r3, r3, #1
- 541 005e D90F     		lsrs	r1, r3, #31
- 542 0060 0B44     		add	r3, r3, r1
- 543 0062 5B10     		asrs	r3, r3, #1
- 544 0064 1344     		add	r3, r3, r2
- 545 0066 7B61     		str	r3, [r7, #20]
- 109:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c **** 
- 110:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****         /* Copy the information from the grid to the moving window. */
- 111:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****         if (grid_i < map->width && grid_j < map->height) {
- 546              		.loc 1 111 0
- 547 0068 FB68     		ldr	r3, [r7, #12]
- 548 006a 1A68     		ldr	r2, [r3]
- 549 006c BB69     		ldr	r3, [r7, #24]
- 550 006e 9A42     		cmp	r2, r3
- 551 0070 1BD9     		bls	.L28
- 552              		.loc 1 111 0 is_stmt 0 discriminator 1
- 553 0072 FB68     		ldr	r3, [r7, #12]
- 554 0074 5A68     		ldr	r2, [r3, #4]
- 555 0076 7B69     		ldr	r3, [r7, #20]
- 556 0078 9A42     		cmp	r2, r3
- 557 007a 16D9     		bls	.L28
- 112:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****           active->cells[i * dimension + j] = map->cells[grid_i * map->width + grid_j];
- 558              		.loc 1 112 0 is_stmt 1
- 559 007c FB69     		ldr	r3, [r7, #28]
- 560 007e DA68     		ldr	r2, [r3, #12]
- 561 0080 7B6A     		ldr	r3, [r7, #36]
- 562 0082 3968     		ldr	r1, [r7]
- 563 0084 01FB03F1 		mul	r1, r1, r3
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQqdygb.s 			page 13
+ 532 0340 C7F8A430 		str	r3, [r7, #164]
+ 533              	.L15:
+  71:..\VFH/histogram_grid.c ****     // Convert sensor angle into radians
+ 534              		.loc 1 71 0 is_stmt 0 discriminator 1
+ 535 0344 D7F8A430 		ldr	r3, [r7, #164]
+ 536 0348 042B     		cmp	r3, #4
+ 537 034a 7FF7AAAE 		ble	.L24
+ 538              	.LBE5:
+  90:..\VFH/histogram_grid.c ****     } 
+  91:..\VFH/histogram_grid.c ****   }
+  92:..\VFH/histogram_grid.c **** 
+  93:..\VFH/histogram_grid.c ****   return 1;
+ 539              		.loc 1 93 0 is_stmt 1
+ 540 034e 0123     		movs	r3, #1
+ 541              	.L25:
+  94:..\VFH/histogram_grid.c **** }
+ 542              		.loc 1 94 0 discriminator 1
+ 543 0350 1846     		mov	r0, r3
+ 544 0352 BC37     		adds	r7, r7, #188
+ 545              		.cfi_def_cfa_offset 28
+ 546 0354 BD46     		mov	sp, r7
+ 547              		.cfi_def_cfa_register 13
+ 548              		@ sp needed
+ 549 0356 BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 550              	.L33:
+ 551 035a 00BFAFF3 		.align	3
+ 551      0080
+ 552              	.L32:
+ 553 0360 182D4454 		.word	1413754136
+ 554 0364 FB210940 		.word	1074340347
+ 555 0368 182D4454 		.word	1413754136
+ 556 036c FB211940 		.word	1075388923
+ 557 0370 00806640 		.word	1080459264
+ 558              		.cfi_endproc
+ 559              	.LFE1:
+ 560              		.size	grid_update, .-grid_update
+ 561              		.section	.text.active_window,"ax",%progbits
+ 562              		.align	2
+ 563              		.global	active_window
+ 564              		.thumb
+ 565              		.thumb_func
+ 566              		.type	active_window, %function
+ 567              	active_window:
+ 568              	.LFB2:
+  95:..\VFH/histogram_grid.c **** 
+  96:..\VFH/histogram_grid.c **** /* TODO: Finish implementing get_moving_window. */
+  97:..\VFH/histogram_grid.c **** grid * active_window(grid * map, int curr_x, int curr_y, int dimension) {
+ 569              		.loc 1 97 0
+ 570              		.cfi_startproc
+ 571              		@ args = 0, pretend = 0, frame = 40
+ 572              		@ frame_needed = 1, uses_anonymous_args = 0
+ 573 0000 80B5     		push	{r7, lr}
+ 574              		.cfi_def_cfa_offset 8
+ 575              		.cfi_offset 7, -8
+ 576              		.cfi_offset 14, -4
+ 577 0002 8AB0     		sub	sp, sp, #40
+ 578              		.cfi_def_cfa_offset 48
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQ9ZhnQ.s 			page 13
 
 
- 564 0088 3B6A     		ldr	r3, [r7, #32]
- 565 008a 0B44     		add	r3, r3, r1
- 566 008c 9B00     		lsls	r3, r3, #2
- 567 008e 1344     		add	r3, r3, r2
- 568 0090 FA68     		ldr	r2, [r7, #12]
- 569 0092 D168     		ldr	r1, [r2, #12]
- 570 0094 FA68     		ldr	r2, [r7, #12]
- 571 0096 1268     		ldr	r2, [r2]
- 572 0098 B869     		ldr	r0, [r7, #24]
- 573 009a 00FB02F0 		mul	r0, r0, r2
- 574 009e 7A69     		ldr	r2, [r7, #20]
- 575 00a0 0244     		add	r2, r2, r0
- 576 00a2 9200     		lsls	r2, r2, #2
- 577 00a4 0A44     		add	r2, r2, r1
- 578 00a6 1268     		ldr	r2, [r2]
- 579 00a8 1A60     		str	r2, [r3]
- 580              	.L28:
- 581              	.LBE9:
- 104:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c **** 
- 582              		.loc 1 104 0 discriminator 2
- 583 00aa 3B6A     		ldr	r3, [r7, #32]
- 584 00ac 0133     		adds	r3, r3, #1
- 585 00ae 3B62     		str	r3, [r7, #32]
- 586              	.L27:
- 104:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c **** 
- 587              		.loc 1 104 0 is_stmt 0 discriminator 1
- 588 00b0 3A6A     		ldr	r2, [r7, #32]
- 589 00b2 3B68     		ldr	r3, [r7]
- 590 00b4 9A42     		cmp	r2, r3
- 591 00b6 BBDB     		blt	.L29
- 592              	.LBE8:
- 103:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****       for (int j = 0; j < dimension; ++j) {
- 593              		.loc 1 103 0 is_stmt 1 discriminator 2
- 594 00b8 7B6A     		ldr	r3, [r7, #36]
- 595 00ba 0133     		adds	r3, r3, #1
- 596 00bc 7B62     		str	r3, [r7, #36]
- 597              	.L26:
- 103:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****       for (int j = 0; j < dimension; ++j) {
- 598              		.loc 1 103 0 is_stmt 0 discriminator 1
- 599 00be 7A6A     		ldr	r2, [r7, #36]
- 600 00c0 3B68     		ldr	r3, [r7]
- 601 00c2 9A42     		cmp	r2, r3
- 602 00c4 B1DB     		blt	.L30
- 603 00c6 04E0     		b	.L33
- 604              	.L25:
- 605              	.LBE7:
- 113:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****         }
- 114:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****       }
- 115:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****     }
- 116:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   } else {
- 117:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****     free(active);
- 606              		.loc 1 117 0 is_stmt 1
- 607 00c8 F869     		ldr	r0, [r7, #28]
- 608 00ca FFF7FEFF 		bl	free
- 118:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****     return NULL;
- 609              		.loc 1 118 0
- 610 00ce 0023     		movs	r3, #0
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQqdygb.s 			page 14
+ 579 0004 00AF     		add	r7, sp, #0
+ 580              		.cfi_def_cfa_register 7
+ 581 0006 F860     		str	r0, [r7, #12]
+ 582 0008 B960     		str	r1, [r7, #8]
+ 583 000a 7A60     		str	r2, [r7, #4]
+ 584 000c 3B60     		str	r3, [r7]
+  98:..\VFH/histogram_grid.c ****   /*
+  99:..\VFH/histogram_grid.c ****    * Creates an active window surrounding robot.
+ 100:..\VFH/histogram_grid.c ****    *
+ 101:..\VFH/histogram_grid.c ****    * If grid_init returns NULL, exit the function.
+ 102:..\VFH/histogram_grid.c ****   */
+ 103:..\VFH/histogram_grid.c ****   grid * active = grid_create(dimension, dimension, map->resolution);
+ 585              		.loc 1 103 0
+ 586 000e FB68     		ldr	r3, [r7, #12]
+ 587 0010 9B68     		ldr	r3, [r3, #8]
+ 588 0012 1A46     		mov	r2, r3
+ 589 0014 3968     		ldr	r1, [r7]
+ 590 0016 3868     		ldr	r0, [r7]
+ 591 0018 FFF7FEFF 		bl	grid_create
+ 592 001c F861     		str	r0, [r7, #28]
+ 104:..\VFH/histogram_grid.c **** 
+ 105:..\VFH/histogram_grid.c ****   if (active != NULL) {
+ 593              		.loc 1 105 0
+ 594 001e FB69     		ldr	r3, [r7, #28]
+ 595 0020 002B     		cmp	r3, #0
+ 596 0022 51D0     		beq	.L35
+ 597              	.LBB7:
+ 106:..\VFH/histogram_grid.c **** 
+ 107:..\VFH/histogram_grid.c ****     /* Populate active window with existing values in grid map 
+ 108:..\VFH/histogram_grid.c ****      * Original author suggests using pointers to point directly to grid map values.
+ 109:..\VFH/histogram_grid.c ****      * This can be done but whether or not it is necessary is up for debate.
+ 110:..\VFH/histogram_grid.c ****     
+ 111:..\VFH/histogram_grid.c ****     */
+ 112:..\VFH/histogram_grid.c ****     for (int i = 0; i < dimension; ++i) {
+ 598              		.loc 1 112 0
+ 599 0024 0023     		movs	r3, #0
+ 600 0026 7B62     		str	r3, [r7, #36]
+ 601 0028 49E0     		b	.L36
+ 602              	.L40:
+ 603              	.LBB8:
+ 113:..\VFH/histogram_grid.c ****       for (int j = 0; j < dimension; ++j) {
+ 604              		.loc 1 113 0
+ 605 002a 0023     		movs	r3, #0
+ 606 002c 3B62     		str	r3, [r7, #32]
+ 607 002e 3FE0     		b	.L37
+ 608              	.L39:
+ 609              	.LBB9:
+ 114:..\VFH/histogram_grid.c **** 
+ 115:..\VFH/histogram_grid.c ****         /* x and y are the center coordinates of the robot body with sensors. */
+ 116:..\VFH/histogram_grid.c ****         int grid_i = i + curr_x/map->resolution + (dimension - 1) / 2;
+ 610              		.loc 1 116 0
+ 611 0030 FB68     		ldr	r3, [r7, #12]
+ 612 0032 9B68     		ldr	r3, [r3, #8]
+ 613 0034 BA68     		ldr	r2, [r7, #8]
+ 614 0036 92FBF3F2 		sdiv	r2, r2, r3
+ 615 003a 7B6A     		ldr	r3, [r7, #36]
+ 616 003c 1A44     		add	r2, r2, r3
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQ9ZhnQ.s 			page 14
 
 
- 611 00d0 00E0     		b	.L32
- 612              	.L33:
- 119:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   }
- 120:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c **** 
- 121:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c ****   return active;
- 613              		.loc 1 121 0
- 614 00d2 FB69     		ldr	r3, [r7, #28]
- 615              	.L32:
- 122:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/histogram_grid.c **** }
- 616              		.loc 1 122 0
- 617 00d4 1846     		mov	r0, r3
- 618 00d6 2837     		adds	r7, r7, #40
- 619              		.cfi_def_cfa_offset 8
- 620 00d8 BD46     		mov	sp, r7
- 621              		.cfi_def_cfa_register 13
- 622              		@ sp needed
- 623 00da 80BD     		pop	{r7, pc}
- 624              		.cfi_endproc
- 625              	.LFE2:
- 626              		.size	active_window, .-active_window
- 627              		.text
- 628              	.Letext0:
- 629              		.file 2 "./..\\VFH\\include\\vfh.h"
- 630              		.section	.debug_info,"",%progbits
- 631              	.Ldebug_info0:
- 632 0000 39030000 		.4byte	0x339
- 633 0004 0400     		.2byte	0x4
- 634 0006 00000000 		.4byte	.Ldebug_abbrev0
- 635 000a 04       		.byte	0x4
- 636 000b 01       		.uleb128 0x1
- 637 000c 0A000000 		.4byte	.LASF38
- 638 0010 0C       		.byte	0xc
- 639 0011 BA010000 		.4byte	.LASF39
- 640 0015 42010000 		.4byte	.LASF40
- 641 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 642 001d 00000000 		.4byte	0
- 643 0021 00000000 		.4byte	.Ldebug_line0
- 644 0025 02       		.uleb128 0x2
- 645 0026 04       		.byte	0x4
- 646 0027 05       		.byte	0x5
- 647 0028 696E7400 		.ascii	"int\000"
- 648 002c 03       		.uleb128 0x3
- 649 002d 04       		.byte	0x4
- 650 002e 07       		.byte	0x7
- 651 002f 8D010000 		.4byte	.LASF0
- 652 0033 03       		.uleb128 0x3
- 653 0034 08       		.byte	0x8
- 654 0035 05       		.byte	0x5
- 655 0036 01020000 		.4byte	.LASF1
- 656 003a 03       		.uleb128 0x3
- 657 003b 08       		.byte	0x8
- 658 003c 04       		.byte	0x4
- 659 003d 49020000 		.4byte	.LASF2
- 660 0041 03       		.uleb128 0x3
- 661 0042 01       		.byte	0x1
- 662 0043 06       		.byte	0x6
- 663 0044 55020000 		.4byte	.LASF3
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQqdygb.s 			page 15
+ 617 003e 3B68     		ldr	r3, [r7]
+ 618 0040 013B     		subs	r3, r3, #1
+ 619 0042 D90F     		lsrs	r1, r3, #31
+ 620 0044 0B44     		add	r3, r3, r1
+ 621 0046 5B10     		asrs	r3, r3, #1
+ 622 0048 1344     		add	r3, r3, r2
+ 623 004a BB61     		str	r3, [r7, #24]
+ 117:..\VFH/histogram_grid.c ****         int grid_j = j + curr_y/map->resolution + (dimension - 1) / 2;
+ 624              		.loc 1 117 0
+ 625 004c FB68     		ldr	r3, [r7, #12]
+ 626 004e 9B68     		ldr	r3, [r3, #8]
+ 627 0050 7A68     		ldr	r2, [r7, #4]
+ 628 0052 92FBF3F2 		sdiv	r2, r2, r3
+ 629 0056 3B6A     		ldr	r3, [r7, #32]
+ 630 0058 1A44     		add	r2, r2, r3
+ 631 005a 3B68     		ldr	r3, [r7]
+ 632 005c 013B     		subs	r3, r3, #1
+ 633 005e D90F     		lsrs	r1, r3, #31
+ 634 0060 0B44     		add	r3, r3, r1
+ 635 0062 5B10     		asrs	r3, r3, #1
+ 636 0064 1344     		add	r3, r3, r2
+ 637 0066 7B61     		str	r3, [r7, #20]
+ 118:..\VFH/histogram_grid.c **** 
+ 119:..\VFH/histogram_grid.c ****         /* Copy the information from the grid to the moving window. */
+ 120:..\VFH/histogram_grid.c ****         if (grid_i < map->width && grid_j < map->height) {
+ 638              		.loc 1 120 0
+ 639 0068 FB68     		ldr	r3, [r7, #12]
+ 640 006a 1A68     		ldr	r2, [r3]
+ 641 006c BB69     		ldr	r3, [r7, #24]
+ 642 006e 9A42     		cmp	r2, r3
+ 643 0070 1BDD     		ble	.L38
+ 644              		.loc 1 120 0 is_stmt 0 discriminator 1
+ 645 0072 FB68     		ldr	r3, [r7, #12]
+ 646 0074 5A68     		ldr	r2, [r3, #4]
+ 647 0076 7B69     		ldr	r3, [r7, #20]
+ 648 0078 9A42     		cmp	r2, r3
+ 649 007a 16DD     		ble	.L38
+ 121:..\VFH/histogram_grid.c ****           active->cells[i * dimension + j] = map->cells[grid_i * map->width + grid_j];
+ 650              		.loc 1 121 0 is_stmt 1
+ 651 007c FB69     		ldr	r3, [r7, #28]
+ 652 007e DA68     		ldr	r2, [r3, #12]
+ 653 0080 7B6A     		ldr	r3, [r7, #36]
+ 654 0082 3968     		ldr	r1, [r7]
+ 655 0084 01FB03F1 		mul	r1, r1, r3
+ 656 0088 3B6A     		ldr	r3, [r7, #32]
+ 657 008a 0B44     		add	r3, r3, r1
+ 658 008c 9B00     		lsls	r3, r3, #2
+ 659 008e 1344     		add	r3, r3, r2
+ 660 0090 FA68     		ldr	r2, [r7, #12]
+ 661 0092 D168     		ldr	r1, [r2, #12]
+ 662 0094 FA68     		ldr	r2, [r7, #12]
+ 663 0096 1268     		ldr	r2, [r2]
+ 664 0098 B869     		ldr	r0, [r7, #24]
+ 665 009a 00FB02F0 		mul	r0, r0, r2
+ 666 009e 7A69     		ldr	r2, [r7, #20]
+ 667 00a0 0244     		add	r2, r2, r0
+ 668 00a2 9200     		lsls	r2, r2, #2
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQ9ZhnQ.s 			page 15
 
 
- 664 0048 03       		.uleb128 0x3
- 665 0049 01       		.byte	0x1
- 666 004a 08       		.byte	0x8
- 667 004b D5000000 		.4byte	.LASF4
- 668 004f 03       		.uleb128 0x3
- 669 0050 02       		.byte	0x2
- 670 0051 05       		.byte	0x5
- 671 0052 38010000 		.4byte	.LASF5
- 672 0056 03       		.uleb128 0x3
- 673 0057 02       		.byte	0x2
- 674 0058 07       		.byte	0x7
- 675 0059 F5000000 		.4byte	.LASF6
- 676 005d 03       		.uleb128 0x3
- 677 005e 04       		.byte	0x4
- 678 005f 05       		.byte	0x5
- 679 0060 40020000 		.4byte	.LASF7
- 680 0064 03       		.uleb128 0x3
- 681 0065 04       		.byte	0x4
- 682 0066 07       		.byte	0x7
- 683 0067 E3000000 		.4byte	.LASF8
- 684 006b 03       		.uleb128 0x3
- 685 006c 08       		.byte	0x8
- 686 006d 07       		.byte	0x7
- 687 006e 9A010000 		.4byte	.LASF9
- 688 0072 03       		.uleb128 0x3
- 689 0073 04       		.byte	0x4
- 690 0074 07       		.byte	0x7
- 691 0075 B1010000 		.4byte	.LASF10
- 692 0079 03       		.uleb128 0x3
- 693 007a 01       		.byte	0x1
- 694 007b 08       		.byte	0x8
- 695 007c 1D020000 		.4byte	.LASF11
- 696 0080 03       		.uleb128 0x3
- 697 0081 08       		.byte	0x8
- 698 0082 04       		.byte	0x4
- 699 0083 2B010000 		.4byte	.LASF12
- 700 0087 03       		.uleb128 0x3
- 701 0088 04       		.byte	0x4
- 702 0089 04       		.byte	0x4
- 703 008a CA000000 		.4byte	.LASF13
- 704 008e 04       		.uleb128 0x4
- 705 008f 10       		.byte	0x10
- 706 0090 02       		.byte	0x2
- 707 0091 16       		.byte	0x16
- 708 0092 C7000000 		.4byte	0xc7
- 709 0096 05       		.uleb128 0x5
- 710 0097 29020000 		.4byte	.LASF14
- 711 009b 02       		.byte	0x2
- 712 009c 17       		.byte	0x17
- 713 009d 2C000000 		.4byte	0x2c
- 714 00a1 00       		.byte	0
- 715 00a2 05       		.uleb128 0x5
- 716 00a3 16010000 		.4byte	.LASF15
- 717 00a7 02       		.byte	0x2
- 718 00a8 18       		.byte	0x18
- 719 00a9 2C000000 		.4byte	0x2c
- 720 00ad 04       		.byte	0x4
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQqdygb.s 			page 16
+ 669 00a4 0A44     		add	r2, r2, r1
+ 670 00a6 1268     		ldr	r2, [r2]
+ 671 00a8 1A60     		str	r2, [r3]
+ 672              	.L38:
+ 673              	.LBE9:
+ 113:..\VFH/histogram_grid.c **** 
+ 674              		.loc 1 113 0 discriminator 2
+ 675 00aa 3B6A     		ldr	r3, [r7, #32]
+ 676 00ac 0133     		adds	r3, r3, #1
+ 677 00ae 3B62     		str	r3, [r7, #32]
+ 678              	.L37:
+ 113:..\VFH/histogram_grid.c **** 
+ 679              		.loc 1 113 0 is_stmt 0 discriminator 1
+ 680 00b0 3A6A     		ldr	r2, [r7, #32]
+ 681 00b2 3B68     		ldr	r3, [r7]
+ 682 00b4 9A42     		cmp	r2, r3
+ 683 00b6 BBDB     		blt	.L39
+ 684              	.LBE8:
+ 112:..\VFH/histogram_grid.c ****       for (int j = 0; j < dimension; ++j) {
+ 685              		.loc 1 112 0 is_stmt 1 discriminator 2
+ 686 00b8 7B6A     		ldr	r3, [r7, #36]
+ 687 00ba 0133     		adds	r3, r3, #1
+ 688 00bc 7B62     		str	r3, [r7, #36]
+ 689              	.L36:
+ 112:..\VFH/histogram_grid.c ****       for (int j = 0; j < dimension; ++j) {
+ 690              		.loc 1 112 0 is_stmt 0 discriminator 1
+ 691 00be 7A6A     		ldr	r2, [r7, #36]
+ 692 00c0 3B68     		ldr	r3, [r7]
+ 693 00c2 9A42     		cmp	r2, r3
+ 694 00c4 B1DB     		blt	.L40
+ 695 00c6 04E0     		b	.L43
+ 696              	.L35:
+ 697              	.LBE7:
+ 122:..\VFH/histogram_grid.c ****         }
+ 123:..\VFH/histogram_grid.c ****       }
+ 124:..\VFH/histogram_grid.c ****     }
+ 125:..\VFH/histogram_grid.c ****   } else {
+ 126:..\VFH/histogram_grid.c ****     free(active);
+ 698              		.loc 1 126 0 is_stmt 1
+ 699 00c8 F869     		ldr	r0, [r7, #28]
+ 700 00ca FFF7FEFF 		bl	free
+ 127:..\VFH/histogram_grid.c ****     return NULL;
+ 701              		.loc 1 127 0
+ 702 00ce 0023     		movs	r3, #0
+ 703 00d0 00E0     		b	.L42
+ 704              	.L43:
+ 128:..\VFH/histogram_grid.c ****   }
+ 129:..\VFH/histogram_grid.c **** 
+ 130:..\VFH/histogram_grid.c ****   return active;
+ 705              		.loc 1 130 0
+ 706 00d2 FB69     		ldr	r3, [r7, #28]
+ 707              	.L42:
+ 131:..\VFH/histogram_grid.c **** }
+ 708              		.loc 1 131 0
+ 709 00d4 1846     		mov	r0, r3
+ 710 00d6 2837     		adds	r7, r7, #40
+ 711              		.cfi_def_cfa_offset 8
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQ9ZhnQ.s 			page 16
 
 
- 721 00ae 05       		.uleb128 0x5
- 722 00af 61020000 		.4byte	.LASF16
- 723 00b3 02       		.byte	0x2
- 724 00b4 19       		.byte	0x19
- 725 00b5 2C000000 		.4byte	0x2c
- 726 00b9 08       		.byte	0x8
- 727 00ba 05       		.uleb128 0x5
- 728 00bb 2F020000 		.4byte	.LASF17
- 729 00bf 02       		.byte	0x2
- 730 00c0 1A       		.byte	0x1a
- 731 00c1 C7000000 		.4byte	0xc7
- 732 00c5 0C       		.byte	0xc
- 733 00c6 00       		.byte	0
- 734 00c7 06       		.uleb128 0x6
- 735 00c8 04       		.byte	0x4
- 736 00c9 2C000000 		.4byte	0x2c
- 737 00cd 07       		.uleb128 0x7
- 738 00ce 3B020000 		.4byte	.LASF20
- 739 00d2 02       		.byte	0x2
- 740 00d3 1B       		.byte	0x1b
- 741 00d4 8E000000 		.4byte	0x8e
- 742 00d8 04       		.uleb128 0x4
- 743 00d9 28       		.byte	0x28
- 744 00da 02       		.byte	0x2
- 745 00db 22       		.byte	0x22
- 746 00dc F9000000 		.4byte	0xf9
- 747 00e0 05       		.uleb128 0x5
- 748 00e1 B7000000 		.4byte	.LASF18
- 749 00e5 02       		.byte	0x2
- 750 00e6 23       		.byte	0x23
- 751 00e7 F9000000 		.4byte	0xf9
- 752 00eb 00       		.byte	0
- 753 00ec 05       		.uleb128 0x5
- 754 00ed C1000000 		.4byte	.LASF19
- 755 00f1 02       		.byte	0x2
- 756 00f2 24       		.byte	0x24
- 757 00f3 F9000000 		.4byte	0xf9
- 758 00f7 14       		.byte	0x14
- 759 00f8 00       		.byte	0
- 760 00f9 08       		.uleb128 0x8
- 761 00fa 25000000 		.4byte	0x25
- 762 00fe 09010000 		.4byte	0x109
- 763 0102 09       		.uleb128 0x9
- 764 0103 72000000 		.4byte	0x72
- 765 0107 04       		.byte	0x4
- 766 0108 00       		.byte	0
- 767 0109 07       		.uleb128 0x7
- 768 010a 81010000 		.4byte	.LASF21
- 769 010e 02       		.byte	0x2
- 770 010f 25       		.byte	0x25
- 771 0110 D8000000 		.4byte	0xd8
- 772 0114 0A       		.uleb128 0xa
- 773 0115 98000000 		.4byte	.LASF22
- 774 0119 01       		.byte	0x1
- 775 011a 09       		.byte	0x9
- 776 011b 92010000 		.4byte	0x192
- 777 011f 00000000 		.4byte	.LFB0
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQqdygb.s 			page 17
+ 712 00d8 BD46     		mov	sp, r7
+ 713              		.cfi_def_cfa_register 13
+ 714              		@ sp needed
+ 715 00da 80BD     		pop	{r7, pc}
+ 716              		.cfi_endproc
+ 717              	.LFE2:
+ 718              		.size	active_window, .-active_window
+ 719              		.text
+ 720              	.Letext0:
+ 721              		.file 2 "..\\VFH\\..\\Helper\\helper.h"
+ 722              		.file 3 "..\\VFH\\..\\Robot\\robot.h"
+ 723              		.file 4 "..\\VFH\\vfh.h"
+ 724              		.section	.debug_info,"",%progbits
+ 725              	.Ldebug_info0:
+ 726 0000 35040000 		.4byte	0x435
+ 727 0004 0400     		.2byte	0x4
+ 728 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 729 000a 04       		.byte	0x4
+ 730 000b 01       		.uleb128 0x1
+ 731 000c 2B000000 		.4byte	.LASF50
+ 732 0010 0C       		.byte	0xc
+ 733 0011 98020000 		.4byte	.LASF51
+ 734 0015 25010000 		.4byte	.LASF52
+ 735 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 736 001d 00000000 		.4byte	0
+ 737 0021 00000000 		.4byte	.Ldebug_line0
+ 738 0025 02       		.uleb128 0x2
+ 739 0026 04       		.byte	0x4
+ 740 0027 05       		.byte	0x5
+ 741 0028 696E7400 		.ascii	"int\000"
+ 742 002c 03       		.uleb128 0x3
+ 743 002d 04       		.byte	0x4
+ 744 002e 07       		.byte	0x7
+ 745 002f 8D010000 		.4byte	.LASF0
+ 746 0033 03       		.uleb128 0x3
+ 747 0034 08       		.byte	0x8
+ 748 0035 05       		.byte	0x5
+ 749 0036 DE000000 		.4byte	.LASF1
+ 750 003a 03       		.uleb128 0x3
+ 751 003b 08       		.byte	0x8
+ 752 003c 04       		.byte	0x4
+ 753 003d F9010000 		.4byte	.LASF2
+ 754 0041 03       		.uleb128 0x3
+ 755 0042 01       		.byte	0x1
+ 756 0043 06       		.byte	0x6
+ 757 0044 EC000000 		.4byte	.LASF3
+ 758 0048 03       		.uleb128 0x3
+ 759 0049 01       		.byte	0x1
+ 760 004a 08       		.byte	0x8
+ 761 004b 3B020000 		.4byte	.LASF4
+ 762 004f 03       		.uleb128 0x3
+ 763 0050 02       		.byte	0x2
+ 764 0051 05       		.byte	0x5
+ 765 0052 57020000 		.4byte	.LASF5
+ 766 0056 03       		.uleb128 0x3
+ 767 0057 02       		.byte	0x2
+ 768 0058 07       		.byte	0x7
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQ9ZhnQ.s 			page 17
 
 
- 778 0123 B0000000 		.4byte	.LFE0-.LFB0
- 779 0127 01       		.uleb128 0x1
- 780 0128 9C       		.byte	0x9c
- 781 0129 92010000 		.4byte	0x192
- 782 012d 0B       		.uleb128 0xb
- 783 012e 29020000 		.4byte	.LASF14
- 784 0132 01       		.byte	0x1
- 785 0133 09       		.byte	0x9
- 786 0134 25000000 		.4byte	0x25
- 787 0138 02       		.uleb128 0x2
- 788 0139 91       		.byte	0x91
- 789 013a 64       		.sleb128 -28
- 790 013b 0B       		.uleb128 0xb
- 791 013c 16010000 		.4byte	.LASF15
- 792 0140 01       		.byte	0x1
- 793 0141 09       		.byte	0x9
- 794 0142 25000000 		.4byte	0x25
- 795 0146 02       		.uleb128 0x2
- 796 0147 91       		.byte	0x91
- 797 0148 60       		.sleb128 -32
- 798 0149 0B       		.uleb128 0xb
- 799 014a 61020000 		.4byte	.LASF16
- 800 014e 01       		.byte	0x1
- 801 014f 09       		.byte	0x9
- 802 0150 25000000 		.4byte	0x25
- 803 0154 02       		.uleb128 0x2
- 804 0155 91       		.byte	0x91
- 805 0156 5C       		.sleb128 -36
- 806 0157 0C       		.uleb128 0xc
- 807 0158 6D617000 		.ascii	"map\000"
- 808 015c 01       		.byte	0x1
- 809 015d 0E       		.byte	0xe
- 810 015e 92010000 		.4byte	0x192
- 811 0162 02       		.uleb128 0x2
- 812 0163 91       		.byte	0x91
- 813 0164 6C       		.sleb128 -20
- 814 0165 0D       		.uleb128 0xd
- 815 0166 66000000 		.4byte	.LBB2
- 816 016a 40000000 		.4byte	.LBE2-.LBB2
- 817 016e 0C       		.uleb128 0xc
- 818 016f 6900     		.ascii	"i\000"
- 819 0171 01       		.byte	0x1
- 820 0172 23       		.byte	0x23
- 821 0173 25000000 		.4byte	0x25
- 822 0177 02       		.uleb128 0x2
- 823 0178 91       		.byte	0x91
- 824 0179 74       		.sleb128 -12
- 825 017a 0D       		.uleb128 0xd
- 826 017b 6C000000 		.4byte	.LBB3
- 827 017f 2C000000 		.4byte	.LBE3-.LBB3
- 828 0183 0C       		.uleb128 0xc
- 829 0184 6A00     		.ascii	"j\000"
- 830 0186 01       		.byte	0x1
- 831 0187 24       		.byte	0x24
- 832 0188 25000000 		.4byte	0x25
- 833 018c 02       		.uleb128 0x2
- 834 018d 91       		.byte	0x91
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQqdygb.s 			page 18
+ 769 0059 B2010000 		.4byte	.LASF6
+ 770 005d 03       		.uleb128 0x3
+ 771 005e 04       		.byte	0x4
+ 772 005f 05       		.byte	0x5
+ 773 0060 15010000 		.4byte	.LASF7
+ 774 0064 03       		.uleb128 0x3
+ 775 0065 04       		.byte	0x4
+ 776 0066 07       		.byte	0x7
+ 777 0067 9A010000 		.4byte	.LASF8
+ 778 006b 03       		.uleb128 0x3
+ 779 006c 08       		.byte	0x8
+ 780 006d 07       		.byte	0x7
+ 781 006e B9000000 		.4byte	.LASF9
+ 782 0072 03       		.uleb128 0x3
+ 783 0073 04       		.byte	0x4
+ 784 0074 07       		.byte	0x7
+ 785 0075 F0010000 		.4byte	.LASF10
+ 786 0079 03       		.uleb128 0x3
+ 787 007a 01       		.byte	0x1
+ 788 007b 08       		.byte	0x8
+ 789 007c 85020000 		.4byte	.LASF11
+ 790 0080 03       		.uleb128 0x3
+ 791 0081 08       		.byte	0x8
+ 792 0082 04       		.byte	0x4
+ 793 0083 1E010000 		.4byte	.LASF12
+ 794 0087 03       		.uleb128 0x3
+ 795 0088 04       		.byte	0x4
+ 796 0089 04       		.byte	0x4
+ 797 008a 20020000 		.4byte	.LASF13
+ 798 008e 04       		.uleb128 0x4
+ 799 008f 28       		.byte	0x28
+ 800 0090 02       		.byte	0x2
+ 801 0091 1A       		.byte	0x1a
+ 802 0092 AF000000 		.4byte	0xaf
+ 803 0096 05       		.uleb128 0x5
+ 804 0097 21000000 		.4byte	.LASF14
+ 805 009b 02       		.byte	0x2
+ 806 009c 1B       		.byte	0x1b
+ 807 009d AF000000 		.4byte	0xaf
+ 808 00a1 00       		.byte	0
+ 809 00a2 05       		.uleb128 0x5
+ 810 00a3 B0020000 		.4byte	.LASF15
+ 811 00a7 02       		.byte	0x2
+ 812 00a8 1C       		.byte	0x1c
+ 813 00a9 AF000000 		.4byte	0xaf
+ 814 00ad 14       		.byte	0x14
+ 815 00ae 00       		.byte	0
+ 816 00af 06       		.uleb128 0x6
+ 817 00b0 25000000 		.4byte	0x25
+ 818 00b4 BF000000 		.4byte	0xbf
+ 819 00b8 07       		.uleb128 0x7
+ 820 00b9 72000000 		.4byte	0x72
+ 821 00bd 04       		.byte	0x4
+ 822 00be 00       		.byte	0
+ 823 00bf 08       		.uleb128 0x8
+ 824 00c0 E9010000 		.4byte	.LASF24
+ 825 00c4 02       		.byte	0x2
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQ9ZhnQ.s 			page 18
 
 
- 835 018e 70       		.sleb128 -16
- 836 018f 00       		.byte	0
- 837 0190 00       		.byte	0
- 838 0191 00       		.byte	0
- 839 0192 06       		.uleb128 0x6
- 840 0193 04       		.byte	0x4
- 841 0194 CD000000 		.4byte	0xcd
- 842 0198 0A       		.uleb128 0xa
- 843 0199 73020000 		.4byte	.LASF23
- 844 019d 01       		.byte	0x1
- 845 019e 2C       		.byte	0x2c
- 846 019f 25000000 		.4byte	0x25
- 847 01a3 00000000 		.4byte	.LFB1
- 848 01a7 4C020000 		.4byte	.LFE1-.LFB1
- 849 01ab 01       		.uleb128 0x1
- 850 01ac 9C       		.byte	0x9c
- 851 01ad 7E020000 		.4byte	0x27e
- 852 01b1 0E       		.uleb128 0xe
- 853 01b2 6D617000 		.ascii	"map\000"
- 854 01b6 01       		.byte	0x1
- 855 01b7 2C       		.byte	0x2c
- 856 01b8 92010000 		.4byte	0x192
- 857 01bc 03       		.uleb128 0x3
- 858 01bd 91       		.byte	0x91
- 859 01be FC7E     		.sleb128 -132
- 860 01c0 0B       		.uleb128 0xb
- 861 01c1 FB010000 		.4byte	.LASF24
- 862 01c5 01       		.byte	0x1
- 863 01c6 2C       		.byte	0x2c
- 864 01c7 25000000 		.4byte	0x25
- 865 01cb 03       		.uleb128 0x3
- 866 01cc 91       		.byte	0x91
- 867 01cd F87E     		.sleb128 -136
- 868 01cf 0B       		.uleb128 0xb
- 869 01d0 B1000000 		.4byte	.LASF25
- 870 01d4 01       		.byte	0x1
- 871 01d5 2C       		.byte	0x2c
- 872 01d6 25000000 		.4byte	0x25
- 873 01da 03       		.uleb128 0x3
- 874 01db 91       		.byte	0x91
- 875 01dc F47E     		.sleb128 -140
- 876 01de 0E       		.uleb128 0xe
- 877 01df 79617700 		.ascii	"yaw\000"
- 878 01e3 01       		.byte	0x1
- 879 01e4 2C       		.byte	0x2c
- 880 01e5 25000000 		.4byte	0x25
- 881 01e9 03       		.uleb128 0x3
- 882 01ea 91       		.byte	0x91
- 883 01eb F07E     		.sleb128 -144
- 884 01ed 0B       		.uleb128 0xb
- 885 01ee D0000000 		.4byte	.LASF26
- 886 01f2 01       		.byte	0x1
- 887 01f3 2C       		.byte	0x2c
- 888 01f4 09010000 		.4byte	0x109
- 889 01f8 02       		.uleb128 0x2
- 890 01f9 91       		.byte	0x91
- 891 01fa 00       		.sleb128 0
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQqdygb.s 			page 19
+ 826 00c5 1D       		.byte	0x1d
+ 827 00c6 8E000000 		.4byte	0x8e
+ 828 00ca 04       		.uleb128 0x4
+ 829 00cb 70       		.byte	0x70
+ 830 00cc 03       		.byte	0x3
+ 831 00cd 1A       		.byte	0x1a
+ 832 00ce 71010000 		.4byte	0x171
+ 833 00d2 05       		.uleb128 0x5
+ 834 00d3 61020000 		.4byte	.LASF16
+ 835 00d7 03       		.byte	0x3
+ 836 00d8 1C       		.byte	0x1c
+ 837 00d9 3A000000 		.4byte	0x3a
+ 838 00dd 00       		.byte	0
+ 839 00de 05       		.uleb128 0x5
+ 840 00df C5010000 		.4byte	.LASF17
+ 841 00e3 03       		.byte	0x3
+ 842 00e4 1F       		.byte	0x1f
+ 843 00e5 3A000000 		.4byte	0x3a
+ 844 00e9 08       		.byte	0x8
+ 845 00ea 09       		.uleb128 0x9
+ 846 00eb 7800     		.ascii	"x\000"
+ 847 00ed 03       		.byte	0x3
+ 848 00ee 20       		.byte	0x20
+ 849 00ef 3A000000 		.4byte	0x3a
+ 850 00f3 10       		.byte	0x10
+ 851 00f4 09       		.uleb128 0x9
+ 852 00f5 7900     		.ascii	"y\000"
+ 853 00f7 03       		.byte	0x3
+ 854 00f8 21       		.byte	0x21
+ 855 00f9 3A000000 		.4byte	0x3a
+ 856 00fd 18       		.byte	0x18
+ 857 00fe 09       		.uleb128 0x9
+ 858 00ff 7600     		.ascii	"v\000"
+ 859 0101 03       		.byte	0x3
+ 860 0102 24       		.byte	0x24
+ 861 0103 3A000000 		.4byte	0x3a
+ 862 0107 20       		.byte	0x20
+ 863 0108 09       		.uleb128 0x9
+ 864 0109 7700     		.ascii	"w\000"
+ 865 010b 03       		.byte	0x3
+ 866 010c 25       		.byte	0x25
+ 867 010d 3A000000 		.4byte	0x3a
+ 868 0111 28       		.byte	0x28
+ 869 0112 05       		.uleb128 0x5
+ 870 0113 DF010000 		.4byte	.LASF18
+ 871 0117 03       		.byte	0x3
+ 872 0118 28       		.byte	0x28
+ 873 0119 3A000000 		.4byte	0x3a
+ 874 011d 30       		.byte	0x30
+ 875 011e 05       		.uleb128 0x5
+ 876 011f B9020000 		.4byte	.LASF19
+ 877 0123 03       		.byte	0x3
+ 878 0124 29       		.byte	0x29
+ 879 0125 3A000000 		.4byte	0x3a
+ 880 0129 38       		.byte	0x38
+ 881 012a 09       		.uleb128 0x9
+ 882 012b 4B6900   		.ascii	"Ki\000"
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQ9ZhnQ.s 			page 19
 
 
- 892 01fb 0F       		.uleb128 0xf
- 893 01fc 08010000 		.4byte	.LASF27
- 894 0200 01       		.byte	0x1
- 895 0201 39       		.byte	0x39
- 896 0202 7E020000 		.4byte	0x27e
- 897 0206 03       		.uleb128 0x3
- 898 0207 91       		.byte	0x91
- 899 0208 A87F     		.sleb128 -88
- 900 020a 0F       		.uleb128 0xf
- 901 020b 0F020000 		.4byte	.LASF28
- 902 020f 01       		.byte	0x1
- 903 0210 3F       		.byte	0x3f
- 904 0211 7E020000 		.4byte	0x27e
- 905 0215 03       		.uleb128 0x3
- 906 0216 91       		.byte	0x91
- 907 0217 807F     		.sleb128 -128
- 908 0219 0F       		.uleb128 0xf
- 909 021a AB000000 		.4byte	.LASF29
- 910 021e 01       		.byte	0x1
- 911 021f 40       		.byte	0x40
- 912 0220 25000000 		.4byte	0x25
- 913 0224 02       		.uleb128 0x2
- 914 0225 91       		.byte	0x91
- 915 0226 60       		.sleb128 -32
- 916 0227 10       		.uleb128 0x10
- 917 0228 24000000 		.4byte	.LBB4
- 918 022c 44000000 		.4byte	.LBE4-.LBB4
- 919 0230 41020000 		.4byte	0x241
- 920 0234 0C       		.uleb128 0xc
- 921 0235 6900     		.ascii	"i\000"
- 922 0237 01       		.byte	0x1
- 923 0238 3A       		.byte	0x3a
- 924 0239 25000000 		.4byte	0x25
- 925 023d 02       		.uleb128 0x2
- 926 023e 91       		.byte	0x91
- 927 023f 64       		.sleb128 -28
- 928 0240 00       		.byte	0
- 929 0241 0D       		.uleb128 0xd
- 930 0242 90000000 		.4byte	.LBB5
- 931 0246 A0010000 		.4byte	.LBE5-.LBB5
- 932 024a 0C       		.uleb128 0xc
- 933 024b 6900     		.ascii	"i\000"
- 934 024d 01       		.byte	0x1
- 935 024e 42       		.byte	0x42
- 936 024f 25000000 		.4byte	0x25
- 937 0253 02       		.uleb128 0x2
- 938 0254 91       		.byte	0x91
- 939 0255 5C       		.sleb128 -36
- 940 0256 0D       		.uleb128 0xd
- 941 0257 96000000 		.4byte	.LBB6
- 942 025b 8C010000 		.4byte	.LBE6-.LBB6
- 943 025f 0F       		.uleb128 0xf
- 944 0260 32010000 		.4byte	.LASF30
- 945 0264 01       		.byte	0x1
- 946 0265 4B       		.byte	0x4b
- 947 0266 25000000 		.4byte	0x25
- 948 026a 02       		.uleb128 0x2
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQqdygb.s 			page 20
+ 883 012e 03       		.byte	0x3
+ 884 012f 2C       		.byte	0x2c
+ 885 0130 3A000000 		.4byte	0x3a
+ 886 0134 40       		.byte	0x40
+ 887 0135 09       		.uleb128 0x9
+ 888 0136 4B7000   		.ascii	"Kp\000"
+ 889 0139 03       		.byte	0x3
+ 890 013a 2D       		.byte	0x2d
+ 891 013b 3A000000 		.4byte	0x3a
+ 892 013f 48       		.byte	0x48
+ 893 0140 05       		.uleb128 0x5
+ 894 0141 F8000000 		.4byte	.LASF20
+ 895 0145 03       		.byte	0x3
+ 896 0146 2E       		.byte	0x2e
+ 897 0147 3A000000 		.4byte	0x3a
+ 898 014b 50       		.byte	0x50
+ 899 014c 05       		.uleb128 0x5
+ 900 014d 2D020000 		.4byte	.LASF21
+ 901 0151 03       		.byte	0x3
+ 902 0152 31       		.byte	0x31
+ 903 0153 3A000000 		.4byte	0x3a
+ 904 0157 58       		.byte	0x58
+ 905 0158 05       		.uleb128 0x5
+ 906 0159 34020000 		.4byte	.LASF22
+ 907 015d 03       		.byte	0x3
+ 908 015e 32       		.byte	0x32
+ 909 015f 3A000000 		.4byte	0x3a
+ 910 0163 60       		.byte	0x60
+ 911 0164 05       		.uleb128 0x5
+ 912 0165 CB010000 		.4byte	.LASF23
+ 913 0169 03       		.byte	0x3
+ 914 016a 33       		.byte	0x33
+ 915 016b 3A000000 		.4byte	0x3a
+ 916 016f 68       		.byte	0x68
+ 917 0170 00       		.byte	0
+ 918 0171 08       		.uleb128 0x8
+ 919 0172 D5020000 		.4byte	.LASF25
+ 920 0176 03       		.byte	0x3
+ 921 0177 35       		.byte	0x35
+ 922 0178 CA000000 		.4byte	0xca
+ 923 017c 04       		.uleb128 0x4
+ 924 017d 10       		.byte	0x10
+ 925 017e 04       		.byte	0x4
+ 926 017f 13       		.byte	0x13
+ 927 0180 B5010000 		.4byte	0x1b5
+ 928 0184 05       		.uleb128 0x5
+ 929 0185 AC010000 		.4byte	.LASF26
+ 930 0189 04       		.byte	0x4
+ 931 018a 14       		.byte	0x14
+ 932 018b 25000000 		.4byte	0x25
+ 933 018f 00       		.byte	0
+ 934 0190 05       		.uleb128 0x5
+ 935 0191 E5020000 		.4byte	.LASF27
+ 936 0195 04       		.byte	0x4
+ 937 0196 15       		.byte	0x15
+ 938 0197 25000000 		.4byte	0x25
+ 939 019b 04       		.byte	0x4
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQ9ZhnQ.s 			page 20
 
 
- 949 026b 91       		.byte	0x91
- 950 026c 58       		.sleb128 -40
- 951 026d 0F       		.uleb128 0xf
- 952 026e 35020000 		.4byte	.LASF31
- 953 0272 01       		.byte	0x1
- 954 0273 4C       		.byte	0x4c
- 955 0274 25000000 		.4byte	0x25
- 956 0278 02       		.uleb128 0x2
- 957 0279 91       		.byte	0x91
- 958 027a 54       		.sleb128 -44
- 959 027b 00       		.byte	0
- 960 027c 00       		.byte	0
- 961 027d 00       		.byte	0
- 962 027e 08       		.uleb128 0x8
- 963 027f 80000000 		.4byte	0x80
- 964 0283 8E020000 		.4byte	0x28e
- 965 0287 09       		.uleb128 0x9
- 966 0288 72000000 		.4byte	0x72
- 967 028c 04       		.byte	0x4
- 968 028d 00       		.byte	0
- 969 028e 11       		.uleb128 0x11
- 970 028f 73010000 		.4byte	.LASF41
- 971 0293 01       		.byte	0x1
- 972 0294 58       		.byte	0x58
- 973 0295 92010000 		.4byte	0x192
- 974 0299 00000000 		.4byte	.LFB2
- 975 029d DC000000 		.4byte	.LFE2-.LFB2
- 976 02a1 01       		.uleb128 0x1
- 977 02a2 9C       		.byte	0x9c
- 978 02a3 0E       		.uleb128 0xe
- 979 02a4 6D617000 		.ascii	"map\000"
- 980 02a8 01       		.byte	0x1
- 981 02a9 58       		.byte	0x58
- 982 02aa 92010000 		.4byte	0x192
- 983 02ae 02       		.uleb128 0x2
- 984 02af 91       		.byte	0x91
- 985 02b0 5C       		.sleb128 -36
- 986 02b1 0B       		.uleb128 0xb
- 987 02b2 22020000 		.4byte	.LASF32
- 988 02b6 01       		.byte	0x1
- 989 02b7 58       		.byte	0x58
- 990 02b8 25000000 		.4byte	0x25
- 991 02bc 02       		.uleb128 0x2
- 992 02bd 91       		.byte	0x91
- 993 02be 58       		.sleb128 -40
- 994 02bf 0B       		.uleb128 0xb
- 995 02c0 6C020000 		.4byte	.LASF33
- 996 02c4 01       		.byte	0x1
- 997 02c5 58       		.byte	0x58
- 998 02c6 25000000 		.4byte	0x25
- 999 02ca 02       		.uleb128 0x2
- 1000 02cb 91       		.byte	0x91
- 1001 02cc 54       		.sleb128 -44
- 1002 02cd 0B       		.uleb128 0xb
- 1003 02ce 00000000 		.4byte	.LASF34
- 1004 02d2 01       		.byte	0x1
- 1005 02d3 58       		.byte	0x58
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQqdygb.s 			page 21
+ 940 019c 05       		.uleb128 0x5
+ 941 019d 72020000 		.4byte	.LASF28
+ 942 01a1 04       		.byte	0x4
+ 943 01a2 16       		.byte	0x16
+ 944 01a3 25000000 		.4byte	0x25
+ 945 01a7 08       		.byte	0x8
+ 946 01a8 05       		.uleb128 0x5
+ 947 01a9 D9010000 		.4byte	.LASF29
+ 948 01ad 04       		.byte	0x4
+ 949 01ae 17       		.byte	0x17
+ 950 01af B5010000 		.4byte	0x1b5
+ 951 01b3 0C       		.byte	0xc
+ 952 01b4 00       		.byte	0
+ 953 01b5 0A       		.uleb128 0xa
+ 954 01b6 04       		.byte	0x4
+ 955 01b7 25000000 		.4byte	0x25
+ 956 01bb 08       		.uleb128 0x8
+ 957 01bc 0F020000 		.4byte	.LASF30
+ 958 01c0 04       		.byte	0x4
+ 959 01c1 18       		.byte	0x18
+ 960 01c2 7C010000 		.4byte	0x17c
+ 961 01c6 0B       		.uleb128 0xb
+ 962 01c7 02010000 		.4byte	.LASF31
+ 963 01cb 01       		.byte	0x1
+ 964 01cc 08       		.byte	0x8
+ 965 01cd 44020000 		.4byte	0x244
+ 966 01d1 00000000 		.4byte	.LFB0
+ 967 01d5 B0000000 		.4byte	.LFE0-.LFB0
+ 968 01d9 01       		.uleb128 0x1
+ 969 01da 9C       		.byte	0x9c
+ 970 01db 44020000 		.4byte	0x244
+ 971 01df 0C       		.uleb128 0xc
+ 972 01e0 AC010000 		.4byte	.LASF26
+ 973 01e4 01       		.byte	0x1
+ 974 01e5 08       		.byte	0x8
+ 975 01e6 25000000 		.4byte	0x25
+ 976 01ea 02       		.uleb128 0x2
+ 977 01eb 91       		.byte	0x91
+ 978 01ec 64       		.sleb128 -28
+ 979 01ed 0C       		.uleb128 0xc
+ 980 01ee E5020000 		.4byte	.LASF27
+ 981 01f2 01       		.byte	0x1
+ 982 01f3 08       		.byte	0x8
+ 983 01f4 25000000 		.4byte	0x25
+ 984 01f8 02       		.uleb128 0x2
+ 985 01f9 91       		.byte	0x91
+ 986 01fa 60       		.sleb128 -32
+ 987 01fb 0C       		.uleb128 0xc
+ 988 01fc 72020000 		.4byte	.LASF28
+ 989 0200 01       		.byte	0x1
+ 990 0201 08       		.byte	0x8
+ 991 0202 25000000 		.4byte	0x25
+ 992 0206 02       		.uleb128 0x2
+ 993 0207 91       		.byte	0x91
+ 994 0208 5C       		.sleb128 -36
+ 995 0209 0D       		.uleb128 0xd
+ 996 020a 6D617000 		.ascii	"map\000"
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQ9ZhnQ.s 			page 21
 
 
- 1006 02d4 25000000 		.4byte	0x25
- 1007 02d8 02       		.uleb128 0x2
- 1008 02d9 91       		.byte	0x91
- 1009 02da 50       		.sleb128 -48
- 1010 02db 0F       		.uleb128 0xf
- 1011 02dc A4000000 		.4byte	.LASF35
- 1012 02e0 01       		.byte	0x1
- 1013 02e1 5E       		.byte	0x5e
- 1014 02e2 92010000 		.4byte	0x192
- 1015 02e6 02       		.uleb128 0x2
- 1016 02e7 91       		.byte	0x91
- 1017 02e8 6C       		.sleb128 -20
- 1018 02e9 0D       		.uleb128 0xd
- 1019 02ea 24000000 		.4byte	.LBB7
- 1020 02ee A4000000 		.4byte	.LBE7-.LBB7
- 1021 02f2 0C       		.uleb128 0xc
- 1022 02f3 6900     		.ascii	"i\000"
- 1023 02f5 01       		.byte	0x1
- 1024 02f6 67       		.byte	0x67
- 1025 02f7 25000000 		.4byte	0x25
- 1026 02fb 02       		.uleb128 0x2
- 1027 02fc 91       		.byte	0x91
- 1028 02fd 74       		.sleb128 -12
- 1029 02fe 0D       		.uleb128 0xd
- 1030 02ff 2A000000 		.4byte	.LBB8
- 1031 0303 8E000000 		.4byte	.LBE8-.LBB8
- 1032 0307 0C       		.uleb128 0xc
- 1033 0308 6A00     		.ascii	"j\000"
- 1034 030a 01       		.byte	0x1
- 1035 030b 68       		.byte	0x68
- 1036 030c 25000000 		.4byte	0x25
- 1037 0310 02       		.uleb128 0x2
- 1038 0311 91       		.byte	0x91
- 1039 0312 70       		.sleb128 -16
- 1040 0313 0D       		.uleb128 0xd
- 1041 0314 30000000 		.4byte	.LBB9
- 1042 0318 7A000000 		.4byte	.LBE9-.LBB9
- 1043 031c 0F       		.uleb128 0xf
- 1044 031d 1D010000 		.4byte	.LASF36
- 1045 0321 01       		.byte	0x1
- 1046 0322 6B       		.byte	0x6b
- 1047 0323 25000000 		.4byte	0x25
- 1048 0327 02       		.uleb128 0x2
- 1049 0328 91       		.byte	0x91
- 1050 0329 68       		.sleb128 -24
- 1051 032a 0F       		.uleb128 0xf
- 1052 032b 24010000 		.4byte	.LASF37
- 1053 032f 01       		.byte	0x1
- 1054 0330 6C       		.byte	0x6c
- 1055 0331 25000000 		.4byte	0x25
- 1056 0335 02       		.uleb128 0x2
- 1057 0336 91       		.byte	0x91
- 1058 0337 64       		.sleb128 -28
- 1059 0338 00       		.byte	0
- 1060 0339 00       		.byte	0
- 1061 033a 00       		.byte	0
- 1062 033b 00       		.byte	0
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQqdygb.s 			page 22
+ 997 020e 01       		.byte	0x1
+ 998 020f 0D       		.byte	0xd
+ 999 0210 44020000 		.4byte	0x244
+ 1000 0214 02       		.uleb128 0x2
+ 1001 0215 91       		.byte	0x91
+ 1002 0216 6C       		.sleb128 -20
+ 1003 0217 0E       		.uleb128 0xe
+ 1004 0218 66000000 		.4byte	.LBB2
+ 1005 021c 40000000 		.4byte	.LBE2-.LBB2
+ 1006 0220 0D       		.uleb128 0xd
+ 1007 0221 6900     		.ascii	"i\000"
+ 1008 0223 01       		.byte	0x1
+ 1009 0224 22       		.byte	0x22
+ 1010 0225 25000000 		.4byte	0x25
+ 1011 0229 02       		.uleb128 0x2
+ 1012 022a 91       		.byte	0x91
+ 1013 022b 74       		.sleb128 -12
+ 1014 022c 0E       		.uleb128 0xe
+ 1015 022d 6C000000 		.4byte	.LBB3
+ 1016 0231 2C000000 		.4byte	.LBE3-.LBB3
+ 1017 0235 0D       		.uleb128 0xd
+ 1018 0236 6A00     		.ascii	"j\000"
+ 1019 0238 01       		.byte	0x1
+ 1020 0239 23       		.byte	0x23
+ 1021 023a 25000000 		.4byte	0x25
+ 1022 023e 02       		.uleb128 0x2
+ 1023 023f 91       		.byte	0x91
+ 1024 0240 70       		.sleb128 -16
+ 1025 0241 00       		.byte	0
+ 1026 0242 00       		.byte	0
+ 1027 0243 00       		.byte	0
+ 1028 0244 0A       		.uleb128 0xa
+ 1029 0245 04       		.byte	0x4
+ 1030 0246 BB010000 		.4byte	0x1bb
+ 1031 024a 0B       		.uleb128 0xb
+ 1032 024b 00000000 		.4byte	.LASF32
+ 1033 024f 01       		.byte	0x1
+ 1034 0250 2B       		.byte	0x2b
+ 1035 0251 25000000 		.4byte	0x25
+ 1036 0255 00000000 		.4byte	.LFB1
+ 1037 0259 74030000 		.4byte	.LFE1-.LFB1
+ 1038 025d 01       		.uleb128 0x1
+ 1039 025e 9C       		.byte	0x9c
+ 1040 025f 6E030000 		.4byte	0x36e
+ 1041 0263 0F       		.uleb128 0xf
+ 1042 0264 6D617000 		.ascii	"map\000"
+ 1043 0268 01       		.byte	0x1
+ 1044 0269 2B       		.byte	0x2b
+ 1045 026a 44020000 		.4byte	0x244
+ 1046 026e 03       		.uleb128 0x3
+ 1047 026f 91       		.byte	0x91
+ 1048 0270 B47E     		.sleb128 -204
+ 1049 0272 0C       		.uleb128 0xc
+ 1050 0273 7D020000 		.4byte	.LASF33
+ 1051 0277 01       		.byte	0x1
+ 1052 0278 2B       		.byte	0x2b
+ 1053 0279 6E030000 		.4byte	0x36e
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQ9ZhnQ.s 			page 22
 
 
- 1063 033c 00       		.byte	0
- 1064              		.section	.debug_abbrev,"",%progbits
- 1065              	.Ldebug_abbrev0:
- 1066 0000 01       		.uleb128 0x1
- 1067 0001 11       		.uleb128 0x11
- 1068 0002 01       		.byte	0x1
- 1069 0003 25       		.uleb128 0x25
- 1070 0004 0E       		.uleb128 0xe
- 1071 0005 13       		.uleb128 0x13
- 1072 0006 0B       		.uleb128 0xb
- 1073 0007 03       		.uleb128 0x3
- 1074 0008 0E       		.uleb128 0xe
- 1075 0009 1B       		.uleb128 0x1b
- 1076 000a 0E       		.uleb128 0xe
- 1077 000b 55       		.uleb128 0x55
- 1078 000c 17       		.uleb128 0x17
- 1079 000d 11       		.uleb128 0x11
- 1080 000e 01       		.uleb128 0x1
- 1081 000f 10       		.uleb128 0x10
- 1082 0010 17       		.uleb128 0x17
- 1083 0011 00       		.byte	0
- 1084 0012 00       		.byte	0
- 1085 0013 02       		.uleb128 0x2
- 1086 0014 24       		.uleb128 0x24
- 1087 0015 00       		.byte	0
- 1088 0016 0B       		.uleb128 0xb
- 1089 0017 0B       		.uleb128 0xb
- 1090 0018 3E       		.uleb128 0x3e
- 1091 0019 0B       		.uleb128 0xb
- 1092 001a 03       		.uleb128 0x3
- 1093 001b 08       		.uleb128 0x8
- 1094 001c 00       		.byte	0
- 1095 001d 00       		.byte	0
- 1096 001e 03       		.uleb128 0x3
- 1097 001f 24       		.uleb128 0x24
- 1098 0020 00       		.byte	0
- 1099 0021 0B       		.uleb128 0xb
- 1100 0022 0B       		.uleb128 0xb
- 1101 0023 3E       		.uleb128 0x3e
- 1102 0024 0B       		.uleb128 0xb
- 1103 0025 03       		.uleb128 0x3
- 1104 0026 0E       		.uleb128 0xe
- 1105 0027 00       		.byte	0
- 1106 0028 00       		.byte	0
- 1107 0029 04       		.uleb128 0x4
- 1108 002a 13       		.uleb128 0x13
- 1109 002b 01       		.byte	0x1
- 1110 002c 0B       		.uleb128 0xb
- 1111 002d 0B       		.uleb128 0xb
- 1112 002e 3A       		.uleb128 0x3a
- 1113 002f 0B       		.uleb128 0xb
- 1114 0030 3B       		.uleb128 0x3b
- 1115 0031 0B       		.uleb128 0xb
- 1116 0032 01       		.uleb128 0x1
- 1117 0033 13       		.uleb128 0x13
- 1118 0034 00       		.byte	0
- 1119 0035 00       		.byte	0
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQqdygb.s 			page 23
+ 1054 027d 03       		.uleb128 0x3
+ 1055 027e 91       		.byte	0x91
+ 1056 027f B07E     		.sleb128 -208
+ 1057 0281 0C       		.uleb128 0xc
+ 1058 0282 87010000 		.4byte	.LASF34
+ 1059 0286 01       		.byte	0x1
+ 1060 0287 2B       		.byte	0x2b
+ 1061 0288 74030000 		.4byte	0x374
+ 1062 028c 03       		.uleb128 0x3
+ 1063 028d 91       		.byte	0x91
+ 1064 028e AC7E     		.sleb128 -212
+ 1065 0290 10       		.uleb128 0x10
+ 1066 0291 14020000 		.4byte	.LASF35
+ 1067 0295 01       		.byte	0x1
+ 1068 0296 38       		.byte	0x38
+ 1069 0297 80000000 		.4byte	0x80
+ 1070 029b 02       		.uleb128 0x2
+ 1071 029c 91       		.byte	0x91
+ 1072 029d 40       		.sleb128 -64
+ 1073 029e 10       		.uleb128 0x10
+ 1074 029f 1A020000 		.4byte	.LASF36
+ 1075 02a3 01       		.byte	0x1
+ 1076 02a4 39       		.byte	0x39
+ 1077 02a5 80000000 		.4byte	0x80
+ 1078 02a9 03       		.uleb128 0x3
+ 1079 02aa 91       		.byte	0x91
+ 1080 02ab B87F     		.sleb128 -72
+ 1081 02ad 0D       		.uleb128 0xd
+ 1082 02ae 79617700 		.ascii	"yaw\000"
+ 1083 02b2 01       		.byte	0x1
+ 1084 02b3 3A       		.byte	0x3a
+ 1085 02b4 80000000 		.4byte	0x80
+ 1086 02b8 03       		.uleb128 0x3
+ 1087 02b9 91       		.byte	0x91
+ 1088 02ba B07F     		.sleb128 -80
+ 1089 02bc 10       		.uleb128 0x10
+ 1090 02bd 8A020000 		.4byte	.LASF37
+ 1091 02c1 01       		.byte	0x1
+ 1092 02c2 3D       		.byte	0x3d
+ 1093 02c3 7A030000 		.4byte	0x37a
+ 1094 02c7 03       		.uleb128 0x3
+ 1095 02c8 91       		.byte	0x91
+ 1096 02c9 E07E     		.sleb128 -160
+ 1097 02cb 10       		.uleb128 0x10
+ 1098 02cc 0C000000 		.4byte	.LASF38
+ 1099 02d0 01       		.byte	0x1
+ 1100 02d1 43       		.byte	0x43
+ 1101 02d2 7A030000 		.4byte	0x37a
+ 1102 02d6 03       		.uleb128 0x3
+ 1103 02d7 91       		.byte	0x91
+ 1104 02d8 B87E     		.sleb128 -200
+ 1105 02da 10       		.uleb128 0x10
+ 1106 02db C5010000 		.4byte	.LASF17
+ 1107 02df 01       		.byte	0x1
+ 1108 02e0 44       		.byte	0x44
+ 1109 02e1 80000000 		.4byte	0x80
+ 1110 02e5 02       		.uleb128 0x2
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQ9ZhnQ.s 			page 23
 
 
- 1120 0036 05       		.uleb128 0x5
- 1121 0037 0D       		.uleb128 0xd
- 1122 0038 00       		.byte	0
- 1123 0039 03       		.uleb128 0x3
- 1124 003a 0E       		.uleb128 0xe
- 1125 003b 3A       		.uleb128 0x3a
- 1126 003c 0B       		.uleb128 0xb
- 1127 003d 3B       		.uleb128 0x3b
- 1128 003e 0B       		.uleb128 0xb
- 1129 003f 49       		.uleb128 0x49
- 1130 0040 13       		.uleb128 0x13
- 1131 0041 38       		.uleb128 0x38
- 1132 0042 0B       		.uleb128 0xb
- 1133 0043 00       		.byte	0
- 1134 0044 00       		.byte	0
- 1135 0045 06       		.uleb128 0x6
- 1136 0046 0F       		.uleb128 0xf
- 1137 0047 00       		.byte	0
- 1138 0048 0B       		.uleb128 0xb
- 1139 0049 0B       		.uleb128 0xb
- 1140 004a 49       		.uleb128 0x49
- 1141 004b 13       		.uleb128 0x13
- 1142 004c 00       		.byte	0
- 1143 004d 00       		.byte	0
- 1144 004e 07       		.uleb128 0x7
- 1145 004f 16       		.uleb128 0x16
- 1146 0050 00       		.byte	0
- 1147 0051 03       		.uleb128 0x3
- 1148 0052 0E       		.uleb128 0xe
- 1149 0053 3A       		.uleb128 0x3a
- 1150 0054 0B       		.uleb128 0xb
- 1151 0055 3B       		.uleb128 0x3b
- 1152 0056 0B       		.uleb128 0xb
- 1153 0057 49       		.uleb128 0x49
- 1154 0058 13       		.uleb128 0x13
- 1155 0059 00       		.byte	0
- 1156 005a 00       		.byte	0
- 1157 005b 08       		.uleb128 0x8
- 1158 005c 01       		.uleb128 0x1
- 1159 005d 01       		.byte	0x1
- 1160 005e 49       		.uleb128 0x49
- 1161 005f 13       		.uleb128 0x13
- 1162 0060 01       		.uleb128 0x1
- 1163 0061 13       		.uleb128 0x13
- 1164 0062 00       		.byte	0
- 1165 0063 00       		.byte	0
- 1166 0064 09       		.uleb128 0x9
- 1167 0065 21       		.uleb128 0x21
- 1168 0066 00       		.byte	0
- 1169 0067 49       		.uleb128 0x49
- 1170 0068 13       		.uleb128 0x13
- 1171 0069 2F       		.uleb128 0x2f
- 1172 006a 0B       		.uleb128 0xb
- 1173 006b 00       		.byte	0
- 1174 006c 00       		.byte	0
- 1175 006d 0A       		.uleb128 0xa
- 1176 006e 2E       		.uleb128 0x2e
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQqdygb.s 			page 24
+ 1111 02e6 91       		.byte	0x91
+ 1112 02e7 50       		.sleb128 -48
+ 1113 02e8 10       		.uleb128 0x10
+ 1114 02e9 D0000000 		.4byte	.LASF39
+ 1115 02ed 01       		.byte	0x1
+ 1116 02ee 45       		.byte	0x45
+ 1117 02ef 80000000 		.4byte	0x80
+ 1118 02f3 03       		.uleb128 0x3
+ 1119 02f4 91       		.byte	0x91
+ 1120 02f5 A87F     		.sleb128 -88
+ 1121 02f7 11       		.uleb128 0x11
+ 1122 02f8 4E000000 		.4byte	.LBB4
+ 1123 02fc 4C000000 		.4byte	.LBE4-.LBB4
+ 1124 0300 11030000 		.4byte	0x311
+ 1125 0304 0D       		.uleb128 0xd
+ 1126 0305 6900     		.ascii	"i\000"
+ 1127 0307 01       		.byte	0x1
+ 1128 0308 3E       		.byte	0x3e
+ 1129 0309 25000000 		.4byte	0x25
+ 1130 030d 02       		.uleb128 0x2
+ 1131 030e 91       		.byte	0x91
+ 1132 030f 5C       		.sleb128 -36
+ 1133 0310 00       		.byte	0
+ 1134 0311 0E       		.uleb128 0xe
+ 1135 0312 9A000000 		.4byte	.LBB5
+ 1136 0316 B4020000 		.4byte	.LBE5-.LBB5
+ 1137 031a 0D       		.uleb128 0xd
+ 1138 031b 6900     		.ascii	"i\000"
+ 1139 031d 01       		.byte	0x1
+ 1140 031e 47       		.byte	0x47
+ 1141 031f 25000000 		.4byte	0x25
+ 1142 0323 02       		.uleb128 0x2
+ 1143 0324 91       		.byte	0x91
+ 1144 0325 4C       		.sleb128 -52
+ 1145 0326 0E       		.uleb128 0xe
+ 1146 0327 A2000000 		.4byte	.LBB6
+ 1147 032b 98020000 		.4byte	.LBE6-.LBB6
+ 1148 032f 10       		.uleb128 0x10
+ 1149 0330 DB020000 		.4byte	.LASF40
+ 1150 0334 01       		.byte	0x1
+ 1151 0335 52       		.byte	0x52
+ 1152 0336 80000000 		.4byte	0x80
+ 1153 033a 03       		.uleb128 0x3
+ 1154 033b 91       		.byte	0x91
+ 1155 033c A07F     		.sleb128 -96
+ 1156 033e 10       		.uleb128 0x10
+ 1157 033f 77010000 		.4byte	.LASF41
+ 1158 0343 01       		.byte	0x1
+ 1159 0344 53       		.byte	0x53
+ 1160 0345 80000000 		.4byte	0x80
+ 1161 0349 03       		.uleb128 0x3
+ 1162 034a 91       		.byte	0x91
+ 1163 034b 987F     		.sleb128 -104
+ 1164 034d 10       		.uleb128 0x10
+ 1165 034e 6C020000 		.4byte	.LASF42
+ 1166 0352 01       		.byte	0x1
+ 1167 0353 54       		.byte	0x54
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQ9ZhnQ.s 			page 24
 
 
- 1177 006f 01       		.byte	0x1
- 1178 0070 3F       		.uleb128 0x3f
- 1179 0071 19       		.uleb128 0x19
- 1180 0072 03       		.uleb128 0x3
- 1181 0073 0E       		.uleb128 0xe
- 1182 0074 3A       		.uleb128 0x3a
- 1183 0075 0B       		.uleb128 0xb
- 1184 0076 3B       		.uleb128 0x3b
- 1185 0077 0B       		.uleb128 0xb
- 1186 0078 27       		.uleb128 0x27
- 1187 0079 19       		.uleb128 0x19
- 1188 007a 49       		.uleb128 0x49
- 1189 007b 13       		.uleb128 0x13
- 1190 007c 11       		.uleb128 0x11
- 1191 007d 01       		.uleb128 0x1
- 1192 007e 12       		.uleb128 0x12
- 1193 007f 06       		.uleb128 0x6
- 1194 0080 40       		.uleb128 0x40
- 1195 0081 18       		.uleb128 0x18
- 1196 0082 9642     		.uleb128 0x2116
- 1197 0084 19       		.uleb128 0x19
- 1198 0085 01       		.uleb128 0x1
- 1199 0086 13       		.uleb128 0x13
- 1200 0087 00       		.byte	0
- 1201 0088 00       		.byte	0
- 1202 0089 0B       		.uleb128 0xb
- 1203 008a 05       		.uleb128 0x5
- 1204 008b 00       		.byte	0
- 1205 008c 03       		.uleb128 0x3
- 1206 008d 0E       		.uleb128 0xe
- 1207 008e 3A       		.uleb128 0x3a
- 1208 008f 0B       		.uleb128 0xb
- 1209 0090 3B       		.uleb128 0x3b
- 1210 0091 0B       		.uleb128 0xb
- 1211 0092 49       		.uleb128 0x49
- 1212 0093 13       		.uleb128 0x13
- 1213 0094 02       		.uleb128 0x2
- 1214 0095 18       		.uleb128 0x18
- 1215 0096 00       		.byte	0
- 1216 0097 00       		.byte	0
- 1217 0098 0C       		.uleb128 0xc
- 1218 0099 34       		.uleb128 0x34
- 1219 009a 00       		.byte	0
- 1220 009b 03       		.uleb128 0x3
- 1221 009c 08       		.uleb128 0x8
- 1222 009d 3A       		.uleb128 0x3a
- 1223 009e 0B       		.uleb128 0xb
- 1224 009f 3B       		.uleb128 0x3b
- 1225 00a0 0B       		.uleb128 0xb
- 1226 00a1 49       		.uleb128 0x49
- 1227 00a2 13       		.uleb128 0x13
- 1228 00a3 02       		.uleb128 0x2
- 1229 00a4 18       		.uleb128 0x18
- 1230 00a5 00       		.byte	0
- 1231 00a6 00       		.byte	0
- 1232 00a7 0D       		.uleb128 0xd
- 1233 00a8 0B       		.uleb128 0xb
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQqdygb.s 			page 25
+ 1168 0354 80000000 		.4byte	0x80
+ 1169 0358 03       		.uleb128 0x3
+ 1170 0359 91       		.byte	0x91
+ 1171 035a 907F     		.sleb128 -112
+ 1172 035c 10       		.uleb128 0x10
+ 1173 035d 81010000 		.4byte	.LASF43
+ 1174 0361 01       		.byte	0x1
+ 1175 0362 55       		.byte	0x55
+ 1176 0363 80000000 		.4byte	0x80
+ 1177 0367 03       		.uleb128 0x3
+ 1178 0368 91       		.byte	0x91
+ 1179 0369 887F     		.sleb128 -120
+ 1180 036b 00       		.byte	0
+ 1181 036c 00       		.byte	0
+ 1182 036d 00       		.byte	0
+ 1183 036e 0A       		.uleb128 0xa
+ 1184 036f 04       		.byte	0x4
+ 1185 0370 BF000000 		.4byte	0xbf
+ 1186 0374 0A       		.uleb128 0xa
+ 1187 0375 04       		.byte	0x4
+ 1188 0376 71010000 		.4byte	0x171
+ 1189 037a 06       		.uleb128 0x6
+ 1190 037b 80000000 		.4byte	0x80
+ 1191 037f 8A030000 		.4byte	0x38a
+ 1192 0383 07       		.uleb128 0x7
+ 1193 0384 72000000 		.4byte	0x72
+ 1194 0388 04       		.byte	0x4
+ 1195 0389 00       		.byte	0
+ 1196 038a 12       		.uleb128 0x12
+ 1197 038b C7020000 		.4byte	.LASF53
+ 1198 038f 01       		.byte	0x1
+ 1199 0390 61       		.byte	0x61
+ 1200 0391 44020000 		.4byte	0x244
+ 1201 0395 00000000 		.4byte	.LFB2
+ 1202 0399 DC000000 		.4byte	.LFE2-.LFB2
+ 1203 039d 01       		.uleb128 0x1
+ 1204 039e 9C       		.byte	0x9c
+ 1205 039f 0F       		.uleb128 0xf
+ 1206 03a0 6D617000 		.ascii	"map\000"
+ 1207 03a4 01       		.byte	0x1
+ 1208 03a5 61       		.byte	0x61
+ 1209 03a6 44020000 		.4byte	0x244
+ 1210 03aa 02       		.uleb128 0x2
+ 1211 03ab 91       		.byte	0x91
+ 1212 03ac 5C       		.sleb128 -36
+ 1213 03ad 0C       		.uleb128 0xc
+ 1214 03ae 49020000 		.4byte	.LASF44
+ 1215 03b2 01       		.byte	0x1
+ 1216 03b3 61       		.byte	0x61
+ 1217 03b4 25000000 		.4byte	0x25
+ 1218 03b8 02       		.uleb128 0x2
+ 1219 03b9 91       		.byte	0x91
+ 1220 03ba 58       		.sleb128 -40
+ 1221 03bb 0C       		.uleb128 0xc
+ 1222 03bc 50020000 		.4byte	.LASF45
+ 1223 03c0 01       		.byte	0x1
+ 1224 03c1 61       		.byte	0x61
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQ9ZhnQ.s 			page 25
 
 
- 1234 00a9 01       		.byte	0x1
- 1235 00aa 11       		.uleb128 0x11
- 1236 00ab 01       		.uleb128 0x1
- 1237 00ac 12       		.uleb128 0x12
- 1238 00ad 06       		.uleb128 0x6
- 1239 00ae 00       		.byte	0
- 1240 00af 00       		.byte	0
- 1241 00b0 0E       		.uleb128 0xe
- 1242 00b1 05       		.uleb128 0x5
- 1243 00b2 00       		.byte	0
- 1244 00b3 03       		.uleb128 0x3
- 1245 00b4 08       		.uleb128 0x8
- 1246 00b5 3A       		.uleb128 0x3a
- 1247 00b6 0B       		.uleb128 0xb
- 1248 00b7 3B       		.uleb128 0x3b
- 1249 00b8 0B       		.uleb128 0xb
- 1250 00b9 49       		.uleb128 0x49
- 1251 00ba 13       		.uleb128 0x13
- 1252 00bb 02       		.uleb128 0x2
- 1253 00bc 18       		.uleb128 0x18
- 1254 00bd 00       		.byte	0
- 1255 00be 00       		.byte	0
- 1256 00bf 0F       		.uleb128 0xf
- 1257 00c0 34       		.uleb128 0x34
- 1258 00c1 00       		.byte	0
- 1259 00c2 03       		.uleb128 0x3
- 1260 00c3 0E       		.uleb128 0xe
- 1261 00c4 3A       		.uleb128 0x3a
- 1262 00c5 0B       		.uleb128 0xb
- 1263 00c6 3B       		.uleb128 0x3b
- 1264 00c7 0B       		.uleb128 0xb
- 1265 00c8 49       		.uleb128 0x49
- 1266 00c9 13       		.uleb128 0x13
- 1267 00ca 02       		.uleb128 0x2
- 1268 00cb 18       		.uleb128 0x18
- 1269 00cc 00       		.byte	0
- 1270 00cd 00       		.byte	0
- 1271 00ce 10       		.uleb128 0x10
- 1272 00cf 0B       		.uleb128 0xb
- 1273 00d0 01       		.byte	0x1
- 1274 00d1 11       		.uleb128 0x11
- 1275 00d2 01       		.uleb128 0x1
- 1276 00d3 12       		.uleb128 0x12
- 1277 00d4 06       		.uleb128 0x6
- 1278 00d5 01       		.uleb128 0x1
- 1279 00d6 13       		.uleb128 0x13
- 1280 00d7 00       		.byte	0
- 1281 00d8 00       		.byte	0
- 1282 00d9 11       		.uleb128 0x11
- 1283 00da 2E       		.uleb128 0x2e
- 1284 00db 01       		.byte	0x1
- 1285 00dc 3F       		.uleb128 0x3f
- 1286 00dd 19       		.uleb128 0x19
- 1287 00de 03       		.uleb128 0x3
- 1288 00df 0E       		.uleb128 0xe
- 1289 00e0 3A       		.uleb128 0x3a
- 1290 00e1 0B       		.uleb128 0xb
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQqdygb.s 			page 26
+ 1225 03c2 25000000 		.4byte	0x25
+ 1226 03c6 02       		.uleb128 0x2
+ 1227 03c7 91       		.byte	0x91
+ 1228 03c8 54       		.sleb128 -44
+ 1229 03c9 0C       		.uleb128 0xc
+ 1230 03ca 05020000 		.4byte	.LASF46
+ 1231 03ce 01       		.byte	0x1
+ 1232 03cf 61       		.byte	0x61
+ 1233 03d0 25000000 		.4byte	0x25
+ 1234 03d4 02       		.uleb128 0x2
+ 1235 03d5 91       		.byte	0x91
+ 1236 03d6 50       		.sleb128 -48
+ 1237 03d7 10       		.uleb128 0x10
+ 1238 03d8 0E010000 		.4byte	.LASF47
+ 1239 03dc 01       		.byte	0x1
+ 1240 03dd 67       		.byte	0x67
+ 1241 03de 44020000 		.4byte	0x244
+ 1242 03e2 02       		.uleb128 0x2
+ 1243 03e3 91       		.byte	0x91
+ 1244 03e4 6C       		.sleb128 -20
+ 1245 03e5 0E       		.uleb128 0xe
+ 1246 03e6 24000000 		.4byte	.LBB7
+ 1247 03ea A4000000 		.4byte	.LBE7-.LBB7
+ 1248 03ee 0D       		.uleb128 0xd
+ 1249 03ef 6900     		.ascii	"i\000"
+ 1250 03f1 01       		.byte	0x1
+ 1251 03f2 70       		.byte	0x70
+ 1252 03f3 25000000 		.4byte	0x25
+ 1253 03f7 02       		.uleb128 0x2
+ 1254 03f8 91       		.byte	0x91
+ 1255 03f9 74       		.sleb128 -12
+ 1256 03fa 0E       		.uleb128 0xe
+ 1257 03fb 2A000000 		.4byte	.LBB8
+ 1258 03ff 8E000000 		.4byte	.LBE8-.LBB8
+ 1259 0403 0D       		.uleb128 0xd
+ 1260 0404 6A00     		.ascii	"j\000"
+ 1261 0406 01       		.byte	0x1
+ 1262 0407 71       		.byte	0x71
+ 1263 0408 25000000 		.4byte	0x25
+ 1264 040c 02       		.uleb128 0x2
+ 1265 040d 91       		.byte	0x91
+ 1266 040e 70       		.sleb128 -16
+ 1267 040f 0E       		.uleb128 0xe
+ 1268 0410 30000000 		.4byte	.LBB9
+ 1269 0414 7A000000 		.4byte	.LBE9-.LBB9
+ 1270 0418 10       		.uleb128 0x10
+ 1271 0419 26020000 		.4byte	.LASF48
+ 1272 041d 01       		.byte	0x1
+ 1273 041e 74       		.byte	0x74
+ 1274 041f 25000000 		.4byte	0x25
+ 1275 0423 02       		.uleb128 0x2
+ 1276 0424 91       		.byte	0x91
+ 1277 0425 68       		.sleb128 -24
+ 1278 0426 10       		.uleb128 0x10
+ 1279 0427 1A000000 		.4byte	.LASF49
+ 1280 042b 01       		.byte	0x1
+ 1281 042c 75       		.byte	0x75
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQ9ZhnQ.s 			page 26
 
 
- 1291 00e2 3B       		.uleb128 0x3b
- 1292 00e3 0B       		.uleb128 0xb
- 1293 00e4 27       		.uleb128 0x27
- 1294 00e5 19       		.uleb128 0x19
- 1295 00e6 49       		.uleb128 0x49
- 1296 00e7 13       		.uleb128 0x13
- 1297 00e8 11       		.uleb128 0x11
- 1298 00e9 01       		.uleb128 0x1
- 1299 00ea 12       		.uleb128 0x12
- 1300 00eb 06       		.uleb128 0x6
- 1301 00ec 40       		.uleb128 0x40
- 1302 00ed 18       		.uleb128 0x18
- 1303 00ee 9642     		.uleb128 0x2116
- 1304 00f0 19       		.uleb128 0x19
- 1305 00f1 00       		.byte	0
- 1306 00f2 00       		.byte	0
- 1307 00f3 00       		.byte	0
- 1308              		.section	.debug_aranges,"",%progbits
- 1309 0000 2C000000 		.4byte	0x2c
- 1310 0004 0200     		.2byte	0x2
- 1311 0006 00000000 		.4byte	.Ldebug_info0
- 1312 000a 04       		.byte	0x4
- 1313 000b 00       		.byte	0
- 1314 000c 0000     		.2byte	0
- 1315 000e 0000     		.2byte	0
- 1316 0010 00000000 		.4byte	.LFB0
- 1317 0014 B0000000 		.4byte	.LFE0-.LFB0
- 1318 0018 00000000 		.4byte	.LFB1
- 1319 001c 4C020000 		.4byte	.LFE1-.LFB1
- 1320 0020 00000000 		.4byte	.LFB2
- 1321 0024 DC000000 		.4byte	.LFE2-.LFB2
- 1322 0028 00000000 		.4byte	0
- 1323 002c 00000000 		.4byte	0
- 1324              		.section	.debug_ranges,"",%progbits
- 1325              	.Ldebug_ranges0:
- 1326 0000 00000000 		.4byte	.LFB0
- 1327 0004 B0000000 		.4byte	.LFE0
- 1328 0008 00000000 		.4byte	.LFB1
- 1329 000c 4C020000 		.4byte	.LFE1
- 1330 0010 00000000 		.4byte	.LFB2
- 1331 0014 DC000000 		.4byte	.LFE2
- 1332 0018 00000000 		.4byte	0
- 1333 001c 00000000 		.4byte	0
- 1334              		.section	.debug_line,"",%progbits
- 1335              	.Ldebug_line0:
- 1336 0000 52010000 		.section	.debug_str,"MS",%progbits,1
- 1336      02007100 
- 1336      00000201 
- 1336      FB0E0D00 
- 1336      01010101 
- 1337              	.LASF34:
- 1338 0000 64696D65 		.ascii	"dimension\000"
- 1338      6E73696F 
- 1338      6E00
- 1339              	.LASF38:
- 1340 000a 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 1340      43313120 
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQqdygb.s 			page 27
+ 1282 042d 25000000 		.4byte	0x25
+ 1283 0431 02       		.uleb128 0x2
+ 1284 0432 91       		.byte	0x91
+ 1285 0433 64       		.sleb128 -28
+ 1286 0434 00       		.byte	0
+ 1287 0435 00       		.byte	0
+ 1288 0436 00       		.byte	0
+ 1289 0437 00       		.byte	0
+ 1290 0438 00       		.byte	0
+ 1291              		.section	.debug_abbrev,"",%progbits
+ 1292              	.Ldebug_abbrev0:
+ 1293 0000 01       		.uleb128 0x1
+ 1294 0001 11       		.uleb128 0x11
+ 1295 0002 01       		.byte	0x1
+ 1296 0003 25       		.uleb128 0x25
+ 1297 0004 0E       		.uleb128 0xe
+ 1298 0005 13       		.uleb128 0x13
+ 1299 0006 0B       		.uleb128 0xb
+ 1300 0007 03       		.uleb128 0x3
+ 1301 0008 0E       		.uleb128 0xe
+ 1302 0009 1B       		.uleb128 0x1b
+ 1303 000a 0E       		.uleb128 0xe
+ 1304 000b 55       		.uleb128 0x55
+ 1305 000c 17       		.uleb128 0x17
+ 1306 000d 11       		.uleb128 0x11
+ 1307 000e 01       		.uleb128 0x1
+ 1308 000f 10       		.uleb128 0x10
+ 1309 0010 17       		.uleb128 0x17
+ 1310 0011 00       		.byte	0
+ 1311 0012 00       		.byte	0
+ 1312 0013 02       		.uleb128 0x2
+ 1313 0014 24       		.uleb128 0x24
+ 1314 0015 00       		.byte	0
+ 1315 0016 0B       		.uleb128 0xb
+ 1316 0017 0B       		.uleb128 0xb
+ 1317 0018 3E       		.uleb128 0x3e
+ 1318 0019 0B       		.uleb128 0xb
+ 1319 001a 03       		.uleb128 0x3
+ 1320 001b 08       		.uleb128 0x8
+ 1321 001c 00       		.byte	0
+ 1322 001d 00       		.byte	0
+ 1323 001e 03       		.uleb128 0x3
+ 1324 001f 24       		.uleb128 0x24
+ 1325 0020 00       		.byte	0
+ 1326 0021 0B       		.uleb128 0xb
+ 1327 0022 0B       		.uleb128 0xb
+ 1328 0023 3E       		.uleb128 0x3e
+ 1329 0024 0B       		.uleb128 0xb
+ 1330 0025 03       		.uleb128 0x3
+ 1331 0026 0E       		.uleb128 0xe
+ 1332 0027 00       		.byte	0
+ 1333 0028 00       		.byte	0
+ 1334 0029 04       		.uleb128 0x4
+ 1335 002a 13       		.uleb128 0x13
+ 1336 002b 01       		.byte	0x1
+ 1337 002c 0B       		.uleb128 0xb
+ 1338 002d 0B       		.uleb128 0xb
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQ9ZhnQ.s 			page 27
 
 
- 1340      352E342E 
- 1340      31203230 
- 1340      31363036 
- 1341 003d 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 1341      20726576 
- 1341      6973696F 
- 1341      6E203233 
- 1341      37373135 
- 1342 0070 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
- 1342      66756E63 
- 1342      74696F6E 
- 1342      2D736563 
- 1342      74696F6E 
- 1343              	.LASF22:
- 1344 0098 67726964 		.ascii	"grid_create\000"
- 1344      5F637265 
- 1344      61746500 
- 1345              	.LASF35:
- 1346 00a4 61637469 		.ascii	"active\000"
- 1346      766500
- 1347              	.LASF29:
- 1348 00ab 74686574 		.ascii	"theta\000"
- 1348      6100
- 1349              	.LASF25:
- 1350 00b1 706F735F 		.ascii	"pos_y\000"
- 1350      7900
- 1351              	.LASF18:
- 1352 00b7 64697265 		.ascii	"direction\000"
- 1352      6374696F 
- 1352      6E00
- 1353              	.LASF19:
- 1354 00c1 64697374 		.ascii	"distance\000"
- 1354      616E6365 
- 1354      00
- 1355              	.LASF13:
- 1356 00ca 666C6F61 		.ascii	"float\000"
- 1356      7400
- 1357              	.LASF26:
- 1358 00d0 64617461 		.ascii	"data\000"
- 1358      00
- 1359              	.LASF4:
- 1360 00d5 756E7369 		.ascii	"unsigned char\000"
- 1360      676E6564 
- 1360      20636861 
- 1360      7200
- 1361              	.LASF8:
- 1362 00e3 6C6F6E67 		.ascii	"long unsigned int\000"
- 1362      20756E73 
- 1362      69676E65 
- 1362      6420696E 
- 1362      7400
- 1363              	.LASF6:
- 1364 00f5 73686F72 		.ascii	"short unsigned int\000"
- 1364      7420756E 
- 1364      7369676E 
- 1364      65642069 
- 1364      6E7400
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQqdygb.s 			page 28
+ 1339 002e 3A       		.uleb128 0x3a
+ 1340 002f 0B       		.uleb128 0xb
+ 1341 0030 3B       		.uleb128 0x3b
+ 1342 0031 0B       		.uleb128 0xb
+ 1343 0032 01       		.uleb128 0x1
+ 1344 0033 13       		.uleb128 0x13
+ 1345 0034 00       		.byte	0
+ 1346 0035 00       		.byte	0
+ 1347 0036 05       		.uleb128 0x5
+ 1348 0037 0D       		.uleb128 0xd
+ 1349 0038 00       		.byte	0
+ 1350 0039 03       		.uleb128 0x3
+ 1351 003a 0E       		.uleb128 0xe
+ 1352 003b 3A       		.uleb128 0x3a
+ 1353 003c 0B       		.uleb128 0xb
+ 1354 003d 3B       		.uleb128 0x3b
+ 1355 003e 0B       		.uleb128 0xb
+ 1356 003f 49       		.uleb128 0x49
+ 1357 0040 13       		.uleb128 0x13
+ 1358 0041 38       		.uleb128 0x38
+ 1359 0042 0B       		.uleb128 0xb
+ 1360 0043 00       		.byte	0
+ 1361 0044 00       		.byte	0
+ 1362 0045 06       		.uleb128 0x6
+ 1363 0046 01       		.uleb128 0x1
+ 1364 0047 01       		.byte	0x1
+ 1365 0048 49       		.uleb128 0x49
+ 1366 0049 13       		.uleb128 0x13
+ 1367 004a 01       		.uleb128 0x1
+ 1368 004b 13       		.uleb128 0x13
+ 1369 004c 00       		.byte	0
+ 1370 004d 00       		.byte	0
+ 1371 004e 07       		.uleb128 0x7
+ 1372 004f 21       		.uleb128 0x21
+ 1373 0050 00       		.byte	0
+ 1374 0051 49       		.uleb128 0x49
+ 1375 0052 13       		.uleb128 0x13
+ 1376 0053 2F       		.uleb128 0x2f
+ 1377 0054 0B       		.uleb128 0xb
+ 1378 0055 00       		.byte	0
+ 1379 0056 00       		.byte	0
+ 1380 0057 08       		.uleb128 0x8
+ 1381 0058 16       		.uleb128 0x16
+ 1382 0059 00       		.byte	0
+ 1383 005a 03       		.uleb128 0x3
+ 1384 005b 0E       		.uleb128 0xe
+ 1385 005c 3A       		.uleb128 0x3a
+ 1386 005d 0B       		.uleb128 0xb
+ 1387 005e 3B       		.uleb128 0x3b
+ 1388 005f 0B       		.uleb128 0xb
+ 1389 0060 49       		.uleb128 0x49
+ 1390 0061 13       		.uleb128 0x13
+ 1391 0062 00       		.byte	0
+ 1392 0063 00       		.byte	0
+ 1393 0064 09       		.uleb128 0x9
+ 1394 0065 0D       		.uleb128 0xd
+ 1395 0066 00       		.byte	0
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQ9ZhnQ.s 			page 28
 
 
- 1365              	.LASF27:
- 1366 0108 63656C6C 		.ascii	"cell_distance\000"
- 1366      5F646973 
- 1366      74616E63 
- 1366      6500
- 1367              	.LASF15:
- 1368 0116 68656967 		.ascii	"height\000"
- 1368      687400
- 1369              	.LASF36:
- 1370 011d 67726964 		.ascii	"grid_i\000"
- 1370      5F6900
- 1371              	.LASF37:
- 1372 0124 67726964 		.ascii	"grid_j\000"
- 1372      5F6A00
- 1373              	.LASF12:
- 1374 012b 646F7562 		.ascii	"double\000"
- 1374      6C6500
- 1375              	.LASF30:
- 1376 0132 6E65775F 		.ascii	"new_x\000"
- 1376      7800
- 1377              	.LASF5:
- 1378 0138 73686F72 		.ascii	"short int\000"
- 1378      7420696E 
- 1378      7400
- 1379              	.LASF40:
- 1380 0142 433A5C74 		.ascii	"C:\\temp\\jacob_branch\\ECE4191\\DeliveryRobot.cyds"
- 1380      656D705C 
- 1380      6A61636F 
- 1380      625F6272 
- 1380      616E6368 
- 1381 0171 6E00     		.ascii	"n\000"
- 1382              	.LASF41:
- 1383 0173 61637469 		.ascii	"active_window\000"
- 1383      76655F77 
- 1383      696E646F 
- 1383      7700
- 1384              	.LASF21:
- 1385 0181 73656E73 		.ascii	"sensor_data\000"
- 1385      6F725F64 
- 1385      61746100 
- 1386              	.LASF0:
- 1387 018d 756E7369 		.ascii	"unsigned int\000"
- 1387      676E6564 
- 1387      20696E74 
- 1387      00
- 1388              	.LASF9:
- 1389 019a 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1389      206C6F6E 
- 1389      6720756E 
- 1389      7369676E 
- 1389      65642069 
- 1390              	.LASF10:
- 1391 01b1 73697A65 		.ascii	"sizetype\000"
- 1391      74797065 
- 1391      00
- 1392              	.LASF39:
- 1393 01ba 2E2E5C2E 		.ascii	"..\\..\\..\\..\\Users\\cyu13\\Desktop\\ECE4191\\VFH"
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQqdygb.s 			page 29
+ 1396 0067 03       		.uleb128 0x3
+ 1397 0068 08       		.uleb128 0x8
+ 1398 0069 3A       		.uleb128 0x3a
+ 1399 006a 0B       		.uleb128 0xb
+ 1400 006b 3B       		.uleb128 0x3b
+ 1401 006c 0B       		.uleb128 0xb
+ 1402 006d 49       		.uleb128 0x49
+ 1403 006e 13       		.uleb128 0x13
+ 1404 006f 38       		.uleb128 0x38
+ 1405 0070 0B       		.uleb128 0xb
+ 1406 0071 00       		.byte	0
+ 1407 0072 00       		.byte	0
+ 1408 0073 0A       		.uleb128 0xa
+ 1409 0074 0F       		.uleb128 0xf
+ 1410 0075 00       		.byte	0
+ 1411 0076 0B       		.uleb128 0xb
+ 1412 0077 0B       		.uleb128 0xb
+ 1413 0078 49       		.uleb128 0x49
+ 1414 0079 13       		.uleb128 0x13
+ 1415 007a 00       		.byte	0
+ 1416 007b 00       		.byte	0
+ 1417 007c 0B       		.uleb128 0xb
+ 1418 007d 2E       		.uleb128 0x2e
+ 1419 007e 01       		.byte	0x1
+ 1420 007f 3F       		.uleb128 0x3f
+ 1421 0080 19       		.uleb128 0x19
+ 1422 0081 03       		.uleb128 0x3
+ 1423 0082 0E       		.uleb128 0xe
+ 1424 0083 3A       		.uleb128 0x3a
+ 1425 0084 0B       		.uleb128 0xb
+ 1426 0085 3B       		.uleb128 0x3b
+ 1427 0086 0B       		.uleb128 0xb
+ 1428 0087 27       		.uleb128 0x27
+ 1429 0088 19       		.uleb128 0x19
+ 1430 0089 49       		.uleb128 0x49
+ 1431 008a 13       		.uleb128 0x13
+ 1432 008b 11       		.uleb128 0x11
+ 1433 008c 01       		.uleb128 0x1
+ 1434 008d 12       		.uleb128 0x12
+ 1435 008e 06       		.uleb128 0x6
+ 1436 008f 40       		.uleb128 0x40
+ 1437 0090 18       		.uleb128 0x18
+ 1438 0091 9642     		.uleb128 0x2116
+ 1439 0093 19       		.uleb128 0x19
+ 1440 0094 01       		.uleb128 0x1
+ 1441 0095 13       		.uleb128 0x13
+ 1442 0096 00       		.byte	0
+ 1443 0097 00       		.byte	0
+ 1444 0098 0C       		.uleb128 0xc
+ 1445 0099 05       		.uleb128 0x5
+ 1446 009a 00       		.byte	0
+ 1447 009b 03       		.uleb128 0x3
+ 1448 009c 0E       		.uleb128 0xe
+ 1449 009d 3A       		.uleb128 0x3a
+ 1450 009e 0B       		.uleb128 0xb
+ 1451 009f 3B       		.uleb128 0x3b
+ 1452 00a0 0B       		.uleb128 0xb
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQ9ZhnQ.s 			page 29
 
 
- 1393      2E5C2E2E 
- 1393      5C2E2E5C 
- 1393      55736572 
- 1393      735C6379 
- 1394 01e5 5C737263 		.ascii	"\\src\\histogram_grid.c\000"
- 1394      5C686973 
- 1394      746F6772 
- 1394      616D5F67 
- 1394      7269642E 
- 1395              	.LASF24:
- 1396 01fb 706F735F 		.ascii	"pos_x\000"
- 1396      7800
- 1397              	.LASF1:
- 1398 0201 6C6F6E67 		.ascii	"long long int\000"
- 1398      206C6F6E 
- 1398      6720696E 
- 1398      7400
- 1399              	.LASF28:
- 1400 020f 63656C6C 		.ascii	"cell_location\000"
- 1400      5F6C6F63 
- 1400      6174696F 
- 1400      6E00
- 1401              	.LASF11:
- 1402 021d 63686172 		.ascii	"char\000"
- 1402      00
- 1403              	.LASF32:
- 1404 0222 63757272 		.ascii	"curr_x\000"
- 1404      5F7800
- 1405              	.LASF14:
- 1406 0229 77696474 		.ascii	"width\000"
- 1406      6800
- 1407              	.LASF17:
- 1408 022f 63656C6C 		.ascii	"cells\000"
- 1408      7300
- 1409              	.LASF31:
- 1410 0235 6E65775F 		.ascii	"new_y\000"
- 1410      7900
- 1411              	.LASF20:
- 1412 023b 67726964 		.ascii	"grid\000"
- 1412      00
- 1413              	.LASF7:
- 1414 0240 6C6F6E67 		.ascii	"long int\000"
- 1414      20696E74 
- 1414      00
- 1415              	.LASF2:
- 1416 0249 6C6F6E67 		.ascii	"long double\000"
- 1416      20646F75 
- 1416      626C6500 
- 1417              	.LASF3:
- 1418 0255 7369676E 		.ascii	"signed char\000"
- 1418      65642063 
- 1418      68617200 
- 1419              	.LASF16:
- 1420 0261 7265736F 		.ascii	"resolution\000"
- 1420      6C757469 
- 1420      6F6E00
- 1421              	.LASF33:
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQqdygb.s 			page 30
+ 1453 00a1 49       		.uleb128 0x49
+ 1454 00a2 13       		.uleb128 0x13
+ 1455 00a3 02       		.uleb128 0x2
+ 1456 00a4 18       		.uleb128 0x18
+ 1457 00a5 00       		.byte	0
+ 1458 00a6 00       		.byte	0
+ 1459 00a7 0D       		.uleb128 0xd
+ 1460 00a8 34       		.uleb128 0x34
+ 1461 00a9 00       		.byte	0
+ 1462 00aa 03       		.uleb128 0x3
+ 1463 00ab 08       		.uleb128 0x8
+ 1464 00ac 3A       		.uleb128 0x3a
+ 1465 00ad 0B       		.uleb128 0xb
+ 1466 00ae 3B       		.uleb128 0x3b
+ 1467 00af 0B       		.uleb128 0xb
+ 1468 00b0 49       		.uleb128 0x49
+ 1469 00b1 13       		.uleb128 0x13
+ 1470 00b2 02       		.uleb128 0x2
+ 1471 00b3 18       		.uleb128 0x18
+ 1472 00b4 00       		.byte	0
+ 1473 00b5 00       		.byte	0
+ 1474 00b6 0E       		.uleb128 0xe
+ 1475 00b7 0B       		.uleb128 0xb
+ 1476 00b8 01       		.byte	0x1
+ 1477 00b9 11       		.uleb128 0x11
+ 1478 00ba 01       		.uleb128 0x1
+ 1479 00bb 12       		.uleb128 0x12
+ 1480 00bc 06       		.uleb128 0x6
+ 1481 00bd 00       		.byte	0
+ 1482 00be 00       		.byte	0
+ 1483 00bf 0F       		.uleb128 0xf
+ 1484 00c0 05       		.uleb128 0x5
+ 1485 00c1 00       		.byte	0
+ 1486 00c2 03       		.uleb128 0x3
+ 1487 00c3 08       		.uleb128 0x8
+ 1488 00c4 3A       		.uleb128 0x3a
+ 1489 00c5 0B       		.uleb128 0xb
+ 1490 00c6 3B       		.uleb128 0x3b
+ 1491 00c7 0B       		.uleb128 0xb
+ 1492 00c8 49       		.uleb128 0x49
+ 1493 00c9 13       		.uleb128 0x13
+ 1494 00ca 02       		.uleb128 0x2
+ 1495 00cb 18       		.uleb128 0x18
+ 1496 00cc 00       		.byte	0
+ 1497 00cd 00       		.byte	0
+ 1498 00ce 10       		.uleb128 0x10
+ 1499 00cf 34       		.uleb128 0x34
+ 1500 00d0 00       		.byte	0
+ 1501 00d1 03       		.uleb128 0x3
+ 1502 00d2 0E       		.uleb128 0xe
+ 1503 00d3 3A       		.uleb128 0x3a
+ 1504 00d4 0B       		.uleb128 0xb
+ 1505 00d5 3B       		.uleb128 0x3b
+ 1506 00d6 0B       		.uleb128 0xb
+ 1507 00d7 49       		.uleb128 0x49
+ 1508 00d8 13       		.uleb128 0x13
+ 1509 00d9 02       		.uleb128 0x2
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQ9ZhnQ.s 			page 30
 
 
- 1422 026c 63757272 		.ascii	"curr_y\000"
- 1422      5F7900
- 1423              	.LASF23:
- 1424 0273 67726964 		.ascii	"grid_update\000"
- 1424      5F757064 
- 1424      61746500 
- 1425              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 1510 00da 18       		.uleb128 0x18
+ 1511 00db 00       		.byte	0
+ 1512 00dc 00       		.byte	0
+ 1513 00dd 11       		.uleb128 0x11
+ 1514 00de 0B       		.uleb128 0xb
+ 1515 00df 01       		.byte	0x1
+ 1516 00e0 11       		.uleb128 0x11
+ 1517 00e1 01       		.uleb128 0x1
+ 1518 00e2 12       		.uleb128 0x12
+ 1519 00e3 06       		.uleb128 0x6
+ 1520 00e4 01       		.uleb128 0x1
+ 1521 00e5 13       		.uleb128 0x13
+ 1522 00e6 00       		.byte	0
+ 1523 00e7 00       		.byte	0
+ 1524 00e8 12       		.uleb128 0x12
+ 1525 00e9 2E       		.uleb128 0x2e
+ 1526 00ea 01       		.byte	0x1
+ 1527 00eb 3F       		.uleb128 0x3f
+ 1528 00ec 19       		.uleb128 0x19
+ 1529 00ed 03       		.uleb128 0x3
+ 1530 00ee 0E       		.uleb128 0xe
+ 1531 00ef 3A       		.uleb128 0x3a
+ 1532 00f0 0B       		.uleb128 0xb
+ 1533 00f1 3B       		.uleb128 0x3b
+ 1534 00f2 0B       		.uleb128 0xb
+ 1535 00f3 27       		.uleb128 0x27
+ 1536 00f4 19       		.uleb128 0x19
+ 1537 00f5 49       		.uleb128 0x49
+ 1538 00f6 13       		.uleb128 0x13
+ 1539 00f7 11       		.uleb128 0x11
+ 1540 00f8 01       		.uleb128 0x1
+ 1541 00f9 12       		.uleb128 0x12
+ 1542 00fa 06       		.uleb128 0x6
+ 1543 00fb 40       		.uleb128 0x40
+ 1544 00fc 18       		.uleb128 0x18
+ 1545 00fd 9642     		.uleb128 0x2116
+ 1546 00ff 19       		.uleb128 0x19
+ 1547 0100 00       		.byte	0
+ 1548 0101 00       		.byte	0
+ 1549 0102 00       		.byte	0
+ 1550              		.section	.debug_aranges,"",%progbits
+ 1551 0000 2C000000 		.4byte	0x2c
+ 1552 0004 0200     		.2byte	0x2
+ 1553 0006 00000000 		.4byte	.Ldebug_info0
+ 1554 000a 04       		.byte	0x4
+ 1555 000b 00       		.byte	0
+ 1556 000c 0000     		.2byte	0
+ 1557 000e 0000     		.2byte	0
+ 1558 0010 00000000 		.4byte	.LFB0
+ 1559 0014 B0000000 		.4byte	.LFE0-.LFB0
+ 1560 0018 00000000 		.4byte	.LFB1
+ 1561 001c 74030000 		.4byte	.LFE1-.LFB1
+ 1562 0020 00000000 		.4byte	.LFB2
+ 1563 0024 DC000000 		.4byte	.LFE2-.LFB2
+ 1564 0028 00000000 		.4byte	0
+ 1565 002c 00000000 		.4byte	0
+ 1566              		.section	.debug_ranges,"",%progbits
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQ9ZhnQ.s 			page 31
+
+
+ 1567              	.Ldebug_ranges0:
+ 1568 0000 00000000 		.4byte	.LFB0
+ 1569 0004 B0000000 		.4byte	.LFE0
+ 1570 0008 00000000 		.4byte	.LFB1
+ 1571 000c 74030000 		.4byte	.LFE1
+ 1572 0010 00000000 		.4byte	.LFB2
+ 1573 0014 DC000000 		.4byte	.LFE2
+ 1574 0018 00000000 		.4byte	0
+ 1575 001c 00000000 		.4byte	0
+ 1576              		.section	.debug_line,"",%progbits
+ 1577              	.Ldebug_line0:
+ 1578 0000 5E010000 		.section	.debug_str,"MS",%progbits,1
+ 1578      02006F00 
+ 1578      00000201 
+ 1578      FB0E0D00 
+ 1578      01010101 
+ 1579              	.LASF32:
+ 1580 0000 67726964 		.ascii	"grid_update\000"
+ 1580      5F757064 
+ 1580      61746500 
+ 1581              	.LASF38:
+ 1582 000c 63656C6C 		.ascii	"cell_location\000"
+ 1582      5F6C6F63 
+ 1582      6174696F 
+ 1582      6E00
+ 1583              	.LASF49:
+ 1584 001a 67726964 		.ascii	"grid_j\000"
+ 1584      5F6A00
+ 1585              	.LASF14:
+ 1586 0021 64697265 		.ascii	"direction\000"
+ 1586      6374696F 
+ 1586      6E00
+ 1587              	.LASF50:
+ 1588 002b 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1588      43313120 
+ 1588      352E342E 
+ 1588      31203230 
+ 1588      31363036 
+ 1589 005e 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1589      20726576 
+ 1589      6973696F 
+ 1589      6E203233 
+ 1589      37373135 
+ 1590 0091 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 1590      66756E63 
+ 1590      74696F6E 
+ 1590      2D736563 
+ 1590      74696F6E 
+ 1591              	.LASF9:
+ 1592 00b9 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1592      206C6F6E 
+ 1592      6720756E 
+ 1592      7369676E 
+ 1592      65642069 
+ 1593              	.LASF39:
+ 1594 00d0 726F626F 		.ascii	"robot_radians\000"
+ 1594      745F7261 
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQ9ZhnQ.s 			page 32
+
+
+ 1594      6469616E 
+ 1594      7300
+ 1595              	.LASF1:
+ 1596 00de 6C6F6E67 		.ascii	"long long int\000"
+ 1596      206C6F6E 
+ 1596      6720696E 
+ 1596      7400
+ 1597              	.LASF3:
+ 1598 00ec 7369676E 		.ascii	"signed char\000"
+ 1598      65642063 
+ 1598      68617200 
+ 1599              	.LASF20:
+ 1600 00f8 696E745F 		.ascii	"int_error\000"
+ 1600      6572726F 
+ 1600      7200
+ 1601              	.LASF31:
+ 1602 0102 67726964 		.ascii	"grid_create\000"
+ 1602      5F637265 
+ 1602      61746500 
+ 1603              	.LASF47:
+ 1604 010e 61637469 		.ascii	"active\000"
+ 1604      766500
+ 1605              	.LASF7:
+ 1606 0115 6C6F6E67 		.ascii	"long int\000"
+ 1606      20696E74 
+ 1606      00
+ 1607              	.LASF12:
+ 1608 011e 646F7562 		.ascii	"double\000"
+ 1608      6C6500
+ 1609              	.LASF52:
+ 1610 0125 433A5C55 		.ascii	"C:\\Users\\cyu13\\Desktop\\ECE4191 GitHub\\pathfind"
+ 1610      73657273 
+ 1610      5C637975 
+ 1610      31335C44 
+ 1610      65736B74 
+ 1611 0153 696E672D 		.ascii	"ing-vfh\\ECE4191\\DeliveryRobot.cydsn\000"
+ 1611      7666685C 
+ 1611      45434534 
+ 1611      3139315C 
+ 1611      44656C69 
+ 1612              	.LASF41:
+ 1613 0177 73696E5F 		.ascii	"sin_theta\000"
+ 1613      74686574 
+ 1613      6100
+ 1614              	.LASF43:
+ 1615 0181 6E65775F 		.ascii	"new_y\000"
+ 1615      7900
+ 1616              	.LASF34:
+ 1617 0187 726F626F 		.ascii	"robot\000"
+ 1617      7400
+ 1618              	.LASF0:
+ 1619 018d 756E7369 		.ascii	"unsigned int\000"
+ 1619      676E6564 
+ 1619      20696E74 
+ 1619      00
+ 1620              	.LASF8:
+ 1621 019a 6C6F6E67 		.ascii	"long unsigned int\000"
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQ9ZhnQ.s 			page 33
+
+
+ 1621      20756E73 
+ 1621      69676E65 
+ 1621      6420696E 
+ 1621      7400
+ 1622              	.LASF26:
+ 1623 01ac 77696474 		.ascii	"width\000"
+ 1623      6800
+ 1624              	.LASF6:
+ 1625 01b2 73686F72 		.ascii	"short unsigned int\000"
+ 1625      7420756E 
+ 1625      7369676E 
+ 1625      65642069 
+ 1625      6E7400
+ 1626              	.LASF17:
+ 1627 01c5 74686574 		.ascii	"theta\000"
+ 1627      6100
+ 1628              	.LASF23:
+ 1629 01cb 676F616C 		.ascii	"goal_min_dist\000"
+ 1629      5F6D696E 
+ 1629      5F646973 
+ 1629      7400
+ 1630              	.LASF29:
+ 1631 01d9 63656C6C 		.ascii	"cells\000"
+ 1631      7300
+ 1632              	.LASF18:
+ 1633 01df 64657369 		.ascii	"desired_v\000"
+ 1633      7265645F 
+ 1633      7600
+ 1634              	.LASF24:
+ 1635 01e9 53656E73 		.ascii	"Sensor\000"
+ 1635      6F7200
+ 1636              	.LASF10:
+ 1637 01f0 73697A65 		.ascii	"sizetype\000"
+ 1637      74797065 
+ 1637      00
+ 1638              	.LASF2:
+ 1639 01f9 6C6F6E67 		.ascii	"long double\000"
+ 1639      20646F75 
+ 1639      626C6500 
+ 1640              	.LASF46:
+ 1641 0205 64696D65 		.ascii	"dimension\000"
+ 1641      6E73696F 
+ 1641      6E00
+ 1642              	.LASF30:
+ 1643 020f 67726964 		.ascii	"grid\000"
+ 1643      00
+ 1644              	.LASF35:
+ 1645 0214 706F735F 		.ascii	"pos_x\000"
+ 1645      7800
+ 1646              	.LASF36:
+ 1647 021a 706F735F 		.ascii	"pos_y\000"
+ 1647      7900
+ 1648              	.LASF13:
+ 1649 0220 666C6F61 		.ascii	"float\000"
+ 1649      7400
+ 1650              	.LASF48:
+ 1651 0226 67726964 		.ascii	"grid_i\000"
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQ9ZhnQ.s 			page 34
+
+
+ 1651      5F6900
+ 1652              	.LASF21:
+ 1653 022d 676F616C 		.ascii	"goal_x\000"
+ 1653      5F7800
+ 1654              	.LASF22:
+ 1655 0234 676F616C 		.ascii	"goal_y\000"
+ 1655      5F7900
+ 1656              	.LASF4:
+ 1657 023b 756E7369 		.ascii	"unsigned char\000"
+ 1657      676E6564 
+ 1657      20636861 
+ 1657      7200
+ 1658              	.LASF44:
+ 1659 0249 63757272 		.ascii	"curr_x\000"
+ 1659      5F7800
+ 1660              	.LASF45:
+ 1661 0250 63757272 		.ascii	"curr_y\000"
+ 1661      5F7900
+ 1662              	.LASF5:
+ 1663 0257 73686F72 		.ascii	"short int\000"
+ 1663      7420696E 
+ 1663      7400
+ 1664              	.LASF16:
+ 1665 0261 61786C65 		.ascii	"axle_width\000"
+ 1665      5F776964 
+ 1665      746800
+ 1666              	.LASF42:
+ 1667 026c 6E65775F 		.ascii	"new_x\000"
+ 1667      7800
+ 1668              	.LASF28:
+ 1669 0272 7265736F 		.ascii	"resolution\000"
+ 1669      6C757469 
+ 1669      6F6E00
+ 1670              	.LASF33:
+ 1671 027d 73656E73 		.ascii	"sensors\000"
+ 1671      6F727300 
+ 1672              	.LASF11:
+ 1673 0285 63686172 		.ascii	"char\000"
+ 1673      00
+ 1674              	.LASF37:
+ 1675 028a 63656C6C 		.ascii	"cell_distance\000"
+ 1675      5F646973 
+ 1675      74616E63 
+ 1675      6500
+ 1676              	.LASF51:
+ 1677 0298 2E2E5C56 		.ascii	"..\\VFH\\histogram_grid.c\000"
+ 1677      46485C68 
+ 1677      6973746F 
+ 1677      6772616D 
+ 1677      5F677269 
+ 1678              	.LASF15:
+ 1679 02b0 64697374 		.ascii	"distance\000"
+ 1679      616E6365 
+ 1679      00
+ 1680              	.LASF19:
+ 1681 02b9 64657369 		.ascii	"desired_theta\000"
+ 1681      7265645F 
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccQ9ZhnQ.s 			page 35
+
+
+ 1681      74686574 
+ 1681      6100
+ 1682              	.LASF53:
+ 1683 02c7 61637469 		.ascii	"active_window\000"
+ 1683      76655F77 
+ 1683      696E646F 
+ 1683      7700
+ 1684              	.LASF25:
+ 1685 02d5 526F626F 		.ascii	"Robot\000"
+ 1685      7400
+ 1686              	.LASF40:
+ 1687 02db 636F735F 		.ascii	"cos_theta\000"
+ 1687      74686574 
+ 1687      6100
+ 1688              	.LASF27:
+ 1689 02e5 68656967 		.ascii	"height\000"
+ 1689      687400
+ 1690              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

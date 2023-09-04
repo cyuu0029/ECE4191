@@ -16,24 +16,13 @@
 #include <stdlib.h>
 #include <math.h>
 #include <stdbool.h>
-#include "..\Tentacles\tentacles.h"
-#include "..\Robot\robot.h"
 
-/* Define all global variables. */
-#define N_SENSORS 5     // Number of Ultrasonic Sensors
+/* Include all our own written headers */
+//#include "..\Tentacles\tentacles.h"
+#include "vfh.h"
 
-#ifndef M_PI    // Pi, duh!
-#define M_PI 3.141592653589793238462643383279502884196      
-#endif
 
-#ifndef M_TWOPI     // 2*Pi, duh!
-#define M_TWOPI 6.2831853071795862319959        
-#endif
-
-#ifndef M_E     // Exponential, duh!
-#define M_E 2.71828182845904523536
-#endif
-   
+/* Define all global variables. */ 
 const double PULSES_PER_REV = 3591.92;
 const double POSE_UPDATE_PERIOD = 1.0/50.0; // seconds
 
@@ -46,16 +35,18 @@ int32 left_wheel_count = 0;
 int32 right_wheel_count = 0;
 char serial_output[150];        // For UART print output
 
-/* Defining/Creating all data structures*/
+/* Defining/Creating all data structures */
 Motor left_motor;     // Left Motor, duh!
 Motor right_motor;    // Right Motor, duh!
 Robot robot;          // Robot values, duh!
 Sensor sensors;       // Ultrasonics
-Tentacles octopussy;  // Driving with Tentacles
+grid map;             // Grid of area
+histogram polar;      // Polar Histogram
+grid active;          // Active window of robot
+
 
 void Drive_Left_Motor(long double duty_cycle);
 void Drive_Right_Motor(long double duty_cycle);
-
 
 /* Interrupt to obtain Ultrasonic measurement value. */  
 CY_ISR( Timer_Int_Handler ) {
@@ -66,6 +57,8 @@ CY_ISR( Timer_Int_Handler ) {
 
     // Reset the global ultrasonic tracker when all measurements have been updated
     if( mux_select == N_SENSORS ) { 
+        // Update grid with new distance readings
+        grid_update(&map, &sensors, &robot);
         mux_select = 0; 
     }
 
@@ -148,6 +141,7 @@ CY_ISR( Navigation_Test_Int_Handler ) {
 
 int main(void)
 {
+    // Enable all interrupts
     CyGlobalIntEnable;
     
     // Registration of Timer ISR
@@ -183,8 +177,8 @@ int main(void)
 
 
     /*======================= ROBOT STARTING POSITION =======================*/
-    long double start_x = 0;    // Starting x, duh!
-    long double start_y = 0;    // Starting y, duh!
+    long double start_x = 30;    // Starting x, duh!
+    long double start_y = 30;    // Starting y, duh!
     /*=======================================================================*/
 
 
@@ -198,38 +192,59 @@ int main(void)
     sensors.direction[4] = 330;
 
     /*========================= M1: Goal Definition =========================*/
-    int n_goals = 2;    // Number of goals, duh!
-    int goals[4] = {90, 90, 30, 90};    // Coordinates of goals [x1, y1, x2, y2, ..., xn, yn]
+    double n_goals = 2;    // Number of goals, duh!
+    double goals[4] = {90, 90, 30, 90};    // Coordinates of goals [x1, y1, x2, y2, ..., xn, yn]
     robot.goal_x = goals[0];   // Update robot x goal
     robot.goal_y = goals[1];   // Update robot y goal
-    int goals_reached = 0;  // Counter for number of goas reached, duh!
+    double goals_reached = 0;  // Counter for number of goas reached, duh!
     /*=======================================================================*/    
 
     
 
-    /*===================== M1: Path Finding w Tentacles =====================*/
+    /*======================== M1: VFH initialisation =======================*/
+    double active_window_size = 30;
+    double ideal_angle;
+    double map_width = 65;
+    double map_height = 65;
+    double map_res = 2;
 
-    // Algorithm parameters
-    octopussy.alpha = 1;
-    octopussy.beta = 0.1;
-    octopussy.dt = 0.1;
-    octopussy.steps = 5;
-    octopussy.n_tentacles = 8;
+    // Define grid and polar histogram
+    map = *grid_create(map_width, map_height, map_res);
+    polar = *polar_histogram_create(5, 20, 10, 5);
+    active = *active_window(&map, robot.x, robot.y, active_window_size);
 
-    // Size is the same as n_tentacles * 2
-    float tentacle_lst[16] = {0.0, 1.0, 0.0, -1.0, 0.1, 1.0, 0.1, -1.0, 0.1, 0.5, 0.1, -0.5, 0.1, 0.0, 0.0, 0.0};
-
-    // Algorithm variables
-    int min_combo;      // Tracks the index of the best tentacle (x index, so +1 for y)
-    int min_cost = 1000000;
-
-    double v, w, cost;
+    /*========================================================================*/           
     
-    /*=======================================================================*/           
-
+    // Spoof ultrasonics
+    sensors.distance[0] = 5;
+    sensors.distance[1] = 10;
+    sensors.distance[2] = 5;
+    sensors.distance[3] = 50;
+    sensors.distance[4] = 10;
+    
+    grid_update(&map, &sensors, &robot);
+    /* Print the grid
+    for (int i=0; i<map.width; i++) {
+        for (int j=0; j<map.height; j++) {
+            if (map.cells[i * map.width + j] > 0) {
+                sprintf(serial_output, "X");
+                UART_PutString(serial_output);
+            } else {
+                sprintf(serial_output, "-");
+                UART_PutString(serial_output);
+            }
+        }
+        sprintf(serial_output, "\n");
+        UART_PutString(serial_output);
+    }
+    */     
+    int FLAG = 0;
+    int change = 5;
+    int counter = 0;
     for(;;) {  
         // Calculate distance to the goal
         double dist_to_goal = calculate_distance_from_goal(robot.x, robot.y, robot.goal_x, robot.goal_y);
+        double angle_to_goal = calculate_goal_angle(robot.x, robot.y, robot.theta, robot.goal_x, robot.goal_y);
 
         // Check if goal is reached, update, otherwise, drive
         if( dist_to_goal <= robot.goal_min_dist ) { 
@@ -238,8 +253,8 @@ int main(void)
 
             // Iterate to next goal, otherwise, quit
             if (goals_reached < n_goals) {
-                robot.goal_x = goals[goals_reached + 2];
-                robot.goal_y = goals[goals_reached + 2];
+                robot.goal_x = goals[(int)goals_reached + 2];
+                robot.goal_y = goals[(int)goals_reached + 2];
                 goals_reached += 2;
             } else{
                 sprintf(serial_output, "FINISHED! Did I succeed?");
@@ -248,27 +263,26 @@ int main(void)
             }
 
         } else {
+
+            robot.desired_v = dist_to_goal < 15 ? 1:10;
             
-            // Tentacles path finding had to be written here due to memory issues.
+            // Update active window
+            active = *active_window(&map, robot.x, robot.y, active_window_size);
+
+            // Update Polar Histogram with active_window info
+            polar_histogram_update(&polar, &active);
+
+            // Collect candidate valleys
+            int * candidates = candidate_valley(&polar);
+
+            // Calculate angle of drive
+            ideal_angle = calculate_avoidance_angle(&polar, &robot, candidates);
             
-            for (int i = 0; i < octopussy.n_tentacles * 2; i += 2 ) {
+            // Update Robot commands and free memory
+            robot.desired_theta = ideal_angle;
+            free(candidates);
 
-                // Get tentacle direction
-                v = tentacle_lst[i];
-                w = tentacle_lst[i + 1];
-                
-                // Calculate cost of taking this direction and find the minimum cost
-                cost = tentacles_cost_function(&octopussy, &sensors, v, w, robot.goal_x, robot.goal_y, M_PI, robot.x, robot.y, robot.theta);
-
-                if (cost < min_cost) {
-                        min_cost = cost;
-                        min_combo = i;
-                }
-            }
-
-            // Follow best tentacle path
-            robot.desired_v = tentacle_lst[min_combo];
-            robot.desired_theta = tentacle_lst[min_combo + 1];
+            
 
         }
 
@@ -310,4 +324,5 @@ void Drive_Right_Motor(long double duty_cycle) {
         PWM_Motor_R_WriteCompare2(0);
     }
 }
+
 /* [] END OF FILE */

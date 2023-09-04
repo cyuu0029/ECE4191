@@ -5,16 +5,12 @@
 */
 
 /*===========================================================================*/
+#include "..\Helper\helper.h"
+#include "..\Robot\robot.h"
 
 // HISTOGRAM GRID
-
+#ifndef HISTOGRAM_GRID_H
 #define HISTOGRAM_GRID_H
-#define M_PI 3.14159265358979323846
-
-// Global tracker for number of sensors
-#define N_SENSORS 5
-
-
 /* Histogram grid.
  * Define Histogram Grid Strcuture
  * 
@@ -31,13 +27,6 @@ typedef struct {
  * Organised as: [N, NE, E, SE, S, SW, W, NW]
  * where N is the front of the robot regardless of real world orientation
  */
-typedef struct {
-  int direction[N_SENSORS]; /* [degrees] */
-  int distance[N_SENSORS]; /* [cm] */
-} sensor_data;
-
-/* read_sensors: Retrieves ultrasonic sensor readings*/
-sensor_data * read_sensor();
 
 /* initial_grid: Return a pointer to an empty (all zeros) grid. NULL otherwise. */
 grid * grid_create(int width, int height, int resolution);
@@ -47,13 +36,13 @@ grid * grid_create(int width, int height, int resolution);
 grid * active_window(grid * map, int pos_x, int pos_y, int dimension);
 
 /* update_grid: Update histogram grid cells with sensor readings. */
-int grid_update(grid * map, int pos_x, int pos_y, int yaw, sensor_data data);
+int grid_update(grid * map, Sensor * sensors, Robot * robot);
 
-
+#endif
 /*===========================================================================*/
 
 // POLAR HISTOGRAM
-
+#ifndef POLAR_HISTOGRAM_H
 #define POLAR_HISTOGRAM_H
 
 /* Polar histogram. */
@@ -76,16 +65,12 @@ void polar_histogram_update(histogram * hist, grid * map);
 /* candidate_valley: Identifies the the candidate valleys that the robot and drive through */
 int * candidate_valley(histogram * smoothed_histogram);
 
+#endif
 /*===========================================================================*/
 
 // VFH
-
+#ifndef VFH_H
 #define VFH_H
-
-/* Control signal created by the algorithm. */
-typedef struct {
-  int direction; /* [degrees] */
-} control_signal_t;
 
 /* Helpers. */
 
@@ -105,10 +90,12 @@ int modular_dist(int a, int b, int m);
 int calculate_direction(histogram * hist, int objective_direction);
 
 /* calculate_avoidance_angle: Returns the angle that the robot should drive towards */
-double calculate_avoidance_angle(histogram * hist, grid * map, int * candidate_lst, double pos_x, double pos_y, double pos_yaw, double goal_x, double goal_y);
+double calculate_avoidance_angle(histogram * hist, Robot * robot, int * candidate_lst);
 
 /* velocity control: Returns a velocity value based on the distance between objects. */
 double velocity_control(histogram * hist, double direction);
 
 /* calculate_dsiatnce_from_goal: Returns the distance from robot to goal */
 double calculate_distance_from_goal(double pos_x, double pos_y, double goal_x, double goal_y);
+
+#endif

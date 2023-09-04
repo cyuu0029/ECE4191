@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 1
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc0BwBpn.s 			page 1
 
 
    1              		.syntax unified
@@ -27,15 +27,15 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 1
   24              		.type	modulo, %function
   25              	modulo:
   26              	.LFB0:
-  27              		.file 1 "..\\..\\..\\..\\Users\\cyu13\\Desktop\\ECE4191\\VFH\\src\\polar_histogram.c"
-   1:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** #include <stdlib.h>
-   2:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** #include <math.h>
-   3:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** 
-   4:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** #include "..\VFH\include\vfh.h"
-   5:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** 
-   6:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** // Converting Histogram Grid into Polar Histogram for VFH implementation.
-   7:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** 
-   8:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** int modulo(int x, int m) {
+  27              		.file 1 "..\\VFH\\polar_histogram.c"
+   1:..\VFH/polar_histogram.c **** #include <stdlib.h>
+   2:..\VFH/polar_histogram.c **** #include <math.h>
+   3:..\VFH/polar_histogram.c **** 
+   4:..\VFH/polar_histogram.c **** #include "vfh.h"
+   5:..\VFH/polar_histogram.c **** 
+   6:..\VFH/polar_histogram.c **** // Converting Histogram Grid into Polar Histogram for VFH implementation.
+   7:..\VFH/polar_histogram.c **** 
+   8:..\VFH/polar_histogram.c **** int modulo(int x, int m) {
   28              		.loc 1 8 0
   29              		.cfi_startproc
   30              		@ args = 0, pretend = 0, frame = 16
@@ -50,15 +50,15 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 1
   39              		.cfi_def_cfa_register 7
   40 0006 7860     		str	r0, [r7, #4]
   41 0008 3960     		str	r1, [r7]
-   9:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   /* Source: http://crsouza.blogspot.com/2009/09/modulo-and-modular-distance-in-c.html */
-  10:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   int r;
-  11:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** 
-  12:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   if (m < 0) m = -m;
+   9:..\VFH/polar_histogram.c ****   /* Source: http://crsouza.blogspot.com/2009/09/modulo-and-modular-distance-in-c.html */
+  10:..\VFH/polar_histogram.c ****   int r;
+  11:..\VFH/polar_histogram.c **** 
+  12:..\VFH/polar_histogram.c ****   if (m < 0) m = -m;
   42              		.loc 1 12 0
   43 000a 3B68     		ldr	r3, [r7]
   44 000c 002B     		cmp	r3, #0
   45 000e 02DA     		bge	.L2
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 2
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc0BwBpn.s 			page 2
 
 
   46              		.loc 1 12 0 is_stmt 0 discriminator 1
@@ -66,8 +66,8 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 1
   48 0012 5B42     		negs	r3, r3
   49 0014 3B60     		str	r3, [r7]
   50              	.L2:
-  13:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** 
-  14:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   r = x % m;
+  13:..\VFH/polar_histogram.c **** 
+  14:..\VFH/polar_histogram.c ****   r = x % m;
   51              		.loc 1 14 0 is_stmt 1
   52 0016 7B68     		ldr	r3, [r7, #4]
   53 0018 3A68     		ldr	r2, [r7]
@@ -76,7 +76,7 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 1
   56 0020 01FB02F2 		mul	r2, r1, r2
   57 0024 9B1A     		subs	r3, r3, r2
   58 0026 FB60     		str	r3, [r7, #12]
-  15:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   return r < 0 ? r + m : r;
+  15:..\VFH/polar_histogram.c ****   return r < 0 ? r + m : r;
   59              		.loc 1 15 0
   60 0028 FB68     		ldr	r3, [r7, #12]
   61 002a 002B     		cmp	r3, #0
@@ -90,7 +90,7 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 1
   69              		.loc 1 15 0 discriminator 2
   70 0036 FB68     		ldr	r3, [r7, #12]
   71              	.L5:
-  16:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** }
+  16:..\VFH/polar_histogram.c **** }
   72              		.loc 1 16 0 is_stmt 1 discriminator 5
   73 0038 1846     		mov	r0, r3
   74 003a 1437     		adds	r7, r7, #20
@@ -113,12 +113,12 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 1
   91              		.type	polar_histogram_create, %function
   92              	polar_histogram_create:
   93              	.LFB1:
-  17:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** 
-  18:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** histogram * polar_histogram_create(int alpha, double threshold, double density_a, double density_b)
+  17:..\VFH/polar_histogram.c **** 
+  18:..\VFH/polar_histogram.c **** histogram * polar_histogram_create(int alpha, double threshold, double density_a, double density_b)
   94              		.loc 1 18 0
   95              		.cfi_startproc
   96              		@ args = 16, pretend = 0, frame = 24
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 3
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc0BwBpn.s 			page 3
 
 
   97              		@ frame_needed = 1, uses_anonymous_args = 0
@@ -133,52 +133,52 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 1
  106              		.cfi_def_cfa_register 7
  107 0006 F860     		str	r0, [r7, #12]
  108 0008 C7E90023 		strd	r2, [r7]
-  19:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   /* Create a histogram pointer and allocate memory to it. */
-  20:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   histogram * hist = malloc(sizeof(histogram));
+  19:..\VFH/polar_histogram.c ****   /* Create a histogram pointer and allocate memory to it. */
+  20:..\VFH/polar_histogram.c ****   histogram * hist = malloc(sizeof(histogram));
  109              		.loc 1 20 0
  110 000c 3020     		movs	r0, #48
  111 000e FFF7FEFF 		bl	malloc
  112 0012 0346     		mov	r3, r0
  113 0014 3B61     		str	r3, [r7, #16]
-  21:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** 
-  22:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   /* Is there enough memory for the histogram? */
-  23:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   if (NULL == hist) {
+  21:..\VFH/polar_histogram.c **** 
+  22:..\VFH/polar_histogram.c ****   /* Is there enough memory for the histogram? */
+  23:..\VFH/polar_histogram.c ****   if (NULL == hist) {
  114              		.loc 1 23 0
  115 0016 3B69     		ldr	r3, [r7, #16]
  116 0018 002B     		cmp	r3, #0
  117 001a 04D1     		bne	.L7
-  24:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****     free(hist);
+  24:..\VFH/polar_histogram.c ****     free(hist);
  118              		.loc 1 24 0
  119 001c 3869     		ldr	r0, [r7, #16]
  120 001e FFF7FEFF 		bl	free
-  25:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****     return NULL;
+  25:..\VFH/polar_histogram.c ****     return NULL;
  121              		.loc 1 25 0
  122 0022 0023     		movs	r3, #0
  123 0024 3EE0     		b	.L8
  124              	.L7:
-  26:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   }
-  27:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** 
-  28:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   /* Initialize the histogram parameters. */
-  29:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   hist->alpha = alpha;
+  26:..\VFH/polar_histogram.c ****   }
+  27:..\VFH/polar_histogram.c **** 
+  28:..\VFH/polar_histogram.c ****   /* Initialize the histogram parameters. */
+  29:..\VFH/polar_histogram.c ****   hist->alpha = alpha;
  125              		.loc 1 29 0
  126 0026 3B69     		ldr	r3, [r7, #16]
  127 0028 FA68     		ldr	r2, [r7, #12]
  128 002a 1A60     		str	r2, [r3]
-  30:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   hist->sectors = 360 / alpha;
+  30:..\VFH/polar_histogram.c ****   hist->sectors = 360 / alpha;
  129              		.loc 1 30 0
  130 002c 4FF4B472 		mov	r2, #360
  131 0030 FB68     		ldr	r3, [r7, #12]
  132 0032 92FBF3F2 		sdiv	r2, r2, r3
  133 0036 3B69     		ldr	r3, [r7, #16]
  134 0038 5A60     		str	r2, [r3, #4]
-  31:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   hist->threshold = threshold;
+  31:..\VFH/polar_histogram.c ****   hist->threshold = threshold;
  135              		.loc 1 31 0
  136 003a 3A69     		ldr	r2, [r7, #16]
  137 003c D7E90034 		ldrd	r3, [r7]
  138 0040 C2E90234 		strd	r3, [r2, #8]
-  32:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   hist->densities = (int *)malloc(hist->sectors * sizeof(int));
+  32:..\VFH/polar_histogram.c ****   hist->densities = (int *)malloc(hist->sectors * sizeof(int));
  139              		.loc 1 32 0
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 4
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc0BwBpn.s 			page 4
 
 
  140 0044 3B69     		ldr	r3, [r7, #16]
@@ -190,43 +190,43 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 1
  146 0052 1A46     		mov	r2, r3
  147 0054 3B69     		ldr	r3, [r7, #16]
  148 0056 9A62     		str	r2, [r3, #40]
-  33:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   hist->density_a = density_a;
+  33:..\VFH/polar_histogram.c ****   hist->density_a = density_a;
  149              		.loc 1 33 0
  150 0058 3A69     		ldr	r2, [r7, #16]
  151 005a D7E90A34 		ldrd	r3, [r7, #40]
  152 005e C2E90634 		strd	r3, [r2, #24]
-  34:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   hist->density_b = density_b;
+  34:..\VFH/polar_histogram.c ****   hist->density_b = density_b;
  153              		.loc 1 34 0
  154 0062 3A69     		ldr	r2, [r7, #16]
  155 0064 D7E90C34 		ldrd	r3, [r7, #48]
  156 0068 C2E90834 		strd	r3, [r2, #32]
-  35:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** 
-  36:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   if (hist->densities == NULL) {
+  35:..\VFH/polar_histogram.c **** 
+  36:..\VFH/polar_histogram.c ****   if (hist->densities == NULL) {
  157              		.loc 1 36 0
  158 006c 3B69     		ldr	r3, [r7, #16]
  159 006e 9B6A     		ldr	r3, [r3, #40]
  160 0070 002B     		cmp	r3, #0
  161 0072 04D1     		bne	.L9
-  37:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****     free(hist);
+  37:..\VFH/polar_histogram.c ****     free(hist);
  162              		.loc 1 37 0
  163 0074 3869     		ldr	r0, [r7, #16]
  164 0076 FFF7FEFF 		bl	free
-  38:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****     return NULL;
+  38:..\VFH/polar_histogram.c ****     return NULL;
  165              		.loc 1 38 0
  166 007a 0023     		movs	r3, #0
  167 007c 12E0     		b	.L8
  168              	.L9:
  169              	.LBB2:
-  39:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   }
-  40:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** 
-  41:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   /* Initialize all densities to 0. */
-  42:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   for (int i = 0; i < hist->sectors; ++i) {
+  39:..\VFH/polar_histogram.c ****   }
+  40:..\VFH/polar_histogram.c **** 
+  41:..\VFH/polar_histogram.c ****   /* Initialize all densities to 0. */
+  42:..\VFH/polar_histogram.c ****   for (int i = 0; i < hist->sectors; ++i) {
  170              		.loc 1 42 0
  171 007e 0023     		movs	r3, #0
  172 0080 7B61     		str	r3, [r7, #20]
  173 0082 09E0     		b	.L10
  174              	.L11:
-  43:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****     hist->densities[i] = 0;
+  43:..\VFH/polar_histogram.c ****     hist->densities[i] = 0;
  175              		.loc 1 43 0 discriminator 3
  176 0084 3B69     		ldr	r3, [r7, #16]
  177 0086 9A6A     		ldr	r2, [r3, #40]
@@ -235,16 +235,16 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 1
  180 008c 1344     		add	r3, r3, r2
  181 008e 0022     		movs	r2, #0
  182 0090 1A60     		str	r2, [r3]
-  42:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****     hist->densities[i] = 0;
+  42:..\VFH/polar_histogram.c ****     hist->densities[i] = 0;
  183              		.loc 1 42 0 discriminator 3
  184 0092 7B69     		ldr	r3, [r7, #20]
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 5
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc0BwBpn.s 			page 5
 
 
  185 0094 0133     		adds	r3, r3, #1
  186 0096 7B61     		str	r3, [r7, #20]
  187              	.L10:
-  42:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****     hist->densities[i] = 0;
+  42:..\VFH/polar_histogram.c ****     hist->densities[i] = 0;
  188              		.loc 1 42 0 is_stmt 0 discriminator 1
  189 0098 3B69     		ldr	r3, [r7, #16]
  190 009a 5A68     		ldr	r2, [r3, #4]
@@ -252,13 +252,13 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 1
  192 009e 9A42     		cmp	r2, r3
  193 00a0 F0DC     		bgt	.L11
  194              	.LBE2:
-  44:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   }
-  45:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** 
-  46:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   return hist;
+  44:..\VFH/polar_histogram.c ****   }
+  45:..\VFH/polar_histogram.c **** 
+  46:..\VFH/polar_histogram.c ****   return hist;
  195              		.loc 1 46 0 is_stmt 1
  196 00a2 3B69     		ldr	r3, [r7, #16]
  197              	.L8:
-  47:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** }
+  47:..\VFH/polar_histogram.c **** }
  198              		.loc 1 47 0
  199 00a4 1846     		mov	r0, r3
  200 00a6 1C37     		adds	r7, r7, #28
@@ -273,1805 +273,1799 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 1
  209              		.global	__aeabi_i2d
  210              		.global	__aeabi_dcmplt
  211              		.global	__aeabi_dadd
- 212              		.global	__aeabi_ui2d
- 213              		.global	__aeabi_dmul
- 214              		.global	__aeabi_dsub
- 215              		.global	__aeabi_ddiv
- 216              		.global	__aeabi_d2iz
- 217              		.section	.text.polar_histogram_update,"ax",%progbits
- 218              		.align	2
- 219              		.global	polar_histogram_update
- 220              		.thumb
- 221              		.thumb_func
- 222              		.type	polar_histogram_update, %function
- 223              	polar_histogram_update:
- 224              	.LFB2:
-  48:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** 
-  49:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** void polar_histogram_update(histogram *hist, grid *map)
-  50:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** {
- 225              		.loc 1 50 0
- 226              		.cfi_startproc
- 227              		@ args = 0, pretend = 0, frame = 80
- 228              		@ frame_needed = 1, uses_anonymous_args = 0
- 229 0000 F0B5     		push	{r4, r5, r6, r7, lr}
- 230              		.cfi_def_cfa_offset 20
- 231              		.cfi_offset 4, -20
- 232              		.cfi_offset 5, -16
- 233              		.cfi_offset 6, -12
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 6
+ 212              		.global	__aeabi_dmul
+ 213              		.global	__aeabi_dsub
+ 214              		.global	__aeabi_ddiv
+ 215              		.global	__aeabi_d2iz
+ 216              		.section	.text.polar_histogram_update,"ax",%progbits
+ 217              		.align	2
+ 218              		.global	polar_histogram_update
+ 219              		.thumb
+ 220              		.thumb_func
+ 221              		.type	polar_histogram_update, %function
+ 222              	polar_histogram_update:
+ 223              	.LFB2:
+  48:..\VFH/polar_histogram.c **** 
+  49:..\VFH/polar_histogram.c **** void polar_histogram_update(histogram *hist, grid *map)
+  50:..\VFH/polar_histogram.c **** {
+ 224              		.loc 1 50 0
+ 225              		.cfi_startproc
+ 226              		@ args = 0, pretend = 0, frame = 80
+ 227              		@ frame_needed = 1, uses_anonymous_args = 0
+ 228 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 229              		.cfi_def_cfa_offset 20
+ 230              		.cfi_offset 4, -20
+ 231              		.cfi_offset 5, -16
+ 232              		.cfi_offset 6, -12
+ 233              		.cfi_offset 7, -8
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc0BwBpn.s 			page 6
 
 
- 234              		.cfi_offset 7, -8
- 235              		.cfi_offset 14, -4
- 236 0002 95B0     		sub	sp, sp, #84
- 237              		.cfi_def_cfa_offset 104
- 238 0004 00AF     		add	r7, sp, #0
- 239              		.cfi_def_cfa_register 7
- 240 0006 7860     		str	r0, [r7, #4]
- 241 0008 3960     		str	r1, [r7]
-  51:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   int width = map->width;
- 242              		.loc 1 51 0
- 243 000a 3B68     		ldr	r3, [r7]
- 244 000c 1B68     		ldr	r3, [r3]
- 245 000e FB62     		str	r3, [r7, #44]
-  52:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   int height = map->height;
- 246              		.loc 1 52 0
- 247 0010 3B68     		ldr	r3, [r7]
- 248 0012 5B68     		ldr	r3, [r3, #4]
- 249 0014 BB62     		str	r3, [r7, #40]
-  53:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   double dens_a = hist->density_a;
- 250              		.loc 1 53 0
- 251 0016 7B68     		ldr	r3, [r7, #4]
- 252 0018 03F11804 		add	r4, r3, #24
- 253 001c D4E90034 		ldrd	r3, [r4]
- 254 0020 C7E90834 		strd	r3, [r7, #32]
-  54:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   double dens_b = hist->density_b;
- 255              		.loc 1 54 0
- 256 0024 7B68     		ldr	r3, [r7, #4]
- 257 0026 03F12004 		add	r4, r3, #32
- 258 002a D4E90034 		ldrd	r3, [r4]
- 259 002e C7E90634 		strd	r3, [r7, #24]
- 260              	.LBB3:
-  55:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** 
-  56:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   /* Calculate densities based on grid. */
-  57:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   for (int i = 0; i < width; ++i) {
- 261              		.loc 1 57 0
- 262 0032 0023     		movs	r3, #0
- 263 0034 FB64     		str	r3, [r7, #76]
- 264 0036 E5E0     		b	.L13
- 265              	.L18:
- 266              	.LBB4:
-  58:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****     for (int j = 0; j < height; ++j) {
- 267              		.loc 1 58 0
- 268 0038 0023     		movs	r3, #0
- 269 003a BB64     		str	r3, [r7, #72]
- 270 003c DAE0     		b	.L14
- 271              	.L17:
- 272              	.LBB5:
-  59:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** 
-  60:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****       /* Calculate the angular position (beta) of this cell. */
-  61:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****       double beta = atan2((double)(j - height/2), (double)(i - width/2));
- 273              		.loc 1 61 0
- 274 003e BB6A     		ldr	r3, [r7, #40]
- 275 0040 DA0F     		lsrs	r2, r3, #31
- 276 0042 1344     		add	r3, r3, r2
- 277 0044 5B10     		asrs	r3, r3, #1
- 278 0046 1A46     		mov	r2, r3
- 279 0048 BB6C     		ldr	r3, [r7, #72]
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 7
+ 234              		.cfi_offset 14, -4
+ 235 0002 95B0     		sub	sp, sp, #84
+ 236              		.cfi_def_cfa_offset 104
+ 237 0004 00AF     		add	r7, sp, #0
+ 238              		.cfi_def_cfa_register 7
+ 239 0006 7860     		str	r0, [r7, #4]
+ 240 0008 3960     		str	r1, [r7]
+  51:..\VFH/polar_histogram.c ****   int width = map->width;
+ 241              		.loc 1 51 0
+ 242 000a 3B68     		ldr	r3, [r7]
+ 243 000c 1B68     		ldr	r3, [r3]
+ 244 000e FB62     		str	r3, [r7, #44]
+  52:..\VFH/polar_histogram.c ****   int height = map->height;
+ 245              		.loc 1 52 0
+ 246 0010 3B68     		ldr	r3, [r7]
+ 247 0012 5B68     		ldr	r3, [r3, #4]
+ 248 0014 BB62     		str	r3, [r7, #40]
+  53:..\VFH/polar_histogram.c ****   double dens_a = hist->density_a;
+ 249              		.loc 1 53 0
+ 250 0016 7B68     		ldr	r3, [r7, #4]
+ 251 0018 03F11804 		add	r4, r3, #24
+ 252 001c D4E90034 		ldrd	r3, [r4]
+ 253 0020 C7E90834 		strd	r3, [r7, #32]
+  54:..\VFH/polar_histogram.c ****   double dens_b = hist->density_b;
+ 254              		.loc 1 54 0
+ 255 0024 7B68     		ldr	r3, [r7, #4]
+ 256 0026 03F12004 		add	r4, r3, #32
+ 257 002a D4E90034 		ldrd	r3, [r4]
+ 258 002e C7E90634 		strd	r3, [r7, #24]
+ 259              	.LBB3:
+  55:..\VFH/polar_histogram.c **** 
+  56:..\VFH/polar_histogram.c ****   /* Calculate densities based on grid. */
+  57:..\VFH/polar_histogram.c ****   for (int i = 0; i < width; ++i) {
+ 260              		.loc 1 57 0
+ 261 0032 0023     		movs	r3, #0
+ 262 0034 FB64     		str	r3, [r7, #76]
+ 263 0036 E5E0     		b	.L13
+ 264              	.L18:
+ 265              	.LBB4:
+  58:..\VFH/polar_histogram.c ****     for (int j = 0; j < height; ++j) {
+ 266              		.loc 1 58 0
+ 267 0038 0023     		movs	r3, #0
+ 268 003a BB64     		str	r3, [r7, #72]
+ 269 003c DAE0     		b	.L14
+ 270              	.L17:
+ 271              	.LBB5:
+  59:..\VFH/polar_histogram.c **** 
+  60:..\VFH/polar_histogram.c ****       /* Calculate the angular position (beta) of this cell. */
+  61:..\VFH/polar_histogram.c ****       double beta = atan2((double)(j - height/2), (double)(i - width/2));
+ 272              		.loc 1 61 0
+ 273 003e BB6A     		ldr	r3, [r7, #40]
+ 274 0040 DA0F     		lsrs	r2, r3, #31
+ 275 0042 1344     		add	r3, r3, r2
+ 276 0044 5B10     		asrs	r3, r3, #1
+ 277 0046 1A46     		mov	r2, r3
+ 278 0048 BB6C     		ldr	r3, [r7, #72]
+ 279 004a 9B1A     		subs	r3, r3, r2
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc0BwBpn.s 			page 7
 
 
- 280 004a 9B1A     		subs	r3, r3, r2
- 281 004c 1846     		mov	r0, r3
- 282 004e FFF7FEFF 		bl	__aeabi_i2d
- 283 0052 0446     		mov	r4, r0
- 284 0054 0D46     		mov	r5, r1
- 285 0056 FB6A     		ldr	r3, [r7, #44]
- 286 0058 DA0F     		lsrs	r2, r3, #31
- 287 005a 1344     		add	r3, r3, r2
- 288 005c 5B10     		asrs	r3, r3, #1
- 289 005e 1A46     		mov	r2, r3
- 290 0060 FB6C     		ldr	r3, [r7, #76]
- 291 0062 9B1A     		subs	r3, r3, r2
- 292 0064 1846     		mov	r0, r3
- 293 0066 FFF7FEFF 		bl	__aeabi_i2d
- 294 006a 0246     		mov	r2, r0
- 295 006c 0B46     		mov	r3, r1
- 296 006e 2046     		mov	r0, r4
- 297 0070 2946     		mov	r1, r5
- 298 0072 FFF7FEFF 		bl	atan2
- 299 0076 C7E91001 		strd	r0, [r7, #64]
-  62:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****       if (beta < 0) {
- 300              		.loc 1 62 0
- 301 007a 4FF00002 		mov	r2, #0
- 302 007e 4FF00003 		mov	r3, #0
- 303 0082 D7E91001 		ldrd	r0, [r7, #64]
- 304 0086 FFF7FEFF 		bl	__aeabi_dcmplt
- 305 008a 0346     		mov	r3, r0
- 306 008c 002B     		cmp	r3, #0
- 307 008e 0AD0     		beq	.L15
-  63:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****         beta += M_PI;
- 308              		.loc 1 63 0
- 309 0090 A9A3     		adr	r3, .L26
- 310 0092 D3E90023 		ldrd	r2, [r3]
- 311 0096 D7E91001 		ldrd	r0, [r7, #64]
- 312 009a FFF7FEFF 		bl	__aeabi_dadd
- 313 009e 0346     		mov	r3, r0
- 314 00a0 0C46     		mov	r4, r1
- 315 00a2 C7E91034 		strd	r3, [r7, #64]
- 316              	.L15:
-  64:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****       }
-  65:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****       /* Calculate the obstacle density of this cell. */
-  66:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****       double density = pow(map->cells[i * width + j], 2);
- 317              		.loc 1 66 0 discriminator 2
- 318 00a6 3B68     		ldr	r3, [r7]
- 319 00a8 DA68     		ldr	r2, [r3, #12]
- 320 00aa FB6C     		ldr	r3, [r7, #76]
- 321 00ac F96A     		ldr	r1, [r7, #44]
- 322 00ae 01FB03F1 		mul	r1, r1, r3
- 323 00b2 BB6C     		ldr	r3, [r7, #72]
- 324 00b4 0B44     		add	r3, r3, r1
- 325 00b6 9B00     		lsls	r3, r3, #2
- 326 00b8 1344     		add	r3, r3, r2
- 327 00ba 1B68     		ldr	r3, [r3]
- 328 00bc 1846     		mov	r0, r3
- 329 00be FFF7FEFF 		bl	__aeabi_ui2d
- 330 00c2 4FF00002 		mov	r2, #0
- 331 00c6 4FF08043 		mov	r3, #1073741824
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 8
+ 280 004c 1846     		mov	r0, r3
+ 281 004e FFF7FEFF 		bl	__aeabi_i2d
+ 282 0052 0446     		mov	r4, r0
+ 283 0054 0D46     		mov	r5, r1
+ 284 0056 FB6A     		ldr	r3, [r7, #44]
+ 285 0058 DA0F     		lsrs	r2, r3, #31
+ 286 005a 1344     		add	r3, r3, r2
+ 287 005c 5B10     		asrs	r3, r3, #1
+ 288 005e 1A46     		mov	r2, r3
+ 289 0060 FB6C     		ldr	r3, [r7, #76]
+ 290 0062 9B1A     		subs	r3, r3, r2
+ 291 0064 1846     		mov	r0, r3
+ 292 0066 FFF7FEFF 		bl	__aeabi_i2d
+ 293 006a 0246     		mov	r2, r0
+ 294 006c 0B46     		mov	r3, r1
+ 295 006e 2046     		mov	r0, r4
+ 296 0070 2946     		mov	r1, r5
+ 297 0072 FFF7FEFF 		bl	atan2
+ 298 0076 C7E91001 		strd	r0, [r7, #64]
+  62:..\VFH/polar_histogram.c ****       if (beta < 0) {
+ 299              		.loc 1 62 0
+ 300 007a 4FF00002 		mov	r2, #0
+ 301 007e 4FF00003 		mov	r3, #0
+ 302 0082 D7E91001 		ldrd	r0, [r7, #64]
+ 303 0086 FFF7FEFF 		bl	__aeabi_dcmplt
+ 304 008a 0346     		mov	r3, r0
+ 305 008c 002B     		cmp	r3, #0
+ 306 008e 0AD0     		beq	.L15
+  63:..\VFH/polar_histogram.c ****         beta += M_PI;
+ 307              		.loc 1 63 0
+ 308 0090 A9A3     		adr	r3, .L26
+ 309 0092 D3E90023 		ldrd	r2, [r3]
+ 310 0096 D7E91001 		ldrd	r0, [r7, #64]
+ 311 009a FFF7FEFF 		bl	__aeabi_dadd
+ 312 009e 0346     		mov	r3, r0
+ 313 00a0 0C46     		mov	r4, r1
+ 314 00a2 C7E91034 		strd	r3, [r7, #64]
+ 315              	.L15:
+  64:..\VFH/polar_histogram.c ****       }
+  65:..\VFH/polar_histogram.c ****       /* Calculate the obstacle density of this cell. */
+  66:..\VFH/polar_histogram.c ****       double density = pow(map->cells[i * width + j], 2);
+ 316              		.loc 1 66 0 discriminator 2
+ 317 00a6 3B68     		ldr	r3, [r7]
+ 318 00a8 DA68     		ldr	r2, [r3, #12]
+ 319 00aa FB6C     		ldr	r3, [r7, #76]
+ 320 00ac F96A     		ldr	r1, [r7, #44]
+ 321 00ae 01FB03F1 		mul	r1, r1, r3
+ 322 00b2 BB6C     		ldr	r3, [r7, #72]
+ 323 00b4 0B44     		add	r3, r3, r1
+ 324 00b6 9B00     		lsls	r3, r3, #2
+ 325 00b8 1344     		add	r3, r3, r2
+ 326 00ba 1B68     		ldr	r3, [r3]
+ 327 00bc 1846     		mov	r0, r3
+ 328 00be FFF7FEFF 		bl	__aeabi_i2d
+ 329 00c2 4FF00002 		mov	r2, #0
+ 330 00c6 4FF08043 		mov	r3, #1073741824
+ 331 00ca FFF7FEFF 		bl	pow
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc0BwBpn.s 			page 8
 
 
- 332 00ca FFF7FEFF 		bl	pow
- 333 00ce C7E90401 		strd	r0, [r7, #16]
-  67:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****       density *= dens_a - dens_b * sqrt(pow(i - width/2, 2) + pow(j - height/2, 2));
- 334              		.loc 1 67 0 discriminator 2
- 335 00d2 FB6A     		ldr	r3, [r7, #44]
- 336 00d4 DA0F     		lsrs	r2, r3, #31
- 337 00d6 1344     		add	r3, r3, r2
- 338 00d8 5B10     		asrs	r3, r3, #1
- 339 00da 1A46     		mov	r2, r3
- 340 00dc FB6C     		ldr	r3, [r7, #76]
- 341 00de 9B1A     		subs	r3, r3, r2
- 342 00e0 1846     		mov	r0, r3
- 343 00e2 FFF7FEFF 		bl	__aeabi_i2d
- 344 00e6 4FF00002 		mov	r2, #0
- 345 00ea 4FF08043 		mov	r3, #1073741824
- 346 00ee FFF7FEFF 		bl	pow
- 347 00f2 0446     		mov	r4, r0
- 348 00f4 0D46     		mov	r5, r1
- 349 00f6 BB6A     		ldr	r3, [r7, #40]
- 350 00f8 DA0F     		lsrs	r2, r3, #31
- 351 00fa 1344     		add	r3, r3, r2
- 352 00fc 5B10     		asrs	r3, r3, #1
- 353 00fe 1A46     		mov	r2, r3
- 354 0100 BB6C     		ldr	r3, [r7, #72]
- 355 0102 9B1A     		subs	r3, r3, r2
- 356 0104 1846     		mov	r0, r3
- 357 0106 FFF7FEFF 		bl	__aeabi_i2d
- 358 010a 4FF00002 		mov	r2, #0
- 359 010e 4FF08043 		mov	r3, #1073741824
- 360 0112 FFF7FEFF 		bl	pow
- 361 0116 0246     		mov	r2, r0
- 362 0118 0B46     		mov	r3, r1
- 363 011a 2046     		mov	r0, r4
- 364 011c 2946     		mov	r1, r5
- 365 011e FFF7FEFF 		bl	__aeabi_dadd
- 366 0122 0346     		mov	r3, r0
- 367 0124 0C46     		mov	r4, r1
- 368 0126 1846     		mov	r0, r3
- 369 0128 2146     		mov	r1, r4
- 370 012a FFF7FEFF 		bl	sqrt
- 371 012e D7E90623 		ldrd	r2, [r7, #24]
- 372 0132 FFF7FEFF 		bl	__aeabi_dmul
- 373 0136 0346     		mov	r3, r0
- 374 0138 0C46     		mov	r4, r1
- 375 013a 1A46     		mov	r2, r3
- 376 013c 2346     		mov	r3, r4
- 377 013e D7E90801 		ldrd	r0, [r7, #32]
- 378 0142 FFF7FEFF 		bl	__aeabi_dsub
- 379 0146 0346     		mov	r3, r0
- 380 0148 0C46     		mov	r4, r1
- 381 014a 1A46     		mov	r2, r3
- 382 014c 2346     		mov	r3, r4
- 383 014e D7E90401 		ldrd	r0, [r7, #16]
- 384 0152 FFF7FEFF 		bl	__aeabi_dmul
- 385 0156 0346     		mov	r3, r0
- 386 0158 0C46     		mov	r4, r1
- 387 015a C7E90434 		strd	r3, [r7, #16]
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 9
+ 332 00ce C7E90401 		strd	r0, [r7, #16]
+  67:..\VFH/polar_histogram.c ****       density *= dens_a - dens_b * sqrt(pow(i - width/2, 2) + pow(j - height/2, 2));
+ 333              		.loc 1 67 0 discriminator 2
+ 334 00d2 FB6A     		ldr	r3, [r7, #44]
+ 335 00d4 DA0F     		lsrs	r2, r3, #31
+ 336 00d6 1344     		add	r3, r3, r2
+ 337 00d8 5B10     		asrs	r3, r3, #1
+ 338 00da 1A46     		mov	r2, r3
+ 339 00dc FB6C     		ldr	r3, [r7, #76]
+ 340 00de 9B1A     		subs	r3, r3, r2
+ 341 00e0 1846     		mov	r0, r3
+ 342 00e2 FFF7FEFF 		bl	__aeabi_i2d
+ 343 00e6 4FF00002 		mov	r2, #0
+ 344 00ea 4FF08043 		mov	r3, #1073741824
+ 345 00ee FFF7FEFF 		bl	pow
+ 346 00f2 0446     		mov	r4, r0
+ 347 00f4 0D46     		mov	r5, r1
+ 348 00f6 BB6A     		ldr	r3, [r7, #40]
+ 349 00f8 DA0F     		lsrs	r2, r3, #31
+ 350 00fa 1344     		add	r3, r3, r2
+ 351 00fc 5B10     		asrs	r3, r3, #1
+ 352 00fe 1A46     		mov	r2, r3
+ 353 0100 BB6C     		ldr	r3, [r7, #72]
+ 354 0102 9B1A     		subs	r3, r3, r2
+ 355 0104 1846     		mov	r0, r3
+ 356 0106 FFF7FEFF 		bl	__aeabi_i2d
+ 357 010a 4FF00002 		mov	r2, #0
+ 358 010e 4FF08043 		mov	r3, #1073741824
+ 359 0112 FFF7FEFF 		bl	pow
+ 360 0116 0246     		mov	r2, r0
+ 361 0118 0B46     		mov	r3, r1
+ 362 011a 2046     		mov	r0, r4
+ 363 011c 2946     		mov	r1, r5
+ 364 011e FFF7FEFF 		bl	__aeabi_dadd
+ 365 0122 0346     		mov	r3, r0
+ 366 0124 0C46     		mov	r4, r1
+ 367 0126 1846     		mov	r0, r3
+ 368 0128 2146     		mov	r1, r4
+ 369 012a FFF7FEFF 		bl	sqrt
+ 370 012e D7E90623 		ldrd	r2, [r7, #24]
+ 371 0132 FFF7FEFF 		bl	__aeabi_dmul
+ 372 0136 0346     		mov	r3, r0
+ 373 0138 0C46     		mov	r4, r1
+ 374 013a 1A46     		mov	r2, r3
+ 375 013c 2346     		mov	r3, r4
+ 376 013e D7E90801 		ldrd	r0, [r7, #32]
+ 377 0142 FFF7FEFF 		bl	__aeabi_dsub
+ 378 0146 0346     		mov	r3, r0
+ 379 0148 0C46     		mov	r4, r1
+ 380 014a 1A46     		mov	r2, r3
+ 381 014c 2346     		mov	r3, r4
+ 382 014e D7E90401 		ldrd	r0, [r7, #16]
+ 383 0152 FFF7FEFF 		bl	__aeabi_dmul
+ 384 0156 0346     		mov	r3, r0
+ 385 0158 0C46     		mov	r4, r1
+ 386 015a C7E90434 		strd	r3, [r7, #16]
+  68:..\VFH/polar_histogram.c **** 
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc0BwBpn.s 			page 9
 
 
-  68:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** 
-  69:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****       /* Add density to respective point in the histogram. */
-  70:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****       hist->densities[(int) floor(beta / hist->alpha)] += density;
- 388              		.loc 1 70 0 discriminator 2
- 389 015e 7B68     		ldr	r3, [r7, #4]
- 390 0160 9C6A     		ldr	r4, [r3, #40]
- 391 0162 7B68     		ldr	r3, [r7, #4]
- 392 0164 1B68     		ldr	r3, [r3]
- 393 0166 1846     		mov	r0, r3
- 394 0168 FFF7FEFF 		bl	__aeabi_i2d
- 395 016c 0246     		mov	r2, r0
- 396 016e 0B46     		mov	r3, r1
- 397 0170 D7E91001 		ldrd	r0, [r7, #64]
- 398 0174 FFF7FEFF 		bl	__aeabi_ddiv
- 399 0178 0246     		mov	r2, r0
- 400 017a 0B46     		mov	r3, r1
- 401 017c 1046     		mov	r0, r2
- 402 017e 1946     		mov	r1, r3
- 403 0180 FFF7FEFF 		bl	floor
- 404 0184 0246     		mov	r2, r0
- 405 0186 0B46     		mov	r3, r1
- 406 0188 1046     		mov	r0, r2
- 407 018a 1946     		mov	r1, r3
- 408 018c FFF7FEFF 		bl	__aeabi_d2iz
- 409 0190 0346     		mov	r3, r0
- 410 0192 9B00     		lsls	r3, r3, #2
- 411 0194 1C44     		add	r4, r4, r3
- 412 0196 7B68     		ldr	r3, [r7, #4]
- 413 0198 9D6A     		ldr	r5, [r3, #40]
- 414 019a 7B68     		ldr	r3, [r7, #4]
- 415 019c 1B68     		ldr	r3, [r3]
- 416 019e 1846     		mov	r0, r3
- 417 01a0 FFF7FEFF 		bl	__aeabi_i2d
- 418 01a4 0246     		mov	r2, r0
- 419 01a6 0B46     		mov	r3, r1
- 420 01a8 D7E91001 		ldrd	r0, [r7, #64]
- 421 01ac FFF7FEFF 		bl	__aeabi_ddiv
- 422 01b0 0246     		mov	r2, r0
- 423 01b2 0B46     		mov	r3, r1
- 424 01b4 1046     		mov	r0, r2
- 425 01b6 1946     		mov	r1, r3
- 426 01b8 FFF7FEFF 		bl	floor
- 427 01bc 0246     		mov	r2, r0
- 428 01be 0B46     		mov	r3, r1
- 429 01c0 1046     		mov	r0, r2
- 430 01c2 1946     		mov	r1, r3
- 431 01c4 FFF7FEFF 		bl	__aeabi_d2iz
- 432 01c8 0346     		mov	r3, r0
- 433 01ca 9B00     		lsls	r3, r3, #2
- 434 01cc 2B44     		add	r3, r3, r5
- 435 01ce 1B68     		ldr	r3, [r3]
- 436 01d0 1846     		mov	r0, r3
- 437 01d2 FFF7FEFF 		bl	__aeabi_i2d
- 438 01d6 D7E90423 		ldrd	r2, [r7, #16]
- 439 01da FFF7FEFF 		bl	__aeabi_dadd
- 440 01de 0246     		mov	r2, r0
- 441 01e0 0B46     		mov	r3, r1
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 10
+  69:..\VFH/polar_histogram.c ****       /* Add density to respective point in the histogram. */
+  70:..\VFH/polar_histogram.c ****       hist->densities[(int) floor(beta / hist->alpha)] += density;
+ 387              		.loc 1 70 0 discriminator 2
+ 388 015e 7B68     		ldr	r3, [r7, #4]
+ 389 0160 9C6A     		ldr	r4, [r3, #40]
+ 390 0162 7B68     		ldr	r3, [r7, #4]
+ 391 0164 1B68     		ldr	r3, [r3]
+ 392 0166 1846     		mov	r0, r3
+ 393 0168 FFF7FEFF 		bl	__aeabi_i2d
+ 394 016c 0246     		mov	r2, r0
+ 395 016e 0B46     		mov	r3, r1
+ 396 0170 D7E91001 		ldrd	r0, [r7, #64]
+ 397 0174 FFF7FEFF 		bl	__aeabi_ddiv
+ 398 0178 0246     		mov	r2, r0
+ 399 017a 0B46     		mov	r3, r1
+ 400 017c 1046     		mov	r0, r2
+ 401 017e 1946     		mov	r1, r3
+ 402 0180 FFF7FEFF 		bl	floor
+ 403 0184 0246     		mov	r2, r0
+ 404 0186 0B46     		mov	r3, r1
+ 405 0188 1046     		mov	r0, r2
+ 406 018a 1946     		mov	r1, r3
+ 407 018c FFF7FEFF 		bl	__aeabi_d2iz
+ 408 0190 0346     		mov	r3, r0
+ 409 0192 9B00     		lsls	r3, r3, #2
+ 410 0194 1C44     		add	r4, r4, r3
+ 411 0196 7B68     		ldr	r3, [r7, #4]
+ 412 0198 9D6A     		ldr	r5, [r3, #40]
+ 413 019a 7B68     		ldr	r3, [r7, #4]
+ 414 019c 1B68     		ldr	r3, [r3]
+ 415 019e 1846     		mov	r0, r3
+ 416 01a0 FFF7FEFF 		bl	__aeabi_i2d
+ 417 01a4 0246     		mov	r2, r0
+ 418 01a6 0B46     		mov	r3, r1
+ 419 01a8 D7E91001 		ldrd	r0, [r7, #64]
+ 420 01ac FFF7FEFF 		bl	__aeabi_ddiv
+ 421 01b0 0246     		mov	r2, r0
+ 422 01b2 0B46     		mov	r3, r1
+ 423 01b4 1046     		mov	r0, r2
+ 424 01b6 1946     		mov	r1, r3
+ 425 01b8 FFF7FEFF 		bl	floor
+ 426 01bc 0246     		mov	r2, r0
+ 427 01be 0B46     		mov	r3, r1
+ 428 01c0 1046     		mov	r0, r2
+ 429 01c2 1946     		mov	r1, r3
+ 430 01c4 FFF7FEFF 		bl	__aeabi_d2iz
+ 431 01c8 0346     		mov	r3, r0
+ 432 01ca 9B00     		lsls	r3, r3, #2
+ 433 01cc 2B44     		add	r3, r3, r5
+ 434 01ce 1B68     		ldr	r3, [r3]
+ 435 01d0 1846     		mov	r0, r3
+ 436 01d2 FFF7FEFF 		bl	__aeabi_i2d
+ 437 01d6 D7E90423 		ldrd	r2, [r7, #16]
+ 438 01da FFF7FEFF 		bl	__aeabi_dadd
+ 439 01de 0246     		mov	r2, r0
+ 440 01e0 0B46     		mov	r3, r1
+ 441 01e2 1046     		mov	r0, r2
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc0BwBpn.s 			page 10
 
 
- 442 01e2 1046     		mov	r0, r2
- 443 01e4 1946     		mov	r1, r3
- 444 01e6 FFF7FEFF 		bl	__aeabi_d2iz
- 445 01ea 0346     		mov	r3, r0
- 446 01ec 2360     		str	r3, [r4]
- 447              	.LBE5:
-  58:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** 
- 448              		.loc 1 58 0 discriminator 2
- 449 01ee BB6C     		ldr	r3, [r7, #72]
- 450 01f0 0133     		adds	r3, r3, #1
- 451 01f2 BB64     		str	r3, [r7, #72]
- 452              	.L14:
-  58:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** 
- 453              		.loc 1 58 0 is_stmt 0 discriminator 1
- 454 01f4 BA6C     		ldr	r2, [r7, #72]
- 455 01f6 BB6A     		ldr	r3, [r7, #40]
- 456 01f8 9A42     		cmp	r2, r3
- 457 01fa FFF620AF 		blt	.L17
- 458              	.LBE4:
-  57:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****     for (int j = 0; j < height; ++j) {
- 459              		.loc 1 57 0 is_stmt 1 discriminator 2
- 460 01fe FB6C     		ldr	r3, [r7, #76]
- 461 0200 0133     		adds	r3, r3, #1
- 462 0202 FB64     		str	r3, [r7, #76]
- 463              	.L13:
-  57:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****     for (int j = 0; j < height; ++j) {
- 464              		.loc 1 57 0 is_stmt 0 discriminator 1
- 465 0204 FA6C     		ldr	r2, [r7, #76]
- 466 0206 FB6A     		ldr	r3, [r7, #44]
- 467 0208 9A42     		cmp	r2, r3
- 468 020a FFF615AF 		blt	.L18
- 469              	.LBE3:
-  71:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****     }
-  72:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   }
-  73:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** 
-  74:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   /* Polar Histogram Smoothing Function*/
-  75:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   // The research paper uses smoothing coefficient of 5 which gives decent results
-  76:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   int smoothing_factor = 5;
- 470              		.loc 1 76 0 is_stmt 1
- 471 020e 0523     		movs	r3, #5
- 472 0210 FB60     		str	r3, [r7, #12]
-  77:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** 
-  78:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   if (hist->sectors > smoothing_factor) {
- 473              		.loc 1 78 0
- 474 0212 7B68     		ldr	r3, [r7, #4]
- 475 0214 5A68     		ldr	r2, [r3, #4]
- 476 0216 FB68     		ldr	r3, [r7, #12]
- 477 0218 9A42     		cmp	r2, r3
- 478 021a 40F38680 		ble	.L25
- 479              	.LBB6:
-  79:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****     double smoothed_POD = 0;
- 480              		.loc 1 79 0
- 481 021e 4FF00003 		mov	r3, #0
- 482 0222 4FF00004 		mov	r4, #0
- 483 0226 C7E90E34 		strd	r3, [r7, #56]
- 484              	.LBB7:
-  80:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** 
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 11
+ 442 01e4 1946     		mov	r1, r3
+ 443 01e6 FFF7FEFF 		bl	__aeabi_d2iz
+ 444 01ea 0346     		mov	r3, r0
+ 445 01ec 2360     		str	r3, [r4]
+ 446              	.LBE5:
+  58:..\VFH/polar_histogram.c **** 
+ 447              		.loc 1 58 0 discriminator 2
+ 448 01ee BB6C     		ldr	r3, [r7, #72]
+ 449 01f0 0133     		adds	r3, r3, #1
+ 450 01f2 BB64     		str	r3, [r7, #72]
+ 451              	.L14:
+  58:..\VFH/polar_histogram.c **** 
+ 452              		.loc 1 58 0 is_stmt 0 discriminator 1
+ 453 01f4 BA6C     		ldr	r2, [r7, #72]
+ 454 01f6 BB6A     		ldr	r3, [r7, #40]
+ 455 01f8 9A42     		cmp	r2, r3
+ 456 01fa FFF620AF 		blt	.L17
+ 457              	.LBE4:
+  57:..\VFH/polar_histogram.c ****     for (int j = 0; j < height; ++j) {
+ 458              		.loc 1 57 0 is_stmt 1 discriminator 2
+ 459 01fe FB6C     		ldr	r3, [r7, #76]
+ 460 0200 0133     		adds	r3, r3, #1
+ 461 0202 FB64     		str	r3, [r7, #76]
+ 462              	.L13:
+  57:..\VFH/polar_histogram.c ****     for (int j = 0; j < height; ++j) {
+ 463              		.loc 1 57 0 is_stmt 0 discriminator 1
+ 464 0204 FA6C     		ldr	r2, [r7, #76]
+ 465 0206 FB6A     		ldr	r3, [r7, #44]
+ 466 0208 9A42     		cmp	r2, r3
+ 467 020a FFF615AF 		blt	.L18
+ 468              	.LBE3:
+  71:..\VFH/polar_histogram.c ****     }
+  72:..\VFH/polar_histogram.c ****   }
+  73:..\VFH/polar_histogram.c **** 
+  74:..\VFH/polar_histogram.c ****   /* Polar Histogram Smoothing Function*/
+  75:..\VFH/polar_histogram.c ****   // The research paper uses smoothing coefficient of 5 which gives decent results
+  76:..\VFH/polar_histogram.c ****   int smoothing_factor = 5;
+ 469              		.loc 1 76 0 is_stmt 1
+ 470 020e 0523     		movs	r3, #5
+ 471 0210 FB60     		str	r3, [r7, #12]
+  77:..\VFH/polar_histogram.c **** 
+  78:..\VFH/polar_histogram.c ****   if (hist->sectors > smoothing_factor) {
+ 472              		.loc 1 78 0
+ 473 0212 7B68     		ldr	r3, [r7, #4]
+ 474 0214 5A68     		ldr	r2, [r3, #4]
+ 475 0216 FB68     		ldr	r3, [r7, #12]
+ 476 0218 9A42     		cmp	r2, r3
+ 477 021a 40F38680 		ble	.L25
+ 478              	.LBB6:
+  79:..\VFH/polar_histogram.c ****     double smoothed_POD = 0;
+ 479              		.loc 1 79 0
+ 480 021e 4FF00003 		mov	r3, #0
+ 481 0222 4FF00004 		mov	r4, #0
+ 482 0226 C7E90E34 		strd	r3, [r7, #56]
+ 483              	.LBB7:
+  80:..\VFH/polar_histogram.c **** 
+  81:..\VFH/polar_histogram.c ****     for (int i = 0; i < hist->sectors; i++) {
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc0BwBpn.s 			page 11
 
 
-  81:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****     for (int i = 0; i < hist->sectors; i++) {
- 485              		.loc 1 81 0
- 486 022a 0023     		movs	r3, #0
- 487 022c 7B63     		str	r3, [r7, #52]
- 488 022e 77E0     		b	.L20
- 489              	.L23:
- 490              	.LBB8:
-  82:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****       for (int j = 0; j < smoothing_factor; j++) {
- 491              		.loc 1 82 0
- 492 0230 0023     		movs	r3, #0
- 493 0232 3B63     		str	r3, [r7, #48]
- 494 0234 35E0     		b	.L21
- 495              	.L22:
-  83:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****         smoothed_POD += (smoothing_factor - j) * (hist->densities[modulo(i-j, hist->sectors)] + his
- 496              		.loc 1 83 0 discriminator 3
- 497 0236 FA68     		ldr	r2, [r7, #12]
- 498 0238 3B6B     		ldr	r3, [r7, #48]
- 499 023a D41A     		subs	r4, r2, r3
- 500 023c 7B68     		ldr	r3, [r7, #4]
- 501 023e 9D6A     		ldr	r5, [r3, #40]
- 502 0240 7A6B     		ldr	r2, [r7, #52]
- 503 0242 3B6B     		ldr	r3, [r7, #48]
- 504 0244 D21A     		subs	r2, r2, r3
- 505 0246 7B68     		ldr	r3, [r7, #4]
- 506 0248 5B68     		ldr	r3, [r3, #4]
- 507 024a 1946     		mov	r1, r3
- 508 024c 1046     		mov	r0, r2
- 509 024e FFF7FEFF 		bl	modulo
- 510 0252 0346     		mov	r3, r0
- 511 0254 9B00     		lsls	r3, r3, #2
- 512 0256 2B44     		add	r3, r3, r5
- 513 0258 1D68     		ldr	r5, [r3]
- 514 025a 7B68     		ldr	r3, [r7, #4]
- 515 025c 9E6A     		ldr	r6, [r3, #40]
- 516 025e 7A6B     		ldr	r2, [r7, #52]
- 517 0260 3B6B     		ldr	r3, [r7, #48]
- 518 0262 1A44     		add	r2, r2, r3
- 519 0264 7B68     		ldr	r3, [r7, #4]
- 520 0266 5B68     		ldr	r3, [r3, #4]
- 521 0268 1946     		mov	r1, r3
- 522 026a 1046     		mov	r0, r2
- 523 026c FFF7FEFF 		bl	modulo
- 524 0270 0346     		mov	r3, r0
- 525 0272 9B00     		lsls	r3, r3, #2
- 526 0274 3344     		add	r3, r3, r6
- 527 0276 1B68     		ldr	r3, [r3]
- 528 0278 2B44     		add	r3, r3, r5
- 529 027a 03FB04F3 		mul	r3, r3, r4
- 530 027e 1846     		mov	r0, r3
- 531 0280 FFF7FEFF 		bl	__aeabi_i2d
- 532 0284 0346     		mov	r3, r0
- 533 0286 0C46     		mov	r4, r1
- 534 0288 1A46     		mov	r2, r3
- 535 028a 2346     		mov	r3, r4
- 536 028c D7E90E01 		ldrd	r0, [r7, #56]
- 537 0290 FFF7FEFF 		bl	__aeabi_dadd
- 538 0294 0346     		mov	r3, r0
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 12
+ 484              		.loc 1 81 0
+ 485 022a 0023     		movs	r3, #0
+ 486 022c 7B63     		str	r3, [r7, #52]
+ 487 022e 77E0     		b	.L20
+ 488              	.L23:
+ 489              	.LBB8:
+  82:..\VFH/polar_histogram.c ****       for (int j = 0; j < smoothing_factor; j++) {
+ 490              		.loc 1 82 0
+ 491 0230 0023     		movs	r3, #0
+ 492 0232 3B63     		str	r3, [r7, #48]
+ 493 0234 35E0     		b	.L21
+ 494              	.L22:
+  83:..\VFH/polar_histogram.c ****         smoothed_POD += (smoothing_factor - j) * (hist->densities[modulo(i-j, hist->sectors)] + his
+ 495              		.loc 1 83 0 discriminator 3
+ 496 0236 FA68     		ldr	r2, [r7, #12]
+ 497 0238 3B6B     		ldr	r3, [r7, #48]
+ 498 023a D41A     		subs	r4, r2, r3
+ 499 023c 7B68     		ldr	r3, [r7, #4]
+ 500 023e 9D6A     		ldr	r5, [r3, #40]
+ 501 0240 7A6B     		ldr	r2, [r7, #52]
+ 502 0242 3B6B     		ldr	r3, [r7, #48]
+ 503 0244 D21A     		subs	r2, r2, r3
+ 504 0246 7B68     		ldr	r3, [r7, #4]
+ 505 0248 5B68     		ldr	r3, [r3, #4]
+ 506 024a 1946     		mov	r1, r3
+ 507 024c 1046     		mov	r0, r2
+ 508 024e FFF7FEFF 		bl	modulo
+ 509 0252 0346     		mov	r3, r0
+ 510 0254 9B00     		lsls	r3, r3, #2
+ 511 0256 2B44     		add	r3, r3, r5
+ 512 0258 1D68     		ldr	r5, [r3]
+ 513 025a 7B68     		ldr	r3, [r7, #4]
+ 514 025c 9E6A     		ldr	r6, [r3, #40]
+ 515 025e 7A6B     		ldr	r2, [r7, #52]
+ 516 0260 3B6B     		ldr	r3, [r7, #48]
+ 517 0262 1A44     		add	r2, r2, r3
+ 518 0264 7B68     		ldr	r3, [r7, #4]
+ 519 0266 5B68     		ldr	r3, [r3, #4]
+ 520 0268 1946     		mov	r1, r3
+ 521 026a 1046     		mov	r0, r2
+ 522 026c FFF7FEFF 		bl	modulo
+ 523 0270 0346     		mov	r3, r0
+ 524 0272 9B00     		lsls	r3, r3, #2
+ 525 0274 3344     		add	r3, r3, r6
+ 526 0276 1B68     		ldr	r3, [r3]
+ 527 0278 2B44     		add	r3, r3, r5
+ 528 027a 03FB04F3 		mul	r3, r3, r4
+ 529 027e 1846     		mov	r0, r3
+ 530 0280 FFF7FEFF 		bl	__aeabi_i2d
+ 531 0284 0346     		mov	r3, r0
+ 532 0286 0C46     		mov	r4, r1
+ 533 0288 1A46     		mov	r2, r3
+ 534 028a 2346     		mov	r3, r4
+ 535 028c D7E90E01 		ldrd	r0, [r7, #56]
+ 536 0290 FFF7FEFF 		bl	__aeabi_dadd
+ 537 0294 0346     		mov	r3, r0
+ 538 0296 0C46     		mov	r4, r1
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc0BwBpn.s 			page 12
 
 
- 539 0296 0C46     		mov	r4, r1
- 540 0298 C7E90E34 		strd	r3, [r7, #56]
-  82:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****       for (int j = 0; j < smoothing_factor; j++) {
- 541              		.loc 1 82 0 discriminator 3
- 542 029c 3B6B     		ldr	r3, [r7, #48]
- 543 029e 0133     		adds	r3, r3, #1
- 544 02a0 3B63     		str	r3, [r7, #48]
- 545              	.L21:
-  82:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****       for (int j = 0; j < smoothing_factor; j++) {
- 546              		.loc 1 82 0 is_stmt 0 discriminator 1
- 547 02a2 3A6B     		ldr	r2, [r7, #48]
- 548 02a4 FB68     		ldr	r3, [r7, #12]
- 549 02a6 9A42     		cmp	r2, r3
- 550 02a8 C5DB     		blt	.L22
- 551              	.LBE8:
-  84:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****       }
-  85:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****       smoothed_POD += smoothing_factor * hist->densities[i];
- 552              		.loc 1 85 0 is_stmt 1 discriminator 2
- 553 02aa 7B68     		ldr	r3, [r7, #4]
- 554 02ac 9A6A     		ldr	r2, [r3, #40]
- 555 02ae 7B6B     		ldr	r3, [r7, #52]
- 556 02b0 9B00     		lsls	r3, r3, #2
- 557 02b2 1344     		add	r3, r3, r2
- 558 02b4 1B68     		ldr	r3, [r3]
- 559 02b6 FA68     		ldr	r2, [r7, #12]
- 560 02b8 02FB03F3 		mul	r3, r2, r3
- 561 02bc 1846     		mov	r0, r3
- 562 02be FFF7FEFF 		bl	__aeabi_i2d
- 563 02c2 0346     		mov	r3, r0
- 564 02c4 0C46     		mov	r4, r1
- 565 02c6 1A46     		mov	r2, r3
- 566 02c8 2346     		mov	r3, r4
- 567 02ca D7E90E01 		ldrd	r0, [r7, #56]
- 568 02ce FFF7FEFF 		bl	__aeabi_dadd
- 569 02d2 0346     		mov	r3, r0
- 570 02d4 0C46     		mov	r4, r1
- 571 02d6 C7E90E34 		strd	r3, [r7, #56]
-  86:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****       smoothed_POD *= 1 / (2 * smoothing_factor + 1);
- 572              		.loc 1 86 0 discriminator 2
- 573 02da FB68     		ldr	r3, [r7, #12]
- 574 02dc 5B00     		lsls	r3, r3, #1
- 575 02de 0133     		adds	r3, r3, #1
- 576 02e0 0122     		movs	r2, #1
- 577 02e2 92FBF3F3 		sdiv	r3, r2, r3
- 578 02e6 1846     		mov	r0, r3
- 579 02e8 FFF7FEFF 		bl	__aeabi_i2d
- 580 02ec 0346     		mov	r3, r0
- 581 02ee 0C46     		mov	r4, r1
- 582 02f0 1A46     		mov	r2, r3
- 583 02f2 2346     		mov	r3, r4
- 584 02f4 D7E90E01 		ldrd	r0, [r7, #56]
- 585 02f8 FFF7FEFF 		bl	__aeabi_dmul
- 586 02fc 0346     		mov	r3, r0
- 587 02fe 0C46     		mov	r4, r1
- 588 0300 C7E90E34 		strd	r3, [r7, #56]
-  87:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****       hist->densities[i] = smoothed_POD;
- 589              		.loc 1 87 0 discriminator 2
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 13
+ 539 0298 C7E90E34 		strd	r3, [r7, #56]
+  82:..\VFH/polar_histogram.c ****       for (int j = 0; j < smoothing_factor; j++) {
+ 540              		.loc 1 82 0 discriminator 3
+ 541 029c 3B6B     		ldr	r3, [r7, #48]
+ 542 029e 0133     		adds	r3, r3, #1
+ 543 02a0 3B63     		str	r3, [r7, #48]
+ 544              	.L21:
+  82:..\VFH/polar_histogram.c ****       for (int j = 0; j < smoothing_factor; j++) {
+ 545              		.loc 1 82 0 is_stmt 0 discriminator 1
+ 546 02a2 3A6B     		ldr	r2, [r7, #48]
+ 547 02a4 FB68     		ldr	r3, [r7, #12]
+ 548 02a6 9A42     		cmp	r2, r3
+ 549 02a8 C5DB     		blt	.L22
+ 550              	.LBE8:
+  84:..\VFH/polar_histogram.c ****       }
+  85:..\VFH/polar_histogram.c ****       smoothed_POD += smoothing_factor * hist->densities[i];
+ 551              		.loc 1 85 0 is_stmt 1 discriminator 2
+ 552 02aa 7B68     		ldr	r3, [r7, #4]
+ 553 02ac 9A6A     		ldr	r2, [r3, #40]
+ 554 02ae 7B6B     		ldr	r3, [r7, #52]
+ 555 02b0 9B00     		lsls	r3, r3, #2
+ 556 02b2 1344     		add	r3, r3, r2
+ 557 02b4 1B68     		ldr	r3, [r3]
+ 558 02b6 FA68     		ldr	r2, [r7, #12]
+ 559 02b8 02FB03F3 		mul	r3, r2, r3
+ 560 02bc 1846     		mov	r0, r3
+ 561 02be FFF7FEFF 		bl	__aeabi_i2d
+ 562 02c2 0346     		mov	r3, r0
+ 563 02c4 0C46     		mov	r4, r1
+ 564 02c6 1A46     		mov	r2, r3
+ 565 02c8 2346     		mov	r3, r4
+ 566 02ca D7E90E01 		ldrd	r0, [r7, #56]
+ 567 02ce FFF7FEFF 		bl	__aeabi_dadd
+ 568 02d2 0346     		mov	r3, r0
+ 569 02d4 0C46     		mov	r4, r1
+ 570 02d6 C7E90E34 		strd	r3, [r7, #56]
+  86:..\VFH/polar_histogram.c ****       smoothed_POD *= 1 / (2 * smoothing_factor + 1);
+ 571              		.loc 1 86 0 discriminator 2
+ 572 02da FB68     		ldr	r3, [r7, #12]
+ 573 02dc 5B00     		lsls	r3, r3, #1
+ 574 02de 0133     		adds	r3, r3, #1
+ 575 02e0 0122     		movs	r2, #1
+ 576 02e2 92FBF3F3 		sdiv	r3, r2, r3
+ 577 02e6 1846     		mov	r0, r3
+ 578 02e8 FFF7FEFF 		bl	__aeabi_i2d
+ 579 02ec 0346     		mov	r3, r0
+ 580 02ee 0C46     		mov	r4, r1
+ 581 02f0 1A46     		mov	r2, r3
+ 582 02f2 2346     		mov	r3, r4
+ 583 02f4 D7E90E01 		ldrd	r0, [r7, #56]
+ 584 02f8 FFF7FEFF 		bl	__aeabi_dmul
+ 585 02fc 0346     		mov	r3, r0
+ 586 02fe 0C46     		mov	r4, r1
+ 587 0300 C7E90E34 		strd	r3, [r7, #56]
+  87:..\VFH/polar_histogram.c ****       hist->densities[i] = smoothed_POD;
+ 588              		.loc 1 87 0 discriminator 2
+ 589 0304 7B68     		ldr	r3, [r7, #4]
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc0BwBpn.s 			page 13
 
 
- 590 0304 7B68     		ldr	r3, [r7, #4]
- 591 0306 9A6A     		ldr	r2, [r3, #40]
- 592 0308 7B6B     		ldr	r3, [r7, #52]
- 593 030a 9B00     		lsls	r3, r3, #2
- 594 030c D418     		adds	r4, r2, r3
- 595 030e D7E90E01 		ldrd	r0, [r7, #56]
- 596 0312 FFF7FEFF 		bl	__aeabi_d2iz
- 597 0316 0346     		mov	r3, r0
- 598 0318 2360     		str	r3, [r4]
-  81:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****       for (int j = 0; j < smoothing_factor; j++) {
- 599              		.loc 1 81 0 discriminator 2
- 600 031a 7B6B     		ldr	r3, [r7, #52]
- 601 031c 0133     		adds	r3, r3, #1
- 602 031e 7B63     		str	r3, [r7, #52]
- 603              	.L20:
-  81:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****       for (int j = 0; j < smoothing_factor; j++) {
- 604              		.loc 1 81 0 is_stmt 0 discriminator 1
- 605 0320 7B68     		ldr	r3, [r7, #4]
- 606 0322 5A68     		ldr	r2, [r3, #4]
- 607 0324 7B6B     		ldr	r3, [r7, #52]
- 608 0326 9A42     		cmp	r2, r3
- 609 0328 82DC     		bgt	.L23
- 610              	.L25:
- 611              	.LBE7:
- 612              	.LBE6:
-  88:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****     }
-  89:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   }
-  90:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** }
- 613              		.loc 1 90 0 is_stmt 1
- 614 032a 00BF     		nop
- 615 032c 5437     		adds	r7, r7, #84
- 616              		.cfi_def_cfa_offset 20
- 617 032e BD46     		mov	sp, r7
- 618              		.cfi_def_cfa_register 13
- 619              		@ sp needed
- 620 0330 F0BD     		pop	{r4, r5, r6, r7, pc}
- 621              	.L27:
- 622 0332 00BFAFF3 		.align	3
- 622      0080
- 623              	.L26:
- 624 0338 182D4454 		.word	1413754136
- 625 033c FB210940 		.word	1074340347
- 626              		.cfi_endproc
- 627              	.LFE2:
- 628              		.size	polar_histogram_update, .-polar_histogram_update
- 629              		.section	.text.candidate_valley,"ax",%progbits
- 630              		.align	2
- 631              		.global	candidate_valley
- 632              		.thumb
- 633              		.thumb_func
- 634              		.type	candidate_valley, %function
- 635              	candidate_valley:
- 636              	.LFB3:
-  91:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** 
-  92:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** int * candidate_valley(histogram * smoothed_histogram) {
- 637              		.loc 1 92 0
- 638              		.cfi_startproc
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 14
+ 590 0306 9A6A     		ldr	r2, [r3, #40]
+ 591 0308 7B6B     		ldr	r3, [r7, #52]
+ 592 030a 9B00     		lsls	r3, r3, #2
+ 593 030c D418     		adds	r4, r2, r3
+ 594 030e D7E90E01 		ldrd	r0, [r7, #56]
+ 595 0312 FFF7FEFF 		bl	__aeabi_d2iz
+ 596 0316 0346     		mov	r3, r0
+ 597 0318 2360     		str	r3, [r4]
+  81:..\VFH/polar_histogram.c ****       for (int j = 0; j < smoothing_factor; j++) {
+ 598              		.loc 1 81 0 discriminator 2
+ 599 031a 7B6B     		ldr	r3, [r7, #52]
+ 600 031c 0133     		adds	r3, r3, #1
+ 601 031e 7B63     		str	r3, [r7, #52]
+ 602              	.L20:
+  81:..\VFH/polar_histogram.c ****       for (int j = 0; j < smoothing_factor; j++) {
+ 603              		.loc 1 81 0 is_stmt 0 discriminator 1
+ 604 0320 7B68     		ldr	r3, [r7, #4]
+ 605 0322 5A68     		ldr	r2, [r3, #4]
+ 606 0324 7B6B     		ldr	r3, [r7, #52]
+ 607 0326 9A42     		cmp	r2, r3
+ 608 0328 82DC     		bgt	.L23
+ 609              	.L25:
+ 610              	.LBE7:
+ 611              	.LBE6:
+  88:..\VFH/polar_histogram.c ****     }
+  89:..\VFH/polar_histogram.c ****   }
+  90:..\VFH/polar_histogram.c **** }
+ 612              		.loc 1 90 0 is_stmt 1
+ 613 032a 00BF     		nop
+ 614 032c 5437     		adds	r7, r7, #84
+ 615              		.cfi_def_cfa_offset 20
+ 616 032e BD46     		mov	sp, r7
+ 617              		.cfi_def_cfa_register 13
+ 618              		@ sp needed
+ 619 0330 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 620              	.L27:
+ 621 0332 00BFAFF3 		.align	3
+ 621      0080
+ 622              	.L26:
+ 623 0338 182D4454 		.word	1413754136
+ 624 033c FB210940 		.word	1074340347
+ 625              		.cfi_endproc
+ 626              	.LFE2:
+ 627              		.size	polar_histogram_update, .-polar_histogram_update
+ 628              		.section	.text.candidate_valley,"ax",%progbits
+ 629              		.align	2
+ 630              		.global	candidate_valley
+ 631              		.thumb
+ 632              		.thumb_func
+ 633              		.type	candidate_valley, %function
+ 634              	candidate_valley:
+ 635              	.LFB3:
+  91:..\VFH/polar_histogram.c **** 
+  92:..\VFH/polar_histogram.c **** int * candidate_valley(histogram * smoothed_histogram) {
+ 636              		.loc 1 92 0
+ 637              		.cfi_startproc
+ 638              		@ args = 0, pretend = 0, frame = 40
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc0BwBpn.s 			page 14
 
 
- 639              		@ args = 0, pretend = 0, frame = 40
- 640              		@ frame_needed = 1, uses_anonymous_args = 0
- 641 0000 80B5     		push	{r7, lr}
- 642              		.cfi_def_cfa_offset 8
- 643              		.cfi_offset 7, -8
- 644              		.cfi_offset 14, -4
- 645 0002 8AB0     		sub	sp, sp, #40
- 646              		.cfi_def_cfa_offset 48
- 647 0004 00AF     		add	r7, sp, #0
- 648              		.cfi_def_cfa_register 7
- 649 0006 7860     		str	r0, [r7, #4]
-  93:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   /* Selects the candidate valley based on the produced Polar Histogram */
-  94:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   // NOTE: THIS IMPLEMENTATION IS NOT VER
-  95:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   int * candidate_idx = (int *)malloc(smoothed_histogram->sectors * sizeof(int));
- 650              		.loc 1 95 0
- 651 0008 7B68     		ldr	r3, [r7, #4]
- 652 000a 5B68     		ldr	r3, [r3, #4]
- 653 000c 9B00     		lsls	r3, r3, #2
- 654 000e 1846     		mov	r0, r3
- 655 0010 FFF7FEFF 		bl	malloc
- 656 0014 0346     		mov	r3, r0
- 657 0016 7B61     		str	r3, [r7, #20]
-  96:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   int lst_length = sizeof(candidate_idx) / sizeof(int);
- 658              		.loc 1 96 0
- 659 0018 0123     		movs	r3, #1
- 660 001a 3B61     		str	r3, [r7, #16]
-  97:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   int idx_counter = 0;
- 661              		.loc 1 97 0
- 662 001c 0023     		movs	r3, #0
- 663 001e 7B62     		str	r3, [r7, #36]
-  98:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** 
-  99:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   // Define the threshold value for a candidate valley
- 100:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   int VALLEY_THRESHOLD = 100;
- 664              		.loc 1 100 0
- 665 0020 6423     		movs	r3, #100
- 666 0022 FB60     		str	r3, [r7, #12]
- 667              	.LBB9:
- 101:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** 
- 102:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   // Loop through densities and select candidate positions
- 103:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   for (int i = 0; i < smoothed_histogram->sectors; i++) {
- 668              		.loc 1 103 0
- 669 0024 0023     		movs	r3, #0
- 670 0026 3B62     		str	r3, [r7, #32]
- 671 0028 1BE0     		b	.L29
- 672              	.L32:
- 104:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** 
- 105:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****     if (smoothed_histogram->densities[i] < VALLEY_THRESHOLD) {
- 673              		.loc 1 105 0
- 674 002a 7B68     		ldr	r3, [r7, #4]
- 675 002c 9A6A     		ldr	r2, [r3, #40]
- 676 002e 3B6A     		ldr	r3, [r7, #32]
- 677 0030 9B00     		lsls	r3, r3, #2
- 678 0032 1344     		add	r3, r3, r2
- 679 0034 1A68     		ldr	r2, [r3]
- 680 0036 FB68     		ldr	r3, [r7, #12]
- 681 0038 9A42     		cmp	r2, r3
- 682 003a 09DA     		bge	.L30
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 15
+ 639              		@ frame_needed = 1, uses_anonymous_args = 0
+ 640 0000 80B5     		push	{r7, lr}
+ 641              		.cfi_def_cfa_offset 8
+ 642              		.cfi_offset 7, -8
+ 643              		.cfi_offset 14, -4
+ 644 0002 8AB0     		sub	sp, sp, #40
+ 645              		.cfi_def_cfa_offset 48
+ 646 0004 00AF     		add	r7, sp, #0
+ 647              		.cfi_def_cfa_register 7
+ 648 0006 7860     		str	r0, [r7, #4]
+  93:..\VFH/polar_histogram.c ****   /* Selects the candidate valley based on the produced Polar Histogram */
+  94:..\VFH/polar_histogram.c ****   int * candidate_idx = (int *)malloc(smoothed_histogram->sectors * sizeof(int));
+ 649              		.loc 1 94 0
+ 650 0008 7B68     		ldr	r3, [r7, #4]
+ 651 000a 5B68     		ldr	r3, [r3, #4]
+ 652 000c 9B00     		lsls	r3, r3, #2
+ 653 000e 1846     		mov	r0, r3
+ 654 0010 FFF7FEFF 		bl	malloc
+ 655 0014 0346     		mov	r3, r0
+ 656 0016 7B61     		str	r3, [r7, #20]
+  95:..\VFH/polar_histogram.c ****   int lst_length = sizeof(candidate_idx) / sizeof(int);
+ 657              		.loc 1 95 0
+ 658 0018 0123     		movs	r3, #1
+ 659 001a 3B61     		str	r3, [r7, #16]
+  96:..\VFH/polar_histogram.c ****   int idx_counter = 0;
+ 660              		.loc 1 96 0
+ 661 001c 0023     		movs	r3, #0
+ 662 001e 7B62     		str	r3, [r7, #36]
+  97:..\VFH/polar_histogram.c **** 
+  98:..\VFH/polar_histogram.c ****   // Define the threshold value for a candidate valley
+  99:..\VFH/polar_histogram.c ****   int VALLEY_THRESHOLD = 100;
+ 663              		.loc 1 99 0
+ 664 0020 6423     		movs	r3, #100
+ 665 0022 FB60     		str	r3, [r7, #12]
+ 666              	.LBB9:
+ 100:..\VFH/polar_histogram.c **** 
+ 101:..\VFH/polar_histogram.c ****   // Loop through densities and select candidate positions
+ 102:..\VFH/polar_histogram.c ****   for (int i = 0; i < smoothed_histogram->sectors; i++) {
+ 667              		.loc 1 102 0
+ 668 0024 0023     		movs	r3, #0
+ 669 0026 3B62     		str	r3, [r7, #32]
+ 670 0028 1BE0     		b	.L29
+ 671              	.L32:
+ 103:..\VFH/polar_histogram.c **** 
+ 104:..\VFH/polar_histogram.c ****     if (smoothed_histogram->densities[i] < VALLEY_THRESHOLD) {
+ 672              		.loc 1 104 0
+ 673 002a 7B68     		ldr	r3, [r7, #4]
+ 674 002c 9A6A     		ldr	r2, [r3, #40]
+ 675 002e 3B6A     		ldr	r3, [r7, #32]
+ 676 0030 9B00     		lsls	r3, r3, #2
+ 677 0032 1344     		add	r3, r3, r2
+ 678 0034 1A68     		ldr	r2, [r3]
+ 679 0036 FB68     		ldr	r3, [r7, #12]
+ 680 0038 9A42     		cmp	r2, r3
+ 681 003a 09DA     		bge	.L30
+ 105:..\VFH/polar_histogram.c ****       candidate_idx[i] = i;
+ 682              		.loc 1 105 0
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc0BwBpn.s 			page 15
 
 
- 106:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****       candidate_idx[i] = i;
- 683              		.loc 1 106 0
- 684 003c 3B6A     		ldr	r3, [r7, #32]
- 685 003e 9B00     		lsls	r3, r3, #2
- 686 0040 7A69     		ldr	r2, [r7, #20]
- 687 0042 1344     		add	r3, r3, r2
- 688 0044 3A6A     		ldr	r2, [r7, #32]
- 689 0046 1A60     		str	r2, [r3]
- 107:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****       idx_counter++;
- 690              		.loc 1 107 0
- 691 0048 7B6A     		ldr	r3, [r7, #36]
- 692 004a 0133     		adds	r3, r3, #1
- 693 004c 7B62     		str	r3, [r7, #36]
- 694 004e 05E0     		b	.L31
- 695              	.L30:
- 108:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****     } else {
- 109:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****       candidate_idx[i] = NULL;
- 696              		.loc 1 109 0
- 697 0050 3B6A     		ldr	r3, [r7, #32]
- 698 0052 9B00     		lsls	r3, r3, #2
- 699 0054 7A69     		ldr	r2, [r7, #20]
- 700 0056 1344     		add	r3, r3, r2
- 701 0058 0022     		movs	r2, #0
- 702 005a 1A60     		str	r2, [r3]
- 703              	.L31:
- 103:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** 
- 704              		.loc 1 103 0 discriminator 2
- 705 005c 3B6A     		ldr	r3, [r7, #32]
- 706 005e 0133     		adds	r3, r3, #1
- 707 0060 3B62     		str	r3, [r7, #32]
- 708              	.L29:
- 103:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** 
- 709              		.loc 1 103 0 is_stmt 0 discriminator 1
- 710 0062 7B68     		ldr	r3, [r7, #4]
- 711 0064 5A68     		ldr	r2, [r3, #4]
- 712 0066 3B6A     		ldr	r3, [r7, #32]
- 713 0068 9A42     		cmp	r2, r3
- 714 006a DEDC     		bgt	.L32
- 715              	.LBE9:
- 110:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****     }
- 111:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   }
- 112:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** 
- 113:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   // Clean list and return indexes of valleys in histogram
- 114:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   int * candidate_lst = (int *)malloc(idx_counter * sizeof(int));
- 716              		.loc 1 114 0 is_stmt 1
- 717 006c 7B6A     		ldr	r3, [r7, #36]
- 718 006e 9B00     		lsls	r3, r3, #2
- 719 0070 1846     		mov	r0, r3
- 720 0072 FFF7FEFF 		bl	malloc
- 721 0076 0346     		mov	r3, r0
- 722 0078 BB60     		str	r3, [r7, #8]
- 115:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   int temp = 0;
- 723              		.loc 1 115 0
- 724 007a 0023     		movs	r3, #0
- 725 007c FB61     		str	r3, [r7, #28]
- 726              	.LBB10:
- 116:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   for (int i = 0; i < lst_length; i++) {
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 16
+ 683 003c 3B6A     		ldr	r3, [r7, #32]
+ 684 003e 9B00     		lsls	r3, r3, #2
+ 685 0040 7A69     		ldr	r2, [r7, #20]
+ 686 0042 1344     		add	r3, r3, r2
+ 687 0044 3A6A     		ldr	r2, [r7, #32]
+ 688 0046 1A60     		str	r2, [r3]
+ 106:..\VFH/polar_histogram.c ****       idx_counter++;
+ 689              		.loc 1 106 0
+ 690 0048 7B6A     		ldr	r3, [r7, #36]
+ 691 004a 0133     		adds	r3, r3, #1
+ 692 004c 7B62     		str	r3, [r7, #36]
+ 693 004e 05E0     		b	.L31
+ 694              	.L30:
+ 107:..\VFH/polar_histogram.c ****     } else {
+ 108:..\VFH/polar_histogram.c ****       candidate_idx[i] = NULL;
+ 695              		.loc 1 108 0
+ 696 0050 3B6A     		ldr	r3, [r7, #32]
+ 697 0052 9B00     		lsls	r3, r3, #2
+ 698 0054 7A69     		ldr	r2, [r7, #20]
+ 699 0056 1344     		add	r3, r3, r2
+ 700 0058 0022     		movs	r2, #0
+ 701 005a 1A60     		str	r2, [r3]
+ 702              	.L31:
+ 102:..\VFH/polar_histogram.c **** 
+ 703              		.loc 1 102 0 discriminator 2
+ 704 005c 3B6A     		ldr	r3, [r7, #32]
+ 705 005e 0133     		adds	r3, r3, #1
+ 706 0060 3B62     		str	r3, [r7, #32]
+ 707              	.L29:
+ 102:..\VFH/polar_histogram.c **** 
+ 708              		.loc 1 102 0 is_stmt 0 discriminator 1
+ 709 0062 7B68     		ldr	r3, [r7, #4]
+ 710 0064 5A68     		ldr	r2, [r3, #4]
+ 711 0066 3B6A     		ldr	r3, [r7, #32]
+ 712 0068 9A42     		cmp	r2, r3
+ 713 006a DEDC     		bgt	.L32
+ 714              	.LBE9:
+ 109:..\VFH/polar_histogram.c ****     }
+ 110:..\VFH/polar_histogram.c ****   }
+ 111:..\VFH/polar_histogram.c **** 
+ 112:..\VFH/polar_histogram.c ****   // Clean list and return indexes of valleys in histogram
+ 113:..\VFH/polar_histogram.c ****   int * candidate_lst = (int *)malloc(idx_counter * sizeof(int));
+ 715              		.loc 1 113 0 is_stmt 1
+ 716 006c 7B6A     		ldr	r3, [r7, #36]
+ 717 006e 9B00     		lsls	r3, r3, #2
+ 718 0070 1846     		mov	r0, r3
+ 719 0072 FFF7FEFF 		bl	malloc
+ 720 0076 0346     		mov	r3, r0
+ 721 0078 BB60     		str	r3, [r7, #8]
+ 114:..\VFH/polar_histogram.c ****   int temp = 0;
+ 722              		.loc 1 114 0
+ 723 007a 0023     		movs	r3, #0
+ 724 007c FB61     		str	r3, [r7, #28]
+ 725              	.LBB10:
+ 115:..\VFH/polar_histogram.c ****   for (int i = 0; i < lst_length; i++) {
+ 726              		.loc 1 115 0
+ 727 007e 0023     		movs	r3, #0
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc0BwBpn.s 			page 16
 
 
- 727              		.loc 1 116 0
- 728 007e 0023     		movs	r3, #0
- 729 0080 BB61     		str	r3, [r7, #24]
- 730 0082 16E0     		b	.L33
- 731              	.L35:
- 117:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****     if (candidate_idx[i] != NULL) {
- 732              		.loc 1 117 0
- 733 0084 BB69     		ldr	r3, [r7, #24]
- 734 0086 9B00     		lsls	r3, r3, #2
- 735 0088 7A69     		ldr	r2, [r7, #20]
- 736 008a 1344     		add	r3, r3, r2
- 737 008c 1B68     		ldr	r3, [r3]
- 738 008e 002B     		cmp	r3, #0
- 739 0090 0CD0     		beq	.L34
- 118:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****       candidate_lst[temp] = candidate_idx[i];
- 740              		.loc 1 118 0
- 741 0092 FB69     		ldr	r3, [r7, #28]
- 742 0094 9B00     		lsls	r3, r3, #2
- 743 0096 BA68     		ldr	r2, [r7, #8]
- 744 0098 1344     		add	r3, r3, r2
- 745 009a BA69     		ldr	r2, [r7, #24]
- 746 009c 9200     		lsls	r2, r2, #2
- 747 009e 7969     		ldr	r1, [r7, #20]
- 748 00a0 0A44     		add	r2, r2, r1
- 749 00a2 1268     		ldr	r2, [r2]
- 750 00a4 1A60     		str	r2, [r3]
- 119:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****       temp++;
- 751              		.loc 1 119 0
- 752 00a6 FB69     		ldr	r3, [r7, #28]
- 753 00a8 0133     		adds	r3, r3, #1
- 754 00aa FB61     		str	r3, [r7, #28]
- 755              	.L34:
- 116:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****     if (candidate_idx[i] != NULL) {
- 756              		.loc 1 116 0 discriminator 2
- 757 00ac BB69     		ldr	r3, [r7, #24]
- 758 00ae 0133     		adds	r3, r3, #1
- 759 00b0 BB61     		str	r3, [r7, #24]
- 760              	.L33:
- 116:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****     if (candidate_idx[i] != NULL) {
- 761              		.loc 1 116 0 is_stmt 0 discriminator 1
- 762 00b2 BA69     		ldr	r2, [r7, #24]
- 763 00b4 3B69     		ldr	r3, [r7, #16]
- 764 00b6 9A42     		cmp	r2, r3
- 765 00b8 E4DB     		blt	.L35
- 766              	.LBE10:
- 120:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****     }
- 121:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   }
- 122:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   
- 123:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c ****   return candidate_lst;
- 767              		.loc 1 123 0 is_stmt 1
- 768 00ba BB68     		ldr	r3, [r7, #8]
- 124:..\..\..\..\Users\cyu13\Desktop\ECE4191\VFH\src/polar_histogram.c **** }
- 769              		.loc 1 124 0
- 770 00bc 1846     		mov	r0, r3
- 771 00be 2837     		adds	r7, r7, #40
- 772              		.cfi_def_cfa_offset 8
- 773 00c0 BD46     		mov	sp, r7
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 17
+ 728 0080 BB61     		str	r3, [r7, #24]
+ 729 0082 16E0     		b	.L33
+ 730              	.L35:
+ 116:..\VFH/polar_histogram.c ****     if (candidate_idx[i] != NULL) {
+ 731              		.loc 1 116 0
+ 732 0084 BB69     		ldr	r3, [r7, #24]
+ 733 0086 9B00     		lsls	r3, r3, #2
+ 734 0088 7A69     		ldr	r2, [r7, #20]
+ 735 008a 1344     		add	r3, r3, r2
+ 736 008c 1B68     		ldr	r3, [r3]
+ 737 008e 002B     		cmp	r3, #0
+ 738 0090 0CD0     		beq	.L34
+ 117:..\VFH/polar_histogram.c ****       candidate_lst[temp] = candidate_idx[i];
+ 739              		.loc 1 117 0
+ 740 0092 FB69     		ldr	r3, [r7, #28]
+ 741 0094 9B00     		lsls	r3, r3, #2
+ 742 0096 BA68     		ldr	r2, [r7, #8]
+ 743 0098 1344     		add	r3, r3, r2
+ 744 009a BA69     		ldr	r2, [r7, #24]
+ 745 009c 9200     		lsls	r2, r2, #2
+ 746 009e 7969     		ldr	r1, [r7, #20]
+ 747 00a0 0A44     		add	r2, r2, r1
+ 748 00a2 1268     		ldr	r2, [r2]
+ 749 00a4 1A60     		str	r2, [r3]
+ 118:..\VFH/polar_histogram.c ****       temp++;
+ 750              		.loc 1 118 0
+ 751 00a6 FB69     		ldr	r3, [r7, #28]
+ 752 00a8 0133     		adds	r3, r3, #1
+ 753 00aa FB61     		str	r3, [r7, #28]
+ 754              	.L34:
+ 115:..\VFH/polar_histogram.c ****     if (candidate_idx[i] != NULL) {
+ 755              		.loc 1 115 0 discriminator 2
+ 756 00ac BB69     		ldr	r3, [r7, #24]
+ 757 00ae 0133     		adds	r3, r3, #1
+ 758 00b0 BB61     		str	r3, [r7, #24]
+ 759              	.L33:
+ 115:..\VFH/polar_histogram.c ****     if (candidate_idx[i] != NULL) {
+ 760              		.loc 1 115 0 is_stmt 0 discriminator 1
+ 761 00b2 BA69     		ldr	r2, [r7, #24]
+ 762 00b4 3B69     		ldr	r3, [r7, #16]
+ 763 00b6 9A42     		cmp	r2, r3
+ 764 00b8 E4DB     		blt	.L35
+ 765              	.LBE10:
+ 119:..\VFH/polar_histogram.c ****     }
+ 120:..\VFH/polar_histogram.c ****   }
+ 121:..\VFH/polar_histogram.c ****   
+ 122:..\VFH/polar_histogram.c ****   return candidate_lst;
+ 766              		.loc 1 122 0 is_stmt 1
+ 767 00ba BB68     		ldr	r3, [r7, #8]
+ 123:..\VFH/polar_histogram.c **** }
+ 768              		.loc 1 123 0
+ 769 00bc 1846     		mov	r0, r3
+ 770 00be 2837     		adds	r7, r7, #40
+ 771              		.cfi_def_cfa_offset 8
+ 772 00c0 BD46     		mov	sp, r7
+ 773              		.cfi_def_cfa_register 13
+ 774              		@ sp needed
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc0BwBpn.s 			page 17
 
 
- 774              		.cfi_def_cfa_register 13
- 775              		@ sp needed
- 776 00c2 80BD     		pop	{r7, pc}
- 777              		.cfi_endproc
- 778              	.LFE3:
- 779              		.size	candidate_valley, .-candidate_valley
- 780              		.text
- 781              	.Letext0:
- 782              		.file 2 "./..\\VFH\\include\\vfh.h"
- 783              		.section	.debug_info,"",%progbits
- 784              	.Ldebug_info0:
- 785 0000 C3030000 		.4byte	0x3c3
- 786 0004 0400     		.2byte	0x4
- 787 0006 00000000 		.4byte	.Ldebug_abbrev0
- 788 000a 04       		.byte	0x4
- 789 000b 01       		.uleb128 0x1
- 790 000c 13000000 		.4byte	.LASF45
- 791 0010 0C       		.byte	0xc
- 792 0011 5B020000 		.4byte	.LASF46
- 793 0015 B2000000 		.4byte	.LASF47
- 794 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 795 001d 00000000 		.4byte	0
- 796 0021 00000000 		.4byte	.Ldebug_line0
- 797 0025 02       		.uleb128 0x2
- 798 0026 04       		.byte	0x4
- 799 0027 07       		.byte	0x7
- 800 0028 C8010000 		.4byte	.LASF0
- 801 002c 03       		.uleb128 0x3
- 802 002d 04       		.byte	0x4
- 803 002e 05       		.byte	0x5
- 804 002f 696E7400 		.ascii	"int\000"
- 805 0033 02       		.uleb128 0x2
- 806 0034 08       		.byte	0x8
- 807 0035 05       		.byte	0x5
- 808 0036 00000000 		.4byte	.LASF1
- 809 003a 02       		.uleb128 0x2
- 810 003b 08       		.byte	0x8
- 811 003c 04       		.byte	0x4
- 812 003d D7020000 		.4byte	.LASF2
- 813 0041 02       		.uleb128 0x2
- 814 0042 01       		.byte	0x1
- 815 0043 06       		.byte	0x6
- 816 0044 E3020000 		.4byte	.LASF3
- 817 0048 02       		.uleb128 0x2
- 818 0049 01       		.byte	0x1
- 819 004a 08       		.byte	0x8
- 820 004b 06010000 		.4byte	.LASF4
- 821 004f 02       		.uleb128 0x2
- 822 0050 02       		.byte	0x2
- 823 0051 05       		.byte	0x5
- 824 0052 82010000 		.4byte	.LASF5
- 825 0056 02       		.uleb128 0x2
- 826 0057 02       		.byte	0x2
- 827 0058 07       		.byte	0x7
- 828 0059 46010000 		.4byte	.LASF6
- 829 005d 02       		.uleb128 0x2
- 830 005e 04       		.byte	0x4
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 18
+ 775 00c2 80BD     		pop	{r7, pc}
+ 776              		.cfi_endproc
+ 777              	.LFE3:
+ 778              		.size	candidate_valley, .-candidate_valley
+ 779              		.text
+ 780              	.Letext0:
+ 781              		.file 2 "..\\VFH\\vfh.h"
+ 782              		.section	.debug_info,"",%progbits
+ 783              	.Ldebug_info0:
+ 784 0000 BD030000 		.4byte	0x3bd
+ 785 0004 0400     		.2byte	0x4
+ 786 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 787 000a 04       		.byte	0x4
+ 788 000b 01       		.uleb128 0x1
+ 789 000c 13000000 		.4byte	.LASF45
+ 790 0010 0C       		.byte	0xc
+ 791 0011 7A010000 		.4byte	.LASF46
+ 792 0015 A1000000 		.4byte	.LASF47
+ 793 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 794 001d 00000000 		.4byte	0
+ 795 0021 00000000 		.4byte	.Ldebug_line0
+ 796 0025 02       		.uleb128 0x2
+ 797 0026 04       		.byte	0x4
+ 798 0027 07       		.byte	0x7
+ 799 0028 02020000 		.4byte	.LASF0
+ 800 002c 03       		.uleb128 0x3
+ 801 002d 04       		.byte	0x4
+ 802 002e 05       		.byte	0x5
+ 803 002f 696E7400 		.ascii	"int\000"
+ 804 0033 02       		.uleb128 0x2
+ 805 0034 08       		.byte	0x8
+ 806 0035 05       		.byte	0x5
+ 807 0036 00000000 		.4byte	.LASF1
+ 808 003a 02       		.uleb128 0x2
+ 809 003b 08       		.byte	0x8
+ 810 003c 04       		.byte	0x4
+ 811 003d CF020000 		.4byte	.LASF2
+ 812 0041 02       		.uleb128 0x2
+ 813 0042 01       		.byte	0x1
+ 814 0043 06       		.byte	0x6
+ 815 0044 DB020000 		.4byte	.LASF3
+ 816 0048 02       		.uleb128 0x2
+ 817 0049 01       		.byte	0x1
+ 818 004a 08       		.byte	0x8
+ 819 004b 27010000 		.4byte	.LASF4
+ 820 004f 02       		.uleb128 0x2
+ 821 0050 02       		.byte	0x2
+ 822 0051 05       		.byte	0x5
+ 823 0052 BC010000 		.4byte	.LASF5
+ 824 0056 02       		.uleb128 0x2
+ 825 0057 02       		.byte	0x2
+ 826 0058 07       		.byte	0x7
+ 827 0059 67010000 		.4byte	.LASF6
+ 828 005d 02       		.uleb128 0x2
+ 829 005e 04       		.byte	0x4
+ 830 005f 05       		.byte	0x5
+ 831 0060 C1020000 		.4byte	.LASF7
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc0BwBpn.s 			page 18
 
 
- 831 005f 05       		.byte	0x5
- 832 0060 C9020000 		.4byte	.LASF7
- 833 0064 02       		.uleb128 0x2
- 834 0065 04       		.byte	0x4
- 835 0066 07       		.byte	0x7
- 836 0067 2F010000 		.4byte	.LASF8
- 837 006b 02       		.uleb128 0x2
- 838 006c 08       		.byte	0x8
- 839 006d 07       		.byte	0x7
- 840 006e 00020000 		.4byte	.LASF9
- 841 0072 02       		.uleb128 0x2
- 842 0073 04       		.byte	0x4
- 843 0074 07       		.byte	0x7
- 844 0075 36020000 		.4byte	.LASF10
- 845 0079 02       		.uleb128 0x2
- 846 007a 01       		.byte	0x1
- 847 007b 08       		.byte	0x8
- 848 007c D2020000 		.4byte	.LASF11
- 849 0080 02       		.uleb128 0x2
- 850 0081 08       		.byte	0x8
- 851 0082 04       		.byte	0x4
- 852 0083 6A010000 		.4byte	.LASF12
- 853 0087 02       		.uleb128 0x2
- 854 0088 04       		.byte	0x4
- 855 0089 04       		.byte	0x4
- 856 008a 00010000 		.4byte	.LASF13
- 857 008e 04       		.uleb128 0x4
- 858 008f 10       		.byte	0x10
- 859 0090 02       		.byte	0x2
- 860 0091 16       		.byte	0x16
- 861 0092 C7000000 		.4byte	0xc7
- 862 0096 05       		.uleb128 0x5
- 863 0097 55020000 		.4byte	.LASF14
- 864 009b 02       		.byte	0x2
- 865 009c 17       		.byte	0x17
- 866 009d 25000000 		.4byte	0x25
- 867 00a1 00       		.byte	0
- 868 00a2 05       		.uleb128 0x5
- 869 00a3 59010000 		.4byte	.LASF15
- 870 00a7 02       		.byte	0x2
- 871 00a8 18       		.byte	0x18
- 872 00a9 25000000 		.4byte	0x25
- 873 00ad 04       		.byte	0x4
- 874 00ae 05       		.uleb128 0x5
- 875 00af EF020000 		.4byte	.LASF16
- 876 00b3 02       		.byte	0x2
- 877 00b4 19       		.byte	0x19
- 878 00b5 25000000 		.4byte	0x25
- 879 00b9 08       		.byte	0x8
- 880 00ba 05       		.uleb128 0x5
- 881 00bb 9D020000 		.4byte	.LASF17
- 882 00bf 02       		.byte	0x2
- 883 00c0 1A       		.byte	0x1a
- 884 00c1 C7000000 		.4byte	0xc7
- 885 00c5 0C       		.byte	0xc
- 886 00c6 00       		.byte	0
- 887 00c7 06       		.uleb128 0x6
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 19
+ 832 0064 02       		.uleb128 0x2
+ 833 0065 04       		.byte	0x4
+ 834 0066 07       		.byte	0x7
+ 835 0067 50010000 		.4byte	.LASF8
+ 836 006b 02       		.uleb128 0x2
+ 837 006c 08       		.byte	0x8
+ 838 006d 07       		.byte	0x7
+ 839 006e 3A020000 		.4byte	.LASF9
+ 840 0072 02       		.uleb128 0x2
+ 841 0073 04       		.byte	0x4
+ 842 0074 07       		.byte	0x7
+ 843 0075 70020000 		.4byte	.LASF10
+ 844 0079 02       		.uleb128 0x2
+ 845 007a 01       		.byte	0x1
+ 846 007b 08       		.byte	0x8
+ 847 007c CA020000 		.4byte	.LASF11
+ 848 0080 02       		.uleb128 0x2
+ 849 0081 08       		.byte	0x8
+ 850 0082 04       		.byte	0x4
+ 851 0083 A4010000 		.4byte	.LASF12
+ 852 0087 02       		.uleb128 0x2
+ 853 0088 04       		.byte	0x4
+ 854 0089 04       		.byte	0x4
+ 855 008a 21010000 		.4byte	.LASF13
+ 856 008e 04       		.uleb128 0x4
+ 857 008f 10       		.byte	0x10
+ 858 0090 02       		.byte	0x2
+ 859 0091 13       		.byte	0x13
+ 860 0092 C7000000 		.4byte	0xc7
+ 861 0096 05       		.uleb128 0x5
+ 862 0097 8F020000 		.4byte	.LASF14
+ 863 009b 02       		.byte	0x2
+ 864 009c 14       		.byte	0x14
+ 865 009d 2C000000 		.4byte	0x2c
+ 866 00a1 00       		.byte	0
+ 867 00a2 05       		.uleb128 0x5
+ 868 00a3 93010000 		.4byte	.LASF15
+ 869 00a7 02       		.byte	0x2
+ 870 00a8 15       		.byte	0x15
+ 871 00a9 2C000000 		.4byte	0x2c
+ 872 00ad 04       		.byte	0x4
+ 873 00ae 05       		.uleb128 0x5
+ 874 00af E7020000 		.4byte	.LASF16
+ 875 00b3 02       		.byte	0x2
+ 876 00b4 16       		.byte	0x16
+ 877 00b5 2C000000 		.4byte	0x2c
+ 878 00b9 08       		.byte	0x8
+ 879 00ba 05       		.uleb128 0x5
+ 880 00bb 95020000 		.4byte	.LASF17
+ 881 00bf 02       		.byte	0x2
+ 882 00c0 17       		.byte	0x17
+ 883 00c1 C7000000 		.4byte	0xc7
+ 884 00c5 0C       		.byte	0xc
+ 885 00c6 00       		.byte	0
+ 886 00c7 06       		.uleb128 0x6
+ 887 00c8 04       		.byte	0x4
+ 888 00c9 2C000000 		.4byte	0x2c
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc0BwBpn.s 			page 19
 
 
- 888 00c8 04       		.byte	0x4
- 889 00c9 25000000 		.4byte	0x25
- 890 00cd 07       		.uleb128 0x7
- 891 00ce 0E000000 		.4byte	.LASF25
- 892 00d2 02       		.byte	0x2
- 893 00d3 1B       		.byte	0x1b
- 894 00d4 8E000000 		.4byte	0x8e
- 895 00d8 04       		.uleb128 0x4
- 896 00d9 30       		.byte	0x30
- 897 00da 02       		.byte	0x2
- 898 00db 39       		.byte	0x39
- 899 00dc 35010000 		.4byte	0x135
- 900 00e0 05       		.uleb128 0x5
- 901 00e1 FA020000 		.4byte	.LASF18
- 902 00e5 02       		.byte	0x2
- 903 00e6 3A       		.byte	0x3a
- 904 00e7 2C000000 		.4byte	0x2c
- 905 00eb 00       		.byte	0
- 906 00ec 05       		.uleb128 0x5
- 907 00ed 8C010000 		.4byte	.LASF19
- 908 00f1 02       		.byte	0x2
- 909 00f2 3B       		.byte	0x3b
- 910 00f3 2C000000 		.4byte	0x2c
- 911 00f7 04       		.byte	0x4
- 912 00f8 05       		.uleb128 0x5
- 913 00f9 1B010000 		.4byte	.LASF20
- 914 00fd 02       		.byte	0x2
- 915 00fe 3C       		.byte	0x3c
- 916 00ff 80000000 		.4byte	0x80
- 917 0103 08       		.byte	0x8
- 918 0104 05       		.uleb128 0x5
- 919 0105 A0010000 		.4byte	.LASF21
- 920 0109 02       		.byte	0x2
- 921 010a 3D       		.byte	0x3d
- 922 010b 80000000 		.4byte	0x80
- 923 010f 10       		.byte	0x10
- 924 0110 05       		.uleb128 0x5
- 925 0111 D5010000 		.4byte	.LASF22
- 926 0115 02       		.byte	0x2
- 927 0116 3E       		.byte	0x3e
- 928 0117 80000000 		.4byte	0x80
- 929 011b 18       		.byte	0x18
- 930 011c 05       		.uleb128 0x5
- 931 011d DF010000 		.4byte	.LASF23
- 932 0121 02       		.byte	0x2
- 933 0122 3F       		.byte	0x3f
- 934 0123 80000000 		.4byte	0x80
- 935 0127 20       		.byte	0x20
- 936 0128 05       		.uleb128 0x5
- 937 0129 25010000 		.4byte	.LASF24
- 938 012d 02       		.byte	0x2
- 939 012e 40       		.byte	0x40
- 940 012f 35010000 		.4byte	0x135
- 941 0133 28       		.byte	0x28
- 942 0134 00       		.byte	0
- 943 0135 06       		.uleb128 0x6
- 944 0136 04       		.byte	0x4
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 20
+ 889 00cd 07       		.uleb128 0x7
+ 890 00ce 0E000000 		.4byte	.LASF25
+ 891 00d2 02       		.byte	0x2
+ 892 00d3 18       		.byte	0x18
+ 893 00d4 8E000000 		.4byte	0x8e
+ 894 00d8 04       		.uleb128 0x4
+ 895 00d9 30       		.byte	0x30
+ 896 00da 02       		.byte	0x2
+ 897 00db 32       		.byte	0x32
+ 898 00dc 35010000 		.4byte	0x135
+ 899 00e0 05       		.uleb128 0x5
+ 900 00e1 F2020000 		.4byte	.LASF18
+ 901 00e5 02       		.byte	0x2
+ 902 00e6 33       		.byte	0x33
+ 903 00e7 2C000000 		.4byte	0x2c
+ 904 00eb 00       		.byte	0
+ 905 00ec 05       		.uleb128 0x5
+ 906 00ed C6010000 		.4byte	.LASF19
+ 907 00f1 02       		.byte	0x2
+ 908 00f2 34       		.byte	0x34
+ 909 00f3 2C000000 		.4byte	0x2c
+ 910 00f7 04       		.byte	0x4
+ 911 00f8 05       		.uleb128 0x5
+ 912 00f9 3C010000 		.4byte	.LASF20
+ 913 00fd 02       		.byte	0x2
+ 914 00fe 35       		.byte	0x35
+ 915 00ff 80000000 		.4byte	0x80
+ 916 0103 08       		.byte	0x8
+ 917 0104 05       		.uleb128 0x5
+ 918 0105 DA010000 		.4byte	.LASF21
+ 919 0109 02       		.byte	0x2
+ 920 010a 36       		.byte	0x36
+ 921 010b 80000000 		.4byte	0x80
+ 922 010f 10       		.byte	0x10
+ 923 0110 05       		.uleb128 0x5
+ 924 0111 0F020000 		.4byte	.LASF22
+ 925 0115 02       		.byte	0x2
+ 926 0116 37       		.byte	0x37
+ 927 0117 80000000 		.4byte	0x80
+ 928 011b 18       		.byte	0x18
+ 929 011c 05       		.uleb128 0x5
+ 930 011d 19020000 		.4byte	.LASF23
+ 931 0121 02       		.byte	0x2
+ 932 0122 38       		.byte	0x38
+ 933 0123 80000000 		.4byte	0x80
+ 934 0127 20       		.byte	0x20
+ 935 0128 05       		.uleb128 0x5
+ 936 0129 46010000 		.4byte	.LASF24
+ 937 012d 02       		.byte	0x2
+ 938 012e 39       		.byte	0x39
+ 939 012f C7000000 		.4byte	0xc7
+ 940 0133 28       		.byte	0x28
+ 941 0134 00       		.byte	0
+ 942 0135 07       		.uleb128 0x7
+ 943 0136 9A010000 		.4byte	.LASF26
+ 944 013a 02       		.byte	0x2
+ 945 013b 3A       		.byte	0x3a
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc0BwBpn.s 			page 20
 
 
- 945 0137 2C000000 		.4byte	0x2c
- 946 013b 07       		.uleb128 0x7
- 947 013c 60010000 		.4byte	.LASF26
- 948 0140 02       		.byte	0x2
- 949 0141 41       		.byte	0x41
- 950 0142 D8000000 		.4byte	0xd8
- 951 0146 08       		.uleb128 0x8
- 952 0147 14010000 		.4byte	.LASF27
- 953 014b 01       		.byte	0x1
- 954 014c 08       		.byte	0x8
- 955 014d 2C000000 		.4byte	0x2c
- 956 0151 00000000 		.4byte	.LFB0
- 957 0155 42000000 		.4byte	.LFE0-.LFB0
- 958 0159 01       		.uleb128 0x1
- 959 015a 9C       		.byte	0x9c
- 960 015b 84010000 		.4byte	0x184
- 961 015f 09       		.uleb128 0x9
- 962 0160 7800     		.ascii	"x\000"
- 963 0162 01       		.byte	0x1
- 964 0163 08       		.byte	0x8
- 965 0164 2C000000 		.4byte	0x2c
- 966 0168 02       		.uleb128 0x2
- 967 0169 91       		.byte	0x91
- 968 016a 6C       		.sleb128 -20
- 969 016b 09       		.uleb128 0x9
- 970 016c 6D00     		.ascii	"m\000"
- 971 016e 01       		.byte	0x1
- 972 016f 08       		.byte	0x8
- 973 0170 2C000000 		.4byte	0x2c
- 974 0174 02       		.uleb128 0x2
- 975 0175 91       		.byte	0x91
- 976 0176 68       		.sleb128 -24
- 977 0177 0A       		.uleb128 0xa
- 978 0178 7200     		.ascii	"r\000"
- 979 017a 01       		.byte	0x1
- 980 017b 0A       		.byte	0xa
- 981 017c 2C000000 		.4byte	0x2c
- 982 0180 02       		.uleb128 0x2
- 983 0181 91       		.byte	0x91
- 984 0182 74       		.sleb128 -12
- 985 0183 00       		.byte	0
- 986 0184 0B       		.uleb128 0xb
- 987 0185 B1010000 		.4byte	.LASF28
- 988 0189 01       		.byte	0x1
- 989 018a 12       		.byte	0x12
- 990 018b FA010000 		.4byte	0x1fa
- 991 018f 00000000 		.4byte	.LFB1
- 992 0193 AC000000 		.4byte	.LFE1-.LFB1
- 993 0197 01       		.uleb128 0x1
- 994 0198 9C       		.byte	0x9c
- 995 0199 FA010000 		.4byte	0x1fa
- 996 019d 0C       		.uleb128 0xc
- 997 019e FA020000 		.4byte	.LASF18
- 998 01a2 01       		.byte	0x1
- 999 01a3 12       		.byte	0x12
- 1000 01a4 2C000000 		.4byte	0x2c
- 1001 01a8 02       		.uleb128 0x2
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 21
+ 946 013c D8000000 		.4byte	0xd8
+ 947 0140 08       		.uleb128 0x8
+ 948 0141 35010000 		.4byte	.LASF27
+ 949 0145 01       		.byte	0x1
+ 950 0146 08       		.byte	0x8
+ 951 0147 2C000000 		.4byte	0x2c
+ 952 014b 00000000 		.4byte	.LFB0
+ 953 014f 42000000 		.4byte	.LFE0-.LFB0
+ 954 0153 01       		.uleb128 0x1
+ 955 0154 9C       		.byte	0x9c
+ 956 0155 7E010000 		.4byte	0x17e
+ 957 0159 09       		.uleb128 0x9
+ 958 015a 7800     		.ascii	"x\000"
+ 959 015c 01       		.byte	0x1
+ 960 015d 08       		.byte	0x8
+ 961 015e 2C000000 		.4byte	0x2c
+ 962 0162 02       		.uleb128 0x2
+ 963 0163 91       		.byte	0x91
+ 964 0164 6C       		.sleb128 -20
+ 965 0165 09       		.uleb128 0x9
+ 966 0166 6D00     		.ascii	"m\000"
+ 967 0168 01       		.byte	0x1
+ 968 0169 08       		.byte	0x8
+ 969 016a 2C000000 		.4byte	0x2c
+ 970 016e 02       		.uleb128 0x2
+ 971 016f 91       		.byte	0x91
+ 972 0170 68       		.sleb128 -24
+ 973 0171 0A       		.uleb128 0xa
+ 974 0172 7200     		.ascii	"r\000"
+ 975 0174 01       		.byte	0x1
+ 976 0175 0A       		.byte	0xa
+ 977 0176 2C000000 		.4byte	0x2c
+ 978 017a 02       		.uleb128 0x2
+ 979 017b 91       		.byte	0x91
+ 980 017c 74       		.sleb128 -12
+ 981 017d 00       		.byte	0
+ 982 017e 0B       		.uleb128 0xb
+ 983 017f EB010000 		.4byte	.LASF28
+ 984 0183 01       		.byte	0x1
+ 985 0184 12       		.byte	0x12
+ 986 0185 F4010000 		.4byte	0x1f4
+ 987 0189 00000000 		.4byte	.LFB1
+ 988 018d AC000000 		.4byte	.LFE1-.LFB1
+ 989 0191 01       		.uleb128 0x1
+ 990 0192 9C       		.byte	0x9c
+ 991 0193 F4010000 		.4byte	0x1f4
+ 992 0197 0C       		.uleb128 0xc
+ 993 0198 F2020000 		.4byte	.LASF18
+ 994 019c 01       		.byte	0x1
+ 995 019d 12       		.byte	0x12
+ 996 019e 2C000000 		.4byte	0x2c
+ 997 01a2 02       		.uleb128 0x2
+ 998 01a3 91       		.byte	0x91
+ 999 01a4 64       		.sleb128 -28
+ 1000 01a5 0C       		.uleb128 0xc
+ 1001 01a6 3C010000 		.4byte	.LASF20
+ 1002 01aa 01       		.byte	0x1
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc0BwBpn.s 			page 21
 
 
- 1002 01a9 91       		.byte	0x91
- 1003 01aa 64       		.sleb128 -28
- 1004 01ab 0C       		.uleb128 0xc
- 1005 01ac 1B010000 		.4byte	.LASF20
- 1006 01b0 01       		.byte	0x1
- 1007 01b1 12       		.byte	0x12
- 1008 01b2 80000000 		.4byte	0x80
- 1009 01b6 02       		.uleb128 0x2
- 1010 01b7 91       		.byte	0x91
- 1011 01b8 58       		.sleb128 -40
- 1012 01b9 0C       		.uleb128 0xc
- 1013 01ba D5010000 		.4byte	.LASF22
- 1014 01be 01       		.byte	0x1
- 1015 01bf 12       		.byte	0x12
- 1016 01c0 80000000 		.4byte	0x80
- 1017 01c4 02       		.uleb128 0x2
- 1018 01c5 91       		.byte	0x91
- 1019 01c6 00       		.sleb128 0
- 1020 01c7 0C       		.uleb128 0xc
- 1021 01c8 DF010000 		.4byte	.LASF23
- 1022 01cc 01       		.byte	0x1
- 1023 01cd 12       		.byte	0x12
- 1024 01ce 80000000 		.4byte	0x80
- 1025 01d2 02       		.uleb128 0x2
- 1026 01d3 91       		.byte	0x91
- 1027 01d4 08       		.sleb128 8
- 1028 01d5 0D       		.uleb128 0xd
- 1029 01d6 94010000 		.4byte	.LASF29
- 1030 01da 01       		.byte	0x1
- 1031 01db 14       		.byte	0x14
- 1032 01dc FA010000 		.4byte	0x1fa
- 1033 01e0 02       		.uleb128 0x2
- 1034 01e1 91       		.byte	0x91
- 1035 01e2 68       		.sleb128 -24
- 1036 01e3 0E       		.uleb128 0xe
- 1037 01e4 7E000000 		.4byte	.LBB2
- 1038 01e8 24000000 		.4byte	.LBE2-.LBB2
- 1039 01ec 0A       		.uleb128 0xa
- 1040 01ed 6900     		.ascii	"i\000"
- 1041 01ef 01       		.byte	0x1
- 1042 01f0 2A       		.byte	0x2a
- 1043 01f1 2C000000 		.4byte	0x2c
- 1044 01f5 02       		.uleb128 0x2
- 1045 01f6 91       		.byte	0x91
- 1046 01f7 6C       		.sleb128 -20
- 1047 01f8 00       		.byte	0
- 1048 01f9 00       		.byte	0
- 1049 01fa 06       		.uleb128 0x6
- 1050 01fb 04       		.byte	0x4
- 1051 01fc 3B010000 		.4byte	0x13b
- 1052 0200 0F       		.uleb128 0xf
- 1053 0201 E9010000 		.4byte	.LASF36
- 1054 0205 01       		.byte	0x1
- 1055 0206 31       		.byte	0x31
- 1056 0207 00000000 		.4byte	.LFB2
- 1057 020b 40030000 		.4byte	.LFE2-.LFB2
- 1058 020f 01       		.uleb128 0x1
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 22
+ 1003 01ab 12       		.byte	0x12
+ 1004 01ac 80000000 		.4byte	0x80
+ 1005 01b0 02       		.uleb128 0x2
+ 1006 01b1 91       		.byte	0x91
+ 1007 01b2 58       		.sleb128 -40
+ 1008 01b3 0C       		.uleb128 0xc
+ 1009 01b4 0F020000 		.4byte	.LASF22
+ 1010 01b8 01       		.byte	0x1
+ 1011 01b9 12       		.byte	0x12
+ 1012 01ba 80000000 		.4byte	0x80
+ 1013 01be 02       		.uleb128 0x2
+ 1014 01bf 91       		.byte	0x91
+ 1015 01c0 00       		.sleb128 0
+ 1016 01c1 0C       		.uleb128 0xc
+ 1017 01c2 19020000 		.4byte	.LASF23
+ 1018 01c6 01       		.byte	0x1
+ 1019 01c7 12       		.byte	0x12
+ 1020 01c8 80000000 		.4byte	0x80
+ 1021 01cc 02       		.uleb128 0x2
+ 1022 01cd 91       		.byte	0x91
+ 1023 01ce 08       		.sleb128 8
+ 1024 01cf 0D       		.uleb128 0xd
+ 1025 01d0 CE010000 		.4byte	.LASF29
+ 1026 01d4 01       		.byte	0x1
+ 1027 01d5 14       		.byte	0x14
+ 1028 01d6 F4010000 		.4byte	0x1f4
+ 1029 01da 02       		.uleb128 0x2
+ 1030 01db 91       		.byte	0x91
+ 1031 01dc 68       		.sleb128 -24
+ 1032 01dd 0E       		.uleb128 0xe
+ 1033 01de 7E000000 		.4byte	.LBB2
+ 1034 01e2 24000000 		.4byte	.LBE2-.LBB2
+ 1035 01e6 0A       		.uleb128 0xa
+ 1036 01e7 6900     		.ascii	"i\000"
+ 1037 01e9 01       		.byte	0x1
+ 1038 01ea 2A       		.byte	0x2a
+ 1039 01eb 2C000000 		.4byte	0x2c
+ 1040 01ef 02       		.uleb128 0x2
+ 1041 01f0 91       		.byte	0x91
+ 1042 01f1 6C       		.sleb128 -20
+ 1043 01f2 00       		.byte	0
+ 1044 01f3 00       		.byte	0
+ 1045 01f4 06       		.uleb128 0x6
+ 1046 01f5 04       		.byte	0x4
+ 1047 01f6 35010000 		.4byte	0x135
+ 1048 01fa 0F       		.uleb128 0xf
+ 1049 01fb 23020000 		.4byte	.LASF36
+ 1050 01ff 01       		.byte	0x1
+ 1051 0200 31       		.byte	0x31
+ 1052 0201 00000000 		.4byte	.LFB2
+ 1053 0205 40030000 		.4byte	.LFE2-.LFB2
+ 1054 0209 01       		.uleb128 0x1
+ 1055 020a 9C       		.byte	0x9c
+ 1056 020b 12030000 		.4byte	0x312
+ 1057 020f 0C       		.uleb128 0xc
+ 1058 0210 CE010000 		.4byte	.LASF29
+ 1059 0214 01       		.byte	0x1
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc0BwBpn.s 			page 22
 
 
- 1059 0210 9C       		.byte	0x9c
- 1060 0211 18030000 		.4byte	0x318
- 1061 0215 0C       		.uleb128 0xc
- 1062 0216 94010000 		.4byte	.LASF29
- 1063 021a 01       		.byte	0x1
- 1064 021b 31       		.byte	0x31
- 1065 021c FA010000 		.4byte	0x1fa
- 1066 0220 03       		.uleb128 0x3
- 1067 0221 91       		.byte	0x91
- 1068 0222 9C7F     		.sleb128 -100
- 1069 0224 09       		.uleb128 0x9
- 1070 0225 6D617000 		.ascii	"map\000"
- 1071 0229 01       		.byte	0x1
- 1072 022a 31       		.byte	0x31
- 1073 022b 18030000 		.4byte	0x318
- 1074 022f 03       		.uleb128 0x3
- 1075 0230 91       		.byte	0x91
- 1076 0231 987F     		.sleb128 -104
- 1077 0233 0D       		.uleb128 0xd
- 1078 0234 55020000 		.4byte	.LASF14
- 1079 0238 01       		.byte	0x1
- 1080 0239 33       		.byte	0x33
- 1081 023a 2C000000 		.4byte	0x2c
- 1082 023e 02       		.uleb128 0x2
- 1083 023f 91       		.byte	0x91
- 1084 0240 44       		.sleb128 -60
- 1085 0241 0D       		.uleb128 0xd
- 1086 0242 59010000 		.4byte	.LASF15
- 1087 0246 01       		.byte	0x1
- 1088 0247 34       		.byte	0x34
- 1089 0248 2C000000 		.4byte	0x2c
- 1090 024c 02       		.uleb128 0x2
- 1091 024d 91       		.byte	0x91
- 1092 024e 40       		.sleb128 -64
- 1093 024f 0D       		.uleb128 0xd
- 1094 0250 99010000 		.4byte	.LASF30
- 1095 0254 01       		.byte	0x1
- 1096 0255 35       		.byte	0x35
- 1097 0256 80000000 		.4byte	0x80
- 1098 025a 03       		.uleb128 0x3
- 1099 025b 91       		.byte	0x91
- 1100 025c B87F     		.sleb128 -72
- 1101 025e 0D       		.uleb128 0xd
- 1102 025f E3000000 		.4byte	.LASF31
- 1103 0263 01       		.byte	0x1
- 1104 0264 36       		.byte	0x36
- 1105 0265 80000000 		.4byte	0x80
- 1106 0269 03       		.uleb128 0x3
- 1107 026a 91       		.byte	0x91
- 1108 026b B07F     		.sleb128 -80
- 1109 026d 0D       		.uleb128 0xd
- 1110 026e A1000000 		.4byte	.LASF32
- 1111 0272 01       		.byte	0x1
- 1112 0273 4C       		.byte	0x4c
- 1113 0274 2C000000 		.4byte	0x2c
- 1114 0278 03       		.uleb128 0x3
- 1115 0279 91       		.byte	0x91
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 23
+ 1060 0215 31       		.byte	0x31
+ 1061 0216 F4010000 		.4byte	0x1f4
+ 1062 021a 03       		.uleb128 0x3
+ 1063 021b 91       		.byte	0x91
+ 1064 021c 9C7F     		.sleb128 -100
+ 1065 021e 09       		.uleb128 0x9
+ 1066 021f 6D617000 		.ascii	"map\000"
+ 1067 0223 01       		.byte	0x1
+ 1068 0224 31       		.byte	0x31
+ 1069 0225 12030000 		.4byte	0x312
+ 1070 0229 03       		.uleb128 0x3
+ 1071 022a 91       		.byte	0x91
+ 1072 022b 987F     		.sleb128 -104
+ 1073 022d 0D       		.uleb128 0xd
+ 1074 022e 8F020000 		.4byte	.LASF14
+ 1075 0232 01       		.byte	0x1
+ 1076 0233 33       		.byte	0x33
+ 1077 0234 2C000000 		.4byte	0x2c
+ 1078 0238 02       		.uleb128 0x2
+ 1079 0239 91       		.byte	0x91
+ 1080 023a 44       		.sleb128 -60
+ 1081 023b 0D       		.uleb128 0xd
+ 1082 023c 93010000 		.4byte	.LASF15
+ 1083 0240 01       		.byte	0x1
+ 1084 0241 34       		.byte	0x34
+ 1085 0242 2C000000 		.4byte	0x2c
+ 1086 0246 02       		.uleb128 0x2
+ 1087 0247 91       		.byte	0x91
+ 1088 0248 40       		.sleb128 -64
+ 1089 0249 0D       		.uleb128 0xd
+ 1090 024a D3010000 		.4byte	.LASF30
+ 1091 024e 01       		.byte	0x1
+ 1092 024f 35       		.byte	0x35
+ 1093 0250 80000000 		.4byte	0x80
+ 1094 0254 03       		.uleb128 0x3
+ 1095 0255 91       		.byte	0x91
+ 1096 0256 B87F     		.sleb128 -72
+ 1097 0258 0D       		.uleb128 0xd
+ 1098 0259 04010000 		.4byte	.LASF31
+ 1099 025d 01       		.byte	0x1
+ 1100 025e 36       		.byte	0x36
+ 1101 025f 80000000 		.4byte	0x80
+ 1102 0263 03       		.uleb128 0x3
+ 1103 0264 91       		.byte	0x91
+ 1104 0265 B07F     		.sleb128 -80
+ 1105 0267 0D       		.uleb128 0xd
+ 1106 0268 F3000000 		.4byte	.LASF32
+ 1107 026c 01       		.byte	0x1
+ 1108 026d 4C       		.byte	0x4c
+ 1109 026e 2C000000 		.4byte	0x2c
+ 1110 0272 03       		.uleb128 0x3
+ 1111 0273 91       		.byte	0x91
+ 1112 0274 A47F     		.sleb128 -92
+ 1113 0276 10       		.uleb128 0x10
+ 1114 0277 32000000 		.4byte	.LBB3
+ 1115 027b DC010000 		.4byte	.LBE3-.LBB3
+ 1116 027f CD020000 		.4byte	0x2cd
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc0BwBpn.s 			page 23
 
 
- 1116 027a A47F     		.sleb128 -92
- 1117 027c 10       		.uleb128 0x10
- 1118 027d 32000000 		.4byte	.LBB3
- 1119 0281 DC010000 		.4byte	.LBE3-.LBB3
- 1120 0285 D3020000 		.4byte	0x2d3
- 1121 0289 0A       		.uleb128 0xa
- 1122 028a 6900     		.ascii	"i\000"
- 1123 028c 01       		.byte	0x1
- 1124 028d 39       		.byte	0x39
- 1125 028e 2C000000 		.4byte	0x2c
- 1126 0292 02       		.uleb128 0x2
- 1127 0293 91       		.byte	0x91
- 1128 0294 64       		.sleb128 -28
- 1129 0295 0E       		.uleb128 0xe
- 1130 0296 38000000 		.4byte	.LBB4
- 1131 029a C6010000 		.4byte	.LBE4-.LBB4
- 1132 029e 0A       		.uleb128 0xa
- 1133 029f 6A00     		.ascii	"j\000"
- 1134 02a1 01       		.byte	0x1
- 1135 02a2 3A       		.byte	0x3a
- 1136 02a3 2C000000 		.4byte	0x2c
- 1137 02a7 02       		.uleb128 0x2
- 1138 02a8 91       		.byte	0x91
- 1139 02a9 60       		.sleb128 -32
- 1140 02aa 0E       		.uleb128 0xe
- 1141 02ab 3E000000 		.4byte	.LBB5
- 1142 02af B0010000 		.4byte	.LBE5-.LBB5
- 1143 02b3 0D       		.uleb128 0xd
- 1144 02b4 EA000000 		.4byte	.LASF33
- 1145 02b8 01       		.byte	0x1
- 1146 02b9 3D       		.byte	0x3d
- 1147 02ba 80000000 		.4byte	0x80
- 1148 02be 02       		.uleb128 0x2
- 1149 02bf 91       		.byte	0x91
- 1150 02c0 58       		.sleb128 -40
- 1151 02c1 0D       		.uleb128 0xd
- 1152 02c2 3F020000 		.4byte	.LASF34
- 1153 02c6 01       		.byte	0x1
- 1154 02c7 42       		.byte	0x42
- 1155 02c8 80000000 		.4byte	0x80
- 1156 02cc 03       		.uleb128 0x3
- 1157 02cd 91       		.byte	0x91
- 1158 02ce A87F     		.sleb128 -88
- 1159 02d0 00       		.byte	0
- 1160 02d1 00       		.byte	0
- 1161 02d2 00       		.byte	0
- 1162 02d3 0E       		.uleb128 0xe
- 1163 02d4 1E020000 		.4byte	.LBB6
- 1164 02d8 0C010000 		.4byte	.LBE6-.LBB6
- 1165 02dc 0D       		.uleb128 0xd
- 1166 02dd BC020000 		.4byte	.LASF35
- 1167 02e1 01       		.byte	0x1
- 1168 02e2 4F       		.byte	0x4f
- 1169 02e3 80000000 		.4byte	0x80
- 1170 02e7 02       		.uleb128 0x2
- 1171 02e8 91       		.byte	0x91
- 1172 02e9 50       		.sleb128 -48
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 24
+ 1117 0283 0A       		.uleb128 0xa
+ 1118 0284 6900     		.ascii	"i\000"
+ 1119 0286 01       		.byte	0x1
+ 1120 0287 39       		.byte	0x39
+ 1121 0288 2C000000 		.4byte	0x2c
+ 1122 028c 02       		.uleb128 0x2
+ 1123 028d 91       		.byte	0x91
+ 1124 028e 64       		.sleb128 -28
+ 1125 028f 0E       		.uleb128 0xe
+ 1126 0290 38000000 		.4byte	.LBB4
+ 1127 0294 C6010000 		.4byte	.LBE4-.LBB4
+ 1128 0298 0A       		.uleb128 0xa
+ 1129 0299 6A00     		.ascii	"j\000"
+ 1130 029b 01       		.byte	0x1
+ 1131 029c 3A       		.byte	0x3a
+ 1132 029d 2C000000 		.4byte	0x2c
+ 1133 02a1 02       		.uleb128 0x2
+ 1134 02a2 91       		.byte	0x91
+ 1135 02a3 60       		.sleb128 -32
+ 1136 02a4 0E       		.uleb128 0xe
+ 1137 02a5 3E000000 		.4byte	.LBB5
+ 1138 02a9 B0010000 		.4byte	.LBE5-.LBB5
+ 1139 02ad 0D       		.uleb128 0xd
+ 1140 02ae 0B010000 		.4byte	.LASF33
+ 1141 02b2 01       		.byte	0x1
+ 1142 02b3 3D       		.byte	0x3d
+ 1143 02b4 80000000 		.4byte	0x80
+ 1144 02b8 02       		.uleb128 0x2
+ 1145 02b9 91       		.byte	0x91
+ 1146 02ba 58       		.sleb128 -40
+ 1147 02bb 0D       		.uleb128 0xd
+ 1148 02bc 79020000 		.4byte	.LASF34
+ 1149 02c0 01       		.byte	0x1
+ 1150 02c1 42       		.byte	0x42
+ 1151 02c2 80000000 		.4byte	0x80
+ 1152 02c6 03       		.uleb128 0x3
+ 1153 02c7 91       		.byte	0x91
+ 1154 02c8 A87F     		.sleb128 -88
+ 1155 02ca 00       		.byte	0
+ 1156 02cb 00       		.byte	0
+ 1157 02cc 00       		.byte	0
+ 1158 02cd 0E       		.uleb128 0xe
+ 1159 02ce 1E020000 		.4byte	.LBB6
+ 1160 02d2 0C010000 		.4byte	.LBE6-.LBB6
+ 1161 02d6 0D       		.uleb128 0xd
+ 1162 02d7 B4020000 		.4byte	.LASF35
+ 1163 02db 01       		.byte	0x1
+ 1164 02dc 4F       		.byte	0x4f
+ 1165 02dd 80000000 		.4byte	0x80
+ 1166 02e1 02       		.uleb128 0x2
+ 1167 02e2 91       		.byte	0x91
+ 1168 02e3 50       		.sleb128 -48
+ 1169 02e4 0E       		.uleb128 0xe
+ 1170 02e5 2A020000 		.4byte	.LBB7
+ 1171 02e9 00010000 		.4byte	.LBE7-.LBB7
+ 1172 02ed 0A       		.uleb128 0xa
+ 1173 02ee 6900     		.ascii	"i\000"
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc0BwBpn.s 			page 24
 
 
- 1173 02ea 0E       		.uleb128 0xe
- 1174 02eb 2A020000 		.4byte	.LBB7
- 1175 02ef 00010000 		.4byte	.LBE7-.LBB7
- 1176 02f3 0A       		.uleb128 0xa
- 1177 02f4 6900     		.ascii	"i\000"
- 1178 02f6 01       		.byte	0x1
- 1179 02f7 51       		.byte	0x51
- 1180 02f8 2C000000 		.4byte	0x2c
- 1181 02fc 02       		.uleb128 0x2
- 1182 02fd 91       		.byte	0x91
- 1183 02fe 4C       		.sleb128 -52
- 1184 02ff 0E       		.uleb128 0xe
- 1185 0300 30020000 		.4byte	.LBB8
- 1186 0304 7A000000 		.4byte	.LBE8-.LBB8
- 1187 0308 0A       		.uleb128 0xa
- 1188 0309 6A00     		.ascii	"j\000"
- 1189 030b 01       		.byte	0x1
- 1190 030c 52       		.byte	0x52
- 1191 030d 2C000000 		.4byte	0x2c
- 1192 0311 02       		.uleb128 0x2
- 1193 0312 91       		.byte	0x91
- 1194 0313 48       		.sleb128 -56
- 1195 0314 00       		.byte	0
- 1196 0315 00       		.byte	0
- 1197 0316 00       		.byte	0
- 1198 0317 00       		.byte	0
- 1199 0318 06       		.uleb128 0x6
- 1200 0319 04       		.byte	0x4
- 1201 031a CD000000 		.4byte	0xcd
- 1202 031e 11       		.uleb128 0x11
- 1203 031f 71010000 		.4byte	.LASF37
- 1204 0323 01       		.byte	0x1
- 1205 0324 5C       		.byte	0x5c
- 1206 0325 35010000 		.4byte	0x135
- 1207 0329 00000000 		.4byte	.LFB3
- 1208 032d C4000000 		.4byte	.LFE3-.LFB3
- 1209 0331 01       		.uleb128 0x1
- 1210 0332 9C       		.byte	0x9c
- 1211 0333 0C       		.uleb128 0xc
- 1212 0334 17020000 		.4byte	.LASF38
- 1213 0338 01       		.byte	0x1
- 1214 0339 5C       		.byte	0x5c
- 1215 033a FA010000 		.4byte	0x1fa
- 1216 033e 02       		.uleb128 0x2
- 1217 033f 91       		.byte	0x91
- 1218 0340 54       		.sleb128 -44
- 1219 0341 0D       		.uleb128 0xd
- 1220 0342 A3020000 		.4byte	.LASF39
- 1221 0346 01       		.byte	0x1
- 1222 0347 5F       		.byte	0x5f
- 1223 0348 35010000 		.4byte	0x135
- 1224 034c 02       		.uleb128 0x2
- 1225 034d 91       		.byte	0x91
- 1226 034e 64       		.sleb128 -28
- 1227 034f 0D       		.uleb128 0xd
- 1228 0350 B1020000 		.4byte	.LASF40
- 1229 0354 01       		.byte	0x1
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 25
+ 1174 02f0 01       		.byte	0x1
+ 1175 02f1 51       		.byte	0x51
+ 1176 02f2 2C000000 		.4byte	0x2c
+ 1177 02f6 02       		.uleb128 0x2
+ 1178 02f7 91       		.byte	0x91
+ 1179 02f8 4C       		.sleb128 -52
+ 1180 02f9 0E       		.uleb128 0xe
+ 1181 02fa 30020000 		.4byte	.LBB8
+ 1182 02fe 7A000000 		.4byte	.LBE8-.LBB8
+ 1183 0302 0A       		.uleb128 0xa
+ 1184 0303 6A00     		.ascii	"j\000"
+ 1185 0305 01       		.byte	0x1
+ 1186 0306 52       		.byte	0x52
+ 1187 0307 2C000000 		.4byte	0x2c
+ 1188 030b 02       		.uleb128 0x2
+ 1189 030c 91       		.byte	0x91
+ 1190 030d 48       		.sleb128 -56
+ 1191 030e 00       		.byte	0
+ 1192 030f 00       		.byte	0
+ 1193 0310 00       		.byte	0
+ 1194 0311 00       		.byte	0
+ 1195 0312 06       		.uleb128 0x6
+ 1196 0313 04       		.byte	0x4
+ 1197 0314 CD000000 		.4byte	0xcd
+ 1198 0318 11       		.uleb128 0x11
+ 1199 0319 AB010000 		.4byte	.LASF37
+ 1200 031d 01       		.byte	0x1
+ 1201 031e 5C       		.byte	0x5c
+ 1202 031f C7000000 		.4byte	0xc7
+ 1203 0323 00000000 		.4byte	.LFB3
+ 1204 0327 C4000000 		.4byte	.LFE3-.LFB3
+ 1205 032b 01       		.uleb128 0x1
+ 1206 032c 9C       		.byte	0x9c
+ 1207 032d 0C       		.uleb128 0xc
+ 1208 032e 51020000 		.4byte	.LASF38
+ 1209 0332 01       		.byte	0x1
+ 1210 0333 5C       		.byte	0x5c
+ 1211 0334 F4010000 		.4byte	0x1f4
+ 1212 0338 02       		.uleb128 0x2
+ 1213 0339 91       		.byte	0x91
+ 1214 033a 54       		.sleb128 -44
+ 1215 033b 0D       		.uleb128 0xd
+ 1216 033c 9B020000 		.4byte	.LASF39
+ 1217 0340 01       		.byte	0x1
+ 1218 0341 5E       		.byte	0x5e
+ 1219 0342 C7000000 		.4byte	0xc7
+ 1220 0346 02       		.uleb128 0x2
+ 1221 0347 91       		.byte	0x91
+ 1222 0348 64       		.sleb128 -28
+ 1223 0349 0D       		.uleb128 0xd
+ 1224 034a A9020000 		.4byte	.LASF40
+ 1225 034e 01       		.byte	0x1
+ 1226 034f 5F       		.byte	0x5f
+ 1227 0350 2C000000 		.4byte	0x2c
+ 1228 0354 02       		.uleb128 0x2
+ 1229 0355 91       		.byte	0x91
+ 1230 0356 60       		.sleb128 -32
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc0BwBpn.s 			page 25
 
 
- 1230 0355 60       		.byte	0x60
- 1231 0356 2C000000 		.4byte	0x2c
- 1232 035a 02       		.uleb128 0x2
- 1233 035b 91       		.byte	0x91
- 1234 035c 60       		.sleb128 -32
- 1235 035d 0D       		.uleb128 0xd
- 1236 035e 2A020000 		.4byte	.LASF41
- 1237 0362 01       		.byte	0x1
- 1238 0363 61       		.byte	0x61
- 1239 0364 2C000000 		.4byte	0x2c
- 1240 0368 02       		.uleb128 0x2
- 1241 0369 91       		.byte	0x91
- 1242 036a 74       		.sleb128 -12
- 1243 036b 0D       		.uleb128 0xd
- 1244 036c EF000000 		.4byte	.LASF42
- 1245 0370 01       		.byte	0x1
- 1246 0371 64       		.byte	0x64
- 1247 0372 2C000000 		.4byte	0x2c
- 1248 0376 02       		.uleb128 0x2
- 1249 0377 91       		.byte	0x91
- 1250 0378 5C       		.sleb128 -36
- 1251 0379 0D       		.uleb128 0xd
- 1252 037a 47020000 		.4byte	.LASF43
- 1253 037e 01       		.byte	0x1
- 1254 037f 72       		.byte	0x72
- 1255 0380 35010000 		.4byte	0x135
- 1256 0384 02       		.uleb128 0x2
- 1257 0385 91       		.byte	0x91
- 1258 0386 58       		.sleb128 -40
- 1259 0387 0D       		.uleb128 0xd
- 1260 0388 41010000 		.4byte	.LASF44
- 1261 038c 01       		.byte	0x1
- 1262 038d 73       		.byte	0x73
- 1263 038e 2C000000 		.4byte	0x2c
- 1264 0392 02       		.uleb128 0x2
- 1265 0393 91       		.byte	0x91
- 1266 0394 6C       		.sleb128 -20
- 1267 0395 10       		.uleb128 0x10
- 1268 0396 24000000 		.4byte	.LBB9
- 1269 039a 48000000 		.4byte	.LBE9-.LBB9
- 1270 039e AF030000 		.4byte	0x3af
- 1271 03a2 0A       		.uleb128 0xa
- 1272 03a3 6900     		.ascii	"i\000"
- 1273 03a5 01       		.byte	0x1
- 1274 03a6 67       		.byte	0x67
- 1275 03a7 2C000000 		.4byte	0x2c
- 1276 03ab 02       		.uleb128 0x2
- 1277 03ac 91       		.byte	0x91
- 1278 03ad 70       		.sleb128 -16
- 1279 03ae 00       		.byte	0
- 1280 03af 0E       		.uleb128 0xe
- 1281 03b0 7E000000 		.4byte	.LBB10
- 1282 03b4 3C000000 		.4byte	.LBE10-.LBB10
- 1283 03b8 0A       		.uleb128 0xa
- 1284 03b9 6900     		.ascii	"i\000"
- 1285 03bb 01       		.byte	0x1
- 1286 03bc 74       		.byte	0x74
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 26
+ 1231 0357 0D       		.uleb128 0xd
+ 1232 0358 64020000 		.4byte	.LASF41
+ 1233 035c 01       		.byte	0x1
+ 1234 035d 60       		.byte	0x60
+ 1235 035e 2C000000 		.4byte	0x2c
+ 1236 0362 02       		.uleb128 0x2
+ 1237 0363 91       		.byte	0x91
+ 1238 0364 74       		.sleb128 -12
+ 1239 0365 0D       		.uleb128 0xd
+ 1240 0366 10010000 		.4byte	.LASF42
+ 1241 036a 01       		.byte	0x1
+ 1242 036b 63       		.byte	0x63
+ 1243 036c 2C000000 		.4byte	0x2c
+ 1244 0370 02       		.uleb128 0x2
+ 1245 0371 91       		.byte	0x91
+ 1246 0372 5C       		.sleb128 -36
+ 1247 0373 0D       		.uleb128 0xd
+ 1248 0374 81020000 		.4byte	.LASF43
+ 1249 0378 01       		.byte	0x1
+ 1250 0379 71       		.byte	0x71
+ 1251 037a C7000000 		.4byte	0xc7
+ 1252 037e 02       		.uleb128 0x2
+ 1253 037f 91       		.byte	0x91
+ 1254 0380 58       		.sleb128 -40
+ 1255 0381 0D       		.uleb128 0xd
+ 1256 0382 62010000 		.4byte	.LASF44
+ 1257 0386 01       		.byte	0x1
+ 1258 0387 72       		.byte	0x72
+ 1259 0388 2C000000 		.4byte	0x2c
+ 1260 038c 02       		.uleb128 0x2
+ 1261 038d 91       		.byte	0x91
+ 1262 038e 6C       		.sleb128 -20
+ 1263 038f 10       		.uleb128 0x10
+ 1264 0390 24000000 		.4byte	.LBB9
+ 1265 0394 48000000 		.4byte	.LBE9-.LBB9
+ 1266 0398 A9030000 		.4byte	0x3a9
+ 1267 039c 0A       		.uleb128 0xa
+ 1268 039d 6900     		.ascii	"i\000"
+ 1269 039f 01       		.byte	0x1
+ 1270 03a0 66       		.byte	0x66
+ 1271 03a1 2C000000 		.4byte	0x2c
+ 1272 03a5 02       		.uleb128 0x2
+ 1273 03a6 91       		.byte	0x91
+ 1274 03a7 70       		.sleb128 -16
+ 1275 03a8 00       		.byte	0
+ 1276 03a9 0E       		.uleb128 0xe
+ 1277 03aa 7E000000 		.4byte	.LBB10
+ 1278 03ae 3C000000 		.4byte	.LBE10-.LBB10
+ 1279 03b2 0A       		.uleb128 0xa
+ 1280 03b3 6900     		.ascii	"i\000"
+ 1281 03b5 01       		.byte	0x1
+ 1282 03b6 73       		.byte	0x73
+ 1283 03b7 2C000000 		.4byte	0x2c
+ 1284 03bb 02       		.uleb128 0x2
+ 1285 03bc 91       		.byte	0x91
+ 1286 03bd 68       		.sleb128 -24
+ 1287 03be 00       		.byte	0
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc0BwBpn.s 			page 26
 
 
- 1287 03bd 2C000000 		.4byte	0x2c
- 1288 03c1 02       		.uleb128 0x2
- 1289 03c2 91       		.byte	0x91
- 1290 03c3 68       		.sleb128 -24
- 1291 03c4 00       		.byte	0
- 1292 03c5 00       		.byte	0
- 1293 03c6 00       		.byte	0
- 1294              		.section	.debug_abbrev,"",%progbits
- 1295              	.Ldebug_abbrev0:
- 1296 0000 01       		.uleb128 0x1
- 1297 0001 11       		.uleb128 0x11
- 1298 0002 01       		.byte	0x1
- 1299 0003 25       		.uleb128 0x25
- 1300 0004 0E       		.uleb128 0xe
- 1301 0005 13       		.uleb128 0x13
- 1302 0006 0B       		.uleb128 0xb
- 1303 0007 03       		.uleb128 0x3
- 1304 0008 0E       		.uleb128 0xe
- 1305 0009 1B       		.uleb128 0x1b
- 1306 000a 0E       		.uleb128 0xe
- 1307 000b 55       		.uleb128 0x55
- 1308 000c 17       		.uleb128 0x17
- 1309 000d 11       		.uleb128 0x11
- 1310 000e 01       		.uleb128 0x1
- 1311 000f 10       		.uleb128 0x10
- 1312 0010 17       		.uleb128 0x17
- 1313 0011 00       		.byte	0
- 1314 0012 00       		.byte	0
- 1315 0013 02       		.uleb128 0x2
- 1316 0014 24       		.uleb128 0x24
- 1317 0015 00       		.byte	0
- 1318 0016 0B       		.uleb128 0xb
- 1319 0017 0B       		.uleb128 0xb
- 1320 0018 3E       		.uleb128 0x3e
- 1321 0019 0B       		.uleb128 0xb
- 1322 001a 03       		.uleb128 0x3
- 1323 001b 0E       		.uleb128 0xe
- 1324 001c 00       		.byte	0
- 1325 001d 00       		.byte	0
- 1326 001e 03       		.uleb128 0x3
- 1327 001f 24       		.uleb128 0x24
- 1328 0020 00       		.byte	0
- 1329 0021 0B       		.uleb128 0xb
- 1330 0022 0B       		.uleb128 0xb
- 1331 0023 3E       		.uleb128 0x3e
- 1332 0024 0B       		.uleb128 0xb
- 1333 0025 03       		.uleb128 0x3
- 1334 0026 08       		.uleb128 0x8
- 1335 0027 00       		.byte	0
- 1336 0028 00       		.byte	0
- 1337 0029 04       		.uleb128 0x4
- 1338 002a 13       		.uleb128 0x13
- 1339 002b 01       		.byte	0x1
- 1340 002c 0B       		.uleb128 0xb
- 1341 002d 0B       		.uleb128 0xb
- 1342 002e 3A       		.uleb128 0x3a
- 1343 002f 0B       		.uleb128 0xb
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 27
+ 1288 03bf 00       		.byte	0
+ 1289 03c0 00       		.byte	0
+ 1290              		.section	.debug_abbrev,"",%progbits
+ 1291              	.Ldebug_abbrev0:
+ 1292 0000 01       		.uleb128 0x1
+ 1293 0001 11       		.uleb128 0x11
+ 1294 0002 01       		.byte	0x1
+ 1295 0003 25       		.uleb128 0x25
+ 1296 0004 0E       		.uleb128 0xe
+ 1297 0005 13       		.uleb128 0x13
+ 1298 0006 0B       		.uleb128 0xb
+ 1299 0007 03       		.uleb128 0x3
+ 1300 0008 0E       		.uleb128 0xe
+ 1301 0009 1B       		.uleb128 0x1b
+ 1302 000a 0E       		.uleb128 0xe
+ 1303 000b 55       		.uleb128 0x55
+ 1304 000c 17       		.uleb128 0x17
+ 1305 000d 11       		.uleb128 0x11
+ 1306 000e 01       		.uleb128 0x1
+ 1307 000f 10       		.uleb128 0x10
+ 1308 0010 17       		.uleb128 0x17
+ 1309 0011 00       		.byte	0
+ 1310 0012 00       		.byte	0
+ 1311 0013 02       		.uleb128 0x2
+ 1312 0014 24       		.uleb128 0x24
+ 1313 0015 00       		.byte	0
+ 1314 0016 0B       		.uleb128 0xb
+ 1315 0017 0B       		.uleb128 0xb
+ 1316 0018 3E       		.uleb128 0x3e
+ 1317 0019 0B       		.uleb128 0xb
+ 1318 001a 03       		.uleb128 0x3
+ 1319 001b 0E       		.uleb128 0xe
+ 1320 001c 00       		.byte	0
+ 1321 001d 00       		.byte	0
+ 1322 001e 03       		.uleb128 0x3
+ 1323 001f 24       		.uleb128 0x24
+ 1324 0020 00       		.byte	0
+ 1325 0021 0B       		.uleb128 0xb
+ 1326 0022 0B       		.uleb128 0xb
+ 1327 0023 3E       		.uleb128 0x3e
+ 1328 0024 0B       		.uleb128 0xb
+ 1329 0025 03       		.uleb128 0x3
+ 1330 0026 08       		.uleb128 0x8
+ 1331 0027 00       		.byte	0
+ 1332 0028 00       		.byte	0
+ 1333 0029 04       		.uleb128 0x4
+ 1334 002a 13       		.uleb128 0x13
+ 1335 002b 01       		.byte	0x1
+ 1336 002c 0B       		.uleb128 0xb
+ 1337 002d 0B       		.uleb128 0xb
+ 1338 002e 3A       		.uleb128 0x3a
+ 1339 002f 0B       		.uleb128 0xb
+ 1340 0030 3B       		.uleb128 0x3b
+ 1341 0031 0B       		.uleb128 0xb
+ 1342 0032 01       		.uleb128 0x1
+ 1343 0033 13       		.uleb128 0x13
+ 1344 0034 00       		.byte	0
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc0BwBpn.s 			page 27
 
 
- 1344 0030 3B       		.uleb128 0x3b
- 1345 0031 0B       		.uleb128 0xb
- 1346 0032 01       		.uleb128 0x1
- 1347 0033 13       		.uleb128 0x13
- 1348 0034 00       		.byte	0
- 1349 0035 00       		.byte	0
- 1350 0036 05       		.uleb128 0x5
- 1351 0037 0D       		.uleb128 0xd
- 1352 0038 00       		.byte	0
- 1353 0039 03       		.uleb128 0x3
- 1354 003a 0E       		.uleb128 0xe
- 1355 003b 3A       		.uleb128 0x3a
- 1356 003c 0B       		.uleb128 0xb
- 1357 003d 3B       		.uleb128 0x3b
- 1358 003e 0B       		.uleb128 0xb
- 1359 003f 49       		.uleb128 0x49
- 1360 0040 13       		.uleb128 0x13
- 1361 0041 38       		.uleb128 0x38
- 1362 0042 0B       		.uleb128 0xb
- 1363 0043 00       		.byte	0
- 1364 0044 00       		.byte	0
- 1365 0045 06       		.uleb128 0x6
- 1366 0046 0F       		.uleb128 0xf
- 1367 0047 00       		.byte	0
- 1368 0048 0B       		.uleb128 0xb
- 1369 0049 0B       		.uleb128 0xb
- 1370 004a 49       		.uleb128 0x49
- 1371 004b 13       		.uleb128 0x13
- 1372 004c 00       		.byte	0
- 1373 004d 00       		.byte	0
- 1374 004e 07       		.uleb128 0x7
- 1375 004f 16       		.uleb128 0x16
- 1376 0050 00       		.byte	0
- 1377 0051 03       		.uleb128 0x3
- 1378 0052 0E       		.uleb128 0xe
- 1379 0053 3A       		.uleb128 0x3a
- 1380 0054 0B       		.uleb128 0xb
- 1381 0055 3B       		.uleb128 0x3b
- 1382 0056 0B       		.uleb128 0xb
- 1383 0057 49       		.uleb128 0x49
- 1384 0058 13       		.uleb128 0x13
- 1385 0059 00       		.byte	0
- 1386 005a 00       		.byte	0
- 1387 005b 08       		.uleb128 0x8
- 1388 005c 2E       		.uleb128 0x2e
- 1389 005d 01       		.byte	0x1
- 1390 005e 3F       		.uleb128 0x3f
- 1391 005f 19       		.uleb128 0x19
- 1392 0060 03       		.uleb128 0x3
- 1393 0061 0E       		.uleb128 0xe
- 1394 0062 3A       		.uleb128 0x3a
- 1395 0063 0B       		.uleb128 0xb
- 1396 0064 3B       		.uleb128 0x3b
- 1397 0065 0B       		.uleb128 0xb
- 1398 0066 27       		.uleb128 0x27
- 1399 0067 19       		.uleb128 0x19
- 1400 0068 49       		.uleb128 0x49
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 28
+ 1345 0035 00       		.byte	0
+ 1346 0036 05       		.uleb128 0x5
+ 1347 0037 0D       		.uleb128 0xd
+ 1348 0038 00       		.byte	0
+ 1349 0039 03       		.uleb128 0x3
+ 1350 003a 0E       		.uleb128 0xe
+ 1351 003b 3A       		.uleb128 0x3a
+ 1352 003c 0B       		.uleb128 0xb
+ 1353 003d 3B       		.uleb128 0x3b
+ 1354 003e 0B       		.uleb128 0xb
+ 1355 003f 49       		.uleb128 0x49
+ 1356 0040 13       		.uleb128 0x13
+ 1357 0041 38       		.uleb128 0x38
+ 1358 0042 0B       		.uleb128 0xb
+ 1359 0043 00       		.byte	0
+ 1360 0044 00       		.byte	0
+ 1361 0045 06       		.uleb128 0x6
+ 1362 0046 0F       		.uleb128 0xf
+ 1363 0047 00       		.byte	0
+ 1364 0048 0B       		.uleb128 0xb
+ 1365 0049 0B       		.uleb128 0xb
+ 1366 004a 49       		.uleb128 0x49
+ 1367 004b 13       		.uleb128 0x13
+ 1368 004c 00       		.byte	0
+ 1369 004d 00       		.byte	0
+ 1370 004e 07       		.uleb128 0x7
+ 1371 004f 16       		.uleb128 0x16
+ 1372 0050 00       		.byte	0
+ 1373 0051 03       		.uleb128 0x3
+ 1374 0052 0E       		.uleb128 0xe
+ 1375 0053 3A       		.uleb128 0x3a
+ 1376 0054 0B       		.uleb128 0xb
+ 1377 0055 3B       		.uleb128 0x3b
+ 1378 0056 0B       		.uleb128 0xb
+ 1379 0057 49       		.uleb128 0x49
+ 1380 0058 13       		.uleb128 0x13
+ 1381 0059 00       		.byte	0
+ 1382 005a 00       		.byte	0
+ 1383 005b 08       		.uleb128 0x8
+ 1384 005c 2E       		.uleb128 0x2e
+ 1385 005d 01       		.byte	0x1
+ 1386 005e 3F       		.uleb128 0x3f
+ 1387 005f 19       		.uleb128 0x19
+ 1388 0060 03       		.uleb128 0x3
+ 1389 0061 0E       		.uleb128 0xe
+ 1390 0062 3A       		.uleb128 0x3a
+ 1391 0063 0B       		.uleb128 0xb
+ 1392 0064 3B       		.uleb128 0x3b
+ 1393 0065 0B       		.uleb128 0xb
+ 1394 0066 27       		.uleb128 0x27
+ 1395 0067 19       		.uleb128 0x19
+ 1396 0068 49       		.uleb128 0x49
+ 1397 0069 13       		.uleb128 0x13
+ 1398 006a 11       		.uleb128 0x11
+ 1399 006b 01       		.uleb128 0x1
+ 1400 006c 12       		.uleb128 0x12
+ 1401 006d 06       		.uleb128 0x6
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc0BwBpn.s 			page 28
 
 
- 1401 0069 13       		.uleb128 0x13
- 1402 006a 11       		.uleb128 0x11
- 1403 006b 01       		.uleb128 0x1
- 1404 006c 12       		.uleb128 0x12
- 1405 006d 06       		.uleb128 0x6
- 1406 006e 40       		.uleb128 0x40
- 1407 006f 18       		.uleb128 0x18
- 1408 0070 9742     		.uleb128 0x2117
- 1409 0072 19       		.uleb128 0x19
- 1410 0073 01       		.uleb128 0x1
- 1411 0074 13       		.uleb128 0x13
- 1412 0075 00       		.byte	0
- 1413 0076 00       		.byte	0
- 1414 0077 09       		.uleb128 0x9
- 1415 0078 05       		.uleb128 0x5
- 1416 0079 00       		.byte	0
- 1417 007a 03       		.uleb128 0x3
- 1418 007b 08       		.uleb128 0x8
- 1419 007c 3A       		.uleb128 0x3a
- 1420 007d 0B       		.uleb128 0xb
- 1421 007e 3B       		.uleb128 0x3b
- 1422 007f 0B       		.uleb128 0xb
- 1423 0080 49       		.uleb128 0x49
- 1424 0081 13       		.uleb128 0x13
- 1425 0082 02       		.uleb128 0x2
- 1426 0083 18       		.uleb128 0x18
- 1427 0084 00       		.byte	0
- 1428 0085 00       		.byte	0
- 1429 0086 0A       		.uleb128 0xa
- 1430 0087 34       		.uleb128 0x34
- 1431 0088 00       		.byte	0
- 1432 0089 03       		.uleb128 0x3
- 1433 008a 08       		.uleb128 0x8
- 1434 008b 3A       		.uleb128 0x3a
- 1435 008c 0B       		.uleb128 0xb
- 1436 008d 3B       		.uleb128 0x3b
- 1437 008e 0B       		.uleb128 0xb
- 1438 008f 49       		.uleb128 0x49
- 1439 0090 13       		.uleb128 0x13
- 1440 0091 02       		.uleb128 0x2
- 1441 0092 18       		.uleb128 0x18
- 1442 0093 00       		.byte	0
- 1443 0094 00       		.byte	0
- 1444 0095 0B       		.uleb128 0xb
- 1445 0096 2E       		.uleb128 0x2e
- 1446 0097 01       		.byte	0x1
- 1447 0098 3F       		.uleb128 0x3f
- 1448 0099 19       		.uleb128 0x19
- 1449 009a 03       		.uleb128 0x3
- 1450 009b 0E       		.uleb128 0xe
- 1451 009c 3A       		.uleb128 0x3a
- 1452 009d 0B       		.uleb128 0xb
- 1453 009e 3B       		.uleb128 0x3b
- 1454 009f 0B       		.uleb128 0xb
- 1455 00a0 27       		.uleb128 0x27
- 1456 00a1 19       		.uleb128 0x19
- 1457 00a2 49       		.uleb128 0x49
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 29
+ 1402 006e 40       		.uleb128 0x40
+ 1403 006f 18       		.uleb128 0x18
+ 1404 0070 9742     		.uleb128 0x2117
+ 1405 0072 19       		.uleb128 0x19
+ 1406 0073 01       		.uleb128 0x1
+ 1407 0074 13       		.uleb128 0x13
+ 1408 0075 00       		.byte	0
+ 1409 0076 00       		.byte	0
+ 1410 0077 09       		.uleb128 0x9
+ 1411 0078 05       		.uleb128 0x5
+ 1412 0079 00       		.byte	0
+ 1413 007a 03       		.uleb128 0x3
+ 1414 007b 08       		.uleb128 0x8
+ 1415 007c 3A       		.uleb128 0x3a
+ 1416 007d 0B       		.uleb128 0xb
+ 1417 007e 3B       		.uleb128 0x3b
+ 1418 007f 0B       		.uleb128 0xb
+ 1419 0080 49       		.uleb128 0x49
+ 1420 0081 13       		.uleb128 0x13
+ 1421 0082 02       		.uleb128 0x2
+ 1422 0083 18       		.uleb128 0x18
+ 1423 0084 00       		.byte	0
+ 1424 0085 00       		.byte	0
+ 1425 0086 0A       		.uleb128 0xa
+ 1426 0087 34       		.uleb128 0x34
+ 1427 0088 00       		.byte	0
+ 1428 0089 03       		.uleb128 0x3
+ 1429 008a 08       		.uleb128 0x8
+ 1430 008b 3A       		.uleb128 0x3a
+ 1431 008c 0B       		.uleb128 0xb
+ 1432 008d 3B       		.uleb128 0x3b
+ 1433 008e 0B       		.uleb128 0xb
+ 1434 008f 49       		.uleb128 0x49
+ 1435 0090 13       		.uleb128 0x13
+ 1436 0091 02       		.uleb128 0x2
+ 1437 0092 18       		.uleb128 0x18
+ 1438 0093 00       		.byte	0
+ 1439 0094 00       		.byte	0
+ 1440 0095 0B       		.uleb128 0xb
+ 1441 0096 2E       		.uleb128 0x2e
+ 1442 0097 01       		.byte	0x1
+ 1443 0098 3F       		.uleb128 0x3f
+ 1444 0099 19       		.uleb128 0x19
+ 1445 009a 03       		.uleb128 0x3
+ 1446 009b 0E       		.uleb128 0xe
+ 1447 009c 3A       		.uleb128 0x3a
+ 1448 009d 0B       		.uleb128 0xb
+ 1449 009e 3B       		.uleb128 0x3b
+ 1450 009f 0B       		.uleb128 0xb
+ 1451 00a0 27       		.uleb128 0x27
+ 1452 00a1 19       		.uleb128 0x19
+ 1453 00a2 49       		.uleb128 0x49
+ 1454 00a3 13       		.uleb128 0x13
+ 1455 00a4 11       		.uleb128 0x11
+ 1456 00a5 01       		.uleb128 0x1
+ 1457 00a6 12       		.uleb128 0x12
+ 1458 00a7 06       		.uleb128 0x6
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc0BwBpn.s 			page 29
 
 
- 1458 00a3 13       		.uleb128 0x13
- 1459 00a4 11       		.uleb128 0x11
- 1460 00a5 01       		.uleb128 0x1
- 1461 00a6 12       		.uleb128 0x12
- 1462 00a7 06       		.uleb128 0x6
- 1463 00a8 40       		.uleb128 0x40
- 1464 00a9 18       		.uleb128 0x18
- 1465 00aa 9642     		.uleb128 0x2116
- 1466 00ac 19       		.uleb128 0x19
- 1467 00ad 01       		.uleb128 0x1
- 1468 00ae 13       		.uleb128 0x13
- 1469 00af 00       		.byte	0
- 1470 00b0 00       		.byte	0
- 1471 00b1 0C       		.uleb128 0xc
- 1472 00b2 05       		.uleb128 0x5
- 1473 00b3 00       		.byte	0
- 1474 00b4 03       		.uleb128 0x3
- 1475 00b5 0E       		.uleb128 0xe
- 1476 00b6 3A       		.uleb128 0x3a
- 1477 00b7 0B       		.uleb128 0xb
- 1478 00b8 3B       		.uleb128 0x3b
- 1479 00b9 0B       		.uleb128 0xb
- 1480 00ba 49       		.uleb128 0x49
- 1481 00bb 13       		.uleb128 0x13
- 1482 00bc 02       		.uleb128 0x2
- 1483 00bd 18       		.uleb128 0x18
- 1484 00be 00       		.byte	0
- 1485 00bf 00       		.byte	0
- 1486 00c0 0D       		.uleb128 0xd
- 1487 00c1 34       		.uleb128 0x34
- 1488 00c2 00       		.byte	0
- 1489 00c3 03       		.uleb128 0x3
- 1490 00c4 0E       		.uleb128 0xe
- 1491 00c5 3A       		.uleb128 0x3a
- 1492 00c6 0B       		.uleb128 0xb
- 1493 00c7 3B       		.uleb128 0x3b
- 1494 00c8 0B       		.uleb128 0xb
- 1495 00c9 49       		.uleb128 0x49
- 1496 00ca 13       		.uleb128 0x13
- 1497 00cb 02       		.uleb128 0x2
- 1498 00cc 18       		.uleb128 0x18
- 1499 00cd 00       		.byte	0
- 1500 00ce 00       		.byte	0
- 1501 00cf 0E       		.uleb128 0xe
- 1502 00d0 0B       		.uleb128 0xb
- 1503 00d1 01       		.byte	0x1
- 1504 00d2 11       		.uleb128 0x11
- 1505 00d3 01       		.uleb128 0x1
- 1506 00d4 12       		.uleb128 0x12
- 1507 00d5 06       		.uleb128 0x6
- 1508 00d6 00       		.byte	0
- 1509 00d7 00       		.byte	0
- 1510 00d8 0F       		.uleb128 0xf
- 1511 00d9 2E       		.uleb128 0x2e
- 1512 00da 01       		.byte	0x1
- 1513 00db 3F       		.uleb128 0x3f
- 1514 00dc 19       		.uleb128 0x19
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 30
+ 1459 00a8 40       		.uleb128 0x40
+ 1460 00a9 18       		.uleb128 0x18
+ 1461 00aa 9642     		.uleb128 0x2116
+ 1462 00ac 19       		.uleb128 0x19
+ 1463 00ad 01       		.uleb128 0x1
+ 1464 00ae 13       		.uleb128 0x13
+ 1465 00af 00       		.byte	0
+ 1466 00b0 00       		.byte	0
+ 1467 00b1 0C       		.uleb128 0xc
+ 1468 00b2 05       		.uleb128 0x5
+ 1469 00b3 00       		.byte	0
+ 1470 00b4 03       		.uleb128 0x3
+ 1471 00b5 0E       		.uleb128 0xe
+ 1472 00b6 3A       		.uleb128 0x3a
+ 1473 00b7 0B       		.uleb128 0xb
+ 1474 00b8 3B       		.uleb128 0x3b
+ 1475 00b9 0B       		.uleb128 0xb
+ 1476 00ba 49       		.uleb128 0x49
+ 1477 00bb 13       		.uleb128 0x13
+ 1478 00bc 02       		.uleb128 0x2
+ 1479 00bd 18       		.uleb128 0x18
+ 1480 00be 00       		.byte	0
+ 1481 00bf 00       		.byte	0
+ 1482 00c0 0D       		.uleb128 0xd
+ 1483 00c1 34       		.uleb128 0x34
+ 1484 00c2 00       		.byte	0
+ 1485 00c3 03       		.uleb128 0x3
+ 1486 00c4 0E       		.uleb128 0xe
+ 1487 00c5 3A       		.uleb128 0x3a
+ 1488 00c6 0B       		.uleb128 0xb
+ 1489 00c7 3B       		.uleb128 0x3b
+ 1490 00c8 0B       		.uleb128 0xb
+ 1491 00c9 49       		.uleb128 0x49
+ 1492 00ca 13       		.uleb128 0x13
+ 1493 00cb 02       		.uleb128 0x2
+ 1494 00cc 18       		.uleb128 0x18
+ 1495 00cd 00       		.byte	0
+ 1496 00ce 00       		.byte	0
+ 1497 00cf 0E       		.uleb128 0xe
+ 1498 00d0 0B       		.uleb128 0xb
+ 1499 00d1 01       		.byte	0x1
+ 1500 00d2 11       		.uleb128 0x11
+ 1501 00d3 01       		.uleb128 0x1
+ 1502 00d4 12       		.uleb128 0x12
+ 1503 00d5 06       		.uleb128 0x6
+ 1504 00d6 00       		.byte	0
+ 1505 00d7 00       		.byte	0
+ 1506 00d8 0F       		.uleb128 0xf
+ 1507 00d9 2E       		.uleb128 0x2e
+ 1508 00da 01       		.byte	0x1
+ 1509 00db 3F       		.uleb128 0x3f
+ 1510 00dc 19       		.uleb128 0x19
+ 1511 00dd 03       		.uleb128 0x3
+ 1512 00de 0E       		.uleb128 0xe
+ 1513 00df 3A       		.uleb128 0x3a
+ 1514 00e0 0B       		.uleb128 0xb
+ 1515 00e1 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc0BwBpn.s 			page 30
 
 
- 1515 00dd 03       		.uleb128 0x3
- 1516 00de 0E       		.uleb128 0xe
- 1517 00df 3A       		.uleb128 0x3a
- 1518 00e0 0B       		.uleb128 0xb
- 1519 00e1 3B       		.uleb128 0x3b
- 1520 00e2 0B       		.uleb128 0xb
- 1521 00e3 27       		.uleb128 0x27
- 1522 00e4 19       		.uleb128 0x19
- 1523 00e5 11       		.uleb128 0x11
- 1524 00e6 01       		.uleb128 0x1
- 1525 00e7 12       		.uleb128 0x12
- 1526 00e8 06       		.uleb128 0x6
- 1527 00e9 40       		.uleb128 0x40
- 1528 00ea 18       		.uleb128 0x18
- 1529 00eb 9642     		.uleb128 0x2116
- 1530 00ed 19       		.uleb128 0x19
- 1531 00ee 01       		.uleb128 0x1
- 1532 00ef 13       		.uleb128 0x13
- 1533 00f0 00       		.byte	0
- 1534 00f1 00       		.byte	0
- 1535 00f2 10       		.uleb128 0x10
- 1536 00f3 0B       		.uleb128 0xb
- 1537 00f4 01       		.byte	0x1
- 1538 00f5 11       		.uleb128 0x11
- 1539 00f6 01       		.uleb128 0x1
- 1540 00f7 12       		.uleb128 0x12
- 1541 00f8 06       		.uleb128 0x6
- 1542 00f9 01       		.uleb128 0x1
- 1543 00fa 13       		.uleb128 0x13
- 1544 00fb 00       		.byte	0
- 1545 00fc 00       		.byte	0
- 1546 00fd 11       		.uleb128 0x11
- 1547 00fe 2E       		.uleb128 0x2e
- 1548 00ff 01       		.byte	0x1
- 1549 0100 3F       		.uleb128 0x3f
- 1550 0101 19       		.uleb128 0x19
- 1551 0102 03       		.uleb128 0x3
- 1552 0103 0E       		.uleb128 0xe
- 1553 0104 3A       		.uleb128 0x3a
- 1554 0105 0B       		.uleb128 0xb
- 1555 0106 3B       		.uleb128 0x3b
- 1556 0107 0B       		.uleb128 0xb
- 1557 0108 27       		.uleb128 0x27
- 1558 0109 19       		.uleb128 0x19
- 1559 010a 49       		.uleb128 0x49
- 1560 010b 13       		.uleb128 0x13
- 1561 010c 11       		.uleb128 0x11
- 1562 010d 01       		.uleb128 0x1
- 1563 010e 12       		.uleb128 0x12
- 1564 010f 06       		.uleb128 0x6
- 1565 0110 40       		.uleb128 0x40
- 1566 0111 18       		.uleb128 0x18
- 1567 0112 9642     		.uleb128 0x2116
- 1568 0114 19       		.uleb128 0x19
- 1569 0115 00       		.byte	0
- 1570 0116 00       		.byte	0
- 1571 0117 00       		.byte	0
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 31
+ 1516 00e2 0B       		.uleb128 0xb
+ 1517 00e3 27       		.uleb128 0x27
+ 1518 00e4 19       		.uleb128 0x19
+ 1519 00e5 11       		.uleb128 0x11
+ 1520 00e6 01       		.uleb128 0x1
+ 1521 00e7 12       		.uleb128 0x12
+ 1522 00e8 06       		.uleb128 0x6
+ 1523 00e9 40       		.uleb128 0x40
+ 1524 00ea 18       		.uleb128 0x18
+ 1525 00eb 9642     		.uleb128 0x2116
+ 1526 00ed 19       		.uleb128 0x19
+ 1527 00ee 01       		.uleb128 0x1
+ 1528 00ef 13       		.uleb128 0x13
+ 1529 00f0 00       		.byte	0
+ 1530 00f1 00       		.byte	0
+ 1531 00f2 10       		.uleb128 0x10
+ 1532 00f3 0B       		.uleb128 0xb
+ 1533 00f4 01       		.byte	0x1
+ 1534 00f5 11       		.uleb128 0x11
+ 1535 00f6 01       		.uleb128 0x1
+ 1536 00f7 12       		.uleb128 0x12
+ 1537 00f8 06       		.uleb128 0x6
+ 1538 00f9 01       		.uleb128 0x1
+ 1539 00fa 13       		.uleb128 0x13
+ 1540 00fb 00       		.byte	0
+ 1541 00fc 00       		.byte	0
+ 1542 00fd 11       		.uleb128 0x11
+ 1543 00fe 2E       		.uleb128 0x2e
+ 1544 00ff 01       		.byte	0x1
+ 1545 0100 3F       		.uleb128 0x3f
+ 1546 0101 19       		.uleb128 0x19
+ 1547 0102 03       		.uleb128 0x3
+ 1548 0103 0E       		.uleb128 0xe
+ 1549 0104 3A       		.uleb128 0x3a
+ 1550 0105 0B       		.uleb128 0xb
+ 1551 0106 3B       		.uleb128 0x3b
+ 1552 0107 0B       		.uleb128 0xb
+ 1553 0108 27       		.uleb128 0x27
+ 1554 0109 19       		.uleb128 0x19
+ 1555 010a 49       		.uleb128 0x49
+ 1556 010b 13       		.uleb128 0x13
+ 1557 010c 11       		.uleb128 0x11
+ 1558 010d 01       		.uleb128 0x1
+ 1559 010e 12       		.uleb128 0x12
+ 1560 010f 06       		.uleb128 0x6
+ 1561 0110 40       		.uleb128 0x40
+ 1562 0111 18       		.uleb128 0x18
+ 1563 0112 9642     		.uleb128 0x2116
+ 1564 0114 19       		.uleb128 0x19
+ 1565 0115 00       		.byte	0
+ 1566 0116 00       		.byte	0
+ 1567 0117 00       		.byte	0
+ 1568              		.section	.debug_aranges,"",%progbits
+ 1569 0000 34000000 		.4byte	0x34
+ 1570 0004 0200     		.2byte	0x2
+ 1571 0006 00000000 		.4byte	.Ldebug_info0
+ 1572 000a 04       		.byte	0x4
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc0BwBpn.s 			page 31
 
 
- 1572              		.section	.debug_aranges,"",%progbits
- 1573 0000 34000000 		.4byte	0x34
- 1574 0004 0200     		.2byte	0x2
- 1575 0006 00000000 		.4byte	.Ldebug_info0
- 1576 000a 04       		.byte	0x4
- 1577 000b 00       		.byte	0
- 1578 000c 0000     		.2byte	0
- 1579 000e 0000     		.2byte	0
- 1580 0010 00000000 		.4byte	.LFB0
- 1581 0014 42000000 		.4byte	.LFE0-.LFB0
- 1582 0018 00000000 		.4byte	.LFB1
- 1583 001c AC000000 		.4byte	.LFE1-.LFB1
- 1584 0020 00000000 		.4byte	.LFB2
- 1585 0024 40030000 		.4byte	.LFE2-.LFB2
- 1586 0028 00000000 		.4byte	.LFB3
- 1587 002c C4000000 		.4byte	.LFE3-.LFB3
- 1588 0030 00000000 		.4byte	0
- 1589 0034 00000000 		.4byte	0
- 1590              		.section	.debug_ranges,"",%progbits
- 1591              	.Ldebug_ranges0:
- 1592 0000 00000000 		.4byte	.LFB0
- 1593 0004 42000000 		.4byte	.LFE0
- 1594 0008 00000000 		.4byte	.LFB1
- 1595 000c AC000000 		.4byte	.LFE1
- 1596 0010 00000000 		.4byte	.LFB2
- 1597 0014 40030000 		.4byte	.LFE2
- 1598 0018 00000000 		.4byte	.LFB3
- 1599 001c C4000000 		.4byte	.LFE3
- 1600 0020 00000000 		.4byte	0
- 1601 0024 00000000 		.4byte	0
- 1602              		.section	.debug_line,"",%progbits
- 1603              	.Ldebug_line0:
- 1604 0000 90010000 		.section	.debug_str,"MS",%progbits,1
- 1604      02007200 
- 1604      00000201 
- 1604      FB0E0D00 
- 1604      01010101 
- 1605              	.LASF1:
- 1606 0000 6C6F6E67 		.ascii	"long long int\000"
- 1606      206C6F6E 
- 1606      6720696E 
- 1606      7400
- 1607              	.LASF25:
- 1608 000e 67726964 		.ascii	"grid\000"
- 1608      00
- 1609              	.LASF45:
- 1610 0013 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 1610      43313120 
- 1610      352E342E 
- 1610      31203230 
- 1610      31363036 
- 1611 0046 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 1611      20726576 
- 1611      6973696F 
- 1611      6E203233 
- 1611      37373135 
- 1612 0079 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 32
+ 1573 000b 00       		.byte	0
+ 1574 000c 0000     		.2byte	0
+ 1575 000e 0000     		.2byte	0
+ 1576 0010 00000000 		.4byte	.LFB0
+ 1577 0014 42000000 		.4byte	.LFE0-.LFB0
+ 1578 0018 00000000 		.4byte	.LFB1
+ 1579 001c AC000000 		.4byte	.LFE1-.LFB1
+ 1580 0020 00000000 		.4byte	.LFB2
+ 1581 0024 40030000 		.4byte	.LFE2-.LFB2
+ 1582 0028 00000000 		.4byte	.LFB3
+ 1583 002c C4000000 		.4byte	.LFE3-.LFB3
+ 1584 0030 00000000 		.4byte	0
+ 1585 0034 00000000 		.4byte	0
+ 1586              		.section	.debug_ranges,"",%progbits
+ 1587              	.Ldebug_ranges0:
+ 1588 0000 00000000 		.4byte	.LFB0
+ 1589 0004 42000000 		.4byte	.LFE0
+ 1590 0008 00000000 		.4byte	.LFB1
+ 1591 000c AC000000 		.4byte	.LFE1
+ 1592 0010 00000000 		.4byte	.LFB2
+ 1593 0014 40030000 		.4byte	.LFE2
+ 1594 0018 00000000 		.4byte	.LFB3
+ 1595 001c C4000000 		.4byte	.LFE3
+ 1596 0020 00000000 		.4byte	0
+ 1597 0024 00000000 		.4byte	0
+ 1598              		.section	.debug_line,"",%progbits
+ 1599              	.Ldebug_line0:
+ 1600 0000 56010000 		.section	.debug_str,"MS",%progbits,1
+ 1600      02003800 
+ 1600      00000201 
+ 1600      FB0E0D00 
+ 1600      01010101 
+ 1601              	.LASF1:
+ 1602 0000 6C6F6E67 		.ascii	"long long int\000"
+ 1602      206C6F6E 
+ 1602      6720696E 
+ 1602      7400
+ 1603              	.LASF25:
+ 1604 000e 67726964 		.ascii	"grid\000"
+ 1604      00
+ 1605              	.LASF45:
+ 1606 0013 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1606      43313120 
+ 1606      352E342E 
+ 1606      31203230 
+ 1606      31363036 
+ 1607 0046 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1607      20726576 
+ 1607      6973696F 
+ 1607      6E203233 
+ 1607      37373135 
+ 1608 0079 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 1608      66756E63 
+ 1608      74696F6E 
+ 1608      2D736563 
+ 1608      74696F6E 
+ 1609              	.LASF47:
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc0BwBpn.s 			page 32
 
 
- 1612      66756E63 
- 1612      74696F6E 
- 1612      2D736563 
- 1612      74696F6E 
- 1613              	.LASF32:
- 1614 00a1 736D6F6F 		.ascii	"smoothing_factor\000"
- 1614      7468696E 
- 1614      675F6661 
- 1614      63746F72 
- 1614      00
- 1615              	.LASF47:
- 1616 00b2 433A5C74 		.ascii	"C:\\temp\\jacob_branch\\ECE4191\\DeliveryRobot.cyds"
- 1616      656D705C 
- 1616      6A61636F 
- 1616      625F6272 
- 1616      616E6368 
- 1617 00e1 6E00     		.ascii	"n\000"
- 1618              	.LASF31:
- 1619 00e3 64656E73 		.ascii	"dens_b\000"
- 1619      5F6200
- 1620              	.LASF33:
- 1621 00ea 62657461 		.ascii	"beta\000"
- 1621      00
- 1622              	.LASF42:
- 1623 00ef 56414C4C 		.ascii	"VALLEY_THRESHOLD\000"
- 1623      45595F54 
- 1623      48524553 
- 1623      484F4C44 
- 1623      00
- 1624              	.LASF13:
- 1625 0100 666C6F61 		.ascii	"float\000"
- 1625      7400
- 1626              	.LASF4:
- 1627 0106 756E7369 		.ascii	"unsigned char\000"
- 1627      676E6564 
- 1627      20636861 
- 1627      7200
- 1628              	.LASF27:
- 1629 0114 6D6F6475 		.ascii	"modulo\000"
- 1629      6C6F00
- 1630              	.LASF20:
- 1631 011b 74687265 		.ascii	"threshold\000"
- 1631      73686F6C 
- 1631      6400
- 1632              	.LASF24:
- 1633 0125 64656E73 		.ascii	"densities\000"
- 1633      69746965 
- 1633      7300
- 1634              	.LASF8:
- 1635 012f 6C6F6E67 		.ascii	"long unsigned int\000"
- 1635      20756E73 
- 1635      69676E65 
- 1635      6420696E 
- 1635      7400
- 1636              	.LASF44:
- 1637 0141 74656D70 		.ascii	"temp\000"
- 1637      00
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 33
+ 1610 00a1 433A5C55 		.ascii	"C:\\Users\\cyu13\\Desktop\\ECE4191 GitHub\\pathfind"
+ 1610      73657273 
+ 1610      5C637975 
+ 1610      31335C44 
+ 1610      65736B74 
+ 1611 00cf 696E672D 		.ascii	"ing-vfh\\ECE4191\\DeliveryRobot.cydsn\000"
+ 1611      7666685C 
+ 1611      45434534 
+ 1611      3139315C 
+ 1611      44656C69 
+ 1612              	.LASF32:
+ 1613 00f3 736D6F6F 		.ascii	"smoothing_factor\000"
+ 1613      7468696E 
+ 1613      675F6661 
+ 1613      63746F72 
+ 1613      00
+ 1614              	.LASF31:
+ 1615 0104 64656E73 		.ascii	"dens_b\000"
+ 1615      5F6200
+ 1616              	.LASF33:
+ 1617 010b 62657461 		.ascii	"beta\000"
+ 1617      00
+ 1618              	.LASF42:
+ 1619 0110 56414C4C 		.ascii	"VALLEY_THRESHOLD\000"
+ 1619      45595F54 
+ 1619      48524553 
+ 1619      484F4C44 
+ 1619      00
+ 1620              	.LASF13:
+ 1621 0121 666C6F61 		.ascii	"float\000"
+ 1621      7400
+ 1622              	.LASF4:
+ 1623 0127 756E7369 		.ascii	"unsigned char\000"
+ 1623      676E6564 
+ 1623      20636861 
+ 1623      7200
+ 1624              	.LASF27:
+ 1625 0135 6D6F6475 		.ascii	"modulo\000"
+ 1625      6C6F00
+ 1626              	.LASF20:
+ 1627 013c 74687265 		.ascii	"threshold\000"
+ 1627      73686F6C 
+ 1627      6400
+ 1628              	.LASF24:
+ 1629 0146 64656E73 		.ascii	"densities\000"
+ 1629      69746965 
+ 1629      7300
+ 1630              	.LASF8:
+ 1631 0150 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1631      20756E73 
+ 1631      69676E65 
+ 1631      6420696E 
+ 1631      7400
+ 1632              	.LASF44:
+ 1633 0162 74656D70 		.ascii	"temp\000"
+ 1633      00
+ 1634              	.LASF6:
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc0BwBpn.s 			page 33
 
 
- 1638              	.LASF6:
- 1639 0146 73686F72 		.ascii	"short unsigned int\000"
- 1639      7420756E 
- 1639      7369676E 
- 1639      65642069 
- 1639      6E7400
- 1640              	.LASF15:
- 1641 0159 68656967 		.ascii	"height\000"
- 1641      687400
- 1642              	.LASF26:
- 1643 0160 68697374 		.ascii	"histogram\000"
- 1643      6F677261 
- 1643      6D00
- 1644              	.LASF12:
- 1645 016a 646F7562 		.ascii	"double\000"
- 1645      6C6500
- 1646              	.LASF37:
- 1647 0171 63616E64 		.ascii	"candidate_valley\000"
- 1647      69646174 
- 1647      655F7661 
- 1647      6C6C6579 
- 1647      00
- 1648              	.LASF5:
- 1649 0182 73686F72 		.ascii	"short int\000"
- 1649      7420696E 
- 1649      7400
- 1650              	.LASF19:
- 1651 018c 73656374 		.ascii	"sectors\000"
- 1651      6F727300 
- 1652              	.LASF29:
- 1653 0194 68697374 		.ascii	"hist\000"
- 1653      00
- 1654              	.LASF30:
- 1655 0199 64656E73 		.ascii	"dens_a\000"
- 1655      5F6100
- 1656              	.LASF21:
- 1657 01a0 64616D70 		.ascii	"damping_constant\000"
- 1657      696E675F 
- 1657      636F6E73 
- 1657      74616E74 
- 1657      00
- 1658              	.LASF28:
- 1659 01b1 706F6C61 		.ascii	"polar_histogram_create\000"
- 1659      725F6869 
- 1659      73746F67 
- 1659      72616D5F 
- 1659      63726561 
- 1660              	.LASF0:
- 1661 01c8 756E7369 		.ascii	"unsigned int\000"
- 1661      676E6564 
- 1661      20696E74 
- 1661      00
- 1662              	.LASF22:
- 1663 01d5 64656E73 		.ascii	"density_a\000"
+ 1635 0167 73686F72 		.ascii	"short unsigned int\000"
+ 1635      7420756E 
+ 1635      7369676E 
+ 1635      65642069 
+ 1635      6E7400
+ 1636              	.LASF46:
+ 1637 017a 2E2E5C56 		.ascii	"..\\VFH\\polar_histogram.c\000"
+ 1637      46485C70 
+ 1637      6F6C6172 
+ 1637      5F686973 
+ 1637      746F6772 
+ 1638              	.LASF15:
+ 1639 0193 68656967 		.ascii	"height\000"
+ 1639      687400
+ 1640              	.LASF26:
+ 1641 019a 68697374 		.ascii	"histogram\000"
+ 1641      6F677261 
+ 1641      6D00
+ 1642              	.LASF12:
+ 1643 01a4 646F7562 		.ascii	"double\000"
+ 1643      6C6500
+ 1644              	.LASF37:
+ 1645 01ab 63616E64 		.ascii	"candidate_valley\000"
+ 1645      69646174 
+ 1645      655F7661 
+ 1645      6C6C6579 
+ 1645      00
+ 1646              	.LASF5:
+ 1647 01bc 73686F72 		.ascii	"short int\000"
+ 1647      7420696E 
+ 1647      7400
+ 1648              	.LASF19:
+ 1649 01c6 73656374 		.ascii	"sectors\000"
+ 1649      6F727300 
+ 1650              	.LASF29:
+ 1651 01ce 68697374 		.ascii	"hist\000"
+ 1651      00
+ 1652              	.LASF30:
+ 1653 01d3 64656E73 		.ascii	"dens_a\000"
+ 1653      5F6100
+ 1654              	.LASF21:
+ 1655 01da 64616D70 		.ascii	"damping_constant\000"
+ 1655      696E675F 
+ 1655      636F6E73 
+ 1655      74616E74 
+ 1655      00
+ 1656              	.LASF28:
+ 1657 01eb 706F6C61 		.ascii	"polar_histogram_create\000"
+ 1657      725F6869 
+ 1657      73746F67 
+ 1657      72616D5F 
+ 1657      63726561 
+ 1658              	.LASF0:
+ 1659 0202 756E7369 		.ascii	"unsigned int\000"
+ 1659      676E6564 
+ 1659      20696E74 
+ 1659      00
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc0BwBpn.s 			page 34
+
+
+ 1660              	.LASF22:
+ 1661 020f 64656E73 		.ascii	"density_a\000"
+ 1661      6974795F 
+ 1661      6100
+ 1662              	.LASF23:
+ 1663 0219 64656E73 		.ascii	"density_b\000"
  1663      6974795F 
- 1663      6100
- 1664              	.LASF23:
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 34
+ 1663      6200
+ 1664              	.LASF36:
+ 1665 0223 706F6C61 		.ascii	"polar_histogram_update\000"
+ 1665      725F6869 
+ 1665      73746F67 
+ 1665      72616D5F 
+ 1665      75706461 
+ 1666              	.LASF9:
+ 1667 023a 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1667      206C6F6E 
+ 1667      6720756E 
+ 1667      7369676E 
+ 1667      65642069 
+ 1668              	.LASF38:
+ 1669 0251 736D6F6F 		.ascii	"smoothed_histogram\000"
+ 1669      74686564 
+ 1669      5F686973 
+ 1669      746F6772 
+ 1669      616D00
+ 1670              	.LASF41:
+ 1671 0264 6964785F 		.ascii	"idx_counter\000"
+ 1671      636F756E 
+ 1671      74657200 
+ 1672              	.LASF10:
+ 1673 0270 73697A65 		.ascii	"sizetype\000"
+ 1673      74797065 
+ 1673      00
+ 1674              	.LASF34:
+ 1675 0279 64656E73 		.ascii	"density\000"
+ 1675      69747900 
+ 1676              	.LASF43:
+ 1677 0281 63616E64 		.ascii	"candidate_lst\000"
+ 1677      69646174 
+ 1677      655F6C73 
+ 1677      7400
+ 1678              	.LASF14:
+ 1679 028f 77696474 		.ascii	"width\000"
+ 1679      6800
+ 1680              	.LASF17:
+ 1681 0295 63656C6C 		.ascii	"cells\000"
+ 1681      7300
+ 1682              	.LASF39:
+ 1683 029b 63616E64 		.ascii	"candidate_idx\000"
+ 1683      69646174 
+ 1683      655F6964 
+ 1683      7800
+ 1684              	.LASF40:
+ 1685 02a9 6C73745F 		.ascii	"lst_length\000"
+ 1685      6C656E67 
+ 1685      746800
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc0BwBpn.s 			page 35
 
 
- 1665 01df 64656E73 		.ascii	"density_b\000"
- 1665      6974795F 
- 1665      6200
- 1666              	.LASF36:
- 1667 01e9 706F6C61 		.ascii	"polar_histogram_update\000"
- 1667      725F6869 
- 1667      73746F67 
- 1667      72616D5F 
- 1667      75706461 
- 1668              	.LASF9:
- 1669 0200 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1669      206C6F6E 
- 1669      6720756E 
- 1669      7369676E 
- 1669      65642069 
- 1670              	.LASF38:
- 1671 0217 736D6F6F 		.ascii	"smoothed_histogram\000"
- 1671      74686564 
- 1671      5F686973 
- 1671      746F6772 
- 1671      616D00
- 1672              	.LASF41:
- 1673 022a 6964785F 		.ascii	"idx_counter\000"
- 1673      636F756E 
- 1673      74657200 
- 1674              	.LASF10:
- 1675 0236 73697A65 		.ascii	"sizetype\000"
- 1675      74797065 
- 1675      00
- 1676              	.LASF34:
- 1677 023f 64656E73 		.ascii	"density\000"
- 1677      69747900 
- 1678              	.LASF43:
- 1679 0247 63616E64 		.ascii	"candidate_lst\000"
- 1679      69646174 
- 1679      655F6C73 
- 1679      7400
- 1680              	.LASF14:
- 1681 0255 77696474 		.ascii	"width\000"
- 1681      6800
- 1682              	.LASF46:
- 1683 025b 2E2E5C2E 		.ascii	"..\\..\\..\\..\\Users\\cyu13\\Desktop\\ECE4191\\VFH"
- 1683      2E5C2E2E 
- 1683      5C2E2E5C 
- 1683      55736572 
- 1683      735C6379 
- 1684 0286 5C737263 		.ascii	"\\src\\polar_histogram.c\000"
- 1684      5C706F6C 
- 1684      61725F68 
- 1684      6973746F 
- 1684      6772616D 
- 1685              	.LASF17:
- 1686 029d 63656C6C 		.ascii	"cells\000"
- 1686      7300
- 1687              	.LASF39:
- 1688 02a3 63616E64 		.ascii	"candidate_idx\000"
- 1688      69646174 
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\cc6kmXvf.s 			page 35
-
-
- 1688      655F6964 
- 1688      7800
- 1689              	.LASF40:
- 1690 02b1 6C73745F 		.ascii	"lst_length\000"
- 1690      6C656E67 
- 1690      746800
- 1691              	.LASF35:
- 1692 02bc 736D6F6F 		.ascii	"smoothed_POD\000"
- 1692      74686564 
- 1692      5F504F44 
- 1692      00
- 1693              	.LASF7:
- 1694 02c9 6C6F6E67 		.ascii	"long int\000"
- 1694      20696E74 
- 1694      00
- 1695              	.LASF11:
- 1696 02d2 63686172 		.ascii	"char\000"
- 1696      00
- 1697              	.LASF2:
- 1698 02d7 6C6F6E67 		.ascii	"long double\000"
- 1698      20646F75 
- 1698      626C6500 
- 1699              	.LASF3:
- 1700 02e3 7369676E 		.ascii	"signed char\000"
- 1700      65642063 
- 1700      68617200 
- 1701              	.LASF16:
- 1702 02ef 7265736F 		.ascii	"resolution\000"
- 1702      6C757469 
- 1702      6F6E00
- 1703              	.LASF18:
- 1704 02fa 616C7068 		.ascii	"alpha\000"
- 1704      6100
- 1705              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 1686              	.LASF35:
+ 1687 02b4 736D6F6F 		.ascii	"smoothed_POD\000"
+ 1687      74686564 
+ 1687      5F504F44 
+ 1687      00
+ 1688              	.LASF7:
+ 1689 02c1 6C6F6E67 		.ascii	"long int\000"
+ 1689      20696E74 
+ 1689      00
+ 1690              	.LASF11:
+ 1691 02ca 63686172 		.ascii	"char\000"
+ 1691      00
+ 1692              	.LASF2:
+ 1693 02cf 6C6F6E67 		.ascii	"long double\000"
+ 1693      20646F75 
+ 1693      626C6500 
+ 1694              	.LASF3:
+ 1695 02db 7369676E 		.ascii	"signed char\000"
+ 1695      65642063 
+ 1695      68617200 
+ 1696              	.LASF16:
+ 1697 02e7 7265736F 		.ascii	"resolution\000"
+ 1697      6C757469 
+ 1697      6F6E00
+ 1698              	.LASF18:
+ 1699 02f2 616C7068 		.ascii	"alpha\000"
+ 1699      6100
+ 1700              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

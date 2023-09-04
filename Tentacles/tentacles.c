@@ -1,26 +1,33 @@
+/*
+** Tentacles Functions
+**
+*/
+
+/*===========================================================================*/
+
 #include <stdlib.h>
 #include <math.h>
 #include <stdbool.h>
-#include "..\Tentacles\tentacles.h"
+#include "tentacles.h"
+#include "..\Helper\helper.h"
 
-bool check_collision(Sensor * sensors) {
+int check_collision(Sensor * sensors, double robot_width) {
     // Calculate whether or not the robot collides with obstacle based on ultrasonic reading
-    int front_threshold = 10;
+    int front_threshold = robot_width;
     float other_threshold = 0.1;
     for (int i=0; i < N_SENSORS; i++) {
-        if (sensors->direction[i] < M_PI || sensors->direction[i] > 3*M_PI / 4) {
+        if (sensors->direction[i] < 45 || sensors->direction[i] > 315) {
             if (sensors->distance[i] < front_threshold) {
-                return true;
+                return i;
             }
         } else {
             if (sensors->distance[i] < other_threshold) {
-                return true;
+                return i;
             }
         }
-        
     }
 
-    return false;
+    return NULL;
 }
 
 
@@ -31,8 +38,6 @@ double tentacles_cost_function(Tentacles * octopussy, Sensor * sensors, double v
     double steps = octopussy->steps;
     double alpha = octopussy->alpha;
     double beta = octopussy->beta;
-
-    // Define variables
 
     // Allocate space for different trajectories
     for (int i=0; i < steps; i++) {

@@ -41,9 +41,9 @@ Motor right_motor;    // Right Motor, duh!
 Robot robot;          // Robot values, duh!
 Sensor sensors;       // Ultrasonics
 //grid map;             // Grid of area
-histogram polar;      // Polar Histogram
-double active;          // Active window of robot
-double POD_hist;
+//histogram polar;      // Polar Histogram
+//double active;          // Active window of robot
+//double POD_hist;
 
 
 void Drive_Left_Motor(long double duty_cycle);
@@ -59,7 +59,7 @@ CY_ISR( Timer_Int_Handler ) {
     // Reset the global ultrasonic tracker when all measurements have been updated
     if( mux_select == N_SENSORS ) { 
         // Update grid with new distance readings
-        grid_update(&active, &sensors, &robot);
+        //grid_update(&active, &sensors, &robot);
         mux_select = 0; 
     }
 
@@ -194,7 +194,7 @@ int main(void)
 
     /*========================= M1: Goal Definition =========================*/
     double n_goals = 2;    // Number of goals, duh!
-    double goals[4] = {90, 90, 30, 90};    // Coordinates of goals [x1, y1, x2, y2, ..., xn, yn]
+    double goals[4] = {60, 60, 0, 60};    // Coordinates of goals [x1, y1, x2, y2, ..., xn, yn]
     robot.goal_x = goals[0];   // Update robot x goal
     robot.goal_y = goals[1];   // Update robot y goal
     double goals_reached = 0;  // Counter for number of goas reached, duh!
@@ -206,16 +206,13 @@ int main(void)
     // Defining algorithm parameters taken from https://github.com/rzninvo/robotics_final_project/blob/main/launch/vfh_planning.launch
     // Active Window
     double alpha = 5;       // Degrees
-    double coeff_a = 1;     // a - bd_max = 0 
+    double coeff_a = 5;     // a - bd_max = 0 
     double coeff_b = 0.25;  // d_max = sqrt(2) * (ws - 1) / 2
     double coeff_l = 5;     // Smoothing factor
-    active = malloc(360 * sizeof(double));
-    POD_hist = malloc(360 / alpha * sizeof(double));
-
     
     // Polar Histogram and Candidate Valley
-    double valley_threshold = 2;
-    double s_max = 16;
+    double valley_threshold = 10;
+    double s_max = 18;
     double h_m = 10;
 
     double ideal_angle, ideal_velocity;
@@ -226,13 +223,13 @@ int main(void)
     /*========================================================================*/           
     
     // Spoof ultrasonics
-    /*
+    
     sensors.distance[0] = 5;
     sensors.distance[1] = 10;
     sensors.distance[2] = 5;
     sensors.distance[3] = 50;
     sensors.distance[4] = 10;
-    
+    /*
     grid_update(&map, &sensors, &robot);
     // Print the grid
     for (int i=0; i<map.width; i++) {
@@ -276,21 +273,25 @@ int main(void)
             robot.desired_v = dist_to_goal < 15 ? 3:7;
             
             // Update active window
-            active = *active_window(&active, &robot, &sensors, coeff_a, coeff_b);
-            POD_hist = *smoothed_POD_histogram(&POD_hist, &active, alpha, l);
+            double *active = active_window(&sensors, coeff_a, coeff_b);
+            for (int i = 0; i < 360; i++) {
+                sprintf(serial_output, "%f", active[i]);
+                UART_PutString(serial_output);
+            }
+            double *smoothed_POD = smoothed_POD_histogram(active, alpha, coeff_l);
 
             // Collect candidate valleys
-            int * candidates = candidate_valley(&POD_hist, valley_threshold);
+            int * candidates = candidate_valley(smoothed_POD, valley_threshold);
 
             // Calculate angle of drive
-            ideal_angle = calculate_avoidance_angle(&POD_hist, &robot, candidates, alpha, s_max, valley_threshold);
+            ideal_angle = calculate_avoidance_angle(smoothed_POD, &robot, candidates, alpha, s_max, valley_threshold);
             
             // Update Robot commands and free memory
             ideal_angle = calculate_angle_modulo(ideal_angle + robot.theta);
-            ideal_velocity = velocity_control(&polar, ideal_angle);
+            //ideal_velocity = velocity_control(&polar, ideal_angle);
             
             robot.desired_theta = ideal_angle;
-            robot.desired_v = ideal_velocity;
+            //robot.desired_v = ideal_velocity;
             free(candidates);
 
             

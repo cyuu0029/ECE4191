@@ -33,7 +33,7 @@ grid * grid_create(int width, int height, int resolution);
 
 /* active_window: Get a sub-grid of the grid that represents the current active window.
  * It is centered around (x, y), most likely robot coordinates in our scenario */
-double * active_window(double * active, Robot * robot, Sensor * sensors, double a, double);
+double * active_window(Sensor * sensors, double a, double b);
 
 /* update_grid: Update histogram grid cells with sensor readings. */
 int grid_update(grid * map, Sensor * sensors, Robot * robot);
@@ -60,10 +60,10 @@ typedef struct {
 histogram * polar_histogram_create(int alpha, double threshold, double density_a, double density_b);
 
 /* hist_update: Update hist with grid's information. */
-double * smoothed_POD_histogram(double * POD_hist, double * active, double alpha, double l);
+double * smoothed_POD_histogram(double * active, double alpha, double l);
 
 /* candidate_valley: Identifies the the candidate valleys that the robot and drive through */
-int * candidate_valley(histogram * smoothed_histogram);
+int * candidate_valley(double * smoothed_POD, double valley_threshold);
 
 #endif
 /*===========================================================================*/

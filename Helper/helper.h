@@ -23,7 +23,11 @@
 #endif
 
 #ifndef DEG2RAD
-#define DEG2RAD M_pi/180
+#define DEG2RAD M_PI/180
+#endif
+
+#ifndef MAX
+#define MAX(a,b) (((a) > (b)) ? (a) : (b))
 #endif
 
 #ifndef Sensor

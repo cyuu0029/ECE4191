@@ -97,11 +97,12 @@ int grid_update(grid * map, Sensor * sensors, Robot * robot) {
   return 1;
 }
 
-double * active_window(double * active, Robot * robot, Sensor * sensors, double a, double) {
+double * active_window(Sensor * sensors, double a, double b) {
   /*
     * Creates an active window surrounding robot.
   */
 
+  double *active = (double*) malloc(360 * sizeof(double));
   double max_dist = a / b;
   double ws = sqrt(2) * max_dist;
 
@@ -114,15 +115,15 @@ double * active_window(double * active, Robot * robot, Sensor * sensors, double 
       double reading_y = sensors->distance[i] * sin(sensors->direction[i] * DEG2RAD);
 
       double max_width = ws / 2;
-
-      if ( max( max(max_width, reading_x), reading_y ) == (int) max_width) {
+        
+      if ( (int) MAX( MAX(max_width, reading_x), reading_y ) == (int) max_width) {
         double confidence = 1;
 
         if (max_width != 0) {
           confidence = sensors->distance[i] / (2 * max_width);
-          confidence = abs(confidence - 1);
+          confidence = abs((int)confidence - 1);
         }
-        active[counter] = (confidence ** 2) * (a - (b * sensors->distance[i]));
+        active[counter] = pow(confidence, 2) * (a - (b * sensors->distance[i]));
       
       } else {
         active[counter] = 0;
@@ -176,9 +177,10 @@ histogram * polar_histogram_create(int alpha, double threshold, double density_a
   return hist;
 }
 
-double * smoothed_POD_histogram(double * POD_hist, double * active, double alpha, double l) {
+double * smoothed_POD_histogram(double * active, double alpha, double l) {
 
-  double nsectors = 360 / alpha;
+  int nsectors = 360 / alpha;
+  double *POD_hist = (double*) malloc(nsectors * sizeof(double));
 
   // Calculate sum of active window
   double active_sum = 0;
@@ -193,14 +195,14 @@ double * smoothed_POD_histogram(double * POD_hist, double * active, double alpha
     double sum = 0;
 
     for (int j=left; j < right; j++) {
-      double sum += active[j];
+      sum += active[j];
     }
 
     POD_hist[i] = sum;
   }
 
   // Smoothing POD histogram
-  double smoothed_POD[nsectors];
+  double *smoothed_POD = (double*) malloc(nsectors * sizeof(double));
   for (int i=0; i < nsectors; i++) {
     double sum_element = POD_hist[i] * l;
 
@@ -212,7 +214,7 @@ double * smoothed_POD_histogram(double * POD_hist, double * active, double alpha
     smoothed_POD[i] = smoothed_element;
   }
   
-  return POD_hist;
+  return smoothed_POD;
 
 }
 
@@ -229,7 +231,7 @@ int * candidate_valley(double * smoothed_POD, double valley_threshold) {
       candidate_idx[i] = 1;
       idx_counter++;
     } else {
-      candidate_idx[i] = NULL;
+      candidate_idx[i] = 0;
     }
   }
 
@@ -237,7 +239,7 @@ int * candidate_valley(double * smoothed_POD, double valley_threshold) {
   int * candidate_lst = malloc(idx_counter * sizeof(int));
   int temp = 0;
   for (int i = 0; i < lst_length; i++) {
-    if (candidate_idx[i] != NULL) {
+    if (candidate_idx[i] == 1) {
       candidate_lst[temp] = candidate_idx[i];
       temp++;
     }
@@ -293,21 +295,22 @@ double calculate_avoidance_angle(double *smoothed_POD, Robot * robot, int * cand
   abs_min = 100000;
   if (k_n == -1) {
     for (int i = 0; i < candidates_len; i++) {
-    int idx = candidate_lst[i];
+        int idx = candidate_lst[i];
 
-    // Calculating the minimum distance between the goal sector and the candidate valley
-    int min_distance;
-    if (abs(idx - goal_sector) < abs(abs(idx - goal_sector) - nsectors)) {
-      min_distance = abs(idx - goal_sector);
-    } else {
-      min_distance = (abs(idx - goal_sector) - nsectors);
-    }
+        // Calculating the minimum distance between the goal sector and the candidate valley
+        int min_distance;
+        if (abs(idx - goal_sector) < abs(abs(idx - goal_sector) - nsectors)) {
+          min_distance = abs(idx - goal_sector);
+        } else {
+          min_distance = (abs(idx - goal_sector) - nsectors);
+        }
 
-    if (min_distance < abs_min) {
-      abs_min = min_distance;
-      k_n = idx;
+        if (min_distance < abs_min) {
+          abs_min = min_distance;
+          k_n = idx;
+        }
     }
-  }
+    }
 
   k_f = k_n;
   
@@ -335,10 +338,12 @@ double calculate_avoidance_angle(double *smoothed_POD, Robot * robot, int * cand
         break;
       }
     }
+}
 
     return ((k_n + k_f) / 2 % nsectors) * alpha;
   }
-}
+
+
 
 double velocity_control(histogram * hist, double direction) {
   // Max velocity

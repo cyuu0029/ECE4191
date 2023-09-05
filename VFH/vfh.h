@@ -33,7 +33,7 @@ grid * grid_create(int width, int height, int resolution);
 
 /* active_window: Get a sub-grid of the grid that represents the current active window.
  * It is centered around (x, y), most likely robot coordinates in our scenario */
-grid * active_window(grid * map, int pos_x, int pos_y, int dimension);
+double * active_window(double * active, Robot * robot, Sensor * sensors, double a, double);
 
 /* update_grid: Update histogram grid cells with sensor readings. */
 int grid_update(grid * map, Sensor * sensors, Robot * robot);
@@ -60,7 +60,7 @@ typedef struct {
 histogram * polar_histogram_create(int alpha, double threshold, double density_a, double density_b);
 
 /* hist_update: Update hist with grid's information. */
-void polar_histogram_update(histogram * hist, grid * map);
+double * smoothed_POD_histogram(double * POD_hist, double * active, double alpha, double l);
 
 /* candidate_valley: Identifies the the candidate valleys that the robot and drive through */
 int * candidate_valley(histogram * smoothed_histogram);
@@ -90,7 +90,7 @@ int modular_dist(int a, int b, int m);
 int calculate_direction(histogram * hist, int objective_direction);
 
 /* calculate_avoidance_angle: Returns the angle that the robot should drive towards */
-double calculate_avoidance_angle(histogram * hist, Robot * robot, int * candidate_lst);
+double calculate_avoidance_angle(double *smoothed_POD, Robot * robot, int * candidate_lst, double alpha, double s_max, double valley_threshold);
 
 /* velocity control: Returns a velocity value based on the distance between objects. */
 double velocity_control(histogram * hist, double direction);

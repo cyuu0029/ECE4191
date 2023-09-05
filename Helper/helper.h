@@ -22,6 +22,10 @@
 #define M_E 2.71828182845904523536
 #endif
 
+#ifndef DEG2RAD
+#define DEG2RAD M_pi/180
+#endif
+
 #ifndef Sensor
 typedef struct {
   int direction[5]; /* [degrees] */

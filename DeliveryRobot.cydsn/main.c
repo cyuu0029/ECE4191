@@ -173,7 +173,7 @@ int main(void)
     long double robot_axle_width = 0.936*22.5;  // TODO: get accurate measurement
     long double robot_Ki = 3e-5;    // TODO: Determine good value
     long double robot_Kp = 0.5;     // was previously 0.75 before changing for MS1
-    long double min_distance = 2;   // Minimum distance between robot position and goal
+    long double min_distance = 10;   // Minimum distance between robot position and goal
 
 
     /*======================= ROBOT STARTING POSITION =======================*/
@@ -203,10 +203,10 @@ int main(void)
 
     /*======================== M1: VFH initialisation =======================*/
     double active_window_size = 30;
-    double ideal_angle;
-    double map_width = 65;
-    double map_height = 65;
-    double map_res = 2;
+    double ideal_angle, ideal_velocity;
+    double map_width = 120;
+    double map_height = 120;
+    double map_res = 1;
 
     // Define grid and polar histogram
     map = *grid_create(map_width, map_height, map_res);
@@ -216,6 +216,7 @@ int main(void)
     /*========================================================================*/           
     
     // Spoof ultrasonics
+    /*
     sensors.distance[0] = 5;
     sensors.distance[1] = 10;
     sensors.distance[2] = 5;
@@ -223,7 +224,7 @@ int main(void)
     sensors.distance[4] = 10;
     
     grid_update(&map, &sensors, &robot);
-    /* Print the grid
+    // Print the grid
     for (int i=0; i<map.width; i++) {
         for (int j=0; j<map.height; j++) {
             if (map.cells[i * map.width + j] > 0) {
@@ -238,9 +239,7 @@ int main(void)
         UART_PutString(serial_output);
     }
     */     
-    int FLAG = 0;
-    int change = 5;
-    int counter = 0;
+
     for(;;) {  
         // Calculate distance to the goal
         double dist_to_goal = calculate_distance_from_goal(robot.x, robot.y, robot.goal_x, robot.goal_y);
@@ -250,7 +249,7 @@ int main(void)
         if( dist_to_goal <= robot.goal_min_dist ) { 
             robot.desired_v = 0;       // Stop the robot
             robot.desired_theta = 0;
-
+            CyDelay(10000);
             // Iterate to next goal, otherwise, quit
             if (goals_reached < n_goals) {
                 robot.goal_x = goals[(int)goals_reached + 2];
@@ -264,11 +263,25 @@ int main(void)
 
         } else {
 
-            robot.desired_v = dist_to_goal < 15 ? 1:10;
+            robot.desired_v = dist_to_goal < 15 ? 3:7;
             
             // Update active window
             active = *active_window(&map, robot.x, robot.y, active_window_size);
-
+            
+            for (int i=0; i<active.width; i++) {
+                for (int j=0; j<active.height; j++) {
+                    if (active.cells[i * active.width + j] > 0) {
+                        sprintf(serial_output, "X");
+                        UART_PutString(serial_output);
+                    } else {
+                        sprintf(serial_output, "-");
+                        UART_PutString(serial_output);
+                    }
+                }
+                sprintf(serial_output, "\n");
+                UART_PutString(serial_output);
+            }
+        
             // Update Polar Histogram with active_window info
             polar_histogram_update(&polar, &active);
 
@@ -279,7 +292,11 @@ int main(void)
             ideal_angle = calculate_avoidance_angle(&polar, &robot, candidates);
             
             // Update Robot commands and free memory
+            ideal_angle = calculate_angle_modulo(ideal_angle + robot.theta);
+            ideal_velocity = velocity_control(&polar, ideal_angle);
+            
             robot.desired_theta = ideal_angle;
+            robot.desired_v = ideal_velocity;
             free(candidates);
 
             

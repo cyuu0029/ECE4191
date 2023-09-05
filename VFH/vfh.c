@@ -17,12 +17,12 @@ double calculate_avoidance_angle(histogram * hist, Robot * robot, int * candidat
   // Retrive useful variables
   double pos_x = robot->x;
   double pos_y = robot->y;
-  double pos_yaw = robot-> theta;
+  double pos_yaw = robot->theta;
   double goal_x = robot->goal_x;
   double goal_y = robot->goal_y;
 
   double goal_angle = calculate_goal_angle(pos_x, pos_y, pos_yaw, goal_x, goal_y);
-  int goal_sector = round(goal_angle / hist->alpha);
+  int goal_sector = round((180 * goal_angle / M_PI) / hist->alpha);
   int abs_min = 1000;
   int k_n, k_f;
 
@@ -74,20 +74,20 @@ double calculate_avoidance_angle(histogram * hist, Robot * robot, int * candidat
 
 double velocity_control(histogram * hist, double direction) {
   // Max velocity
-  int V_MAX = 10;
+  double V_MAX = 10;
 
   // Convert the direction of travel into sector index
-  int h_idx = floor(direction / hist->alpha);
+  int h_idx = floor((180 * direction / M_PI)  / hist->alpha);
 
   // Retrieve polar histogram density at this sector
-  int h_c = hist->densities[h_idx];
+  double h_c = hist->densities[h_idx];
 
   // NOTE: If h_c > 0, that indicates that an obstacles lies ahead of the robot
 
   // Define h_m which is an empirically determined constant. h_cc later must be less than h_m
-  int h_m = 123;
+  double h_m = 123;
 
-  int h_cc;
+  double h_cc;
   if (h_c > h_m) {
     h_cc = h_m;
   } else {

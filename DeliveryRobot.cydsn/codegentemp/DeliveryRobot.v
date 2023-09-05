@@ -1,6 +1,6 @@
 // ======================================================================
 // DeliveryRobot.v generated from TopDesign.cysch
-// 08/30/2023 at 13:46
+// 09/05/2023 at 17:43
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 
@@ -2792,7 +2792,7 @@ module top ;
 		#(.id("d247c875-6bb7-4611-bd6e-8be1f781b938"),
 		  .source_clock_id(""),
 		  .divisor(0),
-		  .period("1E+15"),
+		  .period("100000000000000"),
 		  .is_direct(0),
 		  .is_digital(1))
 		Clock_Testing_1
@@ -2828,7 +2828,7 @@ module top ;
 		#(.id("b01ae21b-a961-4ff5-96c6-f1ad1a3fd387"),
 		  .source_clock_id(""),
 		  .divisor(0),
-		  .period("1E+15"),
+		  .period("100000000000000"),
 		  .is_direct(0),
 		  .is_digital(1))
 		Clock_Seconds

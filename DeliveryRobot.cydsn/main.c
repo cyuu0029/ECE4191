@@ -184,7 +184,7 @@ int main(void)
     robot.axle_width = 0.936*22.5; // TODO: get accurate measurement
     robot.int_error = 0;
     robot.Ki = 3e-5;    // TODO: determine good PI values
-    robot.Kp = 0.5;  // was previously 0.75 before changing for MS1
+    robot.Kp = 0.55;//0.5;  // was previously 0.75 before changing for MS1
     robot.desired_V = 0;
     robot.desired_theta = 0;
     robot.theta = 0;
@@ -244,7 +244,7 @@ int main(void)
         update_grid(certainty_grid, 65, 65, 0, sensors);
     }    
     */
-    
+    robot.desired_V = 10;
     for(;;) {
         /*
         long double dy = robot.goal_y - robot.y;
@@ -284,36 +284,41 @@ int main(void)
         if( dist_to_goal <= robot.goal_min_dist ) {
             robot.desired_V = 0;
             if( ! goal_one_reached ) {robot.desired_theta = M_PI;}
+            goal_one_reached = 1;
             CyDelay(10000);
             robot.goal_x = 0;
             robot.goal_y = 60;
             robot.desired_V = 7;
-        } else if(sensors.distance[0] < 30 && sensors.distance[0] <= dist_to_goal) {
+        } else if(sensors.distance[0] < 15 && sensors.distance[0] <= dist_to_goal && goal_one_reached) {
             robot.desired_theta = angle_modulo( robot.theta + M_PI/4 );
-            Timer_Avoidance_WriteCounter(65533);
+            Timer_Avoidance_WriteCounter(65530);
             deviated = 1;
-        } else if( sensors.distance[4] < 20 && sensors.distance[4] <= dist_to_goal ) {
-            robot.desired_theta = angle_modulo( robot.theta + M_PI/5 );
-            Timer_Avoidance_WriteCounter(65533);
+        } else if( sensors.distance[4] < 12 && sensors.distance[4] <= dist_to_goal && goal_one_reached) {
+            robot.desired_theta = angle_modulo( robot.theta + M_PI/4 );
+            Timer_Avoidance_WriteCounter(65530);
             deviated = 1;
-        } else if( (sensors.distance[4] >= 20 && sensors.distance[3] >= 7 && deviated && Timer_Avoidance_ReadCounter()<65530) || !deviated ){
+        } else if( sensors.distance[3] < 3 && dist_to_goal>20 && goal_one_reached) {
+            robot.desired_theta = angle_modulo( robot.theta + M_PI/8 );
+            Timer_Avoidance_WriteCounter(65510);
+            deviated = 1;
+        } else if( (sensors.distance[4] >= 20 && sensors.distance[3] >= 7 && deviated && Timer_Avoidance_ReadCounter()<65480) || !deviated ){
             deviated = 0;
             robot.desired_theta = theta_to_goal;
             if( dist_to_goal < 10 ) {
                 robot.desired_V = 2;
             } else {
-                robot.desired_V = 7;
+                robot.desired_V = 6;
             }
         }
         
         
         // if a distance was measured, print the distance and clear the flag
         
-        sprintf(serial_output, "dx: %Lf, dy: %Lf, dtg: %Lf, ttg: %Lf, dist: %i, tmr: %i\n", dx, dy, dist_to_goal, theta_to_goal, echo_distance, Timer_Avoidance_ReadCounter());
+        //sprintf(serial_output, "dx: %Lf, dy: %Lf, dtg: %Lf, ttg: %Lf, dist: %i, tmr: %i\n", dx, dy, dist_to_goal, theta_to_goal, echo_distance, Timer_Avoidance_ReadCounter());
         //sprintf(serial_output, "desired: %lf, actual: %lf, dc:%lf, enc: %li\n", right_motor.desired_w,right_motor.w, right_motor.duty_cycle, QuadDec_R_GetCounter());
         //sprintf(serial_output, "x: %Lf, y: %Lf, theta: %Lf\n", robot.x, robot.y, robot.theta);
         //sprintf(serial_output, "des v: %Lf, actual_v: %Lf, desired_t: %Lf, actual_t: %Lf", robot.desired_V, robot.V, robot.desired_theta, robot.theta);
-        UART_PutString(serial_output);
+        //UART_PutString(serial_output);
         
         /*
         for( int y=certainty_grid->height-1; y >= 0; --y ) {

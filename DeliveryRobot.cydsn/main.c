@@ -16,7 +16,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <stdbool.h>
-#include "..\Tentacles\tentacles.h"
+#include "..\Helper\helper.h"
 #include "..\Robot\robot.h"
 
 /* Define all global variables. */
@@ -33,7 +33,7 @@
 #ifndef M_E     // Exponential, duh!
 #define M_E 2.71828182845904523536
 #endif
-   
+
 const double PULSES_PER_REV = 3591.92;
 const double POSE_UPDATE_PERIOD = 1.0/50.0; // seconds
 
@@ -51,7 +51,6 @@ Motor left_motor;     // Left Motor, duh!
 Motor right_motor;    // Right Motor, duh!
 Robot robot;          // Robot values, duh!
 Sensor sensors;       // Ultrasonics
-Tentacles octopussy;  // Driving with Tentacles
 
 void Drive_Left_Motor(long double duty_cycle);
 void Drive_Right_Motor(long double duty_cycle);
@@ -179,12 +178,12 @@ int main(void)
     long double robot_axle_width = 0.936*22.5;  // TODO: get accurate measurement
     long double robot_Ki = 3e-5;    // TODO: Determine good value
     long double robot_Kp = 0.5;     // was previously 0.75 before changing for MS1
-    long double min_distance = 2;   // Minimum distance between robot position and goal
+    long double min_distance = 3;   // Minimum distance between robot position and goal
 
 
     /*======================= ROBOT STARTING POSITION =======================*/
-    long double start_x = 0;    // Starting x, duh!
-    long double start_y = 0;    // Starting y, duh!
+    long double start_x = 90;    // Starting x, duh!
+    long double start_y = 90;    // Starting y, duh!
     /*=======================================================================*/
 
 
@@ -199,7 +198,7 @@ int main(void)
 
     /*========================= M1: Goal Definition =========================*/
     int n_goals = 2;    // Number of goals, duh!
-    int goals[4] = {90, 90, 30, 90};    // Coordinates of goals [x1, y1, x2, y2, ..., xn, yn]
+    int goals[4] = {30, 90, 30, 90};    // Coordinates of goals [x1, y1, x2, y2, ..., xn, yn]
     robot.goal_x = goals[0];   // Update robot x goal
     robot.goal_y = goals[1];   // Update robot y goal
     int goals_reached = 0;  // Counter for number of goas reached, duh!
@@ -208,34 +207,34 @@ int main(void)
     
 
     /*===================== M1: Path Finding w Tentacles =====================*/
-
-    // Algorithm parameters
-    octopussy.alpha = 1;
-    octopussy.beta = 0.1;
-    octopussy.dt = 0.1;
-    octopussy.steps = 5;
-    octopussy.n_tentacles = 8;
-
-    // Size is the same as n_tentacles * 2
-    float tentacle_lst[16] = {0.0, 1.0, 0.0, -1.0, 0.1, 1.0, 0.1, -1.0, 0.1, 0.5, 0.1, -0.5, 0.1, 0.0, 0.0, 0.0};
-
-    // Algorithm variables
-    int min_combo;      // Tracks the index of the best tentacle (x index, so +1 for y)
-    int min_cost = 1000000;
-
-    double v, w, cost;
+    int threshold = 10;
+    double other_threshold = 10;
+    double gap = 10;
+    int obstacle_flag = 0;
+    int obstacle[N_SENSORS];
     
     /*=======================================================================*/           
-
+    
+    // Spoof ultrasonics
+    sensors.distance[0] = 30;
+    sensors.distance[1] = 50;
+    sensors.distance[2] = 50;
+    sensors.distance[3] = 50;
+    sensors.distance[4] = 10;
+    
+    // Point to goal at the beginning
+    robot.desired_theta = calculate_goal_angle(robot.x, robot.y, robot.theta, robot.goal_x, robot.goal_y);
+    
     for(;;) {  
         // Calculate distance to the goal
         double dist_to_goal = calculate_distance_from_goal(robot.x, robot.y, robot.goal_x, robot.goal_y);
+        double angle_to_goal = calculate_goal_angle(robot.x, robot.y, robot.theta, robot.goal_x, robot.goal_y);
 
         // Check if goal is reached, update, otherwise, drive
         if( dist_to_goal <= robot.goal_min_dist ) { 
             robot.desired_v = 0;       // Stop the robot
             robot.desired_theta = 0;
-
+            CyDelay(10000);
             // Iterate to next goal, otherwise, quit
             if (goals_reached < n_goals) {
                 robot.goal_x = goals[goals_reached + 2];
@@ -248,27 +247,66 @@ int main(void)
             }
 
         } else {
+            // Set a default angle to point towards destination
+            double ideal_angle = angle_to_goal;
             
-            // Tentacles path finding had to be written here due to memory issues.
-            
-            for (int i = 0; i < octopussy.n_tentacles * 2; i += 2 ) {
-
-                // Get tentacle direction
-                v = tentacle_lst[i];
-                w = tentacle_lst[i + 1];
+            // Check for obstacles based on each sensor reading
+            for (int i=0; i < N_SENSORS; i++) {
+                obstacle[i] = detect_obstacle(sensors.direction[i], sensors.distance[i], robot.x, robot.y, threshold);
                 
-                // Calculate cost of taking this direction and find the minimum cost
-                cost = tentacles_cost_function(&octopussy, &sensors, v, w, robot.goal_x, robot.goal_y, M_PI, robot.x, robot.y, robot.theta);
-
-                if (cost < min_cost) {
-                        min_cost = cost;
-                        min_combo = i;
+                // Only switch on obstacle flag when we are facing towards one
+                if (i == 0 && obstacle[i]) {
+                    obstacle_flag = 1;
                 }
+                    
+            }
+            
+            // Determining direction of travel
+            switch (obstacle_flag) {
+                case 0:     // No obstacle in front of robot
+                    if (obstacle[1] && sensors.distance[1] < gap) {     // Checking if obstacle 30 deg right is in the way
+                        ideal_angle = calculate_angle_modulo(robot.theta - M_PI/8);
+                    }
+                    else if (obstacle[4] && sensors.distance[4] < gap) {    // Checking if obstacle 30 deg left is in the way
+                        ideal_angle = calculate_angle_modulo(robot.theta + M_PI/8);
+                    }
+                    else {
+                        ideal_angle = angle_to_goal;
+                    }
+            
+                
+                case 1:    // If obstacle is detected in front of robot
+                    if (!obstacle[1]) {         // No obstacle 30 deg right
+                        // Turn 45 deg
+                        ideal_angle = calculate_angle_modulo(robot.theta - M_PI/4);
+                    } 
+                    else if (!obstacle[4]) {    // No obstacle 30 deg left
+                        // Turn 45 deg
+                        ideal_angle = calculate_angle_modulo(robot.theta + M_PI/4);
+                    }
+                    else {                      // If obstacles 30 deg left and right
+                        if (!obstacle[2] && sensors.distance[2] > robot_axle_width + other_threshold) {
+                            ideal_angle = calculate_angle_modulo(robot.theta - M_PI/3);
+                        }
+                        else {
+                            ideal_angle = calculate_angle_modulo(robot.theta + M_PI/3);
+                        }
+                    }
+                
+                default:
+                    sprintf(serial_output, "ERROR");
+                    UART_PutString(serial_output);
+                    CyDelay(2000);
+            }
+            
+            robot.desired_theta = ideal_angle;
+            
+            if (dist_to_goal < other_threshold) {
+                robot.desired_v = 2;
+            } else {
+                robot.desired_v = 7;
             }
 
-            // Follow best tentacle path
-            robot.desired_v = tentacle_lst[min_combo];
-            robot.desired_theta = tentacle_lst[min_combo + 1];
 
         }
 

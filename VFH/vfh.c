@@ -102,7 +102,7 @@ double * active_window(Sensor * sensors, double a, double b) {
     * Creates an active window surrounding robot.
   */
 
-  double *active = (double*) malloc(360 * sizeof(double));
+  double active[360];
   double max_dist = a / b;
   double ws = sqrt(2) * max_dist;
 
@@ -180,13 +180,7 @@ histogram * polar_histogram_create(int alpha, double threshold, double density_a
 double * smoothed_POD_histogram(double * active, double alpha, double l) {
 
   int nsectors = 360 / alpha;
-  double *POD_hist = (double*) malloc(nsectors * sizeof(double));
-
-  // Calculate sum of active window
-  double active_sum = 0;
-  for (int i=0; i < 360; i++) {
-    active_sum = active_sum + active[i];
-  }
+  double POD_hist[72];
 
   // Create POD histogram
   for (int i=0; i < nsectors; i++) {
@@ -195,6 +189,7 @@ double * smoothed_POD_histogram(double * active, double alpha, double l) {
     double sum = 0;
 
     for (int j=left; j < right; j++) {
+      double val = *(active + j);
       sum += active[j];
     }
 
@@ -202,7 +197,7 @@ double * smoothed_POD_histogram(double * active, double alpha, double l) {
   }
 
   // Smoothing POD histogram
-  double *smoothed_POD = (double*) malloc(nsectors * sizeof(double));
+  double smoothed_POD[72];
   for (int i=0; i < nsectors; i++) {
     double sum_element = POD_hist[i] * l;
 
@@ -220,14 +215,14 @@ double * smoothed_POD_histogram(double * active, double alpha, double l) {
 
 int * candidate_valley(double * smoothed_POD, double valley_threshold) {
   /* Selects the candidate valley based on the produced Polar Histogram */
-  int lst_length = sizeof(smoothed_POD) / sizeof(double);
-  int * candidate_idx = malloc(lst_length * sizeof(int));
+  int lst_length = 72;
+  int candidate_idx[72];
   int idx_counter;
 
   // Loop through densities and select candidate positions
   for (int i = 0; i < lst_length; i++) {
-
-    if (smoothed_POD[i] < valley_threshold) {
+    double val = *(smoothed_POD + i);
+    if (val < valley_threshold) {
       candidate_idx[i] = 1;
       idx_counter++;
     } else {
@@ -236,11 +231,12 @@ int * candidate_valley(double * smoothed_POD, double valley_threshold) {
   }
 
   // Clean list and return indexes of valleys in histogram
-  int * candidate_lst = malloc(idx_counter * sizeof(int));
+  int candidate_lst = malloc(idx_counter + 1 * sizeof(int));
   int temp = 0;
-  for (int i = 0; i < lst_length; i++) {
+  *(candidate_lst + 0) = idx_counter + 1;
+  for (int i = 0; i < lst_length + 1; i++) {
     if (candidate_idx[i] == 1) {
-      candidate_lst[temp] = candidate_idx[i];
+      *(candidate_lst + temp) = candidate_idx[i];
       temp++;
     }
   }
@@ -255,7 +251,7 @@ int * candidate_valley(double * smoothed_POD, double valley_threshold) {
 
 double calculate_avoidance_angle(double *smoothed_POD, Robot * robot, int * candidate_lst, double alpha, double s_max, double valley_threshold) {
   /* Retrieves the angle that the robot must drive towards. */
-  int candidates_len = sizeof(candidate_lst) / sizeof(int);
+  int candidates_len = *(candidate_lst);
   int nsectors = 360/alpha;
 
   // Retrive useful variables
@@ -272,8 +268,8 @@ double calculate_avoidance_angle(double *smoothed_POD, Robot * robot, int * cand
   int k_f;
 
   // Find angle, note we are working in degrees here
-  for (int i = 0; i < candidates_len; i++) {
-    int idx = candidate_lst[i];
+  for (int i = 1; i < candidates_len; i++) {
+    int idx = *(candidate_lst + i);
 
     // Calculating the minimum distance between the goal sector and the candidate valley
     int min_distance;
@@ -294,8 +290,8 @@ double calculate_avoidance_angle(double *smoothed_POD, Robot * robot, int * cand
   // If no valleys after filtering
   abs_min = 100000;
   if (k_n == -1) {
-    for (int i = 0; i < candidates_len; i++) {
-        int idx = candidate_lst[i];
+    for (int i = 1; i < candidates_len; i++) {
+        int idx = *(candidate_lst + i);
 
         // Calculating the minimum distance between the goal sector and the candidate valley
         int min_distance;
@@ -320,7 +316,9 @@ double calculate_avoidance_angle(double *smoothed_POD, Robot * robot, int * cand
   } else if (k_n > goal_sector) {
     // See how big the valley is and then select the middle
     for (int i=1; i < s_max + 1; i++) {
-      if ( (smoothed_POD[(k_n + i) % nsectors] < valley_threshold) && ( ((k_n + i) % nsectors) * alpha) <= 90) {
+      int pod_idx = (k_n + i) % nsectors;
+      double pod_val = *(smoothed_POD + pod_idx);
+      if ( (pod_val < valley_threshold) && ( pod_idx * alpha) <= 90) {
         k_f = k_n + i;
       } else {
         break;
@@ -332,7 +330,9 @@ double calculate_avoidance_angle(double *smoothed_POD, Robot * robot, int * cand
   } else {
     // See how big the valley is and then select the middle
     for (int i=1; i < s_max + 1; i++) {
-      if ( (smoothed_POD[(k_n + i) % nsectors] < valley_threshold) && ( ((k_n + i) % nsectors) * alpha) <= 270) {
+      int pod_idx = (k_n + i) % nsectors;
+      double pod_val = *(smoothed_POD + pod_idx);
+      if ( (pod_val < valley_threshold) && ( pod_idx * alpha) <= 270) {
         k_f = k_n - i;
       } else {
         break;

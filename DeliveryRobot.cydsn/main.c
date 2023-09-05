@@ -274,10 +274,6 @@ int main(void)
             
             // Update active window
             double *active = active_window(&sensors, coeff_a, coeff_b);
-            for (int i = 0; i < 360; i++) {
-                sprintf(serial_output, "%f", active[i]);
-                UART_PutString(serial_output);
-            }
             double *smoothed_POD = smoothed_POD_histogram(active, alpha, coeff_l);
 
             // Collect candidate valleys

@@ -32,6 +32,7 @@ grid * grid_create(int width, int height, int resolution) {
 
   // Return NULL if not enough memory
   if (map->cells == NULL) {
+    free(map);
     free(map->cells);
     return NULL;
   }
@@ -72,24 +73,24 @@ int grid_update(grid * map, Sensor * sensors, Robot * robot) {
   // Determine cell location of obstacles
   double cell_location[N_SENSORS];
   double theta; 
-  double robot_radians;
+  double sensor_radians;
 
   for (int i = 0; i < N_SENSORS; ++i){
     // Convert sensor angle into radians
-    robot_radians = M_PI * sensors->direction[i] / 180;
-    if (yaw + robot_radians < 0) {
-      theta = yaw + robot_radians + M_TWOPI;
-    } else if (yaw + robot_radians >= M_TWOPI) {
-      theta = yaw + robot_radians - M_TWOPI;
+    sensor_radians = M_PI * sensors->direction[i] / 180;
+    if (yaw + sensor_radians < 0) {
+      theta = yaw + sensor_radians + M_TWOPI;
+    } else if (yaw + sensor_radians >= M_TWOPI) {
+      theta = yaw + sensor_radians - M_TWOPI;
     } else {
-      theta = yaw + robot_radians;
+      theta = yaw + sensor_radians;
     }
     
     double new_x = pos_x/map->resolution + floor(cell_distance[i] * cos(theta));
     double new_y = pos_y/map->resolution + floor(cell_distance[i] * sin(theta));
     
     // Check if point is within grid to avoid overflow
-    if (new_x < map->width && new_y < map->height) {
+    if (new_x < map->width && new_y < map->height && new_x >= 0 && new_y >= 0) {
       map->cells[(int) new_x * map->width + (int) new_y] += 1;
     } 
   }
@@ -97,162 +98,106 @@ int grid_update(grid * map, Sensor * sensors, Robot * robot) {
   return 1;
 }
 
-double * active_window(Sensor * sensors, double a, double b) {
+void active_window(grid * map, grid * active, Robot * robot) {
   /*
-    * Creates an active window surrounding robot.
+  * Creates an active window surrounding robot.
   */
 
-  double active[360];
-  double max_dist = a / b;
-  double ws = sqrt(2) * max_dist;
+  // Robot variables
+  int x = robot->x;
+  int y = robot->y;
+  double theta = robot->y;
 
-  int counter = 0;
-  if (active != NULL) {
+  // Create active window based on generated map
+  for (int i = 0; i < active->width; ++i) {
+      for (int j = 0; j < active->height; ++j) {
 
-    // Retrieve sensor values
-    for (int i=0; i < N_SENSORS; i++) {
-      double reading_x = sensors->distance[i] * cos(sensors->direction[i] * DEG2RAD);
-      double reading_y = sensors->distance[i] * sin(sensors->direction[i] * DEG2RAD);
+        /* x and y are the center coordinates of the body with sensors. */
+        int grid_i = i + x/map->resolution - (active->width - 1) / 2;
+        int grid_j = j + y/map->resolution - (active->height - 1) / 2;
 
-      double max_width = ws / 2;
-        
-      if ( (int) MAX( MAX(max_width, reading_x), reading_y ) == (int) max_width) {
-        double confidence = 1;
-
-        if (max_width != 0) {
-          confidence = sensors->distance[i] / (2 * max_width);
-          confidence = abs((int)confidence - 1);
+        /* Copy the information from the grid to the moving window. */
+        if (grid_i < map->width && grid_j < map->height && grid_i >= 0 && grid_j >= 0) {
+          active->cells[i * active->width + j] = map->cells[grid_i * map->width + grid_j];
         }
-        active[counter] = pow(confidence, 2) * (a - (b * sensors->distance[i]));
-      
-      } else {
-        active[counter] = 0;
       }
-
-      counter++;
-      counter = counter % 360;
-
     }
-
-  } else {
-    free(active);
-    return NULL;
-  }
-
-  return active;
 }
 
 /*=======================================================================*/
 /*                             END OF GRID                               */
 /*=======================================================================*/
-// Polar Histogram 
-histogram * polar_histogram_create(int alpha, double threshold, double density_a, double density_b) {
-  /* Create a histogram pointer and allocate memory to it. */
-  histogram * hist = malloc(sizeof(histogram));
+// Polar Histogram
 
-  /* Is there enough memory for the histogram? */
-  if (NULL == hist) {
-    free(hist);
+POD * pod_create(double alpha) {
+  POD * pod = malloc(sizeof(POD));  // Allocate memory for grid map
+
+  // Return NULL if not enough memory
+  if (pod == NULL) {
+    free(pod);
     return NULL;
   }
 
-  /* Initialize the histogram parameters. */
-  hist->alpha = alpha;
-  hist->sectors = 360 / alpha;
-  hist->threshold = threshold;
-  hist->densities = (int *)malloc(hist->sectors * sizeof(int));
-  hist->density_a = density_a;
-  hist->density_b = density_b;
+  // Define variables
+  pod->nsectors = 360 / alpha;
+  pod->density = malloc((360 / alpha) * sizeof(double));
 
-  if (hist->densities == NULL) {
-    free(hist);
+  // Return NULL if not enough memory
+  if (pod->density == NULL) {
+    free(pod);
+    free(pod->density);
     return NULL;
   }
 
-  /* Initialize all densities to 0. */
-  for (int i = 0; i < hist->sectors; ++i) {
-    hist->densities[i] = 0;
+  // Define all initial grid values to be 0 as there are no obstacles
+  for (int i = 0; i < pod->nsectors; ++i) {
+    pod->density[i] = 0;    // Map grid is defined as a 1D array
   }
 
-  return hist;
+  return pod;
 }
-
-double * smoothed_POD_histogram(double * active, double alpha, double l) {
-
-  int nsectors = 360 / alpha;
+void smoothed_POD_histogram(POD * smoothed_POD, grid *active, double alpha, double l) {
+  int sectors = smoothed_POD->nsectors;
+  
   double POD_hist[72];
 
   // Create POD histogram
-  for (int i=0; i < nsectors; i++) {
+  for (int i=0; i < sectors; i++) {
     int left = alpha * i;
     int right = alpha * (i + 1);
     double sum = 0;
 
     for (int j=left; j < right; j++) {
-      double val = *(active + j);
-      sum += active[j];
+      sum += active->cells[j];
     }
 
     POD_hist[i] = sum;
   }
+  
+  
 
   // Smoothing POD histogram
-  double smoothed_POD[72];
-  for (int i=0; i < nsectors; i++) {
+  for (int i=0; i < sectors; i++) {
     double sum_element = POD_hist[i] * l;
 
     for (int j=0; j < l; j++) {
-      sum_element += (POD_hist[i-(j+1)] + POD_hist[(i+(j+1)) % nsectors]) * (l - j);
+      sum_element += (POD_hist[i-(j+1)] + POD_hist[(i+(j+1)) % sectors]) * (l - j);
     }
 
     double smoothed_element = sum_element / ((2 * l) + 1);
-    smoothed_POD[i] = smoothed_element;
+    smoothed_POD->density[i] = smoothed_element;
   }
-  
-  return smoothed_POD;
 
 }
 
-int * candidate_valley(double * smoothed_POD, double valley_threshold) {
-  /* Selects the candidate valley based on the produced Polar Histogram */
-  int lst_length = 72;
-  int candidate_idx[72];
-  int idx_counter;
-
-  // Loop through densities and select candidate positions
-  for (int i = 0; i < lst_length; i++) {
-    double val = *(smoothed_POD + i);
-    if (val < valley_threshold) {
-      candidate_idx[i] = 1;
-      idx_counter++;
-    } else {
-      candidate_idx[i] = 0;
-    }
-  }
-
-  // Clean list and return indexes of valleys in histogram
-  int candidate_lst = malloc(idx_counter + 1 * sizeof(int));
-  int temp = 0;
-  *(candidate_lst + 0) = idx_counter + 1;
-  for (int i = 0; i < lst_length + 1; i++) {
-    if (candidate_idx[i] == 1) {
-      *(candidate_lst + temp) = candidate_idx[i];
-      temp++;
-    }
-  }
-  
-  free(candidate_idx);
-
-  return candidate_lst;
-}
 
 /*=======================================================================*/
 
 
-double calculate_avoidance_angle(double *smoothed_POD, Robot * robot, int * candidate_lst, double alpha, double s_max, double valley_threshold) {
+double calculate_avoidance_angle(POD *smoothed_POD, Robot * robot, int * candidate_lst, double alpha, double s_max, double valley_threshold) {
   /* Retrieves the angle that the robot must drive towards. */
-  int candidates_len = *(candidate_lst);
-  int nsectors = 360/alpha;
+  int candidates_len = sizeof(candidate_lst)/sizeof(int);
+  int nsectors = smoothed_POD->nsectors;
 
   // Retrive useful variables
   double pos_x = robot->x;
@@ -317,7 +262,7 @@ double calculate_avoidance_angle(double *smoothed_POD, Robot * robot, int * cand
     // See how big the valley is and then select the middle
     for (int i=1; i < s_max + 1; i++) {
       int pod_idx = (k_n + i) % nsectors;
-      double pod_val = *(smoothed_POD + pod_idx);
+      double pod_val = smoothed_POD->density[pod_idx];
       if ( (pod_val < valley_threshold) && ( pod_idx * alpha) <= 90) {
         k_f = k_n + i;
       } else {
@@ -331,7 +276,7 @@ double calculate_avoidance_angle(double *smoothed_POD, Robot * robot, int * cand
     // See how big the valley is and then select the middle
     for (int i=1; i < s_max + 1; i++) {
       int pod_idx = (k_n + i) % nsectors;
-      double pod_val = *(smoothed_POD + pod_idx);
+      double pod_val = smoothed_POD->density[pod_idx];
       if ( (pod_val < valley_threshold) && ( pod_idx * alpha) <= 270) {
         k_f = k_n - i;
       } else {
@@ -345,20 +290,19 @@ double calculate_avoidance_angle(double *smoothed_POD, Robot * robot, int * cand
 
 
 
-double velocity_control(histogram * hist, double direction) {
+double velocity_control(double * smoothed_POD, double direction, double alpha, double h_m) {
   // Max velocity
   double V_MAX = 10;
 
   // Convert the direction of travel into sector index
-  int h_idx = floor((180 * direction / M_PI)  / hist->alpha);
+  int h_idx = floor((180 * direction / M_PI)  / alpha);
 
   // Retrieve polar histogram density at this sector
-  double h_c = hist->densities[h_idx];
+  double h_c = *(smoothed_POD + h_idx);
 
   // NOTE: If h_c > 0, that indicates that an obstacles lies ahead of the robot
 
   // Define h_m which is an empirically determined constant. h_cc later must be less than h_m
-  double h_m = 123;
 
   double h_cc;
   if (h_c > h_m) {

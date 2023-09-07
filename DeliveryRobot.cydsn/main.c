@@ -40,10 +40,10 @@ Motor left_motor;     // Left Motor, duh!
 Motor right_motor;    // Right Motor, duh!
 Robot robot;          // Robot values, duh!
 Sensor sensors;       // Ultrasonics
-//grid map;             // Grid of area
+grid map;             // Grid of area
 //histogram polar;      // Polar Histogram
-//double active;          // Active window of robot
-//double POD_hist;
+grid active;          // Active window of robot
+POD smoothed_POD;
 
 
 void Drive_Left_Motor(long double duty_cycle);
@@ -59,12 +59,12 @@ CY_ISR( Timer_Int_Handler ) {
     // Reset the global ultrasonic tracker when all measurements have been updated
     if( mux_select == N_SENSORS ) { 
         // Update grid with new distance readings
-        //grid_update(&active, &sensors, &robot);
+        grid_update(&map, &sensors, &robot);
         mux_select = 0; 
     }
 
     Control_Reg_US_Write(mux_select);
-    PWM_Trigger_WriteCounter(255);    
+    PWM_Trigger_WriteCounter(1);    
 }
 
 /* Interrupt for Robot pose and desired drive update. */
@@ -146,7 +146,7 @@ int main(void)
     CyGlobalIntEnable;
     
     // Registration of Timer ISR
-    Timer_Echo_Int_StartEx( Timer_Int_Handler );
+    //Timer_Echo_Int_StartEx( Timer_Int_Handler );
     Pose_Update_Int_StartEx( Pose_Update_Int_Handler );
     Motor_PI_Int_StartEx( Motor_PI_Int_Handler );
     //Testing_Int_StartEx( Navigation_Test_Int_Handler );
@@ -204,33 +204,42 @@ int main(void)
 
     /*======================== M1: VFH initialisation =======================*/
     // Defining algorithm parameters taken from https://github.com/rzninvo/robotics_final_project/blob/main/launch/vfh_planning.launch
+    map = *(grid_create(60, 60, 2));
+    if( map.cells == NULL ) {
+        UART_PutChar('N');
+        CyDelay(10000000);
+    }
     // Active Window
     double alpha = 5;       // Degrees
-    double coeff_a = 5;     // a - bd_max = 0 
-    double coeff_b = 0.25;  // d_max = sqrt(2) * (ws - 1) / 2
     double coeff_l = 5;     // Smoothing factor
+    int window_size = 40;
+    double coeff_a = 5;     // a - bd_max = 0 
+    double coeff_b = coeff_a / (sqrt(2) * ((window_size - 1) / 2));  // d_max = sqrt(2) * (ws - 1) / 2
+    
+    
+    active = *grid_create(window_size, window_size, 1);
     
     // Polar Histogram and Candidate Valley
-    double valley_threshold = 10;
+    smoothed_POD = *pod_create(alpha);
+
+    double valley_threshold = 1;
     double s_max = 18;
     double h_m = 10;
 
     double ideal_angle, ideal_velocity;
-
-    // Define active window and polar histogram
-    //map = *grid_create(map_width, map_height, map_res);
     
     /*========================================================================*/           
     
     // Spoof ultrasonics
     
-    sensors.distance[0] = 5;
+    sensors.distance[0] = 10;
     sensors.distance[1] = 10;
     sensors.distance[2] = 5;
-    sensors.distance[3] = 50;
-    sensors.distance[4] = 10;
-    /*
+    sensors.distance[3] = 30;
+    sensors.distance[4] = 50;
     grid_update(&map, &sensors, &robot);
+    
+    /*
     // Print the grid
     for (int i=0; i<map.width; i++) {
         for (int j=0; j<map.height; j++) {
@@ -271,26 +280,44 @@ int main(void)
         } else {
 
             robot.desired_v = dist_to_goal < 15 ? 3:7;
-            
+            for (int i=0; i<map.width; i++) {
+                for (int j=0; j<map.height; j++) {
+                    sprintf(serial_output, "%d ", map.cells[i * map.width + j]);
+                    UART_PutString(serial_output);
+                }
+                sprintf(serial_output, "\n");
+                UART_PutString(serial_output);
+            }
+            UART_PutString("\n\n\n\n");
             // Update active window
-            double *active = active_window(&sensors, coeff_a, coeff_b);
-            double *smoothed_POD = smoothed_POD_histogram(active, alpha, coeff_l);
+            active_window(&map, &active, &robot);
+
+            smoothed_POD_histogram(&smoothed_POD, &active, alpha, coeff_l);
 
             // Collect candidate valleys
-            int * candidates = candidate_valley(smoothed_POD, valley_threshold);
+            int candidate_idx[72];
+            int idx_counter;
+
+            // Loop through densities and select candidate positions
+            for (int i = 0; i < smoothed_POD.nsectors; i++) {
+                double val = smoothed_POD.density[i];
+                if (val < valley_threshold) {
+                  candidate_idx[i] = 1;
+                  idx_counter++;
+                } else {
+                  candidate_idx[i] = 0;
+                }
+            }
 
             // Calculate angle of drive
-            ideal_angle = calculate_avoidance_angle(smoothed_POD, &robot, candidates, alpha, s_max, valley_threshold);
+            ideal_angle = calculate_avoidance_angle(&smoothed_POD, &robot, candidate_idx, alpha, s_max, valley_threshold);
             
             // Update Robot commands and free memory
             ideal_angle = calculate_angle_modulo(ideal_angle + robot.theta);
             //ideal_velocity = velocity_control(&polar, ideal_angle);
             
             robot.desired_theta = ideal_angle;
-            //robot.desired_v = ideal_velocity;
-            free(candidates);
-
-            
+            //robot.desired_v = ideal_velocity;            
 
         }
 

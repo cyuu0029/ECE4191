@@ -43,6 +43,6 @@ double calculate_goal_angle(double pos_x, double pos_y, double pos_yaw, double g
     rotation = rotation + 2 * M_PI;
   }
 
-  return rotation;
+  return goal_angle;
   
 }

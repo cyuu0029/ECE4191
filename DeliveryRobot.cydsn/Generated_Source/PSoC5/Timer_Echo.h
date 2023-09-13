@@ -168,7 +168,7 @@ void Timer_Echo_Wakeup(void)        ;
 *    Initialial Parameter Constants
 ***************************************/
 
-#define Timer_Echo_INIT_PERIOD             65535u
+#define Timer_Echo_INIT_PERIOD             8499u
 #define Timer_Echo_INIT_CAPTURE_MODE       ((uint8)((uint8)2u << Timer_Echo_CTRL_CAP_MODE_SHIFT))
 #define Timer_Echo_INIT_TRIGGER_MODE       ((uint8)((uint8)1u << Timer_Echo_CTRL_TRIG_MODE_SHIFT))
 #if (Timer_Echo_UsingFixedFunction)

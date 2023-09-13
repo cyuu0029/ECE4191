@@ -21,13 +21,12 @@
 //#include "..\Tentacles\tentacles.h"
 #include "vfh.h"
 
-
 /* Define all global variables. */ 
 const double PULSES_PER_REV = 3591.92;
 const double POSE_UPDATE_PERIOD = 1.0/50.0; // seconds
 
 uint8_t echo_flag = 0;          // Ultrasonic flag
-uint16_t max_count = 65535;     // Ultrasonic time count
+uint16_t max_count = 8500;     // Ultrasonic time count
 uint16_t echo_distance;         // Ultrasonic distance
 uint8_t mux_select = 0;         // For selecting specific ultrasonic sensor
 
@@ -53,18 +52,23 @@ void Drive_Right_Motor(long double duty_cycle);
 CY_ISR( Timer_Int_Handler ) {
     // Collect measurement 
     echo_distance = max_count - Timer_Echo_ReadCapture();   // in cm
-    sensors.distance[mux_select] = echo_distance;      // Store measured value
-    mux_select++;   // Iterate the global ultrasonic tracker
 
+    sensors.distance[mux_select] = echo_distance;      // Store measured value
+    //sprintf(serial_output, "Ultrasonic sensor %d: %d\n",   mux_select, sensors.distance[mux_select]);
+    //UART_PutString(serial_output);
+        
+    mux_select++;   // Iterate the global ultrasonic tracker
+    
     // Reset the global ultrasonic tracker when all measurements have been updated
     if( mux_select == N_SENSORS ) { 
         // Update grid with new distance readings
         grid_update(&map, &sensors, &robot);
         mux_select = 0; 
     }
-
+    
     Control_Reg_US_Write(mux_select);
-    PWM_Trigger_WriteCounter(1);    
+    Timer_Echo_ReadControlRegister();
+    PWM_Trigger_WriteCounter(2950);
 }
 
 /* Interrupt for Robot pose and desired drive update. */
@@ -146,7 +150,7 @@ int main(void)
     CyGlobalIntEnable;
     
     // Registration of Timer ISR
-    //Timer_Echo_Int_StartEx( Timer_Int_Handler );
+    Timer_Echo_Int_StartEx( Timer_Int_Handler );
     Pose_Update_Int_StartEx( Pose_Update_Int_Handler );
     Motor_PI_Int_StartEx( Motor_PI_Int_Handler );
     //Testing_Int_StartEx( Navigation_Test_Int_Handler );
@@ -232,14 +236,14 @@ int main(void)
     
     // Spoof ultrasonics
     
-    sensors.distance[0] = 10;
-    sensors.distance[1] = 10;
-    sensors.distance[2] = 5;
-    sensors.distance[3] = 30;
-    sensors.distance[4] = 50;
+    sensors.distance[0] = 5;
+    sensors.distance[1] = 7;
+    sensors.distance[2] = 100;
+    sensors.distance[3] = 100;
+    sensors.distance[4] = 100;
     grid_update(&map, &sensors, &robot);
-    
     /*
+    
     // Print the grid
     for (int i=0; i<map.width; i++) {
         for (int j=0; j<map.height; j++) {
@@ -254,13 +258,15 @@ int main(void)
         sprintf(serial_output, "\n");
         UART_PutString(serial_output);
     }
-    */     
-
+    */ 
+    int print_delay = 1;
+    int print_cnt = 1;
     for(;;) {  
+            
         // Calculate distance to the goal
         double dist_to_goal = calculate_distance_from_goal(robot.x, robot.y, robot.goal_x, robot.goal_y);
         double angle_to_goal = calculate_goal_angle(robot.x, robot.y, robot.theta, robot.goal_x, robot.goal_y);
-
+        
         // Check if goal is reached, update, otherwise, drive
         if( dist_to_goal <= robot.goal_min_dist ) { 
             robot.desired_v = 0;       // Stop the robot
@@ -278,8 +284,10 @@ int main(void)
             }
 
         } else {
-
-            robot.desired_v = dist_to_goal < 15 ? 3:7;
+            
+            //robot.desired_v = dist_to_goal < 15 ? 1:3;
+            
+            if (print_cnt >= print_delay) {
             for (int i=0; i<map.width; i++) {
                 for (int j=0; j<map.height; j++) {
                     sprintf(serial_output, "%d ", map.cells[i * map.width + j]);
@@ -289,36 +297,48 @@ int main(void)
                 UART_PutString(serial_output);
             }
             UART_PutString("\n\n\n\n");
+            print_cnt=0;
+            }
+            print_cnt++;
+        
+            
+            
+            
             // Update active window
             active_window(&map, &active, &robot);
 
             smoothed_POD_histogram(&smoothed_POD, &active, alpha, coeff_l);
 
             // Collect candidate valleys
-            int candidate_idx[72];
+            int candidate_idx[73];
             int idx_counter;
+            int valley_start;
+            int valley_end;
 
             // Loop through densities and select candidate positions
-            for (int i = 0; i < smoothed_POD.nsectors; i++) {
+            for (int i = 1; i < smoothed_POD.nsectors; i++) {
                 double val = smoothed_POD.density[i];
                 if (val < valley_threshold) {
-                  candidate_idx[i] = 1;
+                  candidate_idx[i] = 0;
                   idx_counter++;
                 } else {
-                  candidate_idx[i] = 0;
+                  candidate_idx[i] = 1;
                 }
             }
-
-            // Calculate angle of drive
+            candidate_idx[0] = sizeof(candidate_idx)/sizeof(int);
+            // Find narrow and widest valley
+            
+            // Calculate angle of drive - Output is in degrees, not rad
             ideal_angle = calculate_avoidance_angle(&smoothed_POD, &robot, candidate_idx, alpha, s_max, valley_threshold);
             
             // Update Robot commands and free memory
+            ideal_angle = ideal_angle * DEG2RAD;
             ideal_angle = calculate_angle_modulo(ideal_angle + robot.theta);
-            //ideal_velocity = velocity_control(&polar, ideal_angle);
+            ideal_velocity = velocity_control(&smoothed_POD, ideal_angle, alpha, h_m);
             
             robot.desired_theta = ideal_angle;
-            //robot.desired_v = ideal_velocity;            
-
+            robot.desired_v = ideal_velocity;            
+            
         }
 
     } 

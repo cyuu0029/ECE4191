@@ -80,6 +80,6 @@ double calculate_avoidance_angle(POD *smoothed_POD, Robot * robot, int * candida
 /* calculate_dsiatnce_from_goal: Returns the distance from robot to goal */
 double calculate_distance_from_goal(double pos_x, double pos_y, double goal_x, double goal_y);
 
-double velocity_control(double * smoothed_POD, double direction, double alpha, double h_m);
+double velocity_control(POD * smoothed_POD, double direction, double alpha, double h_m);
 
 #endif

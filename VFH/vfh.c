@@ -86,8 +86,8 @@ int grid_update(grid * map, Sensor * sensors, Robot * robot) {
       theta = yaw + sensor_radians;
     }
     
-    double new_x = pos_x/map->resolution + floor(cell_distance[i] * cos(theta));
-    double new_y = pos_y/map->resolution + floor(cell_distance[i] * sin(theta));
+    double new_x = (pos_x/map->resolution - 1) + floor(cell_distance[i] * cos(theta));
+    double new_y = (pos_y/map->resolution - 1) + floor(cell_distance[i] * sin(theta));
     
     // Check if point is within grid to avoid overflow
     if (new_x < map->width && new_y < map->height && new_x >= 0 && new_y >= 0) {
@@ -196,7 +196,7 @@ void smoothed_POD_histogram(POD * smoothed_POD, grid *active, double alpha, doub
 
 double calculate_avoidance_angle(POD *smoothed_POD, Robot * robot, int * candidate_lst, double alpha, double s_max, double valley_threshold) {
   /* Retrieves the angle that the robot must drive towards. */
-  int candidates_len = sizeof(candidate_lst)/sizeof(int);
+  int candidates_len = candidate_lst[0];
   int nsectors = smoothed_POD->nsectors;
 
   // Retrive useful variables
@@ -207,51 +207,63 @@ double calculate_avoidance_angle(POD *smoothed_POD, Robot * robot, int * candida
   double goal_y = robot->goal_y;
 
   double goal_angle = calculate_goal_angle(pos_x, pos_y, pos_yaw, goal_x, goal_y);
-  int goal_sector = round((180 * goal_angle / M_PI) / nsectors);
+  int goal_sector = round((180 * goal_angle / M_PI) / alpha);
   int abs_min = 1000;
-  int k_n = -1;
-  int k_f;
+  int k_n, k_f;
 
   // Find angle, note we are working in degrees here
   for (int i = 1; i < candidates_len; i++) {
-    int idx = *(candidate_lst + i);
+    int idx = candidate_lst[i];
 
     // Calculating the minimum distance between the goal sector and the candidate valley
     int min_distance;
-    if (abs(idx - goal_sector) < abs(abs(idx - goal_sector) - nsectors)) {
-      min_distance = abs(idx - goal_sector);
-    } else {
-      min_distance = (abs(idx - goal_sector) - nsectors);
-    }
+    int valley_flag = 0;
+    int valley_size = 0;
+    switch(idx) {
+        case 0:
+            if (abs(i - goal_sector) < abs(abs(i - goal_sector) - nsectors)) {
+                min_distance = abs(i - goal_sector);
+            } else {
+                min_distance = abs(abs(i - goal_sector) - nsectors);
+            }
+                
+            // Start entering a valley
+            if (valley_flag) {
+                k_f++;
+                valley_size++;
+                if (min_distance < abs_min){
+                    abs_min = min_distance;
+                }
+                
+            } else {               
+                abs_min = min_distance;
+                k_n = i;
+                k_f = k_n;
+                
+                // Start valley
+                valley_flag = 1;
+                valley_size = 1;
+            }
+            
 
-    if (min_distance < abs_min) {
-      if (idx * alpha < 90 || idx * alpha > 270) {
-        abs_min = min_distance;
-        k_n = idx;
-      }
+            if (min_distance < abs_min) {
+                abs_min = min_distance;
+                k_n = i;
+            }
+            break;
+        
+        case 1:
+            // Exiting a valley
+            if (valley_flag) {
+                
+            }
+            break;
+        
+        default:
+            UART_PutChar('o');
     }
+    
   }
-
-  // If no valleys after filtering
-  abs_min = 100000;
-  if (k_n == -1) {
-    for (int i = 1; i < candidates_len; i++) {
-        int idx = *(candidate_lst + i);
-
-        // Calculating the minimum distance between the goal sector and the candidate valley
-        int min_distance;
-        if (abs(idx - goal_sector) < abs(abs(idx - goal_sector) - nsectors)) {
-          min_distance = abs(idx - goal_sector);
-        } else {
-          min_distance = (abs(idx - goal_sector) - nsectors);
-        }
-
-        if (min_distance < abs_min) {
-          abs_min = min_distance;
-          k_n = idx;
-        }
-    }
-    }
 
   k_f = k_n;
   
@@ -286,11 +298,11 @@ double calculate_avoidance_angle(POD *smoothed_POD, Robot * robot, int * candida
 }
 
     return ((k_n + k_f) / 2 % nsectors) * alpha;
-  }
+}
 
 
 
-double velocity_control(double * smoothed_POD, double direction, double alpha, double h_m) {
+double velocity_control(POD * smoothed_POD, double direction, double alpha, double h_m) {
   // Max velocity
   double V_MAX = 10;
 
@@ -298,7 +310,7 @@ double velocity_control(double * smoothed_POD, double direction, double alpha, d
   int h_idx = floor((180 * direction / M_PI)  / alpha);
 
   // Retrieve polar histogram density at this sector
-  double h_c = *(smoothed_POD + h_idx);
+  double h_c = smoothed_POD->density[h_idx];
 
   // NOTE: If h_c > 0, that indicates that an obstacles lies ahead of the robot
 

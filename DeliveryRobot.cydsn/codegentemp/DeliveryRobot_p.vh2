@@ -1,5 +1,5 @@
 -- Project:   DeliveryRobot
--- Generated: 09/06/2023 13:42:23
+-- Generated: 09/13/2023 12:21:15
 -- PSoC Creator  4.4
 
 ENTITY DeliveryRobot IS
@@ -101,6 +101,7 @@ ARCHITECTURE __DEFAULT__ OF DeliveryRobot IS
     SIGNAL Net_804 : bit;
     SIGNAL Net_805 : bit;
     SIGNAL Net_81 : bit;
+    SIGNAL Net_824 : bit;
     SIGNAL Net_84 : bit;
     SIGNAL Pin_DecA_L(0)__PA : bit;
     SIGNAL Pin_DecA_R(0)__PA : bit;
@@ -164,6 +165,7 @@ ARCHITECTURE __DEFAULT__ OF DeliveryRobot IS
     SIGNAL \PWM_Motor_R:PWMUDB:status_2\ : bit;
     SIGNAL \PWM_Motor_R:PWMUDB:status_3\ : bit;
     SIGNAL \PWM_Motor_R:PWMUDB:tc_i\ : bit;
+    SIGNAL \PWM_Trigger:PWMUDB:cmp1_eq\ : bit;
     SIGNAL \PWM_Trigger:PWMUDB:cmp1_less\ : bit;
     SIGNAL \PWM_Trigger:PWMUDB:control_0\ : bit;
     SIGNAL \PWM_Trigger:PWMUDB:control_1\ : bit;
@@ -461,6 +463,7 @@ ARCHITECTURE __DEFAULT__ OF DeliveryRobot IS
     ATTRIBUTE lib_model OF \QuadDec_R:Net_611\ : LABEL IS "macrocell29";
     ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:status_2\ : LABEL IS "macrocell30";
     ATTRIBUTE lib_model OF \Timer_Avoidance:TimerUDB:status_tc\ : LABEL IS "macrocell31";
+    ATTRIBUTE lib_model OF Net_743 : LABEL IS "macrocell32";
     ATTRIBUTE lib_model OF \UART:BUART:sTX:TxShifter:u0\ : LABEL IS "datapathcell1";
     ATTRIBUTE lib_model OF \UART:BUART:sTX:sCLOCK:TxBitClkGen\ : LABEL IS "datapathcell2";
     ATTRIBUTE lib_model OF \UART:BUART:sTX:TxSts\ : LABEL IS "statusicell1";
@@ -480,15 +483,15 @@ ARCHITECTURE __DEFAULT__ OF DeliveryRobot IS
     ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:sSTSReg:stsreg\ : LABEL IS "statusicell4";
     ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:sC16:counterdp:u0\ : LABEL IS "datapathcell9";
     ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:sC16:counterdp:u1\ : LABEL IS "datapathcell10";
-    ATTRIBUTE lib_model OF \QuadDec_L:bQuadDec:quad_A_filt\ : LABEL IS "macrocell32";
-    ATTRIBUTE lib_model OF \QuadDec_L:bQuadDec:quad_B_filt\ : LABEL IS "macrocell33";
+    ATTRIBUTE lib_model OF \QuadDec_L:bQuadDec:quad_A_filt\ : LABEL IS "macrocell33";
+    ATTRIBUTE lib_model OF \QuadDec_L:bQuadDec:quad_B_filt\ : LABEL IS "macrocell34";
     ATTRIBUTE lib_model OF \QuadDec_L:bQuadDec:Stsreg\ : LABEL IS "statusicell5";
     ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:sCTRLReg:ctrlreg\ : LABEL IS "controlcell6";
     ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:sSTSReg:stsreg\ : LABEL IS "statusicell6";
     ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:sC16:counterdp:u0\ : LABEL IS "datapathcell11";
     ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:sC16:counterdp:u1\ : LABEL IS "datapathcell12";
-    ATTRIBUTE lib_model OF \QuadDec_R:bQuadDec:quad_A_filt\ : LABEL IS "macrocell34";
-    ATTRIBUTE lib_model OF \QuadDec_R:bQuadDec:quad_B_filt\ : LABEL IS "macrocell35";
+    ATTRIBUTE lib_model OF \QuadDec_R:bQuadDec:quad_A_filt\ : LABEL IS "macrocell35";
+    ATTRIBUTE lib_model OF \QuadDec_R:bQuadDec:quad_B_filt\ : LABEL IS "macrocell36";
     ATTRIBUTE lib_model OF \QuadDec_R:bQuadDec:Stsreg\ : LABEL IS "statusicell7";
     ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:genblk1:ctrlreg\ : LABEL IS "controlcell7";
     ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:genblk8:stsreg\ : LABEL IS "statusicell8";
@@ -498,63 +501,63 @@ ARCHITECTURE __DEFAULT__ OF DeliveryRobot IS
     ATTRIBUTE lib_model OF \Timer_Avoidance:TimerUDB:rstSts:stsreg\ : LABEL IS "statusicell9";
     ATTRIBUTE lib_model OF \Timer_Avoidance:TimerUDB:sT16:timerdp:u0\ : LABEL IS "datapathcell15";
     ATTRIBUTE lib_model OF \Timer_Avoidance:TimerUDB:sT16:timerdp:u1\ : LABEL IS "datapathcell16";
-    ATTRIBUTE lib_model OF \UART:BUART:txn\ : LABEL IS "macrocell36";
-    ATTRIBUTE lib_model OF \UART:BUART:tx_state_1\ : LABEL IS "macrocell37";
-    ATTRIBUTE lib_model OF \UART:BUART:tx_state_0\ : LABEL IS "macrocell38";
-    ATTRIBUTE lib_model OF \UART:BUART:tx_state_2\ : LABEL IS "macrocell39";
-    ATTRIBUTE lib_model OF \UART:BUART:tx_bitclk\ : LABEL IS "macrocell40";
-    ATTRIBUTE lib_model OF \PWM_Trigger:PWMUDB:runmode_enable\ : LABEL IS "macrocell41";
-    ATTRIBUTE lib_model OF \PWM_Trigger:PWMUDB:trig_disable\ : LABEL IS "macrocell42";
-    ATTRIBUTE lib_model OF Net_216 : LABEL IS "macrocell43";
-    ATTRIBUTE lib_model OF Net_81 : LABEL IS "macrocell44";
-    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:capture_last\ : LABEL IS "macrocell45";
-    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:run_mode\ : LABEL IS "macrocell46";
-    ATTRIBUTE lib_model OF MODIN2_1 : LABEL IS "macrocell47";
-    ATTRIBUTE lib_model OF MODIN2_0 : LABEL IS "macrocell48";
-    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:capt_int_temp\ : LABEL IS "macrocell49";
-    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:timer_enable\ : LABEL IS "macrocell50";
-    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:trig_disable\ : LABEL IS "macrocell51";
-    ATTRIBUTE lib_model OF \QuadDec_L:Net_1251_split\ : LABEL IS "macrocell52";
-    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:trig_rise_detected\ : LABEL IS "macrocell53";
-    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:trig_fall_detected\ : LABEL IS "macrocell54";
-    ATTRIBUTE lib_model OF \PWM_Motor_L:PWMUDB:runmode_enable\ : LABEL IS "macrocell55";
-    ATTRIBUTE lib_model OF \PWM_Motor_L:PWMUDB:prevCompare1\ : LABEL IS "macrocell56";
-    ATTRIBUTE lib_model OF \PWM_Motor_L:PWMUDB:prevCompare2\ : LABEL IS "macrocell57";
-    ATTRIBUTE lib_model OF \PWM_Motor_L:PWMUDB:status_0\ : LABEL IS "macrocell58";
-    ATTRIBUTE lib_model OF \PWM_Motor_L:PWMUDB:status_1\ : LABEL IS "macrocell59";
-    ATTRIBUTE lib_model OF Net_419 : LABEL IS "macrocell60";
-    ATTRIBUTE lib_model OF Net_418 : LABEL IS "macrocell61";
-    ATTRIBUTE lib_model OF \QuadDec_L:Net_1251\ : LABEL IS "macrocell62";
-    ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:overflow_reg_i\ : LABEL IS "macrocell63";
-    ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:underflow_reg_i\ : LABEL IS "macrocell64";
-    ATTRIBUTE lib_model OF \QuadDec_L:Net_1275\ : LABEL IS "macrocell65";
-    ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:prevCompare\ : LABEL IS "macrocell66";
-    ATTRIBUTE lib_model OF \QuadDec_L:Net_1203_split\ : LABEL IS "macrocell67";
-    ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:count_stored_i\ : LABEL IS "macrocell68";
-    ATTRIBUTE lib_model OF \QuadDec_L:Net_1203\ : LABEL IS "macrocell69";
-    ATTRIBUTE lib_model OF \QuadDec_L:Net_1260\ : LABEL IS "macrocell70";
-    ATTRIBUTE lib_model OF \QuadDec_L:bQuadDec:error\ : LABEL IS "macrocell71";
-    ATTRIBUTE lib_model OF \QuadDec_L:bQuadDec:state_1\ : LABEL IS "macrocell72";
-    ATTRIBUTE lib_model OF \QuadDec_L:bQuadDec:state_0\ : LABEL IS "macrocell73";
-    ATTRIBUTE lib_model OF \QuadDec_R:Net_1251\ : LABEL IS "macrocell74";
-    ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:overflow_reg_i\ : LABEL IS "macrocell75";
-    ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:underflow_reg_i\ : LABEL IS "macrocell76";
-    ATTRIBUTE lib_model OF \QuadDec_R:Net_1275\ : LABEL IS "macrocell77";
-    ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:prevCompare\ : LABEL IS "macrocell78";
-    ATTRIBUTE lib_model OF \QuadDec_R:Net_1251_split\ : LABEL IS "macrocell79";
-    ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:count_stored_i\ : LABEL IS "macrocell80";
-    ATTRIBUTE lib_model OF \QuadDec_R:Net_1203\ : LABEL IS "macrocell81";
-    ATTRIBUTE lib_model OF \QuadDec_R:Net_1260\ : LABEL IS "macrocell82";
-    ATTRIBUTE lib_model OF \QuadDec_R:bQuadDec:error\ : LABEL IS "macrocell83";
-    ATTRIBUTE lib_model OF \QuadDec_R:bQuadDec:state_1\ : LABEL IS "macrocell84";
-    ATTRIBUTE lib_model OF \QuadDec_R:bQuadDec:state_0\ : LABEL IS "macrocell85";
-    ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:runmode_enable\ : LABEL IS "macrocell86";
-    ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:prevCompare1\ : LABEL IS "macrocell87";
-    ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:prevCompare2\ : LABEL IS "macrocell88";
-    ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:status_0\ : LABEL IS "macrocell89";
-    ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:status_1\ : LABEL IS "macrocell90";
-    ATTRIBUTE lib_model OF Net_689 : LABEL IS "macrocell91";
-    ATTRIBUTE lib_model OF Net_690 : LABEL IS "macrocell92";
+    ATTRIBUTE lib_model OF \UART:BUART:txn\ : LABEL IS "macrocell37";
+    ATTRIBUTE lib_model OF \UART:BUART:tx_state_1\ : LABEL IS "macrocell38";
+    ATTRIBUTE lib_model OF \UART:BUART:tx_state_0\ : LABEL IS "macrocell39";
+    ATTRIBUTE lib_model OF \UART:BUART:tx_state_2\ : LABEL IS "macrocell40";
+    ATTRIBUTE lib_model OF \UART:BUART:tx_bitclk\ : LABEL IS "macrocell41";
+    ATTRIBUTE lib_model OF \PWM_Trigger:PWMUDB:runmode_enable\ : LABEL IS "macrocell42";
+    ATTRIBUTE lib_model OF \PWM_Trigger:PWMUDB:trig_disable\ : LABEL IS "macrocell43";
+    ATTRIBUTE lib_model OF Net_216 : LABEL IS "macrocell44";
+    ATTRIBUTE lib_model OF Net_81 : LABEL IS "macrocell45";
+    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:capture_last\ : LABEL IS "macrocell46";
+    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:run_mode\ : LABEL IS "macrocell47";
+    ATTRIBUTE lib_model OF MODIN2_1 : LABEL IS "macrocell48";
+    ATTRIBUTE lib_model OF MODIN2_0 : LABEL IS "macrocell49";
+    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:capt_int_temp\ : LABEL IS "macrocell50";
+    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:timer_enable\ : LABEL IS "macrocell51";
+    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:trig_disable\ : LABEL IS "macrocell52";
+    ATTRIBUTE lib_model OF \QuadDec_L:Net_1251_split\ : LABEL IS "macrocell53";
+    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:trig_rise_detected\ : LABEL IS "macrocell54";
+    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:trig_fall_detected\ : LABEL IS "macrocell55";
+    ATTRIBUTE lib_model OF \PWM_Motor_L:PWMUDB:runmode_enable\ : LABEL IS "macrocell56";
+    ATTRIBUTE lib_model OF \PWM_Motor_L:PWMUDB:prevCompare1\ : LABEL IS "macrocell57";
+    ATTRIBUTE lib_model OF \PWM_Motor_L:PWMUDB:prevCompare2\ : LABEL IS "macrocell58";
+    ATTRIBUTE lib_model OF \PWM_Motor_L:PWMUDB:status_0\ : LABEL IS "macrocell59";
+    ATTRIBUTE lib_model OF \PWM_Motor_L:PWMUDB:status_1\ : LABEL IS "macrocell60";
+    ATTRIBUTE lib_model OF Net_419 : LABEL IS "macrocell61";
+    ATTRIBUTE lib_model OF Net_418 : LABEL IS "macrocell62";
+    ATTRIBUTE lib_model OF \QuadDec_L:Net_1251\ : LABEL IS "macrocell63";
+    ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:overflow_reg_i\ : LABEL IS "macrocell64";
+    ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:underflow_reg_i\ : LABEL IS "macrocell65";
+    ATTRIBUTE lib_model OF \QuadDec_L:Net_1275\ : LABEL IS "macrocell66";
+    ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:prevCompare\ : LABEL IS "macrocell67";
+    ATTRIBUTE lib_model OF \QuadDec_L:Net_1203_split\ : LABEL IS "macrocell68";
+    ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:count_stored_i\ : LABEL IS "macrocell69";
+    ATTRIBUTE lib_model OF \QuadDec_L:Net_1203\ : LABEL IS "macrocell70";
+    ATTRIBUTE lib_model OF \QuadDec_L:Net_1260\ : LABEL IS "macrocell71";
+    ATTRIBUTE lib_model OF \QuadDec_L:bQuadDec:error\ : LABEL IS "macrocell72";
+    ATTRIBUTE lib_model OF \QuadDec_L:bQuadDec:state_1\ : LABEL IS "macrocell73";
+    ATTRIBUTE lib_model OF \QuadDec_L:bQuadDec:state_0\ : LABEL IS "macrocell74";
+    ATTRIBUTE lib_model OF \QuadDec_R:Net_1251\ : LABEL IS "macrocell75";
+    ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:overflow_reg_i\ : LABEL IS "macrocell76";
+    ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:underflow_reg_i\ : LABEL IS "macrocell77";
+    ATTRIBUTE lib_model OF \QuadDec_R:Net_1275\ : LABEL IS "macrocell78";
+    ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:prevCompare\ : LABEL IS "macrocell79";
+    ATTRIBUTE lib_model OF \QuadDec_R:Net_1251_split\ : LABEL IS "macrocell80";
+    ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:count_stored_i\ : LABEL IS "macrocell81";
+    ATTRIBUTE lib_model OF \QuadDec_R:Net_1203\ : LABEL IS "macrocell82";
+    ATTRIBUTE lib_model OF \QuadDec_R:Net_1260\ : LABEL IS "macrocell83";
+    ATTRIBUTE lib_model OF \QuadDec_R:bQuadDec:error\ : LABEL IS "macrocell84";
+    ATTRIBUTE lib_model OF \QuadDec_R:bQuadDec:state_1\ : LABEL IS "macrocell85";
+    ATTRIBUTE lib_model OF \QuadDec_R:bQuadDec:state_0\ : LABEL IS "macrocell86";
+    ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:runmode_enable\ : LABEL IS "macrocell87";
+    ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:prevCompare1\ : LABEL IS "macrocell88";
+    ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:prevCompare2\ : LABEL IS "macrocell89";
+    ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:status_0\ : LABEL IS "macrocell90";
+    ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:status_1\ : LABEL IS "macrocell91";
+    ATTRIBUTE lib_model OF Net_689 : LABEL IS "macrocell92";
+    ATTRIBUTE lib_model OF Net_690 : LABEL IS "macrocell93";
     COMPONENT clockblockcell
         PORT (
             dclk_0 : OUT std_ulogic;
@@ -2976,6 +2979,16 @@ BEGIN
             main_0 => \Timer_Avoidance:TimerUDB:control_7\,
             main_1 => \Timer_Avoidance:TimerUDB:per_zero\);
 
+    Net_743:macrocell
+        GENERIC MAP(
+            eqn_main => "(!main_0 * !main_1)",
+            regmode => 0,
+            clken_mode => 1)
+        PORT MAP(
+            q => Net_743,
+            main_0 => Net_81,
+            main_1 => Net_824);
+
     \UART:TXInternalInterrupt\:interrupt
         GENERIC MAP(
             int_type => "10",
@@ -3176,6 +3189,7 @@ BEGIN
             cs_addr_2 => \PWM_Trigger:PWMUDB:tc_i\,
             cs_addr_1 => \PWM_Trigger:PWMUDB:runmode_enable\,
             cs_addr_0 => Net_81,
+            ce0_comb => \PWM_Trigger:PWMUDB:cmp1_eq\,
             cl0_comb => \PWM_Trigger:PWMUDB:cmp1_less\,
             z0_comb => \PWM_Trigger:PWMUDB:tc_i\,
             busclk => ClockBlock_BUS_CLK,
@@ -3232,7 +3246,7 @@ BEGIN
             status_2 => \Timer_Echo:TimerUDB:status_2\,
             status_1 => \Timer_Echo:TimerUDB:capt_int_temp\,
             status_0 => \Timer_Echo:TimerUDB:status_tc\,
-            interrupt => Net_743);
+            interrupt => Net_824);
 
     \Timer_Echo:TimerUDB:sT16:timerdp:u0\:datapathcell
         GENERIC MAP(
@@ -3335,7 +3349,7 @@ BEGIN
 
     Timer_Echo_Int:interrupt
         GENERIC MAP(
-            int_type => "10",
+            int_type => "00",
             is_nmi => 0)
         PORT MAP(
             interrupt => Net_743,
@@ -4272,7 +4286,7 @@ BEGIN
 
     Net_216:macrocell
         GENERIC MAP(
-            eqn_main => "(main_0 * main_1)",
+            eqn_main => "(main_0 * !main_1 * !main_2)",
             regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
@@ -4280,7 +4294,8 @@ BEGIN
             q => Net_216,
             clock_0 => Net_52,
             main_0 => \PWM_Trigger:PWMUDB:runmode_enable\,
-            main_1 => \PWM_Trigger:PWMUDB:cmp1_less\);
+            main_1 => \PWM_Trigger:PWMUDB:cmp1_eq\,
+            main_2 => \PWM_Trigger:PWMUDB:cmp1_less\);
 
     Net_81:macrocell
         GENERIC MAP(
@@ -4381,7 +4396,7 @@ BEGIN
             q => \Timer_Echo:TimerUDB:timer_enable\,
             clock_0 => Net_739,
             main_0 => Net_216,
-            main_1 => Net_743,
+            main_1 => Net_824,
             main_2 => \Timer_Echo:TimerUDB:control_7\,
             main_3 => \Timer_Echo:TimerUDB:control_4\,
             main_4 => \Timer_Echo:TimerUDB:timer_enable\,
@@ -4400,7 +4415,7 @@ BEGIN
             q => \Timer_Echo:TimerUDB:trig_disable\,
             clock_0 => Net_739,
             main_0 => Net_216,
-            main_1 => Net_743,
+            main_1 => Net_824,
             main_2 => \Timer_Echo:TimerUDB:control_4\,
             main_3 => \Timer_Echo:TimerUDB:timer_enable\,
             main_4 => \Timer_Echo:TimerUDB:run_mode\,

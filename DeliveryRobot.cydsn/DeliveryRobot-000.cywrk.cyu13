@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="DeliveryRobot-000\DeliveryRobot\DeliveryRobot.cydwr">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="DeliveryRobot-000\DeliveryRobot\Source Files\robot.c">
 <ExpandedNodeIds>
 <v>DeliveryRobot-000</v>
 <v>DeliveryRobot-000\DeliveryRobot</v>
@@ -235,6 +235,7 @@
 <v>DeliveryRobot-000\DeliveryRobot\CyControlReg_v1_80.pdf</v>
 <v>DeliveryRobot-000\DeliveryRobot\demux_v1_10.pdf</v>
 <v>DeliveryRobot-000\DeliveryRobot\mux_v1_10.pdf</v>
+<v>DeliveryRobot-000\DeliveryRobot\or_v1_0.pdf</v>
 <v>DeliveryRobot-000\DeliveryRobot\PWM_v3_30</v>
 <v>DeliveryRobot-000\DeliveryRobot\PWM_v3_30\PWM_v3_30.pdf</v>
 <v>DeliveryRobot-000\DeliveryRobot\QuadDec_v3_0</v>
@@ -260,6 +261,7 @@
 <v>DeliveryRobot-000\DeliveryRobot\CyControlReg_v1_80.pdf</v>
 <v>DeliveryRobot-000\DeliveryRobot\demux_v1_10.pdf</v>
 <v>DeliveryRobot-000\DeliveryRobot\mux_v1_10.pdf</v>
+<v>DeliveryRobot-000\DeliveryRobot\or_v1_0.pdf</v>
 <v>DeliveryRobot-000\DeliveryRobot\PWM_v3_30</v>
 <v>DeliveryRobot-000\DeliveryRobot\PWM_v3_30\PWM_v3_30.pdf</v>
 <v>DeliveryRobot-000\DeliveryRobot\QuadDec_v3_0</v>
@@ -311,9 +313,9 @@
 <name v="..\Helper\helper.c" />
 <name v=".\TopDesign\TopDesign.cysch" />
 <name v=".\DeliveryRobot.cydwr" />
-<name v="..\VFH\vfh.h" />
 <name v=".\Generated_Source\PSoC5\UART.c" />
 <name v=".\Generated_Source\PSoC5\Cm3Start.c" />
+<name v="..\Robot\robot.c" />
 </OpenDocs>
 <OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
 
@@ -321,7 +323,7 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1439, 823" SelectedTabbedMdiWindow="7c5e5075-6b70-464e-b4d7-fca7f7d1546d"><DocumentWindow Key="C:\Users\cyu13\Desktop\ECE4191 GitHub\pathfinding-vfh\ECE4191\DeliveryRobot.cydsn\main.c" Guid="7c5e5075-6b70-464e-b4d7-fca7f7d1546d" /><DocumentWindow Key="C:\Users\cyu13\Desktop\ECE4191 GitHub\pathfinding-vfh\ECE4191\VFH\vfh.c" Guid="1559574d-b809-4d14-ae35-f32f5fa04118" /><DocumentWindow Key="C:\Users\cyu13\Desktop\ECE4191 GitHub\pathfinding-vfh\ECE4191\Helper\helper.c" Guid="890bbda4-d0cc-4215-9b6d-5254abe3a45f" /><DocumentWindow Key="C:\Users\cyu13\Desktop\ECE4191 GitHub\pathfinding-vfh\ECE4191\DeliveryRobot.cydsn\TopDesign\TopDesign.cysch" Guid="0d377584-5be2-4578-ad0d-33530cb0dfac" /><DocumentWindow Key="C:\Users\cyu13\Desktop\ECE4191 GitHub\pathfinding-vfh\ECE4191\DeliveryRobot.cydsn\DeliveryRobot.cydwr" Guid="8524caa8-df11-488e-8246-35d1e07d5bad" /><DocumentWindow Key="C:\Users\cyu13\Desktop\ECE4191 GitHub\pathfinding-vfh\ECE4191\VFH\vfh.h" Guid="97b3a945-e4ad-4a2d-b9a7-2d89708287eb" /><DocumentWindow Key="C:\Users\cyu13\Desktop\ECE4191 GitHub\pathfinding-vfh\ECE4191\DeliveryRobot.cydsn\Generated_Source\PSoC5\UART.c" Guid="38a52641-46ea-4570-ba7f-d811203f9e69" /><DocumentWindow Key="C:\Users\cyu13\Desktop\ECE4191 GitHub\pathfinding-vfh\ECE4191\DeliveryRobot.cydsn\Generated_Source\PSoC5\Cm3Start.c" Guid="1e20e0f8-817c-4c32-a5b1-d528e39f2f45" /><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="6843f99d-2d80-48e1-9a59-0738d82028c3" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1439, 823" SelectedTabbedMdiWindow="1559574d-b809-4d14-ae35-f32f5fa04118"><DocumentWindow Key="C:\Users\cyu13\Desktop\ECE4191 GitHub\pathfinding-vfh\ECE4191\DeliveryRobot.cydsn\main.c" Guid="7c5e5075-6b70-464e-b4d7-fca7f7d1546d" /><DocumentWindow Key="C:\Users\cyu13\Desktop\ECE4191 GitHub\pathfinding-vfh\ECE4191\VFH\vfh.c" Guid="1559574d-b809-4d14-ae35-f32f5fa04118" /><DocumentWindow Key="C:\Users\cyu13\Desktop\ECE4191 GitHub\pathfinding-vfh\ECE4191\Helper\helper.c" Guid="890bbda4-d0cc-4215-9b6d-5254abe3a45f" /><DocumentWindow Key="C:\Users\cyu13\Desktop\ECE4191 GitHub\pathfinding-vfh\ECE4191\DeliveryRobot.cydsn\TopDesign\TopDesign.cysch" Guid="0d377584-5be2-4578-ad0d-33530cb0dfac" /><DocumentWindow Key="C:\Users\cyu13\Desktop\ECE4191 GitHub\pathfinding-vfh\ECE4191\DeliveryRobot.cydsn\DeliveryRobot.cydwr" Guid="8524caa8-df11-488e-8246-35d1e07d5bad" /><DocumentWindow Key="C:\Users\cyu13\Desktop\ECE4191 GitHub\pathfinding-vfh\ECE4191\DeliveryRobot.cydsn\Generated_Source\PSoC5\UART.c" Guid="38a52641-46ea-4570-ba7f-d811203f9e69" /><DocumentWindow Key="C:\Users\cyu13\Desktop\ECE4191 GitHub\pathfinding-vfh\ECE4191\DeliveryRobot.cydsn\Generated_Source\PSoC5\Cm3Start.c" Guid="1e20e0f8-817c-4c32-a5b1-d528e39f2f45" /><DocumentWindow Key="C:\Users\cyu13\Desktop\ECE4191 GitHub\pathfinding-vfh\ECE4191\Robot\robot.c" Guid="8af961da-aa9c-472a-9624-a11696693e7c" /><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="6843f99d-2d80-48e1-9a59-0738d82028c3" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>

@@ -10,6 +10,16 @@
 
 #include "vfh.h"
 
+// helper functions added by Jacob
+double true_mod(double a, double b) {
+    return a - b * floor(a / b);  
+}
+
+int min_sect_dist(int sect_a, int sect_b, int nsectors) {
+    int dist = abs(sect_a-sect_b);
+    return dist>nsectors/2? nsectors-dist: dist;
+}
+
 /*=======================================================================*/    
 // Histogram Grid Creation Code
 
@@ -162,20 +172,17 @@ void smoothed_POD_histogram(POD * smoothed_POD, grid *active, double alpha, doub
   int sectors = smoothed_POD->nsectors;
   int width = active->width;
   int height = active->height;
-  double POD_hist[72];
+  double POD_hist[sectors];
 
   // Create POD histogram
-  for (int i=0; i< 72; i++) {
+  for (int i=0; i< sectors; i++) {
     POD_hist[i] = 0;
 }
 
   for (int i=0; i < width; i++) {
     for (int j=0; j < height; j++) {
         /* Calculate the angular position (beta) of this cell. */
-        double beta = 180 * atan2((double)(j - height/2), (double)(i - width/2))/M_PI;
-        if( beta < 0 ) {
-            beta += 360;
-        }
+        double beta = true_mod(180 * atan2((double)(j - height/2), (double)(i - width/2))/M_PI, 360);
 
       /* Calculate the obstacle density of this cell. */
       double density = pow(active->cells[i * width + j], 2);
@@ -249,11 +256,15 @@ double calculate_avoidance_angle(POD *smoothed_POD, Robot * robot, int * candida
             }
             
             // Calculate the 'distance' between current sector and the goal sector
+            /*
             if (abs(i - goal_sector) < abs(abs(i - goal_sector) - nsectors)) {
                 min_distance = abs(i - goal_sector);
             } else {
                 min_distance = abs(abs(i - goal_sector) - nsectors);
             }
+            */
+            min_distance = abs(i-goal_sector);
+            min_distance = min_distance > nsectors/2? nsectors-min_distance: min_distance;
             
                 
             // Start entering a valley
@@ -293,19 +304,21 @@ double calculate_avoidance_angle(POD *smoothed_POD, Robot * robot, int * candida
                     int first = abs(k_n - goal_sector);
                     int last = abs(k_f - goal_sector);
                     if (first <= abs_min) {
-                        angle = ((k_n + (s_max / 2)) / 2 % nsectors) * alpha;
+                        angle = ((k_n + s_max) / 2 % nsectors) * alpha;
                     } else if (last < abs_min) {
-                        angle = ((k_f - (s_max / 2)) / 2 % nsectors) * alpha;
+                        angle = ((k_f - s_max ) / 2 % nsectors) * alpha;
                     }
 
                 }
                     
                 // Check if this angle is closer to goal sector than current best
-                if (abs(round((180 * calculate_angle_modulo(goal_angle) / M_PI) - goal_sector) < min_val)) {
+                int dist_angle_to_goal = abs(angle/alpha - goal_sector); // in sectors
+                dist_angle_to_goal = dist_angle_to_goal > nsectors/2? nsectors - dist_angle_to_goal: dist_angle_to_goal;
+                if (dist_angle_to_goal < min_val) {
                     best_angle = angle;
-                    min_val = abs(round((180 * calculate_angle_modulo(goal_angle) / M_PI) - goal_sector));
+                    min_val = dist_angle_to_goal;
                 }
-            }
+            } 
             break;
         
         default:
@@ -328,10 +341,79 @@ double calculate_avoidance_angle(POD *smoothed_POD, Robot * robot, int * candida
   
 }
 
+/*=======================================================================*/
+double calculate_avoidance_angle2(POD *smoothed_POD, Robot * robot, int * candidate_lst, double alpha, int s_max) {
+    /* Retrieves the angle that the robot must drive towards. */
+    int candidates_len = 360/alpha;;
+    int nsectors = smoothed_POD->nsectors;
+
+    // Retrive useful variables
+    double pos_x = robot->x;
+    double pos_y = robot->y;
+    double pos_yaw = robot->theta;
+    double goal_x = robot->goal_x;
+    double goal_y = robot->goal_y;
+
+    double goal_angle = true_mod(180*atan2( goal_y-pos_y, goal_x - pos_x)/M_PI, 360);
+    int goal_sector = floor(goal_angle/alpha);
+  
+    if( candidate_lst[goal_sector] == 0 ) // goal lies in a valley
+    {
+        return goal_angle;
+        int step = 1;
+        int cwise = true_mod(goal_sector-step, nsectors);
+        int ccwise = true_mod(goal_sector+step, nsectors);
+        while( candidate_lst[cwise] == 0 && candidate_lst[ccwise]==0 && step<nsectors/2 ) 
+        {
+            step++;
+            cwise = true_mod(goal_sector-step, nsectors);
+            ccwise = true_mod(goal_sector+step, nsectors);
+        }
+        if( step == nsectors/2 ) { // no obstacles in histogram
+            return goal_angle;
+        } else if ( candidate_lst[cwise] )  { // nearest edge is cwise from goal sector
+            return alpha*true_mod(cwise+s_max/2, nsectors);
+        } else { // nearest edge is ccwise from goal sector
+            return alpha*true_mod(ccwise-s_max/2, nsectors);
+        }
+            
+    } else { // goal lies behind obstacle
+        int step = 1;
+        int cwise = true_mod(goal_sector-step, nsectors);
+        int ccwise = true_mod(goal_sector+step, nsectors);
+        while( candidate_lst[cwise] == 1 && candidate_lst[ccwise]==1 && step<nsectors/2 ) 
+        {
+            step++;
+            cwise = true_mod(goal_sector-step, nsectors);
+            ccwise = true_mod(goal_sector+step, nsectors);
+        }
+        if( step == nsectors/2 ) // whole histogram is obstacles
+        {
+            return -1;
+        } else if (!candidate_lst[cwise])   { // first edge is cwise from goal
+            int edge_step = 1;
+            int far_edge = true_mod(cwise-edge_step, nsectors);
+            while( !candidate_lst[far_edge] && edge_step < s_max ) {
+                edge_step++;  
+                far_edge = true_mod(cwise-edge_step, nsectors); 
+            }
+            return alpha * true_mod(far_edge + min_sect_dist(far_edge, cwise, nsectors)/2, nsectors);     
+        } else { // first edge is ccwise from goal
+            int edge_step = 1;
+            int far_edge = true_mod(ccwise+edge_step, nsectors);
+            while( !candidate_lst[far_edge] && edge_step < s_max ) {
+                edge_step++;  
+                far_edge = true_mod(ccwise+edge_step, nsectors); 
+            }
+            return alpha * true_mod(ccwise + min_sect_dist(far_edge, ccwise, nsectors)/2, nsectors); 
+        }
+    }  
+}
+
 
 double velocity_control(POD * smoothed_POD, double direction, double alpha, double h_m) {
   // Max velocity
-  double V_MAX = 3;
+  double V_MAX = 10;
 
   // Convert the direction of travel into sector index
   int h_idx = floor((180 * calculate_angle_modulo(direction) / M_PI)  / alpha);

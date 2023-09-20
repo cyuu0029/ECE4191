@@ -198,7 +198,7 @@ int main(void)
 
     /*========================= M1: Goal Definition =========================*/
     double n_goals = 6;    // Number of goals, duh!
-    double goals[8] = {95, 35, 95, 95, 35, 95, 35, 35};    // Coordinates of goals [x1, y1, x2, y2, ..., xn, yn]
+    double goals[8] = {95, 95, 95, 95, 35, 95, 35, 35};    // Coordinates of goals [x1, y1, x2, y2, ..., xn, yn]
     robot.goal_x = goals[0];   // Update robot x goal
     robot.goal_y = goals[1];   // Update robot y goal
     int goals_reached = 0;  // Counter for number of goas reached, duh!
@@ -215,8 +215,8 @@ int main(void)
     }
     // Active Window
     double alpha = 5;       // Degrees
-    double coeff_l = 5;     // Smoothing factor
-    int window_size = 50;
+    double coeff_l = 3;     // Smoothing factor
+    int window_size = 30;
     double coeff_a = 5;     // a - bd_max = 0 
     double coeff_b = coeff_a / (sqrt(2) * ((window_size - 1) / 2));  // d_max = sqrt(2) * (ws - 1) / 2
     
@@ -226,8 +226,9 @@ int main(void)
     // Polar Histogram and Candidate Valley
     smoothed_POD = *pod_create(alpha);
 
-    double valley_threshold = 5000;
-    double s_max = 18;
+    double valley_threshold_lower = 100;
+    double valley_threshold_upper = 1000;
+    double s_max = 20;
     double h_m = 10;
 
     double ideal_angle, ideal_velocity;
@@ -240,12 +241,29 @@ int main(void)
     
     // Spoof ultrasonics
     
-    sensors.distance[0] = 1000;
-    sensors.distance[1] = 1000;
-    sensors.distance[2] = 1000;
-    sensors.distance[3] = 1000;
-    sensors.distance[4] = 1000;
-    grid_update(&map, &sensors, &robot);
+    for( int i = 0; i<100; i++ ) {
+        for( int j = 0; j<N_SENSORS; j++ ) {
+            sensors.direction[j] = 60.0*rand()/RAND_MAX;
+            sensors.distance[j] = 20;
+        }
+        grid_update(&map, &sensors, &robot);
+    }
+    
+    for( int i = 0; i<100; i++ ) {
+        for( int j = 0; j<N_SENSORS; j++ ) {
+            sensors.direction[j] = 120.0+ 60.0*rand()/RAND_MAX;
+            sensors.distance[j] = 20;
+        }
+        grid_update(&map, &sensors, &robot);
+    }
+    
+    for( int i = 0; i<100; i++ ) {
+        for( int j = 0; j<N_SENSORS; j++ ) {
+            sensors.direction[j] = 45.0+ 30.0*rand()/RAND_MAX;
+            sensors.distance[j] = 70.0;
+        }
+        grid_update(&map, &sensors, &robot);
+    }
     /*
     
     // Print the grid
@@ -263,7 +281,7 @@ int main(void)
         UART_PutString(serial_output);
     }
     */ 
-    int print_delay = 100;
+    int print_delay = 5;
     int print_cnt = 1;
     for(;;) {  
             
@@ -298,25 +316,28 @@ int main(void)
         } else {
             
             
-            /*
+            
             if (print_cnt >= print_delay) {
                 
                 for (int j= map.height - 1; j >= 0; j--) {
                     for (int i=0; i<map.width; i++) {
-                        sprintf(serial_output, "%d ", map.cells[i * map.width + j]);
+                        if ( abs(floor(robot.x/map.resolution)-i)<=1 && abs(floor(robot.y/map.resolution)-j)<=1 ) {
+                            serial_output[0] = 'X';
+                            serial_output[1] = ' ';
+                        } else if (abs(floor(robot.goal_x/map.resolution)-i)<=1 && abs(floor(robot.goal_y/map.resolution)-j)<=1 ) {
+                            serial_output[0] = 'G';
+                            serial_output[1] = ' ';
+                        } else {
+                            sprintf(serial_output, "%d ", map.cells[i * map.width + j]);
+                        }
                         UART_PutString(serial_output);
                     }
                     sprintf(serial_output, "\n");
                     UART_PutString(serial_output);
                 }
-                UART_PutString("\n\n\n\n");
-                print_cnt=0;
-                
-                
-                
+                UART_PutString("\n\n\n\n");    
             }
-            print_cnt++;
-            */
+            
           
             
             
@@ -327,9 +348,9 @@ int main(void)
             // Loop through densities and select candidate positions
             for (int i = 0; i < smoothed_POD.nsectors; i++) {
                 double val = smoothed_POD.density[i];
-                if (val < valley_threshold) {
+                if (val < valley_threshold_lower) {
                   candidate_idx[i] = 0;
-                } else {
+                } else if (val > valley_threshold_upper) {
                   candidate_idx[i] = 1;
                 }
                 //sprintf(serial_output, "%.2f ", val);
@@ -338,15 +359,23 @@ int main(void)
             //UART_PutString("\n\n\n\n");
             
             // Calculate angle of drive - Output is in degrees, not rad
-            ideal_angle = calculate_avoidance_angle(&smoothed_POD, &robot, candidate_idx, alpha, s_max);
+            ideal_angle = calculate_avoidance_angle2(&smoothed_POD, &robot, candidate_idx, alpha, s_max);
             //sprintf(serial_output, "Trasjectory of travel %f \n", ideal_angle);
             //UART_PutString(serial_output);
 
             // Update Robot commands and free memory
             ideal_angle = ideal_angle * DEG2RAD;
             ideal_velocity = velocity_control(&smoothed_POD, ideal_angle, alpha, h_m);
-            //sprintf(serial_output, "Velocity %f \n", ideal_velocity);
-            //UART_PutString(serial_output);
+            robot.x += 0.25*10*cos(ideal_angle);
+            robot.y += 0.25*10*sin(ideal_angle);
+            
+            if (print_cnt >= print_delay) {
+                sprintf(serial_output, "Angle: %f, Speed: %f\n", ideal_angle*180/M_PI, ideal_velocity);
+                UART_PutString(serial_output);
+                print_cnt=0;
+            }
+            print_cnt++;
+         
             robot.desired_theta = ideal_angle;
             //robot.desired_v = ideal_velocity; 
             

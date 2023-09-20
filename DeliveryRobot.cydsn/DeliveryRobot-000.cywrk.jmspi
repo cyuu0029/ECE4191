@@ -36,9 +36,7 @@
 <v>DeliveryRobot-000\DeliveryRobot\Header Files</v>
 <v>DeliveryRobot-000\DeliveryRobot\Header Files\cyapicallbacks.h</v>
 <v>DeliveryRobot-000\DeliveryRobot\Source Files</v>
-<v>DeliveryRobot-000\DeliveryRobot\Source Files\histogram_grid.c</v>
 <v>DeliveryRobot-000\DeliveryRobot\Source Files\main.c</v>
-<v>DeliveryRobot-000\DeliveryRobot\Source Files\polar_histogram.c</v>
 <v>DeliveryRobot-000\DeliveryRobot\Source Files\vfh.c</v>
 <v>DeliveryRobot-000\DeliveryRobot\Generated_Source</v>
 <v>DeliveryRobot-000\DeliveryRobot\Generated_Source\PSoC5</v>
@@ -60,9 +58,9 @@
 <v>DeliveryRobot-000\DeliveryRobot\Header Files</v>
 <v>DeliveryRobot-000\DeliveryRobot\Header Files\cyapicallbacks.h</v>
 <v>DeliveryRobot-000\DeliveryRobot\Source Files</v>
-<v>DeliveryRobot-000\DeliveryRobot\Source Files\histogram_grid.c</v>
+<v>DeliveryRobot-000\DeliveryRobot\Source Files\helper.c</v>
 <v>DeliveryRobot-000\DeliveryRobot\Source Files\main.c</v>
-<v>DeliveryRobot-000\DeliveryRobot\Source Files\polar_histogram.c</v>
+<v>DeliveryRobot-000\DeliveryRobot\Source Files\robot.c</v>
 <v>DeliveryRobot-000\DeliveryRobot\Source Files\vfh.c</v>
 <v>DeliveryRobot-000\DeliveryRobot\Generated_Source</v>
 <v>DeliveryRobot-000\DeliveryRobot\Generated_Source\PSoC5</v>
@@ -86,6 +84,12 @@
 <v>DeliveryRobot-000\DeliveryRobot\Generated_Source\PSoC5\Pin_PWM2_R</v>
 <v>DeliveryRobot-000\DeliveryRobot\Generated_Source\PSoC5\Pin_UART_Tx</v>
 <v>DeliveryRobot-000\DeliveryRobot\Generated_Source\PSoC5\Pin_US_Echo0</v>
+<v>DeliveryRobot-000\DeliveryRobot\Generated_Source\PSoC5\Pin_US_Echo1</v>
+<v>DeliveryRobot-000\DeliveryRobot\Generated_Source\PSoC5\Pin_US_Echo2</v>
+<v>DeliveryRobot-000\DeliveryRobot\Generated_Source\PSoC5\Pin_US_Echo3</v>
+<v>DeliveryRobot-000\DeliveryRobot\Generated_Source\PSoC5\Pin_US_Echo4</v>
+<v>DeliveryRobot-000\DeliveryRobot\Generated_Source\PSoC5\Pin_US_Trigger0</v>
+<v>DeliveryRobot-000\DeliveryRobot\Generated_Source\PSoC5\Pin_US_Trigger1</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
@@ -131,7 +135,7 @@
 <v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
 <v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\CySpc.lst</v>
 <v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\histogram_grid.lst</v>
+<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\helper.lst</v>
 <v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\main.lst</v>
 <v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\Motor_PI_Int.lst</v>
 <v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_DecA_L.lst</v>
@@ -153,7 +157,6 @@
 <v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_US_Trigger2.lst</v>
 <v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_US_Trigger3.lst</v>
 <v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_US_Trigger4.lst</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\polar_histogram.lst</v>
 <v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\Pose_Update_Int.lst</v>
 <v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_Motor_L.lst</v>
 <v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_Motor_L_PM.lst</v>
@@ -173,6 +176,7 @@
 <v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_R_INT.lst</v>
 <v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_R_isr.lst</v>
 <v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_R_PM.lst</v>
+<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\robot.lst</v>
 <v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\Testing_Int.lst</v>
 <v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\Timer_Avoidance.lst</v>
 <v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\Timer_Avoidance_PM.lst</v>
@@ -188,6 +192,10 @@
 <v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\DeliveryRobot.elf</v>
 <v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\DeliveryRobot.hex</v>
 <v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\DeliveryRobot.map</v>
+<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Release</v>
+<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Release\DeliveryRobot.elf</v>
+<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Release\DeliveryRobot.hex</v>
+<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Release\DeliveryRobot.map</v>
 <v>DeliveryRobot-000\DeliveryRobot\DeliveryRobot.gpdsc</v>
 <v>DeliveryRobot-000\DeliveryRobot\DeliveryRobot.rpt</v>
 <v>DeliveryRobot-000\DeliveryRobot\DeliveryRobot_timing.html</v>
@@ -195,46 +203,6 @@
 <VisibleNodeIds>
 <v>DeliveryRobot-000</v>
 <v>DeliveryRobot-000\DeliveryRobot</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\CLOCK_echo.lst</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_Motor_Control.lst</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_Motor_PI_Control.lst</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_Seconds.lst</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_Testing_1.lst</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_Trigger.lst</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\Cm3Start.lst</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\Control_Reg_US.lst</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\Control_Reg_US_PM.lst</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\cy_em_eeprom.lst</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\CyDmac.lst</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\cyfitter_cfg.lst</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\CyFlash.lst</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\CyLib.lst</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\CySpc.lst</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\histogram_grid.lst</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\main.lst</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\Motor_PI_Int.lst</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_DecA_L.lst</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_DecA_R.lst</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_DecB_L.lst</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_DecB_R.lst</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_PWM1_L.lst</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_PWM1_R.lst</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_PWM2_L.lst</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_PWM2_R.lst</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_UART_Tx.lst</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_US_Echo0.lst</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_US_Echo1.lst</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_US_Echo2.lst</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_US_Echo3.lst</v>
-<v>DeliveryRobot-000\DeliveryRobot\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_US_Echo4.lst</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
@@ -260,6 +228,7 @@
 <v>DeliveryRobot-000\DeliveryRobot\CyControlReg_v1_80.pdf</v>
 <v>DeliveryRobot-000\DeliveryRobot\demux_v1_10.pdf</v>
 <v>DeliveryRobot-000\DeliveryRobot\mux_v1_10.pdf</v>
+<v>DeliveryRobot-000\DeliveryRobot\or_v1_0.pdf</v>
 <v>DeliveryRobot-000\DeliveryRobot\PWM_v3_30</v>
 <v>DeliveryRobot-000\DeliveryRobot\PWM_v3_30\PWM_v3_30.pdf</v>
 <v>DeliveryRobot-000\DeliveryRobot\QuadDec_v3_0</v>
@@ -285,6 +254,7 @@
 <v>DeliveryRobot-000\DeliveryRobot\CyControlReg_v1_80.pdf</v>
 <v>DeliveryRobot-000\DeliveryRobot\demux_v1_10.pdf</v>
 <v>DeliveryRobot-000\DeliveryRobot\mux_v1_10.pdf</v>
+<v>DeliveryRobot-000\DeliveryRobot\or_v1_0.pdf</v>
 <v>DeliveryRobot-000\DeliveryRobot\PWM_v3_30</v>
 <v>DeliveryRobot-000\DeliveryRobot\PWM_v3_30\PWM_v3_30.pdf</v>
 <v>DeliveryRobot-000\DeliveryRobot\QuadDec_v3_0</v>
@@ -301,13 +271,10 @@
 </CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
 <Unloaded />
 <OpenDocs>
-<name v=".\TopDesign\TopDesign.cysch" />
 <name v=".\main.c" />
-<name v=".\VFH\src\polar_histogram.c" />
-<name v=".\VFH\src\histogram_grid.c" />
-<name v=".\VFH\include\histogram_grid.h" />
-<name v=".\DeliveryRobot.cydwr" />
-<name v=".\VFH\src\vfh.c" />
+<name v="..\VFH\vfh.c" />
+<name v=".\TopDesign\TopDesign.cysch" />
+<name v="..\VFH\vfh.h" />
 </OpenDocs>
 <OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
 
@@ -315,7 +282,7 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Vertical"><TabbedMdiContainer Size="800, 497" SelectedTabbedMdiWindow="9666e657-8746-45af-84ae-650e02470e1f"><DocumentWindow Key="C:\Users\jmspi\OneDrive\Documents\GitHub\ECE4191\DeliveryRobot.cydsn\TopDesign\TopDesign.cysch" Guid="b800c4af-53d9-4a02-b5e2-3fccc73b4cbe" /><DocumentWindow Key="C:\Users\jmspi\OneDrive\Documents\GitHub\ECE4191\DeliveryRobot.cydsn\main.c" Guid="9666e657-8746-45af-84ae-650e02470e1f" /><DocumentWindow Key="C:\Users\jmspi\OneDrive\Documents\GitHub\ECE4191\DeliveryRobot.cydsn\VFH\src\polar_histogram.c" Guid="50d48fcc-e441-41d8-a00e-298736124d25" /><DocumentWindow Key="C:\Users\jmspi\OneDrive\Documents\GitHub\ECE4191\DeliveryRobot.cydsn\VFH\src\histogram_grid.c" Guid="f1e50f59-3c16-4639-9218-eaf316e20f7c" /><DocumentWindow Key="C:\Users\jmspi\OneDrive\Documents\GitHub\ECE4191\DeliveryRobot.cydsn\VFH\include\histogram_grid.h" Guid="881c7893-2b25-48fc-b982-95818d1d00e8" /><DocumentWindow Key="C:\Users\jmspi\OneDrive\Documents\GitHub\ECE4191\DeliveryRobot.cydsn\DeliveryRobot.cydwr" Guid="7a03ead2-c1a7-40a3-83b5-bf21249e0f12" /><DocumentWindow Key="C:\Users\jmspi\OneDrive\Documents\GitHub\ECE4191\DeliveryRobot.cydsn\VFH\src\vfh.c" Guid="5196a6df-90a7-4869-a1ff-777eafdac1d9" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Vertical"><TabbedMdiContainer Size="1280, 617" SelectedTabbedMdiWindow="69d13b6b-af77-4d89-a2f5-213a57e15b24"><DocumentWindow Key="C:\Users\jmspi\OneDrive\Documents\GitHub\ECE4191\DeliveryRobot.cydsn\main.c" Guid="e12fa149-f14f-4f8c-98d1-31ae0063b0eb" /><DocumentWindow Key="C:\Users\jmspi\OneDrive\Documents\GitHub\ECE4191\VFH\vfh.c" Guid="baeda436-2d8e-4680-a89a-fd93ae88225a" /><DocumentWindow Key="C:\Users\jmspi\OneDrive\Documents\GitHub\ECE4191\DeliveryRobot.cydsn\TopDesign\TopDesign.cysch" Guid="f6694dfb-4a84-4b60-9faa-6ceb1026b2bf" /><DocumentWindow Key="C:\Users\jmspi\OneDrive\Documents\GitHub\ECE4191\VFH\vfh.h" Guid="69d13b6b-af77-4d89-a2f5-213a57e15b24" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="Debug" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>

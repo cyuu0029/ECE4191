@@ -74,11 +74,17 @@ int modular_dist(int a, int b, int m);
 /* calculate_avoidance_angle: Returns the angle that the robot should drive towards */
 double calculate_avoidance_angle(POD *smoothed_POD, Robot * robot, int * candidate_lst, double alpha, int s_max);
 
+double calculate_avoidance_angle2(POD *smoothed_POD, Robot * robot, int * candidate_lst, double alpha, int s_max);
+
 /* velocity control: Returns a velocity value based on the distance between objects. */
 //double velocity_control(histogram * hist, double direction);
 
 /* calculate_dsiatnce_from_goal: Returns the distance from robot to goal */
 double calculate_distance_from_goal(double pos_x, double pos_y, double goal_x, double goal_y);
+
+double calculate_avoidance_angle(POD *smoothed_POD, Robot * robot, int * candidate_lst, double alpha, int s_max);
+
+double calculate_avoidance_angle(POD *smoothed_POD, Robot * robot, int * candidate_lst, double alpha, int s_max);
 
 double velocity_control(POD * smoothed_POD, double direction, double alpha, double h_m);
 

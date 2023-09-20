@@ -51,7 +51,7 @@ typedef struct {
 POD * pod_create(double alpha);
 
 /* hist_update: Update hist with grid's information. */
-void smoothed_POD_histogram(POD * smoothed_POD, grid *active, double alpha, double l);
+void smoothed_POD_histogram(POD * smoothed_POD, grid *active, double alpha, double l, double a, double b);
 
 /* candidate_valley: Identifies the the candidate valleys that the robot and drive through */
 int * candidate_valley(POD * smoothed_POD, double valley_threshold);
@@ -72,7 +72,7 @@ int modular_dist(int a, int b, int m);
 
 
 /* calculate_avoidance_angle: Returns the angle that the robot should drive towards */
-double calculate_avoidance_angle(POD *smoothed_POD, Robot * robot, int * candidate_lst, double alpha, double s_max, double valley_threshold);
+double calculate_avoidance_angle(POD *smoothed_POD, Robot * robot, int * candidate_lst, double alpha, int s_max);
 
 /* velocity control: Returns a velocity value based on the distance between objects. */
 //double velocity_control(histogram * hist, double direction);

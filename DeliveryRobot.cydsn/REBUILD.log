@@ -1,0 +1,17 @@
+--------------- Rebuild Started: 09/21/2023 01:31:33 Project: vfh.c, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I..\Helper -I..\Robot -I..\VFH -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/vfh.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -O3 -c ..\VFH\vfh.c -o .\CortexM3\ARM_GCC_541\Debug\vfh.o
+..\VFH\vfh.c: In function 'calculate_avoidance_angle2':
+..\VFH\vfh.c:353:12: warning: unused variable 'pos_yaw' [-Wunused-variable]
+     double pos_yaw = robot->theta;
+            ^
+..\VFH\vfh.c:347:9: warning: unused variable 'candidates_len' [-Wunused-variable]
+     int candidates_len = 360/alpha;;
+         ^
+..\VFH\vfh.c: In function 'calculate_avoidance_angle':
+..\VFH\vfh.c:330:29: warning: 'k_f' may be used uninitialized in this function [-Wmaybe-uninitialized]
+         int last = abs((k_f - (s_max / 2)) - goal_sector);
+                             ^
+..\VFH\vfh.c:329:30: warning: 'k_n' may be used uninitialized in this function [-Wmaybe-uninitialized]
+         int first = abs((k_n + (s_max / 2)) - goal_sector);
+                              ^
+--------------- Rebuild Succeeded: 09/21/2023 01:31:34 ---------------

@@ -359,7 +359,6 @@ double calculate_avoidance_angle2(POD *smoothed_POD, Robot * robot, int * candid
   
     if( candidate_lst[goal_sector] == 0 ) // goal lies in a valley
     {
-        return goal_angle;
         int step = 1;
         int cwise = true_mod(goal_sector-step, nsectors);
         int ccwise = true_mod(goal_sector+step, nsectors);
@@ -369,12 +368,22 @@ double calculate_avoidance_angle2(POD *smoothed_POD, Robot * robot, int * candid
             cwise = true_mod(goal_sector-step, nsectors);
             ccwise = true_mod(goal_sector+step, nsectors);
         }
-        if( step == nsectors/2 ) { // no obstacles in histogram
+        if( step >= s_max/2 ) { // no obstacles in histogram
             return goal_angle;
         } else if ( candidate_lst[cwise] )  { // nearest edge is cwise from goal sector
-            return alpha*true_mod(cwise+s_max/2, nsectors);
+            while( candidate_lst[ccwise]==0 && step < s_max/2) { 
+                step++;
+                ccwise = true_mod(goal_sector+step, nsectors); 
+            }
+            return alpha*true_mod(cwise+step/2, nsectors);
+            
         } else { // nearest edge is ccwise from goal sector
-            return alpha*true_mod(ccwise-s_max/2, nsectors);
+            while( candidate_lst[cwise]==0 && step < s_max/2) { 
+                step++;
+                cwise = true_mod(goal_sector-step, nsectors); 
+            }
+            return alpha*true_mod(ccwise-step/2, nsectors);
+            
         }
             
     } else { // goal lies behind obstacle

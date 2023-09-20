@@ -216,7 +216,7 @@ int main(void)
     // Active Window
     double alpha = 5;       // Degrees
     double coeff_l = 3;     // Smoothing factor
-    int window_size = 30;
+    int window_size = 25;
     double coeff_a = 5;     // a - bd_max = 0 
     double coeff_b = coeff_a / (sqrt(2) * ((window_size - 1) / 2));  // d_max = sqrt(2) * (ws - 1) / 2
     
@@ -226,9 +226,9 @@ int main(void)
     // Polar Histogram and Candidate Valley
     smoothed_POD = *pod_create(alpha);
 
-    double valley_threshold_lower = 100;
-    double valley_threshold_upper = 1000;
-    double s_max = 20;
+    double valley_threshold_lower = 10;
+    double valley_threshold_upper = 25;
+    double s_max = 40;
     double h_m = 10;
 
     double ideal_angle, ideal_velocity;
@@ -259,11 +259,28 @@ int main(void)
     
     for( int i = 0; i<100; i++ ) {
         for( int j = 0; j<N_SENSORS; j++ ) {
+            sensors.direction[j] = 65.0+ 60.0*rand()/RAND_MAX;
+            sensors.distance[j] = 45.0;
+        }
+        grid_update(&map, &sensors, &robot);
+    }
+    
+    for( int i = 0; i<100; i++ ) {
+        for( int j = 0; j<N_SENSORS; j++ ) {
             sensors.direction[j] = 45.0+ 30.0*rand()/RAND_MAX;
             sensors.distance[j] = 70.0;
         }
         grid_update(&map, &sensors, &robot);
     }
+    
+    int j = 3;
+    for( int i = 0; i<map.width; i++) { map.cells[i*map.width+j] += 100; }
+    for( int i = 0; i<map.width; i++) { map.cells[j*map.width+i] += 100; }
+    
+    j = map.height-3;
+    for( int i = 0; i<map.width; i++) { map.cells[i*map.width+j] += 100; }
+    for( int i = 0; i<map.width; i++) { map.cells[j*map.width+i] += 100; }
+    
     /*
     
     // Print the grid
@@ -281,7 +298,7 @@ int main(void)
         UART_PutString(serial_output);
     }
     */ 
-    int print_delay = 5;
+    int print_delay = 3;
     int print_cnt = 1;
     for(;;) {  
             
@@ -335,7 +352,7 @@ int main(void)
                     sprintf(serial_output, "\n");
                     UART_PutString(serial_output);
                 }
-                UART_PutString("\n\n\n\n");    
+                UART_PutString("\n\n");    
             }
             
           
@@ -370,8 +387,8 @@ int main(void)
             robot.y += 0.25*10*sin(ideal_angle);
             
             if (print_cnt >= print_delay) {
-                sprintf(serial_output, "Angle: %f, Speed: %f\n", ideal_angle*180/M_PI, ideal_velocity);
-                UART_PutString(serial_output);
+                //sprintf(serial_output, "Angle: %f, Speed: %f\n", ideal_angle*180/M_PI, ideal_velocity);
+                //UART_PutString(serial_output);
                 print_cnt=0;
             }
             print_cnt++;

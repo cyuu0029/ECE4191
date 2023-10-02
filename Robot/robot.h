@@ -56,4 +56,4 @@ typedef struct {
 
 void *motor_create(Motor * motorola, long double wheel_r_scale, long double K_i, long double K_p);
 
-void *robot_create(Robot * bender, long double robot_axle_width, long double K_i, long double K_p, long double minimum, long double x, long double y);
+void *robot_create(Robot * bender, long double robot_axle_width, long double K_i, long double K_p, long double minimum, long double x, long double y, long double theta);

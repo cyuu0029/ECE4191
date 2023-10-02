@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccpjtdWh.s 			page 1
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccWwbtNa.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccpjtdWh.s 			page 1
   43              		.cfi_def_cfa_register 7
   44 0006 C7E90001 		strd	r0, [r7]
   13:..\Helper/helper.c ****     return angle - M_TWOPI * floor(angle / M_TWOPI);  
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccpjtdWh.s 			page 2
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccWwbtNa.s 			page 2
 
 
   45              		.loc 1 13 0
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccpjtdWh.s 			page 1
   96 0000 B0B5     		push	{r4, r5, r7, lr}
   97              		.cfi_def_cfa_offset 16
   98              		.cfi_offset 4, -16
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccpjtdWh.s 			page 3
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccWwbtNa.s 			page 3
 
 
   99              		.cfi_offset 5, -12
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccpjtdWh.s 			page 1
  148              		.cfi_def_cfa_offset 16
  149 0078 BD46     		mov	sp, r7
  150              		.cfi_def_cfa_register 13
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccpjtdWh.s 			page 4
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccWwbtNa.s 			page 4
 
 
  151              		@ sp needed
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccpjtdWh.s 			page 1
   29:..\Helper/helper.c ****   double alpha_rot = goal_angle - pos_yaw;
  198              		.loc 1 29 0
  199 003e D7E91223 		ldrd	r2, [r7, #72]
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccpjtdWh.s 			page 5
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccWwbtNa.s 			page 5
 
 
  200 0042 D7E90A01 		ldrd	r0, [r7, #40]
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccpjtdWh.s 			page 1
   37:..\Helper/helper.c ****     rotation = beta_rot;
  247              		.loc 1 37 0
  248 00be D7E90634 		ldrd	r3, [r7, #24]
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccpjtdWh.s 			page 6
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccWwbtNa.s 			page 6
 
 
  249 00c2 C7E90C34 		strd	r3, [r7, #48]
@@ -357,982 +357,995 @@ ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccpjtdWh.s 			page 1
  290              	.LFE2:
  291              		.size	calculate_goal_angle, .-calculate_goal_angle
  292              		.global	__aeabi_d2iz
- 293              		.global	__aeabi_dcmple
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccpjtdWh.s 			page 7
+ 293              		.section	.text.detect_obstacle,"ax",%progbits
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccWwbtNa.s 			page 7
 
 
- 294              		.section	.text.detect_obstacle,"ax",%progbits
- 295              		.align	2
- 296              		.global	detect_obstacle
- 297              		.thumb
- 298              		.thumb_func
- 299              		.type	detect_obstacle, %function
- 300              	detect_obstacle:
- 301              	.LFB3:
+ 294              		.align	2
+ 295              		.global	detect_obstacle
+ 296              		.thumb
+ 297              		.thumb_func
+ 298              		.type	detect_obstacle, %function
+ 299              	detect_obstacle:
+ 300              	.LFB3:
   49:..\Helper/helper.c **** 
-  50:..\Helper/helper.c **** int detect_obstacle(double sensor_dir, double sensor_dist, double pos_x, double pos_y, double thres
- 302              		.loc 1 50 0
- 303              		.cfi_startproc
- 304              		@ args = 24, pretend = 0, frame = 72
- 305              		@ frame_needed = 1, uses_anonymous_args = 0
- 306 0000 B0B5     		push	{r4, r5, r7, lr}
- 307              		.cfi_def_cfa_offset 16
- 308              		.cfi_offset 4, -16
- 309              		.cfi_offset 5, -12
- 310              		.cfi_offset 7, -8
- 311              		.cfi_offset 14, -4
- 312 0002 92B0     		sub	sp, sp, #72
- 313              		.cfi_def_cfa_offset 88
- 314 0004 00AF     		add	r7, sp, #0
- 315              		.cfi_def_cfa_register 7
- 316 0006 C7E90201 		strd	r0, [r7, #8]
- 317 000a C7E90023 		strd	r2, [r7]
-  51:..\Helper/helper.c ****   // Checks if detected item is obstacle or wall
-  52:..\Helper/helper.c ****   int obstacles;
-  53:..\Helper/helper.c ****   double angle, distance_x, distance_y, max_dist_x, max_dist_y;
-  54:..\Helper/helper.c ****   double rad = M_PI / 180;
- 318              		.loc 1 54 0
- 319 000e 52A4     		adr	r4, .L39
- 320 0010 D4E90034 		ldrd	r3, [r4]
- 321 0014 C7E90A34 		strd	r3, [r7, #40]
-  55:..\Helper/helper.c **** 
-  56:..\Helper/helper.c ****   angle = sensor_dir * rad;
- 322              		.loc 1 56 0
- 323 0018 D7E90A23 		ldrd	r2, [r7, #40]
- 324 001c D7E90201 		ldrd	r0, [r7, #8]
- 325 0020 FFF7FEFF 		bl	__aeabi_dmul
- 326 0024 0346     		mov	r3, r0
- 327 0026 0C46     		mov	r4, r1
- 328 0028 C7E90834 		strd	r3, [r7, #32]
-  57:..\Helper/helper.c **** 
-  58:..\Helper/helper.c ****     // Calculate the overall distance of robot and sensor
-  59:..\Helper/helper.c ****     distance_x = pos_x + sensor_dist * cos(angle);
- 329              		.loc 1 59 0
- 330 002c D7E90801 		ldrd	r0, [r7, #32]
- 331 0030 FFF7FEFF 		bl	cos
- 332 0034 D7E90023 		ldrd	r2, [r7]
- 333 0038 FFF7FEFF 		bl	__aeabi_dmul
- 334 003c 0346     		mov	r3, r0
- 335 003e 0C46     		mov	r4, r1
- 336 0040 1846     		mov	r0, r3
- 337 0042 2146     		mov	r1, r4
- 338 0044 D7E91623 		ldrd	r2, [r7, #88]
- 339 0048 FFF7FEFF 		bl	__aeabi_dadd
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccpjtdWh.s 			page 8
+  50:..\Helper/helper.c **** int detect_obstacle(double angle, double distance, double pos_x, double pos_y, double pos_theta, do
+ 301              		.loc 1 50 0
+ 302              		.cfi_startproc
+ 303              		@ args = 32, pretend = 0, frame = 48
+ 304              		@ frame_needed = 1, uses_anonymous_args = 0
+ 305 0000 B0B5     		push	{r4, r5, r7, lr}
+ 306              		.cfi_def_cfa_offset 16
+ 307              		.cfi_offset 4, -16
+ 308              		.cfi_offset 5, -12
+ 309              		.cfi_offset 7, -8
+ 310              		.cfi_offset 14, -4
+ 311 0002 8CB0     		sub	sp, sp, #48
+ 312              		.cfi_def_cfa_offset 64
+ 313 0004 00AF     		add	r7, sp, #0
+ 314              		.cfi_def_cfa_register 7
+ 315 0006 C7E90201 		strd	r0, [r7, #8]
+ 316 000a C7E90023 		strd	r2, [r7]
+  51:..\Helper/helper.c ****     // Checks if detected item is obstacle or wall
+  52:..\Helper/helper.c ****     int obstacles;
+  53:..\Helper/helper.c ****     double rad = M_PI / 180;
+ 317              		.loc 1 53 0
+ 318 000e 66A4     		adr	r4, .L37
+ 319 0010 D4E90034 		ldrd	r3, [r4]
+ 320 0014 C7E90634 		strd	r3, [r7, #24]
+  54:..\Helper/helper.c ****     
+  55:..\Helper/helper.c ****     // Distance between wall and robot based on robot orientation
+  56:..\Helper/helper.c ****     double max_distance;;
+  57:..\Helper/helper.c ****     
+  58:..\Helper/helper.c ****     // Find if obstacle in specified angle
+  59:..\Helper/helper.c ****     double angle_modulo;
+  60:..\Helper/helper.c ****     switch ((int) angle) {
+ 321              		.loc 1 60 0
+ 322 0018 D7E90201 		ldrd	r0, [r7, #8]
+ 323 001c FFF7FEFF 		bl	__aeabi_d2iz
+ 324 0020 0346     		mov	r3, r0
+ 325 0022 5A2B     		cmp	r3, #90
+ 326 0024 26D0     		beq	.L26
+ 327 0026 B3F5877F 		cmp	r3, #270
+ 328 002a 54D0     		beq	.L27
+ 329 002c 002B     		cmp	r3, #0
+ 330 002e 7AD1     		bne	.L35
+  61:..\Helper/helper.c ****         case 0:
+  62:..\Helper/helper.c ****             max_distance = (ARENA - pos_x) / cos(pos_theta) - threshold;
+ 331              		.loc 1 62 0
+ 332 0030 D7E91023 		ldrd	r2, [r7, #64]
+ 333 0034 4FF00000 		mov	r0, #0
+ 334 0038 6149     		ldr	r1, .L37+24
+ 335 003a FFF7FEFF 		bl	__aeabi_dsub
+ 336 003e 0346     		mov	r3, r0
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccWwbtNa.s 			page 8
 
 
- 340 004c 0346     		mov	r3, r0
- 341 004e 0C46     		mov	r4, r1
- 342 0050 C7E90634 		strd	r3, [r7, #24]
-  60:..\Helper/helper.c ****     distance_y = pos_y + sensor_dist * sin(angle);
- 343              		.loc 1 60 0
- 344 0054 D7E90801 		ldrd	r0, [r7, #32]
- 345 0058 FFF7FEFF 		bl	sin
- 346 005c D7E90023 		ldrd	r2, [r7]
- 347 0060 FFF7FEFF 		bl	__aeabi_dmul
- 348 0064 0346     		mov	r3, r0
- 349 0066 0C46     		mov	r4, r1
- 350 0068 1846     		mov	r0, r3
- 351 006a 2146     		mov	r1, r4
- 352 006c D7E91823 		ldrd	r2, [r7, #96]
- 353 0070 FFF7FEFF 		bl	__aeabi_dadd
- 354 0074 0346     		mov	r3, r0
- 355 0076 0C46     		mov	r4, r1
- 356 0078 C7E90434 		strd	r3, [r7, #16]
-  61:..\Helper/helper.c **** 
-  62:..\Helper/helper.c ****     // Define the max wall distance based on sensor placement
-  63:..\Helper/helper.c ****     switch ((int) sensor_dir % 90) {
- 357              		.loc 1 63 0
- 358 007c D7E90201 		ldrd	r0, [r7, #8]
- 359 0080 FFF7FEFF 		bl	__aeabi_d2iz
- 360 0084 0346     		mov	r3, r0
- 361 0086 364A     		ldr	r2, .L39+8
- 362 0088 83FB0212 		smull	r1, r2, r3, r2
- 363 008c 1A44     		add	r2, r2, r3
- 364 008e 9111     		asrs	r1, r2, #6
- 365 0090 DA17     		asrs	r2, r3, #31
- 366 0092 8A1A     		subs	r2, r1, r2
- 367 0094 5A21     		movs	r1, #90
- 368 0096 01FB02F2 		mul	r2, r1, r2
- 369 009a 9A1A     		subs	r2, r3, r2
- 370 009c 002A     		cmp	r2, #0
- 371 009e 0AD1     		bne	.L36
-  64:..\Helper/helper.c ****       case 0:
-  65:..\Helper/helper.c ****         max_dist_x = ARENA;
- 372              		.loc 1 65 0
- 373 00a0 4FF00003 		mov	r3, #0
- 374 00a4 2F4C     		ldr	r4, .L39+12
- 375 00a6 C7E90E34 		strd	r3, [r7, #56]
-  66:..\Helper/helper.c ****         max_dist_y = ARENA;
- 376              		.loc 1 66 0
- 377 00aa 4FF00003 		mov	r3, #0
- 378 00ae 2D4C     		ldr	r4, .L39+12
- 379 00b0 C7E90C34 		strd	r3, [r7, #48]
-  67:..\Helper/helper.c ****         break;
- 380              		.loc 1 67 0
- 381 00b4 31E0     		b	.L27
- 382              	.L36:
-  68:..\Helper/helper.c **** 
-  69:..\Helper/helper.c ****       default:
-  70:..\Helper/helper.c ****         max_dist_x = (ARENA - threshold) * sin(angle);
- 383              		.loc 1 70 0
- 384 00b6 D7E91A23 		ldrd	r2, [r7, #104]
- 385 00ba 4FF00000 		mov	r0, #0
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccpjtdWh.s 			page 9
+ 337 0040 0C46     		mov	r4, r1
+ 338 0042 2546     		mov	r5, r4
+ 339 0044 1C46     		mov	r4, r3
+ 340 0046 D7E91401 		ldrd	r0, [r7, #80]
+ 341 004a FFF7FEFF 		bl	cos
+ 342 004e 0246     		mov	r2, r0
+ 343 0050 0B46     		mov	r3, r1
+ 344 0052 2046     		mov	r0, r4
+ 345 0054 2946     		mov	r1, r5
+ 346 0056 FFF7FEFF 		bl	__aeabi_ddiv
+ 347 005a 0346     		mov	r3, r0
+ 348 005c 0C46     		mov	r4, r1
+ 349 005e 1846     		mov	r0, r3
+ 350 0060 2146     		mov	r1, r4
+ 351 0062 D7E91623 		ldrd	r2, [r7, #88]
+ 352 0066 FFF7FEFF 		bl	__aeabi_dsub
+ 353 006a 0346     		mov	r3, r0
+ 354 006c 0C46     		mov	r4, r1
+ 355 006e C7E90834 		strd	r3, [r7, #32]
+  63:..\Helper/helper.c ****             break;
+ 356              		.loc 1 63 0
+ 357 0072 86E0     		b	.L29
+ 358              	.L26:
+  64:..\Helper/helper.c ****             
+  65:..\Helper/helper.c ****         case 90:
+  66:..\Helper/helper.c ****             angle_modulo = calculate_angle_modulo(M_PI / 2 + pos_theta);
+ 359              		.loc 1 66 0
+ 360 0074 4EA3     		adr	r3, .L37+8
+ 361 0076 D3E90023 		ldrd	r2, [r3]
+ 362 007a D7E91401 		ldrd	r0, [r7, #80]
+ 363 007e FFF7FEFF 		bl	__aeabi_dadd
+ 364 0082 0346     		mov	r3, r0
+ 365 0084 0C46     		mov	r4, r1
+ 366 0086 1846     		mov	r0, r3
+ 367 0088 2146     		mov	r1, r4
+ 368 008a FFF7FEFF 		bl	calculate_angle_modulo
+ 369 008e C7E90401 		strd	r0, [r7, #16]
+  67:..\Helper/helper.c ****             max_distance = (ARENA - pos_y) / sin(angle_modulo) - threshold;
+ 370              		.loc 1 67 0
+ 371 0092 D7E91223 		ldrd	r2, [r7, #72]
+ 372 0096 4FF00000 		mov	r0, #0
+ 373 009a 4949     		ldr	r1, .L37+24
+ 374 009c FFF7FEFF 		bl	__aeabi_dsub
+ 375 00a0 0346     		mov	r3, r0
+ 376 00a2 0C46     		mov	r4, r1
+ 377 00a4 2546     		mov	r5, r4
+ 378 00a6 1C46     		mov	r4, r3
+ 379 00a8 D7E90401 		ldrd	r0, [r7, #16]
+ 380 00ac FFF7FEFF 		bl	sin
+ 381 00b0 0246     		mov	r2, r0
+ 382 00b2 0B46     		mov	r3, r1
+ 383 00b4 2046     		mov	r0, r4
+ 384 00b6 2946     		mov	r1, r5
+ 385 00b8 FFF7FEFF 		bl	__aeabi_ddiv
+ 386 00bc 0346     		mov	r3, r0
+ 387 00be 0C46     		mov	r4, r1
+ 388 00c0 1846     		mov	r0, r3
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccWwbtNa.s 			page 9
 
 
- 386 00be 2949     		ldr	r1, .L39+12
- 387 00c0 FFF7FEFF 		bl	__aeabi_dsub
- 388 00c4 0346     		mov	r3, r0
- 389 00c6 0C46     		mov	r4, r1
- 390 00c8 2546     		mov	r5, r4
- 391 00ca 1C46     		mov	r4, r3
- 392 00cc D7E90801 		ldrd	r0, [r7, #32]
- 393 00d0 FFF7FEFF 		bl	sin
- 394 00d4 0246     		mov	r2, r0
- 395 00d6 0B46     		mov	r3, r1
- 396 00d8 2046     		mov	r0, r4
- 397 00da 2946     		mov	r1, r5
- 398 00dc FFF7FEFF 		bl	__aeabi_dmul
- 399 00e0 0346     		mov	r3, r0
- 400 00e2 0C46     		mov	r4, r1
- 401 00e4 C7E90E34 		strd	r3, [r7, #56]
-  71:..\Helper/helper.c ****         max_dist_y = (ARENA - threshold) * cos(angle);
- 402              		.loc 1 71 0
- 403 00e8 D7E91A23 		ldrd	r2, [r7, #104]
- 404 00ec 4FF00000 		mov	r0, #0
- 405 00f0 1C49     		ldr	r1, .L39+12
- 406 00f2 FFF7FEFF 		bl	__aeabi_dsub
- 407 00f6 0346     		mov	r3, r0
- 408 00f8 0C46     		mov	r4, r1
- 409 00fa 2546     		mov	r5, r4
- 410 00fc 1C46     		mov	r4, r3
- 411 00fe D7E90801 		ldrd	r0, [r7, #32]
- 412 0102 FFF7FEFF 		bl	cos
- 413 0106 0246     		mov	r2, r0
- 414 0108 0B46     		mov	r3, r1
- 415 010a 2046     		mov	r0, r4
- 416 010c 2946     		mov	r1, r5
- 417 010e FFF7FEFF 		bl	__aeabi_dmul
- 418 0112 0346     		mov	r3, r0
- 419 0114 0C46     		mov	r4, r1
- 420 0116 C7E90C34 		strd	r3, [r7, #48]
- 421              	.L27:
-  72:..\Helper/helper.c ****     
-  73:..\Helper/helper.c ****     }
-  74:..\Helper/helper.c **** 
-  75:..\Helper/helper.c ****     if (distance_x <= max_dist_x) {
- 422              		.loc 1 75 0
- 423 011a D7E90E23 		ldrd	r2, [r7, #56]
- 424 011e D7E90601 		ldrd	r0, [r7, #24]
- 425 0122 FFF7FEFF 		bl	__aeabi_dcmple
- 426 0126 0346     		mov	r3, r0
- 427 0128 002B     		cmp	r3, #0
- 428 012a 02D0     		beq	.L37
-  76:..\Helper/helper.c ****       obstacles = 1;
- 429              		.loc 1 76 0
- 430 012c 0123     		movs	r3, #1
- 431 012e 7B64     		str	r3, [r7, #68]
- 432 0130 0DE0     		b	.L30
- 433              	.L37:
-  77:..\Helper/helper.c ****     } else if (distance_y <= max_dist_y) {
- 434              		.loc 1 77 0
- 435 0132 D7E90C23 		ldrd	r2, [r7, #48]
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccpjtdWh.s 			page 10
+ 389 00c2 2146     		mov	r1, r4
+ 390 00c4 D7E91623 		ldrd	r2, [r7, #88]
+ 391 00c8 FFF7FEFF 		bl	__aeabi_dsub
+ 392 00cc 0346     		mov	r3, r0
+ 393 00ce 0C46     		mov	r4, r1
+ 394 00d0 C7E90834 		strd	r3, [r7, #32]
+  68:..\Helper/helper.c ****             break;
+ 395              		.loc 1 68 0
+ 396 00d4 55E0     		b	.L29
+ 397              	.L27:
+  69:..\Helper/helper.c ****             
+  70:..\Helper/helper.c ****             
+  71:..\Helper/helper.c ****         case 270:
+  72:..\Helper/helper.c ****             angle_modulo = calculate_angle_modulo(3*M_PI / 2 + pos_theta);
+ 398              		.loc 1 72 0
+ 399 00d6 38A3     		adr	r3, .L37+16
+ 400 00d8 D3E90023 		ldrd	r2, [r3]
+ 401 00dc D7E91401 		ldrd	r0, [r7, #80]
+ 402 00e0 FFF7FEFF 		bl	__aeabi_dadd
+ 403 00e4 0346     		mov	r3, r0
+ 404 00e6 0C46     		mov	r4, r1
+ 405 00e8 1846     		mov	r0, r3
+ 406 00ea 2146     		mov	r1, r4
+ 407 00ec FFF7FEFF 		bl	calculate_angle_modulo
+ 408 00f0 C7E90401 		strd	r0, [r7, #16]
+  73:..\Helper/helper.c ****             max_distance = (pos_y) / sin(angle_modulo) - threshold;
+ 409              		.loc 1 73 0
+ 410 00f4 D7E90401 		ldrd	r0, [r7, #16]
+ 411 00f8 FFF7FEFF 		bl	sin
+ 412 00fc 0346     		mov	r3, r0
+ 413 00fe 0C46     		mov	r4, r1
+ 414 0100 1A46     		mov	r2, r3
+ 415 0102 2346     		mov	r3, r4
+ 416 0104 D7E91201 		ldrd	r0, [r7, #72]
+ 417 0108 FFF7FEFF 		bl	__aeabi_ddiv
+ 418 010c 0346     		mov	r3, r0
+ 419 010e 0C46     		mov	r4, r1
+ 420 0110 1846     		mov	r0, r3
+ 421 0112 2146     		mov	r1, r4
+ 422 0114 D7E91623 		ldrd	r2, [r7, #88]
+ 423 0118 FFF7FEFF 		bl	__aeabi_dsub
+ 424 011c 0346     		mov	r3, r0
+ 425 011e 0C46     		mov	r4, r1
+ 426 0120 C7E90834 		strd	r3, [r7, #32]
+  74:..\Helper/helper.c ****             break;
+ 427              		.loc 1 74 0
+ 428 0124 2DE0     		b	.L29
+ 429              	.L35:
+  75:..\Helper/helper.c ****             
+  76:..\Helper/helper.c ****         default:
+  77:..\Helper/helper.c ****             angle_modulo = calculate_angle_modulo(angle * rad + pos_theta);
+ 430              		.loc 1 77 0
+ 431 0126 D7E90623 		ldrd	r2, [r7, #24]
+ 432 012a D7E90201 		ldrd	r0, [r7, #8]
+ 433 012e FFF7FEFF 		bl	__aeabi_dmul
+ 434 0132 0346     		mov	r3, r0
+ 435 0134 0C46     		mov	r4, r1
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccWwbtNa.s 			page 10
 
 
- 436 0136 D7E90401 		ldrd	r0, [r7, #16]
- 437 013a FFF7FEFF 		bl	__aeabi_dcmple
- 438 013e 0346     		mov	r3, r0
- 439 0140 002B     		cmp	r3, #0
- 440 0142 02D0     		beq	.L38
-  78:..\Helper/helper.c ****       obstacles = 1;
- 441              		.loc 1 78 0
- 442 0144 0123     		movs	r3, #1
- 443 0146 7B64     		str	r3, [r7, #68]
- 444 0148 01E0     		b	.L30
- 445              	.L38:
-  79:..\Helper/helper.c ****     } else {
-  80:..\Helper/helper.c ****       obstacles = 0;
- 446              		.loc 1 80 0
- 447 014a 0023     		movs	r3, #0
- 448 014c 7B64     		str	r3, [r7, #68]
- 449              	.L30:
-  81:..\Helper/helper.c ****     }
-  82:..\Helper/helper.c **** 
-  83:..\Helper/helper.c ****   return obstacles;
- 450              		.loc 1 83 0
- 451 014e 7B6C     		ldr	r3, [r7, #68]
-  84:..\Helper/helper.c **** }...
- 452              		.loc 1 84 0
- 453 0150 1846     		mov	r0, r3
- 454 0152 4837     		adds	r7, r7, #72
- 455              		.cfi_def_cfa_offset 16
- 456 0154 BD46     		mov	sp, r7
- 457              		.cfi_def_cfa_register 13
- 458              		@ sp needed
- 459 0156 B0BD     		pop	{r4, r5, r7, pc}
- 460              	.L40:
- 461              		.align	3
- 462              	.L39:
- 463 0158 399D52A2 		.word	-1571644103
- 464 015c 46DF913F 		.word	1066524486
- 465 0160 B7600BB6 		.word	-1240768329
- 466 0164 00005E40 		.word	1079902208
- 467              		.cfi_endproc
- 468              	.LFE3:
- 469              		.size	detect_obstacle, .-detect_obstacle
- 470              		.text
- 471              	.Letext0:
- 472              		.section	.debug_info,"",%progbits
- 473              	.Ldebug_info0:
- 474 0000 7B020000 		.4byte	0x27b
- 475 0004 0400     		.2byte	0x4
- 476 0006 00000000 		.4byte	.Ldebug_abbrev0
- 477 000a 04       		.byte	0x4
- 478 000b 01       		.uleb128 0x1
- 479 000c 16000000 		.4byte	.LASF37
- 480 0010 0C       		.byte	0xc
- 481 0011 81020000 		.4byte	.LASF38
- 482 0015 BB010000 		.4byte	.LASF39
- 483 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 484 001d 00000000 		.4byte	0
- 485 0021 00000000 		.4byte	.Ldebug_line0
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccpjtdWh.s 			page 11
+ 436 0136 1846     		mov	r0, r3
+ 437 0138 2146     		mov	r1, r4
+ 438 013a D7E91423 		ldrd	r2, [r7, #80]
+ 439 013e FFF7FEFF 		bl	__aeabi_dadd
+ 440 0142 0346     		mov	r3, r0
+ 441 0144 0C46     		mov	r4, r1
+ 442 0146 1846     		mov	r0, r3
+ 443 0148 2146     		mov	r1, r4
+ 444 014a FFF7FEFF 		bl	calculate_angle_modulo
+ 445 014e C7E90401 		strd	r0, [r7, #16]
+  78:..\Helper/helper.c ****             max_distance = pos_x / cos(angle_modulo) - threshold;
+ 446              		.loc 1 78 0
+ 447 0152 D7E90401 		ldrd	r0, [r7, #16]
+ 448 0156 FFF7FEFF 		bl	cos
+ 449 015a 0346     		mov	r3, r0
+ 450 015c 0C46     		mov	r4, r1
+ 451 015e 1A46     		mov	r2, r3
+ 452 0160 2346     		mov	r3, r4
+ 453 0162 D7E91001 		ldrd	r0, [r7, #64]
+ 454 0166 FFF7FEFF 		bl	__aeabi_ddiv
+ 455 016a 0346     		mov	r3, r0
+ 456 016c 0C46     		mov	r4, r1
+ 457 016e 1846     		mov	r0, r3
+ 458 0170 2146     		mov	r1, r4
+ 459 0172 D7E91623 		ldrd	r2, [r7, #88]
+ 460 0176 FFF7FEFF 		bl	__aeabi_dsub
+ 461 017a 0346     		mov	r3, r0
+ 462 017c 0C46     		mov	r4, r1
+ 463 017e C7E90834 		strd	r3, [r7, #32]
+ 464              	.L29:
+  79:..\Helper/helper.c ****     }
+  80:..\Helper/helper.c ****     
+  81:..\Helper/helper.c ****     if (distance < max_distance) {
+ 465              		.loc 1 81 0
+ 466 0182 D7E90823 		ldrd	r2, [r7, #32]
+ 467 0186 D7E90001 		ldrd	r0, [r7]
+ 468 018a FFF7FEFF 		bl	__aeabi_dcmplt
+ 469 018e 0346     		mov	r3, r0
+ 470 0190 002B     		cmp	r3, #0
+ 471 0192 02D0     		beq	.L36
+  82:..\Helper/helper.c ****         obstacles = 1;
+ 472              		.loc 1 82 0
+ 473 0194 0123     		movs	r3, #1
+ 474 0196 FB62     		str	r3, [r7, #44]
+ 475 0198 01E0     		b	.L32
+ 476              	.L36:
+  83:..\Helper/helper.c ****     } else {
+  84:..\Helper/helper.c ****         obstacles = 0;
+ 477              		.loc 1 84 0
+ 478 019a 0023     		movs	r3, #0
+ 479 019c FB62     		str	r3, [r7, #44]
+ 480              	.L32:
+  85:..\Helper/helper.c ****     }
+  86:..\Helper/helper.c ****     
+  87:..\Helper/helper.c **** 
+  88:..\Helper/helper.c ****   return obstacles;
+ 481              		.loc 1 88 0
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccWwbtNa.s 			page 11
 
 
- 486 0025 02       		.uleb128 0x2
- 487 0026 04       		.byte	0x4
- 488 0027 07       		.byte	0x7
- 489 0028 8E010000 		.4byte	.LASF0
- 490 002c 03       		.uleb128 0x3
- 491 002d 04       		.byte	0x4
- 492 002e 05       		.byte	0x5
- 493 002f 696E7400 		.ascii	"int\000"
- 494 0033 02       		.uleb128 0x2
- 495 0034 08       		.byte	0x8
- 496 0035 05       		.byte	0x5
- 497 0036 27020000 		.4byte	.LASF1
- 498 003a 02       		.uleb128 0x2
- 499 003b 08       		.byte	0x8
- 500 003c 04       		.byte	0x4
- 501 003d 62020000 		.4byte	.LASF2
- 502 0041 02       		.uleb128 0x2
- 503 0042 01       		.byte	0x1
- 504 0043 06       		.byte	0x6
- 505 0044 75020000 		.4byte	.LASF3
- 506 0048 02       		.uleb128 0x2
- 507 0049 01       		.byte	0x1
- 508 004a 08       		.byte	0x8
- 509 004b 52010000 		.4byte	.LASF4
- 510 004f 02       		.uleb128 0x2
- 511 0050 02       		.byte	0x2
- 512 0051 05       		.byte	0x5
- 513 0052 3A020000 		.4byte	.LASF5
- 514 0056 02       		.uleb128 0x2
- 515 0057 02       		.byte	0x2
- 516 0058 07       		.byte	0x7
- 517 0059 39010000 		.4byte	.LASF6
- 518 005d 02       		.uleb128 0x2
- 519 005e 04       		.byte	0x4
- 520 005f 05       		.byte	0x5
- 521 0060 59020000 		.4byte	.LASF7
- 522 0064 02       		.uleb128 0x2
- 523 0065 04       		.byte	0x4
- 524 0066 07       		.byte	0x7
- 525 0067 1E010000 		.4byte	.LASF8
- 526 006b 02       		.uleb128 0x2
- 527 006c 08       		.byte	0x8
- 528 006d 07       		.byte	0x7
- 529 006e A4010000 		.4byte	.LASF9
- 530 0072 02       		.uleb128 0x2
- 531 0073 04       		.byte	0x4
- 532 0074 07       		.byte	0x7
- 533 0075 18020000 		.4byte	.LASF10
- 534 0079 02       		.uleb128 0x2
- 535 007a 01       		.byte	0x1
- 536 007b 08       		.byte	0x8
- 537 007c 35020000 		.4byte	.LASF11
- 538 0080 02       		.uleb128 0x2
- 539 0081 08       		.byte	0x8
- 540 0082 04       		.byte	0x4
- 541 0083 60010000 		.4byte	.LASF12
- 542 0087 02       		.uleb128 0x2
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccpjtdWh.s 			page 12
+ 482 019e FB6A     		ldr	r3, [r7, #44]
+  89:..\Helper/helper.c **** }...
+ 483              		.loc 1 89 0
+ 484 01a0 1846     		mov	r0, r3
+ 485 01a2 3037     		adds	r7, r7, #48
+ 486              		.cfi_def_cfa_offset 16
+ 487 01a4 BD46     		mov	sp, r7
+ 488              		.cfi_def_cfa_register 13
+ 489              		@ sp needed
+ 490 01a6 B0BD     		pop	{r4, r5, r7, pc}
+ 491              	.L38:
+ 492              		.align	3
+ 493              	.L37:
+ 494 01a8 399D52A2 		.word	-1571644103
+ 495 01ac 46DF913F 		.word	1066524486
+ 496 01b0 182D4454 		.word	1413754136
+ 497 01b4 FB21F93F 		.word	1073291771
+ 498 01b8 D221337F 		.word	2134057426
+ 499 01bc 7CD91240 		.word	1074977148
+ 500 01c0 00005E40 		.word	1079902208
+ 501              		.cfi_endproc
+ 502              	.LFE3:
+ 503              		.size	detect_obstacle, .-detect_obstacle
+ 504              		.text
+ 505              	.Letext0:
+ 506              		.section	.debug_info,"",%progbits
+ 507              	.Ldebug_info0:
+ 508 0000 5C020000 		.4byte	0x25c
+ 509 0004 0400     		.2byte	0x4
+ 510 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 511 000a 04       		.byte	0x4
+ 512 000b 01       		.uleb128 0x1
+ 513 000c 00000000 		.4byte	.LASF34
+ 514 0010 0C       		.byte	0xc
+ 515 0011 6E020000 		.4byte	.LASF35
+ 516 0015 B3010000 		.4byte	.LASF36
+ 517 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 518 001d 00000000 		.4byte	0
+ 519 0021 00000000 		.4byte	.Ldebug_line0
+ 520 0025 02       		.uleb128 0x2
+ 521 0026 04       		.byte	0x4
+ 522 0027 07       		.byte	0x7
+ 523 0028 86010000 		.4byte	.LASF0
+ 524 002c 03       		.uleb128 0x3
+ 525 002d 04       		.byte	0x4
+ 526 002e 05       		.byte	0x5
+ 527 002f 696E7400 		.ascii	"int\000"
+ 528 0033 02       		.uleb128 0x2
+ 529 0034 08       		.byte	0x8
+ 530 0035 05       		.byte	0x5
+ 531 0036 1E020000 		.4byte	.LASF1
+ 532 003a 02       		.uleb128 0x2
+ 533 003b 08       		.byte	0x8
+ 534 003c 04       		.byte	0x4
+ 535 003d 4F020000 		.4byte	.LASF2
+ 536 0041 02       		.uleb128 0x2
+ 537 0042 01       		.byte	0x1
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccWwbtNa.s 			page 12
 
 
- 543 0088 04       		.byte	0x4
- 544 0089 04       		.byte	0x4
- 545 008a E3000000 		.4byte	.LASF13
- 546 008e 04       		.uleb128 0x4
- 547 008f AB000000 		.4byte	.LASF14
- 548 0093 01       		.byte	0x1
- 549 0094 0C       		.byte	0xc
- 550 0095 3A000000 		.4byte	0x3a
- 551 0099 00000000 		.4byte	.LFB0
- 552 009d 58000000 		.4byte	.LFE0-.LFB0
- 553 00a1 01       		.uleb128 0x1
- 554 00a2 9C       		.byte	0x9c
- 555 00a3 B6000000 		.4byte	0xb6
- 556 00a7 05       		.uleb128 0x5
- 557 00a8 4C010000 		.4byte	.LASF16
- 558 00ac 01       		.byte	0x1
- 559 00ad 0C       		.byte	0xc
- 560 00ae 3A000000 		.4byte	0x3a
- 561 00b2 02       		.uleb128 0x2
- 562 00b3 91       		.byte	0x91
- 563 00b4 68       		.sleb128 -24
- 564 00b5 00       		.byte	0
- 565 00b6 04       		.uleb128 0x4
- 566 00b7 71010000 		.4byte	.LASF15
- 567 00bb 01       		.byte	0x1
- 568 00bc 10       		.byte	0x10
- 569 00bd 80000000 		.4byte	0x80
- 570 00c1 00000000 		.4byte	.LFB1
- 571 00c5 7C000000 		.4byte	.LFE1-.LFB1
- 572 00c9 01       		.uleb128 0x1
- 573 00ca 9C       		.byte	0x9c
- 574 00cb 16010000 		.4byte	0x116
- 575 00cf 05       		.uleb128 0x5
- 576 00d0 21020000 		.4byte	.LASF17
- 577 00d4 01       		.byte	0x1
- 578 00d5 10       		.byte	0x10
- 579 00d6 80000000 		.4byte	0x80
- 580 00da 02       		.uleb128 0x2
- 581 00db 91       		.byte	0x91
- 582 00dc 60       		.sleb128 -32
- 583 00dd 05       		.uleb128 0x5
- 584 00de C2000000 		.4byte	.LASF18
- 585 00e2 01       		.byte	0x1
- 586 00e3 10       		.byte	0x10
- 587 00e4 80000000 		.4byte	0x80
- 588 00e8 02       		.uleb128 0x2
- 589 00e9 91       		.byte	0x91
- 590 00ea 58       		.sleb128 -40
- 591 00eb 05       		.uleb128 0x5
- 592 00ec A4000000 		.4byte	.LASF19
- 593 00f0 01       		.byte	0x1
- 594 00f1 10       		.byte	0x10
- 595 00f2 80000000 		.4byte	0x80
- 596 00f6 02       		.uleb128 0x2
- 597 00f7 91       		.byte	0x91
- 598 00f8 00       		.sleb128 0
- 599 00f9 05       		.uleb128 0x5
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccpjtdWh.s 			page 13
+ 538 0043 06       		.byte	0x6
+ 539 0044 62020000 		.4byte	.LASF3
+ 540 0048 02       		.uleb128 0x2
+ 541 0049 01       		.byte	0x1
+ 542 004a 08       		.byte	0x8
+ 543 004b 3D010000 		.4byte	.LASF4
+ 544 004f 02       		.uleb128 0x2
+ 545 0050 02       		.byte	0x2
+ 546 0051 05       		.byte	0x5
+ 547 0052 31020000 		.4byte	.LASF5
+ 548 0056 02       		.uleb128 0x2
+ 549 0057 02       		.byte	0x2
+ 550 0058 07       		.byte	0x7
+ 551 0059 24010000 		.4byte	.LASF6
+ 552 005d 02       		.uleb128 0x2
+ 553 005e 04       		.byte	0x4
+ 554 005f 05       		.byte	0x5
+ 555 0060 46020000 		.4byte	.LASF7
+ 556 0064 02       		.uleb128 0x2
+ 557 0065 04       		.byte	0x4
+ 558 0066 07       		.byte	0x7
+ 559 0067 09010000 		.4byte	.LASF8
+ 560 006b 02       		.uleb128 0x2
+ 561 006c 08       		.byte	0x8
+ 562 006d 07       		.byte	0x7
+ 563 006e 9C010000 		.4byte	.LASF9
+ 564 0072 02       		.uleb128 0x2
+ 565 0073 04       		.byte	0x4
+ 566 0074 07       		.byte	0x7
+ 567 0075 0F020000 		.4byte	.LASF10
+ 568 0079 02       		.uleb128 0x2
+ 569 007a 01       		.byte	0x1
+ 570 007b 08       		.byte	0x8
+ 571 007c 2C020000 		.4byte	.LASF11
+ 572 0080 02       		.uleb128 0x2
+ 573 0081 08       		.byte	0x8
+ 574 0082 04       		.byte	0x4
+ 575 0083 4B010000 		.4byte	.LASF12
+ 576 0087 02       		.uleb128 0x2
+ 577 0088 04       		.byte	0x4
+ 578 0089 04       		.byte	0x4
+ 579 008a DA000000 		.4byte	.LASF13
+ 580 008e 04       		.uleb128 0x4
+ 581 008f 95000000 		.4byte	.LASF14
+ 582 0093 01       		.byte	0x1
+ 583 0094 0C       		.byte	0xc
+ 584 0095 3A000000 		.4byte	0x3a
+ 585 0099 00000000 		.4byte	.LFB0
+ 586 009d 58000000 		.4byte	.LFE0-.LFB0
+ 587 00a1 01       		.uleb128 0x1
+ 588 00a2 9C       		.byte	0x9c
+ 589 00a3 B6000000 		.4byte	0xb6
+ 590 00a7 05       		.uleb128 0x5
+ 591 00a8 37010000 		.4byte	.LASF16
+ 592 00ac 01       		.byte	0x1
+ 593 00ad 0C       		.byte	0xc
+ 594 00ae 3A000000 		.4byte	0x3a
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccWwbtNa.s 			page 13
 
 
- 600 00fa 6E020000 		.4byte	.LASF20
- 601 00fe 01       		.byte	0x1
- 602 00ff 10       		.byte	0x10
- 603 0100 80000000 		.4byte	0x80
- 604 0104 02       		.uleb128 0x2
- 605 0105 91       		.byte	0x91
- 606 0106 08       		.sleb128 8
- 607 0107 06       		.uleb128 0x6
- 608 0108 DA000000 		.4byte	.LASF23
- 609 010c 01       		.byte	0x1
- 610 010d 12       		.byte	0x12
- 611 010e 80000000 		.4byte	0x80
- 612 0112 02       		.uleb128 0x2
- 613 0113 91       		.byte	0x91
- 614 0114 68       		.sleb128 -24
- 615 0115 00       		.byte	0
- 616 0116 04       		.uleb128 0x4
- 617 0117 F3000000 		.4byte	.LASF21
- 618 011b 01       		.byte	0x1
- 619 011c 17       		.byte	0x17
- 620 011d 80000000 		.4byte	0x80
- 621 0121 00000000 		.4byte	.LFB2
- 622 0125 18010000 		.4byte	.LFE2-.LFB2
- 623 0129 01       		.uleb128 0x1
- 624 012a 9C       		.byte	0x9c
- 625 012b BD010000 		.4byte	0x1bd
- 626 012f 05       		.uleb128 0x5
- 627 0130 21020000 		.4byte	.LASF17
- 628 0134 01       		.byte	0x1
- 629 0135 17       		.byte	0x17
- 630 0136 80000000 		.4byte	0x80
- 631 013a 02       		.uleb128 0x2
- 632 013b 91       		.byte	0x91
- 633 013c 40       		.sleb128 -64
- 634 013d 05       		.uleb128 0x5
- 635 013e C2000000 		.4byte	.LASF18
- 636 0142 01       		.byte	0x1
- 637 0143 17       		.byte	0x17
- 638 0144 80000000 		.4byte	0x80
- 639 0148 03       		.uleb128 0x3
- 640 0149 91       		.byte	0x91
- 641 014a B87F     		.sleb128 -72
- 642 014c 05       		.uleb128 0x5
- 643 014d D2000000 		.4byte	.LASF22
- 644 0151 01       		.byte	0x1
- 645 0152 17       		.byte	0x17
- 646 0153 80000000 		.4byte	0x80
- 647 0157 02       		.uleb128 0x2
- 648 0158 91       		.byte	0x91
- 649 0159 00       		.sleb128 0
- 650 015a 05       		.uleb128 0x5
- 651 015b A4000000 		.4byte	.LASF19
- 652 015f 01       		.byte	0x1
- 653 0160 17       		.byte	0x17
- 654 0161 80000000 		.4byte	0x80
- 655 0165 02       		.uleb128 0x2
- 656 0166 91       		.byte	0x91
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccpjtdWh.s 			page 14
+ 595 00b2 02       		.uleb128 0x2
+ 596 00b3 91       		.byte	0x91
+ 597 00b4 68       		.sleb128 -24
+ 598 00b5 00       		.byte	0
+ 599 00b6 04       		.uleb128 0x4
+ 600 00b7 69010000 		.4byte	.LASF15
+ 601 00bb 01       		.byte	0x1
+ 602 00bc 10       		.byte	0x10
+ 603 00bd 80000000 		.4byte	0x80
+ 604 00c1 00000000 		.4byte	.LFB1
+ 605 00c5 7C000000 		.4byte	.LFE1-.LFB1
+ 606 00c9 01       		.uleb128 0x1
+ 607 00ca 9C       		.byte	0x9c
+ 608 00cb 16010000 		.4byte	0x116
+ 609 00cf 05       		.uleb128 0x5
+ 610 00d0 18020000 		.4byte	.LASF17
+ 611 00d4 01       		.byte	0x1
+ 612 00d5 10       		.byte	0x10
+ 613 00d6 80000000 		.4byte	0x80
+ 614 00da 02       		.uleb128 0x2
+ 615 00db 91       		.byte	0x91
+ 616 00dc 60       		.sleb128 -32
+ 617 00dd 05       		.uleb128 0x5
+ 618 00de AC000000 		.4byte	.LASF18
+ 619 00e2 01       		.byte	0x1
+ 620 00e3 10       		.byte	0x10
+ 621 00e4 80000000 		.4byte	0x80
+ 622 00e8 02       		.uleb128 0x2
+ 623 00e9 91       		.byte	0x91
+ 624 00ea 58       		.sleb128 -40
+ 625 00eb 05       		.uleb128 0x5
+ 626 00ec 8E000000 		.4byte	.LASF19
+ 627 00f0 01       		.byte	0x1
+ 628 00f1 10       		.byte	0x10
+ 629 00f2 80000000 		.4byte	0x80
+ 630 00f6 02       		.uleb128 0x2
+ 631 00f7 91       		.byte	0x91
+ 632 00f8 00       		.sleb128 0
+ 633 00f9 05       		.uleb128 0x5
+ 634 00fa 5B020000 		.4byte	.LASF20
+ 635 00fe 01       		.byte	0x1
+ 636 00ff 10       		.byte	0x10
+ 637 0100 80000000 		.4byte	0x80
+ 638 0104 02       		.uleb128 0x2
+ 639 0105 91       		.byte	0x91
+ 640 0106 08       		.sleb128 8
+ 641 0107 06       		.uleb128 0x6
+ 642 0108 C4000000 		.4byte	.LASF23
+ 643 010c 01       		.byte	0x1
+ 644 010d 12       		.byte	0x12
+ 645 010e 80000000 		.4byte	0x80
+ 646 0112 02       		.uleb128 0x2
+ 647 0113 91       		.byte	0x91
+ 648 0114 68       		.sleb128 -24
+ 649 0115 00       		.byte	0
+ 650 0116 04       		.uleb128 0x4
+ 651 0117 EA000000 		.4byte	.LASF21
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccWwbtNa.s 			page 14
 
 
- 657 0167 08       		.sleb128 8
- 658 0168 05       		.uleb128 0x5
- 659 0169 6E020000 		.4byte	.LASF20
- 660 016d 01       		.byte	0x1
- 661 016e 17       		.byte	0x17
- 662 016f 80000000 		.4byte	0x80
- 663 0173 02       		.uleb128 0x2
- 664 0174 91       		.byte	0x91
- 665 0175 10       		.sleb128 16
- 666 0176 06       		.uleb128 0x6
- 667 0177 44020000 		.4byte	.LASF24
- 668 017b 01       		.byte	0x1
- 669 017c 19       		.byte	0x19
- 670 017d 80000000 		.4byte	0x80
- 671 0181 02       		.uleb128 0x2
- 672 0182 91       		.byte	0x91
- 673 0183 60       		.sleb128 -32
- 674 0184 06       		.uleb128 0x6
- 675 0185 9B010000 		.4byte	.LASF25
- 676 0189 01       		.byte	0x1
- 677 018a 1C       		.byte	0x1c
- 678 018b 80000000 		.4byte	0x80
- 679 018f 02       		.uleb128 0x2
- 680 0190 91       		.byte	0x91
- 681 0191 68       		.sleb128 -24
- 682 0192 06       		.uleb128 0x6
- 683 0193 67010000 		.4byte	.LASF26
- 684 0197 01       		.byte	0x1
- 685 0198 1D       		.byte	0x1d
- 686 0199 80000000 		.4byte	0x80
- 687 019d 02       		.uleb128 0x2
- 688 019e 91       		.byte	0x91
- 689 019f 58       		.sleb128 -40
- 690 01a0 06       		.uleb128 0x6
- 691 01a1 30010000 		.4byte	.LASF27
- 692 01a5 01       		.byte	0x1
- 693 01a6 1E       		.byte	0x1e
- 694 01a7 80000000 		.4byte	0x80
- 695 01ab 02       		.uleb128 0x2
- 696 01ac 91       		.byte	0x91
- 697 01ad 50       		.sleb128 -48
- 698 01ae 06       		.uleb128 0x6
- 699 01af C8000000 		.4byte	.LASF28
- 700 01b3 01       		.byte	0x1
- 701 01b4 1F       		.byte	0x1f
- 702 01b5 80000000 		.4byte	0x80
- 703 01b9 02       		.uleb128 0x2
- 704 01ba 91       		.byte	0x91
- 705 01bb 48       		.sleb128 -56
- 706 01bc 00       		.byte	0
- 707 01bd 07       		.uleb128 0x7
- 708 01be 08020000 		.4byte	.LASF40
- 709 01c2 01       		.byte	0x1
- 710 01c3 32       		.byte	0x32
- 711 01c4 2C000000 		.4byte	0x2c
- 712 01c8 00000000 		.4byte	.LFB3
- 713 01cc 68010000 		.4byte	.LFE3-.LFB3
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccpjtdWh.s 			page 15
+ 652 011b 01       		.byte	0x1
+ 653 011c 17       		.byte	0x17
+ 654 011d 80000000 		.4byte	0x80
+ 655 0121 00000000 		.4byte	.LFB2
+ 656 0125 18010000 		.4byte	.LFE2-.LFB2
+ 657 0129 01       		.uleb128 0x1
+ 658 012a 9C       		.byte	0x9c
+ 659 012b BD010000 		.4byte	0x1bd
+ 660 012f 05       		.uleb128 0x5
+ 661 0130 18020000 		.4byte	.LASF17
+ 662 0134 01       		.byte	0x1
+ 663 0135 17       		.byte	0x17
+ 664 0136 80000000 		.4byte	0x80
+ 665 013a 02       		.uleb128 0x2
+ 666 013b 91       		.byte	0x91
+ 667 013c 40       		.sleb128 -64
+ 668 013d 05       		.uleb128 0x5
+ 669 013e AC000000 		.4byte	.LASF18
+ 670 0142 01       		.byte	0x1
+ 671 0143 17       		.byte	0x17
+ 672 0144 80000000 		.4byte	0x80
+ 673 0148 03       		.uleb128 0x3
+ 674 0149 91       		.byte	0x91
+ 675 014a B87F     		.sleb128 -72
+ 676 014c 05       		.uleb128 0x5
+ 677 014d BC000000 		.4byte	.LASF22
+ 678 0151 01       		.byte	0x1
+ 679 0152 17       		.byte	0x17
+ 680 0153 80000000 		.4byte	0x80
+ 681 0157 02       		.uleb128 0x2
+ 682 0158 91       		.byte	0x91
+ 683 0159 00       		.sleb128 0
+ 684 015a 05       		.uleb128 0x5
+ 685 015b 8E000000 		.4byte	.LASF19
+ 686 015f 01       		.byte	0x1
+ 687 0160 17       		.byte	0x17
+ 688 0161 80000000 		.4byte	0x80
+ 689 0165 02       		.uleb128 0x2
+ 690 0166 91       		.byte	0x91
+ 691 0167 08       		.sleb128 8
+ 692 0168 05       		.uleb128 0x5
+ 693 0169 5B020000 		.4byte	.LASF20
+ 694 016d 01       		.byte	0x1
+ 695 016e 17       		.byte	0x17
+ 696 016f 80000000 		.4byte	0x80
+ 697 0173 02       		.uleb128 0x2
+ 698 0174 91       		.byte	0x91
+ 699 0175 10       		.sleb128 16
+ 700 0176 06       		.uleb128 0x6
+ 701 0177 3B020000 		.4byte	.LASF24
+ 702 017b 01       		.byte	0x1
+ 703 017c 19       		.byte	0x19
+ 704 017d 80000000 		.4byte	0x80
+ 705 0181 02       		.uleb128 0x2
+ 706 0182 91       		.byte	0x91
+ 707 0183 60       		.sleb128 -32
+ 708 0184 06       		.uleb128 0x6
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccWwbtNa.s 			page 15
 
 
- 714 01d0 01       		.uleb128 0x1
- 715 01d1 9C       		.byte	0x9c
- 716 01d2 05       		.uleb128 0x5
- 717 01d3 0B000000 		.4byte	.LASF29
- 718 01d7 01       		.byte	0x1
- 719 01d8 32       		.byte	0x32
- 720 01d9 80000000 		.4byte	0x80
- 721 01dd 03       		.uleb128 0x3
- 722 01de 91       		.byte	0x91
- 723 01df B07F     		.sleb128 -80
- 724 01e1 05       		.uleb128 0x5
- 725 01e2 94020000 		.4byte	.LASF30
- 726 01e6 01       		.byte	0x1
- 727 01e7 32       		.byte	0x32
- 728 01e8 80000000 		.4byte	0x80
- 729 01ec 03       		.uleb128 0x3
- 730 01ed 91       		.byte	0x91
- 731 01ee A87F     		.sleb128 -88
- 732 01f0 05       		.uleb128 0x5
- 733 01f1 21020000 		.4byte	.LASF17
- 734 01f5 01       		.byte	0x1
- 735 01f6 32       		.byte	0x32
- 736 01f7 80000000 		.4byte	0x80
- 737 01fb 02       		.uleb128 0x2
- 738 01fc 91       		.byte	0x91
- 739 01fd 00       		.sleb128 0
- 740 01fe 05       		.uleb128 0x5
- 741 01ff C2000000 		.4byte	.LASF18
- 742 0203 01       		.byte	0x1
- 743 0204 32       		.byte	0x32
- 744 0205 80000000 		.4byte	0x80
- 745 0209 02       		.uleb128 0x2
- 746 020a 91       		.byte	0x91
- 747 020b 08       		.sleb128 8
- 748 020c 05       		.uleb128 0x5
- 749 020d 4F020000 		.4byte	.LASF31
- 750 0211 01       		.byte	0x1
- 751 0212 32       		.byte	0x32
- 752 0213 80000000 		.4byte	0x80
- 753 0217 02       		.uleb128 0x2
- 754 0218 91       		.byte	0x91
- 755 0219 10       		.sleb128 16
- 756 021a 06       		.uleb128 0x6
- 757 021b E9000000 		.4byte	.LASF32
- 758 021f 01       		.byte	0x1
- 759 0220 34       		.byte	0x34
- 760 0221 2C000000 		.4byte	0x2c
- 761 0225 02       		.uleb128 0x2
- 762 0226 91       		.byte	0x91
- 763 0227 6C       		.sleb128 -20
- 764 0228 06       		.uleb128 0x6
- 765 0229 4C010000 		.4byte	.LASF16
- 766 022d 01       		.byte	0x1
- 767 022e 35       		.byte	0x35
- 768 022f 80000000 		.4byte	0x80
- 769 0233 02       		.uleb128 0x2
- 770 0234 91       		.byte	0x91
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccpjtdWh.s 			page 16
+ 709 0185 93010000 		.4byte	.LASF25
+ 710 0189 01       		.byte	0x1
+ 711 018a 1C       		.byte	0x1c
+ 712 018b 80000000 		.4byte	0x80
+ 713 018f 02       		.uleb128 0x2
+ 714 0190 91       		.byte	0x91
+ 715 0191 68       		.sleb128 -24
+ 716 0192 06       		.uleb128 0x6
+ 717 0193 52010000 		.4byte	.LASF26
+ 718 0197 01       		.byte	0x1
+ 719 0198 1D       		.byte	0x1d
+ 720 0199 80000000 		.4byte	0x80
+ 721 019d 02       		.uleb128 0x2
+ 722 019e 91       		.byte	0x91
+ 723 019f 58       		.sleb128 -40
+ 724 01a0 06       		.uleb128 0x6
+ 725 01a1 1B010000 		.4byte	.LASF27
+ 726 01a5 01       		.byte	0x1
+ 727 01a6 1E       		.byte	0x1e
+ 728 01a7 80000000 		.4byte	0x80
+ 729 01ab 02       		.uleb128 0x2
+ 730 01ac 91       		.byte	0x91
+ 731 01ad 50       		.sleb128 -48
+ 732 01ae 06       		.uleb128 0x6
+ 733 01af B2000000 		.4byte	.LASF28
+ 734 01b3 01       		.byte	0x1
+ 735 01b4 1F       		.byte	0x1f
+ 736 01b5 80000000 		.4byte	0x80
+ 737 01b9 02       		.uleb128 0x2
+ 738 01ba 91       		.byte	0x91
+ 739 01bb 48       		.sleb128 -56
+ 740 01bc 00       		.byte	0
+ 741 01bd 07       		.uleb128 0x7
+ 742 01be FF010000 		.4byte	.LASF37
+ 743 01c2 01       		.byte	0x1
+ 744 01c3 32       		.byte	0x32
+ 745 01c4 2C000000 		.4byte	0x2c
+ 746 01c8 00000000 		.4byte	.LFB3
+ 747 01cc C4010000 		.4byte	.LFE3-.LFB3
+ 748 01d0 01       		.uleb128 0x1
+ 749 01d1 9C       		.byte	0x9c
+ 750 01d2 05       		.uleb128 0x5
+ 751 01d3 37010000 		.4byte	.LASF16
+ 752 01d7 01       		.byte	0x1
+ 753 01d8 32       		.byte	0x32
+ 754 01d9 80000000 		.4byte	0x80
+ 755 01dd 02       		.uleb128 0x2
+ 756 01de 91       		.byte	0x91
+ 757 01df 48       		.sleb128 -56
+ 758 01e0 05       		.uleb128 0x5
+ 759 01e1 C4000000 		.4byte	.LASF23
+ 760 01e5 01       		.byte	0x1
+ 761 01e6 32       		.byte	0x32
+ 762 01e7 80000000 		.4byte	0x80
+ 763 01eb 02       		.uleb128 0x2
+ 764 01ec 91       		.byte	0x91
+ 765 01ed 40       		.sleb128 -64
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccWwbtNa.s 			page 16
 
 
- 771 0235 48       		.sleb128 -56
- 772 0236 06       		.uleb128 0x6
- 773 0237 08010000 		.4byte	.LASF33
- 774 023b 01       		.byte	0x1
- 775 023c 35       		.byte	0x35
- 776 023d 80000000 		.4byte	0x80
- 777 0241 02       		.uleb128 0x2
- 778 0242 91       		.byte	0x91
- 779 0243 40       		.sleb128 -64
- 780 0244 06       		.uleb128 0x6
- 781 0245 13010000 		.4byte	.LASF34
- 782 0249 01       		.byte	0x1
- 783 024a 35       		.byte	0x35
- 784 024b 80000000 		.4byte	0x80
- 785 024f 03       		.uleb128 0x3
- 786 0250 91       		.byte	0x91
- 787 0251 B87F     		.sleb128 -72
- 788 0253 06       		.uleb128 0x6
- 789 0254 00000000 		.4byte	.LASF35
- 790 0258 01       		.byte	0x1
- 791 0259 35       		.byte	0x35
- 792 025a 80000000 		.4byte	0x80
- 793 025e 02       		.uleb128 0x2
- 794 025f 91       		.byte	0x91
- 795 0260 60       		.sleb128 -32
- 796 0261 06       		.uleb128 0x6
- 797 0262 FD010000 		.4byte	.LASF36
- 798 0266 01       		.byte	0x1
- 799 0267 35       		.byte	0x35
- 800 0268 80000000 		.4byte	0x80
- 801 026c 02       		.uleb128 0x2
- 802 026d 91       		.byte	0x91
- 803 026e 58       		.sleb128 -40
- 804 026f 08       		.uleb128 0x8
- 805 0270 72616400 		.ascii	"rad\000"
- 806 0274 01       		.byte	0x1
- 807 0275 36       		.byte	0x36
- 808 0276 80000000 		.4byte	0x80
- 809 027a 02       		.uleb128 0x2
- 810 027b 91       		.byte	0x91
- 811 027c 50       		.sleb128 -48
- 812 027d 00       		.byte	0
- 813 027e 00       		.byte	0
- 814              		.section	.debug_abbrev,"",%progbits
- 815              	.Ldebug_abbrev0:
- 816 0000 01       		.uleb128 0x1
- 817 0001 11       		.uleb128 0x11
- 818 0002 01       		.byte	0x1
- 819 0003 25       		.uleb128 0x25
- 820 0004 0E       		.uleb128 0xe
- 821 0005 13       		.uleb128 0x13
- 822 0006 0B       		.uleb128 0xb
- 823 0007 03       		.uleb128 0x3
- 824 0008 0E       		.uleb128 0xe
- 825 0009 1B       		.uleb128 0x1b
- 826 000a 0E       		.uleb128 0xe
- 827 000b 55       		.uleb128 0x55
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccpjtdWh.s 			page 17
+ 766 01ee 05       		.uleb128 0x5
+ 767 01ef 18020000 		.4byte	.LASF17
+ 768 01f3 01       		.byte	0x1
+ 769 01f4 32       		.byte	0x32
+ 770 01f5 80000000 		.4byte	0x80
+ 771 01f9 02       		.uleb128 0x2
+ 772 01fa 91       		.byte	0x91
+ 773 01fb 00       		.sleb128 0
+ 774 01fc 05       		.uleb128 0x5
+ 775 01fd AC000000 		.4byte	.LASF18
+ 776 0201 01       		.byte	0x1
+ 777 0202 32       		.byte	0x32
+ 778 0203 80000000 		.4byte	0x80
+ 779 0207 02       		.uleb128 0x2
+ 780 0208 91       		.byte	0x91
+ 781 0209 08       		.sleb128 8
+ 782 020a 05       		.uleb128 0x5
+ 783 020b F5010000 		.4byte	.LASF29
+ 784 020f 01       		.byte	0x1
+ 785 0210 32       		.byte	0x32
+ 786 0211 80000000 		.4byte	0x80
+ 787 0215 02       		.uleb128 0x2
+ 788 0216 91       		.byte	0x91
+ 789 0217 10       		.sleb128 16
+ 790 0218 05       		.uleb128 0x5
+ 791 0219 FF000000 		.4byte	.LASF30
+ 792 021d 01       		.byte	0x1
+ 793 021e 32       		.byte	0x32
+ 794 021f 80000000 		.4byte	0x80
+ 795 0223 02       		.uleb128 0x2
+ 796 0224 91       		.byte	0x91
+ 797 0225 18       		.sleb128 24
+ 798 0226 06       		.uleb128 0x6
+ 799 0227 E0000000 		.4byte	.LASF31
+ 800 022b 01       		.byte	0x1
+ 801 022c 34       		.byte	0x34
+ 802 022d 2C000000 		.4byte	0x2c
+ 803 0231 02       		.uleb128 0x2
+ 804 0232 91       		.byte	0x91
+ 805 0233 6C       		.sleb128 -20
+ 806 0234 08       		.uleb128 0x8
+ 807 0235 72616400 		.ascii	"rad\000"
+ 808 0239 01       		.byte	0x1
+ 809 023a 35       		.byte	0x35
+ 810 023b 80000000 		.4byte	0x80
+ 811 023f 02       		.uleb128 0x2
+ 812 0240 91       		.byte	0x91
+ 813 0241 58       		.sleb128 -40
+ 814 0242 06       		.uleb128 0x6
+ 815 0243 5C010000 		.4byte	.LASF32
+ 816 0247 01       		.byte	0x1
+ 817 0248 38       		.byte	0x38
+ 818 0249 80000000 		.4byte	0x80
+ 819 024d 02       		.uleb128 0x2
+ 820 024e 91       		.byte	0x91
+ 821 024f 60       		.sleb128 -32
+ 822 0250 06       		.uleb128 0x6
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccWwbtNa.s 			page 17
 
 
- 828 000c 17       		.uleb128 0x17
- 829 000d 11       		.uleb128 0x11
- 830 000e 01       		.uleb128 0x1
- 831 000f 10       		.uleb128 0x10
- 832 0010 17       		.uleb128 0x17
- 833 0011 00       		.byte	0
- 834 0012 00       		.byte	0
- 835 0013 02       		.uleb128 0x2
- 836 0014 24       		.uleb128 0x24
- 837 0015 00       		.byte	0
- 838 0016 0B       		.uleb128 0xb
- 839 0017 0B       		.uleb128 0xb
- 840 0018 3E       		.uleb128 0x3e
- 841 0019 0B       		.uleb128 0xb
- 842 001a 03       		.uleb128 0x3
- 843 001b 0E       		.uleb128 0xe
- 844 001c 00       		.byte	0
- 845 001d 00       		.byte	0
- 846 001e 03       		.uleb128 0x3
- 847 001f 24       		.uleb128 0x24
- 848 0020 00       		.byte	0
- 849 0021 0B       		.uleb128 0xb
- 850 0022 0B       		.uleb128 0xb
- 851 0023 3E       		.uleb128 0x3e
- 852 0024 0B       		.uleb128 0xb
- 853 0025 03       		.uleb128 0x3
- 854 0026 08       		.uleb128 0x8
- 855 0027 00       		.byte	0
- 856 0028 00       		.byte	0
- 857 0029 04       		.uleb128 0x4
- 858 002a 2E       		.uleb128 0x2e
- 859 002b 01       		.byte	0x1
- 860 002c 3F       		.uleb128 0x3f
- 861 002d 19       		.uleb128 0x19
- 862 002e 03       		.uleb128 0x3
- 863 002f 0E       		.uleb128 0xe
- 864 0030 3A       		.uleb128 0x3a
- 865 0031 0B       		.uleb128 0xb
- 866 0032 3B       		.uleb128 0x3b
- 867 0033 0B       		.uleb128 0xb
- 868 0034 27       		.uleb128 0x27
- 869 0035 19       		.uleb128 0x19
- 870 0036 49       		.uleb128 0x49
- 871 0037 13       		.uleb128 0x13
- 872 0038 11       		.uleb128 0x11
- 873 0039 01       		.uleb128 0x1
- 874 003a 12       		.uleb128 0x12
- 875 003b 06       		.uleb128 0x6
- 876 003c 40       		.uleb128 0x40
- 877 003d 18       		.uleb128 0x18
- 878 003e 9642     		.uleb128 0x2116
- 879 0040 19       		.uleb128 0x19
- 880 0041 01       		.uleb128 0x1
- 881 0042 13       		.uleb128 0x13
- 882 0043 00       		.byte	0
- 883 0044 00       		.byte	0
- 884 0045 05       		.uleb128 0x5
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccpjtdWh.s 			page 18
+ 823 0251 CD000000 		.4byte	.LASF33
+ 824 0255 01       		.byte	0x1
+ 825 0256 3B       		.byte	0x3b
+ 826 0257 80000000 		.4byte	0x80
+ 827 025b 02       		.uleb128 0x2
+ 828 025c 91       		.byte	0x91
+ 829 025d 50       		.sleb128 -48
+ 830 025e 00       		.byte	0
+ 831 025f 00       		.byte	0
+ 832              		.section	.debug_abbrev,"",%progbits
+ 833              	.Ldebug_abbrev0:
+ 834 0000 01       		.uleb128 0x1
+ 835 0001 11       		.uleb128 0x11
+ 836 0002 01       		.byte	0x1
+ 837 0003 25       		.uleb128 0x25
+ 838 0004 0E       		.uleb128 0xe
+ 839 0005 13       		.uleb128 0x13
+ 840 0006 0B       		.uleb128 0xb
+ 841 0007 03       		.uleb128 0x3
+ 842 0008 0E       		.uleb128 0xe
+ 843 0009 1B       		.uleb128 0x1b
+ 844 000a 0E       		.uleb128 0xe
+ 845 000b 55       		.uleb128 0x55
+ 846 000c 17       		.uleb128 0x17
+ 847 000d 11       		.uleb128 0x11
+ 848 000e 01       		.uleb128 0x1
+ 849 000f 10       		.uleb128 0x10
+ 850 0010 17       		.uleb128 0x17
+ 851 0011 00       		.byte	0
+ 852 0012 00       		.byte	0
+ 853 0013 02       		.uleb128 0x2
+ 854 0014 24       		.uleb128 0x24
+ 855 0015 00       		.byte	0
+ 856 0016 0B       		.uleb128 0xb
+ 857 0017 0B       		.uleb128 0xb
+ 858 0018 3E       		.uleb128 0x3e
+ 859 0019 0B       		.uleb128 0xb
+ 860 001a 03       		.uleb128 0x3
+ 861 001b 0E       		.uleb128 0xe
+ 862 001c 00       		.byte	0
+ 863 001d 00       		.byte	0
+ 864 001e 03       		.uleb128 0x3
+ 865 001f 24       		.uleb128 0x24
+ 866 0020 00       		.byte	0
+ 867 0021 0B       		.uleb128 0xb
+ 868 0022 0B       		.uleb128 0xb
+ 869 0023 3E       		.uleb128 0x3e
+ 870 0024 0B       		.uleb128 0xb
+ 871 0025 03       		.uleb128 0x3
+ 872 0026 08       		.uleb128 0x8
+ 873 0027 00       		.byte	0
+ 874 0028 00       		.byte	0
+ 875 0029 04       		.uleb128 0x4
+ 876 002a 2E       		.uleb128 0x2e
+ 877 002b 01       		.byte	0x1
+ 878 002c 3F       		.uleb128 0x3f
+ 879 002d 19       		.uleb128 0x19
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccWwbtNa.s 			page 18
 
 
- 885 0046 05       		.uleb128 0x5
- 886 0047 00       		.byte	0
- 887 0048 03       		.uleb128 0x3
- 888 0049 0E       		.uleb128 0xe
- 889 004a 3A       		.uleb128 0x3a
- 890 004b 0B       		.uleb128 0xb
- 891 004c 3B       		.uleb128 0x3b
- 892 004d 0B       		.uleb128 0xb
- 893 004e 49       		.uleb128 0x49
- 894 004f 13       		.uleb128 0x13
- 895 0050 02       		.uleb128 0x2
- 896 0051 18       		.uleb128 0x18
- 897 0052 00       		.byte	0
- 898 0053 00       		.byte	0
- 899 0054 06       		.uleb128 0x6
- 900 0055 34       		.uleb128 0x34
- 901 0056 00       		.byte	0
- 902 0057 03       		.uleb128 0x3
- 903 0058 0E       		.uleb128 0xe
- 904 0059 3A       		.uleb128 0x3a
- 905 005a 0B       		.uleb128 0xb
- 906 005b 3B       		.uleb128 0x3b
- 907 005c 0B       		.uleb128 0xb
- 908 005d 49       		.uleb128 0x49
- 909 005e 13       		.uleb128 0x13
- 910 005f 02       		.uleb128 0x2
- 911 0060 18       		.uleb128 0x18
- 912 0061 00       		.byte	0
- 913 0062 00       		.byte	0
- 914 0063 07       		.uleb128 0x7
- 915 0064 2E       		.uleb128 0x2e
- 916 0065 01       		.byte	0x1
- 917 0066 3F       		.uleb128 0x3f
- 918 0067 19       		.uleb128 0x19
- 919 0068 03       		.uleb128 0x3
- 920 0069 0E       		.uleb128 0xe
- 921 006a 3A       		.uleb128 0x3a
- 922 006b 0B       		.uleb128 0xb
- 923 006c 3B       		.uleb128 0x3b
- 924 006d 0B       		.uleb128 0xb
- 925 006e 27       		.uleb128 0x27
- 926 006f 19       		.uleb128 0x19
- 927 0070 49       		.uleb128 0x49
- 928 0071 13       		.uleb128 0x13
- 929 0072 11       		.uleb128 0x11
- 930 0073 01       		.uleb128 0x1
- 931 0074 12       		.uleb128 0x12
- 932 0075 06       		.uleb128 0x6
- 933 0076 40       		.uleb128 0x40
- 934 0077 18       		.uleb128 0x18
- 935 0078 9642     		.uleb128 0x2116
- 936 007a 19       		.uleb128 0x19
- 937 007b 00       		.byte	0
- 938 007c 00       		.byte	0
- 939 007d 08       		.uleb128 0x8
- 940 007e 34       		.uleb128 0x34
- 941 007f 00       		.byte	0
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccpjtdWh.s 			page 19
+ 880 002e 03       		.uleb128 0x3
+ 881 002f 0E       		.uleb128 0xe
+ 882 0030 3A       		.uleb128 0x3a
+ 883 0031 0B       		.uleb128 0xb
+ 884 0032 3B       		.uleb128 0x3b
+ 885 0033 0B       		.uleb128 0xb
+ 886 0034 27       		.uleb128 0x27
+ 887 0035 19       		.uleb128 0x19
+ 888 0036 49       		.uleb128 0x49
+ 889 0037 13       		.uleb128 0x13
+ 890 0038 11       		.uleb128 0x11
+ 891 0039 01       		.uleb128 0x1
+ 892 003a 12       		.uleb128 0x12
+ 893 003b 06       		.uleb128 0x6
+ 894 003c 40       		.uleb128 0x40
+ 895 003d 18       		.uleb128 0x18
+ 896 003e 9642     		.uleb128 0x2116
+ 897 0040 19       		.uleb128 0x19
+ 898 0041 01       		.uleb128 0x1
+ 899 0042 13       		.uleb128 0x13
+ 900 0043 00       		.byte	0
+ 901 0044 00       		.byte	0
+ 902 0045 05       		.uleb128 0x5
+ 903 0046 05       		.uleb128 0x5
+ 904 0047 00       		.byte	0
+ 905 0048 03       		.uleb128 0x3
+ 906 0049 0E       		.uleb128 0xe
+ 907 004a 3A       		.uleb128 0x3a
+ 908 004b 0B       		.uleb128 0xb
+ 909 004c 3B       		.uleb128 0x3b
+ 910 004d 0B       		.uleb128 0xb
+ 911 004e 49       		.uleb128 0x49
+ 912 004f 13       		.uleb128 0x13
+ 913 0050 02       		.uleb128 0x2
+ 914 0051 18       		.uleb128 0x18
+ 915 0052 00       		.byte	0
+ 916 0053 00       		.byte	0
+ 917 0054 06       		.uleb128 0x6
+ 918 0055 34       		.uleb128 0x34
+ 919 0056 00       		.byte	0
+ 920 0057 03       		.uleb128 0x3
+ 921 0058 0E       		.uleb128 0xe
+ 922 0059 3A       		.uleb128 0x3a
+ 923 005a 0B       		.uleb128 0xb
+ 924 005b 3B       		.uleb128 0x3b
+ 925 005c 0B       		.uleb128 0xb
+ 926 005d 49       		.uleb128 0x49
+ 927 005e 13       		.uleb128 0x13
+ 928 005f 02       		.uleb128 0x2
+ 929 0060 18       		.uleb128 0x18
+ 930 0061 00       		.byte	0
+ 931 0062 00       		.byte	0
+ 932 0063 07       		.uleb128 0x7
+ 933 0064 2E       		.uleb128 0x2e
+ 934 0065 01       		.byte	0x1
+ 935 0066 3F       		.uleb128 0x3f
+ 936 0067 19       		.uleb128 0x19
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccWwbtNa.s 			page 19
 
 
- 942 0080 03       		.uleb128 0x3
- 943 0081 08       		.uleb128 0x8
- 944 0082 3A       		.uleb128 0x3a
- 945 0083 0B       		.uleb128 0xb
- 946 0084 3B       		.uleb128 0x3b
- 947 0085 0B       		.uleb128 0xb
- 948 0086 49       		.uleb128 0x49
- 949 0087 13       		.uleb128 0x13
- 950 0088 02       		.uleb128 0x2
- 951 0089 18       		.uleb128 0x18
- 952 008a 00       		.byte	0
- 953 008b 00       		.byte	0
- 954 008c 00       		.byte	0
- 955              		.section	.debug_aranges,"",%progbits
- 956 0000 34000000 		.4byte	0x34
- 957 0004 0200     		.2byte	0x2
- 958 0006 00000000 		.4byte	.Ldebug_info0
- 959 000a 04       		.byte	0x4
- 960 000b 00       		.byte	0
- 961 000c 0000     		.2byte	0
- 962 000e 0000     		.2byte	0
- 963 0010 00000000 		.4byte	.LFB0
- 964 0014 58000000 		.4byte	.LFE0-.LFB0
- 965 0018 00000000 		.4byte	.LFB1
- 966 001c 7C000000 		.4byte	.LFE1-.LFB1
- 967 0020 00000000 		.4byte	.LFB2
- 968 0024 18010000 		.4byte	.LFE2-.LFB2
- 969 0028 00000000 		.4byte	.LFB3
- 970 002c 68010000 		.4byte	.LFE3-.LFB3
- 971 0030 00000000 		.4byte	0
- 972 0034 00000000 		.4byte	0
- 973              		.section	.debug_ranges,"",%progbits
- 974              	.Ldebug_ranges0:
- 975 0000 00000000 		.4byte	.LFB0
- 976 0004 58000000 		.4byte	.LFE0
- 977 0008 00000000 		.4byte	.LFB1
- 978 000c 7C000000 		.4byte	.LFE1
- 979 0010 00000000 		.4byte	.LFB2
- 980 0014 18010000 		.4byte	.LFE2
- 981 0018 00000000 		.4byte	.LFB3
- 982 001c 68010000 		.4byte	.LFE3
- 983 0020 00000000 		.4byte	0
- 984 0024 00000000 		.4byte	0
- 985              		.section	.debug_line,"",%progbits
- 986              	.Ldebug_line0:
- 987 0000 9E000000 		.section	.debug_str,"MS",%progbits,1
- 987      02002900 
- 987      00000201 
- 987      FB0E0D00 
- 987      01010101 
- 988              	.LASF35:
- 989 0000 6D61785F 		.ascii	"max_dist_x\000"
- 989      64697374 
- 989      5F7800
- 990              	.LASF29:
- 991 000b 73656E73 		.ascii	"sensor_dir\000"
- 991      6F725F64 
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccpjtdWh.s 			page 20
+ 937 0068 03       		.uleb128 0x3
+ 938 0069 0E       		.uleb128 0xe
+ 939 006a 3A       		.uleb128 0x3a
+ 940 006b 0B       		.uleb128 0xb
+ 941 006c 3B       		.uleb128 0x3b
+ 942 006d 0B       		.uleb128 0xb
+ 943 006e 27       		.uleb128 0x27
+ 944 006f 19       		.uleb128 0x19
+ 945 0070 49       		.uleb128 0x49
+ 946 0071 13       		.uleb128 0x13
+ 947 0072 11       		.uleb128 0x11
+ 948 0073 01       		.uleb128 0x1
+ 949 0074 12       		.uleb128 0x12
+ 950 0075 06       		.uleb128 0x6
+ 951 0076 40       		.uleb128 0x40
+ 952 0077 18       		.uleb128 0x18
+ 953 0078 9642     		.uleb128 0x2116
+ 954 007a 19       		.uleb128 0x19
+ 955 007b 00       		.byte	0
+ 956 007c 00       		.byte	0
+ 957 007d 08       		.uleb128 0x8
+ 958 007e 34       		.uleb128 0x34
+ 959 007f 00       		.byte	0
+ 960 0080 03       		.uleb128 0x3
+ 961 0081 08       		.uleb128 0x8
+ 962 0082 3A       		.uleb128 0x3a
+ 963 0083 0B       		.uleb128 0xb
+ 964 0084 3B       		.uleb128 0x3b
+ 965 0085 0B       		.uleb128 0xb
+ 966 0086 49       		.uleb128 0x49
+ 967 0087 13       		.uleb128 0x13
+ 968 0088 02       		.uleb128 0x2
+ 969 0089 18       		.uleb128 0x18
+ 970 008a 00       		.byte	0
+ 971 008b 00       		.byte	0
+ 972 008c 00       		.byte	0
+ 973              		.section	.debug_aranges,"",%progbits
+ 974 0000 34000000 		.4byte	0x34
+ 975 0004 0200     		.2byte	0x2
+ 976 0006 00000000 		.4byte	.Ldebug_info0
+ 977 000a 04       		.byte	0x4
+ 978 000b 00       		.byte	0
+ 979 000c 0000     		.2byte	0
+ 980 000e 0000     		.2byte	0
+ 981 0010 00000000 		.4byte	.LFB0
+ 982 0014 58000000 		.4byte	.LFE0-.LFB0
+ 983 0018 00000000 		.4byte	.LFB1
+ 984 001c 7C000000 		.4byte	.LFE1-.LFB1
+ 985 0020 00000000 		.4byte	.LFB2
+ 986 0024 18010000 		.4byte	.LFE2-.LFB2
+ 987 0028 00000000 		.4byte	.LFB3
+ 988 002c C4010000 		.4byte	.LFE3-.LFB3
+ 989 0030 00000000 		.4byte	0
+ 990 0034 00000000 		.4byte	0
+ 991              		.section	.debug_ranges,"",%progbits
+ 992              	.Ldebug_ranges0:
+ 993 0000 00000000 		.4byte	.LFB0
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccWwbtNa.s 			page 20
 
 
- 991      697200
- 992              	.LASF37:
- 993 0016 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 993      43313120 
- 993      352E342E 
- 993      31203230 
- 993      31363036 
- 994 0049 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 994      20726576 
- 994      6973696F 
- 994      6E203233 
- 994      37373135 
- 995 007c 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
- 995      66756E63 
- 995      74696F6E 
- 995      2D736563 
- 995      74696F6E 
- 996              	.LASF19:
- 997 00a4 676F616C 		.ascii	"goal_x\000"
- 997      5F7800
- 998              	.LASF14:
- 999 00ab 63616C63 		.ascii	"calculate_angle_modulo\000"
- 999      756C6174 
- 999      655F616E 
- 999      676C655F 
- 999      6D6F6475 
- 1000              	.LASF18:
- 1001 00c2 706F735F 		.ascii	"pos_y\000"
- 1001      7900
- 1002              	.LASF28:
- 1003 00c8 67616D6D 		.ascii	"gamma_rot\000"
- 1003      615F726F 
- 1003      7400
- 1004              	.LASF22:
- 1005 00d2 706F735F 		.ascii	"pos_yaw\000"
- 1005      79617700 
- 1006              	.LASF23:
- 1007 00da 64697374 		.ascii	"distance\000"
- 1007      616E6365 
- 1007      00
- 1008              	.LASF13:
- 1009 00e3 666C6F61 		.ascii	"float\000"
- 1009      7400
- 1010              	.LASF32:
- 1011 00e9 6F627374 		.ascii	"obstacles\000"
- 1011      61636C65 
- 1011      7300
- 1012              	.LASF21:
- 1013 00f3 63616C63 		.ascii	"calculate_goal_angle\000"
+ 994 0004 58000000 		.4byte	.LFE0
+ 995 0008 00000000 		.4byte	.LFB1
+ 996 000c 7C000000 		.4byte	.LFE1
+ 997 0010 00000000 		.4byte	.LFB2
+ 998 0014 18010000 		.4byte	.LFE2
+ 999 0018 00000000 		.4byte	.LFB3
+ 1000 001c C4010000 		.4byte	.LFE3
+ 1001 0020 00000000 		.4byte	0
+ 1002 0024 00000000 		.4byte	0
+ 1003              		.section	.debug_line,"",%progbits
+ 1004              	.Ldebug_line0:
+ 1005 0000 9E000000 		.section	.debug_str,"MS",%progbits,1
+ 1005      02002900 
+ 1005      00000201 
+ 1005      FB0E0D00 
+ 1005      01010101 
+ 1006              	.LASF34:
+ 1007 0000 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1007      43313120 
+ 1007      352E342E 
+ 1007      31203230 
+ 1007      31363036 
+ 1008 0033 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1008      20726576 
+ 1008      6973696F 
+ 1008      6E203233 
+ 1008      37373135 
+ 1009 0066 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 1009      66756E63 
+ 1009      74696F6E 
+ 1009      2D736563 
+ 1009      74696F6E 
+ 1010              	.LASF19:
+ 1011 008e 676F616C 		.ascii	"goal_x\000"
+ 1011      5F7800
+ 1012              	.LASF14:
+ 1013 0095 63616C63 		.ascii	"calculate_angle_modulo\000"
  1013      756C6174 
- 1013      655F676F 
- 1013      616C5F61 
- 1013      6E676C65 
- 1014              	.LASF33:
- 1015 0108 64697374 		.ascii	"distance_x\000"
- 1015      616E6365 
- 1015      5F7800
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccpjtdWh.s 			page 21
-
-
- 1016              	.LASF34:
- 1017 0113 64697374 		.ascii	"distance_y\000"
- 1017      616E6365 
- 1017      5F7900
- 1018              	.LASF8:
- 1019 011e 6C6F6E67 		.ascii	"long unsigned int\000"
- 1019      20756E73 
- 1019      69676E65 
- 1019      6420696E 
- 1019      7400
- 1020              	.LASF27:
- 1021 0130 62657461 		.ascii	"beta_rot\000"
- 1021      5F726F74 
+ 1013      655F616E 
+ 1013      676C655F 
+ 1013      6D6F6475 
+ 1014              	.LASF18:
+ 1015 00ac 706F735F 		.ascii	"pos_y\000"
+ 1015      7900
+ 1016              	.LASF28:
+ 1017 00b2 67616D6D 		.ascii	"gamma_rot\000"
+ 1017      615F726F 
+ 1017      7400
+ 1018              	.LASF22:
+ 1019 00bc 706F735F 		.ascii	"pos_yaw\000"
+ 1019      79617700 
+ 1020              	.LASF23:
+ 1021 00c4 64697374 		.ascii	"distance\000"
+ 1021      616E6365 
  1021      00
- 1022              	.LASF6:
- 1023 0139 73686F72 		.ascii	"short unsigned int\000"
- 1023      7420756E 
- 1023      7369676E 
- 1023      65642069 
- 1023      6E7400
- 1024              	.LASF16:
- 1025 014c 616E676C 		.ascii	"angle\000"
- 1025      6500
- 1026              	.LASF4:
- 1027 0152 756E7369 		.ascii	"unsigned char\000"
- 1027      676E6564 
- 1027      20636861 
- 1027      7200
- 1028              	.LASF12:
- 1029 0160 646F7562 		.ascii	"double\000"
- 1029      6C6500
- 1030              	.LASF26:
- 1031 0167 616C7068 		.ascii	"alpha_rot\000"
- 1031      615F726F 
- 1031      7400
- 1032              	.LASF15:
- 1033 0171 63616C63 		.ascii	"calculate_distance_from_goal\000"
- 1033      756C6174 
- 1033      655F6469 
- 1033      7374616E 
- 1033      63655F66 
- 1034              	.LASF0:
- 1035 018e 756E7369 		.ascii	"unsigned int\000"
- 1035      676E6564 
- 1035      20696E74 
+ 1022              	.LASF33:
+ 1023 00cd 616E676C 		.ascii	"angle_modulo\000"
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccWwbtNa.s 			page 21
+
+
+ 1023      655F6D6F 
+ 1023      64756C6F 
+ 1023      00
+ 1024              	.LASF13:
+ 1025 00da 666C6F61 		.ascii	"float\000"
+ 1025      7400
+ 1026              	.LASF31:
+ 1027 00e0 6F627374 		.ascii	"obstacles\000"
+ 1027      61636C65 
+ 1027      7300
+ 1028              	.LASF21:
+ 1029 00ea 63616C63 		.ascii	"calculate_goal_angle\000"
+ 1029      756C6174 
+ 1029      655F676F 
+ 1029      616C5F61 
+ 1029      6E676C65 
+ 1030              	.LASF30:
+ 1031 00ff 74687265 		.ascii	"threshold\000"
+ 1031      73686F6C 
+ 1031      6400
+ 1032              	.LASF8:
+ 1033 0109 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1033      20756E73 
+ 1033      69676E65 
+ 1033      6420696E 
+ 1033      7400
+ 1034              	.LASF27:
+ 1035 011b 62657461 		.ascii	"beta_rot\000"
+ 1035      5F726F74 
  1035      00
- 1036              	.LASF25:
- 1037 019b 726F7461 		.ascii	"rotation\000"
- 1037      74696F6E 
- 1037      00
- 1038              	.LASF9:
- 1039 01a4 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1039      206C6F6E 
- 1039      6720756E 
- 1039      7369676E 
- 1039      65642069 
- 1040              	.LASF39:
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccpjtdWh.s 			page 22
+ 1036              	.LASF6:
+ 1037 0124 73686F72 		.ascii	"short unsigned int\000"
+ 1037      7420756E 
+ 1037      7369676E 
+ 1037      65642069 
+ 1037      6E7400
+ 1038              	.LASF16:
+ 1039 0137 616E676C 		.ascii	"angle\000"
+ 1039      6500
+ 1040              	.LASF4:
+ 1041 013d 756E7369 		.ascii	"unsigned char\000"
+ 1041      676E6564 
+ 1041      20636861 
+ 1041      7200
+ 1042              	.LASF12:
+ 1043 014b 646F7562 		.ascii	"double\000"
+ 1043      6C6500
+ 1044              	.LASF26:
+ 1045 0152 616C7068 		.ascii	"alpha_rot\000"
+ 1045      615F726F 
+ 1045      7400
+ 1046              	.LASF32:
+ 1047 015c 6D61785F 		.ascii	"max_distance\000"
+ 1047      64697374 
+ 1047      616E6365 
+ 1047      00
+ 1048              	.LASF15:
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccWwbtNa.s 			page 22
 
 
- 1041 01bb 433A5C55 		.ascii	"C:\\Users\\cyu13\\Desktop\\ECE4191 GitHub\\ECE4191\\"
- 1041      73657273 
- 1041      5C637975 
- 1041      31335C44 
- 1041      65736B74 
- 1042 01e9 44656C69 		.ascii	"DeliveryRobot.cydsn\000"
- 1042      76657279 
- 1042      526F626F 
- 1042      742E6379 
- 1042      64736E00 
- 1043              	.LASF36:
- 1044 01fd 6D61785F 		.ascii	"max_dist_y\000"
- 1044      64697374 
- 1044      5F7900
- 1045              	.LASF40:
- 1046 0208 64657465 		.ascii	"detect_obstacle\000"
- 1046      63745F6F 
- 1046      62737461 
- 1046      636C6500 
- 1047              	.LASF10:
- 1048 0218 73697A65 		.ascii	"sizetype\000"
- 1048      74797065 
- 1048      00
- 1049              	.LASF17:
- 1050 0221 706F735F 		.ascii	"pos_x\000"
- 1050      7800
- 1051              	.LASF1:
- 1052 0227 6C6F6E67 		.ascii	"long long int\000"
- 1052      206C6F6E 
- 1052      6720696E 
- 1052      7400
- 1053              	.LASF11:
- 1054 0235 63686172 		.ascii	"char\000"
- 1054      00
- 1055              	.LASF5:
- 1056 023a 73686F72 		.ascii	"short int\000"
- 1056      7420696E 
- 1056      7400
- 1057              	.LASF24:
- 1058 0244 676F616C 		.ascii	"goal_angle\000"
- 1058      5F616E67 
- 1058      6C6500
- 1059              	.LASF31:
- 1060 024f 74687265 		.ascii	"threshold\000"
- 1060      73686F6C 
- 1060      6400
- 1061              	.LASF7:
- 1062 0259 6C6F6E67 		.ascii	"long int\000"
- 1062      20696E74 
- 1062      00
- 1063              	.LASF2:
- 1064 0262 6C6F6E67 		.ascii	"long double\000"
- 1064      20646F75 
- 1064      626C6500 
- 1065              	.LASF20:
- 1066 026e 676F616C 		.ascii	"goal_y\000"
- 1066      5F7900
-ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccpjtdWh.s 			page 23
+ 1049 0169 63616C63 		.ascii	"calculate_distance_from_goal\000"
+ 1049      756C6174 
+ 1049      655F6469 
+ 1049      7374616E 
+ 1049      63655F66 
+ 1050              	.LASF0:
+ 1051 0186 756E7369 		.ascii	"unsigned int\000"
+ 1051      676E6564 
+ 1051      20696E74 
+ 1051      00
+ 1052              	.LASF25:
+ 1053 0193 726F7461 		.ascii	"rotation\000"
+ 1053      74696F6E 
+ 1053      00
+ 1054              	.LASF9:
+ 1055 019c 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1055      206C6F6E 
+ 1055      6720756E 
+ 1055      7369676E 
+ 1055      65642069 
+ 1056              	.LASF36:
+ 1057 01b3 433A5C55 		.ascii	"C:\\Users\\cyu13\\Desktop\\ECE4191 GitHub\\ECE4191\\"
+ 1057      73657273 
+ 1057      5C637975 
+ 1057      31335C44 
+ 1057      65736B74 
+ 1058 01e1 44656C69 		.ascii	"DeliveryRobot.cydsn\000"
+ 1058      76657279 
+ 1058      526F626F 
+ 1058      742E6379 
+ 1058      64736E00 
+ 1059              	.LASF29:
+ 1060 01f5 706F735F 		.ascii	"pos_theta\000"
+ 1060      74686574 
+ 1060      6100
+ 1061              	.LASF37:
+ 1062 01ff 64657465 		.ascii	"detect_obstacle\000"
+ 1062      63745F6F 
+ 1062      62737461 
+ 1062      636C6500 
+ 1063              	.LASF10:
+ 1064 020f 73697A65 		.ascii	"sizetype\000"
+ 1064      74797065 
+ 1064      00
+ 1065              	.LASF17:
+ 1066 0218 706F735F 		.ascii	"pos_x\000"
+ 1066      7800
+ 1067              	.LASF1:
+ 1068 021e 6C6F6E67 		.ascii	"long long int\000"
+ 1068      206C6F6E 
+ 1068      6720696E 
+ 1068      7400
+ 1069              	.LASF11:
+ 1070 022c 63686172 		.ascii	"char\000"
+ 1070      00
+ 1071              	.LASF5:
+ 1072 0231 73686F72 		.ascii	"short int\000"
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccWwbtNa.s 			page 23
 
 
- 1067              	.LASF3:
- 1068 0275 7369676E 		.ascii	"signed char\000"
- 1068      65642063 
- 1068      68617200 
- 1069              	.LASF38:
- 1070 0281 2E2E5C48 		.ascii	"..\\Helper\\helper.c\000"
- 1070      656C7065 
- 1070      725C6865 
- 1070      6C706572 
- 1070      2E6300
- 1071              	.LASF30:
- 1072 0294 73656E73 		.ascii	"sensor_dist\000"
- 1072      6F725F64 
- 1072      69737400 
- 1073              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 1072      7420696E 
+ 1072      7400
+ 1073              	.LASF24:
+ 1074 023b 676F616C 		.ascii	"goal_angle\000"
+ 1074      5F616E67 
+ 1074      6C6500
+ 1075              	.LASF7:
+ 1076 0246 6C6F6E67 		.ascii	"long int\000"
+ 1076      20696E74 
+ 1076      00
+ 1077              	.LASF2:
+ 1078 024f 6C6F6E67 		.ascii	"long double\000"
+ 1078      20646F75 
+ 1078      626C6500 
+ 1079              	.LASF20:
+ 1080 025b 676F616C 		.ascii	"goal_y\000"
+ 1080      5F7900
+ 1081              	.LASF3:
+ 1082 0262 7369676E 		.ascii	"signed char\000"
+ 1082      65642063 
+ 1082      68617200 
+ 1083              	.LASF35:
+ 1084 026e 2E2E5C48 		.ascii	"..\\Helper\\helper.c\000"
+ 1084      656C7065 
+ 1084      725C6865 
+ 1084      6C706572 
+ 1084      2E6300
+ 1085              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

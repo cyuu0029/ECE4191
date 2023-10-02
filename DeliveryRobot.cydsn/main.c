@@ -45,6 +45,7 @@ uint8_t mux_select = 0;         // For selecting specific ultrasonic sensor
 int32 left_wheel_count = 0;
 int32 right_wheel_count = 0;
 char serial_output[150];        // For UART print output
+int wall_following_flag = 0;
 
 /* Defining/Creating all data structures*/
 Motor left_motor;     // Left Motor, duh!
@@ -61,6 +62,7 @@ CY_ISR( Timer_Int_Handler ) {
     // Collect measurement 
     echo_distance = max_count - Timer_Echo_ReadCapture();   // in cm
     sensors.distance[mux_select] = echo_distance;      // Store measured value
+    if( mux_select == 4) { wall_following_flag = 1; }
     mux_select++;   // Iterate the global ultrasonic tracker
 
     // Reset the global ultrasonic tracker when all measurements have been updated
@@ -177,17 +179,18 @@ int main(void)
     // Define and initialise robot 
     long double robot_axle_width = 0.936*22.5;  // TODO: get accurate measurement
     long double robot_Ki = 3e-5;    // TODO: Determine good value
-    long double robot_Kp = 0.5;     // was previously 0.75 before changing for MS1
-    long double min_distance = 3;   // Minimum distance between robot position and goal
+    long double robot_Kp = 0.75;     // was previously 0.75 before changing for MS1
+    long double min_distance = 5;   // Minimum distance between robot position and goal
 
 
     /*======================= ROBOT STARTING POSITION =======================*/
-    long double start_x = 90;    // Starting x, duh!
-    long double start_y = 90;    // Starting y, duh!
+    long double start_x = 0;    // Starting x, duh!
+    long double start_y = 0;    // Starting y, duh!
+    long double start_th = M_PI/2;
     /*=======================================================================*/
 
 
-    robot_create(&robot, robot_axle_width, robot_Ki, robot_Kp, min_distance, start_x, start_y);
+    robot_create(&robot, robot_axle_width, robot_Ki, robot_Kp, min_distance, start_x, start_y, start_th);
 
     // Define sensor directions (start from front sensor, then move clockwise)
     sensors.direction[0] = 0;
@@ -197,8 +200,9 @@ int main(void)
     sensors.direction[4] = 330;
 
     /*========================= M1: Goal Definition =========================*/
+    // Goals should be defined where the bin is
     int n_goals = 2;    // Number of goals, duh!
-    int goals[4] = {30, 90, 30, 90};    // Coordinates of goals [x1, y1, x2, y2, ..., xn, yn]
+    int goals[4] = {0, 90, 90, 90};    // Coordinates of goals [x1, y1, x2, y2, ..., xn, yn]
     robot.goal_x = goals[0];   // Update robot x goal
     robot.goal_y = goals[1];   // Update robot y goal
     int goals_reached = 0;  // Counter for number of goas reached, duh!
@@ -207,107 +211,87 @@ int main(void)
     
 
     /*===================== M1: Path Finding w Tentacles =====================*/
-    int threshold = 10;
-    double other_threshold = 10;
-    double gap = 10;
-    int obstacle_flag = 0;
-    int obstacle[N_SENSORS];
+    int return_flag = 0;
     
     /*=======================================================================*/           
     
     // Spoof ultrasonics
-    sensors.distance[0] = 30;
+    /*
+    sensors.distance[0] = 90;
     sensors.distance[1] = 50;
     sensors.distance[2] = 50;
     sensors.distance[3] = 50;
     sensors.distance[4] = 10;
+    */
     
     // Point to goal at the beginning
-    robot.desired_theta = calculate_goal_angle(robot.x, robot.y, robot.theta, robot.goal_x, robot.goal_y);
-    
+    float ref_direction = M_PI/2;
+    float dist_ref = 70;
+    float theta_correction = 0;
+    float wall_Kp = 0.01;
+    float wall_Ki = 0.001;
     for(;;) {  
         // Calculate distance to the goal
         double dist_to_goal = calculate_distance_from_goal(robot.x, robot.y, robot.goal_x, robot.goal_y);
         double angle_to_goal = calculate_goal_angle(robot.x, robot.y, robot.theta, robot.goal_x, robot.goal_y);
-
+        dist_to_goal = 100;
         // Check if goal is reached, update, otherwise, drive
         if( dist_to_goal <= robot.goal_min_dist ) { 
             robot.desired_v = 0;       // Stop the robot
-            robot.desired_theta = 0;
-            CyDelay(10000);
             // Iterate to next goal, otherwise, quit
             if (goals_reached < n_goals) {
                 robot.goal_x = goals[goals_reached + 2];
                 robot.goal_y = goals[goals_reached + 2];
                 goals_reached += 2;
-            } else{
-                sprintf(serial_output, "FINISHED! Did I succeed?");
-                UART_PutString(serial_output);
-                CyDelay(2000);
-            }
-
-        } else {
-            // Set a default angle to point towards destination
-            double ideal_angle = angle_to_goal;
-            
-            // Check for obstacles based on each sensor reading
-            for (int i=0; i < N_SENSORS; i++) {
-                obstacle[i] = detect_obstacle(sensors.direction[i], sensors.distance[i], robot.x, robot.y, threshold);
-                
-                // Only switch on obstacle flag when we are facing towards one
-                if (i == 0 && obstacle[i]) {
-                    obstacle_flag = 1;
-                }
-                    
-            }
-            
-            // Determining direction of travel
-            switch (obstacle_flag) {
-                case 0:     // No obstacle in front of robot
-                    if (obstacle[1] && sensors.distance[1] < gap) {     // Checking if obstacle 30 deg right is in the way
-                        ideal_angle = calculate_angle_modulo(robot.theta - M_PI/8);
-                    }
-                    else if (obstacle[4] && sensors.distance[4] < gap) {    // Checking if obstacle 30 deg left is in the way
-                        ideal_angle = calculate_angle_modulo(robot.theta + M_PI/8);
-                    }
-                    else {
-                        ideal_angle = angle_to_goal;
-                    }
-            
-                
-                case 1:    // If obstacle is detected in front of robot
-                    if (!obstacle[1]) {         // No obstacle 30 deg right
-                        // Turn 45 deg
-                        ideal_angle = calculate_angle_modulo(robot.theta - M_PI/4);
-                    } 
-                    else if (!obstacle[4]) {    // No obstacle 30 deg left
-                        // Turn 45 deg
-                        ideal_angle = calculate_angle_modulo(robot.theta + M_PI/4);
-                    }
-                    else {                      // If obstacles 30 deg left and right
-                        if (!obstacle[2] && sensors.distance[2] > robot_axle_width + other_threshold) {
-                            ideal_angle = calculate_angle_modulo(robot.theta - M_PI/3);
-                        }
-                        else {
-                            ideal_angle = calculate_angle_modulo(robot.theta + M_PI/3);
-                        }
-                    }
-                
-                default:
-                    sprintf(serial_output, "ERROR");
-                    UART_PutString(serial_output);
-                    CyDelay(2000);
-            }
-            
-            robot.desired_theta = ideal_angle;
-            
-            if (dist_to_goal < other_threshold) {
-                robot.desired_v = 2;
             } else {
-                robot.desired_v = 7;
+                // Return to start position
+                switch (return_flag) {
+                    case 0:
+                        // Set destination to start
+                        robot.goal_x = start_x;
+                        robot.goal_y = start_y;
+                        return_flag = 1;
+                        
+                        break;
+                    
+                    case 1:
+                        // Re localise 
+                        robot.desired_v = 0;
+                 
+                  
+                        
+                }
+                
+                
+                
             }
+            
 
-
+        } else if( wall_following_flag ) {
+            
+            if (sensors.distance[0] < 100 && sensors.distance[4] < 100) {
+                
+                robot.desired_v = 0;
+                robot.desired_theta -= M_PI/2;
+                ref_direction = calculate_angle_modulo(ref_direction-M_PI/2);
+                CyDelay(3000);
+                robot.desired_v = 15;
+                wall_following_flag = 0;
+                sensors.distance[1] = dist_ref;
+                sensors.distance[2] = dist_ref;
+                sensors.distance[0] = 1000;
+                sensors.distance[4] = 1000;
+            }
+            // Wall Following
+            float left = sensors.distance[2];
+            float front_left = sensors.distance[1];
+            
+            robot.desired_v = 15;
+            float error = (left < front_left) ? dist_ref - left : dist_ref - front_left;
+            //float error = dist_ref - ( (left + front_left) / 2 );
+            theta_correction = wall_Kp * -(error);
+            robot.desired_theta = ref_direction + theta_correction;
+            wall_following_flag = 0;
         }
 
     } 

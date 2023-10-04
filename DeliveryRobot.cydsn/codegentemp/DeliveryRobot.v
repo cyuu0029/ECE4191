@@ -1,6 +1,6 @@
 // ======================================================================
 // DeliveryRobot.v generated from TopDesign.cysch
-// 10/04/2023 at 11:43
+// 10/04/2023 at 13:04
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 
@@ -1587,10 +1587,8 @@ module top ;
           wire  Net_230;
           wire  Net_799;
           wire  Net_798;
-          wire  Net_797;
           wire  Net_787;
           wire  Net_786;
-          wire  Net_785;
           wire  Net_72;
           wire  Net_49;
           wire  Net_766;
@@ -1619,6 +1617,8 @@ module top ;
           wire  Net_3;
           wire  Net_2;
           wire  Net_1;
+          wire  Net_785;
+          wire  Net_1459;
           wire  Net_1453;
           wire  Net_1452;
           wire  Net_1451;
@@ -1985,7 +1985,7 @@ module top ;
     if (1)
     begin : mux_1
         reg  tmp__mux_1_reg;
-        always @(Net_782 or Net_783 or Net_206 or Net_207 or Net_784 or Net_800)
+        always @(Net_782 or Net_783 or Net_206 or Net_207 or Net_784 or Net_785 or Net_800)
         begin
             case (Net_800[2:0])
                 3'b000 :  tmp__mux_1_reg = Net_782;
@@ -1993,7 +1993,7 @@ module top ;
                 3'b010 :  tmp__mux_1_reg = Net_206;
                 3'b011 :  tmp__mux_1_reg = Net_207;
                 3'b100 :  tmp__mux_1_reg = Net_784;
-                3'b101 :  tmp__mux_1_reg = 1'b0;
+                3'b101 :  tmp__mux_1_reg = Net_785;
                 3'b110 :  tmp__mux_1_reg = 1'b0;
                 3'b111 :  tmp__mux_1_reg = 1'b0;
             endcase
@@ -2111,7 +2111,7 @@ module top ;
         assign Net_803 = tmp__demux_1_2_reg;
         assign Net_804 = tmp__demux_1_3_reg;
         assign Net_805 = tmp__demux_1_4_reg;
-        assign Net_797 = tmp__demux_1_5_reg;
+        assign Net_1459 = tmp__demux_1_5_reg;
         assign Net_798 = tmp__demux_1_6_reg;
         assign Net_799 = tmp__demux_1_7_reg;
     end
@@ -3752,6 +3752,155 @@ module top ;
 		  .out_reset({1'b0}));
 
 	assign tmpOE__Pin_Servos_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{4'b1111} : {4'b1111};
+
+	wire [0:0] tmpOE__Pin_US_Trigger5_net;
+	wire [0:0] tmpFB_0__Pin_US_Trigger5_net;
+	wire [0:0] tmpIO_0__Pin_US_Trigger5_net;
+	wire [0:0] tmpINTERRUPT_0__Pin_US_Trigger5_net;
+	electrical [0:0] tmpSIOVREF__Pin_US_Trigger5_net;
+
+	cy_psoc3_pins_v1_10
+		#(.id("ccf84905-05e0-49df-aa34-129125e4ed06"),
+		  .drive_mode(3'b011),
+		  .ibuf_enabled(1'b1),
+		  .init_dr_st(1'b0),
+		  .input_clk_en(0),
+		  .input_sync(1'b1),
+		  .input_sync_mode(1'b0),
+		  .intr_mode(2'b00),
+		  .invert_in_clock(0),
+		  .invert_in_clock_en(0),
+		  .invert_in_reset(0),
+		  .invert_out_clock(0),
+		  .invert_out_clock_en(0),
+		  .invert_out_reset(0),
+		  .io_voltage(""),
+		  .layout_mode("CONTIGUOUS"),
+		  .oe_conn(1'b0),
+		  .oe_reset(0),
+		  .oe_sync(1'b0),
+		  .output_clk_en(0),
+		  .output_clock_mode(1'b0),
+		  .output_conn(1'b1),
+		  .output_mode(1'b0),
+		  .output_reset(0),
+		  .output_sync(1'b0),
+		  .pa_in_clock(-1),
+		  .pa_in_clock_en(-1),
+		  .pa_in_reset(-1),
+		  .pa_out_clock(-1),
+		  .pa_out_clock_en(-1),
+		  .pa_out_reset(-1),
+		  .pin_aliases(""),
+		  .pin_mode("O"),
+		  .por_state(4),
+		  .sio_group_cnt(0),
+		  .sio_hyst(1'b1),
+		  .sio_ibuf(""),
+		  .sio_info(2'b00),
+		  .sio_obuf(""),
+		  .sio_refsel(""),
+		  .sio_vtrip(""),
+		  .sio_hifreq(""),
+		  .sio_vohsel(""),
+		  .slew_rate(1'b0),
+		  .spanning(0),
+		  .use_annotation(1'b0),
+		  .vtrip(2'b10),
+		  .width(1),
+		  .ovt_hyst_trim(1'b0),
+		  .ovt_needed(1'b0),
+		  .ovt_slew_control(2'b00),
+		  .input_buffer_sel(2'b00))
+		Pin_US_Trigger5
+		 (.oe(tmpOE__Pin_US_Trigger5_net),
+		  .y({Net_1459}),
+		  .fb({tmpFB_0__Pin_US_Trigger5_net[0:0]}),
+		  .io({tmpIO_0__Pin_US_Trigger5_net[0:0]}),
+		  .siovref(tmpSIOVREF__Pin_US_Trigger5_net),
+		  .interrupt({tmpINTERRUPT_0__Pin_US_Trigger5_net[0:0]}),
+		  .in_clock({1'b0}),
+		  .in_clock_en({1'b1}),
+		  .in_reset({1'b0}),
+		  .out_clock({1'b0}),
+		  .out_clock_en({1'b1}),
+		  .out_reset({1'b0}));
+
+	assign tmpOE__Pin_US_Trigger5_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{1'b1} : {1'b1};
+
+	wire [0:0] tmpOE__Pin_US_Echo5_net;
+	wire [0:0] tmpIO_0__Pin_US_Echo5_net;
+	wire [0:0] tmpINTERRUPT_0__Pin_US_Echo5_net;
+	electrical [0:0] tmpSIOVREF__Pin_US_Echo5_net;
+
+	cy_psoc3_pins_v1_10
+		#(.id("770137ab-4f7f-4793-86e9-e61bb4c3afd6"),
+		  .drive_mode(3'b011),
+		  .ibuf_enabled(1'b1),
+		  .init_dr_st(1'b0),
+		  .input_clk_en(0),
+		  .input_sync(1'b0),
+		  .input_sync_mode(1'b0),
+		  .intr_mode(2'b00),
+		  .invert_in_clock(0),
+		  .invert_in_clock_en(0),
+		  .invert_in_reset(0),
+		  .invert_out_clock(0),
+		  .invert_out_clock_en(0),
+		  .invert_out_reset(0),
+		  .io_voltage(""),
+		  .layout_mode("CONTIGUOUS"),
+		  .oe_conn(1'b0),
+		  .oe_reset(0),
+		  .oe_sync(1'b0),
+		  .output_clk_en(0),
+		  .output_clock_mode(1'b0),
+		  .output_conn(1'b0),
+		  .output_mode(1'b0),
+		  .output_reset(0),
+		  .output_sync(1'b0),
+		  .pa_in_clock(-1),
+		  .pa_in_clock_en(-1),
+		  .pa_in_reset(-1),
+		  .pa_out_clock(-1),
+		  .pa_out_clock_en(-1),
+		  .pa_out_reset(-1),
+		  .pin_aliases(""),
+		  .pin_mode("I"),
+		  .por_state(4),
+		  .sio_group_cnt(0),
+		  .sio_hyst(1'b1),
+		  .sio_ibuf(""),
+		  .sio_info(2'b00),
+		  .sio_obuf(""),
+		  .sio_refsel(""),
+		  .sio_vtrip(""),
+		  .sio_hifreq(""),
+		  .sio_vohsel(""),
+		  .slew_rate(1'b0),
+		  .spanning(0),
+		  .use_annotation(1'b0),
+		  .vtrip(2'b00),
+		  .width(1),
+		  .ovt_hyst_trim(1'b0),
+		  .ovt_needed(1'b0),
+		  .ovt_slew_control(2'b00),
+		  .input_buffer_sel(2'b00))
+		Pin_US_Echo5
+		 (.oe(tmpOE__Pin_US_Echo5_net),
+		  .y({1'b0}),
+		  .fb({Net_785}),
+		  .io({tmpIO_0__Pin_US_Echo5_net[0:0]}),
+		  .siovref(tmpSIOVREF__Pin_US_Echo5_net),
+		  .interrupt({tmpINTERRUPT_0__Pin_US_Echo5_net[0:0]}),
+		  .in_clock({1'b0}),
+		  .in_clock_en({1'b1}),
+		  .in_reset({1'b0}),
+		  .out_clock({1'b0}),
+		  .out_clock_en({1'b1}),
+		  .out_reset({1'b0}));
+
+	assign tmpOE__Pin_US_Echo5_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{1'b1} : {1'b1};
 
 
 

@@ -1,5 +1,5 @@
 -- Project:   DeliveryRobot
--- Generated: 10/04/2023 11:43:29
+-- Generated: 10/04/2023 13:04:53
 -- PSoC Creator  4.4
 
 ENTITY DeliveryRobot IS
@@ -26,7 +26,9 @@ ENTITY DeliveryRobot IS
         Pin_Servos(0)_PAD : OUT std_ulogic;
         Pin_Servos(1)_PAD : OUT std_ulogic;
         Pin_Servos(2)_PAD : OUT std_ulogic;
-        Pin_Servos(3)_PAD : OUT std_ulogic);
+        Pin_Servos(3)_PAD : OUT std_ulogic;
+        Pin_US_Trigger5(0)_PAD : OUT std_ulogic;
+        Pin_US_Echo5(0)_PAD : IN std_ulogic);
     ATTRIBUTE voltage_VDDABUF OF __DEFAULT__ : ENTITY IS 5e0;
     ATTRIBUTE voltage_VDDA OF __DEFAULT__ : ENTITY IS 5e0;
     ATTRIBUTE voltage_VUSB OF __DEFAULT__ : ENTITY IS 5e0;
@@ -73,6 +75,7 @@ ARCHITECTURE __DEFAULT__ OF DeliveryRobot IS
     SIGNAL Net_1451 : bit;
     SIGNAL Net_1452 : bit;
     SIGNAL Net_1453 : bit;
+    SIGNAL Net_1459 : bit;
     SIGNAL Net_206 : bit;
     SIGNAL Net_207 : bit;
     SIGNAL Net_216 : bit;
@@ -111,6 +114,7 @@ ARCHITECTURE __DEFAULT__ OF DeliveryRobot IS
     SIGNAL Net_782 : bit;
     SIGNAL Net_783 : bit;
     SIGNAL Net_784 : bit;
+    SIGNAL Net_785 : bit;
     SIGNAL Net_800_0 : bit;
     SIGNAL Net_800_1 : bit;
     SIGNAL Net_800_2 : bit;
@@ -139,11 +143,13 @@ ARCHITECTURE __DEFAULT__ OF DeliveryRobot IS
     SIGNAL Pin_US_Echo2(0)__PA : bit;
     SIGNAL Pin_US_Echo3(0)__PA : bit;
     SIGNAL Pin_US_Echo4(0)__PA : bit;
+    SIGNAL Pin_US_Echo5(0)__PA : bit;
     SIGNAL Pin_US_Trigger0(0)__PA : bit;
     SIGNAL Pin_US_Trigger1(0)__PA : bit;
     SIGNAL Pin_US_Trigger2(0)__PA : bit;
     SIGNAL Pin_US_Trigger3(0)__PA : bit;
     SIGNAL Pin_US_Trigger4(0)__PA : bit;
+    SIGNAL Pin_US_Trigger5(0)__PA : bit;
     SIGNAL \Control_Reg_ServoSelect:control_2\ : bit;
     SIGNAL \Control_Reg_ServoSelect:control_3\ : bit;
     SIGNAL \Control_Reg_ServoSelect:control_4\ : bit;
@@ -510,13 +516,13 @@ ARCHITECTURE __DEFAULT__ OF DeliveryRobot IS
     ATTRIBUTE lib_model OF Pin_US_Echo3(0) : LABEL IS "iocell15";
     ATTRIBUTE Location OF Pin_US_Echo3(0) : LABEL IS "P2[0]";
     ATTRIBUTE lib_model OF Pin_US_Echo4(0) : LABEL IS "iocell16";
-    ATTRIBUTE Location OF Pin_US_Echo4(0) : LABEL IS "P12[3]";
+    ATTRIBUTE Location OF Pin_US_Echo4(0) : LABEL IS "P1[2]";
     ATTRIBUTE lib_model OF Pin_US_Trigger2(0) : LABEL IS "iocell17";
     ATTRIBUTE Location OF Pin_US_Trigger2(0) : LABEL IS "P15[2]";
     ATTRIBUTE lib_model OF Pin_US_Trigger3(0) : LABEL IS "iocell18";
     ATTRIBUTE Location OF Pin_US_Trigger3(0) : LABEL IS "P2[1]";
     ATTRIBUTE lib_model OF Pin_US_Trigger4(0) : LABEL IS "iocell19";
-    ATTRIBUTE Location OF Pin_US_Trigger4(0) : LABEL IS "P12[2]";
+    ATTRIBUTE Location OF Pin_US_Trigger4(0) : LABEL IS "P1[4]";
     ATTRIBUTE lib_model OF Pin_Servos(0) : LABEL IS "iocell20";
     ATTRIBUTE Location OF Pin_Servos(0) : LABEL IS "P3[2]";
     ATTRIBUTE lib_model OF Pin_Servos(1) : LABEL IS "iocell21";
@@ -525,6 +531,10 @@ ARCHITECTURE __DEFAULT__ OF DeliveryRobot IS
     ATTRIBUTE Location OF Pin_Servos(2) : LABEL IS "P3[4]";
     ATTRIBUTE lib_model OF Pin_Servos(3) : LABEL IS "iocell23";
     ATTRIBUTE Location OF Pin_Servos(3) : LABEL IS "P3[5]";
+    ATTRIBUTE lib_model OF Pin_US_Trigger5(0) : LABEL IS "iocell24";
+    ATTRIBUTE Location OF Pin_US_Trigger5(0) : LABEL IS "P12[2]";
+    ATTRIBUTE lib_model OF Pin_US_Echo5(0) : LABEL IS "iocell25";
+    ATTRIBUTE Location OF Pin_US_Echo5(0) : LABEL IS "P12[3]";
     ATTRIBUTE lib_model OF Net_84 : LABEL IS "macrocell2";
     ATTRIBUTE lib_model OF \UART:BUART:counter_load_not\ : LABEL IS "macrocell3";
     ATTRIBUTE lib_model OF \UART:BUART:tx_status_0\ : LABEL IS "macrocell4";
@@ -538,29 +548,30 @@ ARCHITECTURE __DEFAULT__ OF DeliveryRobot IS
     ATTRIBUTE lib_model OF Net_803 : LABEL IS "macrocell12";
     ATTRIBUTE lib_model OF Net_804 : LABEL IS "macrocell13";
     ATTRIBUTE lib_model OF Net_805 : LABEL IS "macrocell14";
-    ATTRIBUTE lib_model OF \PWM_Motor_L:PWMUDB:status_2\ : LABEL IS "macrocell15";
-    ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:reload\ : LABEL IS "macrocell16";
-    ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:status_0\ : LABEL IS "macrocell17";
-    ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:status_2\ : LABEL IS "macrocell18";
-    ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:status_3\ : LABEL IS "macrocell19";
-    ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:count_enable\ : LABEL IS "macrocell20";
-    ATTRIBUTE lib_model OF \QuadDec_L:Net_530\ : LABEL IS "macrocell21";
-    ATTRIBUTE lib_model OF \QuadDec_L:Net_611\ : LABEL IS "macrocell22";
-    ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:reload\ : LABEL IS "macrocell23";
-    ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:status_0\ : LABEL IS "macrocell24";
-    ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:status_2\ : LABEL IS "macrocell25";
-    ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:status_3\ : LABEL IS "macrocell26";
-    ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:count_enable\ : LABEL IS "macrocell27";
-    ATTRIBUTE lib_model OF \QuadDec_R:Net_530\ : LABEL IS "macrocell28";
-    ATTRIBUTE lib_model OF \QuadDec_R:Net_611\ : LABEL IS "macrocell29";
-    ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:status_2\ : LABEL IS "macrocell30";
-    ATTRIBUTE lib_model OF \Timer_Avoidance:TimerUDB:status_tc\ : LABEL IS "macrocell31";
-    ATTRIBUTE lib_model OF \PWM_1:PWMUDB:status_2\ : LABEL IS "macrocell32";
-    ATTRIBUTE lib_model OF \PWM_ServoDir:PWMUDB:status_2\ : LABEL IS "macrocell33";
-    ATTRIBUTE lib_model OF Net_1450 : LABEL IS "macrocell34";
-    ATTRIBUTE lib_model OF Net_1451 : LABEL IS "macrocell35";
-    ATTRIBUTE lib_model OF Net_1452 : LABEL IS "macrocell36";
-    ATTRIBUTE lib_model OF Net_1453 : LABEL IS "macrocell37";
+    ATTRIBUTE lib_model OF Net_1459 : LABEL IS "macrocell15";
+    ATTRIBUTE lib_model OF \PWM_Motor_L:PWMUDB:status_2\ : LABEL IS "macrocell16";
+    ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:reload\ : LABEL IS "macrocell17";
+    ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:status_0\ : LABEL IS "macrocell18";
+    ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:status_2\ : LABEL IS "macrocell19";
+    ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:status_3\ : LABEL IS "macrocell20";
+    ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:count_enable\ : LABEL IS "macrocell21";
+    ATTRIBUTE lib_model OF \QuadDec_L:Net_530\ : LABEL IS "macrocell22";
+    ATTRIBUTE lib_model OF \QuadDec_L:Net_611\ : LABEL IS "macrocell23";
+    ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:reload\ : LABEL IS "macrocell24";
+    ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:status_0\ : LABEL IS "macrocell25";
+    ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:status_2\ : LABEL IS "macrocell26";
+    ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:status_3\ : LABEL IS "macrocell27";
+    ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:count_enable\ : LABEL IS "macrocell28";
+    ATTRIBUTE lib_model OF \QuadDec_R:Net_530\ : LABEL IS "macrocell29";
+    ATTRIBUTE lib_model OF \QuadDec_R:Net_611\ : LABEL IS "macrocell30";
+    ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:status_2\ : LABEL IS "macrocell31";
+    ATTRIBUTE lib_model OF \Timer_Avoidance:TimerUDB:status_tc\ : LABEL IS "macrocell32";
+    ATTRIBUTE lib_model OF \PWM_1:PWMUDB:status_2\ : LABEL IS "macrocell33";
+    ATTRIBUTE lib_model OF \PWM_ServoDir:PWMUDB:status_2\ : LABEL IS "macrocell34";
+    ATTRIBUTE lib_model OF Net_1450 : LABEL IS "macrocell35";
+    ATTRIBUTE lib_model OF Net_1451 : LABEL IS "macrocell36";
+    ATTRIBUTE lib_model OF Net_1452 : LABEL IS "macrocell37";
+    ATTRIBUTE lib_model OF Net_1453 : LABEL IS "macrocell38";
     ATTRIBUTE lib_model OF \UART:BUART:sTX:TxShifter:u0\ : LABEL IS "datapathcell1";
     ATTRIBUTE lib_model OF \UART:BUART:sTX:sCLOCK:TxBitClkGen\ : LABEL IS "datapathcell2";
     ATTRIBUTE lib_model OF \UART:BUART:sTX:TxSts\ : LABEL IS "statusicell1";
@@ -580,15 +591,15 @@ ARCHITECTURE __DEFAULT__ OF DeliveryRobot IS
     ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:sSTSReg:stsreg\ : LABEL IS "statusicell4";
     ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:sC16:counterdp:u0\ : LABEL IS "datapathcell9";
     ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:sC16:counterdp:u1\ : LABEL IS "datapathcell10";
-    ATTRIBUTE lib_model OF \QuadDec_L:bQuadDec:quad_A_filt\ : LABEL IS "macrocell38";
-    ATTRIBUTE lib_model OF \QuadDec_L:bQuadDec:quad_B_filt\ : LABEL IS "macrocell39";
+    ATTRIBUTE lib_model OF \QuadDec_L:bQuadDec:quad_A_filt\ : LABEL IS "macrocell39";
+    ATTRIBUTE lib_model OF \QuadDec_L:bQuadDec:quad_B_filt\ : LABEL IS "macrocell40";
     ATTRIBUTE lib_model OF \QuadDec_L:bQuadDec:Stsreg\ : LABEL IS "statusicell5";
     ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:sCTRLReg:ctrlreg\ : LABEL IS "controlcell6";
     ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:sSTSReg:stsreg\ : LABEL IS "statusicell6";
     ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:sC16:counterdp:u0\ : LABEL IS "datapathcell11";
     ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:sC16:counterdp:u1\ : LABEL IS "datapathcell12";
-    ATTRIBUTE lib_model OF \QuadDec_R:bQuadDec:quad_A_filt\ : LABEL IS "macrocell40";
-    ATTRIBUTE lib_model OF \QuadDec_R:bQuadDec:quad_B_filt\ : LABEL IS "macrocell41";
+    ATTRIBUTE lib_model OF \QuadDec_R:bQuadDec:quad_A_filt\ : LABEL IS "macrocell41";
+    ATTRIBUTE lib_model OF \QuadDec_R:bQuadDec:quad_B_filt\ : LABEL IS "macrocell42";
     ATTRIBUTE lib_model OF \QuadDec_R:bQuadDec:Stsreg\ : LABEL IS "statusicell7";
     ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:genblk1:ctrlreg\ : LABEL IS "controlcell7";
     ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:genblk8:stsreg\ : LABEL IS "statusicell8";
@@ -607,73 +618,73 @@ ARCHITECTURE __DEFAULT__ OF DeliveryRobot IS
     ATTRIBUTE lib_model OF \PWM_ServoDir:PWMUDB:sP16:pwmdp:u1\ : LABEL IS "datapathcell20";
     ATTRIBUTE lib_model OF \Control_Reg_ServoTrigger:Sync:ctrl_reg\ : LABEL IS "controlcell10";
     ATTRIBUTE lib_model OF \Control_Reg_ServoSelect:Sync:ctrl_reg\ : LABEL IS "controlcell11";
-    ATTRIBUTE lib_model OF \UART:BUART:txn\ : LABEL IS "macrocell42";
-    ATTRIBUTE lib_model OF \UART:BUART:tx_state_1\ : LABEL IS "macrocell43";
-    ATTRIBUTE lib_model OF \UART:BUART:tx_state_0\ : LABEL IS "macrocell44";
-    ATTRIBUTE lib_model OF \UART:BUART:tx_state_2\ : LABEL IS "macrocell45";
-    ATTRIBUTE lib_model OF \UART:BUART:tx_bitclk\ : LABEL IS "macrocell46";
-    ATTRIBUTE lib_model OF \PWM_Trigger:PWMUDB:runmode_enable\ : LABEL IS "macrocell47";
-    ATTRIBUTE lib_model OF \PWM_Trigger:PWMUDB:trig_disable\ : LABEL IS "macrocell48";
-    ATTRIBUTE lib_model OF Net_216 : LABEL IS "macrocell49";
-    ATTRIBUTE lib_model OF Net_81 : LABEL IS "macrocell50";
-    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:capture_last\ : LABEL IS "macrocell51";
-    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:run_mode\ : LABEL IS "macrocell52";
-    ATTRIBUTE lib_model OF MODIN2_1 : LABEL IS "macrocell53";
-    ATTRIBUTE lib_model OF MODIN2_0 : LABEL IS "macrocell54";
-    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:capt_int_temp\ : LABEL IS "macrocell55";
-    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:timer_enable\ : LABEL IS "macrocell56";
-    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:trig_disable\ : LABEL IS "macrocell57";
-    ATTRIBUTE lib_model OF \QuadDec_L:Net_1251_split\ : LABEL IS "macrocell58";
-    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:trig_rise_detected\ : LABEL IS "macrocell59";
-    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:trig_fall_detected\ : LABEL IS "macrocell60";
-    ATTRIBUTE lib_model OF \PWM_Motor_L:PWMUDB:runmode_enable\ : LABEL IS "macrocell61";
-    ATTRIBUTE lib_model OF \PWM_Motor_L:PWMUDB:prevCompare1\ : LABEL IS "macrocell62";
-    ATTRIBUTE lib_model OF \PWM_Motor_L:PWMUDB:prevCompare2\ : LABEL IS "macrocell63";
-    ATTRIBUTE lib_model OF \PWM_Motor_L:PWMUDB:status_0\ : LABEL IS "macrocell64";
-    ATTRIBUTE lib_model OF \PWM_Motor_L:PWMUDB:status_1\ : LABEL IS "macrocell65";
-    ATTRIBUTE lib_model OF Net_419 : LABEL IS "macrocell66";
-    ATTRIBUTE lib_model OF Net_418 : LABEL IS "macrocell67";
-    ATTRIBUTE lib_model OF \QuadDec_L:Net_1251\ : LABEL IS "macrocell68";
-    ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:overflow_reg_i\ : LABEL IS "macrocell69";
-    ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:underflow_reg_i\ : LABEL IS "macrocell70";
-    ATTRIBUTE lib_model OF \QuadDec_L:Net_1275\ : LABEL IS "macrocell71";
-    ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:prevCompare\ : LABEL IS "macrocell72";
-    ATTRIBUTE lib_model OF \QuadDec_L:Net_1203_split\ : LABEL IS "macrocell73";
-    ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:count_stored_i\ : LABEL IS "macrocell74";
-    ATTRIBUTE lib_model OF \QuadDec_L:Net_1203\ : LABEL IS "macrocell75";
-    ATTRIBUTE lib_model OF \QuadDec_L:Net_1260\ : LABEL IS "macrocell76";
-    ATTRIBUTE lib_model OF \QuadDec_L:bQuadDec:error\ : LABEL IS "macrocell77";
-    ATTRIBUTE lib_model OF \QuadDec_L:bQuadDec:state_1\ : LABEL IS "macrocell78";
-    ATTRIBUTE lib_model OF \QuadDec_L:bQuadDec:state_0\ : LABEL IS "macrocell79";
-    ATTRIBUTE lib_model OF \QuadDec_R:Net_1251\ : LABEL IS "macrocell80";
-    ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:overflow_reg_i\ : LABEL IS "macrocell81";
-    ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:underflow_reg_i\ : LABEL IS "macrocell82";
-    ATTRIBUTE lib_model OF \QuadDec_R:Net_1275\ : LABEL IS "macrocell83";
-    ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:prevCompare\ : LABEL IS "macrocell84";
-    ATTRIBUTE lib_model OF \QuadDec_R:Net_1251_split\ : LABEL IS "macrocell85";
-    ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:count_stored_i\ : LABEL IS "macrocell86";
-    ATTRIBUTE lib_model OF \QuadDec_R:Net_1203\ : LABEL IS "macrocell87";
-    ATTRIBUTE lib_model OF \QuadDec_R:Net_1260\ : LABEL IS "macrocell88";
-    ATTRIBUTE lib_model OF \QuadDec_R:bQuadDec:error\ : LABEL IS "macrocell89";
-    ATTRIBUTE lib_model OF \QuadDec_R:bQuadDec:state_1\ : LABEL IS "macrocell90";
-    ATTRIBUTE lib_model OF \QuadDec_R:bQuadDec:state_0\ : LABEL IS "macrocell91";
-    ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:runmode_enable\ : LABEL IS "macrocell92";
-    ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:prevCompare1\ : LABEL IS "macrocell93";
-    ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:prevCompare2\ : LABEL IS "macrocell94";
-    ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:status_0\ : LABEL IS "macrocell95";
-    ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:status_1\ : LABEL IS "macrocell96";
-    ATTRIBUTE lib_model OF Net_689 : LABEL IS "macrocell97";
-    ATTRIBUTE lib_model OF Net_690 : LABEL IS "macrocell98";
-    ATTRIBUTE lib_model OF \PWM_1:PWMUDB:trig_last\ : LABEL IS "macrocell99";
-    ATTRIBUTE lib_model OF \PWM_1:PWMUDB:runmode_enable\ : LABEL IS "macrocell100";
-    ATTRIBUTE lib_model OF \PWM_1:PWMUDB:prevCompare1\ : LABEL IS "macrocell101";
-    ATTRIBUTE lib_model OF \PWM_1:PWMUDB:status_0\ : LABEL IS "macrocell102";
-    ATTRIBUTE lib_model OF Net_1435 : LABEL IS "macrocell103";
-    ATTRIBUTE lib_model OF Net_1256 : LABEL IS "macrocell104";
-    ATTRIBUTE lib_model OF \PWM_ServoDir:PWMUDB:runmode_enable\ : LABEL IS "macrocell105";
-    ATTRIBUTE lib_model OF \PWM_ServoDir:PWMUDB:prevCompare1\ : LABEL IS "macrocell106";
-    ATTRIBUTE lib_model OF \PWM_ServoDir:PWMUDB:status_0\ : LABEL IS "macrocell107";
-    ATTRIBUTE lib_model OF Net_1102 : LABEL IS "macrocell108";
+    ATTRIBUTE lib_model OF \UART:BUART:txn\ : LABEL IS "macrocell43";
+    ATTRIBUTE lib_model OF \UART:BUART:tx_state_1\ : LABEL IS "macrocell44";
+    ATTRIBUTE lib_model OF \UART:BUART:tx_state_0\ : LABEL IS "macrocell45";
+    ATTRIBUTE lib_model OF \UART:BUART:tx_state_2\ : LABEL IS "macrocell46";
+    ATTRIBUTE lib_model OF \UART:BUART:tx_bitclk\ : LABEL IS "macrocell47";
+    ATTRIBUTE lib_model OF \PWM_Trigger:PWMUDB:runmode_enable\ : LABEL IS "macrocell48";
+    ATTRIBUTE lib_model OF \PWM_Trigger:PWMUDB:trig_disable\ : LABEL IS "macrocell49";
+    ATTRIBUTE lib_model OF Net_216 : LABEL IS "macrocell50";
+    ATTRIBUTE lib_model OF Net_81 : LABEL IS "macrocell51";
+    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:capture_last\ : LABEL IS "macrocell52";
+    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:run_mode\ : LABEL IS "macrocell53";
+    ATTRIBUTE lib_model OF MODIN2_1 : LABEL IS "macrocell54";
+    ATTRIBUTE lib_model OF MODIN2_0 : LABEL IS "macrocell55";
+    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:capt_int_temp\ : LABEL IS "macrocell56";
+    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:timer_enable\ : LABEL IS "macrocell57";
+    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:trig_disable\ : LABEL IS "macrocell58";
+    ATTRIBUTE lib_model OF \QuadDec_L:Net_1251_split\ : LABEL IS "macrocell59";
+    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:trig_rise_detected\ : LABEL IS "macrocell60";
+    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:trig_fall_detected\ : LABEL IS "macrocell61";
+    ATTRIBUTE lib_model OF \PWM_Motor_L:PWMUDB:runmode_enable\ : LABEL IS "macrocell62";
+    ATTRIBUTE lib_model OF \PWM_Motor_L:PWMUDB:prevCompare1\ : LABEL IS "macrocell63";
+    ATTRIBUTE lib_model OF \PWM_Motor_L:PWMUDB:prevCompare2\ : LABEL IS "macrocell64";
+    ATTRIBUTE lib_model OF \PWM_Motor_L:PWMUDB:status_0\ : LABEL IS "macrocell65";
+    ATTRIBUTE lib_model OF \PWM_Motor_L:PWMUDB:status_1\ : LABEL IS "macrocell66";
+    ATTRIBUTE lib_model OF Net_419 : LABEL IS "macrocell67";
+    ATTRIBUTE lib_model OF Net_418 : LABEL IS "macrocell68";
+    ATTRIBUTE lib_model OF \QuadDec_L:Net_1251\ : LABEL IS "macrocell69";
+    ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:overflow_reg_i\ : LABEL IS "macrocell70";
+    ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:underflow_reg_i\ : LABEL IS "macrocell71";
+    ATTRIBUTE lib_model OF \QuadDec_L:Net_1275\ : LABEL IS "macrocell72";
+    ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:prevCompare\ : LABEL IS "macrocell73";
+    ATTRIBUTE lib_model OF \QuadDec_L:Net_1203_split\ : LABEL IS "macrocell74";
+    ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:count_stored_i\ : LABEL IS "macrocell75";
+    ATTRIBUTE lib_model OF \QuadDec_L:Net_1203\ : LABEL IS "macrocell76";
+    ATTRIBUTE lib_model OF \QuadDec_L:Net_1260\ : LABEL IS "macrocell77";
+    ATTRIBUTE lib_model OF \QuadDec_L:bQuadDec:error\ : LABEL IS "macrocell78";
+    ATTRIBUTE lib_model OF \QuadDec_L:bQuadDec:state_1\ : LABEL IS "macrocell79";
+    ATTRIBUTE lib_model OF \QuadDec_L:bQuadDec:state_0\ : LABEL IS "macrocell80";
+    ATTRIBUTE lib_model OF \QuadDec_R:Net_1251\ : LABEL IS "macrocell81";
+    ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:overflow_reg_i\ : LABEL IS "macrocell82";
+    ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:underflow_reg_i\ : LABEL IS "macrocell83";
+    ATTRIBUTE lib_model OF \QuadDec_R:Net_1275\ : LABEL IS "macrocell84";
+    ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:prevCompare\ : LABEL IS "macrocell85";
+    ATTRIBUTE lib_model OF \QuadDec_R:Net_1251_split\ : LABEL IS "macrocell86";
+    ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:count_stored_i\ : LABEL IS "macrocell87";
+    ATTRIBUTE lib_model OF \QuadDec_R:Net_1203\ : LABEL IS "macrocell88";
+    ATTRIBUTE lib_model OF \QuadDec_R:Net_1260\ : LABEL IS "macrocell89";
+    ATTRIBUTE lib_model OF \QuadDec_R:bQuadDec:error\ : LABEL IS "macrocell90";
+    ATTRIBUTE lib_model OF \QuadDec_R:bQuadDec:state_1\ : LABEL IS "macrocell91";
+    ATTRIBUTE lib_model OF \QuadDec_R:bQuadDec:state_0\ : LABEL IS "macrocell92";
+    ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:runmode_enable\ : LABEL IS "macrocell93";
+    ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:prevCompare1\ : LABEL IS "macrocell94";
+    ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:prevCompare2\ : LABEL IS "macrocell95";
+    ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:status_0\ : LABEL IS "macrocell96";
+    ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:status_1\ : LABEL IS "macrocell97";
+    ATTRIBUTE lib_model OF Net_689 : LABEL IS "macrocell98";
+    ATTRIBUTE lib_model OF Net_690 : LABEL IS "macrocell99";
+    ATTRIBUTE lib_model OF \PWM_1:PWMUDB:trig_last\ : LABEL IS "macrocell100";
+    ATTRIBUTE lib_model OF \PWM_1:PWMUDB:runmode_enable\ : LABEL IS "macrocell101";
+    ATTRIBUTE lib_model OF \PWM_1:PWMUDB:prevCompare1\ : LABEL IS "macrocell102";
+    ATTRIBUTE lib_model OF \PWM_1:PWMUDB:status_0\ : LABEL IS "macrocell103";
+    ATTRIBUTE lib_model OF Net_1435 : LABEL IS "macrocell104";
+    ATTRIBUTE lib_model OF Net_1256 : LABEL IS "macrocell105";
+    ATTRIBUTE lib_model OF \PWM_ServoDir:PWMUDB:runmode_enable\ : LABEL IS "macrocell106";
+    ATTRIBUTE lib_model OF \PWM_ServoDir:PWMUDB:prevCompare1\ : LABEL IS "macrocell107";
+    ATTRIBUTE lib_model OF \PWM_ServoDir:PWMUDB:status_0\ : LABEL IS "macrocell108";
+    ATTRIBUTE lib_model OF Net_1102 : LABEL IS "macrocell109";
     COMPONENT clockblockcell
         PORT (
             dclk_0 : OUT std_ulogic;
@@ -2931,6 +2942,189 @@ BEGIN
             out_clock_en => '1',
             out_reset => '0');
 
+    Pin_US_Trigger5:logicalport
+        GENERIC MAP(
+            drive_mode => "011",
+            ibuf_enabled => "1",
+            id => "ccf84905-05e0-49df-aa34-129125e4ed06",
+            init_dr_st => "0",
+            input_buffer_sel => "00",
+            input_clk_en => 0,
+            input_sync => "1",
+            input_sync_mode => "0",
+            intr_mode => "00",
+            invert_in_clock => 0,
+            invert_in_clock_en => 0,
+            invert_in_reset => 0,
+            invert_out_clock => 0,
+            invert_out_clock_en => 0,
+            invert_out_reset => 0,
+            io_voltage => "",
+            layout_mode => "CONTIGUOUS",
+            oe_conn => "0",
+            oe_reset => 0,
+            oe_sync => "0",
+            output_clk_en => 0,
+            output_clock_mode => "0",
+            output_conn => "1",
+            output_mode => "0",
+            output_reset => 0,
+            output_sync => "0",
+            ovt_hyst_trim => "0",
+            ovt_needed => "0",
+            ovt_slew_control => "00",
+            pa_in_clock => -1,
+            pa_in_clock_en => -1,
+            pa_in_reset => -1,
+            pa_out_clock => -1,
+            pa_out_clock_en => -1,
+            pa_out_reset => -1,
+            pin_aliases => "",
+            pin_mode => "O",
+            por_state => 4,
+            port_alias_group => "",
+            port_alias_required => 0,
+            sio_group_cnt => 0,
+            sio_hifreq => "00000000",
+            sio_hyst => "1",
+            sio_ibuf => "00000000",
+            sio_info => "00",
+            sio_obuf => "00000000",
+            sio_refsel => "00000000",
+            sio_vohsel => "00000000",
+            sio_vtrip => "00000000",
+            slew_rate => "0",
+            spanning => 0,
+            sw_only => 0,
+            use_annotation => "0",
+            vtrip => "10",
+            width => 1,
+            in_clk_inv => 0,
+            in_clken_inv => 0,
+            in_clken_mode => 1,
+            in_rst_inv => 0,
+            out_clk_inv => 0,
+            out_clken_inv => 0,
+            out_clken_mode => 1,
+            out_rst_inv => 0)
+        PORT MAP(
+            in_clock_en => open,
+            in_reset => open,
+            out_clock_en => open,
+            out_reset => open);
+
+    Pin_US_Trigger5(0):iocell
+        GENERIC MAP(
+            in_sync_mode => 0,
+            out_sync_mode => 0,
+            oe_sync_mode => 0,
+            logicalport => "Pin_US_Trigger5",
+            logicalport_pin_id => 0,
+            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000101")
+        PORT MAP(
+            pa_out => Pin_US_Trigger5(0)__PA,
+            oe => open,
+            pin_input => Net_1459,
+            pad_out => Pin_US_Trigger5(0)_PAD,
+            pad_in => Pin_US_Trigger5(0)_PAD,
+            in_clock => open,
+            in_clock_en => '1',
+            in_reset => '0',
+            out_clock => open,
+            out_clock_en => '1',
+            out_reset => '0');
+
+    Pin_US_Echo5:logicalport
+        GENERIC MAP(
+            drive_mode => "011",
+            ibuf_enabled => "1",
+            id => "770137ab-4f7f-4793-86e9-e61bb4c3afd6",
+            init_dr_st => "0",
+            input_buffer_sel => "00",
+            input_clk_en => 0,
+            input_sync => "0",
+            input_sync_mode => "0",
+            intr_mode => "00",
+            invert_in_clock => 0,
+            invert_in_clock_en => 0,
+            invert_in_reset => 0,
+            invert_out_clock => 0,
+            invert_out_clock_en => 0,
+            invert_out_reset => 0,
+            io_voltage => "",
+            layout_mode => "CONTIGUOUS",
+            oe_conn => "0",
+            oe_reset => 0,
+            oe_sync => "0",
+            output_clk_en => 0,
+            output_clock_mode => "0",
+            output_conn => "0",
+            output_mode => "0",
+            output_reset => 0,
+            output_sync => "0",
+            ovt_hyst_trim => "0",
+            ovt_needed => "0",
+            ovt_slew_control => "00",
+            pa_in_clock => -1,
+            pa_in_clock_en => -1,
+            pa_in_reset => -1,
+            pa_out_clock => -1,
+            pa_out_clock_en => -1,
+            pa_out_reset => -1,
+            pin_aliases => "",
+            pin_mode => "I",
+            por_state => 4,
+            port_alias_group => "",
+            port_alias_required => 0,
+            sio_group_cnt => 0,
+            sio_hifreq => "00000000",
+            sio_hyst => "1",
+            sio_ibuf => "00000000",
+            sio_info => "00",
+            sio_obuf => "00000000",
+            sio_refsel => "00000000",
+            sio_vohsel => "00000000",
+            sio_vtrip => "00000000",
+            slew_rate => "0",
+            spanning => 0,
+            sw_only => 0,
+            use_annotation => "0",
+            vtrip => "00",
+            width => 1,
+            in_clk_inv => 0,
+            in_clken_inv => 0,
+            in_clken_mode => 1,
+            in_rst_inv => 0,
+            out_clk_inv => 0,
+            out_clken_inv => 0,
+            out_clken_mode => 1,
+            out_rst_inv => 0)
+        PORT MAP(
+            in_clock_en => open,
+            in_reset => open,
+            out_clock_en => open,
+            out_reset => open);
+
+    Pin_US_Echo5(0):iocell
+        GENERIC MAP(
+            in_sync_mode => 0,
+            out_sync_mode => 0,
+            oe_sync_mode => 0,
+            logicalport => "Pin_US_Echo5",
+            logicalport_pin_id => 0,
+            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000101")
+        PORT MAP(
+            pa_out => Pin_US_Echo5(0)__PA,
+            oe => open,
+            fb => Net_785,
+            pad_in => Pin_US_Echo5(0)_PAD,
+            in_clock => open,
+            in_clock_en => '1',
+            in_reset => '0',
+            out_clock => open,
+            out_clock_en => '1',
+            out_reset => '0');
+
     Net_84:macrocell
         GENERIC MAP(
             eqn_main => "(!main_0)",
@@ -3012,7 +3206,7 @@ BEGIN
     Net_130:macrocell
         GENERIC MAP(
             soft => 1,
-            eqn_main => "(main_0 * !main_1 * !main_2 * !main_3) + (!main_1 * !main_2 * main_3 * main_4) + (!main_1 * main_2 * !main_3 * main_5) + (!main_1 * main_2 * main_3 * main_6) + (main_1 * !main_2 * !main_3 * main_7)",
+            eqn_main => "(main_0 * !main_1 * !main_2 * !main_3) + (!main_1 * !main_2 * main_3 * main_4) + (!main_1 * main_2 * !main_3 * main_5) + (!main_1 * main_2 * main_3 * main_6) + (main_1 * !main_2 * !main_3 * main_7) + (main_1 * !main_2 * main_3 * main_8)",
             regmode => 0,
             clken_mode => 1)
         PORT MAP(
@@ -3024,7 +3218,8 @@ BEGIN
             main_4 => Net_783,
             main_5 => Net_206,
             main_6 => Net_207,
-            main_7 => Net_784);
+            main_7 => Net_784,
+            main_8 => Net_785);
 
     Net_801:macrocell
         GENERIC MAP(
@@ -3081,6 +3276,18 @@ BEGIN
             clken_mode => 1)
         PORT MAP(
             q => Net_805,
+            main_0 => Net_216,
+            main_1 => Net_800_2,
+            main_2 => Net_800_1,
+            main_3 => Net_800_0);
+
+    Net_1459:macrocell
+        GENERIC MAP(
+            eqn_main => "(main_0 * main_1 * !main_2 * main_3)",
+            regmode => 0,
+            clken_mode => 1)
+        PORT MAP(
+            q => Net_1459,
             main_0 => Net_216,
             main_1 => Net_800_2,
             main_2 => Net_800_1,
@@ -4954,7 +5161,7 @@ BEGIN
 
     \Timer_Echo:TimerUDB:capture_last\:macrocell
         GENERIC MAP(
-            eqn_main => "(main_0 * !main_1 * !main_2 * !main_3) + (!main_1 * !main_2 * main_3 * main_4) + (!main_1 * main_2 * !main_3 * main_5) + (!main_1 * main_2 * main_3 * main_6) + (main_1 * !main_2 * !main_3 * main_7)",
+            eqn_main => "(main_0 * !main_1 * !main_2 * !main_3) + (!main_1 * !main_2 * main_3 * main_4) + (!main_1 * main_2 * !main_3 * main_5) + (!main_1 * main_2 * main_3 * main_6) + (main_1 * !main_2 * !main_3 * main_7) + (main_1 * !main_2 * main_3 * main_8)",
             regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
@@ -4968,7 +5175,8 @@ BEGIN
             main_4 => Net_783,
             main_5 => Net_206,
             main_6 => Net_207,
-            main_7 => Net_784);
+            main_7 => Net_784,
+            main_8 => Net_785);
 
     \Timer_Echo:TimerUDB:run_mode\:macrocell
         GENERIC MAP(

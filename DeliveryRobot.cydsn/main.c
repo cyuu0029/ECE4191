@@ -20,7 +20,7 @@
 #include "..\Robot\robot.h"
 
 /* Define all global variables. */
-#define N_SENSORS 5     // Number of Ultrasonic Sensors
+#define N_SENSORS 6     // Number of Ultrasonic Sensors
 
 #ifndef M_PI    // Pi, duh!
 #define M_PI 3.141592653589793238462643383279502884196      
@@ -63,12 +63,12 @@ CY_ISR( Timer_Int_Handler ) {
     // Collect measurement 
     echo_distance = max_count - Timer_Echo_ReadCapture();   // in cm
     sensors.distance[mux_select] = echo_distance;      // Store measured value
-    if( mux_select == 4) { wall_following_flag = 1; }
     mux_select++;   // Iterate the global ultrasonic tracker
 
     // Reset the global ultrasonic tracker when all measurements have been updated
     if( mux_select == N_SENSORS ) { 
         mux_select = 0; 
+        wall_following_flag = 1;
     }
 
     Control_Reg_US_Write(mux_select);
@@ -234,7 +234,7 @@ int main(void)
     int B_flag = 0;
     
     // Settings
-    int velocity = 12;
+    int velocity = 15;
     
     /*=======================================================================*/  
     // starts at front left and goes clockwise
@@ -248,7 +248,7 @@ int main(void)
         // Wall follow only after sensor is updated
         // Read 3 times
         if ( wall_following_flag ) {
-            if (sensors.distance[0] < front_dist_th && sensors.distance[4] < front_dist_th) {                
+            if (sensors.distance[0] < front_dist_th && sensors.distance[5] < front_dist_th) {                
                 switch (ref_direction_deg) {
                     // Travelling towards box A
                     case (90):
@@ -276,8 +276,10 @@ int main(void)
                         // Spoof
                         sensors.distance[1] = dist_ref;
                         sensors.distance[2] = dist_ref;
+                        sensors.distance[3] = dist_ref;
+                        sensors.distance[4] = dist_ref;
                         sensors.distance[0] = 10000;
-                        sensors.distance[4] = 10000;
+                        sensors.distance[5] = 10000;
                         
                         break;
                         
@@ -332,8 +334,10 @@ int main(void)
                         // Spoof
                         sensors.distance[1] = dist_ref;
                         sensors.distance[2] = dist_ref;
+                        sensors.distance[3] = dist_ref;
+                        sensors.distance[4] = dist_ref;
                         sensors.distance[0] = 10000;
-                        sensors.distance[4] = 10000;
+                        sensors.distance[5] = 10000;
                         break;
                     
                     // Travelling Back to A *Can include a flag for safety measures
@@ -350,9 +354,12 @@ int main(void)
                         wall_following_flag = 0;
                     
                         // Spoof
+                        sensors.distance[1] = dist_ref;
+                        sensors.distance[2] = dist_ref;
                         sensors.distance[3] = dist_ref;
+                        sensors.distance[4] = dist_ref;
                         sensors.distance[0] = 10000;
-                        sensors.distance[4] = 10000;
+                        sensors.distance[5] = 10000;
                         break;
 
                     // Travelling Back to Start
@@ -374,8 +381,10 @@ int main(void)
                         // Spoof
                         sensors.distance[1] = dist_ref;
                         sensors.distance[2] = dist_ref;
+                        sensors.distance[3] = dist_ref;
+                        sensors.distance[4] = dist_ref;
                         sensors.distance[0] = 10000;
-                        sensors.distance[4] = 10000;
+                        sensors.distance[5] = 10000;
                         
                         break;
 
@@ -392,17 +401,20 @@ int main(void)
                         // Spoof sensor to avoid sensor updates during turn
                         sensors.distance[1] = dist_ref;
                         sensors.distance[2] = dist_ref;
+                        sensors.distance[3] = dist_ref;
+                        sensors.distance[4] = dist_ref;
                         sensors.distance[0] = 10000;
-                        sensors.distance[4] = 10000;
+                        sensors.distance[5] = 10000;
                 }
             }
 
             // Wall Following
             float error = 0;
+            int terminal_phase = sensors.distance[0] < 100 && sensors.distance[5] < 150;
             switch ( return_flag ){
                 case (0):
                     // Follow Left Wall
-                    robot.desired_v = velocity;
+                    robot.desired_v = terminal_phase ? 5: velocity;
                     error = (sensors.distance[1] < sensors.distance[2]) ? dist_ref - sensors.distance[1] : dist_ref - sensors.distance[2];
                     //error = dist_ref - (sensors.distance[1] + sensors.distance[2] / 2);
                     theta_correction = wall_Kp * -(error);
@@ -413,9 +425,9 @@ int main(void)
                 
                 case (1):
                     // Follow right wall
-                    robot.desired_v = velocity;
+                    robot.desired_v = terminal_phase ? 5: velocity;
                     
-                    error = dist_ref - sensors.distance[3];
+                    error = (sensors.distance[3] < sensors.distance[4]) ? dist_ref - sensors.distance[3] : dist_ref - sensors.distance[4];
                     
                     theta_correction = wall_Kp * -(error);
                     robot.desired_theta = ref_direction - theta_correction;
@@ -476,7 +488,7 @@ void Turn_Delay(long double angle) {
     robot.desired_theta = angle;
     
     // Idle loop to wait until turn is complete
-    while( !( fabs(robot.theta-robot.desired_theta) < 0.05 ) ) {}; 
+    while( !( fabs(robot.theta-robot.desired_theta) < 0.2 ) ) {}; 
 }
 
 int velocity_control(int max_velocity) {

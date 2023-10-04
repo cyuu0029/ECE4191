@@ -7,7 +7,7 @@
 /*===========================================================================*/
 
 #ifndef N_SENSORS
-#define N_SENSORS 5     // Number of Ultrasonic Sensors
+#define N_SENSORS 6     // Number of Ultrasonic Sensors
 #endif
 
 #ifndef M_PI        // Pi, duh!
@@ -31,8 +31,8 @@
 #endif
 #ifndef Sensor
 typedef struct {
-  int direction[5]; /* [degrees] */
-  int distance[5]; /* [cm] */
+  int direction[N_SENSORS]; /* [degrees] */
+  int distance[N_SENSORS]; /* [cm] */
 } Sensor;
 #endif
 

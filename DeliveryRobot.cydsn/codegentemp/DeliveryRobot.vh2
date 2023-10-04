@@ -2,7 +2,7 @@
 --	Conversion of DeliveryRobot.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Wed Oct 04 11:43:28 2023
+--	Wed Oct 04 13:04:52 2023
 --
 
 USE cypress.cypress.all;
@@ -818,6 +818,7 @@ SIGNAL Net_783 : bit;
 SIGNAL Net_206 : bit;
 SIGNAL Net_207 : bit;
 SIGNAL Net_784 : bit;
+SIGNAL Net_785 : bit;
 SIGNAL \demux_1:tmp__demux_1_0_reg\ : bit;
 SIGNAL \demux_1:tmp__demux_1_1_reg\ : bit;
 SIGNAL \demux_1:tmp__demux_1_2_reg\ : bit;
@@ -830,7 +831,7 @@ SIGNAL Net_802 : bit;
 SIGNAL Net_803 : bit;
 SIGNAL Net_804 : bit;
 SIGNAL Net_805 : bit;
-SIGNAL Net_797 : bit;
+SIGNAL Net_1459 : bit;
 SIGNAL Net_798 : bit;
 SIGNAL Net_799 : bit;
 SIGNAL tmpOE__Pin_US_Trigger1_net_0 : bit;
@@ -3343,6 +3344,15 @@ SIGNAL tmpIO_3__Pin_Servos_net_1 : bit;
 SIGNAL tmpIO_3__Pin_Servos_net_0 : bit;
 TERMINAL tmpSIOVREF__Pin_Servos_net_0 : bit;
 SIGNAL tmpINTERRUPT_0__Pin_Servos_net_0 : bit;
+SIGNAL tmpOE__Pin_US_Trigger5_net_0 : bit;
+SIGNAL tmpFB_0__Pin_US_Trigger5_net_0 : bit;
+SIGNAL tmpIO_0__Pin_US_Trigger5_net_0 : bit;
+TERMINAL tmpSIOVREF__Pin_US_Trigger5_net_0 : bit;
+SIGNAL tmpINTERRUPT_0__Pin_US_Trigger5_net_0 : bit;
+SIGNAL tmpOE__Pin_US_Echo5_net_0 : bit;
+SIGNAL tmpIO_0__Pin_US_Echo5_net_0 : bit;
+TERMINAL tmpSIOVREF__Pin_US_Echo5_net_0 : bit;
+SIGNAL tmpINTERRUPT_0__Pin_US_Echo5_net_0 : bit;
 SIGNAL \UART:BUART:reset_reg\\D\ : bit;
 SIGNAL \UART:BUART:txn\\D\ : bit;
 SIGNAL \UART:BUART:tx_state_1\\D\ : bit;
@@ -3584,7 +3594,8 @@ Net_12D <= ((not \UART:BUART:reset_reg\ and \UART:BUART:tx_state_2\)
 
 \Timer_Echo:TimerUDB:trig_reg\ <= ((\Timer_Echo:TimerUDB:control_4\ and \Timer_Echo:TimerUDB:timer_enable\ and \Timer_Echo:TimerUDB:trig_rise_detected\));
 
-Net_130 <= ((not Net_800_1 and not Net_800_0 and Net_800_2 and Net_784)
+Net_130 <= ((not Net_800_1 and Net_800_2 and Net_800_0 and Net_785)
+	OR (not Net_800_1 and not Net_800_0 and Net_800_2 and Net_784)
 	OR (not Net_800_2 and Net_800_1 and Net_800_0 and Net_207)
 	OR (not Net_800_2 and not Net_800_0 and Net_800_1 and Net_206)
 	OR (not Net_800_2 and not Net_800_1 and Net_800_0 and Net_783)
@@ -3599,6 +3610,8 @@ Net_803 <= ((not Net_800_2 and not Net_800_0 and Net_216 and Net_800_1));
 Net_804 <= ((not Net_800_2 and Net_216 and Net_800_1 and Net_800_0));
 
 Net_805 <= ((not Net_800_1 and not Net_800_0 and Net_216 and Net_800_2));
+
+Net_1459 <= ((not Net_800_1 and Net_216 and Net_800_2 and Net_800_0));
 
 \PWM_Motor_L:PWMUDB:sc_kill_tmp\\D\ <= (not \PWM_Motor_L:PWMUDB:tc_i\);
 
@@ -7436,6 +7449,146 @@ Pin_Servos:cy_psoc3_pins_v1_10
 		out_clock_en=>one,
 		out_reset=>zero,
 		interrupt=>tmpINTERRUPT_0__Pin_Servos_net_0);
+Pin_US_Trigger5:cy_psoc3_pins_v1_10
+	GENERIC MAP(id=>"ccf84905-05e0-49df-aa34-129125e4ed06",
+		drive_mode=>"011",
+		ibuf_enabled=>"1",
+		init_dr_st=>"0",
+		input_sync=>"1",
+		input_clk_en=>'0',
+		input_sync_mode=>"0",
+		intr_mode=>"00",
+		invert_in_clock=>'0',
+		invert_in_clock_en=>'0',
+		invert_in_reset=>'0',
+		invert_out_clock=>'0',
+		invert_out_clock_en=>'0',
+		invert_out_reset=>'0',
+		io_voltage=>"",
+		layout_mode=>"CONTIGUOUS",
+		output_conn=>"1",
+		output_sync=>"0",
+		output_clk_en=>'0',
+		output_mode=>"0",
+		output_reset=>'0',
+		output_clock_mode=>"0",
+		oe_sync=>"0",
+		oe_conn=>"0",
+		oe_reset=>'0',
+		pin_aliases=>"",
+		pin_mode=>"O",
+		por_state=>4,
+		sio_group_cnt=>0,
+		sio_hifreq=>"00000000",
+		sio_hyst=>"1",
+		sio_ibuf=>"00000000",
+		sio_info=>"00",
+		sio_obuf=>"00000000",
+		sio_refsel=>"00000000",
+		sio_vtrip=>"00000000",
+		sio_vohsel=>"00000000",
+		slew_rate=>"0",
+		spanning=>'0',
+		sw_only=>'0',
+		vtrip=>"10",
+		width=>1,
+		port_alias_required=>'0',
+		port_alias_group=>"",
+		use_annotation=>"0",
+		pa_in_clock=>-1,
+		pa_in_clock_en=>-1,
+		pa_in_reset=>-1,
+		pa_out_clock=>-1,
+		pa_out_clock_en=>-1,
+		pa_out_reset=>-1,
+		ovt_needed=>"0",
+		ovt_slew_control=>"00",
+		ovt_hyst_trim=>"0",
+		input_buffer_sel=>"00")
+	PORT MAP(oe=>(one),
+		y=>Net_1459,
+		fb=>(tmpFB_0__Pin_US_Trigger5_net_0),
+		analog=>(open),
+		io=>(tmpIO_0__Pin_US_Trigger5_net_0),
+		siovref=>(tmpSIOVREF__Pin_US_Trigger5_net_0),
+		annotation=>(open),
+		in_clock=>zero,
+		in_clock_en=>one,
+		in_reset=>zero,
+		out_clock=>zero,
+		out_clock_en=>one,
+		out_reset=>zero,
+		interrupt=>tmpINTERRUPT_0__Pin_US_Trigger5_net_0);
+Pin_US_Echo5:cy_psoc3_pins_v1_10
+	GENERIC MAP(id=>"770137ab-4f7f-4793-86e9-e61bb4c3afd6",
+		drive_mode=>"011",
+		ibuf_enabled=>"1",
+		init_dr_st=>"0",
+		input_sync=>"0",
+		input_clk_en=>'0',
+		input_sync_mode=>"0",
+		intr_mode=>"00",
+		invert_in_clock=>'0',
+		invert_in_clock_en=>'0',
+		invert_in_reset=>'0',
+		invert_out_clock=>'0',
+		invert_out_clock_en=>'0',
+		invert_out_reset=>'0',
+		io_voltage=>"",
+		layout_mode=>"CONTIGUOUS",
+		output_conn=>"0",
+		output_sync=>"0",
+		output_clk_en=>'0',
+		output_mode=>"0",
+		output_reset=>'0',
+		output_clock_mode=>"0",
+		oe_sync=>"0",
+		oe_conn=>"0",
+		oe_reset=>'0',
+		pin_aliases=>"",
+		pin_mode=>"I",
+		por_state=>4,
+		sio_group_cnt=>0,
+		sio_hifreq=>"00000000",
+		sio_hyst=>"1",
+		sio_ibuf=>"00000000",
+		sio_info=>"00",
+		sio_obuf=>"00000000",
+		sio_refsel=>"00000000",
+		sio_vtrip=>"00000000",
+		sio_vohsel=>"00000000",
+		slew_rate=>"0",
+		spanning=>'0',
+		sw_only=>'0',
+		vtrip=>"00",
+		width=>1,
+		port_alias_required=>'0',
+		port_alias_group=>"",
+		use_annotation=>"0",
+		pa_in_clock=>-1,
+		pa_in_clock_en=>-1,
+		pa_in_reset=>-1,
+		pa_out_clock=>-1,
+		pa_out_clock_en=>-1,
+		pa_out_reset=>-1,
+		ovt_needed=>"0",
+		ovt_slew_control=>"00",
+		ovt_hyst_trim=>"0",
+		input_buffer_sel=>"00")
+	PORT MAP(oe=>(one),
+		y=>(zero),
+		fb=>Net_785,
+		analog=>(open),
+		io=>(tmpIO_0__Pin_US_Echo5_net_0),
+		siovref=>(tmpSIOVREF__Pin_US_Echo5_net_0),
+		annotation=>(open),
+		in_clock=>zero,
+		in_clock_en=>one,
+		in_reset=>zero,
+		out_clock=>zero,
+		out_clock_en=>one,
+		out_reset=>zero,
+		interrupt=>tmpINTERRUPT_0__Pin_US_Echo5_net_0);
 \UART:BUART:reset_reg\:cy_dff
 	PORT MAP(d=>zero,
 		clk=>\UART:BUART:clock_op\,

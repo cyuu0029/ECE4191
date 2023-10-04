@@ -13,6 +13,12 @@ long double calculate_angle_modulo(long double angle) {
     return angle - M_TWOPI * floor(angle / M_TWOPI);  
 }
 
+int angle_clamp(int angle) {
+    angle = angle % 360;
+    if (angle < 0) {angle += 360;}
+    return angle;
+}
+
 double calculate_distance_from_goal(double pos_x, double pos_y, double goal_x, double goal_y) {
   // Calculate distance between current position and end goal
   double distance = sqrt( pow( goal_x - pos_x, 2 ) + pow( goal_y - pos_y, 2 ) ); 

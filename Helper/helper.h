@@ -26,6 +26,9 @@
 #define ARENA 120
 #endif
 
+#ifndef DEG2RAD
+#define DEG2RAD M_PI / 180
+#endif
 #ifndef Sensor
 typedef struct {
   int direction[5]; /* [degrees] */
@@ -34,6 +37,9 @@ typedef struct {
 #endif
 
 long double calculate_angle_modulo(long double angle);
+
+
+int angle_clamp(int angle);
 
 // Calculate distance between current position and end goal
 double calculate_distance_from_goal(double pos_x, double pos_y, double goal_x, double goal_y);

@@ -1,0 +1,2458 @@
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"PWM_ServoDir.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	PWM_ServoDir_initVar
+  20              		.bss
+  21              		.type	PWM_ServoDir_initVar, %object
+  22              		.size	PWM_ServoDir_initVar, 1
+  23              	PWM_ServoDir_initVar:
+  24 0000 00       		.space	1
+  25              		.section	.text.PWM_ServoDir_Start,"ax",%progbits
+  26              		.align	2
+  27              		.global	PWM_ServoDir_Start
+  28              		.thumb
+  29              		.thumb_func
+  30              		.type	PWM_ServoDir_Start, %function
+  31              	PWM_ServoDir_Start:
+  32              	.LFB0:
+  33              		.file 1 "Generated_Source\\PSoC5\\PWM_ServoDir.c"
+   1:Generated_Source\PSoC5/PWM_ServoDir.c **** /*******************************************************************************
+   2:Generated_Source\PSoC5/PWM_ServoDir.c **** * File Name: PWM_ServoDir.c
+   3:Generated_Source\PSoC5/PWM_ServoDir.c **** * Version 3.30
+   4:Generated_Source\PSoC5/PWM_ServoDir.c **** *
+   5:Generated_Source\PSoC5/PWM_ServoDir.c **** * Description:
+   6:Generated_Source\PSoC5/PWM_ServoDir.c **** *  The PWM User Module consist of an 8 or 16-bit counter with two 8 or 16-bit
+   7:Generated_Source\PSoC5/PWM_ServoDir.c **** *  comparitors. Each instance of this user module is capable of generating
+   8:Generated_Source\PSoC5/PWM_ServoDir.c **** *  two PWM outputs with the same period. The pulse width is selectable between
+   9:Generated_Source\PSoC5/PWM_ServoDir.c **** *  1 and 255/65535. The period is selectable between 2 and 255/65536 clocks.
+  10:Generated_Source\PSoC5/PWM_ServoDir.c **** *  The compare value output may be configured to be active when the present
+  11:Generated_Source\PSoC5/PWM_ServoDir.c **** *  counter is less than or less than/equal to the compare value.
+  12:Generated_Source\PSoC5/PWM_ServoDir.c **** *  A terminal count output is also provided. It generates a pulse one clock
+  13:Generated_Source\PSoC5/PWM_ServoDir.c **** *  width wide when the counter is equal to zero.
+  14:Generated_Source\PSoC5/PWM_ServoDir.c **** *
+  15:Generated_Source\PSoC5/PWM_ServoDir.c **** * Note:
+  16:Generated_Source\PSoC5/PWM_ServoDir.c **** *
+  17:Generated_Source\PSoC5/PWM_ServoDir.c **** *******************************************************************************
+  18:Generated_Source\PSoC5/PWM_ServoDir.c **** * Copyright 2008-2014, Cypress Semiconductor Corporation.  All rights reserved.
+  19:Generated_Source\PSoC5/PWM_ServoDir.c **** * You may use this file only in accordance with the license, terms, conditions,
+  20:Generated_Source\PSoC5/PWM_ServoDir.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  21:Generated_Source\PSoC5/PWM_ServoDir.c **** * the software package with which this file was provided.
+  22:Generated_Source\PSoC5/PWM_ServoDir.c **** ********************************************************************************/
+  23:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+  24:Generated_Source\PSoC5/PWM_ServoDir.c **** #include "PWM_ServoDir.h"
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 2
+
+
+  25:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+  26:Generated_Source\PSoC5/PWM_ServoDir.c **** /* Error message for removed <resource> through optimization */
+  27:Generated_Source\PSoC5/PWM_ServoDir.c **** #ifdef PWM_ServoDir_PWMUDB_genblk1_ctrlreg__REMOVED
+  28:Generated_Source\PSoC5/PWM_ServoDir.c ****     #error PWM_v3_30 detected with a constant 0 for the enable or \
+  29:Generated_Source\PSoC5/PWM_ServoDir.c ****          constant 1 for reset. This will prevent the component from operating.
+  30:Generated_Source\PSoC5/PWM_ServoDir.c **** #endif /* PWM_ServoDir_PWMUDB_genblk1_ctrlreg__REMOVED */
+  31:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+  32:Generated_Source\PSoC5/PWM_ServoDir.c **** uint8 PWM_ServoDir_initVar = 0u;
+  33:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+  34:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+  35:Generated_Source\PSoC5/PWM_ServoDir.c **** /*******************************************************************************
+  36:Generated_Source\PSoC5/PWM_ServoDir.c **** * Function Name: PWM_ServoDir_Start
+  37:Generated_Source\PSoC5/PWM_ServoDir.c **** ********************************************************************************
+  38:Generated_Source\PSoC5/PWM_ServoDir.c **** *
+  39:Generated_Source\PSoC5/PWM_ServoDir.c **** * Summary:
+  40:Generated_Source\PSoC5/PWM_ServoDir.c **** *  The start function initializes the pwm with the default values, the
+  41:Generated_Source\PSoC5/PWM_ServoDir.c **** *  enables the counter to begin counting.  It does not enable interrupts,
+  42:Generated_Source\PSoC5/PWM_ServoDir.c **** *  the EnableInt command should be called if interrupt generation is required.
+  43:Generated_Source\PSoC5/PWM_ServoDir.c **** *
+  44:Generated_Source\PSoC5/PWM_ServoDir.c **** * Parameters:
+  45:Generated_Source\PSoC5/PWM_ServoDir.c **** *  None
+  46:Generated_Source\PSoC5/PWM_ServoDir.c **** *
+  47:Generated_Source\PSoC5/PWM_ServoDir.c **** * Return:
+  48:Generated_Source\PSoC5/PWM_ServoDir.c **** *  None
+  49:Generated_Source\PSoC5/PWM_ServoDir.c **** *
+  50:Generated_Source\PSoC5/PWM_ServoDir.c **** * Global variables:
+  51:Generated_Source\PSoC5/PWM_ServoDir.c **** *  PWM_ServoDir_initVar: Is modified when this function is called for the
+  52:Generated_Source\PSoC5/PWM_ServoDir.c **** *   first time. Is used to ensure that initialization happens only once.
+  53:Generated_Source\PSoC5/PWM_ServoDir.c **** *
+  54:Generated_Source\PSoC5/PWM_ServoDir.c **** *******************************************************************************/
+  55:Generated_Source\PSoC5/PWM_ServoDir.c **** void PWM_ServoDir_Start(void) 
+  56:Generated_Source\PSoC5/PWM_ServoDir.c **** {
+  34              		.loc 1 56 0
+  35              		.cfi_startproc
+  36              		@ args = 0, pretend = 0, frame = 0
+  37              		@ frame_needed = 1, uses_anonymous_args = 0
+  38 0000 80B5     		push	{r7, lr}
+  39              		.cfi_def_cfa_offset 8
+  40              		.cfi_offset 7, -8
+  41              		.cfi_offset 14, -4
+  42 0002 00AF     		add	r7, sp, #0
+  43              		.cfi_def_cfa_register 7
+  57:Generated_Source\PSoC5/PWM_ServoDir.c ****     /* If not Initialized then initialize all required hardware and software */
+  58:Generated_Source\PSoC5/PWM_ServoDir.c ****     if(PWM_ServoDir_initVar == 0u)
+  44              		.loc 1 58 0
+  45 0004 064B     		ldr	r3, .L3
+  46 0006 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  47 0008 002B     		cmp	r3, #0
+  48 000a 04D1     		bne	.L2
+  59:Generated_Source\PSoC5/PWM_ServoDir.c ****     {
+  60:Generated_Source\PSoC5/PWM_ServoDir.c ****         PWM_ServoDir_Init();
+  49              		.loc 1 60 0
+  50 000c FFF7FEFF 		bl	PWM_ServoDir_Init
+  61:Generated_Source\PSoC5/PWM_ServoDir.c ****         PWM_ServoDir_initVar = 1u;
+  51              		.loc 1 61 0
+  52 0010 034B     		ldr	r3, .L3
+  53 0012 0122     		movs	r2, #1
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 3
+
+
+  54 0014 1A70     		strb	r2, [r3]
+  55              	.L2:
+  62:Generated_Source\PSoC5/PWM_ServoDir.c ****     }
+  63:Generated_Source\PSoC5/PWM_ServoDir.c ****     PWM_ServoDir_Enable();
+  56              		.loc 1 63 0
+  57 0016 FFF7FEFF 		bl	PWM_ServoDir_Enable
+  64:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+  65:Generated_Source\PSoC5/PWM_ServoDir.c **** }
+  58              		.loc 1 65 0
+  59 001a 00BF     		nop
+  60 001c 80BD     		pop	{r7, pc}
+  61              	.L4:
+  62 001e 00BF     		.align	2
+  63              	.L3:
+  64 0020 00000000 		.word	PWM_ServoDir_initVar
+  65              		.cfi_endproc
+  66              	.LFE0:
+  67              		.size	PWM_ServoDir_Start, .-PWM_ServoDir_Start
+  68              		.section	.text.PWM_ServoDir_Init,"ax",%progbits
+  69              		.align	2
+  70              		.global	PWM_ServoDir_Init
+  71              		.thumb
+  72              		.thumb_func
+  73              		.type	PWM_ServoDir_Init, %function
+  74              	PWM_ServoDir_Init:
+  75              	.LFB1:
+  66:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+  67:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+  68:Generated_Source\PSoC5/PWM_ServoDir.c **** /*******************************************************************************
+  69:Generated_Source\PSoC5/PWM_ServoDir.c **** * Function Name: PWM_ServoDir_Init
+  70:Generated_Source\PSoC5/PWM_ServoDir.c **** ********************************************************************************
+  71:Generated_Source\PSoC5/PWM_ServoDir.c **** *
+  72:Generated_Source\PSoC5/PWM_ServoDir.c **** * Summary:
+  73:Generated_Source\PSoC5/PWM_ServoDir.c **** *  Initialize component's parameters to the parameters set by user in the
+  74:Generated_Source\PSoC5/PWM_ServoDir.c **** *  customizer of the component placed onto schematic. Usually called in
+  75:Generated_Source\PSoC5/PWM_ServoDir.c **** *  PWM_ServoDir_Start().
+  76:Generated_Source\PSoC5/PWM_ServoDir.c **** *
+  77:Generated_Source\PSoC5/PWM_ServoDir.c **** * Parameters:
+  78:Generated_Source\PSoC5/PWM_ServoDir.c **** *  None
+  79:Generated_Source\PSoC5/PWM_ServoDir.c **** *
+  80:Generated_Source\PSoC5/PWM_ServoDir.c **** * Return:
+  81:Generated_Source\PSoC5/PWM_ServoDir.c **** *  None
+  82:Generated_Source\PSoC5/PWM_ServoDir.c **** *
+  83:Generated_Source\PSoC5/PWM_ServoDir.c **** *******************************************************************************/
+  84:Generated_Source\PSoC5/PWM_ServoDir.c **** void PWM_ServoDir_Init(void) 
+  85:Generated_Source\PSoC5/PWM_ServoDir.c **** {
+  76              		.loc 1 85 0
+  77              		.cfi_startproc
+  78              		@ args = 0, pretend = 0, frame = 8
+  79              		@ frame_needed = 1, uses_anonymous_args = 0
+  80 0000 80B5     		push	{r7, lr}
+  81              		.cfi_def_cfa_offset 8
+  82              		.cfi_offset 7, -8
+  83              		.cfi_offset 14, -4
+  84 0002 82B0     		sub	sp, sp, #8
+  85              		.cfi_def_cfa_offset 16
+  86 0004 00AF     		add	r7, sp, #0
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 4
+
+
+  87              		.cfi_def_cfa_register 7
+  86:Generated_Source\PSoC5/PWM_ServoDir.c ****     #if (PWM_ServoDir_UsingFixedFunction || PWM_ServoDir_UseControl)
+  87:Generated_Source\PSoC5/PWM_ServoDir.c ****         uint8 ctrl;
+  88:Generated_Source\PSoC5/PWM_ServoDir.c ****     #endif /* (PWM_ServoDir_UsingFixedFunction || PWM_ServoDir_UseControl) */
+  89:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+  90:Generated_Source\PSoC5/PWM_ServoDir.c ****     #if(!PWM_ServoDir_UsingFixedFunction)
+  91:Generated_Source\PSoC5/PWM_ServoDir.c ****         #if(PWM_ServoDir_UseStatus)
+  92:Generated_Source\PSoC5/PWM_ServoDir.c ****             /* Interrupt State Backup for Critical Region*/
+  93:Generated_Source\PSoC5/PWM_ServoDir.c ****             uint8 PWM_ServoDir_interruptState;
+  94:Generated_Source\PSoC5/PWM_ServoDir.c ****         #endif /* (PWM_ServoDir_UseStatus) */
+  95:Generated_Source\PSoC5/PWM_ServoDir.c ****     #endif /* (!PWM_ServoDir_UsingFixedFunction) */
+  96:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+  97:Generated_Source\PSoC5/PWM_ServoDir.c ****     #if (PWM_ServoDir_UsingFixedFunction)
+  98:Generated_Source\PSoC5/PWM_ServoDir.c ****         /* You are allowed to write the compare value (FF only) */
+  99:Generated_Source\PSoC5/PWM_ServoDir.c ****         PWM_ServoDir_CONTROL |= PWM_ServoDir_CFG0_MODE;
+ 100:Generated_Source\PSoC5/PWM_ServoDir.c ****         #if (PWM_ServoDir_DeadBand2_4)
+ 101:Generated_Source\PSoC5/PWM_ServoDir.c ****             PWM_ServoDir_CONTROL |= PWM_ServoDir_CFG0_DB;
+ 102:Generated_Source\PSoC5/PWM_ServoDir.c ****         #endif /* (PWM_ServoDir_DeadBand2_4) */
+ 103:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 104:Generated_Source\PSoC5/PWM_ServoDir.c ****         ctrl = PWM_ServoDir_CONTROL3 & ((uint8 )(~PWM_ServoDir_CTRL_CMPMODE1_MASK));
+ 105:Generated_Source\PSoC5/PWM_ServoDir.c ****         PWM_ServoDir_CONTROL3 = ctrl | PWM_ServoDir_DEFAULT_COMPARE1_MODE;
+ 106:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 107:Generated_Source\PSoC5/PWM_ServoDir.c ****          /* Clear and Set SYNCTC and SYNCCMP bits of RT1 register */
+ 108:Generated_Source\PSoC5/PWM_ServoDir.c ****         PWM_ServoDir_RT1 &= ((uint8)(~PWM_ServoDir_RT1_MASK));
+ 109:Generated_Source\PSoC5/PWM_ServoDir.c ****         PWM_ServoDir_RT1 |= PWM_ServoDir_SYNC;
+ 110:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 111:Generated_Source\PSoC5/PWM_ServoDir.c ****         /*Enable DSI Sync all all inputs of the PWM*/
+ 112:Generated_Source\PSoC5/PWM_ServoDir.c ****         PWM_ServoDir_RT1 &= ((uint8)(~PWM_ServoDir_SYNCDSI_MASK));
+ 113:Generated_Source\PSoC5/PWM_ServoDir.c ****         PWM_ServoDir_RT1 |= PWM_ServoDir_SYNCDSI_EN;
+ 114:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 115:Generated_Source\PSoC5/PWM_ServoDir.c ****     #elif (PWM_ServoDir_UseControl)
+ 116:Generated_Source\PSoC5/PWM_ServoDir.c ****         /* Set the default compare mode defined in the parameter */
+ 117:Generated_Source\PSoC5/PWM_ServoDir.c ****         ctrl = PWM_ServoDir_CONTROL & ((uint8)(~PWM_ServoDir_CTRL_CMPMODE2_MASK)) &
+ 118:Generated_Source\PSoC5/PWM_ServoDir.c ****                 ((uint8)(~PWM_ServoDir_CTRL_CMPMODE1_MASK));
+ 119:Generated_Source\PSoC5/PWM_ServoDir.c ****         PWM_ServoDir_CONTROL = ctrl | PWM_ServoDir_DEFAULT_COMPARE2_MODE |
+ 120:Generated_Source\PSoC5/PWM_ServoDir.c ****                                    PWM_ServoDir_DEFAULT_COMPARE1_MODE;
+ 121:Generated_Source\PSoC5/PWM_ServoDir.c ****     #endif /* (PWM_ServoDir_UsingFixedFunction) */
+ 122:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 123:Generated_Source\PSoC5/PWM_ServoDir.c ****     #if (!PWM_ServoDir_UsingFixedFunction)
+ 124:Generated_Source\PSoC5/PWM_ServoDir.c ****         #if (PWM_ServoDir_Resolution == 8)
+ 125:Generated_Source\PSoC5/PWM_ServoDir.c ****             /* Set FIFO 0 to 1 byte register for period*/
+ 126:Generated_Source\PSoC5/PWM_ServoDir.c ****             PWM_ServoDir_AUX_CONTROLDP0 |= (PWM_ServoDir_AUX_CTRL_FIFO0_CLR);
+ 127:Generated_Source\PSoC5/PWM_ServoDir.c ****         #else /* (PWM_ServoDir_Resolution == 16)*/
+ 128:Generated_Source\PSoC5/PWM_ServoDir.c ****             /* Set FIFO 0 to 1 byte register for period */
+ 129:Generated_Source\PSoC5/PWM_ServoDir.c ****             PWM_ServoDir_AUX_CONTROLDP0 |= (PWM_ServoDir_AUX_CTRL_FIFO0_CLR);
+  88              		.loc 1 129 0
+  89 0006 1A4A     		ldr	r2, .L6
+  90 0008 194B     		ldr	r3, .L6
+  91 000a 1B78     		ldrb	r3, [r3]
+  92 000c DBB2     		uxtb	r3, r3
+  93 000e 43F00103 		orr	r3, r3, #1
+  94 0012 DBB2     		uxtb	r3, r3
+  95 0014 1370     		strb	r3, [r2]
+ 130:Generated_Source\PSoC5/PWM_ServoDir.c ****             PWM_ServoDir_AUX_CONTROLDP1 |= (PWM_ServoDir_AUX_CTRL_FIFO0_CLR);
+  96              		.loc 1 130 0
+  97 0016 174A     		ldr	r2, .L6+4
+  98 0018 164B     		ldr	r3, .L6+4
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 5
+
+
+  99 001a 1B78     		ldrb	r3, [r3]
+ 100 001c DBB2     		uxtb	r3, r3
+ 101 001e 43F00103 		orr	r3, r3, #1
+ 102 0022 DBB2     		uxtb	r3, r3
+ 103 0024 1370     		strb	r3, [r2]
+ 131:Generated_Source\PSoC5/PWM_ServoDir.c ****         #endif /* (PWM_ServoDir_Resolution == 8) */
+ 132:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 133:Generated_Source\PSoC5/PWM_ServoDir.c ****         PWM_ServoDir_WriteCounter(PWM_ServoDir_INIT_PERIOD_VALUE);
+ 104              		.loc 1 133 0
+ 105 0026 49F64040 		movw	r0, #40000
+ 106 002a FFF7FEFF 		bl	PWM_ServoDir_WriteCounter
+ 134:Generated_Source\PSoC5/PWM_ServoDir.c ****     #endif /* (!PWM_ServoDir_UsingFixedFunction) */
+ 135:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 136:Generated_Source\PSoC5/PWM_ServoDir.c ****     PWM_ServoDir_WritePeriod(PWM_ServoDir_INIT_PERIOD_VALUE);
+ 107              		.loc 1 136 0
+ 108 002e 49F64040 		movw	r0, #40000
+ 109 0032 FFF7FEFF 		bl	PWM_ServoDir_WritePeriod
+ 137:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 138:Generated_Source\PSoC5/PWM_ServoDir.c ****         #if (PWM_ServoDir_UseOneCompareMode)
+ 139:Generated_Source\PSoC5/PWM_ServoDir.c ****             PWM_ServoDir_WriteCompare(PWM_ServoDir_INIT_COMPARE_VALUE1);
+ 110              		.loc 1 139 0
+ 111 0036 4FF47A60 		mov	r0, #4000
+ 112 003a FFF7FEFF 		bl	PWM_ServoDir_WriteCompare
+ 140:Generated_Source\PSoC5/PWM_ServoDir.c ****         #else
+ 141:Generated_Source\PSoC5/PWM_ServoDir.c ****             PWM_ServoDir_WriteCompare1(PWM_ServoDir_INIT_COMPARE_VALUE1);
+ 142:Generated_Source\PSoC5/PWM_ServoDir.c ****             PWM_ServoDir_WriteCompare2(PWM_ServoDir_INIT_COMPARE_VALUE2);
+ 143:Generated_Source\PSoC5/PWM_ServoDir.c ****         #endif /* (PWM_ServoDir_UseOneCompareMode) */
+ 144:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 145:Generated_Source\PSoC5/PWM_ServoDir.c ****         #if (PWM_ServoDir_KillModeMinTime)
+ 146:Generated_Source\PSoC5/PWM_ServoDir.c ****             PWM_ServoDir_WriteKillTime(PWM_ServoDir_MinimumKillTime);
+ 147:Generated_Source\PSoC5/PWM_ServoDir.c ****         #endif /* (PWM_ServoDir_KillModeMinTime) */
+ 148:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 149:Generated_Source\PSoC5/PWM_ServoDir.c ****         #if (PWM_ServoDir_DeadBandUsed)
+ 150:Generated_Source\PSoC5/PWM_ServoDir.c ****             PWM_ServoDir_WriteDeadTime(PWM_ServoDir_INIT_DEAD_TIME);
+ 151:Generated_Source\PSoC5/PWM_ServoDir.c ****         #endif /* (PWM_ServoDir_DeadBandUsed) */
+ 152:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 153:Generated_Source\PSoC5/PWM_ServoDir.c ****     #if (PWM_ServoDir_UseStatus || PWM_ServoDir_UsingFixedFunction)
+ 154:Generated_Source\PSoC5/PWM_ServoDir.c ****         PWM_ServoDir_SetInterruptMode(PWM_ServoDir_INIT_INTERRUPTS_MODE);
+ 113              		.loc 1 154 0
+ 114 003e 0020     		movs	r0, #0
+ 115 0040 FFF7FEFF 		bl	PWM_ServoDir_SetInterruptMode
+ 155:Generated_Source\PSoC5/PWM_ServoDir.c ****     #endif /* (PWM_ServoDir_UseStatus || PWM_ServoDir_UsingFixedFunction) */
+ 156:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 157:Generated_Source\PSoC5/PWM_ServoDir.c ****     #if (PWM_ServoDir_UsingFixedFunction)
+ 158:Generated_Source\PSoC5/PWM_ServoDir.c ****         /* Globally Enable the Fixed Function Block chosen */
+ 159:Generated_Source\PSoC5/PWM_ServoDir.c ****         PWM_ServoDir_GLOBAL_ENABLE |= PWM_ServoDir_BLOCK_EN_MASK;
+ 160:Generated_Source\PSoC5/PWM_ServoDir.c ****         /* Set the Interrupt source to come from the status register */
+ 161:Generated_Source\PSoC5/PWM_ServoDir.c ****         PWM_ServoDir_CONTROL2 |= PWM_ServoDir_CTRL2_IRQ_SEL;
+ 162:Generated_Source\PSoC5/PWM_ServoDir.c ****     #else
+ 163:Generated_Source\PSoC5/PWM_ServoDir.c ****         #if(PWM_ServoDir_UseStatus)
+ 164:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 165:Generated_Source\PSoC5/PWM_ServoDir.c ****             /* CyEnterCriticalRegion and CyExitCriticalRegion are used to mark following region cri
+ 166:Generated_Source\PSoC5/PWM_ServoDir.c ****             /* Enter Critical Region*/
+ 167:Generated_Source\PSoC5/PWM_ServoDir.c ****             PWM_ServoDir_interruptState = CyEnterCriticalSection();
+ 116              		.loc 1 167 0
+ 117 0044 FFF7FEFF 		bl	CyEnterCriticalSection
+ 118 0048 0346     		mov	r3, r0
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 6
+
+
+ 119 004a FB71     		strb	r3, [r7, #7]
+ 168:Generated_Source\PSoC5/PWM_ServoDir.c ****             /* Use the interrupt output of the status register for IRQ output */
+ 169:Generated_Source\PSoC5/PWM_ServoDir.c ****             PWM_ServoDir_STATUS_AUX_CTRL |= PWM_ServoDir_STATUS_ACTL_INT_EN_MASK;
+ 120              		.loc 1 169 0
+ 121 004c 0A4A     		ldr	r2, .L6+8
+ 122 004e 0A4B     		ldr	r3, .L6+8
+ 123 0050 1B78     		ldrb	r3, [r3]
+ 124 0052 DBB2     		uxtb	r3, r3
+ 125 0054 43F01003 		orr	r3, r3, #16
+ 126 0058 DBB2     		uxtb	r3, r3
+ 127 005a 1370     		strb	r3, [r2]
+ 170:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 171:Generated_Source\PSoC5/PWM_ServoDir.c ****              /* Exit Critical Region*/
+ 172:Generated_Source\PSoC5/PWM_ServoDir.c ****             CyExitCriticalSection(PWM_ServoDir_interruptState);
+ 128              		.loc 1 172 0
+ 129 005c FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 130 005e 1846     		mov	r0, r3
+ 131 0060 FFF7FEFF 		bl	CyExitCriticalSection
+ 173:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 174:Generated_Source\PSoC5/PWM_ServoDir.c ****             /* Clear the FIFO to enable the PWM_ServoDir_STATUS_FIFOFULL
+ 175:Generated_Source\PSoC5/PWM_ServoDir.c ****                    bit to be set on FIFO full. */
+ 176:Generated_Source\PSoC5/PWM_ServoDir.c ****             PWM_ServoDir_ClearFIFO();
+ 132              		.loc 1 176 0
+ 133 0064 FFF7FEFF 		bl	PWM_ServoDir_ClearFIFO
+ 177:Generated_Source\PSoC5/PWM_ServoDir.c ****         #endif /* (PWM_ServoDir_UseStatus) */
+ 178:Generated_Source\PSoC5/PWM_ServoDir.c ****     #endif /* (PWM_ServoDir_UsingFixedFunction) */
+ 179:Generated_Source\PSoC5/PWM_ServoDir.c **** }
+ 134              		.loc 1 179 0
+ 135 0068 00BF     		nop
+ 136 006a 0837     		adds	r7, r7, #8
+ 137              		.cfi_def_cfa_offset 8
+ 138 006c BD46     		mov	sp, r7
+ 139              		.cfi_def_cfa_register 13
+ 140              		@ sp needed
+ 141 006e 80BD     		pop	{r7, pc}
+ 142              	.L7:
+ 143              		.align	2
+ 144              	.L6:
+ 145 0070 96650040 		.word	1073767830
+ 146 0074 97650040 		.word	1073767831
+ 147 0078 96640040 		.word	1073767574
+ 148              		.cfi_endproc
+ 149              	.LFE1:
+ 150              		.size	PWM_ServoDir_Init, .-PWM_ServoDir_Init
+ 151              		.section	.text.PWM_ServoDir_Enable,"ax",%progbits
+ 152              		.align	2
+ 153              		.global	PWM_ServoDir_Enable
+ 154              		.thumb
+ 155              		.thumb_func
+ 156              		.type	PWM_ServoDir_Enable, %function
+ 157              	PWM_ServoDir_Enable:
+ 158              	.LFB2:
+ 180:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 181:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 182:Generated_Source\PSoC5/PWM_ServoDir.c **** /*******************************************************************************
+ 183:Generated_Source\PSoC5/PWM_ServoDir.c **** * Function Name: PWM_ServoDir_Enable
+ 184:Generated_Source\PSoC5/PWM_ServoDir.c **** ********************************************************************************
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 7
+
+
+ 185:Generated_Source\PSoC5/PWM_ServoDir.c **** *
+ 186:Generated_Source\PSoC5/PWM_ServoDir.c **** * Summary:
+ 187:Generated_Source\PSoC5/PWM_ServoDir.c **** *  Enables the PWM block operation
+ 188:Generated_Source\PSoC5/PWM_ServoDir.c **** *
+ 189:Generated_Source\PSoC5/PWM_ServoDir.c **** * Parameters:
+ 190:Generated_Source\PSoC5/PWM_ServoDir.c **** *  None
+ 191:Generated_Source\PSoC5/PWM_ServoDir.c **** *
+ 192:Generated_Source\PSoC5/PWM_ServoDir.c **** * Return:
+ 193:Generated_Source\PSoC5/PWM_ServoDir.c **** *  None
+ 194:Generated_Source\PSoC5/PWM_ServoDir.c **** *
+ 195:Generated_Source\PSoC5/PWM_ServoDir.c **** * Side Effects:
+ 196:Generated_Source\PSoC5/PWM_ServoDir.c **** *  This works only if software enable mode is chosen
+ 197:Generated_Source\PSoC5/PWM_ServoDir.c **** *
+ 198:Generated_Source\PSoC5/PWM_ServoDir.c **** *******************************************************************************/
+ 199:Generated_Source\PSoC5/PWM_ServoDir.c **** void PWM_ServoDir_Enable(void) 
+ 200:Generated_Source\PSoC5/PWM_ServoDir.c **** {
+ 159              		.loc 1 200 0
+ 160              		.cfi_startproc
+ 161              		@ args = 0, pretend = 0, frame = 0
+ 162              		@ frame_needed = 1, uses_anonymous_args = 0
+ 163              		@ link register save eliminated.
+ 164 0000 80B4     		push	{r7}
+ 165              		.cfi_def_cfa_offset 4
+ 166              		.cfi_offset 7, -4
+ 167 0002 00AF     		add	r7, sp, #0
+ 168              		.cfi_def_cfa_register 7
+ 201:Generated_Source\PSoC5/PWM_ServoDir.c ****     /* Globally Enable the Fixed Function Block chosen */
+ 202:Generated_Source\PSoC5/PWM_ServoDir.c ****     #if (PWM_ServoDir_UsingFixedFunction)
+ 203:Generated_Source\PSoC5/PWM_ServoDir.c ****         PWM_ServoDir_GLOBAL_ENABLE |= PWM_ServoDir_BLOCK_EN_MASK;
+ 204:Generated_Source\PSoC5/PWM_ServoDir.c ****         PWM_ServoDir_GLOBAL_STBY_ENABLE |= PWM_ServoDir_BLOCK_STBY_EN_MASK;
+ 205:Generated_Source\PSoC5/PWM_ServoDir.c ****     #endif /* (PWM_ServoDir_UsingFixedFunction) */
+ 206:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 207:Generated_Source\PSoC5/PWM_ServoDir.c ****     /* Enable the PWM from the control register  */
+ 208:Generated_Source\PSoC5/PWM_ServoDir.c ****     #if (PWM_ServoDir_UseControl || PWM_ServoDir_UsingFixedFunction)
+ 209:Generated_Source\PSoC5/PWM_ServoDir.c ****         PWM_ServoDir_CONTROL |= PWM_ServoDir_CTRL_ENABLE;
+ 210:Generated_Source\PSoC5/PWM_ServoDir.c ****     #endif /* (PWM_ServoDir_UseControl || PWM_ServoDir_UsingFixedFunction) */
+ 211:Generated_Source\PSoC5/PWM_ServoDir.c **** }
+ 169              		.loc 1 211 0
+ 170 0004 00BF     		nop
+ 171 0006 BD46     		mov	sp, r7
+ 172              		.cfi_def_cfa_register 13
+ 173              		@ sp needed
+ 174 0008 80BC     		pop	{r7}
+ 175              		.cfi_restore 7
+ 176              		.cfi_def_cfa_offset 0
+ 177 000a 7047     		bx	lr
+ 178              		.cfi_endproc
+ 179              	.LFE2:
+ 180              		.size	PWM_ServoDir_Enable, .-PWM_ServoDir_Enable
+ 181              		.section	.text.PWM_ServoDir_Stop,"ax",%progbits
+ 182              		.align	2
+ 183              		.global	PWM_ServoDir_Stop
+ 184              		.thumb
+ 185              		.thumb_func
+ 186              		.type	PWM_ServoDir_Stop, %function
+ 187              	PWM_ServoDir_Stop:
+ 188              	.LFB3:
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 8
+
+
+ 212:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 213:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 214:Generated_Source\PSoC5/PWM_ServoDir.c **** /*******************************************************************************
+ 215:Generated_Source\PSoC5/PWM_ServoDir.c **** * Function Name: PWM_ServoDir_Stop
+ 216:Generated_Source\PSoC5/PWM_ServoDir.c **** ********************************************************************************
+ 217:Generated_Source\PSoC5/PWM_ServoDir.c **** *
+ 218:Generated_Source\PSoC5/PWM_ServoDir.c **** * Summary:
+ 219:Generated_Source\PSoC5/PWM_ServoDir.c **** *  The stop function halts the PWM, but does not change any modes or disable
+ 220:Generated_Source\PSoC5/PWM_ServoDir.c **** *  interrupts.
+ 221:Generated_Source\PSoC5/PWM_ServoDir.c **** *
+ 222:Generated_Source\PSoC5/PWM_ServoDir.c **** * Parameters:
+ 223:Generated_Source\PSoC5/PWM_ServoDir.c **** *  None
+ 224:Generated_Source\PSoC5/PWM_ServoDir.c **** *
+ 225:Generated_Source\PSoC5/PWM_ServoDir.c **** * Return:
+ 226:Generated_Source\PSoC5/PWM_ServoDir.c **** *  None
+ 227:Generated_Source\PSoC5/PWM_ServoDir.c **** *
+ 228:Generated_Source\PSoC5/PWM_ServoDir.c **** * Side Effects:
+ 229:Generated_Source\PSoC5/PWM_ServoDir.c **** *  If the Enable mode is set to Hardware only then this function
+ 230:Generated_Source\PSoC5/PWM_ServoDir.c **** *  has no effect on the operation of the PWM
+ 231:Generated_Source\PSoC5/PWM_ServoDir.c **** *
+ 232:Generated_Source\PSoC5/PWM_ServoDir.c **** *******************************************************************************/
+ 233:Generated_Source\PSoC5/PWM_ServoDir.c **** void PWM_ServoDir_Stop(void) 
+ 234:Generated_Source\PSoC5/PWM_ServoDir.c **** {
+ 189              		.loc 1 234 0
+ 190              		.cfi_startproc
+ 191              		@ args = 0, pretend = 0, frame = 0
+ 192              		@ frame_needed = 1, uses_anonymous_args = 0
+ 193              		@ link register save eliminated.
+ 194 0000 80B4     		push	{r7}
+ 195              		.cfi_def_cfa_offset 4
+ 196              		.cfi_offset 7, -4
+ 197 0002 00AF     		add	r7, sp, #0
+ 198              		.cfi_def_cfa_register 7
+ 235:Generated_Source\PSoC5/PWM_ServoDir.c ****     #if (PWM_ServoDir_UseControl || PWM_ServoDir_UsingFixedFunction)
+ 236:Generated_Source\PSoC5/PWM_ServoDir.c ****         PWM_ServoDir_CONTROL &= ((uint8)(~PWM_ServoDir_CTRL_ENABLE));
+ 237:Generated_Source\PSoC5/PWM_ServoDir.c ****     #endif /* (PWM_ServoDir_UseControl || PWM_ServoDir_UsingFixedFunction) */
+ 238:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 239:Generated_Source\PSoC5/PWM_ServoDir.c ****     /* Globally disable the Fixed Function Block chosen */
+ 240:Generated_Source\PSoC5/PWM_ServoDir.c ****     #if (PWM_ServoDir_UsingFixedFunction)
+ 241:Generated_Source\PSoC5/PWM_ServoDir.c ****         PWM_ServoDir_GLOBAL_ENABLE &= ((uint8)(~PWM_ServoDir_BLOCK_EN_MASK));
+ 242:Generated_Source\PSoC5/PWM_ServoDir.c ****         PWM_ServoDir_GLOBAL_STBY_ENABLE &= ((uint8)(~PWM_ServoDir_BLOCK_STBY_EN_MASK));
+ 243:Generated_Source\PSoC5/PWM_ServoDir.c ****     #endif /* (PWM_ServoDir_UsingFixedFunction) */
+ 244:Generated_Source\PSoC5/PWM_ServoDir.c **** }
+ 199              		.loc 1 244 0
+ 200 0004 00BF     		nop
+ 201 0006 BD46     		mov	sp, r7
+ 202              		.cfi_def_cfa_register 13
+ 203              		@ sp needed
+ 204 0008 80BC     		pop	{r7}
+ 205              		.cfi_restore 7
+ 206              		.cfi_def_cfa_offset 0
+ 207 000a 7047     		bx	lr
+ 208              		.cfi_endproc
+ 209              	.LFE3:
+ 210              		.size	PWM_ServoDir_Stop, .-PWM_ServoDir_Stop
+ 211              		.section	.text.PWM_ServoDir_WriteCounter,"ax",%progbits
+ 212              		.align	2
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 9
+
+
+ 213              		.global	PWM_ServoDir_WriteCounter
+ 214              		.thumb
+ 215              		.thumb_func
+ 216              		.type	PWM_ServoDir_WriteCounter, %function
+ 217              	PWM_ServoDir_WriteCounter:
+ 218              	.LFB4:
+ 245:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 246:Generated_Source\PSoC5/PWM_ServoDir.c **** #if (PWM_ServoDir_UseOneCompareMode)
+ 247:Generated_Source\PSoC5/PWM_ServoDir.c ****     #if (PWM_ServoDir_CompareMode1SW)
+ 248:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 249:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 250:Generated_Source\PSoC5/PWM_ServoDir.c ****         /*******************************************************************************
+ 251:Generated_Source\PSoC5/PWM_ServoDir.c ****         * Function Name: PWM_ServoDir_SetCompareMode
+ 252:Generated_Source\PSoC5/PWM_ServoDir.c ****         ********************************************************************************
+ 253:Generated_Source\PSoC5/PWM_ServoDir.c ****         *
+ 254:Generated_Source\PSoC5/PWM_ServoDir.c ****         * Summary:
+ 255:Generated_Source\PSoC5/PWM_ServoDir.c ****         *  This function writes the Compare Mode for the pwm output when in Dither mode,
+ 256:Generated_Source\PSoC5/PWM_ServoDir.c ****         *  Center Align Mode or One Output Mode.
+ 257:Generated_Source\PSoC5/PWM_ServoDir.c ****         *
+ 258:Generated_Source\PSoC5/PWM_ServoDir.c ****         * Parameters:
+ 259:Generated_Source\PSoC5/PWM_ServoDir.c ****         *  comparemode:  The new compare mode for the PWM output. Use the compare types
+ 260:Generated_Source\PSoC5/PWM_ServoDir.c ****         *                defined in the H file as input arguments.
+ 261:Generated_Source\PSoC5/PWM_ServoDir.c ****         *
+ 262:Generated_Source\PSoC5/PWM_ServoDir.c ****         * Return:
+ 263:Generated_Source\PSoC5/PWM_ServoDir.c ****         *  None
+ 264:Generated_Source\PSoC5/PWM_ServoDir.c ****         *
+ 265:Generated_Source\PSoC5/PWM_ServoDir.c ****         *******************************************************************************/
+ 266:Generated_Source\PSoC5/PWM_ServoDir.c ****         void PWM_ServoDir_SetCompareMode(uint8 comparemode) 
+ 267:Generated_Source\PSoC5/PWM_ServoDir.c ****         {
+ 268:Generated_Source\PSoC5/PWM_ServoDir.c ****             #if(PWM_ServoDir_UsingFixedFunction)
+ 269:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 270:Generated_Source\PSoC5/PWM_ServoDir.c ****                 #if(0 != PWM_ServoDir_CTRL_CMPMODE1_SHIFT)
+ 271:Generated_Source\PSoC5/PWM_ServoDir.c ****                     uint8 comparemodemasked = ((uint8)((uint8)comparemode << PWM_ServoDir_CTRL_CMPM
+ 272:Generated_Source\PSoC5/PWM_ServoDir.c ****                 #else
+ 273:Generated_Source\PSoC5/PWM_ServoDir.c ****                     uint8 comparemodemasked = comparemode;
+ 274:Generated_Source\PSoC5/PWM_ServoDir.c ****                 #endif /* (0 != PWM_ServoDir_CTRL_CMPMODE1_SHIFT) */
+ 275:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 276:Generated_Source\PSoC5/PWM_ServoDir.c ****                 PWM_ServoDir_CONTROL3 &= ((uint8)(~PWM_ServoDir_CTRL_CMPMODE1_MASK)); /*Clear Exist
+ 277:Generated_Source\PSoC5/PWM_ServoDir.c ****                 PWM_ServoDir_CONTROL3 |= comparemodemasked;
+ 278:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 279:Generated_Source\PSoC5/PWM_ServoDir.c ****             #elif (PWM_ServoDir_UseControl)
+ 280:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 281:Generated_Source\PSoC5/PWM_ServoDir.c ****                 #if(0 != PWM_ServoDir_CTRL_CMPMODE1_SHIFT)
+ 282:Generated_Source\PSoC5/PWM_ServoDir.c ****                     uint8 comparemode1masked = ((uint8)((uint8)comparemode << PWM_ServoDir_CTRL_CMP
+ 283:Generated_Source\PSoC5/PWM_ServoDir.c ****                                                 PWM_ServoDir_CTRL_CMPMODE1_MASK;
+ 284:Generated_Source\PSoC5/PWM_ServoDir.c ****                 #else
+ 285:Generated_Source\PSoC5/PWM_ServoDir.c ****                     uint8 comparemode1masked = comparemode & PWM_ServoDir_CTRL_CMPMODE1_MASK;
+ 286:Generated_Source\PSoC5/PWM_ServoDir.c ****                 #endif /* (0 != PWM_ServoDir_CTRL_CMPMODE1_SHIFT) */
+ 287:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 288:Generated_Source\PSoC5/PWM_ServoDir.c ****                 #if(0 != PWM_ServoDir_CTRL_CMPMODE2_SHIFT)
+ 289:Generated_Source\PSoC5/PWM_ServoDir.c ****                     uint8 comparemode2masked = ((uint8)((uint8)comparemode << PWM_ServoDir_CTRL_CMP
+ 290:Generated_Source\PSoC5/PWM_ServoDir.c ****                                                PWM_ServoDir_CTRL_CMPMODE2_MASK;
+ 291:Generated_Source\PSoC5/PWM_ServoDir.c ****                 #else
+ 292:Generated_Source\PSoC5/PWM_ServoDir.c ****                     uint8 comparemode2masked = comparemode & PWM_ServoDir_CTRL_CMPMODE2_MASK;
+ 293:Generated_Source\PSoC5/PWM_ServoDir.c ****                 #endif /* (0 != PWM_ServoDir_CTRL_CMPMODE2_SHIFT) */
+ 294:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 295:Generated_Source\PSoC5/PWM_ServoDir.c ****                 /*Clear existing mode */
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 10
+
+
+ 296:Generated_Source\PSoC5/PWM_ServoDir.c ****                 PWM_ServoDir_CONTROL &= ((uint8)(~(PWM_ServoDir_CTRL_CMPMODE1_MASK |
+ 297:Generated_Source\PSoC5/PWM_ServoDir.c ****                                             PWM_ServoDir_CTRL_CMPMODE2_MASK)));
+ 298:Generated_Source\PSoC5/PWM_ServoDir.c ****                 PWM_ServoDir_CONTROL |= (comparemode1masked | comparemode2masked);
+ 299:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 300:Generated_Source\PSoC5/PWM_ServoDir.c ****             #else
+ 301:Generated_Source\PSoC5/PWM_ServoDir.c ****                 uint8 temp = comparemode;
+ 302:Generated_Source\PSoC5/PWM_ServoDir.c ****             #endif /* (PWM_ServoDir_UsingFixedFunction) */
+ 303:Generated_Source\PSoC5/PWM_ServoDir.c ****         }
+ 304:Generated_Source\PSoC5/PWM_ServoDir.c ****     #endif /* PWM_ServoDir_CompareMode1SW */
+ 305:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 306:Generated_Source\PSoC5/PWM_ServoDir.c **** #else /* UseOneCompareMode */
+ 307:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 308:Generated_Source\PSoC5/PWM_ServoDir.c ****     #if (PWM_ServoDir_CompareMode1SW)
+ 309:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 310:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 311:Generated_Source\PSoC5/PWM_ServoDir.c ****         /*******************************************************************************
+ 312:Generated_Source\PSoC5/PWM_ServoDir.c ****         * Function Name: PWM_ServoDir_SetCompareMode1
+ 313:Generated_Source\PSoC5/PWM_ServoDir.c ****         ********************************************************************************
+ 314:Generated_Source\PSoC5/PWM_ServoDir.c ****         *
+ 315:Generated_Source\PSoC5/PWM_ServoDir.c ****         * Summary:
+ 316:Generated_Source\PSoC5/PWM_ServoDir.c ****         *  This function writes the Compare Mode for the pwm or pwm1 output
+ 317:Generated_Source\PSoC5/PWM_ServoDir.c ****         *
+ 318:Generated_Source\PSoC5/PWM_ServoDir.c ****         * Parameters:
+ 319:Generated_Source\PSoC5/PWM_ServoDir.c ****         *  comparemode:  The new compare mode for the PWM output. Use the compare types
+ 320:Generated_Source\PSoC5/PWM_ServoDir.c ****         *                defined in the H file as input arguments.
+ 321:Generated_Source\PSoC5/PWM_ServoDir.c ****         *
+ 322:Generated_Source\PSoC5/PWM_ServoDir.c ****         * Return:
+ 323:Generated_Source\PSoC5/PWM_ServoDir.c ****         *  None
+ 324:Generated_Source\PSoC5/PWM_ServoDir.c ****         *
+ 325:Generated_Source\PSoC5/PWM_ServoDir.c ****         *******************************************************************************/
+ 326:Generated_Source\PSoC5/PWM_ServoDir.c ****         void PWM_ServoDir_SetCompareMode1(uint8 comparemode) 
+ 327:Generated_Source\PSoC5/PWM_ServoDir.c ****         {
+ 328:Generated_Source\PSoC5/PWM_ServoDir.c ****             #if(0 != PWM_ServoDir_CTRL_CMPMODE1_SHIFT)
+ 329:Generated_Source\PSoC5/PWM_ServoDir.c ****                 uint8 comparemodemasked = ((uint8)((uint8)comparemode << PWM_ServoDir_CTRL_CMPMODE1
+ 330:Generated_Source\PSoC5/PWM_ServoDir.c ****                                            PWM_ServoDir_CTRL_CMPMODE1_MASK;
+ 331:Generated_Source\PSoC5/PWM_ServoDir.c ****             #else
+ 332:Generated_Source\PSoC5/PWM_ServoDir.c ****                 uint8 comparemodemasked = comparemode & PWM_ServoDir_CTRL_CMPMODE1_MASK;
+ 333:Generated_Source\PSoC5/PWM_ServoDir.c ****             #endif /* (0 != PWM_ServoDir_CTRL_CMPMODE1_SHIFT) */
+ 334:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 335:Generated_Source\PSoC5/PWM_ServoDir.c ****             #if (PWM_ServoDir_UseControl)
+ 336:Generated_Source\PSoC5/PWM_ServoDir.c ****                 PWM_ServoDir_CONTROL &= ((uint8)(~PWM_ServoDir_CTRL_CMPMODE1_MASK)); /*Clear existi
+ 337:Generated_Source\PSoC5/PWM_ServoDir.c ****                 PWM_ServoDir_CONTROL |= comparemodemasked;
+ 338:Generated_Source\PSoC5/PWM_ServoDir.c ****             #endif /* (PWM_ServoDir_UseControl) */
+ 339:Generated_Source\PSoC5/PWM_ServoDir.c ****         }
+ 340:Generated_Source\PSoC5/PWM_ServoDir.c ****     #endif /* PWM_ServoDir_CompareMode1SW */
+ 341:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 342:Generated_Source\PSoC5/PWM_ServoDir.c **** #if (PWM_ServoDir_CompareMode2SW)
+ 343:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 344:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 345:Generated_Source\PSoC5/PWM_ServoDir.c ****     /*******************************************************************************
+ 346:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Function Name: PWM_ServoDir_SetCompareMode2
+ 347:Generated_Source\PSoC5/PWM_ServoDir.c ****     ********************************************************************************
+ 348:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 349:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Summary:
+ 350:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  This function writes the Compare Mode for the pwm or pwm2 output
+ 351:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 352:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Parameters:
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 11
+
+
+ 353:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  comparemode:  The new compare mode for the PWM output. Use the compare types
+ 354:Generated_Source\PSoC5/PWM_ServoDir.c ****     *                defined in the H file as input arguments.
+ 355:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 356:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Return:
+ 357:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  None
+ 358:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 359:Generated_Source\PSoC5/PWM_ServoDir.c ****     *******************************************************************************/
+ 360:Generated_Source\PSoC5/PWM_ServoDir.c ****     void PWM_ServoDir_SetCompareMode2(uint8 comparemode) 
+ 361:Generated_Source\PSoC5/PWM_ServoDir.c ****     {
+ 362:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 363:Generated_Source\PSoC5/PWM_ServoDir.c ****         #if(0 != PWM_ServoDir_CTRL_CMPMODE2_SHIFT)
+ 364:Generated_Source\PSoC5/PWM_ServoDir.c ****             uint8 comparemodemasked = ((uint8)((uint8)comparemode << PWM_ServoDir_CTRL_CMPMODE2_SHI
+ 365:Generated_Source\PSoC5/PWM_ServoDir.c ****                                                  PWM_ServoDir_CTRL_CMPMODE2_MASK;
+ 366:Generated_Source\PSoC5/PWM_ServoDir.c ****         #else
+ 367:Generated_Source\PSoC5/PWM_ServoDir.c ****             uint8 comparemodemasked = comparemode & PWM_ServoDir_CTRL_CMPMODE2_MASK;
+ 368:Generated_Source\PSoC5/PWM_ServoDir.c ****         #endif /* (0 != PWM_ServoDir_CTRL_CMPMODE2_SHIFT) */
+ 369:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 370:Generated_Source\PSoC5/PWM_ServoDir.c ****         #if (PWM_ServoDir_UseControl)
+ 371:Generated_Source\PSoC5/PWM_ServoDir.c ****             PWM_ServoDir_CONTROL &= ((uint8)(~PWM_ServoDir_CTRL_CMPMODE2_MASK)); /*Clear existing m
+ 372:Generated_Source\PSoC5/PWM_ServoDir.c ****             PWM_ServoDir_CONTROL |= comparemodemasked;
+ 373:Generated_Source\PSoC5/PWM_ServoDir.c ****         #endif /* (PWM_ServoDir_UseControl) */
+ 374:Generated_Source\PSoC5/PWM_ServoDir.c ****     }
+ 375:Generated_Source\PSoC5/PWM_ServoDir.c ****     #endif /*PWM_ServoDir_CompareMode2SW */
+ 376:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 377:Generated_Source\PSoC5/PWM_ServoDir.c **** #endif /* UseOneCompareMode */
+ 378:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 379:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 380:Generated_Source\PSoC5/PWM_ServoDir.c **** #if (!PWM_ServoDir_UsingFixedFunction)
+ 381:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 382:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 383:Generated_Source\PSoC5/PWM_ServoDir.c ****     /*******************************************************************************
+ 384:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Function Name: PWM_ServoDir_WriteCounter
+ 385:Generated_Source\PSoC5/PWM_ServoDir.c ****     ********************************************************************************
+ 386:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 387:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Summary:
+ 388:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  Writes a new counter value directly to the counter register. This will be
+ 389:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  implemented for that currently running period and only that period. This API
+ 390:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  is valid only for UDB implementation and not available for fixed function
+ 391:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  PWM implementation.
+ 392:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 393:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Parameters:
+ 394:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  counter:  The period new period counter value.
+ 395:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 396:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Return:
+ 397:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  None
+ 398:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 399:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Side Effects:
+ 400:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  The PWM Period will be reloaded when a counter value will be a zero
+ 401:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 402:Generated_Source\PSoC5/PWM_ServoDir.c ****     *******************************************************************************/
+ 403:Generated_Source\PSoC5/PWM_ServoDir.c ****     void PWM_ServoDir_WriteCounter(uint16 counter) \
+ 404:Generated_Source\PSoC5/PWM_ServoDir.c ****                                        
+ 405:Generated_Source\PSoC5/PWM_ServoDir.c ****     {
+ 219              		.loc 1 405 0
+ 220              		.cfi_startproc
+ 221              		@ args = 0, pretend = 0, frame = 8
+ 222              		@ frame_needed = 1, uses_anonymous_args = 0
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 12
+
+
+ 223              		@ link register save eliminated.
+ 224 0000 80B4     		push	{r7}
+ 225              		.cfi_def_cfa_offset 4
+ 226              		.cfi_offset 7, -4
+ 227 0002 83B0     		sub	sp, sp, #12
+ 228              		.cfi_def_cfa_offset 16
+ 229 0004 00AF     		add	r7, sp, #0
+ 230              		.cfi_def_cfa_register 7
+ 231 0006 0346     		mov	r3, r0
+ 232 0008 FB80     		strh	r3, [r7, #6]	@ movhi
+ 406:Generated_Source\PSoC5/PWM_ServoDir.c ****         CY_SET_REG16(PWM_ServoDir_COUNTER_LSB_PTR, counter);
+ 233              		.loc 1 406 0
+ 234 000a 044A     		ldr	r2, .L11
+ 235 000c FB88     		ldrh	r3, [r7, #6]	@ movhi
+ 236 000e 1380     		strh	r3, [r2]	@ movhi
+ 407:Generated_Source\PSoC5/PWM_ServoDir.c ****     }
+ 237              		.loc 1 407 0
+ 238 0010 00BF     		nop
+ 239 0012 0C37     		adds	r7, r7, #12
+ 240              		.cfi_def_cfa_offset 4
+ 241 0014 BD46     		mov	sp, r7
+ 242              		.cfi_def_cfa_register 13
+ 243              		@ sp needed
+ 244 0016 80BC     		pop	{r7}
+ 245              		.cfi_restore 7
+ 246              		.cfi_def_cfa_offset 0
+ 247 0018 7047     		bx	lr
+ 248              	.L12:
+ 249 001a 00BF     		.align	2
+ 250              	.L11:
+ 251 001c 0C6A0040 		.word	1073768972
+ 252              		.cfi_endproc
+ 253              	.LFE4:
+ 254              		.size	PWM_ServoDir_WriteCounter, .-PWM_ServoDir_WriteCounter
+ 255              		.section	.text.PWM_ServoDir_ReadCounter,"ax",%progbits
+ 256              		.align	2
+ 257              		.global	PWM_ServoDir_ReadCounter
+ 258              		.thumb
+ 259              		.thumb_func
+ 260              		.type	PWM_ServoDir_ReadCounter, %function
+ 261              	PWM_ServoDir_ReadCounter:
+ 262              	.LFB5:
+ 408:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 409:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 410:Generated_Source\PSoC5/PWM_ServoDir.c ****     /*******************************************************************************
+ 411:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Function Name: PWM_ServoDir_ReadCounter
+ 412:Generated_Source\PSoC5/PWM_ServoDir.c ****     ********************************************************************************
+ 413:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 414:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Summary:
+ 415:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  This function returns the current value of the counter.  It doesn't matter
+ 416:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  if the counter is enabled or running.
+ 417:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 418:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Parameters:
+ 419:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  None
+ 420:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 421:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Return:
+ 422:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  The current value of the counter.
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 13
+
+
+ 423:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 424:Generated_Source\PSoC5/PWM_ServoDir.c ****     *******************************************************************************/
+ 425:Generated_Source\PSoC5/PWM_ServoDir.c ****     uint16 PWM_ServoDir_ReadCounter(void) 
+ 426:Generated_Source\PSoC5/PWM_ServoDir.c ****     {
+ 263              		.loc 1 426 0
+ 264              		.cfi_startproc
+ 265              		@ args = 0, pretend = 0, frame = 0
+ 266              		@ frame_needed = 1, uses_anonymous_args = 0
+ 267              		@ link register save eliminated.
+ 268 0000 80B4     		push	{r7}
+ 269              		.cfi_def_cfa_offset 4
+ 270              		.cfi_offset 7, -4
+ 271 0002 00AF     		add	r7, sp, #0
+ 272              		.cfi_def_cfa_register 7
+ 427:Generated_Source\PSoC5/PWM_ServoDir.c ****         /* Force capture by reading Accumulator */
+ 428:Generated_Source\PSoC5/PWM_ServoDir.c ****         /* Must first do a software capture to be able to read the counter */
+ 429:Generated_Source\PSoC5/PWM_ServoDir.c ****         /* It is up to the user code to make sure there isn't already captured data in the FIFO */
+ 430:Generated_Source\PSoC5/PWM_ServoDir.c ****           (void)CY_GET_REG8(PWM_ServoDir_COUNTERCAP_LSB_PTR_8BIT);
+ 273              		.loc 1 430 0
+ 274 0004 044B     		ldr	r3, .L15
+ 275 0006 1B78     		ldrb	r3, [r3]
+ 431:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 432:Generated_Source\PSoC5/PWM_ServoDir.c ****         /* Read the data from the FIFO */
+ 433:Generated_Source\PSoC5/PWM_ServoDir.c ****         return (CY_GET_REG16(PWM_ServoDir_CAPTURE_LSB_PTR));
+ 276              		.loc 1 433 0
+ 277 0008 044B     		ldr	r3, .L15+4
+ 278 000a 1B88     		ldrh	r3, [r3]	@ movhi
+ 279 000c 9BB2     		uxth	r3, r3
+ 434:Generated_Source\PSoC5/PWM_ServoDir.c ****     }
+ 280              		.loc 1 434 0
+ 281 000e 1846     		mov	r0, r3
+ 282 0010 BD46     		mov	sp, r7
+ 283              		.cfi_def_cfa_register 13
+ 284              		@ sp needed
+ 285 0012 80BC     		pop	{r7}
+ 286              		.cfi_restore 7
+ 287              		.cfi_def_cfa_offset 0
+ 288 0014 7047     		bx	lr
+ 289              	.L16:
+ 290 0016 00BF     		.align	2
+ 291              	.L15:
+ 292 0018 16650040 		.word	1073767702
+ 293 001c AC6A0040 		.word	1073769132
+ 294              		.cfi_endproc
+ 295              	.LFE5:
+ 296              		.size	PWM_ServoDir_ReadCounter, .-PWM_ServoDir_ReadCounter
+ 297              		.section	.text.PWM_ServoDir_ClearFIFO,"ax",%progbits
+ 298              		.align	2
+ 299              		.global	PWM_ServoDir_ClearFIFO
+ 300              		.thumb
+ 301              		.thumb_func
+ 302              		.type	PWM_ServoDir_ClearFIFO, %function
+ 303              	PWM_ServoDir_ClearFIFO:
+ 304              	.LFB6:
+ 435:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 436:Generated_Source\PSoC5/PWM_ServoDir.c ****     #if (PWM_ServoDir_UseStatus)
+ 437:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 14
+
+
+ 438:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 439:Generated_Source\PSoC5/PWM_ServoDir.c ****         /*******************************************************************************
+ 440:Generated_Source\PSoC5/PWM_ServoDir.c ****         * Function Name: PWM_ServoDir_ClearFIFO
+ 441:Generated_Source\PSoC5/PWM_ServoDir.c ****         ********************************************************************************
+ 442:Generated_Source\PSoC5/PWM_ServoDir.c ****         *
+ 443:Generated_Source\PSoC5/PWM_ServoDir.c ****         * Summary:
+ 444:Generated_Source\PSoC5/PWM_ServoDir.c ****         *  This function clears all capture data from the capture FIFO
+ 445:Generated_Source\PSoC5/PWM_ServoDir.c ****         *
+ 446:Generated_Source\PSoC5/PWM_ServoDir.c ****         * Parameters:
+ 447:Generated_Source\PSoC5/PWM_ServoDir.c ****         *  None
+ 448:Generated_Source\PSoC5/PWM_ServoDir.c ****         *
+ 449:Generated_Source\PSoC5/PWM_ServoDir.c ****         * Return:
+ 450:Generated_Source\PSoC5/PWM_ServoDir.c ****         *  None
+ 451:Generated_Source\PSoC5/PWM_ServoDir.c ****         *
+ 452:Generated_Source\PSoC5/PWM_ServoDir.c ****         *******************************************************************************/
+ 453:Generated_Source\PSoC5/PWM_ServoDir.c ****         void PWM_ServoDir_ClearFIFO(void) 
+ 454:Generated_Source\PSoC5/PWM_ServoDir.c ****         {
+ 305              		.loc 1 454 0
+ 306              		.cfi_startproc
+ 307              		@ args = 0, pretend = 0, frame = 0
+ 308              		@ frame_needed = 1, uses_anonymous_args = 0
+ 309 0000 80B5     		push	{r7, lr}
+ 310              		.cfi_def_cfa_offset 8
+ 311              		.cfi_offset 7, -8
+ 312              		.cfi_offset 14, -4
+ 313 0002 00AF     		add	r7, sp, #0
+ 314              		.cfi_def_cfa_register 7
+ 455:Generated_Source\PSoC5/PWM_ServoDir.c ****             while(0u != (PWM_ServoDir_ReadStatusRegister() & PWM_ServoDir_STATUS_FIFONEMPTY))
+ 315              		.loc 1 455 0
+ 316 0004 01E0     		b	.L18
+ 317              	.L19:
+ 456:Generated_Source\PSoC5/PWM_ServoDir.c ****             {
+ 457:Generated_Source\PSoC5/PWM_ServoDir.c ****                 (void)PWM_ServoDir_ReadCapture();
+ 318              		.loc 1 457 0
+ 319 0006 FFF7FEFF 		bl	PWM_ServoDir_ReadCapture
+ 320              	.L18:
+ 455:Generated_Source\PSoC5/PWM_ServoDir.c ****             while(0u != (PWM_ServoDir_ReadStatusRegister() & PWM_ServoDir_STATUS_FIFONEMPTY))
+ 321              		.loc 1 455 0
+ 322 000a FFF7FEFF 		bl	PWM_ServoDir_ReadStatusRegister
+ 323 000e 0346     		mov	r3, r0
+ 324 0010 03F01003 		and	r3, r3, #16
+ 325 0014 002B     		cmp	r3, #0
+ 326 0016 F6D1     		bne	.L19
+ 458:Generated_Source\PSoC5/PWM_ServoDir.c ****             }
+ 459:Generated_Source\PSoC5/PWM_ServoDir.c ****         }
+ 327              		.loc 1 459 0
+ 328 0018 00BF     		nop
+ 329 001a 80BD     		pop	{r7, pc}
+ 330              		.cfi_endproc
+ 331              	.LFE6:
+ 332              		.size	PWM_ServoDir_ClearFIFO, .-PWM_ServoDir_ClearFIFO
+ 333              		.section	.text.PWM_ServoDir_WritePeriod,"ax",%progbits
+ 334              		.align	2
+ 335              		.global	PWM_ServoDir_WritePeriod
+ 336              		.thumb
+ 337              		.thumb_func
+ 338              		.type	PWM_ServoDir_WritePeriod, %function
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 15
+
+
+ 339              	PWM_ServoDir_WritePeriod:
+ 340              	.LFB7:
+ 460:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 461:Generated_Source\PSoC5/PWM_ServoDir.c ****     #endif /* PWM_ServoDir_UseStatus */
+ 462:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 463:Generated_Source\PSoC5/PWM_ServoDir.c **** #endif /* !PWM_ServoDir_UsingFixedFunction */
+ 464:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 465:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 466:Generated_Source\PSoC5/PWM_ServoDir.c **** /*******************************************************************************
+ 467:Generated_Source\PSoC5/PWM_ServoDir.c **** * Function Name: PWM_ServoDir_WritePeriod
+ 468:Generated_Source\PSoC5/PWM_ServoDir.c **** ********************************************************************************
+ 469:Generated_Source\PSoC5/PWM_ServoDir.c **** *
+ 470:Generated_Source\PSoC5/PWM_ServoDir.c **** * Summary:
+ 471:Generated_Source\PSoC5/PWM_ServoDir.c **** *  This function is used to change the period of the counter.  The new period
+ 472:Generated_Source\PSoC5/PWM_ServoDir.c **** *  will be loaded the next time terminal count is detected.
+ 473:Generated_Source\PSoC5/PWM_ServoDir.c **** *
+ 474:Generated_Source\PSoC5/PWM_ServoDir.c **** * Parameters:
+ 475:Generated_Source\PSoC5/PWM_ServoDir.c **** *  period:  Period value. May be between 1 and (2^Resolution)-1.  A value of 0
+ 476:Generated_Source\PSoC5/PWM_ServoDir.c **** *           will result in the counter remaining at zero.
+ 477:Generated_Source\PSoC5/PWM_ServoDir.c **** *
+ 478:Generated_Source\PSoC5/PWM_ServoDir.c **** * Return:
+ 479:Generated_Source\PSoC5/PWM_ServoDir.c **** *  None
+ 480:Generated_Source\PSoC5/PWM_ServoDir.c **** *
+ 481:Generated_Source\PSoC5/PWM_ServoDir.c **** *******************************************************************************/
+ 482:Generated_Source\PSoC5/PWM_ServoDir.c **** void PWM_ServoDir_WritePeriod(uint16 period) 
+ 483:Generated_Source\PSoC5/PWM_ServoDir.c **** {
+ 341              		.loc 1 483 0
+ 342              		.cfi_startproc
+ 343              		@ args = 0, pretend = 0, frame = 8
+ 344              		@ frame_needed = 1, uses_anonymous_args = 0
+ 345              		@ link register save eliminated.
+ 346 0000 80B4     		push	{r7}
+ 347              		.cfi_def_cfa_offset 4
+ 348              		.cfi_offset 7, -4
+ 349 0002 83B0     		sub	sp, sp, #12
+ 350              		.cfi_def_cfa_offset 16
+ 351 0004 00AF     		add	r7, sp, #0
+ 352              		.cfi_def_cfa_register 7
+ 353 0006 0346     		mov	r3, r0
+ 354 0008 FB80     		strh	r3, [r7, #6]	@ movhi
+ 484:Generated_Source\PSoC5/PWM_ServoDir.c ****     #if(PWM_ServoDir_UsingFixedFunction)
+ 485:Generated_Source\PSoC5/PWM_ServoDir.c ****         CY_SET_REG16(PWM_ServoDir_PERIOD_LSB_PTR, (uint16)period);
+ 486:Generated_Source\PSoC5/PWM_ServoDir.c ****     #else
+ 487:Generated_Source\PSoC5/PWM_ServoDir.c ****         CY_SET_REG16(PWM_ServoDir_PERIOD_LSB_PTR, period);
+ 355              		.loc 1 487 0
+ 356 000a 044A     		ldr	r2, .L21
+ 357 000c FB88     		ldrh	r3, [r7, #6]	@ movhi
+ 358 000e 1380     		strh	r3, [r2]	@ movhi
+ 488:Generated_Source\PSoC5/PWM_ServoDir.c ****     #endif /* (PWM_ServoDir_UsingFixedFunction) */
+ 489:Generated_Source\PSoC5/PWM_ServoDir.c **** }
+ 359              		.loc 1 489 0
+ 360 0010 00BF     		nop
+ 361 0012 0C37     		adds	r7, r7, #12
+ 362              		.cfi_def_cfa_offset 4
+ 363 0014 BD46     		mov	sp, r7
+ 364              		.cfi_def_cfa_register 13
+ 365              		@ sp needed
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 16
+
+
+ 366 0016 80BC     		pop	{r7}
+ 367              		.cfi_restore 7
+ 368              		.cfi_def_cfa_offset 0
+ 369 0018 7047     		bx	lr
+ 370              	.L22:
+ 371 001a 00BF     		.align	2
+ 372              	.L21:
+ 373 001c 8C6A0040 		.word	1073769100
+ 374              		.cfi_endproc
+ 375              	.LFE7:
+ 376              		.size	PWM_ServoDir_WritePeriod, .-PWM_ServoDir_WritePeriod
+ 377              		.section	.text.PWM_ServoDir_WriteCompare,"ax",%progbits
+ 378              		.align	2
+ 379              		.global	PWM_ServoDir_WriteCompare
+ 380              		.thumb
+ 381              		.thumb_func
+ 382              		.type	PWM_ServoDir_WriteCompare, %function
+ 383              	PWM_ServoDir_WriteCompare:
+ 384              	.LFB8:
+ 490:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 491:Generated_Source\PSoC5/PWM_ServoDir.c **** #if (PWM_ServoDir_UseOneCompareMode)
+ 492:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 493:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 494:Generated_Source\PSoC5/PWM_ServoDir.c ****     /*******************************************************************************
+ 495:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Function Name: PWM_ServoDir_WriteCompare
+ 496:Generated_Source\PSoC5/PWM_ServoDir.c ****     ********************************************************************************
+ 497:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 498:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Summary:
+ 499:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  This funtion is used to change the compare1 value when the PWM is in Dither
+ 500:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  mode. The compare output will reflect the new value on the next UDB clock.
+ 501:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  The compare output will be driven high when the present counter value is
+ 502:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  compared to the compare value based on the compare mode defined in
+ 503:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  Dither Mode.
+ 504:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 505:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Parameters:
+ 506:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  compare:  New compare value.
+ 507:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 508:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Return:
+ 509:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  None
+ 510:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 511:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Side Effects:
+ 512:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  This function is only available if the PWM mode parameter is set to
+ 513:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  Dither Mode, Center Aligned Mode or One Output Mode
+ 514:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 515:Generated_Source\PSoC5/PWM_ServoDir.c ****     *******************************************************************************/
+ 516:Generated_Source\PSoC5/PWM_ServoDir.c ****     void PWM_ServoDir_WriteCompare(uint16 compare) \
+ 517:Generated_Source\PSoC5/PWM_ServoDir.c ****                                        
+ 518:Generated_Source\PSoC5/PWM_ServoDir.c ****     {
+ 385              		.loc 1 518 0
+ 386              		.cfi_startproc
+ 387              		@ args = 0, pretend = 0, frame = 8
+ 388              		@ frame_needed = 1, uses_anonymous_args = 0
+ 389              		@ link register save eliminated.
+ 390 0000 80B4     		push	{r7}
+ 391              		.cfi_def_cfa_offset 4
+ 392              		.cfi_offset 7, -4
+ 393 0002 83B0     		sub	sp, sp, #12
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 17
+
+
+ 394              		.cfi_def_cfa_offset 16
+ 395 0004 00AF     		add	r7, sp, #0
+ 396              		.cfi_def_cfa_register 7
+ 397 0006 0346     		mov	r3, r0
+ 398 0008 FB80     		strh	r3, [r7, #6]	@ movhi
+ 519:Generated_Source\PSoC5/PWM_ServoDir.c ****         #if(PWM_ServoDir_UsingFixedFunction)
+ 520:Generated_Source\PSoC5/PWM_ServoDir.c ****             CY_SET_REG16(PWM_ServoDir_COMPARE1_LSB_PTR, (uint16)compare);
+ 521:Generated_Source\PSoC5/PWM_ServoDir.c ****         #else
+ 522:Generated_Source\PSoC5/PWM_ServoDir.c ****             CY_SET_REG16(PWM_ServoDir_COMPARE1_LSB_PTR, compare);
+ 399              		.loc 1 522 0
+ 400 000a 044A     		ldr	r2, .L24
+ 401 000c FB88     		ldrh	r3, [r7, #6]	@ movhi
+ 402 000e 1380     		strh	r3, [r2]	@ movhi
+ 523:Generated_Source\PSoC5/PWM_ServoDir.c ****         #endif /* (PWM_ServoDir_UsingFixedFunction) */
+ 524:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 525:Generated_Source\PSoC5/PWM_ServoDir.c ****         #if (PWM_ServoDir_PWMMode == PWM_ServoDir__B_PWM__DITHER)
+ 526:Generated_Source\PSoC5/PWM_ServoDir.c ****             #if(PWM_ServoDir_UsingFixedFunction)
+ 527:Generated_Source\PSoC5/PWM_ServoDir.c ****                 CY_SET_REG16(PWM_ServoDir_COMPARE2_LSB_PTR, (uint16)(compare + 1u));
+ 528:Generated_Source\PSoC5/PWM_ServoDir.c ****             #else
+ 529:Generated_Source\PSoC5/PWM_ServoDir.c ****                 CY_SET_REG16(PWM_ServoDir_COMPARE2_LSB_PTR, (compare + 1u));
+ 530:Generated_Source\PSoC5/PWM_ServoDir.c ****             #endif /* (PWM_ServoDir_UsingFixedFunction) */
+ 531:Generated_Source\PSoC5/PWM_ServoDir.c ****         #endif /* (PWM_ServoDir_PWMMode == PWM_ServoDir__B_PWM__DITHER) */
+ 532:Generated_Source\PSoC5/PWM_ServoDir.c ****     }
+ 403              		.loc 1 532 0
+ 404 0010 00BF     		nop
+ 405 0012 0C37     		adds	r7, r7, #12
+ 406              		.cfi_def_cfa_offset 4
+ 407 0014 BD46     		mov	sp, r7
+ 408              		.cfi_def_cfa_register 13
+ 409              		@ sp needed
+ 410 0016 80BC     		pop	{r7}
+ 411              		.cfi_restore 7
+ 412              		.cfi_def_cfa_offset 0
+ 413 0018 7047     		bx	lr
+ 414              	.L25:
+ 415 001a 00BF     		.align	2
+ 416              	.L24:
+ 417 001c 4C6A0040 		.word	1073769036
+ 418              		.cfi_endproc
+ 419              	.LFE8:
+ 420              		.size	PWM_ServoDir_WriteCompare, .-PWM_ServoDir_WriteCompare
+ 421              		.section	.text.PWM_ServoDir_SetInterruptMode,"ax",%progbits
+ 422              		.align	2
+ 423              		.global	PWM_ServoDir_SetInterruptMode
+ 424              		.thumb
+ 425              		.thumb_func
+ 426              		.type	PWM_ServoDir_SetInterruptMode, %function
+ 427              	PWM_ServoDir_SetInterruptMode:
+ 428              	.LFB9:
+ 533:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 534:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 535:Generated_Source\PSoC5/PWM_ServoDir.c **** #else
+ 536:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 537:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 538:Generated_Source\PSoC5/PWM_ServoDir.c ****     /*******************************************************************************
+ 539:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Function Name: PWM_ServoDir_WriteCompare1
+ 540:Generated_Source\PSoC5/PWM_ServoDir.c ****     ********************************************************************************
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 18
+
+
+ 541:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 542:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Summary:
+ 543:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  This funtion is used to change the compare1 value.  The compare output will
+ 544:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  reflect the new value on the next UDB clock.  The compare output will be
+ 545:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  driven high when the present counter value is less than or less than or
+ 546:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  equal to the compare register, depending on the mode.
+ 547:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 548:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Parameters:
+ 549:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  compare:  New compare value.
+ 550:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 551:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Return:
+ 552:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  None
+ 553:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 554:Generated_Source\PSoC5/PWM_ServoDir.c ****     *******************************************************************************/
+ 555:Generated_Source\PSoC5/PWM_ServoDir.c ****     void PWM_ServoDir_WriteCompare1(uint16 compare) \
+ 556:Generated_Source\PSoC5/PWM_ServoDir.c ****                                         
+ 557:Generated_Source\PSoC5/PWM_ServoDir.c ****     {
+ 558:Generated_Source\PSoC5/PWM_ServoDir.c ****         #if(PWM_ServoDir_UsingFixedFunction)
+ 559:Generated_Source\PSoC5/PWM_ServoDir.c ****             CY_SET_REG16(PWM_ServoDir_COMPARE1_LSB_PTR, (uint16)compare);
+ 560:Generated_Source\PSoC5/PWM_ServoDir.c ****         #else
+ 561:Generated_Source\PSoC5/PWM_ServoDir.c ****             CY_SET_REG16(PWM_ServoDir_COMPARE1_LSB_PTR, compare);
+ 562:Generated_Source\PSoC5/PWM_ServoDir.c ****         #endif /* (PWM_ServoDir_UsingFixedFunction) */
+ 563:Generated_Source\PSoC5/PWM_ServoDir.c ****     }
+ 564:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 565:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 566:Generated_Source\PSoC5/PWM_ServoDir.c ****     /*******************************************************************************
+ 567:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Function Name: PWM_ServoDir_WriteCompare2
+ 568:Generated_Source\PSoC5/PWM_ServoDir.c ****     ********************************************************************************
+ 569:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 570:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Summary:
+ 571:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  This funtion is used to change the compare value, for compare1 output.
+ 572:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  The compare output will reflect the new value on the next UDB clock.
+ 573:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  The compare output will be driven high when the present counter value is
+ 574:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  less than or less than or equal to the compare register, depending on the
+ 575:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  mode.
+ 576:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 577:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Parameters:
+ 578:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  compare:  New compare value.
+ 579:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 580:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Return:
+ 581:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  None
+ 582:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 583:Generated_Source\PSoC5/PWM_ServoDir.c ****     *******************************************************************************/
+ 584:Generated_Source\PSoC5/PWM_ServoDir.c ****     void PWM_ServoDir_WriteCompare2(uint16 compare) \
+ 585:Generated_Source\PSoC5/PWM_ServoDir.c ****                                         
+ 586:Generated_Source\PSoC5/PWM_ServoDir.c ****     {
+ 587:Generated_Source\PSoC5/PWM_ServoDir.c ****         #if(PWM_ServoDir_UsingFixedFunction)
+ 588:Generated_Source\PSoC5/PWM_ServoDir.c ****             CY_SET_REG16(PWM_ServoDir_COMPARE2_LSB_PTR, compare);
+ 589:Generated_Source\PSoC5/PWM_ServoDir.c ****         #else
+ 590:Generated_Source\PSoC5/PWM_ServoDir.c ****             CY_SET_REG16(PWM_ServoDir_COMPARE2_LSB_PTR, compare);
+ 591:Generated_Source\PSoC5/PWM_ServoDir.c ****         #endif /* (PWM_ServoDir_UsingFixedFunction) */
+ 592:Generated_Source\PSoC5/PWM_ServoDir.c ****     }
+ 593:Generated_Source\PSoC5/PWM_ServoDir.c **** #endif /* UseOneCompareMode */
+ 594:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 595:Generated_Source\PSoC5/PWM_ServoDir.c **** #if (PWM_ServoDir_DeadBandUsed)
+ 596:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 597:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 19
+
+
+ 598:Generated_Source\PSoC5/PWM_ServoDir.c ****     /*******************************************************************************
+ 599:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Function Name: PWM_ServoDir_WriteDeadTime
+ 600:Generated_Source\PSoC5/PWM_ServoDir.c ****     ********************************************************************************
+ 601:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 602:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Summary:
+ 603:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  This function writes the dead-band counts to the corresponding register
+ 604:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 605:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Parameters:
+ 606:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  deadtime:  Number of counts for dead time
+ 607:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 608:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Return:
+ 609:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  None
+ 610:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 611:Generated_Source\PSoC5/PWM_ServoDir.c ****     *******************************************************************************/
+ 612:Generated_Source\PSoC5/PWM_ServoDir.c ****     void PWM_ServoDir_WriteDeadTime(uint8 deadtime) 
+ 613:Generated_Source\PSoC5/PWM_ServoDir.c ****     {
+ 614:Generated_Source\PSoC5/PWM_ServoDir.c ****         /* If using the Dead Band 1-255 mode then just write the register */
+ 615:Generated_Source\PSoC5/PWM_ServoDir.c ****         #if(!PWM_ServoDir_DeadBand2_4)
+ 616:Generated_Source\PSoC5/PWM_ServoDir.c ****             CY_SET_REG8(PWM_ServoDir_DEADBAND_COUNT_PTR, deadtime);
+ 617:Generated_Source\PSoC5/PWM_ServoDir.c ****         #else
+ 618:Generated_Source\PSoC5/PWM_ServoDir.c ****             /* Otherwise the data has to be masked and offset */
+ 619:Generated_Source\PSoC5/PWM_ServoDir.c ****             /* Clear existing data */
+ 620:Generated_Source\PSoC5/PWM_ServoDir.c ****             PWM_ServoDir_DEADBAND_COUNT &= ((uint8)(~PWM_ServoDir_DEADBAND_COUNT_MASK));
+ 621:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 622:Generated_Source\PSoC5/PWM_ServoDir.c ****             /* Set new dead time */
+ 623:Generated_Source\PSoC5/PWM_ServoDir.c ****             #if(PWM_ServoDir_DEADBAND_COUNT_SHIFT)
+ 624:Generated_Source\PSoC5/PWM_ServoDir.c ****                 PWM_ServoDir_DEADBAND_COUNT |= ((uint8)((uint8)deadtime << PWM_ServoDir_DEADBAND_CO
+ 625:Generated_Source\PSoC5/PWM_ServoDir.c ****                                                     PWM_ServoDir_DEADBAND_COUNT_MASK;
+ 626:Generated_Source\PSoC5/PWM_ServoDir.c ****             #else
+ 627:Generated_Source\PSoC5/PWM_ServoDir.c ****                 PWM_ServoDir_DEADBAND_COUNT |= deadtime & PWM_ServoDir_DEADBAND_COUNT_MASK;
+ 628:Generated_Source\PSoC5/PWM_ServoDir.c ****             #endif /* (PWM_ServoDir_DEADBAND_COUNT_SHIFT) */
+ 629:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 630:Generated_Source\PSoC5/PWM_ServoDir.c ****         #endif /* (!PWM_ServoDir_DeadBand2_4) */
+ 631:Generated_Source\PSoC5/PWM_ServoDir.c ****     }
+ 632:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 633:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 634:Generated_Source\PSoC5/PWM_ServoDir.c ****     /*******************************************************************************
+ 635:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Function Name: PWM_ServoDir_ReadDeadTime
+ 636:Generated_Source\PSoC5/PWM_ServoDir.c ****     ********************************************************************************
+ 637:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 638:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Summary:
+ 639:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  This function reads the dead-band counts from the corresponding register
+ 640:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 641:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Parameters:
+ 642:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  None
+ 643:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 644:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Return:
+ 645:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  Dead Band Counts
+ 646:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 647:Generated_Source\PSoC5/PWM_ServoDir.c ****     *******************************************************************************/
+ 648:Generated_Source\PSoC5/PWM_ServoDir.c ****     uint8 PWM_ServoDir_ReadDeadTime(void) 
+ 649:Generated_Source\PSoC5/PWM_ServoDir.c ****     {
+ 650:Generated_Source\PSoC5/PWM_ServoDir.c ****         /* If using the Dead Band 1-255 mode then just read the register */
+ 651:Generated_Source\PSoC5/PWM_ServoDir.c ****         #if(!PWM_ServoDir_DeadBand2_4)
+ 652:Generated_Source\PSoC5/PWM_ServoDir.c ****             return (CY_GET_REG8(PWM_ServoDir_DEADBAND_COUNT_PTR));
+ 653:Generated_Source\PSoC5/PWM_ServoDir.c ****         #else
+ 654:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 20
+
+
+ 655:Generated_Source\PSoC5/PWM_ServoDir.c ****             /* Otherwise the data has to be masked and offset */
+ 656:Generated_Source\PSoC5/PWM_ServoDir.c ****             #if(PWM_ServoDir_DEADBAND_COUNT_SHIFT)
+ 657:Generated_Source\PSoC5/PWM_ServoDir.c ****                 return ((uint8)(((uint8)(PWM_ServoDir_DEADBAND_COUNT & PWM_ServoDir_DEADBAND_COUNT_
+ 658:Generated_Source\PSoC5/PWM_ServoDir.c ****                                                                            PWM_ServoDir_DEADBAND_CO
+ 659:Generated_Source\PSoC5/PWM_ServoDir.c ****             #else
+ 660:Generated_Source\PSoC5/PWM_ServoDir.c ****                 return (PWM_ServoDir_DEADBAND_COUNT & PWM_ServoDir_DEADBAND_COUNT_MASK);
+ 661:Generated_Source\PSoC5/PWM_ServoDir.c ****             #endif /* (PWM_ServoDir_DEADBAND_COUNT_SHIFT) */
+ 662:Generated_Source\PSoC5/PWM_ServoDir.c ****         #endif /* (!PWM_ServoDir_DeadBand2_4) */
+ 663:Generated_Source\PSoC5/PWM_ServoDir.c ****     }
+ 664:Generated_Source\PSoC5/PWM_ServoDir.c **** #endif /* DeadBandUsed */
+ 665:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 666:Generated_Source\PSoC5/PWM_ServoDir.c **** #if (PWM_ServoDir_UseStatus || PWM_ServoDir_UsingFixedFunction)
+ 667:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 668:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 669:Generated_Source\PSoC5/PWM_ServoDir.c ****     /*******************************************************************************
+ 670:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Function Name: PWM_ServoDir_SetInterruptMode
+ 671:Generated_Source\PSoC5/PWM_ServoDir.c ****     ********************************************************************************
+ 672:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 673:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Summary:
+ 674:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  This function configures the interrupts mask control of theinterrupt
+ 675:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  source status register.
+ 676:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 677:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Parameters:
+ 678:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  uint8 interruptMode: Bit field containing the interrupt sources enabled
+ 679:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 680:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Return:
+ 681:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  None
+ 682:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 683:Generated_Source\PSoC5/PWM_ServoDir.c ****     *******************************************************************************/
+ 684:Generated_Source\PSoC5/PWM_ServoDir.c ****     void PWM_ServoDir_SetInterruptMode(uint8 interruptMode) 
+ 685:Generated_Source\PSoC5/PWM_ServoDir.c ****     {
+ 429              		.loc 1 685 0
+ 430              		.cfi_startproc
+ 431              		@ args = 0, pretend = 0, frame = 8
+ 432              		@ frame_needed = 1, uses_anonymous_args = 0
+ 433              		@ link register save eliminated.
+ 434 0000 80B4     		push	{r7}
+ 435              		.cfi_def_cfa_offset 4
+ 436              		.cfi_offset 7, -4
+ 437 0002 83B0     		sub	sp, sp, #12
+ 438              		.cfi_def_cfa_offset 16
+ 439 0004 00AF     		add	r7, sp, #0
+ 440              		.cfi_def_cfa_register 7
+ 441 0006 0346     		mov	r3, r0
+ 442 0008 FB71     		strb	r3, [r7, #7]
+ 686:Generated_Source\PSoC5/PWM_ServoDir.c ****         CY_SET_REG8(PWM_ServoDir_STATUS_MASK_PTR, interruptMode);
+ 443              		.loc 1 686 0
+ 444 000a 044A     		ldr	r2, .L27
+ 445 000c FB79     		ldrb	r3, [r7, #7]
+ 446 000e 1370     		strb	r3, [r2]
+ 687:Generated_Source\PSoC5/PWM_ServoDir.c ****     }
+ 447              		.loc 1 687 0
+ 448 0010 00BF     		nop
+ 449 0012 0C37     		adds	r7, r7, #12
+ 450              		.cfi_def_cfa_offset 4
+ 451 0014 BD46     		mov	sp, r7
+ 452              		.cfi_def_cfa_register 13
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 21
+
+
+ 453              		@ sp needed
+ 454 0016 80BC     		pop	{r7}
+ 455              		.cfi_restore 7
+ 456              		.cfi_def_cfa_offset 0
+ 457 0018 7047     		bx	lr
+ 458              	.L28:
+ 459 001a 00BF     		.align	2
+ 460              	.L27:
+ 461 001c 86640040 		.word	1073767558
+ 462              		.cfi_endproc
+ 463              	.LFE9:
+ 464              		.size	PWM_ServoDir_SetInterruptMode, .-PWM_ServoDir_SetInterruptMode
+ 465              		.section	.text.PWM_ServoDir_ReadStatusRegister,"ax",%progbits
+ 466              		.align	2
+ 467              		.global	PWM_ServoDir_ReadStatusRegister
+ 468              		.thumb
+ 469              		.thumb_func
+ 470              		.type	PWM_ServoDir_ReadStatusRegister, %function
+ 471              	PWM_ServoDir_ReadStatusRegister:
+ 472              	.LFB10:
+ 688:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 689:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 690:Generated_Source\PSoC5/PWM_ServoDir.c ****     /*******************************************************************************
+ 691:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Function Name: PWM_ServoDir_ReadStatusRegister
+ 692:Generated_Source\PSoC5/PWM_ServoDir.c ****     ********************************************************************************
+ 693:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 694:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Summary:
+ 695:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  This function returns the current state of the status register.
+ 696:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 697:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Parameters:
+ 698:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  None
+ 699:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 700:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Return:
+ 701:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  uint8 : Current status register value. The status register bits are:
+ 702:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  [7:6] : Unused(0)
+ 703:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  [5]   : Kill event output
+ 704:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  [4]   : FIFO not empty
+ 705:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  [3]   : FIFO full
+ 706:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  [2]   : Terminal count
+ 707:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  [1]   : Compare output 2
+ 708:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  [0]   : Compare output 1
+ 709:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 710:Generated_Source\PSoC5/PWM_ServoDir.c ****     *******************************************************************************/
+ 711:Generated_Source\PSoC5/PWM_ServoDir.c ****     uint8 PWM_ServoDir_ReadStatusRegister(void) 
+ 712:Generated_Source\PSoC5/PWM_ServoDir.c ****     {
+ 473              		.loc 1 712 0
+ 474              		.cfi_startproc
+ 475              		@ args = 0, pretend = 0, frame = 0
+ 476              		@ frame_needed = 1, uses_anonymous_args = 0
+ 477              		@ link register save eliminated.
+ 478 0000 80B4     		push	{r7}
+ 479              		.cfi_def_cfa_offset 4
+ 480              		.cfi_offset 7, -4
+ 481 0002 00AF     		add	r7, sp, #0
+ 482              		.cfi_def_cfa_register 7
+ 713:Generated_Source\PSoC5/PWM_ServoDir.c ****         return (CY_GET_REG8(PWM_ServoDir_STATUS_PTR));
+ 483              		.loc 1 713 0
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 22
+
+
+ 484 0004 034B     		ldr	r3, .L31
+ 485 0006 1B78     		ldrb	r3, [r3]
+ 486 0008 DBB2     		uxtb	r3, r3
+ 714:Generated_Source\PSoC5/PWM_ServoDir.c ****     }
+ 487              		.loc 1 714 0
+ 488 000a 1846     		mov	r0, r3
+ 489 000c BD46     		mov	sp, r7
+ 490              		.cfi_def_cfa_register 13
+ 491              		@ sp needed
+ 492 000e 80BC     		pop	{r7}
+ 493              		.cfi_restore 7
+ 494              		.cfi_def_cfa_offset 0
+ 495 0010 7047     		bx	lr
+ 496              	.L32:
+ 497 0012 00BF     		.align	2
+ 498              	.L31:
+ 499 0014 66640040 		.word	1073767526
+ 500              		.cfi_endproc
+ 501              	.LFE10:
+ 502              		.size	PWM_ServoDir_ReadStatusRegister, .-PWM_ServoDir_ReadStatusRegister
+ 503              		.section	.text.PWM_ServoDir_ReadCapture,"ax",%progbits
+ 504              		.align	2
+ 505              		.global	PWM_ServoDir_ReadCapture
+ 506              		.thumb
+ 507              		.thumb_func
+ 508              		.type	PWM_ServoDir_ReadCapture, %function
+ 509              	PWM_ServoDir_ReadCapture:
+ 510              	.LFB11:
+ 715:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 716:Generated_Source\PSoC5/PWM_ServoDir.c **** #endif /* (PWM_ServoDir_UseStatus || PWM_ServoDir_UsingFixedFunction) */
+ 717:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 718:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 719:Generated_Source\PSoC5/PWM_ServoDir.c **** #if (PWM_ServoDir_UseControl)
+ 720:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 721:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 722:Generated_Source\PSoC5/PWM_ServoDir.c ****     /*******************************************************************************
+ 723:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Function Name: PWM_ServoDir_ReadControlRegister
+ 724:Generated_Source\PSoC5/PWM_ServoDir.c ****     ********************************************************************************
+ 725:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 726:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Summary:
+ 727:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  Returns the current state of the control register. This API is available
+ 728:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  only if the control register is not removed.
+ 729:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 730:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Parameters:
+ 731:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  None
+ 732:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 733:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Return:
+ 734:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  uint8 : Current control register value
+ 735:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 736:Generated_Source\PSoC5/PWM_ServoDir.c ****     *******************************************************************************/
+ 737:Generated_Source\PSoC5/PWM_ServoDir.c ****     uint8 PWM_ServoDir_ReadControlRegister(void) 
+ 738:Generated_Source\PSoC5/PWM_ServoDir.c ****     {
+ 739:Generated_Source\PSoC5/PWM_ServoDir.c ****         uint8 result;
+ 740:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 741:Generated_Source\PSoC5/PWM_ServoDir.c ****         result = CY_GET_REG8(PWM_ServoDir_CONTROL_PTR);
+ 742:Generated_Source\PSoC5/PWM_ServoDir.c ****         return (result);
+ 743:Generated_Source\PSoC5/PWM_ServoDir.c ****     }
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 23
+
+
+ 744:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 745:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 746:Generated_Source\PSoC5/PWM_ServoDir.c ****     /*******************************************************************************
+ 747:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Function Name: PWM_ServoDir_WriteControlRegister
+ 748:Generated_Source\PSoC5/PWM_ServoDir.c ****     ********************************************************************************
+ 749:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 750:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Summary:
+ 751:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  Sets the bit field of the control register. This API is available only if
+ 752:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  the control register is not removed.
+ 753:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 754:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Parameters:
+ 755:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  uint8 control: Control register bit field, The status register bits are:
+ 756:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  [7]   : PWM Enable
+ 757:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  [6]   : Reset
+ 758:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  [5:3] : Compare Mode2
+ 759:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  [2:0] : Compare Mode2
+ 760:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 761:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Return:
+ 762:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  None
+ 763:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 764:Generated_Source\PSoC5/PWM_ServoDir.c ****     *******************************************************************************/
+ 765:Generated_Source\PSoC5/PWM_ServoDir.c ****     void PWM_ServoDir_WriteControlRegister(uint8 control) 
+ 766:Generated_Source\PSoC5/PWM_ServoDir.c ****     {
+ 767:Generated_Source\PSoC5/PWM_ServoDir.c ****         CY_SET_REG8(PWM_ServoDir_CONTROL_PTR, control);
+ 768:Generated_Source\PSoC5/PWM_ServoDir.c ****     }
+ 769:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 770:Generated_Source\PSoC5/PWM_ServoDir.c **** #endif /* (PWM_ServoDir_UseControl) */
+ 771:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 772:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 773:Generated_Source\PSoC5/PWM_ServoDir.c **** #if (!PWM_ServoDir_UsingFixedFunction)
+ 774:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 775:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 776:Generated_Source\PSoC5/PWM_ServoDir.c ****     /*******************************************************************************
+ 777:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Function Name: PWM_ServoDir_ReadCapture
+ 778:Generated_Source\PSoC5/PWM_ServoDir.c ****     ********************************************************************************
+ 779:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 780:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Summary:
+ 781:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  Reads the capture value from the capture FIFO.
+ 782:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 783:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Parameters:
+ 784:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  None
+ 785:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 786:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Return:
+ 787:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  uint8/uint16: The current capture value
+ 788:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 789:Generated_Source\PSoC5/PWM_ServoDir.c ****     *******************************************************************************/
+ 790:Generated_Source\PSoC5/PWM_ServoDir.c ****     uint16 PWM_ServoDir_ReadCapture(void) 
+ 791:Generated_Source\PSoC5/PWM_ServoDir.c ****     {
+ 511              		.loc 1 791 0
+ 512              		.cfi_startproc
+ 513              		@ args = 0, pretend = 0, frame = 0
+ 514              		@ frame_needed = 1, uses_anonymous_args = 0
+ 515              		@ link register save eliminated.
+ 516 0000 80B4     		push	{r7}
+ 517              		.cfi_def_cfa_offset 4
+ 518              		.cfi_offset 7, -4
+ 519 0002 00AF     		add	r7, sp, #0
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 24
+
+
+ 520              		.cfi_def_cfa_register 7
+ 792:Generated_Source\PSoC5/PWM_ServoDir.c ****         return (CY_GET_REG16(PWM_ServoDir_CAPTURE_LSB_PTR));
+ 521              		.loc 1 792 0
+ 522 0004 034B     		ldr	r3, .L35
+ 523 0006 1B88     		ldrh	r3, [r3]	@ movhi
+ 524 0008 9BB2     		uxth	r3, r3
+ 793:Generated_Source\PSoC5/PWM_ServoDir.c ****     }
+ 525              		.loc 1 793 0
+ 526 000a 1846     		mov	r0, r3
+ 527 000c BD46     		mov	sp, r7
+ 528              		.cfi_def_cfa_register 13
+ 529              		@ sp needed
+ 530 000e 80BC     		pop	{r7}
+ 531              		.cfi_restore 7
+ 532              		.cfi_def_cfa_offset 0
+ 533 0010 7047     		bx	lr
+ 534              	.L36:
+ 535 0012 00BF     		.align	2
+ 536              	.L35:
+ 537 0014 AC6A0040 		.word	1073769132
+ 538              		.cfi_endproc
+ 539              	.LFE11:
+ 540              		.size	PWM_ServoDir_ReadCapture, .-PWM_ServoDir_ReadCapture
+ 541              		.section	.text.PWM_ServoDir_ReadCompare,"ax",%progbits
+ 542              		.align	2
+ 543              		.global	PWM_ServoDir_ReadCompare
+ 544              		.thumb
+ 545              		.thumb_func
+ 546              		.type	PWM_ServoDir_ReadCompare, %function
+ 547              	PWM_ServoDir_ReadCompare:
+ 548              	.LFB12:
+ 794:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 795:Generated_Source\PSoC5/PWM_ServoDir.c **** #endif /* (!PWM_ServoDir_UsingFixedFunction) */
+ 796:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 797:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 798:Generated_Source\PSoC5/PWM_ServoDir.c **** #if (PWM_ServoDir_UseOneCompareMode)
+ 799:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 800:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 801:Generated_Source\PSoC5/PWM_ServoDir.c ****     /*******************************************************************************
+ 802:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Function Name: PWM_ServoDir_ReadCompare
+ 803:Generated_Source\PSoC5/PWM_ServoDir.c ****     ********************************************************************************
+ 804:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 805:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Summary:
+ 806:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  Reads the compare value for the compare output when the PWM Mode parameter is
+ 807:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  set to Dither mode, Center Aligned mode, or One Output mode.
+ 808:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 809:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Parameters:
+ 810:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  None
+ 811:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 812:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Return:
+ 813:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  uint8/uint16: Current compare value
+ 814:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 815:Generated_Source\PSoC5/PWM_ServoDir.c ****     *******************************************************************************/
+ 816:Generated_Source\PSoC5/PWM_ServoDir.c ****     uint16 PWM_ServoDir_ReadCompare(void) 
+ 817:Generated_Source\PSoC5/PWM_ServoDir.c ****     {
+ 549              		.loc 1 817 0
+ 550              		.cfi_startproc
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 25
+
+
+ 551              		@ args = 0, pretend = 0, frame = 0
+ 552              		@ frame_needed = 1, uses_anonymous_args = 0
+ 553              		@ link register save eliminated.
+ 554 0000 80B4     		push	{r7}
+ 555              		.cfi_def_cfa_offset 4
+ 556              		.cfi_offset 7, -4
+ 557 0002 00AF     		add	r7, sp, #0
+ 558              		.cfi_def_cfa_register 7
+ 818:Generated_Source\PSoC5/PWM_ServoDir.c ****         #if(PWM_ServoDir_UsingFixedFunction)
+ 819:Generated_Source\PSoC5/PWM_ServoDir.c ****             return ((uint16)CY_GET_REG16(PWM_ServoDir_COMPARE1_LSB_PTR));
+ 820:Generated_Source\PSoC5/PWM_ServoDir.c ****         #else
+ 821:Generated_Source\PSoC5/PWM_ServoDir.c ****             return (CY_GET_REG16(PWM_ServoDir_COMPARE1_LSB_PTR));
+ 559              		.loc 1 821 0
+ 560 0004 034B     		ldr	r3, .L39
+ 561 0006 1B88     		ldrh	r3, [r3]	@ movhi
+ 562 0008 9BB2     		uxth	r3, r3
+ 822:Generated_Source\PSoC5/PWM_ServoDir.c ****         #endif /* (PWM_ServoDir_UsingFixedFunction) */
+ 823:Generated_Source\PSoC5/PWM_ServoDir.c ****     }
+ 563              		.loc 1 823 0
+ 564 000a 1846     		mov	r0, r3
+ 565 000c BD46     		mov	sp, r7
+ 566              		.cfi_def_cfa_register 13
+ 567              		@ sp needed
+ 568 000e 80BC     		pop	{r7}
+ 569              		.cfi_restore 7
+ 570              		.cfi_def_cfa_offset 0
+ 571 0010 7047     		bx	lr
+ 572              	.L40:
+ 573 0012 00BF     		.align	2
+ 574              	.L39:
+ 575 0014 4C6A0040 		.word	1073769036
+ 576              		.cfi_endproc
+ 577              	.LFE12:
+ 578              		.size	PWM_ServoDir_ReadCompare, .-PWM_ServoDir_ReadCompare
+ 579              		.section	.text.PWM_ServoDir_ReadPeriod,"ax",%progbits
+ 580              		.align	2
+ 581              		.global	PWM_ServoDir_ReadPeriod
+ 582              		.thumb
+ 583              		.thumb_func
+ 584              		.type	PWM_ServoDir_ReadPeriod, %function
+ 585              	PWM_ServoDir_ReadPeriod:
+ 586              	.LFB13:
+ 824:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 825:Generated_Source\PSoC5/PWM_ServoDir.c **** #else
+ 826:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 827:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 828:Generated_Source\PSoC5/PWM_ServoDir.c ****     /*******************************************************************************
+ 829:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Function Name: PWM_ServoDir_ReadCompare1
+ 830:Generated_Source\PSoC5/PWM_ServoDir.c ****     ********************************************************************************
+ 831:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 832:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Summary:
+ 833:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  Reads the compare value for the compare1 output.
+ 834:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 835:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Parameters:
+ 836:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  None
+ 837:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 838:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Return:
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 26
+
+
+ 839:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  uint8/uint16: Current compare value.
+ 840:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 841:Generated_Source\PSoC5/PWM_ServoDir.c ****     *******************************************************************************/
+ 842:Generated_Source\PSoC5/PWM_ServoDir.c ****     uint16 PWM_ServoDir_ReadCompare1(void) 
+ 843:Generated_Source\PSoC5/PWM_ServoDir.c ****     {
+ 844:Generated_Source\PSoC5/PWM_ServoDir.c ****         return (CY_GET_REG16(PWM_ServoDir_COMPARE1_LSB_PTR));
+ 845:Generated_Source\PSoC5/PWM_ServoDir.c ****     }
+ 846:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 847:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 848:Generated_Source\PSoC5/PWM_ServoDir.c ****     /*******************************************************************************
+ 849:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Function Name: PWM_ServoDir_ReadCompare2
+ 850:Generated_Source\PSoC5/PWM_ServoDir.c ****     ********************************************************************************
+ 851:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 852:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Summary:
+ 853:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  Reads the compare value for the compare2 output.
+ 854:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 855:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Parameters:
+ 856:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  None
+ 857:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 858:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Return:
+ 859:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  uint8/uint16: Current compare value.
+ 860:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ 861:Generated_Source\PSoC5/PWM_ServoDir.c ****     *******************************************************************************/
+ 862:Generated_Source\PSoC5/PWM_ServoDir.c ****     uint16 PWM_ServoDir_ReadCompare2(void) 
+ 863:Generated_Source\PSoC5/PWM_ServoDir.c ****     {
+ 864:Generated_Source\PSoC5/PWM_ServoDir.c ****         return (CY_GET_REG16(PWM_ServoDir_COMPARE2_LSB_PTR));
+ 865:Generated_Source\PSoC5/PWM_ServoDir.c ****     }
+ 866:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 867:Generated_Source\PSoC5/PWM_ServoDir.c **** #endif /* (PWM_ServoDir_UseOneCompareMode) */
+ 868:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 869:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ 870:Generated_Source\PSoC5/PWM_ServoDir.c **** /*******************************************************************************
+ 871:Generated_Source\PSoC5/PWM_ServoDir.c **** * Function Name: PWM_ServoDir_ReadPeriod
+ 872:Generated_Source\PSoC5/PWM_ServoDir.c **** ********************************************************************************
+ 873:Generated_Source\PSoC5/PWM_ServoDir.c **** *
+ 874:Generated_Source\PSoC5/PWM_ServoDir.c **** * Summary:
+ 875:Generated_Source\PSoC5/PWM_ServoDir.c **** *  Reads the period value used by the PWM hardware.
+ 876:Generated_Source\PSoC5/PWM_ServoDir.c **** *
+ 877:Generated_Source\PSoC5/PWM_ServoDir.c **** * Parameters:
+ 878:Generated_Source\PSoC5/PWM_ServoDir.c **** *  None
+ 879:Generated_Source\PSoC5/PWM_ServoDir.c **** *
+ 880:Generated_Source\PSoC5/PWM_ServoDir.c **** * Return:
+ 881:Generated_Source\PSoC5/PWM_ServoDir.c **** *  uint8/16: Period value
+ 882:Generated_Source\PSoC5/PWM_ServoDir.c **** *
+ 883:Generated_Source\PSoC5/PWM_ServoDir.c **** *******************************************************************************/
+ 884:Generated_Source\PSoC5/PWM_ServoDir.c **** uint16 PWM_ServoDir_ReadPeriod(void) 
+ 885:Generated_Source\PSoC5/PWM_ServoDir.c **** {
+ 587              		.loc 1 885 0
+ 588              		.cfi_startproc
+ 589              		@ args = 0, pretend = 0, frame = 0
+ 590              		@ frame_needed = 1, uses_anonymous_args = 0
+ 591              		@ link register save eliminated.
+ 592 0000 80B4     		push	{r7}
+ 593              		.cfi_def_cfa_offset 4
+ 594              		.cfi_offset 7, -4
+ 595 0002 00AF     		add	r7, sp, #0
+ 596              		.cfi_def_cfa_register 7
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 27
+
+
+ 886:Generated_Source\PSoC5/PWM_ServoDir.c ****     #if(PWM_ServoDir_UsingFixedFunction)
+ 887:Generated_Source\PSoC5/PWM_ServoDir.c ****         return ((uint16)CY_GET_REG16(PWM_ServoDir_PERIOD_LSB_PTR));
+ 888:Generated_Source\PSoC5/PWM_ServoDir.c ****     #else
+ 889:Generated_Source\PSoC5/PWM_ServoDir.c ****         return (CY_GET_REG16(PWM_ServoDir_PERIOD_LSB_PTR));
+ 597              		.loc 1 889 0
+ 598 0004 034B     		ldr	r3, .L43
+ 599 0006 1B88     		ldrh	r3, [r3]	@ movhi
+ 600 0008 9BB2     		uxth	r3, r3
+ 890:Generated_Source\PSoC5/PWM_ServoDir.c ****     #endif /* (PWM_ServoDir_UsingFixedFunction) */
+ 891:Generated_Source\PSoC5/PWM_ServoDir.c **** }
+ 601              		.loc 1 891 0
+ 602 000a 1846     		mov	r0, r3
+ 603 000c BD46     		mov	sp, r7
+ 604              		.cfi_def_cfa_register 13
+ 605              		@ sp needed
+ 606 000e 80BC     		pop	{r7}
+ 607              		.cfi_restore 7
+ 608              		.cfi_def_cfa_offset 0
+ 609 0010 7047     		bx	lr
+ 610              	.L44:
+ 611 0012 00BF     		.align	2
+ 612              	.L43:
+ 613 0014 8C6A0040 		.word	1073769100
+ 614              		.cfi_endproc
+ 615              	.LFE13:
+ 616              		.size	PWM_ServoDir_ReadPeriod, .-PWM_ServoDir_ReadPeriod
+ 617              		.text
+ 618              	.Letext0:
+ 619              		.file 2 "Generated_Source\\PSoC5\\cytypes.h"
+ 620              		.section	.debug_info,"",%progbits
+ 621              	.Ldebug_info0:
+ 622 0000 45020000 		.4byte	0x245
+ 623 0004 0400     		.2byte	0x4
+ 624 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 625 000a 04       		.byte	0x4
+ 626 000b 01       		.uleb128 0x1
+ 627 000c 06000000 		.4byte	.LASF36
+ 628 0010 0C       		.byte	0xc
+ 629 0011 A8010000 		.4byte	.LASF37
+ 630 0015 32020000 		.4byte	.LASF38
+ 631 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 632 001d 00000000 		.4byte	0
+ 633 0021 00000000 		.4byte	.Ldebug_line0
+ 634 0025 02       		.uleb128 0x2
+ 635 0026 01       		.byte	0x1
+ 636 0027 06       		.byte	0x6
+ 637 0028 2D030000 		.4byte	.LASF0
+ 638 002c 02       		.uleb128 0x2
+ 639 002d 01       		.byte	0x1
+ 640 002e 08       		.byte	0x8
+ 641 002f 00020000 		.4byte	.LASF1
+ 642 0033 02       		.uleb128 0x2
+ 643 0034 02       		.byte	0x2
+ 644 0035 05       		.byte	0x5
+ 645 0036 EF010000 		.4byte	.LASF2
+ 646 003a 02       		.uleb128 0x2
+ 647 003b 02       		.byte	0x2
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 28
+
+
+ 648 003c 07       		.byte	0x7
+ 649 003d C9000000 		.4byte	.LASF3
+ 650 0041 02       		.uleb128 0x2
+ 651 0042 04       		.byte	0x4
+ 652 0043 05       		.byte	0x5
+ 653 0044 13030000 		.4byte	.LASF4
+ 654 0048 02       		.uleb128 0x2
+ 655 0049 04       		.byte	0x4
+ 656 004a 07       		.byte	0x7
+ 657 004b 90010000 		.4byte	.LASF5
+ 658 004f 02       		.uleb128 0x2
+ 659 0050 08       		.byte	0x8
+ 660 0051 05       		.byte	0x5
+ 661 0052 82020000 		.4byte	.LASF6
+ 662 0056 02       		.uleb128 0x2
+ 663 0057 08       		.byte	0x8
+ 664 0058 07       		.byte	0x7
+ 665 0059 1B020000 		.4byte	.LASF7
+ 666 005d 03       		.uleb128 0x3
+ 667 005e 04       		.byte	0x4
+ 668 005f 05       		.byte	0x5
+ 669 0060 696E7400 		.ascii	"int\000"
+ 670 0064 02       		.uleb128 0x2
+ 671 0065 04       		.byte	0x4
+ 672 0066 07       		.byte	0x7
+ 673 0067 0E020000 		.4byte	.LASF8
+ 674 006b 04       		.uleb128 0x4
+ 675 006c A2010000 		.4byte	.LASF9
+ 676 0070 02       		.byte	0x2
+ 677 0071 E801     		.2byte	0x1e8
+ 678 0073 2C000000 		.4byte	0x2c
+ 679 0077 04       		.uleb128 0x4
+ 680 0078 F9010000 		.4byte	.LASF10
+ 681 007c 02       		.byte	0x2
+ 682 007d E901     		.2byte	0x1e9
+ 683 007f 3A000000 		.4byte	0x3a
+ 684 0083 02       		.uleb128 0x2
+ 685 0084 04       		.byte	0x4
+ 686 0085 04       		.byte	0x4
+ 687 0086 22010000 		.4byte	.LASF11
+ 688 008a 02       		.uleb128 0x2
+ 689 008b 08       		.byte	0x8
+ 690 008c 04       		.byte	0x4
+ 691 008d E8010000 		.4byte	.LASF12
+ 692 0091 02       		.uleb128 0x2
+ 693 0092 01       		.byte	0x1
+ 694 0093 08       		.byte	0x8
+ 695 0094 1C030000 		.4byte	.LASF13
+ 696 0098 04       		.uleb128 0x4
+ 697 0099 74020000 		.4byte	.LASF14
+ 698 009d 02       		.byte	0x2
+ 699 009e 9202     		.2byte	0x292
+ 700 00a0 A4000000 		.4byte	0xa4
+ 701 00a4 05       		.uleb128 0x5
+ 702 00a5 6B000000 		.4byte	0x6b
+ 703 00a9 04       		.uleb128 0x4
+ 704 00aa 00000000 		.4byte	.LASF15
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 29
+
+
+ 705 00ae 02       		.byte	0x2
+ 706 00af 9302     		.2byte	0x293
+ 707 00b1 B5000000 		.4byte	0xb5
+ 708 00b5 05       		.uleb128 0x5
+ 709 00b6 77000000 		.4byte	0x77
+ 710 00ba 02       		.uleb128 0x2
+ 711 00bb 08       		.byte	0x8
+ 712 00bc 04       		.byte	0x4
+ 713 00bd 21030000 		.4byte	.LASF16
+ 714 00c1 02       		.uleb128 0x2
+ 715 00c2 04       		.byte	0x4
+ 716 00c3 07       		.byte	0x7
+ 717 00c4 79020000 		.4byte	.LASF17
+ 718 00c8 06       		.uleb128 0x6
+ 719 00c9 61010000 		.4byte	.LASF18
+ 720 00cd 01       		.byte	0x1
+ 721 00ce 37       		.byte	0x37
+ 722 00cf 00000000 		.4byte	.LFB0
+ 723 00d3 24000000 		.4byte	.LFE0-.LFB0
+ 724 00d7 01       		.uleb128 0x1
+ 725 00d8 9C       		.byte	0x9c
+ 726 00d9 07       		.uleb128 0x7
+ 727 00da 01030000 		.4byte	.LASF21
+ 728 00de 01       		.byte	0x1
+ 729 00df 54       		.byte	0x54
+ 730 00e0 00000000 		.4byte	.LFB1
+ 731 00e4 7C000000 		.4byte	.LFE1-.LFB1
+ 732 00e8 01       		.uleb128 0x1
+ 733 00e9 9C       		.byte	0x9c
+ 734 00ea FD000000 		.4byte	0xfd
+ 735 00ee 08       		.uleb128 0x8
+ 736 00ef 74010000 		.4byte	.LASF39
+ 737 00f3 01       		.byte	0x1
+ 738 00f4 5D       		.byte	0x5d
+ 739 00f5 6B000000 		.4byte	0x6b
+ 740 00f9 02       		.uleb128 0x2
+ 741 00fa 91       		.byte	0x91
+ 742 00fb 77       		.sleb128 -9
+ 743 00fc 00       		.byte	0
+ 744 00fd 09       		.uleb128 0x9
+ 745 00fe EE000000 		.4byte	.LASF19
+ 746 0102 01       		.byte	0x1
+ 747 0103 C7       		.byte	0xc7
+ 748 0104 00000000 		.4byte	.LFB2
+ 749 0108 0C000000 		.4byte	.LFE2-.LFB2
+ 750 010c 01       		.uleb128 0x1
+ 751 010d 9C       		.byte	0x9c
+ 752 010e 09       		.uleb128 0x9
+ 753 010f DC000000 		.4byte	.LASF20
+ 754 0113 01       		.byte	0x1
+ 755 0114 E9       		.byte	0xe9
+ 756 0115 00000000 		.4byte	.LFB3
+ 757 0119 0C000000 		.4byte	.LFE3-.LFB3
+ 758 011d 01       		.uleb128 0x1
+ 759 011e 9C       		.byte	0x9c
+ 760 011f 0A       		.uleb128 0xa
+ 761 0120 CE020000 		.4byte	.LASF22
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 30
+
+
+ 762 0124 01       		.byte	0x1
+ 763 0125 9301     		.2byte	0x193
+ 764 0127 00000000 		.4byte	.LFB4
+ 765 012b 20000000 		.4byte	.LFE4-.LFB4
+ 766 012f 01       		.uleb128 0x1
+ 767 0130 9C       		.byte	0x9c
+ 768 0131 45010000 		.4byte	0x145
+ 769 0135 0B       		.uleb128 0xb
+ 770 0136 28010000 		.4byte	.LASF25
+ 771 013a 01       		.byte	0x1
+ 772 013b 9301     		.2byte	0x193
+ 773 013d 77000000 		.4byte	0x77
+ 774 0141 02       		.uleb128 0x2
+ 775 0142 91       		.byte	0x91
+ 776 0143 76       		.sleb128 -10
+ 777 0144 00       		.byte	0
+ 778 0145 0C       		.uleb128 0xc
+ 779 0146 A9000000 		.4byte	.LASF31
+ 780 014a 01       		.byte	0x1
+ 781 014b A901     		.2byte	0x1a9
+ 782 014d 77000000 		.4byte	0x77
+ 783 0151 00000000 		.4byte	.LFB5
+ 784 0155 20000000 		.4byte	.LFE5-.LFB5
+ 785 0159 01       		.uleb128 0x1
+ 786 015a 9C       		.byte	0x9c
+ 787 015b 0D       		.uleb128 0xd
+ 788 015c 9E020000 		.4byte	.LASF23
+ 789 0160 01       		.byte	0x1
+ 790 0161 C501     		.2byte	0x1c5
+ 791 0163 00000000 		.4byte	.LFB6
+ 792 0167 1C000000 		.4byte	.LFE6-.LFB6
+ 793 016b 01       		.uleb128 0x1
+ 794 016c 9C       		.byte	0x9c
+ 795 016d 0A       		.uleb128 0xa
+ 796 016e 48010000 		.4byte	.LASF24
+ 797 0172 01       		.byte	0x1
+ 798 0173 E201     		.2byte	0x1e2
+ 799 0175 00000000 		.4byte	.LFB7
+ 800 0179 20000000 		.4byte	.LFE7-.LFB7
+ 801 017d 01       		.uleb128 0x1
+ 802 017e 9C       		.byte	0x9c
+ 803 017f 93010000 		.4byte	0x193
+ 804 0183 0B       		.uleb128 0xb
+ 805 0184 C2000000 		.4byte	.LASF26
+ 806 0188 01       		.byte	0x1
+ 807 0189 E201     		.2byte	0x1e2
+ 808 018b 77000000 		.4byte	0x77
+ 809 018f 02       		.uleb128 0x2
+ 810 0190 91       		.byte	0x91
+ 811 0191 76       		.sleb128 -10
+ 812 0192 00       		.byte	0
+ 813 0193 0A       		.uleb128 0xa
+ 814 0194 CE010000 		.4byte	.LASF27
+ 815 0198 01       		.byte	0x1
+ 816 0199 0402     		.2byte	0x204
+ 817 019b 00000000 		.4byte	.LFB8
+ 818 019f 20000000 		.4byte	.LFE8-.LFB8
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 31
+
+
+ 819 01a3 01       		.uleb128 0x1
+ 820 01a4 9C       		.byte	0x9c
+ 821 01a5 B9010000 		.4byte	0x1b9
+ 822 01a9 0B       		.uleb128 0xb
+ 823 01aa 39030000 		.4byte	.LASF28
+ 824 01ae 01       		.byte	0x1
+ 825 01af 0402     		.2byte	0x204
+ 826 01b1 77000000 		.4byte	0x77
+ 827 01b5 02       		.uleb128 0x2
+ 828 01b6 91       		.byte	0x91
+ 829 01b7 76       		.sleb128 -10
+ 830 01b8 00       		.byte	0
+ 831 01b9 0A       		.uleb128 0xa
+ 832 01ba 41030000 		.4byte	.LASF29
+ 833 01be 01       		.byte	0x1
+ 834 01bf AC02     		.2byte	0x2ac
+ 835 01c1 00000000 		.4byte	.LFB9
+ 836 01c5 20000000 		.4byte	.LFE9-.LFB9
+ 837 01c9 01       		.uleb128 0x1
+ 838 01ca 9C       		.byte	0x9c
+ 839 01cb DF010000 		.4byte	0x1df
+ 840 01cf 0B       		.uleb128 0xb
+ 841 01d0 90020000 		.4byte	.LASF30
+ 842 01d4 01       		.byte	0x1
+ 843 01d5 AC02     		.2byte	0x2ac
+ 844 01d7 6B000000 		.4byte	0x6b
+ 845 01db 02       		.uleb128 0x2
+ 846 01dc 91       		.byte	0x91
+ 847 01dd 77       		.sleb128 -9
+ 848 01de 00       		.byte	0
+ 849 01df 0C       		.uleb128 0xc
+ 850 01e0 02010000 		.4byte	.LASF32
+ 851 01e4 01       		.byte	0x1
+ 852 01e5 C702     		.2byte	0x2c7
+ 853 01e7 6B000000 		.4byte	0x6b
+ 854 01eb 00000000 		.4byte	.LFB10
+ 855 01ef 18000000 		.4byte	.LFE10-.LFB10
+ 856 01f3 01       		.uleb128 0x1
+ 857 01f4 9C       		.byte	0x9c
+ 858 01f5 0C       		.uleb128 0xc
+ 859 01f6 E8020000 		.4byte	.LASF33
+ 860 01fa 01       		.byte	0x1
+ 861 01fb 1603     		.2byte	0x316
+ 862 01fd 77000000 		.4byte	0x77
+ 863 0201 00000000 		.4byte	.LFB11
+ 864 0205 18000000 		.4byte	.LFE11-.LFB11
+ 865 0209 01       		.uleb128 0x1
+ 866 020a 9C       		.byte	0x9c
+ 867 020b 0C       		.uleb128 0xc
+ 868 020c B5020000 		.4byte	.LASF34
+ 869 0210 01       		.byte	0x1
+ 870 0211 3003     		.2byte	0x330
+ 871 0213 77000000 		.4byte	0x77
+ 872 0217 00000000 		.4byte	.LFB12
+ 873 021b 18000000 		.4byte	.LFE12-.LFB12
+ 874 021f 01       		.uleb128 0x1
+ 875 0220 9C       		.byte	0x9c
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 32
+
+
+ 876 0221 0C       		.uleb128 0xc
+ 877 0222 30010000 		.4byte	.LASF35
+ 878 0226 01       		.byte	0x1
+ 879 0227 7403     		.2byte	0x374
+ 880 0229 77000000 		.4byte	0x77
+ 881 022d 00000000 		.4byte	.LFB13
+ 882 0231 18000000 		.4byte	.LFE13-.LFB13
+ 883 0235 01       		.uleb128 0x1
+ 884 0236 9C       		.byte	0x9c
+ 885 0237 0E       		.uleb128 0xe
+ 886 0238 94000000 		.4byte	.LASF40
+ 887 023c 01       		.byte	0x1
+ 888 023d 20       		.byte	0x20
+ 889 023e 6B000000 		.4byte	0x6b
+ 890 0242 05       		.uleb128 0x5
+ 891 0243 03       		.byte	0x3
+ 892 0244 00000000 		.4byte	PWM_ServoDir_initVar
+ 893 0248 00       		.byte	0
+ 894              		.section	.debug_abbrev,"",%progbits
+ 895              	.Ldebug_abbrev0:
+ 896 0000 01       		.uleb128 0x1
+ 897 0001 11       		.uleb128 0x11
+ 898 0002 01       		.byte	0x1
+ 899 0003 25       		.uleb128 0x25
+ 900 0004 0E       		.uleb128 0xe
+ 901 0005 13       		.uleb128 0x13
+ 902 0006 0B       		.uleb128 0xb
+ 903 0007 03       		.uleb128 0x3
+ 904 0008 0E       		.uleb128 0xe
+ 905 0009 1B       		.uleb128 0x1b
+ 906 000a 0E       		.uleb128 0xe
+ 907 000b 55       		.uleb128 0x55
+ 908 000c 17       		.uleb128 0x17
+ 909 000d 11       		.uleb128 0x11
+ 910 000e 01       		.uleb128 0x1
+ 911 000f 10       		.uleb128 0x10
+ 912 0010 17       		.uleb128 0x17
+ 913 0011 00       		.byte	0
+ 914 0012 00       		.byte	0
+ 915 0013 02       		.uleb128 0x2
+ 916 0014 24       		.uleb128 0x24
+ 917 0015 00       		.byte	0
+ 918 0016 0B       		.uleb128 0xb
+ 919 0017 0B       		.uleb128 0xb
+ 920 0018 3E       		.uleb128 0x3e
+ 921 0019 0B       		.uleb128 0xb
+ 922 001a 03       		.uleb128 0x3
+ 923 001b 0E       		.uleb128 0xe
+ 924 001c 00       		.byte	0
+ 925 001d 00       		.byte	0
+ 926 001e 03       		.uleb128 0x3
+ 927 001f 24       		.uleb128 0x24
+ 928 0020 00       		.byte	0
+ 929 0021 0B       		.uleb128 0xb
+ 930 0022 0B       		.uleb128 0xb
+ 931 0023 3E       		.uleb128 0x3e
+ 932 0024 0B       		.uleb128 0xb
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 33
+
+
+ 933 0025 03       		.uleb128 0x3
+ 934 0026 08       		.uleb128 0x8
+ 935 0027 00       		.byte	0
+ 936 0028 00       		.byte	0
+ 937 0029 04       		.uleb128 0x4
+ 938 002a 16       		.uleb128 0x16
+ 939 002b 00       		.byte	0
+ 940 002c 03       		.uleb128 0x3
+ 941 002d 0E       		.uleb128 0xe
+ 942 002e 3A       		.uleb128 0x3a
+ 943 002f 0B       		.uleb128 0xb
+ 944 0030 3B       		.uleb128 0x3b
+ 945 0031 05       		.uleb128 0x5
+ 946 0032 49       		.uleb128 0x49
+ 947 0033 13       		.uleb128 0x13
+ 948 0034 00       		.byte	0
+ 949 0035 00       		.byte	0
+ 950 0036 05       		.uleb128 0x5
+ 951 0037 35       		.uleb128 0x35
+ 952 0038 00       		.byte	0
+ 953 0039 49       		.uleb128 0x49
+ 954 003a 13       		.uleb128 0x13
+ 955 003b 00       		.byte	0
+ 956 003c 00       		.byte	0
+ 957 003d 06       		.uleb128 0x6
+ 958 003e 2E       		.uleb128 0x2e
+ 959 003f 00       		.byte	0
+ 960 0040 3F       		.uleb128 0x3f
+ 961 0041 19       		.uleb128 0x19
+ 962 0042 03       		.uleb128 0x3
+ 963 0043 0E       		.uleb128 0xe
+ 964 0044 3A       		.uleb128 0x3a
+ 965 0045 0B       		.uleb128 0xb
+ 966 0046 3B       		.uleb128 0x3b
+ 967 0047 0B       		.uleb128 0xb
+ 968 0048 27       		.uleb128 0x27
+ 969 0049 19       		.uleb128 0x19
+ 970 004a 11       		.uleb128 0x11
+ 971 004b 01       		.uleb128 0x1
+ 972 004c 12       		.uleb128 0x12
+ 973 004d 06       		.uleb128 0x6
+ 974 004e 40       		.uleb128 0x40
+ 975 004f 18       		.uleb128 0x18
+ 976 0050 9642     		.uleb128 0x2116
+ 977 0052 19       		.uleb128 0x19
+ 978 0053 00       		.byte	0
+ 979 0054 00       		.byte	0
+ 980 0055 07       		.uleb128 0x7
+ 981 0056 2E       		.uleb128 0x2e
+ 982 0057 01       		.byte	0x1
+ 983 0058 3F       		.uleb128 0x3f
+ 984 0059 19       		.uleb128 0x19
+ 985 005a 03       		.uleb128 0x3
+ 986 005b 0E       		.uleb128 0xe
+ 987 005c 3A       		.uleb128 0x3a
+ 988 005d 0B       		.uleb128 0xb
+ 989 005e 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 34
+
+
+ 990 005f 0B       		.uleb128 0xb
+ 991 0060 27       		.uleb128 0x27
+ 992 0061 19       		.uleb128 0x19
+ 993 0062 11       		.uleb128 0x11
+ 994 0063 01       		.uleb128 0x1
+ 995 0064 12       		.uleb128 0x12
+ 996 0065 06       		.uleb128 0x6
+ 997 0066 40       		.uleb128 0x40
+ 998 0067 18       		.uleb128 0x18
+ 999 0068 9642     		.uleb128 0x2116
+ 1000 006a 19       		.uleb128 0x19
+ 1001 006b 01       		.uleb128 0x1
+ 1002 006c 13       		.uleb128 0x13
+ 1003 006d 00       		.byte	0
+ 1004 006e 00       		.byte	0
+ 1005 006f 08       		.uleb128 0x8
+ 1006 0070 34       		.uleb128 0x34
+ 1007 0071 00       		.byte	0
+ 1008 0072 03       		.uleb128 0x3
+ 1009 0073 0E       		.uleb128 0xe
+ 1010 0074 3A       		.uleb128 0x3a
+ 1011 0075 0B       		.uleb128 0xb
+ 1012 0076 3B       		.uleb128 0x3b
+ 1013 0077 0B       		.uleb128 0xb
+ 1014 0078 49       		.uleb128 0x49
+ 1015 0079 13       		.uleb128 0x13
+ 1016 007a 02       		.uleb128 0x2
+ 1017 007b 18       		.uleb128 0x18
+ 1018 007c 00       		.byte	0
+ 1019 007d 00       		.byte	0
+ 1020 007e 09       		.uleb128 0x9
+ 1021 007f 2E       		.uleb128 0x2e
+ 1022 0080 00       		.byte	0
+ 1023 0081 3F       		.uleb128 0x3f
+ 1024 0082 19       		.uleb128 0x19
+ 1025 0083 03       		.uleb128 0x3
+ 1026 0084 0E       		.uleb128 0xe
+ 1027 0085 3A       		.uleb128 0x3a
+ 1028 0086 0B       		.uleb128 0xb
+ 1029 0087 3B       		.uleb128 0x3b
+ 1030 0088 0B       		.uleb128 0xb
+ 1031 0089 27       		.uleb128 0x27
+ 1032 008a 19       		.uleb128 0x19
+ 1033 008b 11       		.uleb128 0x11
+ 1034 008c 01       		.uleb128 0x1
+ 1035 008d 12       		.uleb128 0x12
+ 1036 008e 06       		.uleb128 0x6
+ 1037 008f 40       		.uleb128 0x40
+ 1038 0090 18       		.uleb128 0x18
+ 1039 0091 9742     		.uleb128 0x2117
+ 1040 0093 19       		.uleb128 0x19
+ 1041 0094 00       		.byte	0
+ 1042 0095 00       		.byte	0
+ 1043 0096 0A       		.uleb128 0xa
+ 1044 0097 2E       		.uleb128 0x2e
+ 1045 0098 01       		.byte	0x1
+ 1046 0099 3F       		.uleb128 0x3f
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 35
+
+
+ 1047 009a 19       		.uleb128 0x19
+ 1048 009b 03       		.uleb128 0x3
+ 1049 009c 0E       		.uleb128 0xe
+ 1050 009d 3A       		.uleb128 0x3a
+ 1051 009e 0B       		.uleb128 0xb
+ 1052 009f 3B       		.uleb128 0x3b
+ 1053 00a0 05       		.uleb128 0x5
+ 1054 00a1 27       		.uleb128 0x27
+ 1055 00a2 19       		.uleb128 0x19
+ 1056 00a3 11       		.uleb128 0x11
+ 1057 00a4 01       		.uleb128 0x1
+ 1058 00a5 12       		.uleb128 0x12
+ 1059 00a6 06       		.uleb128 0x6
+ 1060 00a7 40       		.uleb128 0x40
+ 1061 00a8 18       		.uleb128 0x18
+ 1062 00a9 9742     		.uleb128 0x2117
+ 1063 00ab 19       		.uleb128 0x19
+ 1064 00ac 01       		.uleb128 0x1
+ 1065 00ad 13       		.uleb128 0x13
+ 1066 00ae 00       		.byte	0
+ 1067 00af 00       		.byte	0
+ 1068 00b0 0B       		.uleb128 0xb
+ 1069 00b1 05       		.uleb128 0x5
+ 1070 00b2 00       		.byte	0
+ 1071 00b3 03       		.uleb128 0x3
+ 1072 00b4 0E       		.uleb128 0xe
+ 1073 00b5 3A       		.uleb128 0x3a
+ 1074 00b6 0B       		.uleb128 0xb
+ 1075 00b7 3B       		.uleb128 0x3b
+ 1076 00b8 05       		.uleb128 0x5
+ 1077 00b9 49       		.uleb128 0x49
+ 1078 00ba 13       		.uleb128 0x13
+ 1079 00bb 02       		.uleb128 0x2
+ 1080 00bc 18       		.uleb128 0x18
+ 1081 00bd 00       		.byte	0
+ 1082 00be 00       		.byte	0
+ 1083 00bf 0C       		.uleb128 0xc
+ 1084 00c0 2E       		.uleb128 0x2e
+ 1085 00c1 00       		.byte	0
+ 1086 00c2 3F       		.uleb128 0x3f
+ 1087 00c3 19       		.uleb128 0x19
+ 1088 00c4 03       		.uleb128 0x3
+ 1089 00c5 0E       		.uleb128 0xe
+ 1090 00c6 3A       		.uleb128 0x3a
+ 1091 00c7 0B       		.uleb128 0xb
+ 1092 00c8 3B       		.uleb128 0x3b
+ 1093 00c9 05       		.uleb128 0x5
+ 1094 00ca 27       		.uleb128 0x27
+ 1095 00cb 19       		.uleb128 0x19
+ 1096 00cc 49       		.uleb128 0x49
+ 1097 00cd 13       		.uleb128 0x13
+ 1098 00ce 11       		.uleb128 0x11
+ 1099 00cf 01       		.uleb128 0x1
+ 1100 00d0 12       		.uleb128 0x12
+ 1101 00d1 06       		.uleb128 0x6
+ 1102 00d2 40       		.uleb128 0x40
+ 1103 00d3 18       		.uleb128 0x18
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 36
+
+
+ 1104 00d4 9742     		.uleb128 0x2117
+ 1105 00d6 19       		.uleb128 0x19
+ 1106 00d7 00       		.byte	0
+ 1107 00d8 00       		.byte	0
+ 1108 00d9 0D       		.uleb128 0xd
+ 1109 00da 2E       		.uleb128 0x2e
+ 1110 00db 00       		.byte	0
+ 1111 00dc 3F       		.uleb128 0x3f
+ 1112 00dd 19       		.uleb128 0x19
+ 1113 00de 03       		.uleb128 0x3
+ 1114 00df 0E       		.uleb128 0xe
+ 1115 00e0 3A       		.uleb128 0x3a
+ 1116 00e1 0B       		.uleb128 0xb
+ 1117 00e2 3B       		.uleb128 0x3b
+ 1118 00e3 05       		.uleb128 0x5
+ 1119 00e4 27       		.uleb128 0x27
+ 1120 00e5 19       		.uleb128 0x19
+ 1121 00e6 11       		.uleb128 0x11
+ 1122 00e7 01       		.uleb128 0x1
+ 1123 00e8 12       		.uleb128 0x12
+ 1124 00e9 06       		.uleb128 0x6
+ 1125 00ea 40       		.uleb128 0x40
+ 1126 00eb 18       		.uleb128 0x18
+ 1127 00ec 9642     		.uleb128 0x2116
+ 1128 00ee 19       		.uleb128 0x19
+ 1129 00ef 00       		.byte	0
+ 1130 00f0 00       		.byte	0
+ 1131 00f1 0E       		.uleb128 0xe
+ 1132 00f2 34       		.uleb128 0x34
+ 1133 00f3 00       		.byte	0
+ 1134 00f4 03       		.uleb128 0x3
+ 1135 00f5 0E       		.uleb128 0xe
+ 1136 00f6 3A       		.uleb128 0x3a
+ 1137 00f7 0B       		.uleb128 0xb
+ 1138 00f8 3B       		.uleb128 0x3b
+ 1139 00f9 0B       		.uleb128 0xb
+ 1140 00fa 49       		.uleb128 0x49
+ 1141 00fb 13       		.uleb128 0x13
+ 1142 00fc 3F       		.uleb128 0x3f
+ 1143 00fd 19       		.uleb128 0x19
+ 1144 00fe 02       		.uleb128 0x2
+ 1145 00ff 18       		.uleb128 0x18
+ 1146 0100 00       		.byte	0
+ 1147 0101 00       		.byte	0
+ 1148 0102 00       		.byte	0
+ 1149              		.section	.debug_aranges,"",%progbits
+ 1150 0000 84000000 		.4byte	0x84
+ 1151 0004 0200     		.2byte	0x2
+ 1152 0006 00000000 		.4byte	.Ldebug_info0
+ 1153 000a 04       		.byte	0x4
+ 1154 000b 00       		.byte	0
+ 1155 000c 0000     		.2byte	0
+ 1156 000e 0000     		.2byte	0
+ 1157 0010 00000000 		.4byte	.LFB0
+ 1158 0014 24000000 		.4byte	.LFE0-.LFB0
+ 1159 0018 00000000 		.4byte	.LFB1
+ 1160 001c 7C000000 		.4byte	.LFE1-.LFB1
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 37
+
+
+ 1161 0020 00000000 		.4byte	.LFB2
+ 1162 0024 0C000000 		.4byte	.LFE2-.LFB2
+ 1163 0028 00000000 		.4byte	.LFB3
+ 1164 002c 0C000000 		.4byte	.LFE3-.LFB3
+ 1165 0030 00000000 		.4byte	.LFB4
+ 1166 0034 20000000 		.4byte	.LFE4-.LFB4
+ 1167 0038 00000000 		.4byte	.LFB5
+ 1168 003c 20000000 		.4byte	.LFE5-.LFB5
+ 1169 0040 00000000 		.4byte	.LFB6
+ 1170 0044 1C000000 		.4byte	.LFE6-.LFB6
+ 1171 0048 00000000 		.4byte	.LFB7
+ 1172 004c 20000000 		.4byte	.LFE7-.LFB7
+ 1173 0050 00000000 		.4byte	.LFB8
+ 1174 0054 20000000 		.4byte	.LFE8-.LFB8
+ 1175 0058 00000000 		.4byte	.LFB9
+ 1176 005c 20000000 		.4byte	.LFE9-.LFB9
+ 1177 0060 00000000 		.4byte	.LFB10
+ 1178 0064 18000000 		.4byte	.LFE10-.LFB10
+ 1179 0068 00000000 		.4byte	.LFB11
+ 1180 006c 18000000 		.4byte	.LFE11-.LFB11
+ 1181 0070 00000000 		.4byte	.LFB12
+ 1182 0074 18000000 		.4byte	.LFE12-.LFB12
+ 1183 0078 00000000 		.4byte	.LFB13
+ 1184 007c 18000000 		.4byte	.LFE13-.LFB13
+ 1185 0080 00000000 		.4byte	0
+ 1186 0084 00000000 		.4byte	0
+ 1187              		.section	.debug_ranges,"",%progbits
+ 1188              	.Ldebug_ranges0:
+ 1189 0000 00000000 		.4byte	.LFB0
+ 1190 0004 24000000 		.4byte	.LFE0
+ 1191 0008 00000000 		.4byte	.LFB1
+ 1192 000c 7C000000 		.4byte	.LFE1
+ 1193 0010 00000000 		.4byte	.LFB2
+ 1194 0014 0C000000 		.4byte	.LFE2
+ 1195 0018 00000000 		.4byte	.LFB3
+ 1196 001c 0C000000 		.4byte	.LFE3
+ 1197 0020 00000000 		.4byte	.LFB4
+ 1198 0024 20000000 		.4byte	.LFE4
+ 1199 0028 00000000 		.4byte	.LFB5
+ 1200 002c 20000000 		.4byte	.LFE5
+ 1201 0030 00000000 		.4byte	.LFB6
+ 1202 0034 1C000000 		.4byte	.LFE6
+ 1203 0038 00000000 		.4byte	.LFB7
+ 1204 003c 20000000 		.4byte	.LFE7
+ 1205 0040 00000000 		.4byte	.LFB8
+ 1206 0044 20000000 		.4byte	.LFE8
+ 1207 0048 00000000 		.4byte	.LFB9
+ 1208 004c 20000000 		.4byte	.LFE9
+ 1209 0050 00000000 		.4byte	.LFB10
+ 1210 0054 18000000 		.4byte	.LFE10
+ 1211 0058 00000000 		.4byte	.LFB11
+ 1212 005c 18000000 		.4byte	.LFE11
+ 1213 0060 00000000 		.4byte	.LFB12
+ 1214 0064 18000000 		.4byte	.LFE12
+ 1215 0068 00000000 		.4byte	.LFB13
+ 1216 006c 18000000 		.4byte	.LFE13
+ 1217 0070 00000000 		.4byte	0
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 38
+
+
+ 1218 0074 00000000 		.4byte	0
+ 1219              		.section	.debug_line,"",%progbits
+ 1220              	.Ldebug_line0:
+ 1221 0000 63010000 		.section	.debug_str,"MS",%progbits,1
+ 1221      02004900 
+ 1221      00000201 
+ 1221      FB0E0D00 
+ 1221      01010101 
+ 1222              	.LASF15:
+ 1223 0000 72656731 		.ascii	"reg16\000"
+ 1223      3600
+ 1224              	.LASF36:
+ 1225 0006 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1225      43313120 
+ 1225      352E342E 
+ 1225      31203230 
+ 1225      31363036 
+ 1226 0039 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1226      20726576 
+ 1226      6973696F 
+ 1226      6E203233 
+ 1226      37373135 
+ 1227 006c 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 1227      66756E63 
+ 1227      74696F6E 
+ 1227      2D736563 
+ 1227      74696F6E 
+ 1228              	.LASF40:
+ 1229 0094 50574D5F 		.ascii	"PWM_ServoDir_initVar\000"
+ 1229      53657276 
+ 1229      6F446972 
+ 1229      5F696E69 
+ 1229      74566172 
+ 1230              	.LASF31:
+ 1231 00a9 50574D5F 		.ascii	"PWM_ServoDir_ReadCounter\000"
+ 1231      53657276 
+ 1231      6F446972 
+ 1231      5F526561 
+ 1231      64436F75 
+ 1232              	.LASF26:
+ 1233 00c2 70657269 		.ascii	"period\000"
+ 1233      6F6400
+ 1234              	.LASF3:
+ 1235 00c9 73686F72 		.ascii	"short unsigned int\000"
+ 1235      7420756E 
+ 1235      7369676E 
+ 1235      65642069 
+ 1235      6E7400
+ 1236              	.LASF20:
+ 1237 00dc 50574D5F 		.ascii	"PWM_ServoDir_Stop\000"
+ 1237      53657276 
+ 1237      6F446972 
+ 1237      5F53746F 
+ 1237      7000
+ 1238              	.LASF19:
+ 1239 00ee 50574D5F 		.ascii	"PWM_ServoDir_Enable\000"
+ 1239      53657276 
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 39
+
+
+ 1239      6F446972 
+ 1239      5F456E61 
+ 1239      626C6500 
+ 1240              	.LASF32:
+ 1241 0102 50574D5F 		.ascii	"PWM_ServoDir_ReadStatusRegister\000"
+ 1241      53657276 
+ 1241      6F446972 
+ 1241      5F526561 
+ 1241      64537461 
+ 1242              	.LASF11:
+ 1243 0122 666C6F61 		.ascii	"float\000"
+ 1243      7400
+ 1244              	.LASF25:
+ 1245 0128 636F756E 		.ascii	"counter\000"
+ 1245      74657200 
+ 1246              	.LASF35:
+ 1247 0130 50574D5F 		.ascii	"PWM_ServoDir_ReadPeriod\000"
+ 1247      53657276 
+ 1247      6F446972 
+ 1247      5F526561 
+ 1247      64506572 
+ 1248              	.LASF24:
+ 1249 0148 50574D5F 		.ascii	"PWM_ServoDir_WritePeriod\000"
+ 1249      53657276 
+ 1249      6F446972 
+ 1249      5F577269 
+ 1249      74655065 
+ 1250              	.LASF18:
+ 1251 0161 50574D5F 		.ascii	"PWM_ServoDir_Start\000"
+ 1251      53657276 
+ 1251      6F446972 
+ 1251      5F537461 
+ 1251      727400
+ 1252              	.LASF39:
+ 1253 0174 50574D5F 		.ascii	"PWM_ServoDir_interruptState\000"
+ 1253      53657276 
+ 1253      6F446972 
+ 1253      5F696E74 
+ 1253      65727275 
+ 1254              	.LASF5:
+ 1255 0190 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1255      20756E73 
+ 1255      69676E65 
+ 1255      6420696E 
+ 1255      7400
+ 1256              	.LASF9:
+ 1257 01a2 75696E74 		.ascii	"uint8\000"
+ 1257      3800
+ 1258              	.LASF37:
+ 1259 01a8 47656E65 		.ascii	"Generated_Source\\PSoC5\\PWM_ServoDir.c\000"
+ 1259      72617465 
+ 1259      645F536F 
+ 1259      75726365 
+ 1259      5C50536F 
+ 1260              	.LASF27:
+ 1261 01ce 50574D5F 		.ascii	"PWM_ServoDir_WriteCompare\000"
+ 1261      53657276 
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 40
+
+
+ 1261      6F446972 
+ 1261      5F577269 
+ 1261      7465436F 
+ 1262              	.LASF12:
+ 1263 01e8 646F7562 		.ascii	"double\000"
+ 1263      6C6500
+ 1264              	.LASF2:
+ 1265 01ef 73686F72 		.ascii	"short int\000"
+ 1265      7420696E 
+ 1265      7400
+ 1266              	.LASF10:
+ 1267 01f9 75696E74 		.ascii	"uint16\000"
+ 1267      313600
+ 1268              	.LASF1:
+ 1269 0200 756E7369 		.ascii	"unsigned char\000"
+ 1269      676E6564 
+ 1269      20636861 
+ 1269      7200
+ 1270              	.LASF8:
+ 1271 020e 756E7369 		.ascii	"unsigned int\000"
+ 1271      676E6564 
+ 1271      20696E74 
+ 1271      00
+ 1272              	.LASF7:
+ 1273 021b 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1273      206C6F6E 
+ 1273      6720756E 
+ 1273      7369676E 
+ 1273      65642069 
+ 1274              	.LASF38:
+ 1275 0232 433A5C55 		.ascii	"C:\\Users\\cyu13\\Desktop\\ECE4191 GitHub\\ECE4191\\"
+ 1275      73657273 
+ 1275      5C637975 
+ 1275      31335C44 
+ 1275      65736B74 
+ 1276 0260 44656C69 		.ascii	"DeliveryRobot.cydsn\000"
+ 1276      76657279 
+ 1276      526F626F 
+ 1276      742E6379 
+ 1276      64736E00 
+ 1277              	.LASF14:
+ 1278 0274 72656738 		.ascii	"reg8\000"
+ 1278      00
+ 1279              	.LASF17:
+ 1280 0279 73697A65 		.ascii	"sizetype\000"
+ 1280      74797065 
+ 1280      00
+ 1281              	.LASF6:
+ 1282 0282 6C6F6E67 		.ascii	"long long int\000"
+ 1282      206C6F6E 
+ 1282      6720696E 
+ 1282      7400
+ 1283              	.LASF30:
+ 1284 0290 696E7465 		.ascii	"interruptMode\000"
+ 1284      72727570 
+ 1284      744D6F64 
+ 1284      6500
+ARM GAS  C:\Users\cyu13\AppData\Local\Temp\ccDG97oe.s 			page 41
+
+
+ 1285              	.LASF23:
+ 1286 029e 50574D5F 		.ascii	"PWM_ServoDir_ClearFIFO\000"
+ 1286      53657276 
+ 1286      6F446972 
+ 1286      5F436C65 
+ 1286      61724649 
+ 1287              	.LASF34:
+ 1288 02b5 50574D5F 		.ascii	"PWM_ServoDir_ReadCompare\000"
+ 1288      53657276 
+ 1288      6F446972 
+ 1288      5F526561 
+ 1288      64436F6D 
+ 1289              	.LASF22:
+ 1290 02ce 50574D5F 		.ascii	"PWM_ServoDir_WriteCounter\000"
+ 1290      53657276 
+ 1290      6F446972 
+ 1290      5F577269 
+ 1290      7465436F 
+ 1291              	.LASF33:
+ 1292 02e8 50574D5F 		.ascii	"PWM_ServoDir_ReadCapture\000"
+ 1292      53657276 
+ 1292      6F446972 
+ 1292      5F526561 
+ 1292      64436170 
+ 1293              	.LASF21:
+ 1294 0301 50574D5F 		.ascii	"PWM_ServoDir_Init\000"
+ 1294      53657276 
+ 1294      6F446972 
+ 1294      5F496E69 
+ 1294      7400
+ 1295              	.LASF4:
+ 1296 0313 6C6F6E67 		.ascii	"long int\000"
+ 1296      20696E74 
+ 1296      00
+ 1297              	.LASF13:
+ 1298 031c 63686172 		.ascii	"char\000"
+ 1298      00
+ 1299              	.LASF16:
+ 1300 0321 6C6F6E67 		.ascii	"long double\000"
+ 1300      20646F75 
+ 1300      626C6500 
+ 1301              	.LASF0:
+ 1302 032d 7369676E 		.ascii	"signed char\000"
+ 1302      65642063 
+ 1302      68617200 
+ 1303              	.LASF28:
+ 1304 0339 636F6D70 		.ascii	"compare\000"
+ 1304      61726500 
+ 1305              	.LASF29:
+ 1306 0341 50574D5F 		.ascii	"PWM_ServoDir_SetInterruptMode\000"
+ 1306      53657276 
+ 1306      6F446972 
+ 1306      5F536574 
+ 1306      496E7465 
+ 1307              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

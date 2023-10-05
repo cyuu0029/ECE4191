@@ -33,7 +33,7 @@ extern uint8 PWM_ServoDir_initVar;
 #define PWM_ServoDir_DeadBandMode                   (0u)
 #define PWM_ServoDir_KillModeMinTime                (0u)
 #define PWM_ServoDir_KillMode                       (0u)
-#define PWM_ServoDir_PWMMode                        (0u)
+#define PWM_ServoDir_PWMMode                        (1u)
 #define PWM_ServoDir_PWMModeIsCenterAligned         (0u)
 #define PWM_ServoDir_DeadBandUsed                   (0u)
 #define PWM_ServoDir_DeadBand2_4                    (0u)
@@ -50,7 +50,7 @@ extern uint8 PWM_ServoDir_initVar;
     #define PWM_ServoDir_UseControl                 (0u)
 #endif /* !defined(PWM_ServoDir_PWMUDB_genblk1_ctrlreg__REMOVED) */
 
-#define PWM_ServoDir_UseOneCompareMode              (1u)
+#define PWM_ServoDir_UseOneCompareMode              (0u)
 #define PWM_ServoDir_MinimumKillTime                (1u)
 #define PWM_ServoDir_EnableMode                     (1u)
 
@@ -228,7 +228,7 @@ void PWM_ServoDir_RestoreConfig(void) ;
 **************************************/
 #define PWM_ServoDir_INIT_PERIOD_VALUE          (40000u)
 #define PWM_ServoDir_INIT_COMPARE_VALUE1        (4000u)
-#define PWM_ServoDir_INIT_COMPARE_VALUE2        (63u)
+#define PWM_ServoDir_INIT_COMPARE_VALUE2        (2000u)
 #define PWM_ServoDir_INIT_INTERRUPTS_MODE       (uint8)(((uint8)(0u <<   \
                                                     PWM_ServoDir_STATUS_TC_INT_EN_MASK_SHIFT)) | \
                                                     (uint8)((uint8)(0u <<  \

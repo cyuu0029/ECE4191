@@ -2,7 +2,7 @@
 --	Conversion of DeliveryRobot.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Wed Oct 04 13:04:52 2023
+--	Wed Oct 04 17:43:38 2023
 --
 
 USE cypress.cypress.all;
@@ -2906,8 +2906,9 @@ SIGNAL \PWM_ServoDir:Net_55\ : bit;
 SIGNAL \PWM_ServoDir:PWMUDB:prevCompare1\ : bit;
 SIGNAL \PWM_ServoDir:PWMUDB:cmp1\ : bit;
 SIGNAL \PWM_ServoDir:PWMUDB:cmp1_status\ : bit;
-SIGNAL \PWM_ServoDir:PWMUDB:cmp2_status\ : bit;
+SIGNAL \PWM_ServoDir:PWMUDB:prevCompare2\ : bit;
 SIGNAL \PWM_ServoDir:PWMUDB:cmp2\ : bit;
+SIGNAL \PWM_ServoDir:PWMUDB:cmp2_status\ : bit;
 SIGNAL \PWM_ServoDir:PWMUDB:cmp1_status_reg\ : bit;
 SIGNAL \PWM_ServoDir:PWMUDB:cmp2_status_reg\ : bit;
 SIGNAL \PWM_ServoDir:PWMUDB:final_kill_reg\ : bit;
@@ -3060,8 +3061,8 @@ SIGNAL \PWM_ServoDir:PWMUDB:pwm2_i\ : bit;
 SIGNAL \PWM_ServoDir:PWMUDB:tc_i_reg\ : bit;
 SIGNAL \PWM_ServoDir:Net_101\ : bit;
 SIGNAL \PWM_ServoDir:Net_96\ : bit;
-SIGNAL Net_1441 : bit;
-SIGNAL Net_1442 : bit;
+SIGNAL Net_1491 : bit;
+SIGNAL Net_1481 : bit;
 SIGNAL \PWM_ServoDir:PWMUDB:pwm_temp\ : bit;
 SIGNAL \PWM_ServoDir:PWMUDB:MODULE_7:b_31\ : bit;
 SIGNAL \PWM_ServoDir:PWMUDB:MODULE_7:b_30\ : bit;
@@ -3259,7 +3260,7 @@ SIGNAL \PWM_ServoDir:PWMUDB:MODULE_7:g2:a0:g1:z1:s0:g1:u0:c_2\ : bit;
 SIGNAL \PWM_ServoDir:PWMUDB:MODULE_7:g2:a0:g1:z1:s0:g1:u0:c_1\ : bit;
 SIGNAL \PWM_ServoDir:PWMUDB:MODULE_7:g2:a0:g1:z1:s0:g1:u0:c_0\ : bit;
 SIGNAL \PWM_ServoDir:PWMUDB:MODULE_7:g2:a0:g1:z1:s0:g1:u0:b_0\ : bit;
-SIGNAL Net_1102 : bit;
+SIGNAL Net_1452 : bit;
 SIGNAL Net_1436 : bit;
 SIGNAL Net_1444 : bit;
 SIGNAL \PWM_ServoDir:Net_113\ : bit;
@@ -3292,28 +3293,22 @@ SIGNAL \Control_Reg_ServoTrigger:control_1\ : bit;
 SIGNAL \Control_Reg_ServoTrigger:control_0\ : bit;
 SIGNAL \Control_Reg_ServoSelect:clk\ : bit;
 SIGNAL \Control_Reg_ServoSelect:rst\ : bit;
-SIGNAL \Control_Reg_ServoSelect:control_bus_7\ : bit;
-ATTRIBUTE port_state_att of \Control_Reg_ServoSelect:control_bus_7\:SIGNAL IS 2;
-SIGNAL \Control_Reg_ServoSelect:control_out_7\ : bit;
-SIGNAL \Control_Reg_ServoSelect:control_bus_6\ : bit;
-ATTRIBUTE port_state_att of \Control_Reg_ServoSelect:control_bus_6\:SIGNAL IS 2;
-SIGNAL \Control_Reg_ServoSelect:control_out_6\ : bit;
-SIGNAL \Control_Reg_ServoSelect:control_bus_5\ : bit;
-ATTRIBUTE port_state_att of \Control_Reg_ServoSelect:control_bus_5\:SIGNAL IS 2;
-SIGNAL \Control_Reg_ServoSelect:control_out_5\ : bit;
-SIGNAL \Control_Reg_ServoSelect:control_bus_4\ : bit;
-ATTRIBUTE port_state_att of \Control_Reg_ServoSelect:control_bus_4\:SIGNAL IS 2;
-SIGNAL \Control_Reg_ServoSelect:control_out_4\ : bit;
-SIGNAL \Control_Reg_ServoSelect:control_bus_3\ : bit;
-ATTRIBUTE port_state_att of \Control_Reg_ServoSelect:control_bus_3\:SIGNAL IS 2;
-SIGNAL \Control_Reg_ServoSelect:control_out_3\ : bit;
-SIGNAL \Control_Reg_ServoSelect:control_bus_2\ : bit;
-ATTRIBUTE port_state_att of \Control_Reg_ServoSelect:control_bus_2\:SIGNAL IS 2;
-SIGNAL \Control_Reg_ServoSelect:control_out_2\ : bit;
-SIGNAL Net_1103_1 : bit;
-SIGNAL \Control_Reg_ServoSelect:control_out_1\ : bit;
-SIGNAL Net_1103_0 : bit;
+SIGNAL Net_1475 : bit;
 SIGNAL \Control_Reg_ServoSelect:control_out_0\ : bit;
+SIGNAL Net_1451 : bit;
+SIGNAL \Control_Reg_ServoSelect:control_out_1\ : bit;
+SIGNAL Net_1005 : bit;
+SIGNAL \Control_Reg_ServoSelect:control_out_2\ : bit;
+SIGNAL Net_1006 : bit;
+SIGNAL \Control_Reg_ServoSelect:control_out_3\ : bit;
+SIGNAL Net_1007 : bit;
+SIGNAL \Control_Reg_ServoSelect:control_out_4\ : bit;
+SIGNAL Net_1008 : bit;
+SIGNAL \Control_Reg_ServoSelect:control_out_5\ : bit;
+SIGNAL Net_1009 : bit;
+SIGNAL \Control_Reg_ServoSelect:control_out_6\ : bit;
+SIGNAL Net_1010 : bit;
+SIGNAL \Control_Reg_ServoSelect:control_out_7\ : bit;
 SIGNAL \Control_Reg_ServoSelect:control_7\ : bit;
 SIGNAL \Control_Reg_ServoSelect:control_6\ : bit;
 SIGNAL \Control_Reg_ServoSelect:control_5\ : bit;
@@ -3322,14 +3317,6 @@ SIGNAL \Control_Reg_ServoSelect:control_3\ : bit;
 SIGNAL \Control_Reg_ServoSelect:control_2\ : bit;
 SIGNAL \Control_Reg_ServoSelect:control_1\ : bit;
 SIGNAL \Control_Reg_ServoSelect:control_0\ : bit;
-SIGNAL \demux_2:tmp__demux_2_0_reg\ : bit;
-SIGNAL \demux_2:tmp__demux_2_1_reg\ : bit;
-SIGNAL \demux_2:tmp__demux_2_2_reg\ : bit;
-SIGNAL \demux_2:tmp__demux_2_3_reg\ : bit;
-SIGNAL Net_1450 : bit;
-SIGNAL Net_1451 : bit;
-SIGNAL Net_1452 : bit;
-SIGNAL Net_1453 : bit;
 SIGNAL tmpOE__Pin_Servos_net_3 : bit;
 SIGNAL tmpOE__Pin_Servos_net_2 : bit;
 SIGNAL tmpOE__Pin_Servos_net_1 : bit;
@@ -3477,6 +3464,7 @@ SIGNAL \PWM_ServoDir:PWMUDB:ltch_kill_reg\\D\ : bit;
 SIGNAL \PWM_ServoDir:PWMUDB:dith_count_1\\D\ : bit;
 SIGNAL \PWM_ServoDir:PWMUDB:dith_count_0\\D\ : bit;
 SIGNAL \PWM_ServoDir:PWMUDB:prevCompare1\\D\ : bit;
+SIGNAL \PWM_ServoDir:PWMUDB:prevCompare2\\D\ : bit;
 SIGNAL \PWM_ServoDir:PWMUDB:cmp1_status_reg\\D\ : bit;
 SIGNAL \PWM_ServoDir:PWMUDB:cmp2_status_reg\\D\ : bit;
 SIGNAL \PWM_ServoDir:PWMUDB:final_kill_reg\\D\ : bit;
@@ -3778,6 +3766,7 @@ Net_1459 <= ((not Net_800_1 and Net_216 and Net_800_2 and Net_800_0));
 \Timer_Avoidance:TimerUDB:status_tc\ <= ((\Timer_Avoidance:TimerUDB:control_7\ and \Timer_Avoidance:TimerUDB:per_zero\));
 
 \PWM_1:PWMUDB:runmode_enable\\D\ <= ((not \PWM_1:PWMUDB:tc_i\ and \PWM_1:PWMUDB:control_7\ and \PWM_1:PWMUDB:runmode_enable\)
+	OR (not Net_1257 and \PWM_1:PWMUDB:control_7\ and \PWM_1:PWMUDB:trig_last\)
 	OR (not \PWM_1:PWMUDB:trig_last\ and \PWM_1:PWMUDB:control_7\ and Net_1257));
 
 \PWM_1:PWMUDB:sc_kill_tmp\\D\ <= (not \PWM_1:PWMUDB:tc_i\);
@@ -3808,17 +3797,13 @@ Net_1459 <= ((not Net_800_1 and Net_216 and Net_800_2 and Net_800_0));
 
 \PWM_ServoDir:PWMUDB:cmp1_status\ <= ((not \PWM_ServoDir:PWMUDB:prevCompare1\ and \PWM_ServoDir:PWMUDB:cmp1_less\));
 
+\PWM_ServoDir:PWMUDB:cmp2_status\ <= ((not \PWM_ServoDir:PWMUDB:prevCompare2\ and \PWM_ServoDir:PWMUDB:cmp2_less\));
+
 \PWM_ServoDir:PWMUDB:status_2\ <= ((\PWM_ServoDir:PWMUDB:runmode_enable\ and \PWM_ServoDir:PWMUDB:tc_i\));
 
-\PWM_ServoDir:PWMUDB:pwm_i\ <= ((\PWM_ServoDir:PWMUDB:runmode_enable\ and \PWM_ServoDir:PWMUDB:cmp1_less\));
+\PWM_ServoDir:PWMUDB:pwm1_i\ <= ((\PWM_ServoDir:PWMUDB:runmode_enable\ and \PWM_ServoDir:PWMUDB:cmp1_less\));
 
-Net_1450 <= ((not Net_1103_1 and not Net_1103_0 and Net_1102));
-
-Net_1451 <= ((not Net_1103_1 and Net_1102 and Net_1103_0));
-
-Net_1452 <= ((not Net_1103_0 and Net_1102 and Net_1103_1));
-
-Net_1453 <= ((Net_1102 and Net_1103_1 and Net_1103_0));
+\PWM_ServoDir:PWMUDB:pwm2_i\ <= ((\PWM_ServoDir:PWMUDB:runmode_enable\ and \PWM_ServoDir:PWMUDB:cmp2_less\));
 
 \UART:TXInternalInterrupt\:cy_isr_v1_0
 	GENERIC MAP(int_type=>"10",
@@ -7368,7 +7353,7 @@ Clock_3:cy_clock_v1_0
 	PORT MAP(reset=>zero,
 		clock=>zero,
 		control=>(\Control_Reg_ServoSelect:control_7\, \Control_Reg_ServoSelect:control_6\, \Control_Reg_ServoSelect:control_5\, \Control_Reg_ServoSelect:control_4\,
-			\Control_Reg_ServoSelect:control_3\, \Control_Reg_ServoSelect:control_2\, Net_1103_1, Net_1103_0));
+			Net_1006, Net_1005, Net_1451, Net_1475));
 Clock_4:cy_clock_v1_0
 	GENERIC MAP(cy_registers=>"",
 		id=>"a65db1b4-56c5-4db2-bbc6-bdcbfa4a57ab",
@@ -7403,7 +7388,7 @@ Pin_Servos:cy_psoc3_pins_v1_10
 		output_reset=>'0',
 		output_clock_mode=>"0000",
 		oe_sync=>"0000",
-		oe_conn=>"0000",
+		oe_conn=>"1111",
 		oe_reset=>'0',
 		pin_aliases=>",,,",
 		pin_mode=>"OOOO",
@@ -7435,8 +7420,8 @@ Pin_Servos:cy_psoc3_pins_v1_10
 		ovt_slew_control=>"00000000",
 		ovt_hyst_trim=>"0000",
 		input_buffer_sel=>"00000000")
-	PORT MAP(oe=>(one, one, one, one),
-		y=>(Net_1453, Net_1452, Net_1451, Net_1450),
+	PORT MAP(oe=>(Net_1006, Net_1005, Net_1451, Net_1475),
+		y=>(Net_1481, Net_1491, Net_1481, Net_1491),
 		fb=>(tmpFB_3__Pin_Servos_net_3, tmpFB_3__Pin_Servos_net_2, tmpFB_3__Pin_Servos_net_1, tmpFB_3__Pin_Servos_net_0),
 		analog=>(open, open, open, open),
 		io=>(tmpIO_3__Pin_Servos_net_3, tmpIO_3__Pin_Servos_net_2, tmpIO_3__Pin_Servos_net_1, tmpIO_3__Pin_Servos_net_0),
@@ -8155,6 +8140,10 @@ Net_12:cy_dff
 	PORT MAP(d=>\PWM_ServoDir:PWMUDB:cmp1_less\,
 		clk=>\PWM_ServoDir:PWMUDB:ClockOutFromEnBlock\,
 		q=>\PWM_ServoDir:PWMUDB:prevCompare1\);
+\PWM_ServoDir:PWMUDB:prevCompare2\:cy_dff
+	PORT MAP(d=>\PWM_ServoDir:PWMUDB:cmp2_less\,
+		clk=>\PWM_ServoDir:PWMUDB:ClockOutFromEnBlock\,
+		q=>\PWM_ServoDir:PWMUDB:prevCompare2\);
 \PWM_ServoDir:PWMUDB:cmp1_status_reg\:cy_dsrff
 	PORT MAP(d=>\PWM_ServoDir:PWMUDB:cmp1_status\,
 		s=>zero,
@@ -8162,7 +8151,7 @@ Net_12:cy_dff
 		clk=>\PWM_ServoDir:PWMUDB:ClockOutFromEnBlock\,
 		q=>\PWM_ServoDir:PWMUDB:status_0\);
 \PWM_ServoDir:PWMUDB:cmp2_status_reg\:cy_dsrff
-	PORT MAP(d=>zero,
+	PORT MAP(d=>\PWM_ServoDir:PWMUDB:cmp2_status\,
 		s=>zero,
 		r=>zero,
 		clk=>\PWM_ServoDir:PWMUDB:ClockOutFromEnBlock\,
@@ -8174,17 +8163,17 @@ Net_12:cy_dff
 		clk=>\PWM_ServoDir:PWMUDB:ClockOutFromEnBlock\,
 		q=>\PWM_ServoDir:PWMUDB:status_5\);
 \PWM_ServoDir:PWMUDB:pwm_i_reg\:cy_dff
-	PORT MAP(d=>\PWM_ServoDir:PWMUDB:pwm_i\,
+	PORT MAP(d=>zero,
 		clk=>\PWM_ServoDir:PWMUDB:ClockOutFromEnBlock\,
-		q=>Net_1102);
+		q=>\PWM_ServoDir:PWMUDB:pwm_i_reg\);
 \PWM_ServoDir:PWMUDB:pwm1_i_reg\:cy_dff
-	PORT MAP(d=>zero,
+	PORT MAP(d=>\PWM_ServoDir:PWMUDB:pwm1_i\,
 		clk=>\PWM_ServoDir:PWMUDB:ClockOutFromEnBlock\,
-		q=>\PWM_ServoDir:PWMUDB:pwm1_i_reg\);
+		q=>Net_1491);
 \PWM_ServoDir:PWMUDB:pwm2_i_reg\:cy_dff
-	PORT MAP(d=>zero,
+	PORT MAP(d=>\PWM_ServoDir:PWMUDB:pwm2_i\,
 		clk=>\PWM_ServoDir:PWMUDB:ClockOutFromEnBlock\,
-		q=>\PWM_ServoDir:PWMUDB:pwm2_i_reg\);
+		q=>Net_1481);
 \PWM_ServoDir:PWMUDB:tc_i_reg\:cy_dff
 	PORT MAP(d=>\PWM_ServoDir:PWMUDB:status_2\,
 		clk=>\PWM_ServoDir:PWMUDB:ClockOutFromEnBlock\,

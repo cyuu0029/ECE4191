@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 1
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 1
   29:Generated_Source\PSoC5/cyfitter_cfg.c **** 
   30:Generated_Source\PSoC5/cyfitter_cfg.c **** #if defined(__GNUC__) || defined(__ARMCC_VERSION)
   31:Generated_Source\PSoC5/cyfitter_cfg.c ****     #define CYPACKED 
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 2
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 2
 
 
   32:Generated_Source\PSoC5/cyfitter_cfg.c ****     #define CYPACKED_ATTR __attribute__ ((packed))
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 1
   34              		.cfi_offset 14, -4
   35 0002 82B0     		sub	sp, sp, #8
   36              		.cfi_def_cfa_offset 16
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 3
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 3
 
 
   37 0004 00AF     		add	r7, sp, #0
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 1
   83 0012 FFF7FEFF 		bl	memcpy
   87:Generated_Source\PSoC5/cyfitter_cfg.c **** }
   84              		.loc 1 87 0
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 4
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 4
 
 
   85 0016 00BF     		nop
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 1
  132              		.size	CYCONFIGCPYCODE, .-CYCONFIGCPYCODE
  133 001e 00BF     		.section	.text.CyClockStartupError,"ax",%progbits
  134              		.align	2
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 5
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 5
 
 
  135              		.thumb
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 1
  129:Generated_Source\PSoC5/cyfitter_cfg.c ****     /* To remove the compiler warning if errorCode not used.                */
  130:Generated_Source\PSoC5/cyfitter_cfg.c ****     errorCode = errorCode;
  131:Generated_Source\PSoC5/cyfitter_cfg.c **** 
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 6
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 6
 
 
  132:Generated_Source\PSoC5/cyfitter_cfg.c ****     /* If we have a clock startup error (bad MHz crystal, PLL lock, etc.),  */
@@ -332,7 +332,7 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 1
  148:Generated_Source\PSoC5/cyfitter_cfg.c **** }
  149:Generated_Source\PSoC5/cyfitter_cfg.c **** #endif
  150:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 151:Generated_Source\PSoC5/cyfitter_cfg.c **** #define CY_CFG_BASE_ADDR_COUNT 41u
+ 151:Generated_Source\PSoC5/cyfitter_cfg.c **** #define CY_CFG_BASE_ADDR_COUNT 40u
  152:Generated_Source\PSoC5/cyfitter_cfg.c **** CYPACKED typedef struct
  153:Generated_Source\PSoC5/cyfitter_cfg.c **** {
  154:Generated_Source\PSoC5/cyfitter_cfg.c **** 	uint8 offset;
@@ -340,51 +340,54 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 1
  156:Generated_Source\PSoC5/cyfitter_cfg.c **** } CYPACKED_ATTR cy_cfg_addrvalue_t;
  157:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  158:Generated_Source\PSoC5/cyfitter_cfg.c **** #define cy_cfg_addr_table ((const uint32 CYFAR *)0x48000000u)
- 159:Generated_Source\PSoC5/cyfitter_cfg.c **** #define cy_cfg_data_table ((const cy_cfg_addrvalue_t CYFAR *)0x480000A4u)
+ 159:Generated_Source\PSoC5/cyfitter_cfg.c **** #define cy_cfg_data_table ((const cy_cfg_addrvalue_t CYFAR *)0x480000A0u)
  160:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 161:Generated_Source\PSoC5/cyfitter_cfg.c **** /* UCFG_BCTL0 Address: CYREG_BCTL0_MDCLK_EN Size (bytes): 16 */
- 162:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_UCFG_BCTL0_VAL ((const uint8 CYFAR *)0x48001128u)
+ 161:Generated_Source\PSoC5/cyfitter_cfg.c **** /* IOPORT_3 Address: CYDEV_PRTDSI_PRT3_BASE Size (bytes): 7 */
+ 162:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPORT_3_VAL ((const uint8 CYFAR *)0x4800119Cu)
  163:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 164:Generated_Source\PSoC5/cyfitter_cfg.c **** /* IOPINS0_0 Address: CYREG_PRT0_DM0 Size (bytes): 8 */
- 165:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_0_VAL ((const uint8 CYFAR *)0x48001138u)
+ 164:Generated_Source\PSoC5/cyfitter_cfg.c **** /* UCFG_BCTL0 Address: CYREG_BCTL0_MDCLK_EN Size (bytes): 16 */
+ 165:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_UCFG_BCTL0_VAL ((const uint8 CYFAR *)0x480011A4u)
  166:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 167:Generated_Source\PSoC5/cyfitter_cfg.c **** /* IOPINS0_7 Address: CYREG_PRT12_DM0 Size (bytes): 8 */
- 168:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_7_VAL ((const uint8 CYFAR *)0x48001140u)
+ 167:Generated_Source\PSoC5/cyfitter_cfg.c **** /* IOPINS0_0 Address: CYREG_PRT0_DM0 Size (bytes): 8 */
+ 168:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_0_VAL ((const uint8 CYFAR *)0x480011B4u)
  169:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 170:Generated_Source\PSoC5/cyfitter_cfg.c **** /* IOPINS0_8 Address: CYREG_PRT15_DR Size (bytes): 10 */
- 171:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_8_VAL ((const uint8 CYFAR *)0x48001148u)
+ 170:Generated_Source\PSoC5/cyfitter_cfg.c **** /* IOPINS0_7 Address: CYREG_PRT12_DM0 Size (bytes): 8 */
+ 171:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_7_VAL ((const uint8 CYFAR *)0x480011BCu)
  172:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 173:Generated_Source\PSoC5/cyfitter_cfg.c **** /* IOPINS0_1 Address: CYREG_PRT1_DM0 Size (bytes): 8 */
- 174:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_1_VAL ((const uint8 CYFAR *)0x48001154u)
+ 173:Generated_Source\PSoC5/cyfitter_cfg.c **** /* IOPINS0_8 Address: CYREG_PRT15_DR Size (bytes): 10 */
+ 174:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_8_VAL ((const uint8 CYFAR *)0x480011C4u)
  175:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 176:Generated_Source\PSoC5/cyfitter_cfg.c **** /* IOPINS0_2 Address: CYREG_PRT2_DR Size (bytes): 10 */
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 7
+ 176:Generated_Source\PSoC5/cyfitter_cfg.c **** /* IOPINS0_1 Address: CYREG_PRT1_DM0 Size (bytes): 8 */
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 7
 
 
- 177:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_2_VAL ((const uint8 CYFAR *)0x4800115Cu)
+ 177:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_1_VAL ((const uint8 CYFAR *)0x480011D0u)
  178:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 179:Generated_Source\PSoC5/cyfitter_cfg.c **** /* IOPINS0_3 Address: CYREG_PRT3_DM0 Size (bytes): 8 */
- 180:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_3_VAL ((const uint8 CYFAR *)0x48001168u)
+ 179:Generated_Source\PSoC5/cyfitter_cfg.c **** /* IOPINS0_2 Address: CYREG_PRT2_DR Size (bytes): 10 */
+ 180:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_2_VAL ((const uint8 CYFAR *)0x480011D8u)
  181:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 182:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 183:Generated_Source\PSoC5/cyfitter_cfg.c **** /*******************************************************************************
- 184:Generated_Source\PSoC5/cyfitter_cfg.c **** * Function Name: cfg_write_bytes32
- 185:Generated_Source\PSoC5/cyfitter_cfg.c **** ********************************************************************************
- 186:Generated_Source\PSoC5/cyfitter_cfg.c **** * Summary:
- 187:Generated_Source\PSoC5/cyfitter_cfg.c **** *  This function is used for setting up the chip configuration areas that
- 188:Generated_Source\PSoC5/cyfitter_cfg.c **** *  contain relatively sparse data.
- 189:Generated_Source\PSoC5/cyfitter_cfg.c **** *
- 190:Generated_Source\PSoC5/cyfitter_cfg.c **** * Parameters:
- 191:Generated_Source\PSoC5/cyfitter_cfg.c **** *   void
+ 182:Generated_Source\PSoC5/cyfitter_cfg.c **** /* IOPINS0_3 Address: CYREG_PRT3_DM0 Size (bytes): 8 */
+ 183:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_3_VAL ((const uint8 CYFAR *)0x480011E4u)
+ 184:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 185:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 186:Generated_Source\PSoC5/cyfitter_cfg.c **** /*******************************************************************************
+ 187:Generated_Source\PSoC5/cyfitter_cfg.c **** * Function Name: cfg_write_bytes32
+ 188:Generated_Source\PSoC5/cyfitter_cfg.c **** ********************************************************************************
+ 189:Generated_Source\PSoC5/cyfitter_cfg.c **** * Summary:
+ 190:Generated_Source\PSoC5/cyfitter_cfg.c **** *  This function is used for setting up the chip configuration areas that
+ 191:Generated_Source\PSoC5/cyfitter_cfg.c **** *  contain relatively sparse data.
  192:Generated_Source\PSoC5/cyfitter_cfg.c **** *
- 193:Generated_Source\PSoC5/cyfitter_cfg.c **** * Return:
+ 193:Generated_Source\PSoC5/cyfitter_cfg.c **** * Parameters:
  194:Generated_Source\PSoC5/cyfitter_cfg.c **** *   void
  195:Generated_Source\PSoC5/cyfitter_cfg.c **** *
- 196:Generated_Source\PSoC5/cyfitter_cfg.c **** *******************************************************************************/
- 197:Generated_Source\PSoC5/cyfitter_cfg.c **** static void cfg_write_bytes32(const uint32 addr_table[], const cy_cfg_addrvalue_t data_table[]);
- 198:Generated_Source\PSoC5/cyfitter_cfg.c **** static void cfg_write_bytes32(const uint32 addr_table[], const cy_cfg_addrvalue_t data_table[])
- 199:Generated_Source\PSoC5/cyfitter_cfg.c **** {
- 167              		.loc 1 199 0
+ 196:Generated_Source\PSoC5/cyfitter_cfg.c **** * Return:
+ 197:Generated_Source\PSoC5/cyfitter_cfg.c **** *   void
+ 198:Generated_Source\PSoC5/cyfitter_cfg.c **** *
+ 199:Generated_Source\PSoC5/cyfitter_cfg.c **** *******************************************************************************/
+ 200:Generated_Source\PSoC5/cyfitter_cfg.c **** static void cfg_write_bytes32(const uint32 addr_table[], const cy_cfg_addrvalue_t data_table[]);
+ 201:Generated_Source\PSoC5/cyfitter_cfg.c **** static void cfg_write_bytes32(const uint32 addr_table[], const cy_cfg_addrvalue_t data_table[])
+ 202:Generated_Source\PSoC5/cyfitter_cfg.c **** {
+ 167              		.loc 1 202 0
  168              		.cfi_startproc
  169              		@ args = 0, pretend = 0, frame = 24
  170              		@ frame_needed = 1, uses_anonymous_args = 0
@@ -398,46 +401,46 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 1
  178              		.cfi_def_cfa_register 7
  179 0006 7860     		str	r0, [r7, #4]
  180 0008 3960     		str	r1, [r7]
- 200:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* For 32-bit little-endian architectures */
- 201:Generated_Source\PSoC5/cyfitter_cfg.c **** 	uint32 i, j = 0u;
- 181              		.loc 1 201 0
+ 203:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* For 32-bit little-endian architectures */
+ 204:Generated_Source\PSoC5/cyfitter_cfg.c **** 	uint32 i, j = 0u;
+ 181              		.loc 1 204 0
  182 000a 0023     		movs	r3, #0
  183 000c 3B61     		str	r3, [r7, #16]
- 202:Generated_Source\PSoC5/cyfitter_cfg.c **** 	for (i = 0u; i < CY_CFG_BASE_ADDR_COUNT; i++)
- 184              		.loc 1 202 0
+ 205:Generated_Source\PSoC5/cyfitter_cfg.c **** 	for (i = 0u; i < CY_CFG_BASE_ADDR_COUNT; i++)
+ 184              		.loc 1 205 0
  185 000e 0023     		movs	r3, #0
  186 0010 7B61     		str	r3, [r7, #20]
  187 0012 27E0     		b	.L7
  188              	.L10:
  189              	.LBB2:
- 203:Generated_Source\PSoC5/cyfitter_cfg.c **** 	{
- 204:Generated_Source\PSoC5/cyfitter_cfg.c **** 		uint32 baseAddr = addr_table[i];
- 190              		.loc 1 204 0
+ 206:Generated_Source\PSoC5/cyfitter_cfg.c **** 	{
+ 207:Generated_Source\PSoC5/cyfitter_cfg.c **** 		uint32 baseAddr = addr_table[i];
+ 190              		.loc 1 207 0
  191 0014 7B69     		ldr	r3, [r7, #20]
  192 0016 9B00     		lsls	r3, r3, #2
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 8
+
+
  193 0018 7A68     		ldr	r2, [r7, #4]
  194 001a 1344     		add	r3, r3, r2
  195 001c 1B68     		ldr	r3, [r3]
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 8
-
-
  196 001e BB60     		str	r3, [r7, #8]
- 205:Generated_Source\PSoC5/cyfitter_cfg.c **** 		uint8 count = (uint8)baseAddr;
- 197              		.loc 1 205 0
+ 208:Generated_Source\PSoC5/cyfitter_cfg.c **** 		uint8 count = (uint8)baseAddr;
+ 197              		.loc 1 208 0
  198 0020 BB68     		ldr	r3, [r7, #8]
  199 0022 FB73     		strb	r3, [r7, #15]
- 206:Generated_Source\PSoC5/cyfitter_cfg.c **** 		baseAddr &= 0xFFFFFF00u;
- 200              		.loc 1 206 0
+ 209:Generated_Source\PSoC5/cyfitter_cfg.c **** 		baseAddr &= 0xFFFFFF00u;
+ 200              		.loc 1 209 0
  201 0024 BB68     		ldr	r3, [r7, #8]
  202 0026 23F0FF03 		bic	r3, r3, #255
  203 002a BB60     		str	r3, [r7, #8]
- 207:Generated_Source\PSoC5/cyfitter_cfg.c **** 		while (count != 0u)
- 204              		.loc 1 207 0
+ 210:Generated_Source\PSoC5/cyfitter_cfg.c **** 		while (count != 0u)
+ 204              		.loc 1 210 0
  205 002c 14E0     		b	.L8
  206              	.L9:
- 208:Generated_Source\PSoC5/cyfitter_cfg.c **** 		{
- 209:Generated_Source\PSoC5/cyfitter_cfg.c **** 			CY_SET_REG8((void *)(baseAddr + data_table[j].offset), data_table[j].value);
- 207              		.loc 1 209 0
+ 211:Generated_Source\PSoC5/cyfitter_cfg.c **** 		{
+ 212:Generated_Source\PSoC5/cyfitter_cfg.c **** 			CY_SET_REG8((void *)(baseAddr + data_table[j].offset), data_table[j].value);
+ 207              		.loc 1 212 0
  208 002e 3B69     		ldr	r3, [r7, #16]
  209 0030 5B00     		lsls	r3, r3, #1
  210 0032 3A68     		ldr	r2, [r7]
@@ -453,41 +456,41 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 1
  220 0046 1344     		add	r3, r3, r2
  221 0048 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
  222 004a 0B70     		strb	r3, [r1]
- 210:Generated_Source\PSoC5/cyfitter_cfg.c **** 			j++;
- 223              		.loc 1 210 0
+ 213:Generated_Source\PSoC5/cyfitter_cfg.c **** 			j++;
+ 223              		.loc 1 213 0
  224 004c 3B69     		ldr	r3, [r7, #16]
  225 004e 0133     		adds	r3, r3, #1
  226 0050 3B61     		str	r3, [r7, #16]
- 211:Generated_Source\PSoC5/cyfitter_cfg.c **** 			count--;
- 227              		.loc 1 211 0
+ 214:Generated_Source\PSoC5/cyfitter_cfg.c **** 			count--;
+ 227              		.loc 1 214 0
  228 0052 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
  229 0054 013B     		subs	r3, r3, #1
  230 0056 FB73     		strb	r3, [r7, #15]
  231              	.L8:
- 207:Generated_Source\PSoC5/cyfitter_cfg.c **** 		{
- 232              		.loc 1 207 0
+ 210:Generated_Source\PSoC5/cyfitter_cfg.c **** 		{
+ 232              		.loc 1 210 0
  233 0058 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
  234 005a 002B     		cmp	r3, #0
  235 005c E7D1     		bne	.L9
  236              	.LBE2:
- 202:Generated_Source\PSoC5/cyfitter_cfg.c **** 	{
- 237              		.loc 1 202 0 discriminator 2
+ 205:Generated_Source\PSoC5/cyfitter_cfg.c **** 	{
+ 237              		.loc 1 205 0 discriminator 2
  238 005e 7B69     		ldr	r3, [r7, #20]
  239 0060 0133     		adds	r3, r3, #1
  240 0062 7B61     		str	r3, [r7, #20]
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 9
+
+
  241              	.L7:
- 202:Generated_Source\PSoC5/cyfitter_cfg.c **** 	{
- 242              		.loc 1 202 0 is_stmt 0 discriminator 1
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 9
-
-
+ 205:Generated_Source\PSoC5/cyfitter_cfg.c **** 	{
+ 242              		.loc 1 205 0 is_stmt 0 discriminator 1
  243 0064 7B69     		ldr	r3, [r7, #20]
- 244 0066 282B     		cmp	r3, #40
+ 244 0066 272B     		cmp	r3, #39
  245 0068 D4D9     		bls	.L10
- 212:Generated_Source\PSoC5/cyfitter_cfg.c **** 		}
- 213:Generated_Source\PSoC5/cyfitter_cfg.c **** 	}
- 214:Generated_Source\PSoC5/cyfitter_cfg.c **** }
- 246              		.loc 1 214 0 is_stmt 1
+ 215:Generated_Source\PSoC5/cyfitter_cfg.c **** 		}
+ 216:Generated_Source\PSoC5/cyfitter_cfg.c **** 	}
+ 217:Generated_Source\PSoC5/cyfitter_cfg.c **** }
+ 246              		.loc 1 217 0 is_stmt 1
  247 006a 00BF     		nop
  248 006c 1C37     		adds	r7, r7, #28
  249              		.cfi_def_cfa_offset 4
@@ -508,184 +511,184 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 1
  264              		.type	ClockSetup, %function
  265              	ClockSetup:
  266              	.LFB5:
- 215:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 216:Generated_Source\PSoC5/cyfitter_cfg.c **** /*******************************************************************************
- 217:Generated_Source\PSoC5/cyfitter_cfg.c **** * Function Name: ClockSetup
- 218:Generated_Source\PSoC5/cyfitter_cfg.c **** ********************************************************************************
- 219:Generated_Source\PSoC5/cyfitter_cfg.c **** *
- 220:Generated_Source\PSoC5/cyfitter_cfg.c **** * Summary:
- 221:Generated_Source\PSoC5/cyfitter_cfg.c **** *  Performs the initialization of all of the clocks in the device based on the
- 222:Generated_Source\PSoC5/cyfitter_cfg.c **** *  settings in the Clock tab of the DWR.  This includes enabling the requested
- 223:Generated_Source\PSoC5/cyfitter_cfg.c **** *  clocks and setting the necessary dividers to produce the desired frequency. 
- 224:Generated_Source\PSoC5/cyfitter_cfg.c **** *
- 225:Generated_Source\PSoC5/cyfitter_cfg.c **** * Parameters:
- 226:Generated_Source\PSoC5/cyfitter_cfg.c **** *  void
+ 218:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 219:Generated_Source\PSoC5/cyfitter_cfg.c **** /*******************************************************************************
+ 220:Generated_Source\PSoC5/cyfitter_cfg.c **** * Function Name: ClockSetup
+ 221:Generated_Source\PSoC5/cyfitter_cfg.c **** ********************************************************************************
+ 222:Generated_Source\PSoC5/cyfitter_cfg.c **** *
+ 223:Generated_Source\PSoC5/cyfitter_cfg.c **** * Summary:
+ 224:Generated_Source\PSoC5/cyfitter_cfg.c **** *  Performs the initialization of all of the clocks in the device based on the
+ 225:Generated_Source\PSoC5/cyfitter_cfg.c **** *  settings in the Clock tab of the DWR.  This includes enabling the requested
+ 226:Generated_Source\PSoC5/cyfitter_cfg.c **** *  clocks and setting the necessary dividers to produce the desired frequency. 
  227:Generated_Source\PSoC5/cyfitter_cfg.c **** *
- 228:Generated_Source\PSoC5/cyfitter_cfg.c **** * Return:
+ 228:Generated_Source\PSoC5/cyfitter_cfg.c **** * Parameters:
  229:Generated_Source\PSoC5/cyfitter_cfg.c **** *  void
  230:Generated_Source\PSoC5/cyfitter_cfg.c **** *
- 231:Generated_Source\PSoC5/cyfitter_cfg.c **** *******************************************************************************/
- 232:Generated_Source\PSoC5/cyfitter_cfg.c **** static void ClockSetup(void);
- 233:Generated_Source\PSoC5/cyfitter_cfg.c **** static void ClockSetup(void)
- 234:Generated_Source\PSoC5/cyfitter_cfg.c **** {
- 267              		.loc 1 234 0
+ 231:Generated_Source\PSoC5/cyfitter_cfg.c **** * Return:
+ 232:Generated_Source\PSoC5/cyfitter_cfg.c **** *  void
+ 233:Generated_Source\PSoC5/cyfitter_cfg.c **** *
+ 234:Generated_Source\PSoC5/cyfitter_cfg.c **** *******************************************************************************/
+ 235:Generated_Source\PSoC5/cyfitter_cfg.c **** static void ClockSetup(void);
+ 236:Generated_Source\PSoC5/cyfitter_cfg.c **** static void ClockSetup(void)
+ 237:Generated_Source\PSoC5/cyfitter_cfg.c **** {
+ 267              		.loc 1 237 0
  268              		.cfi_startproc
  269              		@ args = 0, pretend = 0, frame = 8
  270              		@ frame_needed = 1, uses_anonymous_args = 0
  271 0000 80B5     		push	{r7, lr}
  272              		.cfi_def_cfa_offset 8
  273              		.cfi_offset 7, -8
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 10
+
+
  274              		.cfi_offset 14, -4
  275 0002 82B0     		sub	sp, sp, #8
  276              		.cfi_def_cfa_offset 16
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 10
-
-
  277 0004 00AF     		add	r7, sp, #0
  278              		.cfi_def_cfa_register 7
- 235:Generated_Source\PSoC5/cyfitter_cfg.c **** 	uint32 timeout;
- 236:Generated_Source\PSoC5/cyfitter_cfg.c **** 	uint8 pllLock;
- 237:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 238:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 239:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* Configure Digital Clocks based on settings from Clock DWR */
- 240:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG16((void CYFAR *)(CYREG_CLKDIST_DCFG0_CFG0), 0x000Bu);
- 279              		.loc 1 240 0
+ 238:Generated_Source\PSoC5/cyfitter_cfg.c **** 	uint32 timeout;
+ 239:Generated_Source\PSoC5/cyfitter_cfg.c **** 	uint8 pllLock;
+ 240:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 241:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 242:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* Configure Digital Clocks based on settings from Clock DWR */
+ 243:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG16((void CYFAR *)(CYREG_CLKDIST_DCFG0_CFG0), 0x000Bu);
+ 279              		.loc 1 243 0
  280 0006 464B     		ldr	r3, .L16
  281 0008 0B22     		movs	r2, #11
  282 000a 1A80     		strh	r2, [r3]	@ movhi
- 241:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_DCFG0_CFG0 + 0x2u), 0x18u);
- 283              		.loc 1 241 0
+ 244:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_DCFG0_CFG0 + 0x2u), 0x18u);
+ 283              		.loc 1 244 0
  284 000c 454B     		ldr	r3, .L16+4
  285 000e 1822     		movs	r2, #24
  286 0010 1A70     		strb	r2, [r3]
- 242:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG16((void CYFAR *)(CYREG_CLKDIST_DCFG1_CFG0), 0x008Cu);
- 287              		.loc 1 242 0
+ 245:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG16((void CYFAR *)(CYREG_CLKDIST_DCFG1_CFG0), 0x008Cu);
+ 287              		.loc 1 245 0
  288 0012 454B     		ldr	r3, .L16+8
  289 0014 8C22     		movs	r2, #140
  290 0016 1A80     		strh	r2, [r3]	@ movhi
- 243:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_DCFG1_CFG0 + 0x2u), 0x18u);
- 291              		.loc 1 243 0
+ 246:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_DCFG1_CFG0 + 0x2u), 0x18u);
+ 291              		.loc 1 246 0
  292 0018 444B     		ldr	r3, .L16+12
  293 001a 1822     		movs	r2, #24
  294 001c 1A70     		strb	r2, [r3]
- 244:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG16((void CYFAR *)(CYREG_CLKDIST_DCFG2_CFG0), 0x00EFu);
- 295              		.loc 1 244 0
+ 247:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG16((void CYFAR *)(CYREG_CLKDIST_DCFG2_CFG0), 0x00EFu);
+ 295              		.loc 1 247 0
  296 001e 444B     		ldr	r3, .L16+16
  297 0020 EF22     		movs	r2, #239
  298 0022 1A80     		strh	r2, [r3]	@ movhi
- 245:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_DCFG2_CFG0 + 0x2u), 0x18u);
- 299              		.loc 1 245 0
+ 248:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_DCFG2_CFG0 + 0x2u), 0x18u);
+ 299              		.loc 1 248 0
  300 0024 434B     		ldr	r3, .L16+20
  301 0026 1822     		movs	r2, #24
  302 0028 1A70     		strb	r2, [r3]
- 246:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG16((void CYFAR *)(CYREG_CLKDIST_DCFG3_CFG0), 0x0138u);
- 303              		.loc 1 246 0
+ 249:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG16((void CYFAR *)(CYREG_CLKDIST_DCFG3_CFG0), 0x0138u);
+ 303              		.loc 1 249 0
  304 002a 434B     		ldr	r3, .L16+24
  305 002c 4FF49C72 		mov	r2, #312
  306 0030 1A80     		strh	r2, [r3]	@ movhi
- 247:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_DCFG3_CFG0 + 0x2u), 0x18u);
- 307              		.loc 1 247 0
+ 250:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_DCFG3_CFG0 + 0x2u), 0x18u);
+ 307              		.loc 1 250 0
  308 0032 424B     		ldr	r3, .L16+28
  309 0034 1822     		movs	r2, #24
  310 0036 1A70     		strb	r2, [r3]
- 248:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG16((void CYFAR *)(CYREG_CLKDIST_DCFG4_CFG0), 0xBB7Fu);
- 311              		.loc 1 248 0
+ 251:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG16((void CYFAR *)(CYREG_CLKDIST_DCFG4_CFG0), 0xBB7Fu);
+ 311              		.loc 1 251 0
  312 0038 414B     		ldr	r3, .L16+32
  313 003a 4BF67F32 		movw	r2, #47999
  314 003e 1A80     		strh	r2, [r3]	@ movhi
- 249:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_DCFG4_CFG0 + 0x2u), 0x18u);
- 315              		.loc 1 249 0
+ 252:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_DCFG4_CFG0 + 0x2u), 0x18u);
+ 315              		.loc 1 252 0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 11
+
+
  316 0040 404B     		ldr	r3, .L16+36
  317 0042 1822     		movs	r2, #24
  318 0044 1A70     		strb	r2, [r3]
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 11
-
-
- 250:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG16((void CYFAR *)(CYREG_CLKDIST_DCFG5_CFG0), 0xEA5Fu);
- 319              		.loc 1 250 0
+ 253:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG16((void CYFAR *)(CYREG_CLKDIST_DCFG5_CFG0), 0xEA5Fu);
+ 319              		.loc 1 253 0
  320 0046 404B     		ldr	r3, .L16+40
  321 0048 4EF65F22 		movw	r2, #59999
  322 004c 1A80     		strh	r2, [r3]	@ movhi
- 251:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_DCFG5_CFG0 + 0x2u), 0x19u);
- 323              		.loc 1 251 0
+ 254:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_DCFG5_CFG0 + 0x2u), 0x19u);
+ 323              		.loc 1 254 0
  324 004e 3F4B     		ldr	r3, .L16+44
  325 0050 1922     		movs	r2, #25
  326 0052 1A70     		strb	r2, [r3]
- 252:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG16((void CYFAR *)(CYREG_CLKDIST_DCFG6_CFG0), 0x03E7u);
- 327              		.loc 1 252 0
+ 255:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG16((void CYFAR *)(CYREG_CLKDIST_DCFG6_CFG0), 0x03E7u);
+ 327              		.loc 1 255 0
  328 0054 3E4B     		ldr	r3, .L16+48
  329 0056 40F2E732 		movw	r2, #999
  330 005a 1A80     		strh	r2, [r3]	@ movhi
- 253:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_DCFG6_CFG0 + 0x2u), 0x1Bu);
- 331              		.loc 1 253 0
+ 256:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_DCFG6_CFG0 + 0x2u), 0x1Bu);
+ 331              		.loc 1 256 0
  332 005c 3D4B     		ldr	r3, .L16+52
  333 005e 1B22     		movs	r2, #27
  334 0060 1A70     		strb	r2, [r3]
- 254:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG16((void CYFAR *)(CYREG_CLKDIST_DCFG7_CFG0), 0x03E7u);
- 335              		.loc 1 254 0
+ 257:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG16((void CYFAR *)(CYREG_CLKDIST_DCFG7_CFG0), 0x03E7u);
+ 335              		.loc 1 257 0
  336 0062 3D4B     		ldr	r3, .L16+56
  337 0064 40F2E732 		movw	r2, #999
  338 0068 1A80     		strh	r2, [r3]	@ movhi
- 255:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_DCFG7_CFG0 + 0x2u), 0x1Bu);
- 339              		.loc 1 255 0
+ 258:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_DCFG7_CFG0 + 0x2u), 0x1Bu);
+ 339              		.loc 1 258 0
  340 006a 3C4B     		ldr	r3, .L16+60
  341 006c 1B22     		movs	r2, #27
  342 006e 1A70     		strb	r2, [r3]
- 256:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 257:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* Configure ILO based on settings from Clock DWR */
- 258:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_SLOWCLK_ILO_CR0), 0x02u);
- 343              		.loc 1 258 0
+ 259:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 260:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* Configure ILO based on settings from Clock DWR */
+ 261:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_SLOWCLK_ILO_CR0), 0x02u);
+ 343              		.loc 1 261 0
  344 0070 3B4B     		ldr	r3, .L16+64
  345 0072 0222     		movs	r2, #2
  346 0074 1A70     		strb	r2, [r3]
- 259:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_CR), 0x08u);
- 347              		.loc 1 259 0
+ 262:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_CR), 0x08u);
+ 347              		.loc 1 262 0
  348 0076 4FF04023 		mov	r3, #1073758208
  349 007a 0822     		movs	r2, #8
  350 007c 1A70     		strb	r2, [r3]
- 260:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 261:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* Configure IMO based on settings from Clock DWR */
- 262:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_FASTCLK_IMO_CR), 0x03u);
- 351              		.loc 1 262 0
+ 263:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 264:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* Configure IMO based on settings from Clock DWR */
+ 265:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_FASTCLK_IMO_CR), 0x03u);
+ 351              		.loc 1 265 0
  352 007e 394B     		ldr	r3, .L16+68
  353 0080 0322     		movs	r2, #3
  354 0082 1A70     		strb	r2, [r3]
- 263:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_IMO_TR1), (CY_GET_XTND_REG8((void CYFAR *)CYREG_FLSHID_CUST_
- 355              		.loc 1 263 0
+ 266:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_IMO_TR1), (CY_GET_XTND_REG8((void CYFAR *)CYREG_FLSHID_CUST_
+ 355              		.loc 1 266 0
  356 0084 384B     		ldr	r3, .L16+72
  357 0086 394A     		ldr	r2, .L16+76
  358 0088 1278     		ldrb	r2, [r2]
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 12
+
+
  359 008a D2B2     		uxtb	r2, r2
  360 008c 1A70     		strb	r2, [r3]
- 264:Generated_Source\PSoC5/cyfitter_cfg.c **** 
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 12
-
-
- 265:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* Configure PLL based on settings from Clock DWR */
- 266:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG16((void CYFAR *)(CYREG_FASTCLK_PLL_P), 0x0008u);
- 361              		.loc 1 266 0
+ 267:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 268:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* Configure PLL based on settings from Clock DWR */
+ 269:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG16((void CYFAR *)(CYREG_FASTCLK_PLL_P), 0x0008u);
+ 361              		.loc 1 269 0
  362 008e 384B     		ldr	r3, .L16+80
  363 0090 0822     		movs	r2, #8
  364 0092 1A80     		strh	r2, [r3]	@ movhi
- 267:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG16((void CYFAR *)(CYREG_FASTCLK_PLL_CFG0), 0x1251u);
- 365              		.loc 1 267 0
+ 270:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG16((void CYFAR *)(CYREG_FASTCLK_PLL_CFG0), 0x1251u);
+ 365              		.loc 1 270 0
  366 0094 374B     		ldr	r3, .L16+84
  367 0096 41F25122 		movw	r2, #4689
  368 009a 1A80     		strh	r2, [r3]	@ movhi
- 268:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* Wait up to 250us for the PLL to lock */
- 269:Generated_Source\PSoC5/cyfitter_cfg.c **** 	pllLock = 0u;
- 369              		.loc 1 269 0
+ 271:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* Wait up to 250us for the PLL to lock */
+ 272:Generated_Source\PSoC5/cyfitter_cfg.c **** 	pllLock = 0u;
+ 369              		.loc 1 272 0
  370 009c 0023     		movs	r3, #0
  371 009e FB70     		strb	r3, [r7, #3]
- 270:Generated_Source\PSoC5/cyfitter_cfg.c **** 	for (timeout = 250u / 10u; (timeout > 0u) && (pllLock != 0x03u); timeout--)
- 372              		.loc 1 270 0
+ 273:Generated_Source\PSoC5/cyfitter_cfg.c **** 	for (timeout = 250u / 10u; (timeout > 0u) && (pllLock != 0x03u); timeout--)
+ 372              		.loc 1 273 0
  373 00a0 1923     		movs	r3, #25
  374 00a2 7B60     		str	r3, [r7, #4]
  375 00a4 14E0     		b	.L12
  376              	.L14:
- 271:Generated_Source\PSoC5/cyfitter_cfg.c **** 	{ 
- 272:Generated_Source\PSoC5/cyfitter_cfg.c **** 		pllLock = 0x03u & ((uint8)((uint8)pllLock << 1) | ((CY_GET_XTND_REG8((void CYFAR *)CYREG_FASTCLK_
- 377              		.loc 1 272 0 discriminator 4
+ 274:Generated_Source\PSoC5/cyfitter_cfg.c **** 	{ 
+ 275:Generated_Source\PSoC5/cyfitter_cfg.c **** 		pllLock = 0x03u & ((uint8)((uint8)pllLock << 1) | ((CY_GET_XTND_REG8((void CYFAR *)CYREG_FASTCLK_
+ 377              		.loc 1 275 0 discriminator 4
  378 00a6 FB78     		ldrb	r3, [r7, #3]
  379 00a8 5B00     		lsls	r3, r3, #1
  380 00aa DAB2     		uxtb	r2, r3
@@ -698,89 +701,89 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 1
  387 00ba DBB2     		uxtb	r3, r3
  388 00bc 03F00303 		and	r3, r3, #3
  389 00c0 FB70     		strb	r3, [r7, #3]
- 273:Generated_Source\PSoC5/cyfitter_cfg.c **** 		CyDelayCycles(10u * 48u); /* Delay 10us based on 48MHz clock */
- 390              		.loc 1 273 0 discriminator 4
+ 276:Generated_Source\PSoC5/cyfitter_cfg.c **** 		CyDelayCycles(10u * 48u); /* Delay 10us based on 48MHz clock */
+ 390              		.loc 1 276 0 discriminator 4
  391 00c2 4FF4F070 		mov	r0, #480
  392 00c6 FFF7FEFF 		bl	CyDelayCycles
- 270:Generated_Source\PSoC5/cyfitter_cfg.c **** 	for (timeout = 250u / 10u; (timeout > 0u) && (pllLock != 0x03u); timeout--)
- 393              		.loc 1 270 0 discriminator 4
+ 273:Generated_Source\PSoC5/cyfitter_cfg.c **** 	for (timeout = 250u / 10u; (timeout > 0u) && (pllLock != 0x03u); timeout--)
+ 393              		.loc 1 273 0 discriminator 4
  394 00ca 7B68     		ldr	r3, [r7, #4]
  395 00cc 013B     		subs	r3, r3, #1
  396 00ce 7B60     		str	r3, [r7, #4]
  397              	.L12:
- 270:Generated_Source\PSoC5/cyfitter_cfg.c **** 	for (timeout = 250u / 10u; (timeout > 0u) && (pllLock != 0x03u); timeout--)
- 398              		.loc 1 270 0 is_stmt 0 discriminator 1
+ 273:Generated_Source\PSoC5/cyfitter_cfg.c **** 	for (timeout = 250u / 10u; (timeout > 0u) && (pllLock != 0x03u); timeout--)
+ 398              		.loc 1 273 0 is_stmt 0 discriminator 1
  399 00d0 7B68     		ldr	r3, [r7, #4]
  400 00d2 002B     		cmp	r3, #0
  401 00d4 02D0     		beq	.L13
- 270:Generated_Source\PSoC5/cyfitter_cfg.c **** 	for (timeout = 250u / 10u; (timeout > 0u) && (pllLock != 0x03u); timeout--)
- 402              		.loc 1 270 0 discriminator 3
+ 273:Generated_Source\PSoC5/cyfitter_cfg.c **** 	for (timeout = 250u / 10u; (timeout > 0u) && (pllLock != 0x03u); timeout--)
+ 402              		.loc 1 273 0 discriminator 3
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 13
+
+
  403 00d6 FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
  404 00d8 032B     		cmp	r3, #3
  405 00da E4D1     		bne	.L14
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 13
-
-
  406              	.L13:
- 274:Generated_Source\PSoC5/cyfitter_cfg.c **** 	}
- 275:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* If we ran out of time the PLL didn't lock so go to the error function */
- 276:Generated_Source\PSoC5/cyfitter_cfg.c **** 	if (timeout == 0u)
- 407              		.loc 1 276 0 is_stmt 1
+ 277:Generated_Source\PSoC5/cyfitter_cfg.c **** 	}
+ 278:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* If we ran out of time the PLL didn't lock so go to the error function */
+ 279:Generated_Source\PSoC5/cyfitter_cfg.c **** 	if (timeout == 0u)
+ 407              		.loc 1 279 0 is_stmt 1
  408 00dc 7B68     		ldr	r3, [r7, #4]
  409 00de 002B     		cmp	r3, #0
  410 00e0 02D1     		bne	.L15
- 277:Generated_Source\PSoC5/cyfitter_cfg.c **** 	{
- 278:Generated_Source\PSoC5/cyfitter_cfg.c **** 		CyClockStartupError(CYCLOCKSTART_PLL_ERROR);
- 411              		.loc 1 278 0
+ 280:Generated_Source\PSoC5/cyfitter_cfg.c **** 	{
+ 281:Generated_Source\PSoC5/cyfitter_cfg.c **** 		CyClockStartupError(CYCLOCKSTART_PLL_ERROR);
+ 411              		.loc 1 281 0
  412 00e2 0320     		movs	r0, #3
  413 00e4 FFF7FEFF 		bl	CyClockStartupError
  414              	.L15:
- 279:Generated_Source\PSoC5/cyfitter_cfg.c **** 	}
- 280:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 281:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* Configure Bus/Master Clock based on settings from Clock DWR */
- 282:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG16((void CYFAR *)(CYREG_CLKDIST_MSTR0), 0x0100u);
- 415              		.loc 1 282 0
+ 282:Generated_Source\PSoC5/cyfitter_cfg.c **** 	}
+ 283:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 284:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* Configure Bus/Master Clock based on settings from Clock DWR */
+ 285:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG16((void CYFAR *)(CYREG_CLKDIST_MSTR0), 0x0100u);
+ 415              		.loc 1 285 0
  416 00e8 244B     		ldr	r3, .L16+92
  417 00ea 4FF48072 		mov	r2, #256
  418 00ee 1A80     		strh	r2, [r3]	@ movhi
- 283:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_MSTR0), 0x07u);
- 419              		.loc 1 283 0
+ 286:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_MSTR0), 0x07u);
+ 419              		.loc 1 286 0
  420 00f0 224B     		ldr	r3, .L16+92
  421 00f2 0722     		movs	r2, #7
  422 00f4 1A70     		strb	r2, [r3]
- 284:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_BCFG0), 0x00u);
- 423              		.loc 1 284 0
+ 287:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_BCFG0), 0x00u);
+ 423              		.loc 1 287 0
  424 00f6 224B     		ldr	r3, .L16+96
  425 00f8 0022     		movs	r2, #0
  426 00fa 1A70     		strb	r2, [r3]
- 285:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_BCFG2), 0x48u);
- 427              		.loc 1 285 0
+ 288:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_BCFG2), 0x48u);
+ 427              		.loc 1 288 0
  428 00fc 214B     		ldr	r3, .L16+100
  429 00fe 4822     		movs	r2, #72
  430 0100 1A70     		strb	r2, [r3]
- 286:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_MSTR0), 0x00u);
- 431              		.loc 1 286 0
+ 289:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_MSTR0), 0x00u);
+ 431              		.loc 1 289 0
  432 0102 1E4B     		ldr	r3, .L16+92
  433 0104 0022     		movs	r2, #0
  434 0106 1A70     		strb	r2, [r3]
- 287:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_LD), 0x02u);
- 435              		.loc 1 287 0
+ 290:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_LD), 0x02u);
+ 435              		.loc 1 290 0
  436 0108 1F4B     		ldr	r3, .L16+104
  437 010a 0222     		movs	r2, #2
  438 010c 1A70     		strb	r2, [r3]
- 288:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 289:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_PM_ACT_CFG2), ((CY_GET_XTND_REG8((void CYFAR *)CYREG_PM_ACT_
- 439              		.loc 1 289 0
+ 291:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 292:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_PM_ACT_CFG2), ((CY_GET_XTND_REG8((void CYFAR *)CYREG_PM_ACT_
+ 439              		.loc 1 292 0
  440 010e 1F4B     		ldr	r3, .L16+108
  441 0110 1B78     		ldrb	r3, [r3]
  442 0112 1E4B     		ldr	r3, .L16+108
  443 0114 FF22     		movs	r2, #255
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 14
+
+
  444 0116 1A70     		strb	r2, [r3]
- 290:Generated_Source\PSoC5/cyfitter_cfg.c **** }
- 445              		.loc 1 290 0
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 14
-
-
+ 293:Generated_Source\PSoC5/cyfitter_cfg.c **** }
+ 445              		.loc 1 293 0
  446 0118 00BF     		nop
  447 011a 0837     		adds	r7, r7, #8
  448              		.cfi_def_cfa_offset 8
@@ -829,33 +832,33 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 1
  491              		.type	AnalogSetDefault, %function
  492              	AnalogSetDefault:
  493              	.LFB6:
- 291:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 292:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 293:Generated_Source\PSoC5/cyfitter_cfg.c **** /* Analog API Functions */
  294:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  295:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 296:Generated_Source\PSoC5/cyfitter_cfg.c **** /*******************************************************************************
- 297:Generated_Source\PSoC5/cyfitter_cfg.c **** * Function Name: AnalogSetDefault
- 298:Generated_Source\PSoC5/cyfitter_cfg.c **** ********************************************************************************
- 299:Generated_Source\PSoC5/cyfitter_cfg.c **** *
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 15
+ 296:Generated_Source\PSoC5/cyfitter_cfg.c **** /* Analog API Functions */
+ 297:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 298:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 299:Generated_Source\PSoC5/cyfitter_cfg.c **** /*******************************************************************************
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 15
 
 
- 300:Generated_Source\PSoC5/cyfitter_cfg.c **** * Summary:
- 301:Generated_Source\PSoC5/cyfitter_cfg.c **** *  Sets up the analog portions of the chip to default values based on chip
- 302:Generated_Source\PSoC5/cyfitter_cfg.c **** *  configuration options from the project.
- 303:Generated_Source\PSoC5/cyfitter_cfg.c **** *
- 304:Generated_Source\PSoC5/cyfitter_cfg.c **** * Parameters:
- 305:Generated_Source\PSoC5/cyfitter_cfg.c **** *  void
+ 300:Generated_Source\PSoC5/cyfitter_cfg.c **** * Function Name: AnalogSetDefault
+ 301:Generated_Source\PSoC5/cyfitter_cfg.c **** ********************************************************************************
+ 302:Generated_Source\PSoC5/cyfitter_cfg.c **** *
+ 303:Generated_Source\PSoC5/cyfitter_cfg.c **** * Summary:
+ 304:Generated_Source\PSoC5/cyfitter_cfg.c **** *  Sets up the analog portions of the chip to default values based on chip
+ 305:Generated_Source\PSoC5/cyfitter_cfg.c **** *  configuration options from the project.
  306:Generated_Source\PSoC5/cyfitter_cfg.c **** *
- 307:Generated_Source\PSoC5/cyfitter_cfg.c **** * Return:
+ 307:Generated_Source\PSoC5/cyfitter_cfg.c **** * Parameters:
  308:Generated_Source\PSoC5/cyfitter_cfg.c **** *  void
  309:Generated_Source\PSoC5/cyfitter_cfg.c **** *
- 310:Generated_Source\PSoC5/cyfitter_cfg.c **** *******************************************************************************/
- 311:Generated_Source\PSoC5/cyfitter_cfg.c **** static void AnalogSetDefault(void);
- 312:Generated_Source\PSoC5/cyfitter_cfg.c **** static void AnalogSetDefault(void)
- 313:Generated_Source\PSoC5/cyfitter_cfg.c **** {
- 494              		.loc 1 313 0
+ 310:Generated_Source\PSoC5/cyfitter_cfg.c **** * Return:
+ 311:Generated_Source\PSoC5/cyfitter_cfg.c **** *  void
+ 312:Generated_Source\PSoC5/cyfitter_cfg.c **** *
+ 313:Generated_Source\PSoC5/cyfitter_cfg.c **** *******************************************************************************/
+ 314:Generated_Source\PSoC5/cyfitter_cfg.c **** static void AnalogSetDefault(void);
+ 315:Generated_Source\PSoC5/cyfitter_cfg.c **** static void AnalogSetDefault(void)
+ 316:Generated_Source\PSoC5/cyfitter_cfg.c **** {
+ 494              		.loc 1 316 0
  495              		.cfi_startproc
  496              		@ args = 0, pretend = 0, frame = 8
  497              		@ frame_needed = 1, uses_anonymous_args = 0
@@ -867,40 +870,40 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 1
  503              		.cfi_def_cfa_offset 16
  504 0004 00AF     		add	r7, sp, #0
  505              		.cfi_def_cfa_register 7
- 314:Generated_Source\PSoC5/cyfitter_cfg.c **** 	uint8 bg_xover_inl_trim = CY_GET_XTND_REG8((void CYFAR *)(CYREG_FLSHID_MFG_CFG_BG_XOVER_INL_TRIM +
- 506              		.loc 1 314 0
+ 317:Generated_Source\PSoC5/cyfitter_cfg.c **** 	uint8 bg_xover_inl_trim = CY_GET_XTND_REG8((void CYFAR *)(CYREG_FLSHID_MFG_CFG_BG_XOVER_INL_TRIM +
+ 506              		.loc 1 317 0
  507 0006 0B4B     		ldr	r3, .L19
  508 0008 1B78     		ldrb	r3, [r3]
  509 000a FB71     		strb	r3, [r7, #7]
- 315:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_BG_DFT0), (bg_xover_inl_trim & 0x07u));
- 510              		.loc 1 315 0
+ 318:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_BG_DFT0), (bg_xover_inl_trim & 0x07u));
+ 510              		.loc 1 318 0
  511 000c 0A4A     		ldr	r2, .L19+4
  512 000e FB79     		ldrb	r3, [r7, #7]
  513 0010 03F00703 		and	r3, r3, #7
  514 0014 DBB2     		uxtb	r3, r3
  515 0016 1370     		strb	r3, [r2]
- 316:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_BG_DFT1), ((bg_xover_inl_trim >> 4) & 0x0Fu));
- 516              		.loc 1 316 0
+ 319:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_BG_DFT1), ((bg_xover_inl_trim >> 4) & 0x0Fu));
+ 516              		.loc 1 319 0
  517 0018 084A     		ldr	r2, .L19+8
  518 001a FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
  519 001c 1B09     		lsrs	r3, r3, #4
  520 001e DBB2     		uxtb	r3, r3
  521 0020 1370     		strb	r3, [r2]
- 317:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)CYREG_PUMP_CR0, 0x44u);
- 522              		.loc 1 317 0
+ 320:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)CYREG_PUMP_CR0, 0x44u);
+ 522              		.loc 1 320 0
  523 0022 074B     		ldr	r3, .L19+12
  524 0024 4422     		movs	r2, #68
  525 0026 1A70     		strb	r2, [r3]
- 318:Generated_Source\PSoC5/cyfitter_cfg.c **** }
- 526              		.loc 1 318 0
+ 321:Generated_Source\PSoC5/cyfitter_cfg.c **** }
+ 526              		.loc 1 321 0
  527 0028 00BF     		nop
  528 002a 0C37     		adds	r7, r7, #12
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 16
+
+
  529              		.cfi_def_cfa_offset 4
  530 002c BD46     		mov	sp, r7
  531              		.cfi_def_cfa_register 13
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 16
-
-
  532              		@ sp needed
  533 002e 80BC     		pop	{r7}
  534              		.cfi_restore 7
@@ -924,28 +927,28 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 1
  552              		.type	SetAnalogRoutingPumps, %function
  553              	SetAnalogRoutingPumps:
  554              	.LFB7:
- 319:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 320:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 321:Generated_Source\PSoC5/cyfitter_cfg.c **** /*******************************************************************************
- 322:Generated_Source\PSoC5/cyfitter_cfg.c **** * Function Name: SetAnalogRoutingPumps
- 323:Generated_Source\PSoC5/cyfitter_cfg.c **** ********************************************************************************
- 324:Generated_Source\PSoC5/cyfitter_cfg.c **** *
- 325:Generated_Source\PSoC5/cyfitter_cfg.c **** * Summary:
- 326:Generated_Source\PSoC5/cyfitter_cfg.c **** * Enables or disables the analog pumps feeding analog routing switches.
- 327:Generated_Source\PSoC5/cyfitter_cfg.c **** * Intended to be called at startup, based on the Vdda system configuration;
- 328:Generated_Source\PSoC5/cyfitter_cfg.c **** * may be called during operation when the user informs us that the Vdda voltage
- 329:Generated_Source\PSoC5/cyfitter_cfg.c **** * crossed the pump threshold.
- 330:Generated_Source\PSoC5/cyfitter_cfg.c **** *
- 331:Generated_Source\PSoC5/cyfitter_cfg.c **** * Parameters:
- 332:Generated_Source\PSoC5/cyfitter_cfg.c **** *  enabled - 1 to enable the pumps, 0 to disable the pumps
+ 322:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 323:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 324:Generated_Source\PSoC5/cyfitter_cfg.c **** /*******************************************************************************
+ 325:Generated_Source\PSoC5/cyfitter_cfg.c **** * Function Name: SetAnalogRoutingPumps
+ 326:Generated_Source\PSoC5/cyfitter_cfg.c **** ********************************************************************************
+ 327:Generated_Source\PSoC5/cyfitter_cfg.c **** *
+ 328:Generated_Source\PSoC5/cyfitter_cfg.c **** * Summary:
+ 329:Generated_Source\PSoC5/cyfitter_cfg.c **** * Enables or disables the analog pumps feeding analog routing switches.
+ 330:Generated_Source\PSoC5/cyfitter_cfg.c **** * Intended to be called at startup, based on the Vdda system configuration;
+ 331:Generated_Source\PSoC5/cyfitter_cfg.c **** * may be called during operation when the user informs us that the Vdda voltage
+ 332:Generated_Source\PSoC5/cyfitter_cfg.c **** * crossed the pump threshold.
  333:Generated_Source\PSoC5/cyfitter_cfg.c **** *
- 334:Generated_Source\PSoC5/cyfitter_cfg.c **** * Return:
- 335:Generated_Source\PSoC5/cyfitter_cfg.c **** *  void
+ 334:Generated_Source\PSoC5/cyfitter_cfg.c **** * Parameters:
+ 335:Generated_Source\PSoC5/cyfitter_cfg.c **** *  enabled - 1 to enable the pumps, 0 to disable the pumps
  336:Generated_Source\PSoC5/cyfitter_cfg.c **** *
- 337:Generated_Source\PSoC5/cyfitter_cfg.c **** *******************************************************************************/
- 338:Generated_Source\PSoC5/cyfitter_cfg.c **** void SetAnalogRoutingPumps(uint8 enabled)
- 339:Generated_Source\PSoC5/cyfitter_cfg.c **** {
- 555              		.loc 1 339 0
+ 337:Generated_Source\PSoC5/cyfitter_cfg.c **** * Return:
+ 338:Generated_Source\PSoC5/cyfitter_cfg.c **** *  void
+ 339:Generated_Source\PSoC5/cyfitter_cfg.c **** *
+ 340:Generated_Source\PSoC5/cyfitter_cfg.c **** *******************************************************************************/
+ 341:Generated_Source\PSoC5/cyfitter_cfg.c **** void SetAnalogRoutingPumps(uint8 enabled)
+ 342:Generated_Source\PSoC5/cyfitter_cfg.c **** {
+ 555              		.loc 1 342 0
  556              		.cfi_startproc
  557              		@ args = 0, pretend = 0, frame = 16
  558              		@ frame_needed = 1, uses_anonymous_args = 0
@@ -955,36 +958,36 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 1
  562              		.cfi_offset 7, -4
  563 0002 85B0     		sub	sp, sp, #20
  564              		.cfi_def_cfa_offset 24
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 17
+
+
  565 0004 00AF     		add	r7, sp, #0
  566              		.cfi_def_cfa_register 7
  567 0006 0346     		mov	r3, r0
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 17
-
-
  568 0008 FB71     		strb	r3, [r7, #7]
- 340:Generated_Source\PSoC5/cyfitter_cfg.c **** 	uint8 regValue = CY_GET_XTND_REG8((void CYFAR *)CYREG_PUMP_CR0);
- 569              		.loc 1 340 0
+ 343:Generated_Source\PSoC5/cyfitter_cfg.c **** 	uint8 regValue = CY_GET_XTND_REG8((void CYFAR *)CYREG_PUMP_CR0);
+ 569              		.loc 1 343 0
  570 000a 064B     		ldr	r3, .L24
  571 000c 1B78     		ldrb	r3, [r3]
  572 000e FB73     		strb	r3, [r7, #15]
- 341:Generated_Source\PSoC5/cyfitter_cfg.c **** 	if (enabled != 0u)
- 573              		.loc 1 341 0
+ 344:Generated_Source\PSoC5/cyfitter_cfg.c **** 	if (enabled != 0u)
+ 573              		.loc 1 344 0
  574 0010 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
  575 0012 002B     		cmp	r3, #0
- 342:Generated_Source\PSoC5/cyfitter_cfg.c **** 	{
- 343:Generated_Source\PSoC5/cyfitter_cfg.c **** 		regValue |= 0x00u;
- 344:Generated_Source\PSoC5/cyfitter_cfg.c **** 	}
- 345:Generated_Source\PSoC5/cyfitter_cfg.c **** 	else
- 346:Generated_Source\PSoC5/cyfitter_cfg.c **** 	{
- 347:Generated_Source\PSoC5/cyfitter_cfg.c **** 		regValue &= (uint8)~0x00u;
- 348:Generated_Source\PSoC5/cyfitter_cfg.c **** 	}
- 349:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)CYREG_PUMP_CR0, regValue);
- 576              		.loc 1 349 0
+ 345:Generated_Source\PSoC5/cyfitter_cfg.c **** 	{
+ 346:Generated_Source\PSoC5/cyfitter_cfg.c **** 		regValue |= 0x00u;
+ 347:Generated_Source\PSoC5/cyfitter_cfg.c **** 	}
+ 348:Generated_Source\PSoC5/cyfitter_cfg.c **** 	else
+ 349:Generated_Source\PSoC5/cyfitter_cfg.c **** 	{
+ 350:Generated_Source\PSoC5/cyfitter_cfg.c **** 		regValue &= (uint8)~0x00u;
+ 351:Generated_Source\PSoC5/cyfitter_cfg.c **** 	}
+ 352:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)CYREG_PUMP_CR0, regValue);
+ 576              		.loc 1 352 0
  577 0014 034A     		ldr	r2, .L24
  578 0016 FB7B     		ldrb	r3, [r7, #15]
  579 0018 1370     		strb	r3, [r2]
- 350:Generated_Source\PSoC5/cyfitter_cfg.c **** }
- 580              		.loc 1 350 0
+ 353:Generated_Source\PSoC5/cyfitter_cfg.c **** }
+ 580              		.loc 1 353 0
  581 001a 00BF     		nop
  582 001c 1437     		adds	r7, r7, #20
  583              		.cfi_def_cfa_offset 4
@@ -1010,33 +1013,33 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 1
  603              		.type	cyfitter_cfg, %function
  604              	cyfitter_cfg:
  605              	.LFB8:
- 351:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 352:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 353:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  354:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 355:Generated_Source\PSoC5/cyfitter_cfg.c **** /*******************************************************************************
- 356:Generated_Source\PSoC5/cyfitter_cfg.c **** * Function Name: cyfitter_cfg
- 357:Generated_Source\PSoC5/cyfitter_cfg.c **** ********************************************************************************
- 358:Generated_Source\PSoC5/cyfitter_cfg.c **** * Summary:
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 18
+ 355:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 356:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 357:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 358:Generated_Source\PSoC5/cyfitter_cfg.c **** /*******************************************************************************
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 18
 
 
- 359:Generated_Source\PSoC5/cyfitter_cfg.c **** *  This function is called by the start-up code for the selected device. It
- 360:Generated_Source\PSoC5/cyfitter_cfg.c **** *  performs all of the necessary device configuration based on the design
- 361:Generated_Source\PSoC5/cyfitter_cfg.c **** *  settings.  This includes settings from the Design Wide Resources (DWR) such
- 362:Generated_Source\PSoC5/cyfitter_cfg.c **** *  as Clocks and Pins as well as any component configuration that is necessary.
- 363:Generated_Source\PSoC5/cyfitter_cfg.c **** *
- 364:Generated_Source\PSoC5/cyfitter_cfg.c **** * Parameters:
- 365:Generated_Source\PSoC5/cyfitter_cfg.c **** *   void
+ 359:Generated_Source\PSoC5/cyfitter_cfg.c **** * Function Name: cyfitter_cfg
+ 360:Generated_Source\PSoC5/cyfitter_cfg.c **** ********************************************************************************
+ 361:Generated_Source\PSoC5/cyfitter_cfg.c **** * Summary:
+ 362:Generated_Source\PSoC5/cyfitter_cfg.c **** *  This function is called by the start-up code for the selected device. It
+ 363:Generated_Source\PSoC5/cyfitter_cfg.c **** *  performs all of the necessary device configuration based on the design
+ 364:Generated_Source\PSoC5/cyfitter_cfg.c **** *  settings.  This includes settings from the Design Wide Resources (DWR) such
+ 365:Generated_Source\PSoC5/cyfitter_cfg.c **** *  as Clocks and Pins as well as any component configuration that is necessary.
  366:Generated_Source\PSoC5/cyfitter_cfg.c **** *
- 367:Generated_Source\PSoC5/cyfitter_cfg.c **** * Return:
+ 367:Generated_Source\PSoC5/cyfitter_cfg.c **** * Parameters:
  368:Generated_Source\PSoC5/cyfitter_cfg.c **** *   void
  369:Generated_Source\PSoC5/cyfitter_cfg.c **** *
- 370:Generated_Source\PSoC5/cyfitter_cfg.c **** *******************************************************************************/
- 371:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 372:Generated_Source\PSoC5/cyfitter_cfg.c **** void cyfitter_cfg(void)
- 373:Generated_Source\PSoC5/cyfitter_cfg.c **** {
- 606              		.loc 1 373 0
+ 370:Generated_Source\PSoC5/cyfitter_cfg.c **** * Return:
+ 371:Generated_Source\PSoC5/cyfitter_cfg.c **** *   void
+ 372:Generated_Source\PSoC5/cyfitter_cfg.c **** *
+ 373:Generated_Source\PSoC5/cyfitter_cfg.c **** *******************************************************************************/
+ 374:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 375:Generated_Source\PSoC5/cyfitter_cfg.c **** void cyfitter_cfg(void)
+ 376:Generated_Source\PSoC5/cyfitter_cfg.c **** {
+ 606              		.loc 1 376 0
  607              		.cfi_startproc
  608              		@ args = 0, pretend = 0, frame = 24
  609              		@ frame_needed = 1, uses_anonymous_args = 0
@@ -1048,85 +1051,86 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 1
  615              		.cfi_def_cfa_offset 32
  616 0004 00AF     		add	r7, sp, #0
  617              		.cfi_def_cfa_register 7
- 374:Generated_Source\PSoC5/cyfitter_cfg.c **** #ifdef CYGlobalIntDisable
- 375:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* Disable interrupts by default. Let user enable if/when they want. */
- 376:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CYGlobalIntDisable
- 618              		.loc 1 376 0
+ 377:Generated_Source\PSoC5/cyfitter_cfg.c **** #ifdef CYGlobalIntDisable
+ 378:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* Disable interrupts by default. Let user enable if/when they want. */
+ 379:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CYGlobalIntDisable
+ 618              		.loc 1 379 0
  619              		.syntax unified
- 620              	@ 376 "Generated_Source\PSoC5\cyfitter_cfg.c" 1
+ 620              	@ 379 "Generated_Source\PSoC5\cyfitter_cfg.c" 1
  621 0006 72B6     		CPSID   i
  622              	@ 0 "" 2
- 377:Generated_Source\PSoC5/cyfitter_cfg.c **** #endif
- 378:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 379:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* Enable/Disable Debug functionality based on settings from System DWR */
- 380:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)CYREG_MLOGIC_DEBUG, (CY_GET_XTND_REG8((void CYFAR *)CYREG_MLOGIC_DE
- 623              		.loc 1 380 0
+ 380:Generated_Source\PSoC5/cyfitter_cfg.c **** #endif
+ 381:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 382:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* Enable/Disable Debug functionality based on settings from System DWR */
+ 383:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)CYREG_MLOGIC_DEBUG, (CY_GET_XTND_REG8((void CYFAR *)CYREG_MLOGIC_DE
+ 623              		.loc 1 383 0
  624              		.thumb
  625              		.syntax unified
- 626 0008 5A4A     		ldr	r2, .L31
- 627 000a 5A4B     		ldr	r3, .L31
+ 626 0008 584A     		ldr	r2, .L31
+ 627 000a 584B     		ldr	r3, .L31
  628 000c 1B78     		ldrb	r3, [r3]
  629 000e DBB2     		uxtb	r3, r3
  630 0010 43F00403 		orr	r3, r3, #4
  631 0014 DBB2     		uxtb	r3, r3
  632 0016 1370     		strb	r3, [r2]
  633              	.LBB3:
- 381:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 382:Generated_Source\PSoC5/cyfitter_cfg.c **** 	{
- 383:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 384:Generated_Source\PSoC5/cyfitter_cfg.c **** 		CYPACKED typedef struct {
- 385:Generated_Source\PSoC5/cyfitter_cfg.c **** 			void CYFAR *address;
- 386:Generated_Source\PSoC5/cyfitter_cfg.c **** 			uint16 size;
- 387:Generated_Source\PSoC5/cyfitter_cfg.c **** 		} CYPACKED_ATTR cfg_memset_t;
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 19
+ 384:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 385:Generated_Source\PSoC5/cyfitter_cfg.c **** 	{
+ 386:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 387:Generated_Source\PSoC5/cyfitter_cfg.c **** 		CYPACKED typedef struct {
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 19
 
 
- 388:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 389:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 390:Generated_Source\PSoC5/cyfitter_cfg.c **** 		CYPACKED typedef struct {
- 391:Generated_Source\PSoC5/cyfitter_cfg.c **** 			void CYFAR *dest;
- 392:Generated_Source\PSoC5/cyfitter_cfg.c **** 			const void CYFAR *src;
- 393:Generated_Source\PSoC5/cyfitter_cfg.c **** 			uint16 size;
- 394:Generated_Source\PSoC5/cyfitter_cfg.c **** 		} CYPACKED_ATTR cfg_memcpy_t;
- 395:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 396:Generated_Source\PSoC5/cyfitter_cfg.c **** 		static const cfg_memset_t CYCODE cfg_memset_list[] = {
- 397:Generated_Source\PSoC5/cyfitter_cfg.c **** 			/* address, size */
- 398:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYREG_PRT4_DR), 48u},
- 399:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYDEV_UCFG_B0_P0_U0_BASE), 4096u},
- 400:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYDEV_UCFG_B1_P2_U0_BASE), 2048u},
- 401:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYDEV_UCFG_DSI0_BASE), 2560u},
- 402:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYDEV_UCFG_DSI12_BASE), 512u},
- 403:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYREG_BCTL1_MDCLK_EN), 16u},
- 404:Generated_Source\PSoC5/cyfitter_cfg.c **** 		};
- 405:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 406:Generated_Source\PSoC5/cyfitter_cfg.c **** 		static const cfg_memcpy_t CYCODE cfg_memcpy_list [] = {
- 407:Generated_Source\PSoC5/cyfitter_cfg.c **** 			/* dest, src, size */
- 408:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYREG_BCTL0_MDCLK_EN), BS_UCFG_BCTL0_VAL, 16u},
- 409:Generated_Source\PSoC5/cyfitter_cfg.c **** 		};
- 410:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 411:Generated_Source\PSoC5/cyfitter_cfg.c **** 		uint8 CYDATA i;
- 412:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 413:Generated_Source\PSoC5/cyfitter_cfg.c **** 		/* Zero out critical memory blocks before beginning configuration */
- 414:Generated_Source\PSoC5/cyfitter_cfg.c **** 		for (i = 0u; i < (sizeof(cfg_memset_list)/sizeof(cfg_memset_list[0])); i++)
- 634              		.loc 1 414 0
+ 388:Generated_Source\PSoC5/cyfitter_cfg.c **** 			void CYFAR *address;
+ 389:Generated_Source\PSoC5/cyfitter_cfg.c **** 			uint16 size;
+ 390:Generated_Source\PSoC5/cyfitter_cfg.c **** 		} CYPACKED_ATTR cfg_memset_t;
+ 391:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 392:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 393:Generated_Source\PSoC5/cyfitter_cfg.c **** 		CYPACKED typedef struct {
+ 394:Generated_Source\PSoC5/cyfitter_cfg.c **** 			void CYFAR *dest;
+ 395:Generated_Source\PSoC5/cyfitter_cfg.c **** 			const void CYFAR *src;
+ 396:Generated_Source\PSoC5/cyfitter_cfg.c **** 			uint16 size;
+ 397:Generated_Source\PSoC5/cyfitter_cfg.c **** 		} CYPACKED_ATTR cfg_memcpy_t;
+ 398:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 399:Generated_Source\PSoC5/cyfitter_cfg.c **** 		static const cfg_memset_t CYCODE cfg_memset_list[] = {
+ 400:Generated_Source\PSoC5/cyfitter_cfg.c **** 			/* address, size */
+ 401:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYREG_PRT4_DR), 48u},
+ 402:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYDEV_UCFG_B0_P0_U0_BASE), 4096u},
+ 403:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYDEV_UCFG_B1_P2_U0_BASE), 2048u},
+ 404:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYDEV_UCFG_DSI0_BASE), 2560u},
+ 405:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYDEV_UCFG_DSI12_BASE), 512u},
+ 406:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYREG_BCTL1_MDCLK_EN), 16u},
+ 407:Generated_Source\PSoC5/cyfitter_cfg.c **** 		};
+ 408:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 409:Generated_Source\PSoC5/cyfitter_cfg.c **** 		static const cfg_memcpy_t CYCODE cfg_memcpy_list [] = {
+ 410:Generated_Source\PSoC5/cyfitter_cfg.c **** 			/* dest, src, size */
+ 411:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYDEV_PRTDSI_PRT3_BASE), BS_IOPORT_3_VAL, 7u},
+ 412:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYREG_BCTL0_MDCLK_EN), BS_UCFG_BCTL0_VAL, 16u},
+ 413:Generated_Source\PSoC5/cyfitter_cfg.c **** 		};
+ 414:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 415:Generated_Source\PSoC5/cyfitter_cfg.c **** 		uint8 CYDATA i;
+ 416:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 417:Generated_Source\PSoC5/cyfitter_cfg.c **** 		/* Zero out critical memory blocks before beginning configuration */
+ 418:Generated_Source\PSoC5/cyfitter_cfg.c **** 		for (i = 0u; i < (sizeof(cfg_memset_list)/sizeof(cfg_memset_list[0])); i++)
+ 634              		.loc 1 418 0
  635 0018 0023     		movs	r3, #0
  636 001a FB75     		strb	r3, [r7, #23]
  637 001c 13E0     		b	.L27
  638              	.L28:
  639              	.LBB4:
- 415:Generated_Source\PSoC5/cyfitter_cfg.c **** 		{
- 416:Generated_Source\PSoC5/cyfitter_cfg.c **** 			const cfg_memset_t CYCODE * CYDATA ms = &cfg_memset_list[i];
- 640              		.loc 1 416 0 discriminator 3
+ 419:Generated_Source\PSoC5/cyfitter_cfg.c **** 		{
+ 420:Generated_Source\PSoC5/cyfitter_cfg.c **** 			const cfg_memset_t CYCODE * CYDATA ms = &cfg_memset_list[i];
+ 640              		.loc 1 420 0 discriminator 3
  641 001e FA7D     		ldrb	r2, [r7, #23]	@ zero_extendqisi2
  642 0020 1346     		mov	r3, r2
  643 0022 5B00     		lsls	r3, r3, #1
  644 0024 1344     		add	r3, r3, r2
  645 0026 5B00     		lsls	r3, r3, #1
- 646 0028 534A     		ldr	r2, .L31+4
+ 646 0028 514A     		ldr	r2, .L31+4
  647 002a 1344     		add	r3, r3, r2
  648 002c 3B61     		str	r3, [r7, #16]
- 417:Generated_Source\PSoC5/cyfitter_cfg.c **** 			CYMEMZERO(ms->address, (size_t)(uint32)(ms->size));
- 649              		.loc 1 417 0 discriminator 3
+ 421:Generated_Source\PSoC5/cyfitter_cfg.c **** 			CYMEMZERO(ms->address, (size_t)(uint32)(ms->size));
+ 649              		.loc 1 421 0 discriminator 3
  650 002e 3B69     		ldr	r3, [r7, #16]
  651 0030 1A68     		ldr	r2, [r3]	@ unaligned
  652 0032 3B69     		ldr	r3, [r7, #16]
@@ -1134,1716 +1138,1710 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 1
  654 0036 9BB2     		uxth	r3, r3
  655 0038 1946     		mov	r1, r3
  656 003a 1046     		mov	r0, r2
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 20
+
+
  657 003c FFF7FEFF 		bl	CYMEMZERO
  658              	.LBE4:
- 414:Generated_Source\PSoC5/cyfitter_cfg.c **** 		{
- 659              		.loc 1 414 0 discriminator 3
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 20
-
-
+ 418:Generated_Source\PSoC5/cyfitter_cfg.c **** 		{
+ 659              		.loc 1 418 0 discriminator 3
  660 0040 FB7D     		ldrb	r3, [r7, #23]	@ zero_extendqisi2
  661 0042 0133     		adds	r3, r3, #1
  662 0044 FB75     		strb	r3, [r7, #23]
  663              	.L27:
- 414:Generated_Source\PSoC5/cyfitter_cfg.c **** 		{
- 664              		.loc 1 414 0 is_stmt 0 discriminator 1
+ 418:Generated_Source\PSoC5/cyfitter_cfg.c **** 		{
+ 664              		.loc 1 418 0 is_stmt 0 discriminator 1
  665 0046 FB7D     		ldrb	r3, [r7, #23]	@ zero_extendqisi2
  666 0048 052B     		cmp	r3, #5
  667 004a E8D9     		bls	.L28
- 418:Generated_Source\PSoC5/cyfitter_cfg.c **** 		}
- 419:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 420:Generated_Source\PSoC5/cyfitter_cfg.c **** 		/* Copy device configuration data into registers */
- 421:Generated_Source\PSoC5/cyfitter_cfg.c **** 		for (i = 0u; i < (sizeof(cfg_memcpy_list)/sizeof(cfg_memcpy_list[0])); i++)
- 668              		.loc 1 421 0 is_stmt 1
+ 422:Generated_Source\PSoC5/cyfitter_cfg.c **** 		}
+ 423:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 424:Generated_Source\PSoC5/cyfitter_cfg.c **** 		/* Copy device configuration data into registers */
+ 425:Generated_Source\PSoC5/cyfitter_cfg.c **** 		for (i = 0u; i < (sizeof(cfg_memcpy_list)/sizeof(cfg_memcpy_list[0])); i++)
+ 668              		.loc 1 425 0 is_stmt 1
  669 004c 0023     		movs	r3, #0
  670 004e FB75     		strb	r3, [r7, #23]
  671 0050 1CE0     		b	.L29
  672              	.L30:
  673              	.LBB5:
- 422:Generated_Source\PSoC5/cyfitter_cfg.c **** 		{
- 423:Generated_Source\PSoC5/cyfitter_cfg.c **** 			const cfg_memcpy_t CYCODE * CYDATA mc = &cfg_memcpy_list[i];
- 674              		.loc 1 423 0 discriminator 3
+ 426:Generated_Source\PSoC5/cyfitter_cfg.c **** 		{
+ 427:Generated_Source\PSoC5/cyfitter_cfg.c **** 			const cfg_memcpy_t CYCODE * CYDATA mc = &cfg_memcpy_list[i];
+ 674              		.loc 1 427 0 discriminator 3
  675 0052 FA7D     		ldrb	r2, [r7, #23]	@ zero_extendqisi2
  676 0054 1346     		mov	r3, r2
  677 0056 9B00     		lsls	r3, r3, #2
  678 0058 1344     		add	r3, r3, r2
  679 005a 5B00     		lsls	r3, r3, #1
- 680 005c 474A     		ldr	r2, .L31+8
+ 680 005c 454A     		ldr	r2, .L31+8
  681 005e 1344     		add	r3, r3, r2
  682 0060 FB60     		str	r3, [r7, #12]
- 424:Generated_Source\PSoC5/cyfitter_cfg.c **** 			void * CYDATA destPtr = mc->dest;
- 683              		.loc 1 424 0 discriminator 3
+ 428:Generated_Source\PSoC5/cyfitter_cfg.c **** 			void * CYDATA destPtr = mc->dest;
+ 683              		.loc 1 428 0 discriminator 3
  684 0062 FB68     		ldr	r3, [r7, #12]
  685 0064 1B68     		ldr	r3, [r3]	@ unaligned
  686 0066 BB60     		str	r3, [r7, #8]
- 425:Generated_Source\PSoC5/cyfitter_cfg.c **** 			const void * CYDATA srcPtr = mc->src;
- 687              		.loc 1 425 0 discriminator 3
+ 429:Generated_Source\PSoC5/cyfitter_cfg.c **** 			const void * CYDATA srcPtr = mc->src;
+ 687              		.loc 1 429 0 discriminator 3
  688 0068 FB68     		ldr	r3, [r7, #12]
  689 006a 5B68     		ldr	r3, [r3, #4]	@ unaligned
  690 006c 7B60     		str	r3, [r7, #4]
- 426:Generated_Source\PSoC5/cyfitter_cfg.c **** 			uint16 CYDATA numBytes = mc->size;
- 691              		.loc 1 426 0 discriminator 3
+ 430:Generated_Source\PSoC5/cyfitter_cfg.c **** 			uint16 CYDATA numBytes = mc->size;
+ 691              		.loc 1 430 0 discriminator 3
  692 006e FB68     		ldr	r3, [r7, #12]
  693 0070 1A7A     		ldrb	r2, [r3, #8]	@ zero_extendqisi2
  694 0072 5B7A     		ldrb	r3, [r3, #9]	@ zero_extendqisi2
  695 0074 1B02     		lsls	r3, r3, #8
  696 0076 1343     		orrs	r3, r3, r2
  697 0078 7B80     		strh	r3, [r7, #2]	@ movhi
- 427:Generated_Source\PSoC5/cyfitter_cfg.c **** 			CYCONFIGCPY(destPtr, srcPtr, numBytes);
- 698              		.loc 1 427 0 discriminator 3
+ 431:Generated_Source\PSoC5/cyfitter_cfg.c **** 			CYCONFIGCPY(destPtr, srcPtr, numBytes);
+ 698              		.loc 1 431 0 discriminator 3
  699 007a 7B88     		ldrh	r3, [r7, #2]
  700 007c 1A46     		mov	r2, r3
  701 007e 7968     		ldr	r1, [r7, #4]
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 21
+
+
  702 0080 B868     		ldr	r0, [r7, #8]
  703 0082 FFF7FEFF 		bl	CYCONFIGCPY
  704              	.LBE5:
- 421:Generated_Source\PSoC5/cyfitter_cfg.c **** 		{
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 21
-
-
- 705              		.loc 1 421 0 discriminator 3
+ 425:Generated_Source\PSoC5/cyfitter_cfg.c **** 		{
+ 705              		.loc 1 425 0 discriminator 3
  706 0086 FB7D     		ldrb	r3, [r7, #23]	@ zero_extendqisi2
  707 0088 0133     		adds	r3, r3, #1
  708 008a FB75     		strb	r3, [r7, #23]
  709              	.L29:
- 421:Generated_Source\PSoC5/cyfitter_cfg.c **** 		{
- 710              		.loc 1 421 0 is_stmt 0 discriminator 1
+ 425:Generated_Source\PSoC5/cyfitter_cfg.c **** 		{
+ 710              		.loc 1 425 0 is_stmt 0 discriminator 1
  711 008c FB7D     		ldrb	r3, [r7, #23]	@ zero_extendqisi2
- 712 008e 002B     		cmp	r3, #0
- 713 0090 DFD0     		beq	.L30
- 428:Generated_Source\PSoC5/cyfitter_cfg.c **** 		}
- 429:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 430:Generated_Source\PSoC5/cyfitter_cfg.c **** 		cfg_write_bytes32(cy_cfg_addr_table, cy_cfg_data_table);
- 714              		.loc 1 430 0 is_stmt 1
- 715 0092 3B49     		ldr	r1, .L31+12
+ 712 008e 012B     		cmp	r3, #1
+ 713 0090 DFD9     		bls	.L30
+ 432:Generated_Source\PSoC5/cyfitter_cfg.c **** 		}
+ 433:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 434:Generated_Source\PSoC5/cyfitter_cfg.c **** 		cfg_write_bytes32(cy_cfg_addr_table, cy_cfg_data_table);
+ 714              		.loc 1 434 0 is_stmt 1
+ 715 0092 3949     		ldr	r1, .L31+12
  716 0094 4FF09040 		mov	r0, #1207959552
  717 0098 FFF7FEFF 		bl	cfg_write_bytes32
- 431:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 432:Generated_Source\PSoC5/cyfitter_cfg.c **** 		/* B0_P2_U1_CFG24 Starting address: CYDEV_UCFG_B0_P2_U1_CFG24 */
- 433:Generated_Source\PSoC5/cyfitter_cfg.c **** 		CY_SET_XTND_REG32((void CYFAR *)(CYREG_B0_P2_U1_CFG24), 0x04044444u);
- 718              		.loc 1 433 0
- 719 009c 394B     		ldr	r3, .L31+16
- 720 009e 3A4A     		ldr	r2, .L31+20
+ 435:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 436:Generated_Source\PSoC5/cyfitter_cfg.c **** 		/* B0_P4_U1_CFG24 Starting address: CYDEV_UCFG_B0_P4_U1_CFG24 */
+ 437:Generated_Source\PSoC5/cyfitter_cfg.c **** 		CY_SET_XTND_REG32((void CYFAR *)(CYREG_B0_P4_U1_CFG24), 0xC4000404u);
+ 718              		.loc 1 437 0
+ 719 009c 374B     		ldr	r3, .L31+16
+ 720 009e 384A     		ldr	r2, .L31+20
  721 00a0 1A60     		str	r2, [r3]
- 434:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 435:Generated_Source\PSoC5/cyfitter_cfg.c **** 		/* B0_P4_U0_CFG24 Starting address: CYDEV_UCFG_B0_P4_U0_CFG24 */
- 436:Generated_Source\PSoC5/cyfitter_cfg.c **** 		CY_SET_XTND_REG32((void CYFAR *)(CYREG_B0_P4_U0_CFG24), 0x4B00444Bu);
- 722              		.loc 1 436 0
- 723 00a2 3A4B     		ldr	r3, .L31+24
- 724 00a4 3A4A     		ldr	r2, .L31+28
+ 438:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 439:Generated_Source\PSoC5/cyfitter_cfg.c **** 		/* B0_P5_U1_CFG24 Starting address: CYDEV_UCFG_B0_P5_U1_CFG24 */
+ 440:Generated_Source\PSoC5/cyfitter_cfg.c **** 		CY_SET_XTND_REG32((void CYFAR *)(CYREG_B0_P5_U1_CFG24), 0x84040404u);
+ 722              		.loc 1 440 0
+ 723 00a2 384B     		ldr	r3, .L31+24
+ 724 00a4 384A     		ldr	r2, .L31+28
  725 00a6 1A60     		str	r2, [r3]
- 437:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 438:Generated_Source\PSoC5/cyfitter_cfg.c **** 		/* B0_P5_U0_CFG24 Starting address: CYDEV_UCFG_B0_P5_U0_CFG24 */
- 439:Generated_Source\PSoC5/cyfitter_cfg.c **** 		CY_SET_XTND_REG32((void CYFAR *)(CYREG_B0_P5_U0_CFG24), 0x44040404u);
- 726              		.loc 1 439 0
- 727 00a8 3A4B     		ldr	r3, .L31+32
- 728 00aa 3B4A     		ldr	r2, .L31+36
+ 441:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 442:Generated_Source\PSoC5/cyfitter_cfg.c **** 		/* B0_P7_U1_CFG24 Starting address: CYDEV_UCFG_B0_P7_U1_CFG24 */
+ 443:Generated_Source\PSoC5/cyfitter_cfg.c **** 		CY_SET_XTND_REG32((void CYFAR *)(CYREG_B0_P7_U1_CFG24), 0x44040404u);
+ 726              		.loc 1 443 0
+ 727 00a8 384B     		ldr	r3, .L31+32
+ 728 00aa 394A     		ldr	r2, .L31+36
  729 00ac 1A60     		str	r2, [r3]
- 440:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 441:Generated_Source\PSoC5/cyfitter_cfg.c **** 		/* B0_P6_U1_CFG24 Starting address: CYDEV_UCFG_B0_P6_U1_CFG24 */
- 442:Generated_Source\PSoC5/cyfitter_cfg.c **** 		CY_SET_XTND_REG32((void CYFAR *)(CYREG_B0_P6_U1_CFG24), 0x84040404u);
- 730              		.loc 1 442 0
- 731 00ae 3B4B     		ldr	r3, .L31+40
- 732 00b0 3B4A     		ldr	r2, .L31+44
+ 444:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 445:Generated_Source\PSoC5/cyfitter_cfg.c **** 		/* B1_P3_U0_CFG24 Starting address: CYDEV_UCFG_B1_P3_U0_CFG24 */
+ 446:Generated_Source\PSoC5/cyfitter_cfg.c **** 		CY_SET_XTND_REG32((void CYFAR *)(CYREG_B1_P3_U0_CFG24), 0x8B048B84u);
+ 730              		.loc 1 446 0
+ 731 00ae 394B     		ldr	r3, .L31+40
+ 732 00b0 394A     		ldr	r2, .L31+44
  733 00b2 1A60     		str	r2, [r3]
- 443:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 444:Generated_Source\PSoC5/cyfitter_cfg.c **** 		/* B1_P5_U0_CFG24 Starting address: CYDEV_UCFG_B1_P5_U0_CFG24 */
- 445:Generated_Source\PSoC5/cyfitter_cfg.c **** 		CY_SET_XTND_REG32((void CYFAR *)(CYREG_B1_P5_U0_CFG24), 0x0B0B4B44u);
- 734              		.loc 1 445 0
- 735 00b4 3B4B     		ldr	r3, .L31+48
- 736 00b6 3C4A     		ldr	r2, .L31+52
- 737 00b8 1A60     		str	r2, [r3]
- 446:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 447:Generated_Source\PSoC5/cyfitter_cfg.c **** 		/* Enable digital routing */
- 448:Generated_Source\PSoC5/cyfitter_cfg.c **** 		CY_SET_XTND_REG8((void CYFAR *)CYREG_BCTL0_BANK_CTL, CY_GET_XTND_REG8((void CYFAR *)CYREG_BCTL0_B
- 738              		.loc 1 448 0
- 739 00ba 3C4A     		ldr	r2, .L31+56
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 22
+ 447:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 448:Generated_Source\PSoC5/cyfitter_cfg.c **** 		/* Enable digital routing */
+ 449:Generated_Source\PSoC5/cyfitter_cfg.c **** 		CY_SET_XTND_REG8((void CYFAR *)CYREG_BCTL0_BANK_CTL, CY_GET_XTND_REG8((void CYFAR *)CYREG_BCTL0_B
+ 734              		.loc 1 449 0
+ 735 00b4 394A     		ldr	r2, .L31+48
+ 736 00b6 394B     		ldr	r3, .L31+48
+ 737 00b8 1B78     		ldrb	r3, [r3]
+ 738 00ba DBB2     		uxtb	r3, r3
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 22
 
 
- 740 00bc 3B4B     		ldr	r3, .L31+56
- 741 00be 1B78     		ldrb	r3, [r3]
- 742 00c0 DBB2     		uxtb	r3, r3
- 743 00c2 43F00203 		orr	r3, r3, #2
- 744 00c6 DBB2     		uxtb	r3, r3
- 745 00c8 1370     		strb	r3, [r2]
- 449:Generated_Source\PSoC5/cyfitter_cfg.c **** 		CY_SET_XTND_REG8((void CYFAR *)CYREG_BCTL1_BANK_CTL, CY_GET_XTND_REG8((void CYFAR *)CYREG_BCTL1_B
- 746              		.loc 1 449 0
- 747 00ca 394A     		ldr	r2, .L31+60
- 748 00cc 384B     		ldr	r3, .L31+60
- 749 00ce 1B78     		ldrb	r3, [r3]
- 750 00d0 DBB2     		uxtb	r3, r3
- 751 00d2 43F00203 		orr	r3, r3, #2
- 752 00d6 DBB2     		uxtb	r3, r3
- 753 00d8 1370     		strb	r3, [r2]
- 450:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 451:Generated_Source\PSoC5/cyfitter_cfg.c **** 		/* Enable UDB array */
- 452:Generated_Source\PSoC5/cyfitter_cfg.c **** 		CY_SET_XTND_REG8((void CYFAR *)CYREG_PM_ACT_CFG0, CY_GET_XTND_REG8((void CYFAR *)CYREG_PM_ACT_CFG
- 754              		.loc 1 452 0
- 755 00da 364A     		ldr	r2, .L31+64
- 756 00dc 354B     		ldr	r3, .L31+64
- 757 00de 1B78     		ldrb	r3, [r3]
- 758 00e0 DBB2     		uxtb	r3, r3
- 759 00e2 43F04003 		orr	r3, r3, #64
- 760 00e6 DBB2     		uxtb	r3, r3
- 761 00e8 1370     		strb	r3, [r2]
- 453:Generated_Source\PSoC5/cyfitter_cfg.c **** 		CY_SET_XTND_REG8((void CYFAR *)CYREG_PM_AVAIL_CR2, CY_GET_XTND_REG8((void CYFAR *)CYREG_PM_AVAIL_
- 762              		.loc 1 453 0
- 763 00ea 334A     		ldr	r2, .L31+68
- 764 00ec 324B     		ldr	r3, .L31+68
- 765 00ee 1B78     		ldrb	r3, [r3]
- 766 00f0 DBB2     		uxtb	r3, r3
- 767 00f2 43F01003 		orr	r3, r3, #16
- 768 00f6 DBB2     		uxtb	r3, r3
- 769 00f8 1370     		strb	r3, [r2]
- 770              	.LBE3:
- 454:Generated_Source\PSoC5/cyfitter_cfg.c **** 	}
- 455:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 739 00bc 43F00203 		orr	r3, r3, #2
+ 740 00c0 DBB2     		uxtb	r3, r3
+ 741 00c2 1370     		strb	r3, [r2]
+ 450:Generated_Source\PSoC5/cyfitter_cfg.c **** 		CY_SET_XTND_REG8((void CYFAR *)CYREG_BCTL1_BANK_CTL, CY_GET_XTND_REG8((void CYFAR *)CYREG_BCTL1_B
+ 742              		.loc 1 450 0
+ 743 00c4 364A     		ldr	r2, .L31+52
+ 744 00c6 364B     		ldr	r3, .L31+52
+ 745 00c8 1B78     		ldrb	r3, [r3]
+ 746 00ca DBB2     		uxtb	r3, r3
+ 747 00cc 43F00203 		orr	r3, r3, #2
+ 748 00d0 DBB2     		uxtb	r3, r3
+ 749 00d2 1370     		strb	r3, [r2]
+ 451:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 452:Generated_Source\PSoC5/cyfitter_cfg.c **** 		/* Enable UDB array */
+ 453:Generated_Source\PSoC5/cyfitter_cfg.c **** 		CY_SET_XTND_REG8((void CYFAR *)CYREG_PM_ACT_CFG0, CY_GET_XTND_REG8((void CYFAR *)CYREG_PM_ACT_CFG
+ 750              		.loc 1 453 0
+ 751 00d4 334A     		ldr	r2, .L31+56
+ 752 00d6 334B     		ldr	r3, .L31+56
+ 753 00d8 1B78     		ldrb	r3, [r3]
+ 754 00da DBB2     		uxtb	r3, r3
+ 755 00dc 43F04003 		orr	r3, r3, #64
+ 756 00e0 DBB2     		uxtb	r3, r3
+ 757 00e2 1370     		strb	r3, [r2]
+ 454:Generated_Source\PSoC5/cyfitter_cfg.c **** 		CY_SET_XTND_REG8((void CYFAR *)CYREG_PM_AVAIL_CR2, CY_GET_XTND_REG8((void CYFAR *)CYREG_PM_AVAIL_
+ 758              		.loc 1 454 0
+ 759 00e4 304A     		ldr	r2, .L31+60
+ 760 00e6 304B     		ldr	r3, .L31+60
+ 761 00e8 1B78     		ldrb	r3, [r3]
+ 762 00ea DBB2     		uxtb	r3, r3
+ 763 00ec 43F01003 		orr	r3, r3, #16
+ 764 00f0 DBB2     		uxtb	r3, r3
+ 765 00f2 1370     		strb	r3, [r2]
+ 766              	.LBE3:
+ 455:Generated_Source\PSoC5/cyfitter_cfg.c **** 	}
  456:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 457:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* Perform second pass device configuration. These items must be configured in specific order afte
- 458:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CYCONFIGCPY((void CYFAR *)(CYREG_PRT0_DM0), (const void CYFAR *)(BS_IOPINS0_0_VAL), 8u);
- 771              		.loc 1 458 0
- 772 00fa 0822     		movs	r2, #8
- 773 00fc 2F49     		ldr	r1, .L31+72
- 774 00fe 3048     		ldr	r0, .L31+76
- 775 0100 FFF7FEFF 		bl	CYCONFIGCPY
- 459:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CYCONFIGCPY((void CYFAR *)(CYREG_PRT12_DM0), (const void CYFAR *)(BS_IOPINS0_7_VAL), 8u);
- 776              		.loc 1 459 0
- 777 0104 0822     		movs	r2, #8
- 778 0106 2F49     		ldr	r1, .L31+80
- 779 0108 2F48     		ldr	r0, .L31+84
- 780 010a FFF7FEFF 		bl	CYCONFIGCPY
- 460:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CYCONFIGCPY((void CYFAR *)(CYREG_PRT15_DR), (const void CYFAR *)(BS_IOPINS0_8_VAL), 10u);
- 781              		.loc 1 460 0
- 782 010e 0A22     		movs	r2, #10
- 783 0110 2E49     		ldr	r1, .L31+88
- 784 0112 2F48     		ldr	r0, .L31+92
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 23
+ 457:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 458:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* Perform second pass device configuration. These items must be configured in specific order afte
+ 459:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CYCONFIGCPY((void CYFAR *)(CYREG_PRT0_DM0), (const void CYFAR *)(BS_IOPINS0_0_VAL), 8u);
+ 767              		.loc 1 459 0
+ 768 00f4 0822     		movs	r2, #8
+ 769 00f6 2D49     		ldr	r1, .L31+64
+ 770 00f8 2D48     		ldr	r0, .L31+68
+ 771 00fa FFF7FEFF 		bl	CYCONFIGCPY
+ 460:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CYCONFIGCPY((void CYFAR *)(CYREG_PRT12_DM0), (const void CYFAR *)(BS_IOPINS0_7_VAL), 8u);
+ 772              		.loc 1 460 0
+ 773 00fe 0822     		movs	r2, #8
+ 774 0100 2C49     		ldr	r1, .L31+72
+ 775 0102 2D48     		ldr	r0, .L31+76
+ 776 0104 FFF7FEFF 		bl	CYCONFIGCPY
+ 461:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CYCONFIGCPY((void CYFAR *)(CYREG_PRT15_DR), (const void CYFAR *)(BS_IOPINS0_8_VAL), 10u);
+ 777              		.loc 1 461 0
+ 778 0108 0A22     		movs	r2, #10
+ 779 010a 2C49     		ldr	r1, .L31+80
+ 780 010c 2C48     		ldr	r0, .L31+84
+ 781 010e FFF7FEFF 		bl	CYCONFIGCPY
+ 462:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CYCONFIGCPY((void CYFAR *)(CYREG_PRT1_DM0), (const void CYFAR *)(BS_IOPINS0_1_VAL), 8u);
+ 782              		.loc 1 462 0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 23
 
 
- 785 0114 FFF7FEFF 		bl	CYCONFIGCPY
- 461:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CYCONFIGCPY((void CYFAR *)(CYREG_PRT1_DM0), (const void CYFAR *)(BS_IOPINS0_1_VAL), 8u);
- 786              		.loc 1 461 0
- 787 0118 0822     		movs	r2, #8
- 788 011a 2E49     		ldr	r1, .L31+96
- 789 011c 2E48     		ldr	r0, .L31+100
- 790 011e FFF7FEFF 		bl	CYCONFIGCPY
- 462:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CYCONFIGCPY((void CYFAR *)(CYREG_PRT2_DR), (const void CYFAR *)(BS_IOPINS0_2_VAL), 10u);
- 791              		.loc 1 462 0
- 792 0122 0A22     		movs	r2, #10
- 793 0124 2D49     		ldr	r1, .L31+104
- 794 0126 2E48     		ldr	r0, .L31+108
- 795 0128 FFF7FEFF 		bl	CYCONFIGCPY
- 463:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CYCONFIGCPY((void CYFAR *)(CYREG_PRT3_DM0), (const void CYFAR *)(BS_IOPINS0_3_VAL), 8u);
- 796              		.loc 1 463 0
- 797 012c 0822     		movs	r2, #8
- 798 012e 2D49     		ldr	r1, .L31+112
- 799 0130 2D48     		ldr	r0, .L31+116
- 800 0132 FFF7FEFF 		bl	CYCONFIGCPY
- 464:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* Switch Boost to the precision bandgap reference from its internal reference */
- 465:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_REG8((void CYXDATA *)CYREG_BOOST_CR2, (CY_GET_REG8((void CYXDATA *)CYREG_BOOST_CR2) | 0x08u
- 801              		.loc 1 465 0
- 802 0136 2D4A     		ldr	r2, .L31+120
- 803 0138 2C4B     		ldr	r3, .L31+120
- 804 013a 1B78     		ldrb	r3, [r3]
- 805 013c DBB2     		uxtb	r3, r3
- 806 013e 43F00803 		orr	r3, r3, #8
- 807 0142 DBB2     		uxtb	r3, r3
- 808 0144 1370     		strb	r3, [r2]
- 466:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 467:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* Set Flash Cycles based on max possible frequency in case a glitch occurs during ClockSetup(). *
- 468:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CACHE_CC_CTL), (((CYDEV_INSTRUCT_CACHE_ENABLED) != 0) ? 0x61
- 809              		.loc 1 468 0
- 810 0146 2A4B     		ldr	r3, .L31+124
- 811 0148 6122     		movs	r2, #97
- 812 014a 1A70     		strb	r2, [r3]
- 469:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* Setup clocks based on selections from Clock DWR */
- 470:Generated_Source\PSoC5/cyfitter_cfg.c **** 	ClockSetup();
- 813              		.loc 1 470 0
- 814 014c FFF7FEFF 		bl	ClockSetup
- 471:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* Set Flash Cycles based on newly configured 24.00MHz Bus Clock. */
- 472:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CACHE_CC_CTL), (((CYDEV_INSTRUCT_CACHE_ENABLED) != 0) ? 0x81
- 815              		.loc 1 472 0
- 816 0150 274B     		ldr	r3, .L31+124
- 817 0152 8122     		movs	r2, #129
+ 783 0112 0822     		movs	r2, #8
+ 784 0114 2B49     		ldr	r1, .L31+88
+ 785 0116 2C48     		ldr	r0, .L31+92
+ 786 0118 FFF7FEFF 		bl	CYCONFIGCPY
+ 463:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CYCONFIGCPY((void CYFAR *)(CYREG_PRT2_DR), (const void CYFAR *)(BS_IOPINS0_2_VAL), 10u);
+ 787              		.loc 1 463 0
+ 788 011c 0A22     		movs	r2, #10
+ 789 011e 2B49     		ldr	r1, .L31+96
+ 790 0120 2B48     		ldr	r0, .L31+100
+ 791 0122 FFF7FEFF 		bl	CYCONFIGCPY
+ 464:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CYCONFIGCPY((void CYFAR *)(CYREG_PRT3_DM0), (const void CYFAR *)(BS_IOPINS0_3_VAL), 8u);
+ 792              		.loc 1 464 0
+ 793 0126 0822     		movs	r2, #8
+ 794 0128 2A49     		ldr	r1, .L31+104
+ 795 012a 2B48     		ldr	r0, .L31+108
+ 796 012c FFF7FEFF 		bl	CYCONFIGCPY
+ 465:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* Switch Boost to the precision bandgap reference from its internal reference */
+ 466:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_REG8((void CYXDATA *)CYREG_BOOST_CR2, (CY_GET_REG8((void CYXDATA *)CYREG_BOOST_CR2) | 0x08u
+ 797              		.loc 1 466 0
+ 798 0130 2A4A     		ldr	r2, .L31+112
+ 799 0132 2A4B     		ldr	r3, .L31+112
+ 800 0134 1B78     		ldrb	r3, [r3]
+ 801 0136 DBB2     		uxtb	r3, r3
+ 802 0138 43F00803 		orr	r3, r3, #8
+ 803 013c DBB2     		uxtb	r3, r3
+ 804 013e 1370     		strb	r3, [r2]
+ 467:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 468:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* Set Flash Cycles based on max possible frequency in case a glitch occurs during ClockSetup(). *
+ 469:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CACHE_CC_CTL), (((CYDEV_INSTRUCT_CACHE_ENABLED) != 0) ? 0x61
+ 805              		.loc 1 469 0
+ 806 0140 274B     		ldr	r3, .L31+116
+ 807 0142 6122     		movs	r2, #97
+ 808 0144 1A70     		strb	r2, [r3]
+ 470:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* Setup clocks based on selections from Clock DWR */
+ 471:Generated_Source\PSoC5/cyfitter_cfg.c **** 	ClockSetup();
+ 809              		.loc 1 471 0
+ 810 0146 FFF7FEFF 		bl	ClockSetup
+ 472:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* Set Flash Cycles based on newly configured 24.00MHz Bus Clock. */
+ 473:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CACHE_CC_CTL), (((CYDEV_INSTRUCT_CACHE_ENABLED) != 0) ? 0x81
+ 811              		.loc 1 473 0
+ 812 014a 254B     		ldr	r3, .L31+116
+ 813 014c 8122     		movs	r2, #129
+ 814 014e 1A70     		strb	r2, [r3]
+ 474:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_PANTHER_WAITPIPE), 0x01u);
+ 815              		.loc 1 474 0
+ 816 0150 244B     		ldr	r3, .L31+120
+ 817 0152 0122     		movs	r2, #1
  818 0154 1A70     		strb	r2, [r3]
- 473:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_PANTHER_WAITPIPE), 0x01u);
- 819              		.loc 1 473 0
- 820 0156 274B     		ldr	r3, .L31+128
- 821 0158 0122     		movs	r2, #1
- 822 015a 1A70     		strb	r2, [r3]
- 474:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 475:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* Perform basic analog initialization to defaults */
- 476:Generated_Source\PSoC5/cyfitter_cfg.c **** 	AnalogSetDefault();
- 823              		.loc 1 476 0
- 824 015c FFF7FEFF 		bl	AnalogSetDefault
- 477:Generated_Source\PSoC5/cyfitter_cfg.c **** 
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 24
+ 475:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 476:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* Perform basic analog initialization to defaults */
+ 477:Generated_Source\PSoC5/cyfitter_cfg.c **** 	AnalogSetDefault();
+ 819              		.loc 1 477 0
+ 820 0156 FFF7FEFF 		bl	AnalogSetDefault
+ 478:Generated_Source\PSoC5/cyfitter_cfg.c **** 
+ 479:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* Configure alternate active mode */
+ 480:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CYCONFIGCPY((void CYFAR *)CYDEV_PM_STBY_BASE, (const void CYFAR *)CYDEV_PM_ACT_BASE, 14u);
+ 821              		.loc 1 480 0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 24
 
 
- 478:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* Configure alternate active mode */
- 479:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CYCONFIGCPY((void CYFAR *)CYDEV_PM_STBY_BASE, (const void CYFAR *)CYDEV_PM_ACT_BASE, 14u);
- 825              		.loc 1 479 0
- 826 0160 0E22     		movs	r2, #14
- 827 0162 1449     		ldr	r1, .L31+64
- 828 0164 2448     		ldr	r0, .L31+132
- 829 0166 FFF7FEFF 		bl	CYCONFIGCPY
- 480:Generated_Source\PSoC5/cyfitter_cfg.c **** }
- 830              		.loc 1 480 0
- 831 016a 00BF     		nop
- 832 016c 1837     		adds	r7, r7, #24
- 833              		.cfi_def_cfa_offset 8
- 834 016e BD46     		mov	sp, r7
- 835              		.cfi_def_cfa_register 13
- 836              		@ sp needed
- 837 0170 80BD     		pop	{r7, pc}
- 838              	.L32:
- 839 0172 00BF     		.align	2
- 840              	.L31:
- 841 0174 E8460040 		.word	1073759976
- 842 0178 00000000 		.word	cfg_memset_list.5018
- 843 017c 24000000 		.word	cfg_memcpy_list.5019
- 844 0180 A4000048 		.word	1207959716
- 845 0184 D8040140 		.word	1073808600
- 846 0188 44440404 		.word	67388484
- 847 018c 58080140 		.word	1073809496
- 848 0190 4B44004B 		.word	1258308683
- 849 0194 580A0140 		.word	1073810008
- 850 0198 04040444 		.word	1141113860
- 851 019c D80C0140 		.word	1073810648
- 852 01a0 04040484 		.word	-2080111612
- 853 01a4 581A0140 		.word	1073814104
- 854 01a8 444B0B0B 		.word	185289540
- 855 01ac 03500140 		.word	1073827843
- 856 01b0 13500140 		.word	1073827859
- 857 01b4 A0430040 		.word	1073759136
- 858 01b8 C2430040 		.word	1073759170
- 859 01bc 38110048 		.word	1207963960
- 860 01c0 02510040 		.word	1073762562
- 861 01c4 40110048 		.word	1207963968
- 862 01c8 C2510040 		.word	1073762754
- 863 01cc 48110048 		.word	1207963976
- 864 01d0 F0510040 		.word	1073762800
- 865 01d4 54110048 		.word	1207963988
- 866 01d8 12510040 		.word	1073762578
- 867 01dc 5C110048 		.word	1207963996
- 868 01e0 20510040 		.word	1073762592
- 869 01e4 68110048 		.word	1207964008
- 870 01e8 32510040 		.word	1073762610
- 871 01ec 22430040 		.word	1073759010
- 872 01f0 00480040 		.word	1073760256
- 873 01f4 04000840 		.word	1074266116
- 874 01f8 B0430040 		.word	1073759152
- 875              		.cfi_endproc
- 876              	.LFE8:
- 877              		.size	cyfitter_cfg, .-cyfitter_cfg
- 878              		.section	.rodata
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 25
+ 822 015a 0E22     		movs	r2, #14
+ 823 015c 1149     		ldr	r1, .L31+56
+ 824 015e 2248     		ldr	r0, .L31+124
+ 825 0160 FFF7FEFF 		bl	CYCONFIGCPY
+ 481:Generated_Source\PSoC5/cyfitter_cfg.c **** }
+ 826              		.loc 1 481 0
+ 827 0164 00BF     		nop
+ 828 0166 1837     		adds	r7, r7, #24
+ 829              		.cfi_def_cfa_offset 8
+ 830 0168 BD46     		mov	sp, r7
+ 831              		.cfi_def_cfa_register 13
+ 832              		@ sp needed
+ 833 016a 80BD     		pop	{r7, pc}
+ 834              	.L32:
+ 835              		.align	2
+ 836              	.L31:
+ 837 016c E8460040 		.word	1073759976
+ 838 0170 00000000 		.word	cfg_memset_list.5018
+ 839 0174 24000000 		.word	cfg_memcpy_list.5019
+ 840 0178 A0000048 		.word	1207959712
+ 841 017c D8080140 		.word	1073809624
+ 842 0180 040400C4 		.word	-1006631932
+ 843 0184 D80A0140 		.word	1073810136
+ 844 0188 04040484 		.word	-2080111612
+ 845 018c D80E0140 		.word	1073811160
+ 846 0190 04040444 		.word	1141113860
+ 847 0194 58160140 		.word	1073813080
+ 848 0198 848B048B 		.word	-1962636412
+ 849 019c 03500140 		.word	1073827843
+ 850 01a0 13500140 		.word	1073827859
+ 851 01a4 A0430040 		.word	1073759136
+ 852 01a8 C2430040 		.word	1073759170
+ 853 01ac B4110048 		.word	1207964084
+ 854 01b0 02510040 		.word	1073762562
+ 855 01b4 BC110048 		.word	1207964092
+ 856 01b8 C2510040 		.word	1073762754
+ 857 01bc C4110048 		.word	1207964100
+ 858 01c0 F0510040 		.word	1073762800
+ 859 01c4 D0110048 		.word	1207964112
+ 860 01c8 12510040 		.word	1073762578
+ 861 01cc D8110048 		.word	1207964120
+ 862 01d0 20510040 		.word	1073762592
+ 863 01d4 E4110048 		.word	1207964132
+ 864 01d8 32510040 		.word	1073762610
+ 865 01dc 22430040 		.word	1073759010
+ 866 01e0 00480040 		.word	1073760256
+ 867 01e4 04000840 		.word	1074266116
+ 868 01e8 B0430040 		.word	1073759152
+ 869              		.cfi_endproc
+ 870              	.LFE8:
+ 871              		.size	cyfitter_cfg, .-cyfitter_cfg
+ 872              		.section	.rodata
+ 873              		.align	2
+ 874              		.type	cfg_memset_list.5018, %object
+ 875              		.size	cfg_memset_list.5018, 36
+ 876              	cfg_memset_list.5018:
+ 877 0000 40510040 		.word	1073762624
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 25
 
 
- 879              		.align	2
- 880              		.type	cfg_memset_list.5018, %object
- 881              		.size	cfg_memset_list.5018, 36
- 882              	cfg_memset_list.5018:
- 883 0000 40510040 		.word	1073762624
- 884 0004 3000     		.short	48
- 885 0006 00000140 		.4byte	1073807360
- 886 000a 0010     		.short	4096
- 887 000c 00140140 		.word	1073812480
- 888 0010 0008     		.short	2048
- 889 0012 00400140 		.4byte	1073823744
- 890 0016 000A     		.short	2560
- 891 0018 004C0140 		.word	1073826816
- 892 001c 0002     		.short	512
- 893 001e 10500140 		.4byte	1073827856
- 894 0022 1000     		.short	16
- 895              		.align	2
- 896              		.type	cfg_memcpy_list.5019, %object
- 897              		.size	cfg_memcpy_list.5019, 10
- 898              	cfg_memcpy_list.5019:
- 899 0024 00500140 		.word	1073827840
- 900 0028 28110048 		.word	1207963944
- 901 002c 1000     		.short	16
- 902              		.text
- 903              	.Letext0:
- 904              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
- 905              		.file 3 "Generated_Source\\PSoC5\\cytypes.h"
- 906              		.section	.debug_info,"",%progbits
- 907              	.Ldebug_info0:
- 908 0000 5F040000 		.4byte	0x45f
- 909 0004 0400     		.2byte	0x4
- 910 0006 00000000 		.4byte	.Ldebug_abbrev0
- 911 000a 04       		.byte	0x4
- 912 000b 01       		.uleb128 0x1
- 913 000c 2B000000 		.4byte	.LASF51
- 914 0010 0C       		.byte	0xc
- 915 0011 F6020000 		.4byte	.LASF52
- 916 0015 80020000 		.4byte	.LASF53
- 917 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 918 001d 00000000 		.4byte	0
- 919 0021 00000000 		.4byte	.Ldebug_line0
- 920 0025 02       		.uleb128 0x2
- 921 0026 04       		.byte	0x4
- 922 0027 05       		.byte	0x5
- 923 0028 696E7400 		.ascii	"int\000"
- 924 002c 03       		.uleb128 0x3
- 925 002d 10000000 		.4byte	.LASF12
- 926 0031 02       		.byte	0x2
- 927 0032 D8       		.byte	0xd8
- 928 0033 37000000 		.4byte	0x37
- 929 0037 04       		.uleb128 0x4
- 930 0038 04       		.byte	0x4
- 931 0039 07       		.byte	0x7
- 932 003a 68010000 		.4byte	.LASF0
- 933 003e 04       		.uleb128 0x4
- 934 003f 08       		.byte	0x8
- 935 0040 05       		.byte	0x5
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 26
+ 878 0004 3000     		.short	48
+ 879 0006 00000140 		.4byte	1073807360
+ 880 000a 0010     		.short	4096
+ 881 000c 00140140 		.word	1073812480
+ 882 0010 0008     		.short	2048
+ 883 0012 00400140 		.4byte	1073823744
+ 884 0016 000A     		.short	2560
+ 885 0018 004C0140 		.word	1073826816
+ 886 001c 0002     		.short	512
+ 887 001e 10500140 		.4byte	1073827856
+ 888 0022 1000     		.short	16
+ 889              		.align	2
+ 890              		.type	cfg_memcpy_list.5019, %object
+ 891              		.size	cfg_memcpy_list.5019, 20
+ 892              	cfg_memcpy_list.5019:
+ 893 0024 18520040 		.word	1073762840
+ 894 0028 9C110048 		.word	1207964060
+ 895 002c 0700     		.short	7
+ 896 002e 00500140 		.4byte	1073827840
+ 897 0032 A4110048 		.4byte	1207964068
+ 898 0036 1000     		.short	16
+ 899              		.text
+ 900              	.Letext0:
+ 901              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 902              		.file 3 "Generated_Source\\PSoC5\\cytypes.h"
+ 903              		.section	.debug_info,"",%progbits
+ 904              	.Ldebug_info0:
+ 905 0000 5F040000 		.4byte	0x45f
+ 906 0004 0400     		.2byte	0x4
+ 907 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 908 000a 04       		.byte	0x4
+ 909 000b 01       		.uleb128 0x1
+ 910 000c 2B000000 		.4byte	.LASF51
+ 911 0010 0C       		.byte	0xc
+ 912 0011 F6020000 		.4byte	.LASF52
+ 913 0015 80020000 		.4byte	.LASF53
+ 914 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 915 001d 00000000 		.4byte	0
+ 916 0021 00000000 		.4byte	.Ldebug_line0
+ 917 0025 02       		.uleb128 0x2
+ 918 0026 04       		.byte	0x4
+ 919 0027 05       		.byte	0x5
+ 920 0028 696E7400 		.ascii	"int\000"
+ 921 002c 03       		.uleb128 0x3
+ 922 002d 10000000 		.4byte	.LASF12
+ 923 0031 02       		.byte	0x2
+ 924 0032 D8       		.byte	0xd8
+ 925 0033 37000000 		.4byte	0x37
+ 926 0037 04       		.uleb128 0x4
+ 927 0038 04       		.byte	0x4
+ 928 0039 07       		.byte	0x7
+ 929 003a 68010000 		.4byte	.LASF0
+ 930 003e 04       		.uleb128 0x4
+ 931 003f 08       		.byte	0x8
+ 932 0040 05       		.byte	0x5
+ 933 0041 F7000000 		.4byte	.LASF1
+ 934 0045 04       		.uleb128 0x4
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 26
 
 
- 936 0041 F7000000 		.4byte	.LASF1
- 937 0045 04       		.uleb128 0x4
- 938 0046 08       		.byte	0x8
- 939 0047 04       		.byte	0x4
- 940 0048 EE010000 		.4byte	.LASF2
- 941 004c 04       		.uleb128 0x4
- 942 004d 01       		.byte	0x1
- 943 004e 06       		.byte	0x6
- 944 004f 05010000 		.4byte	.LASF3
- 945 0053 04       		.uleb128 0x4
- 946 0054 01       		.byte	0x1
- 947 0055 08       		.byte	0x8
- 948 0056 41020000 		.4byte	.LASF4
- 949 005a 04       		.uleb128 0x4
- 950 005b 02       		.byte	0x2
- 951 005c 05       		.byte	0x5
- 952 005d 4F020000 		.4byte	.LASF5
- 953 0061 04       		.uleb128 0x4
- 954 0062 02       		.byte	0x2
- 955 0063 07       		.byte	0x7
- 956 0064 BC010000 		.4byte	.LASF6
- 957 0068 04       		.uleb128 0x4
- 958 0069 04       		.byte	0x4
- 959 006a 05       		.byte	0x5
- 960 006b 30010000 		.4byte	.LASF7
- 961 006f 04       		.uleb128 0x4
- 962 0070 04       		.byte	0x4
- 963 0071 07       		.byte	0x7
- 964 0072 7E010000 		.4byte	.LASF8
- 965 0076 04       		.uleb128 0x4
- 966 0077 08       		.byte	0x8
- 967 0078 07       		.byte	0x7
- 968 0079 C4000000 		.4byte	.LASF9
- 969 007d 04       		.uleb128 0x4
- 970 007e 04       		.byte	0x4
- 971 007f 07       		.byte	0x7
- 972 0080 E5010000 		.4byte	.LASF10
- 973 0084 05       		.uleb128 0x5
- 974 0085 04       		.byte	0x4
- 975 0086 04       		.uleb128 0x4
- 976 0087 01       		.byte	0x1
- 977 0088 08       		.byte	0x8
- 978 0089 74020000 		.4byte	.LASF11
- 979 008d 06       		.uleb128 0x6
- 980 008e 3F010000 		.4byte	.LASF13
- 981 0092 03       		.byte	0x3
- 982 0093 E801     		.2byte	0x1e8
- 983 0095 53000000 		.4byte	0x53
- 984 0099 06       		.uleb128 0x6
- 985 009a 00000000 		.4byte	.LASF14
- 986 009e 03       		.byte	0x3
- 987 009f E901     		.2byte	0x1e9
- 988 00a1 61000000 		.4byte	0x61
- 989 00a5 06       		.uleb128 0x6
- 990 00a6 4C010000 		.4byte	.LASF15
- 991 00aa 03       		.byte	0x3
- 992 00ab EA01     		.2byte	0x1ea
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 27
+ 935 0046 08       		.byte	0x8
+ 936 0047 04       		.byte	0x4
+ 937 0048 EE010000 		.4byte	.LASF2
+ 938 004c 04       		.uleb128 0x4
+ 939 004d 01       		.byte	0x1
+ 940 004e 06       		.byte	0x6
+ 941 004f 05010000 		.4byte	.LASF3
+ 942 0053 04       		.uleb128 0x4
+ 943 0054 01       		.byte	0x1
+ 944 0055 08       		.byte	0x8
+ 945 0056 41020000 		.4byte	.LASF4
+ 946 005a 04       		.uleb128 0x4
+ 947 005b 02       		.byte	0x2
+ 948 005c 05       		.byte	0x5
+ 949 005d 4F020000 		.4byte	.LASF5
+ 950 0061 04       		.uleb128 0x4
+ 951 0062 02       		.byte	0x2
+ 952 0063 07       		.byte	0x7
+ 953 0064 BC010000 		.4byte	.LASF6
+ 954 0068 04       		.uleb128 0x4
+ 955 0069 04       		.byte	0x4
+ 956 006a 05       		.byte	0x5
+ 957 006b 30010000 		.4byte	.LASF7
+ 958 006f 04       		.uleb128 0x4
+ 959 0070 04       		.byte	0x4
+ 960 0071 07       		.byte	0x7
+ 961 0072 7E010000 		.4byte	.LASF8
+ 962 0076 04       		.uleb128 0x4
+ 963 0077 08       		.byte	0x8
+ 964 0078 07       		.byte	0x7
+ 965 0079 C4000000 		.4byte	.LASF9
+ 966 007d 04       		.uleb128 0x4
+ 967 007e 04       		.byte	0x4
+ 968 007f 07       		.byte	0x7
+ 969 0080 E5010000 		.4byte	.LASF10
+ 970 0084 05       		.uleb128 0x5
+ 971 0085 04       		.byte	0x4
+ 972 0086 04       		.uleb128 0x4
+ 973 0087 01       		.byte	0x1
+ 974 0088 08       		.byte	0x8
+ 975 0089 74020000 		.4byte	.LASF11
+ 976 008d 06       		.uleb128 0x6
+ 977 008e 3F010000 		.4byte	.LASF13
+ 978 0092 03       		.byte	0x3
+ 979 0093 E801     		.2byte	0x1e8
+ 980 0095 53000000 		.4byte	0x53
+ 981 0099 06       		.uleb128 0x6
+ 982 009a 00000000 		.4byte	.LASF14
+ 983 009e 03       		.byte	0x3
+ 984 009f E901     		.2byte	0x1e9
+ 985 00a1 61000000 		.4byte	0x61
+ 986 00a5 06       		.uleb128 0x6
+ 987 00a6 4C010000 		.4byte	.LASF15
+ 988 00aa 03       		.byte	0x3
+ 989 00ab EA01     		.2byte	0x1ea
+ 990 00ad 6F000000 		.4byte	0x6f
+ 991 00b1 04       		.uleb128 0x4
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 27
 
 
- 993 00ad 6F000000 		.4byte	0x6f
- 994 00b1 04       		.uleb128 0x4
- 995 00b2 04       		.byte	0x4
- 996 00b3 04       		.byte	0x4
- 997 00b4 2E020000 		.4byte	.LASF16
- 998 00b8 04       		.uleb128 0x4
- 999 00b9 08       		.byte	0x8
- 1000 00ba 04       		.byte	0x4
- 1001 00bb 45010000 		.4byte	.LASF17
- 1002 00bf 06       		.uleb128 0x6
- 1003 00c0 3C020000 		.4byte	.LASF18
- 1004 00c4 03       		.byte	0x3
- 1005 00c5 9202     		.2byte	0x292
- 1006 00c7 CB000000 		.4byte	0xcb
- 1007 00cb 07       		.uleb128 0x7
- 1008 00cc 8D000000 		.4byte	0x8d
- 1009 00d0 06       		.uleb128 0x6
- 1010 00d1 39010000 		.4byte	.LASF19
- 1011 00d5 03       		.byte	0x3
- 1012 00d6 9302     		.2byte	0x293
- 1013 00d8 DC000000 		.4byte	0xdc
- 1014 00dc 07       		.uleb128 0x7
- 1015 00dd 99000000 		.4byte	0x99
- 1016 00e1 06       		.uleb128 0x6
- 1017 00e2 CF010000 		.4byte	.LASF20
- 1018 00e6 03       		.byte	0x3
- 1019 00e7 9402     		.2byte	0x294
- 1020 00e9 ED000000 		.4byte	0xed
- 1021 00ed 07       		.uleb128 0x7
- 1022 00ee A5000000 		.4byte	0xa5
- 1023 00f2 08       		.uleb128 0x8
- 1024 00f3 02       		.byte	0x2
- 1025 00f4 01       		.byte	0x1
- 1026 00f5 98       		.byte	0x98
- 1027 00f6 13010000 		.4byte	0x113
- 1028 00fa 09       		.uleb128 0x9
- 1029 00fb DB020000 		.4byte	.LASF21
- 1030 00ff 01       		.byte	0x1
- 1031 0100 9A       		.byte	0x9a
- 1032 0101 8D000000 		.4byte	0x8d
- 1033 0105 00       		.byte	0
- 1034 0106 09       		.uleb128 0x9
- 1035 0107 62010000 		.4byte	.LASF22
- 1036 010b 01       		.byte	0x1
- 1037 010c 9B       		.byte	0x9b
- 1038 010d 8D000000 		.4byte	0x8d
- 1039 0111 01       		.byte	0x1
- 1040 0112 00       		.byte	0
- 1041 0113 03       		.uleb128 0x3
- 1042 0114 61020000 		.4byte	.LASF23
- 1043 0118 01       		.byte	0x1
- 1044 0119 9C       		.byte	0x9c
- 1045 011a F2000000 		.4byte	0xf2
- 1046 011e 0A       		.uleb128 0xa
- 1047 011f 11010000 		.4byte	.LASF24
- 1048 0123 01       		.byte	0x1
- 1049 0124 4D       		.byte	0x4d
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 28
+ 992 00b2 04       		.byte	0x4
+ 993 00b3 04       		.byte	0x4
+ 994 00b4 2E020000 		.4byte	.LASF16
+ 995 00b8 04       		.uleb128 0x4
+ 996 00b9 08       		.byte	0x8
+ 997 00ba 04       		.byte	0x4
+ 998 00bb 45010000 		.4byte	.LASF17
+ 999 00bf 06       		.uleb128 0x6
+ 1000 00c0 3C020000 		.4byte	.LASF18
+ 1001 00c4 03       		.byte	0x3
+ 1002 00c5 9202     		.2byte	0x292
+ 1003 00c7 CB000000 		.4byte	0xcb
+ 1004 00cb 07       		.uleb128 0x7
+ 1005 00cc 8D000000 		.4byte	0x8d
+ 1006 00d0 06       		.uleb128 0x6
+ 1007 00d1 39010000 		.4byte	.LASF19
+ 1008 00d5 03       		.byte	0x3
+ 1009 00d6 9302     		.2byte	0x293
+ 1010 00d8 DC000000 		.4byte	0xdc
+ 1011 00dc 07       		.uleb128 0x7
+ 1012 00dd 99000000 		.4byte	0x99
+ 1013 00e1 06       		.uleb128 0x6
+ 1014 00e2 CF010000 		.4byte	.LASF20
+ 1015 00e6 03       		.byte	0x3
+ 1016 00e7 9402     		.2byte	0x294
+ 1017 00e9 ED000000 		.4byte	0xed
+ 1018 00ed 07       		.uleb128 0x7
+ 1019 00ee A5000000 		.4byte	0xa5
+ 1020 00f2 08       		.uleb128 0x8
+ 1021 00f3 02       		.byte	0x2
+ 1022 00f4 01       		.byte	0x1
+ 1023 00f5 98       		.byte	0x98
+ 1024 00f6 13010000 		.4byte	0x113
+ 1025 00fa 09       		.uleb128 0x9
+ 1026 00fb DB020000 		.4byte	.LASF21
+ 1027 00ff 01       		.byte	0x1
+ 1028 0100 9A       		.byte	0x9a
+ 1029 0101 8D000000 		.4byte	0x8d
+ 1030 0105 00       		.byte	0
+ 1031 0106 09       		.uleb128 0x9
+ 1032 0107 62010000 		.4byte	.LASF22
+ 1033 010b 01       		.byte	0x1
+ 1034 010c 9B       		.byte	0x9b
+ 1035 010d 8D000000 		.4byte	0x8d
+ 1036 0111 01       		.byte	0x1
+ 1037 0112 00       		.byte	0
+ 1038 0113 03       		.uleb128 0x3
+ 1039 0114 61020000 		.4byte	.LASF23
+ 1040 0118 01       		.byte	0x1
+ 1041 0119 9C       		.byte	0x9c
+ 1042 011a F2000000 		.4byte	0xf2
+ 1043 011e 0A       		.uleb128 0xa
+ 1044 011f 11010000 		.4byte	.LASF24
+ 1045 0123 01       		.byte	0x1
+ 1046 0124 4D       		.byte	0x4d
+ 1047 0125 00000000 		.4byte	.LFB0
+ 1048 0129 1C000000 		.4byte	.LFE0-.LFB0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 28
 
 
- 1050 0125 00000000 		.4byte	.LFB0
- 1051 0129 1C000000 		.4byte	.LFE0-.LFB0
- 1052 012d 01       		.uleb128 0x1
- 1053 012e 9C       		.byte	0x9c
- 1054 012f 4C010000 		.4byte	0x14c
- 1055 0133 0B       		.uleb128 0xb
- 1056 0134 7300     		.ascii	"s\000"
- 1057 0136 01       		.byte	0x1
- 1058 0137 4D       		.byte	0x4d
- 1059 0138 84000000 		.4byte	0x84
- 1060 013c 02       		.uleb128 0x2
- 1061 013d 91       		.byte	0x91
- 1062 013e 74       		.sleb128 -12
- 1063 013f 0B       		.uleb128 0xb
- 1064 0140 6E00     		.ascii	"n\000"
- 1065 0142 01       		.byte	0x1
- 1066 0143 4D       		.byte	0x4d
- 1067 0144 2C000000 		.4byte	0x2c
- 1068 0148 02       		.uleb128 0x2
- 1069 0149 91       		.byte	0x91
- 1070 014a 70       		.sleb128 -16
- 1071 014b 00       		.byte	0
- 1072 014c 0A       		.uleb128 0xa
- 1073 014d EA020000 		.4byte	.LASF25
- 1074 0151 01       		.byte	0x1
- 1075 0152 54       		.byte	0x54
- 1076 0153 00000000 		.4byte	.LFB1
- 1077 0157 1E000000 		.4byte	.LFE1-.LFB1
- 1078 015b 01       		.uleb128 0x1
- 1079 015c 9C       		.byte	0x9c
- 1080 015d 8A010000 		.4byte	0x18a
- 1081 0161 0C       		.uleb128 0xc
- 1082 0162 29020000 		.4byte	.LASF26
- 1083 0166 01       		.byte	0x1
- 1084 0167 54       		.byte	0x54
- 1085 0168 84000000 		.4byte	0x84
- 1086 016c 02       		.uleb128 0x2
- 1087 016d 91       		.byte	0x91
- 1088 016e 74       		.sleb128 -12
- 1089 016f 0B       		.uleb128 0xb
- 1090 0170 73726300 		.ascii	"src\000"
- 1091 0174 01       		.byte	0x1
- 1092 0175 54       		.byte	0x54
- 1093 0176 8A010000 		.4byte	0x18a
- 1094 017a 02       		.uleb128 0x2
- 1095 017b 91       		.byte	0x91
- 1096 017c 70       		.sleb128 -16
- 1097 017d 0B       		.uleb128 0xb
- 1098 017e 6E00     		.ascii	"n\000"
- 1099 0180 01       		.byte	0x1
- 1100 0181 54       		.byte	0x54
- 1101 0182 2C000000 		.4byte	0x2c
- 1102 0186 02       		.uleb128 0x2
- 1103 0187 91       		.byte	0x91
- 1104 0188 6C       		.sleb128 -20
- 1105 0189 00       		.byte	0
- 1106 018a 0D       		.uleb128 0xd
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 29
+ 1049 012d 01       		.uleb128 0x1
+ 1050 012e 9C       		.byte	0x9c
+ 1051 012f 4C010000 		.4byte	0x14c
+ 1052 0133 0B       		.uleb128 0xb
+ 1053 0134 7300     		.ascii	"s\000"
+ 1054 0136 01       		.byte	0x1
+ 1055 0137 4D       		.byte	0x4d
+ 1056 0138 84000000 		.4byte	0x84
+ 1057 013c 02       		.uleb128 0x2
+ 1058 013d 91       		.byte	0x91
+ 1059 013e 74       		.sleb128 -12
+ 1060 013f 0B       		.uleb128 0xb
+ 1061 0140 6E00     		.ascii	"n\000"
+ 1062 0142 01       		.byte	0x1
+ 1063 0143 4D       		.byte	0x4d
+ 1064 0144 2C000000 		.4byte	0x2c
+ 1065 0148 02       		.uleb128 0x2
+ 1066 0149 91       		.byte	0x91
+ 1067 014a 70       		.sleb128 -16
+ 1068 014b 00       		.byte	0
+ 1069 014c 0A       		.uleb128 0xa
+ 1070 014d EA020000 		.4byte	.LASF25
+ 1071 0151 01       		.byte	0x1
+ 1072 0152 54       		.byte	0x54
+ 1073 0153 00000000 		.4byte	.LFB1
+ 1074 0157 1E000000 		.4byte	.LFE1-.LFB1
+ 1075 015b 01       		.uleb128 0x1
+ 1076 015c 9C       		.byte	0x9c
+ 1077 015d 8A010000 		.4byte	0x18a
+ 1078 0161 0C       		.uleb128 0xc
+ 1079 0162 29020000 		.4byte	.LASF26
+ 1080 0166 01       		.byte	0x1
+ 1081 0167 54       		.byte	0x54
+ 1082 0168 84000000 		.4byte	0x84
+ 1083 016c 02       		.uleb128 0x2
+ 1084 016d 91       		.byte	0x91
+ 1085 016e 74       		.sleb128 -12
+ 1086 016f 0B       		.uleb128 0xb
+ 1087 0170 73726300 		.ascii	"src\000"
+ 1088 0174 01       		.byte	0x1
+ 1089 0175 54       		.byte	0x54
+ 1090 0176 8A010000 		.4byte	0x18a
+ 1091 017a 02       		.uleb128 0x2
+ 1092 017b 91       		.byte	0x91
+ 1093 017c 70       		.sleb128 -16
+ 1094 017d 0B       		.uleb128 0xb
+ 1095 017e 6E00     		.ascii	"n\000"
+ 1096 0180 01       		.byte	0x1
+ 1097 0181 54       		.byte	0x54
+ 1098 0182 2C000000 		.4byte	0x2c
+ 1099 0186 02       		.uleb128 0x2
+ 1100 0187 91       		.byte	0x91
+ 1101 0188 6C       		.sleb128 -20
+ 1102 0189 00       		.byte	0
+ 1103 018a 0D       		.uleb128 0xd
+ 1104 018b 04       		.byte	0x4
+ 1105 018c 90010000 		.4byte	0x190
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 29
 
 
- 1107 018b 04       		.byte	0x4
- 1108 018c 90010000 		.4byte	0x190
- 1109 0190 0E       		.uleb128 0xe
- 1110 0191 0A       		.uleb128 0xa
- 1111 0192 D5010000 		.4byte	.LASF27
- 1112 0196 01       		.byte	0x1
- 1113 0197 5B       		.byte	0x5b
- 1114 0198 00000000 		.4byte	.LFB2
- 1115 019c 1E000000 		.4byte	.LFE2-.LFB2
- 1116 01a0 01       		.uleb128 0x1
- 1117 01a1 9C       		.byte	0x9c
- 1118 01a2 CF010000 		.4byte	0x1cf
- 1119 01a6 0C       		.uleb128 0xc
- 1120 01a7 29020000 		.4byte	.LASF26
- 1121 01ab 01       		.byte	0x1
- 1122 01ac 5B       		.byte	0x5b
- 1123 01ad 84000000 		.4byte	0x84
- 1124 01b1 02       		.uleb128 0x2
- 1125 01b2 91       		.byte	0x91
- 1126 01b3 74       		.sleb128 -12
- 1127 01b4 0B       		.uleb128 0xb
- 1128 01b5 73726300 		.ascii	"src\000"
- 1129 01b9 01       		.byte	0x1
- 1130 01ba 5B       		.byte	0x5b
- 1131 01bb 8A010000 		.4byte	0x18a
- 1132 01bf 02       		.uleb128 0x2
- 1133 01c0 91       		.byte	0x91
- 1134 01c1 70       		.sleb128 -16
- 1135 01c2 0B       		.uleb128 0xb
- 1136 01c3 6E00     		.ascii	"n\000"
- 1137 01c5 01       		.byte	0x1
- 1138 01c6 5B       		.byte	0x5b
- 1139 01c7 2C000000 		.4byte	0x2c
- 1140 01cb 02       		.uleb128 0x2
- 1141 01cc 91       		.byte	0x91
- 1142 01cd 6C       		.sleb128 -20
- 1143 01ce 00       		.byte	0
- 1144 01cf 0F       		.uleb128 0xf
- 1145 01d0 17000000 		.4byte	.LASF28
- 1146 01d4 01       		.byte	0x1
- 1147 01d5 7F       		.byte	0x7f
- 1148 01d6 00000000 		.4byte	.LFB3
- 1149 01da 0C000000 		.4byte	.LFE3-.LFB3
- 1150 01de 01       		.uleb128 0x1
- 1151 01df 9C       		.byte	0x9c
- 1152 01e0 F3010000 		.4byte	0x1f3
- 1153 01e4 0C       		.uleb128 0xc
- 1154 01e5 26010000 		.4byte	.LASF29
- 1155 01e9 01       		.byte	0x1
- 1156 01ea 7F       		.byte	0x7f
- 1157 01eb 8D000000 		.4byte	0x8d
- 1158 01ef 02       		.uleb128 0x2
- 1159 01f0 91       		.byte	0x91
- 1160 01f1 77       		.sleb128 -9
- 1161 01f2 00       		.byte	0
- 1162 01f3 0F       		.uleb128 0xf
- 1163 01f4 A5010000 		.4byte	.LASF30
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 30
+ 1106 0190 0E       		.uleb128 0xe
+ 1107 0191 0A       		.uleb128 0xa
+ 1108 0192 D5010000 		.4byte	.LASF27
+ 1109 0196 01       		.byte	0x1
+ 1110 0197 5B       		.byte	0x5b
+ 1111 0198 00000000 		.4byte	.LFB2
+ 1112 019c 1E000000 		.4byte	.LFE2-.LFB2
+ 1113 01a0 01       		.uleb128 0x1
+ 1114 01a1 9C       		.byte	0x9c
+ 1115 01a2 CF010000 		.4byte	0x1cf
+ 1116 01a6 0C       		.uleb128 0xc
+ 1117 01a7 29020000 		.4byte	.LASF26
+ 1118 01ab 01       		.byte	0x1
+ 1119 01ac 5B       		.byte	0x5b
+ 1120 01ad 84000000 		.4byte	0x84
+ 1121 01b1 02       		.uleb128 0x2
+ 1122 01b2 91       		.byte	0x91
+ 1123 01b3 74       		.sleb128 -12
+ 1124 01b4 0B       		.uleb128 0xb
+ 1125 01b5 73726300 		.ascii	"src\000"
+ 1126 01b9 01       		.byte	0x1
+ 1127 01ba 5B       		.byte	0x5b
+ 1128 01bb 8A010000 		.4byte	0x18a
+ 1129 01bf 02       		.uleb128 0x2
+ 1130 01c0 91       		.byte	0x91
+ 1131 01c1 70       		.sleb128 -16
+ 1132 01c2 0B       		.uleb128 0xb
+ 1133 01c3 6E00     		.ascii	"n\000"
+ 1134 01c5 01       		.byte	0x1
+ 1135 01c6 5B       		.byte	0x5b
+ 1136 01c7 2C000000 		.4byte	0x2c
+ 1137 01cb 02       		.uleb128 0x2
+ 1138 01cc 91       		.byte	0x91
+ 1139 01cd 6C       		.sleb128 -20
+ 1140 01ce 00       		.byte	0
+ 1141 01cf 0F       		.uleb128 0xf
+ 1142 01d0 17000000 		.4byte	.LASF28
+ 1143 01d4 01       		.byte	0x1
+ 1144 01d5 7F       		.byte	0x7f
+ 1145 01d6 00000000 		.4byte	.LFB3
+ 1146 01da 0C000000 		.4byte	.LFE3-.LFB3
+ 1147 01de 01       		.uleb128 0x1
+ 1148 01df 9C       		.byte	0x9c
+ 1149 01e0 F3010000 		.4byte	0x1f3
+ 1150 01e4 0C       		.uleb128 0xc
+ 1151 01e5 26010000 		.4byte	.LASF29
+ 1152 01e9 01       		.byte	0x1
+ 1153 01ea 7F       		.byte	0x7f
+ 1154 01eb 8D000000 		.4byte	0x8d
+ 1155 01ef 02       		.uleb128 0x2
+ 1156 01f0 91       		.byte	0x91
+ 1157 01f1 77       		.sleb128 -9
+ 1158 01f2 00       		.byte	0
+ 1159 01f3 0F       		.uleb128 0xf
+ 1160 01f4 A5010000 		.4byte	.LASF30
+ 1161 01f8 01       		.byte	0x1
+ 1162 01f9 C9       		.byte	0xc9
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 30
 
 
- 1164 01f8 01       		.byte	0x1
- 1165 01f9 C6       		.byte	0xc6
- 1166 01fa 00000000 		.4byte	.LFB4
- 1167 01fe 74000000 		.4byte	.LFE4-.LFB4
- 1168 0202 01       		.uleb128 0x1
- 1169 0203 9C       		.byte	0x9c
- 1170 0204 63020000 		.4byte	0x263
- 1171 0208 0C       		.uleb128 0xc
- 1172 0209 DB000000 		.4byte	.LASF31
- 1173 020d 01       		.byte	0x1
- 1174 020e C6       		.byte	0xc6
- 1175 020f 63020000 		.4byte	0x263
- 1176 0213 02       		.uleb128 0x2
- 1177 0214 91       		.byte	0x91
- 1178 0215 64       		.sleb128 -28
- 1179 0216 0C       		.uleb128 0xc
- 1180 0217 B9000000 		.4byte	.LASF32
- 1181 021b 01       		.byte	0x1
- 1182 021c C6       		.byte	0xc6
- 1183 021d 6E020000 		.4byte	0x26e
- 1184 0221 02       		.uleb128 0x2
- 1185 0222 91       		.byte	0x91
- 1186 0223 60       		.sleb128 -32
- 1187 0224 10       		.uleb128 0x10
- 1188 0225 6900     		.ascii	"i\000"
- 1189 0227 01       		.byte	0x1
- 1190 0228 C9       		.byte	0xc9
- 1191 0229 A5000000 		.4byte	0xa5
- 1192 022d 02       		.uleb128 0x2
- 1193 022e 91       		.byte	0x91
- 1194 022f 74       		.sleb128 -12
- 1195 0230 10       		.uleb128 0x10
- 1196 0231 6A00     		.ascii	"j\000"
- 1197 0233 01       		.byte	0x1
- 1198 0234 C9       		.byte	0xc9
- 1199 0235 A5000000 		.4byte	0xa5
- 1200 0239 02       		.uleb128 0x2
- 1201 023a 91       		.byte	0x91
- 1202 023b 70       		.sleb128 -16
- 1203 023c 11       		.uleb128 0x11
- 1204 023d 14000000 		.4byte	.LBB2
- 1205 0241 4A000000 		.4byte	.LBE2-.LBB2
- 1206 0245 12       		.uleb128 0x12
- 1207 0246 07000000 		.4byte	.LASF33
- 1208 024a 01       		.byte	0x1
- 1209 024b CC       		.byte	0xcc
- 1210 024c A5000000 		.4byte	0xa5
- 1211 0250 02       		.uleb128 0x2
- 1212 0251 91       		.byte	0x91
- 1213 0252 68       		.sleb128 -24
- 1214 0253 12       		.uleb128 0x12
- 1215 0254 53010000 		.4byte	.LASF34
- 1216 0258 01       		.byte	0x1
- 1217 0259 CD       		.byte	0xcd
- 1218 025a 8D000000 		.4byte	0x8d
- 1219 025e 02       		.uleb128 0x2
- 1220 025f 91       		.byte	0x91
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 31
+ 1163 01fa 00000000 		.4byte	.LFB4
+ 1164 01fe 74000000 		.4byte	.LFE4-.LFB4
+ 1165 0202 01       		.uleb128 0x1
+ 1166 0203 9C       		.byte	0x9c
+ 1167 0204 63020000 		.4byte	0x263
+ 1168 0208 0C       		.uleb128 0xc
+ 1169 0209 DB000000 		.4byte	.LASF31
+ 1170 020d 01       		.byte	0x1
+ 1171 020e C9       		.byte	0xc9
+ 1172 020f 63020000 		.4byte	0x263
+ 1173 0213 02       		.uleb128 0x2
+ 1174 0214 91       		.byte	0x91
+ 1175 0215 64       		.sleb128 -28
+ 1176 0216 0C       		.uleb128 0xc
+ 1177 0217 B9000000 		.4byte	.LASF32
+ 1178 021b 01       		.byte	0x1
+ 1179 021c C9       		.byte	0xc9
+ 1180 021d 6E020000 		.4byte	0x26e
+ 1181 0221 02       		.uleb128 0x2
+ 1182 0222 91       		.byte	0x91
+ 1183 0223 60       		.sleb128 -32
+ 1184 0224 10       		.uleb128 0x10
+ 1185 0225 6900     		.ascii	"i\000"
+ 1186 0227 01       		.byte	0x1
+ 1187 0228 CC       		.byte	0xcc
+ 1188 0229 A5000000 		.4byte	0xa5
+ 1189 022d 02       		.uleb128 0x2
+ 1190 022e 91       		.byte	0x91
+ 1191 022f 74       		.sleb128 -12
+ 1192 0230 10       		.uleb128 0x10
+ 1193 0231 6A00     		.ascii	"j\000"
+ 1194 0233 01       		.byte	0x1
+ 1195 0234 CC       		.byte	0xcc
+ 1196 0235 A5000000 		.4byte	0xa5
+ 1197 0239 02       		.uleb128 0x2
+ 1198 023a 91       		.byte	0x91
+ 1199 023b 70       		.sleb128 -16
+ 1200 023c 11       		.uleb128 0x11
+ 1201 023d 14000000 		.4byte	.LBB2
+ 1202 0241 4A000000 		.4byte	.LBE2-.LBB2
+ 1203 0245 12       		.uleb128 0x12
+ 1204 0246 07000000 		.4byte	.LASF33
+ 1205 024a 01       		.byte	0x1
+ 1206 024b CF       		.byte	0xcf
+ 1207 024c A5000000 		.4byte	0xa5
+ 1208 0250 02       		.uleb128 0x2
+ 1209 0251 91       		.byte	0x91
+ 1210 0252 68       		.sleb128 -24
+ 1211 0253 12       		.uleb128 0x12
+ 1212 0254 53010000 		.4byte	.LASF34
+ 1213 0258 01       		.byte	0x1
+ 1214 0259 D0       		.byte	0xd0
+ 1215 025a 8D000000 		.4byte	0x8d
+ 1216 025e 02       		.uleb128 0x2
+ 1217 025f 91       		.byte	0x91
+ 1218 0260 6F       		.sleb128 -17
+ 1219 0261 00       		.byte	0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 31
 
 
- 1221 0260 6F       		.sleb128 -17
- 1222 0261 00       		.byte	0
- 1223 0262 00       		.byte	0
- 1224 0263 0D       		.uleb128 0xd
- 1225 0264 04       		.byte	0x4
- 1226 0265 69020000 		.4byte	0x269
- 1227 0269 13       		.uleb128 0x13
- 1228 026a A5000000 		.4byte	0xa5
- 1229 026e 0D       		.uleb128 0xd
- 1230 026f 04       		.byte	0x4
- 1231 0270 74020000 		.4byte	0x274
- 1232 0274 13       		.uleb128 0x13
- 1233 0275 13010000 		.4byte	0x113
- 1234 0279 0A       		.uleb128 0xa
- 1235 027a 1B010000 		.4byte	.LASF35
- 1236 027e 01       		.byte	0x1
- 1237 027f E9       		.byte	0xe9
- 1238 0280 00000000 		.4byte	.LFB5
- 1239 0284 90010000 		.4byte	.LFE5-.LFB5
- 1240 0288 01       		.uleb128 0x1
- 1241 0289 9C       		.byte	0x9c
- 1242 028a AB020000 		.4byte	0x2ab
- 1243 028e 12       		.uleb128 0x12
- 1244 028f 90010000 		.4byte	.LASF36
- 1245 0293 01       		.byte	0x1
- 1246 0294 EB       		.byte	0xeb
- 1247 0295 A5000000 		.4byte	0xa5
- 1248 0299 02       		.uleb128 0x2
- 1249 029a 91       		.byte	0x91
- 1250 029b 74       		.sleb128 -12
- 1251 029c 12       		.uleb128 0x12
- 1252 029d 59020000 		.4byte	.LASF37
- 1253 02a1 01       		.byte	0x1
- 1254 02a2 EC       		.byte	0xec
- 1255 02a3 8D000000 		.4byte	0x8d
- 1256 02a7 02       		.uleb128 0x2
- 1257 02a8 91       		.byte	0x91
- 1258 02a9 73       		.sleb128 -13
- 1259 02aa 00       		.byte	0
- 1260 02ab 14       		.uleb128 0x14
- 1261 02ac E6000000 		.4byte	.LASF38
- 1262 02b0 01       		.byte	0x1
- 1263 02b1 3801     		.2byte	0x138
- 1264 02b3 00000000 		.4byte	.LFB6
- 1265 02b7 44000000 		.4byte	.LFE6-.LFB6
- 1266 02bb 01       		.uleb128 0x1
- 1267 02bc 9C       		.byte	0x9c
- 1268 02bd D1020000 		.4byte	0x2d1
- 1269 02c1 15       		.uleb128 0x15
- 1270 02c2 FA010000 		.4byte	.LASF39
- 1271 02c6 01       		.byte	0x1
- 1272 02c7 3A01     		.2byte	0x13a
- 1273 02c9 8D000000 		.4byte	0x8d
- 1274 02cd 02       		.uleb128 0x2
- 1275 02ce 91       		.byte	0x91
- 1276 02cf 77       		.sleb128 -9
- 1277 02d0 00       		.byte	0
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 32
+ 1220 0262 00       		.byte	0
+ 1221 0263 0D       		.uleb128 0xd
+ 1222 0264 04       		.byte	0x4
+ 1223 0265 69020000 		.4byte	0x269
+ 1224 0269 13       		.uleb128 0x13
+ 1225 026a A5000000 		.4byte	0xa5
+ 1226 026e 0D       		.uleb128 0xd
+ 1227 026f 04       		.byte	0x4
+ 1228 0270 74020000 		.4byte	0x274
+ 1229 0274 13       		.uleb128 0x13
+ 1230 0275 13010000 		.4byte	0x113
+ 1231 0279 0A       		.uleb128 0xa
+ 1232 027a 1B010000 		.4byte	.LASF35
+ 1233 027e 01       		.byte	0x1
+ 1234 027f EC       		.byte	0xec
+ 1235 0280 00000000 		.4byte	.LFB5
+ 1236 0284 90010000 		.4byte	.LFE5-.LFB5
+ 1237 0288 01       		.uleb128 0x1
+ 1238 0289 9C       		.byte	0x9c
+ 1239 028a AB020000 		.4byte	0x2ab
+ 1240 028e 12       		.uleb128 0x12
+ 1241 028f 90010000 		.4byte	.LASF36
+ 1242 0293 01       		.byte	0x1
+ 1243 0294 EE       		.byte	0xee
+ 1244 0295 A5000000 		.4byte	0xa5
+ 1245 0299 02       		.uleb128 0x2
+ 1246 029a 91       		.byte	0x91
+ 1247 029b 74       		.sleb128 -12
+ 1248 029c 12       		.uleb128 0x12
+ 1249 029d 59020000 		.4byte	.LASF37
+ 1250 02a1 01       		.byte	0x1
+ 1251 02a2 EF       		.byte	0xef
+ 1252 02a3 8D000000 		.4byte	0x8d
+ 1253 02a7 02       		.uleb128 0x2
+ 1254 02a8 91       		.byte	0x91
+ 1255 02a9 73       		.sleb128 -13
+ 1256 02aa 00       		.byte	0
+ 1257 02ab 14       		.uleb128 0x14
+ 1258 02ac E6000000 		.4byte	.LASF38
+ 1259 02b0 01       		.byte	0x1
+ 1260 02b1 3B01     		.2byte	0x13b
+ 1261 02b3 00000000 		.4byte	.LFB6
+ 1262 02b7 44000000 		.4byte	.LFE6-.LFB6
+ 1263 02bb 01       		.uleb128 0x1
+ 1264 02bc 9C       		.byte	0x9c
+ 1265 02bd D1020000 		.4byte	0x2d1
+ 1266 02c1 15       		.uleb128 0x15
+ 1267 02c2 FA010000 		.4byte	.LASF39
+ 1268 02c6 01       		.byte	0x1
+ 1269 02c7 3D01     		.2byte	0x13d
+ 1270 02c9 8D000000 		.4byte	0x8d
+ 1271 02cd 02       		.uleb128 0x2
+ 1272 02ce 91       		.byte	0x91
+ 1273 02cf 77       		.sleb128 -9
+ 1274 02d0 00       		.byte	0
+ 1275 02d1 16       		.uleb128 0x16
+ 1276 02d2 C5020000 		.4byte	.LASF54
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 32
 
 
- 1278 02d1 16       		.uleb128 0x16
- 1279 02d2 C5020000 		.4byte	.LASF54
- 1280 02d6 01       		.byte	0x1
- 1281 02d7 5201     		.2byte	0x152
- 1282 02d9 00000000 		.4byte	.LFB7
- 1283 02dd 28000000 		.4byte	.LFE7-.LFB7
- 1284 02e1 01       		.uleb128 0x1
- 1285 02e2 9C       		.byte	0x9c
- 1286 02e3 06030000 		.4byte	0x306
- 1287 02e7 17       		.uleb128 0x17
- 1288 02e8 E2020000 		.4byte	.LASF40
- 1289 02ec 01       		.byte	0x1
- 1290 02ed 5201     		.2byte	0x152
- 1291 02ef 8D000000 		.4byte	0x8d
- 1292 02f3 02       		.uleb128 0x2
- 1293 02f4 91       		.byte	0x91
- 1294 02f5 6F       		.sleb128 -17
- 1295 02f6 15       		.uleb128 0x15
- 1296 02f7 59010000 		.4byte	.LASF41
- 1297 02fb 01       		.byte	0x1
- 1298 02fc 5401     		.2byte	0x154
- 1299 02fe 8D000000 		.4byte	0x8d
- 1300 0302 02       		.uleb128 0x2
- 1301 0303 91       		.byte	0x91
- 1302 0304 77       		.sleb128 -9
- 1303 0305 00       		.byte	0
- 1304 0306 18       		.uleb128 0x18
- 1305 0307 34030000 		.4byte	.LASF55
- 1306 030b 01       		.byte	0x1
- 1307 030c 7401     		.2byte	0x174
- 1308 030e 00000000 		.4byte	.LFB8
- 1309 0312 FC010000 		.4byte	.LFE8-.LFB8
- 1310 0316 01       		.uleb128 0x1
- 1311 0317 9C       		.byte	0x9c
- 1312 0318 11       		.uleb128 0x11
- 1313 0319 18000000 		.4byte	.LBB3
- 1314 031d E2000000 		.4byte	.LBE3-.LBB3
- 1315 0321 19       		.uleb128 0x19
- 1316 0322 06       		.byte	0x6
- 1317 0323 01       		.byte	0x1
- 1318 0324 8001     		.2byte	0x180
- 1319 0326 45030000 		.4byte	0x345
- 1320 032a 1A       		.uleb128 0x1a
- 1321 032b 1C030000 		.4byte	.LASF42
- 1322 032f 01       		.byte	0x1
- 1323 0330 8101     		.2byte	0x181
- 1324 0332 84000000 		.4byte	0x84
- 1325 0336 00       		.byte	0
- 1326 0337 1A       		.uleb128 0x1a
- 1327 0338 B7010000 		.4byte	.LASF43
- 1328 033c 01       		.byte	0x1
- 1329 033d 8201     		.2byte	0x182
- 1330 033f 99000000 		.4byte	0x99
- 1331 0343 04       		.byte	0x4
- 1332 0344 00       		.byte	0
- 1333 0345 06       		.uleb128 0x6
- 1334 0346 0C020000 		.4byte	.LASF44
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 33
+ 1277 02d6 01       		.byte	0x1
+ 1278 02d7 5501     		.2byte	0x155
+ 1279 02d9 00000000 		.4byte	.LFB7
+ 1280 02dd 28000000 		.4byte	.LFE7-.LFB7
+ 1281 02e1 01       		.uleb128 0x1
+ 1282 02e2 9C       		.byte	0x9c
+ 1283 02e3 06030000 		.4byte	0x306
+ 1284 02e7 17       		.uleb128 0x17
+ 1285 02e8 E2020000 		.4byte	.LASF40
+ 1286 02ec 01       		.byte	0x1
+ 1287 02ed 5501     		.2byte	0x155
+ 1288 02ef 8D000000 		.4byte	0x8d
+ 1289 02f3 02       		.uleb128 0x2
+ 1290 02f4 91       		.byte	0x91
+ 1291 02f5 6F       		.sleb128 -17
+ 1292 02f6 15       		.uleb128 0x15
+ 1293 02f7 59010000 		.4byte	.LASF41
+ 1294 02fb 01       		.byte	0x1
+ 1295 02fc 5701     		.2byte	0x157
+ 1296 02fe 8D000000 		.4byte	0x8d
+ 1297 0302 02       		.uleb128 0x2
+ 1298 0303 91       		.byte	0x91
+ 1299 0304 77       		.sleb128 -9
+ 1300 0305 00       		.byte	0
+ 1301 0306 18       		.uleb128 0x18
+ 1302 0307 34030000 		.4byte	.LASF55
+ 1303 030b 01       		.byte	0x1
+ 1304 030c 7701     		.2byte	0x177
+ 1305 030e 00000000 		.4byte	.LFB8
+ 1306 0312 EC010000 		.4byte	.LFE8-.LFB8
+ 1307 0316 01       		.uleb128 0x1
+ 1308 0317 9C       		.byte	0x9c
+ 1309 0318 11       		.uleb128 0x11
+ 1310 0319 18000000 		.4byte	.LBB3
+ 1311 031d DC000000 		.4byte	.LBE3-.LBB3
+ 1312 0321 19       		.uleb128 0x19
+ 1313 0322 06       		.byte	0x6
+ 1314 0323 01       		.byte	0x1
+ 1315 0324 8301     		.2byte	0x183
+ 1316 0326 45030000 		.4byte	0x345
+ 1317 032a 1A       		.uleb128 0x1a
+ 1318 032b 1C030000 		.4byte	.LASF42
+ 1319 032f 01       		.byte	0x1
+ 1320 0330 8401     		.2byte	0x184
+ 1321 0332 84000000 		.4byte	0x84
+ 1322 0336 00       		.byte	0
+ 1323 0337 1A       		.uleb128 0x1a
+ 1324 0338 B7010000 		.4byte	.LASF43
+ 1325 033c 01       		.byte	0x1
+ 1326 033d 8501     		.2byte	0x185
+ 1327 033f 99000000 		.4byte	0x99
+ 1328 0343 04       		.byte	0x4
+ 1329 0344 00       		.byte	0
+ 1330 0345 06       		.uleb128 0x6
+ 1331 0346 0C020000 		.4byte	.LASF44
+ 1332 034a 01       		.byte	0x1
+ 1333 034b 8601     		.2byte	0x186
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 33
 
 
- 1335 034a 01       		.byte	0x1
- 1336 034b 8301     		.2byte	0x183
- 1337 034d 21030000 		.4byte	0x321
- 1338 0351 19       		.uleb128 0x19
- 1339 0352 0A       		.byte	0xa
- 1340 0353 01       		.byte	0x1
- 1341 0354 8601     		.2byte	0x186
- 1342 0356 82030000 		.4byte	0x382
- 1343 035a 1A       		.uleb128 0x1a
- 1344 035b 29020000 		.4byte	.LASF26
- 1345 035f 01       		.byte	0x1
- 1346 0360 8701     		.2byte	0x187
- 1347 0362 84000000 		.4byte	0x84
- 1348 0366 00       		.byte	0
- 1349 0367 1B       		.uleb128 0x1b
- 1350 0368 73726300 		.ascii	"src\000"
- 1351 036c 01       		.byte	0x1
- 1352 036d 8801     		.2byte	0x188
- 1353 036f 8A010000 		.4byte	0x18a
- 1354 0373 04       		.byte	0x4
- 1355 0374 1A       		.uleb128 0x1a
- 1356 0375 B7010000 		.4byte	.LASF43
- 1357 0379 01       		.byte	0x1
- 1358 037a 8901     		.2byte	0x189
- 1359 037c 99000000 		.4byte	0x99
- 1360 0380 08       		.byte	0x8
- 1361 0381 00       		.byte	0
- 1362 0382 06       		.uleb128 0x6
- 1363 0383 98010000 		.4byte	.LASF45
- 1364 0387 01       		.byte	0x1
- 1365 0388 8A01     		.2byte	0x18a
- 1366 038a 51030000 		.4byte	0x351
- 1367 038e 1C       		.uleb128 0x1c
- 1368 038f 9E030000 		.4byte	0x39e
- 1369 0393 9E030000 		.4byte	0x39e
- 1370 0397 1D       		.uleb128 0x1d
- 1371 0398 7D000000 		.4byte	0x7d
- 1372 039c 05       		.byte	0x5
- 1373 039d 00       		.byte	0
- 1374 039e 13       		.uleb128 0x13
- 1375 039f 45030000 		.4byte	0x345
- 1376 03a3 15       		.uleb128 0x15
- 1377 03a4 19020000 		.4byte	.LASF46
- 1378 03a8 01       		.byte	0x1
- 1379 03a9 8C01     		.2byte	0x18c
- 1380 03ab B5030000 		.4byte	0x3b5
- 1381 03af 05       		.uleb128 0x5
- 1382 03b0 03       		.byte	0x3
- 1383 03b1 00000000 		.4byte	cfg_memset_list.5018
- 1384 03b5 13       		.uleb128 0x13
- 1385 03b6 8E030000 		.4byte	0x38e
- 1386 03ba 1C       		.uleb128 0x1c
- 1387 03bb CA030000 		.4byte	0x3ca
- 1388 03bf CA030000 		.4byte	0x3ca
- 1389 03c3 1D       		.uleb128 0x1d
- 1390 03c4 7D000000 		.4byte	0x7d
- 1391 03c8 00       		.byte	0
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 34
+ 1334 034d 21030000 		.4byte	0x321
+ 1335 0351 19       		.uleb128 0x19
+ 1336 0352 0A       		.byte	0xa
+ 1337 0353 01       		.byte	0x1
+ 1338 0354 8901     		.2byte	0x189
+ 1339 0356 82030000 		.4byte	0x382
+ 1340 035a 1A       		.uleb128 0x1a
+ 1341 035b 29020000 		.4byte	.LASF26
+ 1342 035f 01       		.byte	0x1
+ 1343 0360 8A01     		.2byte	0x18a
+ 1344 0362 84000000 		.4byte	0x84
+ 1345 0366 00       		.byte	0
+ 1346 0367 1B       		.uleb128 0x1b
+ 1347 0368 73726300 		.ascii	"src\000"
+ 1348 036c 01       		.byte	0x1
+ 1349 036d 8B01     		.2byte	0x18b
+ 1350 036f 8A010000 		.4byte	0x18a
+ 1351 0373 04       		.byte	0x4
+ 1352 0374 1A       		.uleb128 0x1a
+ 1353 0375 B7010000 		.4byte	.LASF43
+ 1354 0379 01       		.byte	0x1
+ 1355 037a 8C01     		.2byte	0x18c
+ 1356 037c 99000000 		.4byte	0x99
+ 1357 0380 08       		.byte	0x8
+ 1358 0381 00       		.byte	0
+ 1359 0382 06       		.uleb128 0x6
+ 1360 0383 98010000 		.4byte	.LASF45
+ 1361 0387 01       		.byte	0x1
+ 1362 0388 8D01     		.2byte	0x18d
+ 1363 038a 51030000 		.4byte	0x351
+ 1364 038e 1C       		.uleb128 0x1c
+ 1365 038f 9E030000 		.4byte	0x39e
+ 1366 0393 9E030000 		.4byte	0x39e
+ 1367 0397 1D       		.uleb128 0x1d
+ 1368 0398 7D000000 		.4byte	0x7d
+ 1369 039c 05       		.byte	0x5
+ 1370 039d 00       		.byte	0
+ 1371 039e 13       		.uleb128 0x13
+ 1372 039f 45030000 		.4byte	0x345
+ 1373 03a3 15       		.uleb128 0x15
+ 1374 03a4 19020000 		.4byte	.LASF46
+ 1375 03a8 01       		.byte	0x1
+ 1376 03a9 8F01     		.2byte	0x18f
+ 1377 03ab B5030000 		.4byte	0x3b5
+ 1378 03af 05       		.uleb128 0x5
+ 1379 03b0 03       		.byte	0x3
+ 1380 03b1 00000000 		.4byte	cfg_memset_list.5018
+ 1381 03b5 13       		.uleb128 0x13
+ 1382 03b6 8E030000 		.4byte	0x38e
+ 1383 03ba 1C       		.uleb128 0x1c
+ 1384 03bb CA030000 		.4byte	0x3ca
+ 1385 03bf CA030000 		.4byte	0x3ca
+ 1386 03c3 1D       		.uleb128 0x1d
+ 1387 03c4 7D000000 		.4byte	0x7d
+ 1388 03c8 01       		.byte	0x1
+ 1389 03c9 00       		.byte	0
+ 1390 03ca 13       		.uleb128 0x13
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 34
 
 
- 1392 03c9 00       		.byte	0
- 1393 03ca 13       		.uleb128 0x13
- 1394 03cb 82030000 		.4byte	0x382
- 1395 03cf 15       		.uleb128 0x15
- 1396 03d0 24030000 		.4byte	.LASF47
- 1397 03d4 01       		.byte	0x1
- 1398 03d5 9601     		.2byte	0x196
- 1399 03d7 E1030000 		.4byte	0x3e1
- 1400 03db 05       		.uleb128 0x5
- 1401 03dc 03       		.byte	0x3
- 1402 03dd 24000000 		.4byte	cfg_memcpy_list.5019
- 1403 03e1 13       		.uleb128 0x13
- 1404 03e2 BA030000 		.4byte	0x3ba
- 1405 03e6 1E       		.uleb128 0x1e
- 1406 03e7 6900     		.ascii	"i\000"
- 1407 03e9 01       		.byte	0x1
- 1408 03ea 9B01     		.2byte	0x19b
- 1409 03ec 8D000000 		.4byte	0x8d
- 1410 03f0 02       		.uleb128 0x2
- 1411 03f1 91       		.byte	0x91
- 1412 03f2 77       		.sleb128 -9
- 1413 03f3 1F       		.uleb128 0x1f
- 1414 03f4 1E000000 		.4byte	.LBB4
- 1415 03f8 22000000 		.4byte	.LBE4-.LBB4
- 1416 03fc 15040000 		.4byte	0x415
- 1417 0400 1E       		.uleb128 0x1e
- 1418 0401 6D7300   		.ascii	"ms\000"
- 1419 0404 01       		.byte	0x1
- 1420 0405 A001     		.2byte	0x1a0
- 1421 0407 0E040000 		.4byte	0x40e
- 1422 040b 02       		.uleb128 0x2
- 1423 040c 91       		.byte	0x91
- 1424 040d 70       		.sleb128 -16
- 1425 040e 0D       		.uleb128 0xd
- 1426 040f 04       		.byte	0x4
- 1427 0410 9E030000 		.4byte	0x39e
- 1428 0414 00       		.byte	0
- 1429 0415 11       		.uleb128 0x11
- 1430 0416 52000000 		.4byte	.LBB5
- 1431 041a 34000000 		.4byte	.LBE5-.LBB5
- 1432 041e 1E       		.uleb128 0x1e
- 1433 041f 6D6300   		.ascii	"mc\000"
- 1434 0422 01       		.byte	0x1
- 1435 0423 A701     		.2byte	0x1a7
- 1436 0425 2C040000 		.4byte	0x42c
- 1437 0429 02       		.uleb128 0x2
- 1438 042a 91       		.byte	0x91
- 1439 042b 6C       		.sleb128 -20
- 1440 042c 0D       		.uleb128 0xd
- 1441 042d 04       		.byte	0x4
- 1442 042e CA030000 		.4byte	0x3ca
- 1443 0432 15       		.uleb128 0x15
- 1444 0433 34020000 		.4byte	.LASF48
- 1445 0437 01       		.byte	0x1
- 1446 0438 A801     		.2byte	0x1a8
- 1447 043a 84000000 		.4byte	0x84
- 1448 043e 02       		.uleb128 0x2
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 35
+ 1391 03cb 82030000 		.4byte	0x382
+ 1392 03cf 15       		.uleb128 0x15
+ 1393 03d0 24030000 		.4byte	.LASF47
+ 1394 03d4 01       		.byte	0x1
+ 1395 03d5 9901     		.2byte	0x199
+ 1396 03d7 E1030000 		.4byte	0x3e1
+ 1397 03db 05       		.uleb128 0x5
+ 1398 03dc 03       		.byte	0x3
+ 1399 03dd 24000000 		.4byte	cfg_memcpy_list.5019
+ 1400 03e1 13       		.uleb128 0x13
+ 1401 03e2 BA030000 		.4byte	0x3ba
+ 1402 03e6 1E       		.uleb128 0x1e
+ 1403 03e7 6900     		.ascii	"i\000"
+ 1404 03e9 01       		.byte	0x1
+ 1405 03ea 9F01     		.2byte	0x19f
+ 1406 03ec 8D000000 		.4byte	0x8d
+ 1407 03f0 02       		.uleb128 0x2
+ 1408 03f1 91       		.byte	0x91
+ 1409 03f2 77       		.sleb128 -9
+ 1410 03f3 1F       		.uleb128 0x1f
+ 1411 03f4 1E000000 		.4byte	.LBB4
+ 1412 03f8 22000000 		.4byte	.LBE4-.LBB4
+ 1413 03fc 15040000 		.4byte	0x415
+ 1414 0400 1E       		.uleb128 0x1e
+ 1415 0401 6D7300   		.ascii	"ms\000"
+ 1416 0404 01       		.byte	0x1
+ 1417 0405 A401     		.2byte	0x1a4
+ 1418 0407 0E040000 		.4byte	0x40e
+ 1419 040b 02       		.uleb128 0x2
+ 1420 040c 91       		.byte	0x91
+ 1421 040d 70       		.sleb128 -16
+ 1422 040e 0D       		.uleb128 0xd
+ 1423 040f 04       		.byte	0x4
+ 1424 0410 9E030000 		.4byte	0x39e
+ 1425 0414 00       		.byte	0
+ 1426 0415 11       		.uleb128 0x11
+ 1427 0416 52000000 		.4byte	.LBB5
+ 1428 041a 34000000 		.4byte	.LBE5-.LBB5
+ 1429 041e 1E       		.uleb128 0x1e
+ 1430 041f 6D6300   		.ascii	"mc\000"
+ 1431 0422 01       		.byte	0x1
+ 1432 0423 AB01     		.2byte	0x1ab
+ 1433 0425 2C040000 		.4byte	0x42c
+ 1434 0429 02       		.uleb128 0x2
+ 1435 042a 91       		.byte	0x91
+ 1436 042b 6C       		.sleb128 -20
+ 1437 042c 0D       		.uleb128 0xd
+ 1438 042d 04       		.byte	0x4
+ 1439 042e CA030000 		.4byte	0x3ca
+ 1440 0432 15       		.uleb128 0x15
+ 1441 0433 34020000 		.4byte	.LASF48
+ 1442 0437 01       		.byte	0x1
+ 1443 0438 AC01     		.2byte	0x1ac
+ 1444 043a 84000000 		.4byte	0x84
+ 1445 043e 02       		.uleb128 0x2
+ 1446 043f 91       		.byte	0x91
+ 1447 0440 68       		.sleb128 -24
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 35
 
 
- 1449 043f 91       		.byte	0x91
- 1450 0440 68       		.sleb128 -24
- 1451 0441 15       		.uleb128 0x15
- 1452 0442 79020000 		.4byte	.LASF49
- 1453 0446 01       		.byte	0x1
- 1454 0447 A901     		.2byte	0x1a9
- 1455 0449 8A010000 		.4byte	0x18a
- 1456 044d 02       		.uleb128 0x2
- 1457 044e 91       		.byte	0x91
- 1458 044f 64       		.sleb128 -28
- 1459 0450 15       		.uleb128 0x15
- 1460 0451 75010000 		.4byte	.LASF50
- 1461 0455 01       		.byte	0x1
- 1462 0456 AA01     		.2byte	0x1aa
- 1463 0458 99000000 		.4byte	0x99
- 1464 045c 02       		.uleb128 0x2
- 1465 045d 91       		.byte	0x91
- 1466 045e 62       		.sleb128 -30
- 1467 045f 00       		.byte	0
- 1468 0460 00       		.byte	0
- 1469 0461 00       		.byte	0
- 1470 0462 00       		.byte	0
- 1471              		.section	.debug_abbrev,"",%progbits
- 1472              	.Ldebug_abbrev0:
- 1473 0000 01       		.uleb128 0x1
- 1474 0001 11       		.uleb128 0x11
- 1475 0002 01       		.byte	0x1
- 1476 0003 25       		.uleb128 0x25
- 1477 0004 0E       		.uleb128 0xe
- 1478 0005 13       		.uleb128 0x13
- 1479 0006 0B       		.uleb128 0xb
- 1480 0007 03       		.uleb128 0x3
- 1481 0008 0E       		.uleb128 0xe
- 1482 0009 1B       		.uleb128 0x1b
- 1483 000a 0E       		.uleb128 0xe
- 1484 000b 55       		.uleb128 0x55
- 1485 000c 17       		.uleb128 0x17
- 1486 000d 11       		.uleb128 0x11
- 1487 000e 01       		.uleb128 0x1
- 1488 000f 10       		.uleb128 0x10
- 1489 0010 17       		.uleb128 0x17
- 1490 0011 00       		.byte	0
- 1491 0012 00       		.byte	0
- 1492 0013 02       		.uleb128 0x2
- 1493 0014 24       		.uleb128 0x24
- 1494 0015 00       		.byte	0
- 1495 0016 0B       		.uleb128 0xb
- 1496 0017 0B       		.uleb128 0xb
- 1497 0018 3E       		.uleb128 0x3e
- 1498 0019 0B       		.uleb128 0xb
- 1499 001a 03       		.uleb128 0x3
- 1500 001b 08       		.uleb128 0x8
- 1501 001c 00       		.byte	0
- 1502 001d 00       		.byte	0
- 1503 001e 03       		.uleb128 0x3
- 1504 001f 16       		.uleb128 0x16
- 1505 0020 00       		.byte	0
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 36
+ 1448 0441 15       		.uleb128 0x15
+ 1449 0442 79020000 		.4byte	.LASF49
+ 1450 0446 01       		.byte	0x1
+ 1451 0447 AD01     		.2byte	0x1ad
+ 1452 0449 8A010000 		.4byte	0x18a
+ 1453 044d 02       		.uleb128 0x2
+ 1454 044e 91       		.byte	0x91
+ 1455 044f 64       		.sleb128 -28
+ 1456 0450 15       		.uleb128 0x15
+ 1457 0451 75010000 		.4byte	.LASF50
+ 1458 0455 01       		.byte	0x1
+ 1459 0456 AE01     		.2byte	0x1ae
+ 1460 0458 99000000 		.4byte	0x99
+ 1461 045c 02       		.uleb128 0x2
+ 1462 045d 91       		.byte	0x91
+ 1463 045e 62       		.sleb128 -30
+ 1464 045f 00       		.byte	0
+ 1465 0460 00       		.byte	0
+ 1466 0461 00       		.byte	0
+ 1467 0462 00       		.byte	0
+ 1468              		.section	.debug_abbrev,"",%progbits
+ 1469              	.Ldebug_abbrev0:
+ 1470 0000 01       		.uleb128 0x1
+ 1471 0001 11       		.uleb128 0x11
+ 1472 0002 01       		.byte	0x1
+ 1473 0003 25       		.uleb128 0x25
+ 1474 0004 0E       		.uleb128 0xe
+ 1475 0005 13       		.uleb128 0x13
+ 1476 0006 0B       		.uleb128 0xb
+ 1477 0007 03       		.uleb128 0x3
+ 1478 0008 0E       		.uleb128 0xe
+ 1479 0009 1B       		.uleb128 0x1b
+ 1480 000a 0E       		.uleb128 0xe
+ 1481 000b 55       		.uleb128 0x55
+ 1482 000c 17       		.uleb128 0x17
+ 1483 000d 11       		.uleb128 0x11
+ 1484 000e 01       		.uleb128 0x1
+ 1485 000f 10       		.uleb128 0x10
+ 1486 0010 17       		.uleb128 0x17
+ 1487 0011 00       		.byte	0
+ 1488 0012 00       		.byte	0
+ 1489 0013 02       		.uleb128 0x2
+ 1490 0014 24       		.uleb128 0x24
+ 1491 0015 00       		.byte	0
+ 1492 0016 0B       		.uleb128 0xb
+ 1493 0017 0B       		.uleb128 0xb
+ 1494 0018 3E       		.uleb128 0x3e
+ 1495 0019 0B       		.uleb128 0xb
+ 1496 001a 03       		.uleb128 0x3
+ 1497 001b 08       		.uleb128 0x8
+ 1498 001c 00       		.byte	0
+ 1499 001d 00       		.byte	0
+ 1500 001e 03       		.uleb128 0x3
+ 1501 001f 16       		.uleb128 0x16
+ 1502 0020 00       		.byte	0
+ 1503 0021 03       		.uleb128 0x3
+ 1504 0022 0E       		.uleb128 0xe
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 36
 
 
- 1506 0021 03       		.uleb128 0x3
- 1507 0022 0E       		.uleb128 0xe
- 1508 0023 3A       		.uleb128 0x3a
- 1509 0024 0B       		.uleb128 0xb
- 1510 0025 3B       		.uleb128 0x3b
- 1511 0026 0B       		.uleb128 0xb
- 1512 0027 49       		.uleb128 0x49
- 1513 0028 13       		.uleb128 0x13
- 1514 0029 00       		.byte	0
- 1515 002a 00       		.byte	0
- 1516 002b 04       		.uleb128 0x4
- 1517 002c 24       		.uleb128 0x24
- 1518 002d 00       		.byte	0
- 1519 002e 0B       		.uleb128 0xb
- 1520 002f 0B       		.uleb128 0xb
- 1521 0030 3E       		.uleb128 0x3e
- 1522 0031 0B       		.uleb128 0xb
- 1523 0032 03       		.uleb128 0x3
- 1524 0033 0E       		.uleb128 0xe
- 1525 0034 00       		.byte	0
- 1526 0035 00       		.byte	0
- 1527 0036 05       		.uleb128 0x5
- 1528 0037 0F       		.uleb128 0xf
- 1529 0038 00       		.byte	0
- 1530 0039 0B       		.uleb128 0xb
- 1531 003a 0B       		.uleb128 0xb
- 1532 003b 00       		.byte	0
- 1533 003c 00       		.byte	0
- 1534 003d 06       		.uleb128 0x6
- 1535 003e 16       		.uleb128 0x16
- 1536 003f 00       		.byte	0
- 1537 0040 03       		.uleb128 0x3
- 1538 0041 0E       		.uleb128 0xe
- 1539 0042 3A       		.uleb128 0x3a
- 1540 0043 0B       		.uleb128 0xb
- 1541 0044 3B       		.uleb128 0x3b
- 1542 0045 05       		.uleb128 0x5
- 1543 0046 49       		.uleb128 0x49
- 1544 0047 13       		.uleb128 0x13
- 1545 0048 00       		.byte	0
- 1546 0049 00       		.byte	0
- 1547 004a 07       		.uleb128 0x7
- 1548 004b 35       		.uleb128 0x35
- 1549 004c 00       		.byte	0
- 1550 004d 49       		.uleb128 0x49
- 1551 004e 13       		.uleb128 0x13
- 1552 004f 00       		.byte	0
- 1553 0050 00       		.byte	0
- 1554 0051 08       		.uleb128 0x8
- 1555 0052 13       		.uleb128 0x13
- 1556 0053 01       		.byte	0x1
- 1557 0054 0B       		.uleb128 0xb
- 1558 0055 0B       		.uleb128 0xb
- 1559 0056 3A       		.uleb128 0x3a
- 1560 0057 0B       		.uleb128 0xb
- 1561 0058 3B       		.uleb128 0x3b
- 1562 0059 0B       		.uleb128 0xb
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 37
+ 1505 0023 3A       		.uleb128 0x3a
+ 1506 0024 0B       		.uleb128 0xb
+ 1507 0025 3B       		.uleb128 0x3b
+ 1508 0026 0B       		.uleb128 0xb
+ 1509 0027 49       		.uleb128 0x49
+ 1510 0028 13       		.uleb128 0x13
+ 1511 0029 00       		.byte	0
+ 1512 002a 00       		.byte	0
+ 1513 002b 04       		.uleb128 0x4
+ 1514 002c 24       		.uleb128 0x24
+ 1515 002d 00       		.byte	0
+ 1516 002e 0B       		.uleb128 0xb
+ 1517 002f 0B       		.uleb128 0xb
+ 1518 0030 3E       		.uleb128 0x3e
+ 1519 0031 0B       		.uleb128 0xb
+ 1520 0032 03       		.uleb128 0x3
+ 1521 0033 0E       		.uleb128 0xe
+ 1522 0034 00       		.byte	0
+ 1523 0035 00       		.byte	0
+ 1524 0036 05       		.uleb128 0x5
+ 1525 0037 0F       		.uleb128 0xf
+ 1526 0038 00       		.byte	0
+ 1527 0039 0B       		.uleb128 0xb
+ 1528 003a 0B       		.uleb128 0xb
+ 1529 003b 00       		.byte	0
+ 1530 003c 00       		.byte	0
+ 1531 003d 06       		.uleb128 0x6
+ 1532 003e 16       		.uleb128 0x16
+ 1533 003f 00       		.byte	0
+ 1534 0040 03       		.uleb128 0x3
+ 1535 0041 0E       		.uleb128 0xe
+ 1536 0042 3A       		.uleb128 0x3a
+ 1537 0043 0B       		.uleb128 0xb
+ 1538 0044 3B       		.uleb128 0x3b
+ 1539 0045 05       		.uleb128 0x5
+ 1540 0046 49       		.uleb128 0x49
+ 1541 0047 13       		.uleb128 0x13
+ 1542 0048 00       		.byte	0
+ 1543 0049 00       		.byte	0
+ 1544 004a 07       		.uleb128 0x7
+ 1545 004b 35       		.uleb128 0x35
+ 1546 004c 00       		.byte	0
+ 1547 004d 49       		.uleb128 0x49
+ 1548 004e 13       		.uleb128 0x13
+ 1549 004f 00       		.byte	0
+ 1550 0050 00       		.byte	0
+ 1551 0051 08       		.uleb128 0x8
+ 1552 0052 13       		.uleb128 0x13
+ 1553 0053 01       		.byte	0x1
+ 1554 0054 0B       		.uleb128 0xb
+ 1555 0055 0B       		.uleb128 0xb
+ 1556 0056 3A       		.uleb128 0x3a
+ 1557 0057 0B       		.uleb128 0xb
+ 1558 0058 3B       		.uleb128 0x3b
+ 1559 0059 0B       		.uleb128 0xb
+ 1560 005a 01       		.uleb128 0x1
+ 1561 005b 13       		.uleb128 0x13
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 37
 
 
- 1563 005a 01       		.uleb128 0x1
- 1564 005b 13       		.uleb128 0x13
- 1565 005c 00       		.byte	0
- 1566 005d 00       		.byte	0
- 1567 005e 09       		.uleb128 0x9
- 1568 005f 0D       		.uleb128 0xd
- 1569 0060 00       		.byte	0
- 1570 0061 03       		.uleb128 0x3
- 1571 0062 0E       		.uleb128 0xe
- 1572 0063 3A       		.uleb128 0x3a
- 1573 0064 0B       		.uleb128 0xb
- 1574 0065 3B       		.uleb128 0x3b
- 1575 0066 0B       		.uleb128 0xb
- 1576 0067 49       		.uleb128 0x49
- 1577 0068 13       		.uleb128 0x13
- 1578 0069 38       		.uleb128 0x38
- 1579 006a 0B       		.uleb128 0xb
- 1580 006b 00       		.byte	0
- 1581 006c 00       		.byte	0
- 1582 006d 0A       		.uleb128 0xa
- 1583 006e 2E       		.uleb128 0x2e
- 1584 006f 01       		.byte	0x1
- 1585 0070 03       		.uleb128 0x3
- 1586 0071 0E       		.uleb128 0xe
- 1587 0072 3A       		.uleb128 0x3a
- 1588 0073 0B       		.uleb128 0xb
- 1589 0074 3B       		.uleb128 0x3b
- 1590 0075 0B       		.uleb128 0xb
- 1591 0076 27       		.uleb128 0x27
- 1592 0077 19       		.uleb128 0x19
- 1593 0078 11       		.uleb128 0x11
- 1594 0079 01       		.uleb128 0x1
- 1595 007a 12       		.uleb128 0x12
- 1596 007b 06       		.uleb128 0x6
- 1597 007c 40       		.uleb128 0x40
- 1598 007d 18       		.uleb128 0x18
- 1599 007e 9642     		.uleb128 0x2116
- 1600 0080 19       		.uleb128 0x19
- 1601 0081 01       		.uleb128 0x1
- 1602 0082 13       		.uleb128 0x13
- 1603 0083 00       		.byte	0
- 1604 0084 00       		.byte	0
- 1605 0085 0B       		.uleb128 0xb
- 1606 0086 05       		.uleb128 0x5
- 1607 0087 00       		.byte	0
- 1608 0088 03       		.uleb128 0x3
- 1609 0089 08       		.uleb128 0x8
- 1610 008a 3A       		.uleb128 0x3a
- 1611 008b 0B       		.uleb128 0xb
- 1612 008c 3B       		.uleb128 0x3b
- 1613 008d 0B       		.uleb128 0xb
- 1614 008e 49       		.uleb128 0x49
- 1615 008f 13       		.uleb128 0x13
- 1616 0090 02       		.uleb128 0x2
- 1617 0091 18       		.uleb128 0x18
- 1618 0092 00       		.byte	0
- 1619 0093 00       		.byte	0
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 38
+ 1562 005c 00       		.byte	0
+ 1563 005d 00       		.byte	0
+ 1564 005e 09       		.uleb128 0x9
+ 1565 005f 0D       		.uleb128 0xd
+ 1566 0060 00       		.byte	0
+ 1567 0061 03       		.uleb128 0x3
+ 1568 0062 0E       		.uleb128 0xe
+ 1569 0063 3A       		.uleb128 0x3a
+ 1570 0064 0B       		.uleb128 0xb
+ 1571 0065 3B       		.uleb128 0x3b
+ 1572 0066 0B       		.uleb128 0xb
+ 1573 0067 49       		.uleb128 0x49
+ 1574 0068 13       		.uleb128 0x13
+ 1575 0069 38       		.uleb128 0x38
+ 1576 006a 0B       		.uleb128 0xb
+ 1577 006b 00       		.byte	0
+ 1578 006c 00       		.byte	0
+ 1579 006d 0A       		.uleb128 0xa
+ 1580 006e 2E       		.uleb128 0x2e
+ 1581 006f 01       		.byte	0x1
+ 1582 0070 03       		.uleb128 0x3
+ 1583 0071 0E       		.uleb128 0xe
+ 1584 0072 3A       		.uleb128 0x3a
+ 1585 0073 0B       		.uleb128 0xb
+ 1586 0074 3B       		.uleb128 0x3b
+ 1587 0075 0B       		.uleb128 0xb
+ 1588 0076 27       		.uleb128 0x27
+ 1589 0077 19       		.uleb128 0x19
+ 1590 0078 11       		.uleb128 0x11
+ 1591 0079 01       		.uleb128 0x1
+ 1592 007a 12       		.uleb128 0x12
+ 1593 007b 06       		.uleb128 0x6
+ 1594 007c 40       		.uleb128 0x40
+ 1595 007d 18       		.uleb128 0x18
+ 1596 007e 9642     		.uleb128 0x2116
+ 1597 0080 19       		.uleb128 0x19
+ 1598 0081 01       		.uleb128 0x1
+ 1599 0082 13       		.uleb128 0x13
+ 1600 0083 00       		.byte	0
+ 1601 0084 00       		.byte	0
+ 1602 0085 0B       		.uleb128 0xb
+ 1603 0086 05       		.uleb128 0x5
+ 1604 0087 00       		.byte	0
+ 1605 0088 03       		.uleb128 0x3
+ 1606 0089 08       		.uleb128 0x8
+ 1607 008a 3A       		.uleb128 0x3a
+ 1608 008b 0B       		.uleb128 0xb
+ 1609 008c 3B       		.uleb128 0x3b
+ 1610 008d 0B       		.uleb128 0xb
+ 1611 008e 49       		.uleb128 0x49
+ 1612 008f 13       		.uleb128 0x13
+ 1613 0090 02       		.uleb128 0x2
+ 1614 0091 18       		.uleb128 0x18
+ 1615 0092 00       		.byte	0
+ 1616 0093 00       		.byte	0
+ 1617 0094 0C       		.uleb128 0xc
+ 1618 0095 05       		.uleb128 0x5
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 38
 
 
- 1620 0094 0C       		.uleb128 0xc
- 1621 0095 05       		.uleb128 0x5
- 1622 0096 00       		.byte	0
- 1623 0097 03       		.uleb128 0x3
- 1624 0098 0E       		.uleb128 0xe
- 1625 0099 3A       		.uleb128 0x3a
- 1626 009a 0B       		.uleb128 0xb
- 1627 009b 3B       		.uleb128 0x3b
- 1628 009c 0B       		.uleb128 0xb
- 1629 009d 49       		.uleb128 0x49
- 1630 009e 13       		.uleb128 0x13
- 1631 009f 02       		.uleb128 0x2
- 1632 00a0 18       		.uleb128 0x18
- 1633 00a1 00       		.byte	0
- 1634 00a2 00       		.byte	0
- 1635 00a3 0D       		.uleb128 0xd
- 1636 00a4 0F       		.uleb128 0xf
- 1637 00a5 00       		.byte	0
- 1638 00a6 0B       		.uleb128 0xb
- 1639 00a7 0B       		.uleb128 0xb
- 1640 00a8 49       		.uleb128 0x49
- 1641 00a9 13       		.uleb128 0x13
- 1642 00aa 00       		.byte	0
- 1643 00ab 00       		.byte	0
- 1644 00ac 0E       		.uleb128 0xe
- 1645 00ad 26       		.uleb128 0x26
- 1646 00ae 00       		.byte	0
- 1647 00af 00       		.byte	0
- 1648 00b0 00       		.byte	0
- 1649 00b1 0F       		.uleb128 0xf
- 1650 00b2 2E       		.uleb128 0x2e
- 1651 00b3 01       		.byte	0x1
- 1652 00b4 03       		.uleb128 0x3
- 1653 00b5 0E       		.uleb128 0xe
- 1654 00b6 3A       		.uleb128 0x3a
- 1655 00b7 0B       		.uleb128 0xb
- 1656 00b8 3B       		.uleb128 0x3b
- 1657 00b9 0B       		.uleb128 0xb
- 1658 00ba 27       		.uleb128 0x27
- 1659 00bb 19       		.uleb128 0x19
- 1660 00bc 11       		.uleb128 0x11
- 1661 00bd 01       		.uleb128 0x1
- 1662 00be 12       		.uleb128 0x12
- 1663 00bf 06       		.uleb128 0x6
- 1664 00c0 40       		.uleb128 0x40
- 1665 00c1 18       		.uleb128 0x18
- 1666 00c2 9742     		.uleb128 0x2117
- 1667 00c4 19       		.uleb128 0x19
- 1668 00c5 01       		.uleb128 0x1
- 1669 00c6 13       		.uleb128 0x13
- 1670 00c7 00       		.byte	0
- 1671 00c8 00       		.byte	0
- 1672 00c9 10       		.uleb128 0x10
- 1673 00ca 34       		.uleb128 0x34
- 1674 00cb 00       		.byte	0
- 1675 00cc 03       		.uleb128 0x3
- 1676 00cd 08       		.uleb128 0x8
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 39
+ 1619 0096 00       		.byte	0
+ 1620 0097 03       		.uleb128 0x3
+ 1621 0098 0E       		.uleb128 0xe
+ 1622 0099 3A       		.uleb128 0x3a
+ 1623 009a 0B       		.uleb128 0xb
+ 1624 009b 3B       		.uleb128 0x3b
+ 1625 009c 0B       		.uleb128 0xb
+ 1626 009d 49       		.uleb128 0x49
+ 1627 009e 13       		.uleb128 0x13
+ 1628 009f 02       		.uleb128 0x2
+ 1629 00a0 18       		.uleb128 0x18
+ 1630 00a1 00       		.byte	0
+ 1631 00a2 00       		.byte	0
+ 1632 00a3 0D       		.uleb128 0xd
+ 1633 00a4 0F       		.uleb128 0xf
+ 1634 00a5 00       		.byte	0
+ 1635 00a6 0B       		.uleb128 0xb
+ 1636 00a7 0B       		.uleb128 0xb
+ 1637 00a8 49       		.uleb128 0x49
+ 1638 00a9 13       		.uleb128 0x13
+ 1639 00aa 00       		.byte	0
+ 1640 00ab 00       		.byte	0
+ 1641 00ac 0E       		.uleb128 0xe
+ 1642 00ad 26       		.uleb128 0x26
+ 1643 00ae 00       		.byte	0
+ 1644 00af 00       		.byte	0
+ 1645 00b0 00       		.byte	0
+ 1646 00b1 0F       		.uleb128 0xf
+ 1647 00b2 2E       		.uleb128 0x2e
+ 1648 00b3 01       		.byte	0x1
+ 1649 00b4 03       		.uleb128 0x3
+ 1650 00b5 0E       		.uleb128 0xe
+ 1651 00b6 3A       		.uleb128 0x3a
+ 1652 00b7 0B       		.uleb128 0xb
+ 1653 00b8 3B       		.uleb128 0x3b
+ 1654 00b9 0B       		.uleb128 0xb
+ 1655 00ba 27       		.uleb128 0x27
+ 1656 00bb 19       		.uleb128 0x19
+ 1657 00bc 11       		.uleb128 0x11
+ 1658 00bd 01       		.uleb128 0x1
+ 1659 00be 12       		.uleb128 0x12
+ 1660 00bf 06       		.uleb128 0x6
+ 1661 00c0 40       		.uleb128 0x40
+ 1662 00c1 18       		.uleb128 0x18
+ 1663 00c2 9742     		.uleb128 0x2117
+ 1664 00c4 19       		.uleb128 0x19
+ 1665 00c5 01       		.uleb128 0x1
+ 1666 00c6 13       		.uleb128 0x13
+ 1667 00c7 00       		.byte	0
+ 1668 00c8 00       		.byte	0
+ 1669 00c9 10       		.uleb128 0x10
+ 1670 00ca 34       		.uleb128 0x34
+ 1671 00cb 00       		.byte	0
+ 1672 00cc 03       		.uleb128 0x3
+ 1673 00cd 08       		.uleb128 0x8
+ 1674 00ce 3A       		.uleb128 0x3a
+ 1675 00cf 0B       		.uleb128 0xb
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 39
 
 
- 1677 00ce 3A       		.uleb128 0x3a
- 1678 00cf 0B       		.uleb128 0xb
- 1679 00d0 3B       		.uleb128 0x3b
- 1680 00d1 0B       		.uleb128 0xb
- 1681 00d2 49       		.uleb128 0x49
- 1682 00d3 13       		.uleb128 0x13
- 1683 00d4 02       		.uleb128 0x2
- 1684 00d5 18       		.uleb128 0x18
- 1685 00d6 00       		.byte	0
- 1686 00d7 00       		.byte	0
- 1687 00d8 11       		.uleb128 0x11
- 1688 00d9 0B       		.uleb128 0xb
- 1689 00da 01       		.byte	0x1
- 1690 00db 11       		.uleb128 0x11
- 1691 00dc 01       		.uleb128 0x1
- 1692 00dd 12       		.uleb128 0x12
- 1693 00de 06       		.uleb128 0x6
- 1694 00df 00       		.byte	0
- 1695 00e0 00       		.byte	0
- 1696 00e1 12       		.uleb128 0x12
- 1697 00e2 34       		.uleb128 0x34
- 1698 00e3 00       		.byte	0
- 1699 00e4 03       		.uleb128 0x3
- 1700 00e5 0E       		.uleb128 0xe
- 1701 00e6 3A       		.uleb128 0x3a
- 1702 00e7 0B       		.uleb128 0xb
- 1703 00e8 3B       		.uleb128 0x3b
- 1704 00e9 0B       		.uleb128 0xb
- 1705 00ea 49       		.uleb128 0x49
- 1706 00eb 13       		.uleb128 0x13
- 1707 00ec 02       		.uleb128 0x2
- 1708 00ed 18       		.uleb128 0x18
- 1709 00ee 00       		.byte	0
- 1710 00ef 00       		.byte	0
- 1711 00f0 13       		.uleb128 0x13
- 1712 00f1 26       		.uleb128 0x26
- 1713 00f2 00       		.byte	0
- 1714 00f3 49       		.uleb128 0x49
- 1715 00f4 13       		.uleb128 0x13
- 1716 00f5 00       		.byte	0
- 1717 00f6 00       		.byte	0
- 1718 00f7 14       		.uleb128 0x14
- 1719 00f8 2E       		.uleb128 0x2e
- 1720 00f9 01       		.byte	0x1
- 1721 00fa 03       		.uleb128 0x3
- 1722 00fb 0E       		.uleb128 0xe
- 1723 00fc 3A       		.uleb128 0x3a
- 1724 00fd 0B       		.uleb128 0xb
- 1725 00fe 3B       		.uleb128 0x3b
- 1726 00ff 05       		.uleb128 0x5
- 1727 0100 27       		.uleb128 0x27
- 1728 0101 19       		.uleb128 0x19
- 1729 0102 11       		.uleb128 0x11
- 1730 0103 01       		.uleb128 0x1
- 1731 0104 12       		.uleb128 0x12
- 1732 0105 06       		.uleb128 0x6
- 1733 0106 40       		.uleb128 0x40
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 40
+ 1676 00d0 3B       		.uleb128 0x3b
+ 1677 00d1 0B       		.uleb128 0xb
+ 1678 00d2 49       		.uleb128 0x49
+ 1679 00d3 13       		.uleb128 0x13
+ 1680 00d4 02       		.uleb128 0x2
+ 1681 00d5 18       		.uleb128 0x18
+ 1682 00d6 00       		.byte	0
+ 1683 00d7 00       		.byte	0
+ 1684 00d8 11       		.uleb128 0x11
+ 1685 00d9 0B       		.uleb128 0xb
+ 1686 00da 01       		.byte	0x1
+ 1687 00db 11       		.uleb128 0x11
+ 1688 00dc 01       		.uleb128 0x1
+ 1689 00dd 12       		.uleb128 0x12
+ 1690 00de 06       		.uleb128 0x6
+ 1691 00df 00       		.byte	0
+ 1692 00e0 00       		.byte	0
+ 1693 00e1 12       		.uleb128 0x12
+ 1694 00e2 34       		.uleb128 0x34
+ 1695 00e3 00       		.byte	0
+ 1696 00e4 03       		.uleb128 0x3
+ 1697 00e5 0E       		.uleb128 0xe
+ 1698 00e6 3A       		.uleb128 0x3a
+ 1699 00e7 0B       		.uleb128 0xb
+ 1700 00e8 3B       		.uleb128 0x3b
+ 1701 00e9 0B       		.uleb128 0xb
+ 1702 00ea 49       		.uleb128 0x49
+ 1703 00eb 13       		.uleb128 0x13
+ 1704 00ec 02       		.uleb128 0x2
+ 1705 00ed 18       		.uleb128 0x18
+ 1706 00ee 00       		.byte	0
+ 1707 00ef 00       		.byte	0
+ 1708 00f0 13       		.uleb128 0x13
+ 1709 00f1 26       		.uleb128 0x26
+ 1710 00f2 00       		.byte	0
+ 1711 00f3 49       		.uleb128 0x49
+ 1712 00f4 13       		.uleb128 0x13
+ 1713 00f5 00       		.byte	0
+ 1714 00f6 00       		.byte	0
+ 1715 00f7 14       		.uleb128 0x14
+ 1716 00f8 2E       		.uleb128 0x2e
+ 1717 00f9 01       		.byte	0x1
+ 1718 00fa 03       		.uleb128 0x3
+ 1719 00fb 0E       		.uleb128 0xe
+ 1720 00fc 3A       		.uleb128 0x3a
+ 1721 00fd 0B       		.uleb128 0xb
+ 1722 00fe 3B       		.uleb128 0x3b
+ 1723 00ff 05       		.uleb128 0x5
+ 1724 0100 27       		.uleb128 0x27
+ 1725 0101 19       		.uleb128 0x19
+ 1726 0102 11       		.uleb128 0x11
+ 1727 0103 01       		.uleb128 0x1
+ 1728 0104 12       		.uleb128 0x12
+ 1729 0105 06       		.uleb128 0x6
+ 1730 0106 40       		.uleb128 0x40
+ 1731 0107 18       		.uleb128 0x18
+ 1732 0108 9742     		.uleb128 0x2117
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 40
 
 
- 1734 0107 18       		.uleb128 0x18
- 1735 0108 9742     		.uleb128 0x2117
- 1736 010a 19       		.uleb128 0x19
- 1737 010b 01       		.uleb128 0x1
- 1738 010c 13       		.uleb128 0x13
- 1739 010d 00       		.byte	0
- 1740 010e 00       		.byte	0
- 1741 010f 15       		.uleb128 0x15
- 1742 0110 34       		.uleb128 0x34
- 1743 0111 00       		.byte	0
- 1744 0112 03       		.uleb128 0x3
- 1745 0113 0E       		.uleb128 0xe
- 1746 0114 3A       		.uleb128 0x3a
- 1747 0115 0B       		.uleb128 0xb
- 1748 0116 3B       		.uleb128 0x3b
- 1749 0117 05       		.uleb128 0x5
- 1750 0118 49       		.uleb128 0x49
- 1751 0119 13       		.uleb128 0x13
- 1752 011a 02       		.uleb128 0x2
- 1753 011b 18       		.uleb128 0x18
- 1754 011c 00       		.byte	0
- 1755 011d 00       		.byte	0
- 1756 011e 16       		.uleb128 0x16
- 1757 011f 2E       		.uleb128 0x2e
- 1758 0120 01       		.byte	0x1
- 1759 0121 3F       		.uleb128 0x3f
- 1760 0122 19       		.uleb128 0x19
- 1761 0123 03       		.uleb128 0x3
- 1762 0124 0E       		.uleb128 0xe
- 1763 0125 3A       		.uleb128 0x3a
- 1764 0126 0B       		.uleb128 0xb
- 1765 0127 3B       		.uleb128 0x3b
- 1766 0128 05       		.uleb128 0x5
- 1767 0129 27       		.uleb128 0x27
- 1768 012a 19       		.uleb128 0x19
- 1769 012b 11       		.uleb128 0x11
- 1770 012c 01       		.uleb128 0x1
- 1771 012d 12       		.uleb128 0x12
- 1772 012e 06       		.uleb128 0x6
- 1773 012f 40       		.uleb128 0x40
- 1774 0130 18       		.uleb128 0x18
- 1775 0131 9742     		.uleb128 0x2117
- 1776 0133 19       		.uleb128 0x19
- 1777 0134 01       		.uleb128 0x1
- 1778 0135 13       		.uleb128 0x13
- 1779 0136 00       		.byte	0
- 1780 0137 00       		.byte	0
- 1781 0138 17       		.uleb128 0x17
- 1782 0139 05       		.uleb128 0x5
- 1783 013a 00       		.byte	0
- 1784 013b 03       		.uleb128 0x3
- 1785 013c 0E       		.uleb128 0xe
- 1786 013d 3A       		.uleb128 0x3a
- 1787 013e 0B       		.uleb128 0xb
- 1788 013f 3B       		.uleb128 0x3b
- 1789 0140 05       		.uleb128 0x5
- 1790 0141 49       		.uleb128 0x49
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 41
+ 1733 010a 19       		.uleb128 0x19
+ 1734 010b 01       		.uleb128 0x1
+ 1735 010c 13       		.uleb128 0x13
+ 1736 010d 00       		.byte	0
+ 1737 010e 00       		.byte	0
+ 1738 010f 15       		.uleb128 0x15
+ 1739 0110 34       		.uleb128 0x34
+ 1740 0111 00       		.byte	0
+ 1741 0112 03       		.uleb128 0x3
+ 1742 0113 0E       		.uleb128 0xe
+ 1743 0114 3A       		.uleb128 0x3a
+ 1744 0115 0B       		.uleb128 0xb
+ 1745 0116 3B       		.uleb128 0x3b
+ 1746 0117 05       		.uleb128 0x5
+ 1747 0118 49       		.uleb128 0x49
+ 1748 0119 13       		.uleb128 0x13
+ 1749 011a 02       		.uleb128 0x2
+ 1750 011b 18       		.uleb128 0x18
+ 1751 011c 00       		.byte	0
+ 1752 011d 00       		.byte	0
+ 1753 011e 16       		.uleb128 0x16
+ 1754 011f 2E       		.uleb128 0x2e
+ 1755 0120 01       		.byte	0x1
+ 1756 0121 3F       		.uleb128 0x3f
+ 1757 0122 19       		.uleb128 0x19
+ 1758 0123 03       		.uleb128 0x3
+ 1759 0124 0E       		.uleb128 0xe
+ 1760 0125 3A       		.uleb128 0x3a
+ 1761 0126 0B       		.uleb128 0xb
+ 1762 0127 3B       		.uleb128 0x3b
+ 1763 0128 05       		.uleb128 0x5
+ 1764 0129 27       		.uleb128 0x27
+ 1765 012a 19       		.uleb128 0x19
+ 1766 012b 11       		.uleb128 0x11
+ 1767 012c 01       		.uleb128 0x1
+ 1768 012d 12       		.uleb128 0x12
+ 1769 012e 06       		.uleb128 0x6
+ 1770 012f 40       		.uleb128 0x40
+ 1771 0130 18       		.uleb128 0x18
+ 1772 0131 9742     		.uleb128 0x2117
+ 1773 0133 19       		.uleb128 0x19
+ 1774 0134 01       		.uleb128 0x1
+ 1775 0135 13       		.uleb128 0x13
+ 1776 0136 00       		.byte	0
+ 1777 0137 00       		.byte	0
+ 1778 0138 17       		.uleb128 0x17
+ 1779 0139 05       		.uleb128 0x5
+ 1780 013a 00       		.byte	0
+ 1781 013b 03       		.uleb128 0x3
+ 1782 013c 0E       		.uleb128 0xe
+ 1783 013d 3A       		.uleb128 0x3a
+ 1784 013e 0B       		.uleb128 0xb
+ 1785 013f 3B       		.uleb128 0x3b
+ 1786 0140 05       		.uleb128 0x5
+ 1787 0141 49       		.uleb128 0x49
+ 1788 0142 13       		.uleb128 0x13
+ 1789 0143 02       		.uleb128 0x2
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 41
 
 
- 1791 0142 13       		.uleb128 0x13
- 1792 0143 02       		.uleb128 0x2
- 1793 0144 18       		.uleb128 0x18
- 1794 0145 00       		.byte	0
- 1795 0146 00       		.byte	0
- 1796 0147 18       		.uleb128 0x18
- 1797 0148 2E       		.uleb128 0x2e
- 1798 0149 01       		.byte	0x1
- 1799 014a 3F       		.uleb128 0x3f
- 1800 014b 19       		.uleb128 0x19
- 1801 014c 03       		.uleb128 0x3
- 1802 014d 0E       		.uleb128 0xe
- 1803 014e 3A       		.uleb128 0x3a
- 1804 014f 0B       		.uleb128 0xb
- 1805 0150 3B       		.uleb128 0x3b
- 1806 0151 05       		.uleb128 0x5
- 1807 0152 27       		.uleb128 0x27
- 1808 0153 19       		.uleb128 0x19
- 1809 0154 11       		.uleb128 0x11
- 1810 0155 01       		.uleb128 0x1
- 1811 0156 12       		.uleb128 0x12
- 1812 0157 06       		.uleb128 0x6
- 1813 0158 40       		.uleb128 0x40
- 1814 0159 18       		.uleb128 0x18
- 1815 015a 9642     		.uleb128 0x2116
- 1816 015c 19       		.uleb128 0x19
- 1817 015d 00       		.byte	0
- 1818 015e 00       		.byte	0
- 1819 015f 19       		.uleb128 0x19
- 1820 0160 13       		.uleb128 0x13
- 1821 0161 01       		.byte	0x1
- 1822 0162 0B       		.uleb128 0xb
- 1823 0163 0B       		.uleb128 0xb
- 1824 0164 3A       		.uleb128 0x3a
- 1825 0165 0B       		.uleb128 0xb
- 1826 0166 3B       		.uleb128 0x3b
- 1827 0167 05       		.uleb128 0x5
- 1828 0168 01       		.uleb128 0x1
- 1829 0169 13       		.uleb128 0x13
- 1830 016a 00       		.byte	0
- 1831 016b 00       		.byte	0
- 1832 016c 1A       		.uleb128 0x1a
- 1833 016d 0D       		.uleb128 0xd
- 1834 016e 00       		.byte	0
- 1835 016f 03       		.uleb128 0x3
- 1836 0170 0E       		.uleb128 0xe
- 1837 0171 3A       		.uleb128 0x3a
- 1838 0172 0B       		.uleb128 0xb
- 1839 0173 3B       		.uleb128 0x3b
- 1840 0174 05       		.uleb128 0x5
- 1841 0175 49       		.uleb128 0x49
- 1842 0176 13       		.uleb128 0x13
- 1843 0177 38       		.uleb128 0x38
- 1844 0178 0B       		.uleb128 0xb
- 1845 0179 00       		.byte	0
- 1846 017a 00       		.byte	0
- 1847 017b 1B       		.uleb128 0x1b
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 42
+ 1790 0144 18       		.uleb128 0x18
+ 1791 0145 00       		.byte	0
+ 1792 0146 00       		.byte	0
+ 1793 0147 18       		.uleb128 0x18
+ 1794 0148 2E       		.uleb128 0x2e
+ 1795 0149 01       		.byte	0x1
+ 1796 014a 3F       		.uleb128 0x3f
+ 1797 014b 19       		.uleb128 0x19
+ 1798 014c 03       		.uleb128 0x3
+ 1799 014d 0E       		.uleb128 0xe
+ 1800 014e 3A       		.uleb128 0x3a
+ 1801 014f 0B       		.uleb128 0xb
+ 1802 0150 3B       		.uleb128 0x3b
+ 1803 0151 05       		.uleb128 0x5
+ 1804 0152 27       		.uleb128 0x27
+ 1805 0153 19       		.uleb128 0x19
+ 1806 0154 11       		.uleb128 0x11
+ 1807 0155 01       		.uleb128 0x1
+ 1808 0156 12       		.uleb128 0x12
+ 1809 0157 06       		.uleb128 0x6
+ 1810 0158 40       		.uleb128 0x40
+ 1811 0159 18       		.uleb128 0x18
+ 1812 015a 9642     		.uleb128 0x2116
+ 1813 015c 19       		.uleb128 0x19
+ 1814 015d 00       		.byte	0
+ 1815 015e 00       		.byte	0
+ 1816 015f 19       		.uleb128 0x19
+ 1817 0160 13       		.uleb128 0x13
+ 1818 0161 01       		.byte	0x1
+ 1819 0162 0B       		.uleb128 0xb
+ 1820 0163 0B       		.uleb128 0xb
+ 1821 0164 3A       		.uleb128 0x3a
+ 1822 0165 0B       		.uleb128 0xb
+ 1823 0166 3B       		.uleb128 0x3b
+ 1824 0167 05       		.uleb128 0x5
+ 1825 0168 01       		.uleb128 0x1
+ 1826 0169 13       		.uleb128 0x13
+ 1827 016a 00       		.byte	0
+ 1828 016b 00       		.byte	0
+ 1829 016c 1A       		.uleb128 0x1a
+ 1830 016d 0D       		.uleb128 0xd
+ 1831 016e 00       		.byte	0
+ 1832 016f 03       		.uleb128 0x3
+ 1833 0170 0E       		.uleb128 0xe
+ 1834 0171 3A       		.uleb128 0x3a
+ 1835 0172 0B       		.uleb128 0xb
+ 1836 0173 3B       		.uleb128 0x3b
+ 1837 0174 05       		.uleb128 0x5
+ 1838 0175 49       		.uleb128 0x49
+ 1839 0176 13       		.uleb128 0x13
+ 1840 0177 38       		.uleb128 0x38
+ 1841 0178 0B       		.uleb128 0xb
+ 1842 0179 00       		.byte	0
+ 1843 017a 00       		.byte	0
+ 1844 017b 1B       		.uleb128 0x1b
+ 1845 017c 0D       		.uleb128 0xd
+ 1846 017d 00       		.byte	0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 42
 
 
- 1848 017c 0D       		.uleb128 0xd
- 1849 017d 00       		.byte	0
- 1850 017e 03       		.uleb128 0x3
- 1851 017f 08       		.uleb128 0x8
- 1852 0180 3A       		.uleb128 0x3a
- 1853 0181 0B       		.uleb128 0xb
- 1854 0182 3B       		.uleb128 0x3b
- 1855 0183 05       		.uleb128 0x5
- 1856 0184 49       		.uleb128 0x49
- 1857 0185 13       		.uleb128 0x13
- 1858 0186 38       		.uleb128 0x38
- 1859 0187 0B       		.uleb128 0xb
- 1860 0188 00       		.byte	0
- 1861 0189 00       		.byte	0
- 1862 018a 1C       		.uleb128 0x1c
- 1863 018b 01       		.uleb128 0x1
- 1864 018c 01       		.byte	0x1
- 1865 018d 49       		.uleb128 0x49
- 1866 018e 13       		.uleb128 0x13
- 1867 018f 01       		.uleb128 0x1
- 1868 0190 13       		.uleb128 0x13
- 1869 0191 00       		.byte	0
- 1870 0192 00       		.byte	0
- 1871 0193 1D       		.uleb128 0x1d
- 1872 0194 21       		.uleb128 0x21
- 1873 0195 00       		.byte	0
- 1874 0196 49       		.uleb128 0x49
- 1875 0197 13       		.uleb128 0x13
- 1876 0198 2F       		.uleb128 0x2f
- 1877 0199 0B       		.uleb128 0xb
- 1878 019a 00       		.byte	0
- 1879 019b 00       		.byte	0
- 1880 019c 1E       		.uleb128 0x1e
- 1881 019d 34       		.uleb128 0x34
- 1882 019e 00       		.byte	0
- 1883 019f 03       		.uleb128 0x3
- 1884 01a0 08       		.uleb128 0x8
- 1885 01a1 3A       		.uleb128 0x3a
- 1886 01a2 0B       		.uleb128 0xb
- 1887 01a3 3B       		.uleb128 0x3b
- 1888 01a4 05       		.uleb128 0x5
- 1889 01a5 49       		.uleb128 0x49
- 1890 01a6 13       		.uleb128 0x13
- 1891 01a7 02       		.uleb128 0x2
- 1892 01a8 18       		.uleb128 0x18
- 1893 01a9 00       		.byte	0
- 1894 01aa 00       		.byte	0
- 1895 01ab 1F       		.uleb128 0x1f
- 1896 01ac 0B       		.uleb128 0xb
- 1897 01ad 01       		.byte	0x1
- 1898 01ae 11       		.uleb128 0x11
- 1899 01af 01       		.uleb128 0x1
- 1900 01b0 12       		.uleb128 0x12
- 1901 01b1 06       		.uleb128 0x6
- 1902 01b2 01       		.uleb128 0x1
- 1903 01b3 13       		.uleb128 0x13
- 1904 01b4 00       		.byte	0
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 43
+ 1847 017e 03       		.uleb128 0x3
+ 1848 017f 08       		.uleb128 0x8
+ 1849 0180 3A       		.uleb128 0x3a
+ 1850 0181 0B       		.uleb128 0xb
+ 1851 0182 3B       		.uleb128 0x3b
+ 1852 0183 05       		.uleb128 0x5
+ 1853 0184 49       		.uleb128 0x49
+ 1854 0185 13       		.uleb128 0x13
+ 1855 0186 38       		.uleb128 0x38
+ 1856 0187 0B       		.uleb128 0xb
+ 1857 0188 00       		.byte	0
+ 1858 0189 00       		.byte	0
+ 1859 018a 1C       		.uleb128 0x1c
+ 1860 018b 01       		.uleb128 0x1
+ 1861 018c 01       		.byte	0x1
+ 1862 018d 49       		.uleb128 0x49
+ 1863 018e 13       		.uleb128 0x13
+ 1864 018f 01       		.uleb128 0x1
+ 1865 0190 13       		.uleb128 0x13
+ 1866 0191 00       		.byte	0
+ 1867 0192 00       		.byte	0
+ 1868 0193 1D       		.uleb128 0x1d
+ 1869 0194 21       		.uleb128 0x21
+ 1870 0195 00       		.byte	0
+ 1871 0196 49       		.uleb128 0x49
+ 1872 0197 13       		.uleb128 0x13
+ 1873 0198 2F       		.uleb128 0x2f
+ 1874 0199 0B       		.uleb128 0xb
+ 1875 019a 00       		.byte	0
+ 1876 019b 00       		.byte	0
+ 1877 019c 1E       		.uleb128 0x1e
+ 1878 019d 34       		.uleb128 0x34
+ 1879 019e 00       		.byte	0
+ 1880 019f 03       		.uleb128 0x3
+ 1881 01a0 08       		.uleb128 0x8
+ 1882 01a1 3A       		.uleb128 0x3a
+ 1883 01a2 0B       		.uleb128 0xb
+ 1884 01a3 3B       		.uleb128 0x3b
+ 1885 01a4 05       		.uleb128 0x5
+ 1886 01a5 49       		.uleb128 0x49
+ 1887 01a6 13       		.uleb128 0x13
+ 1888 01a7 02       		.uleb128 0x2
+ 1889 01a8 18       		.uleb128 0x18
+ 1890 01a9 00       		.byte	0
+ 1891 01aa 00       		.byte	0
+ 1892 01ab 1F       		.uleb128 0x1f
+ 1893 01ac 0B       		.uleb128 0xb
+ 1894 01ad 01       		.byte	0x1
+ 1895 01ae 11       		.uleb128 0x11
+ 1896 01af 01       		.uleb128 0x1
+ 1897 01b0 12       		.uleb128 0x12
+ 1898 01b1 06       		.uleb128 0x6
+ 1899 01b2 01       		.uleb128 0x1
+ 1900 01b3 13       		.uleb128 0x13
+ 1901 01b4 00       		.byte	0
+ 1902 01b5 00       		.byte	0
+ 1903 01b6 00       		.byte	0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 43
 
 
- 1905 01b5 00       		.byte	0
- 1906 01b6 00       		.byte	0
- 1907              		.section	.debug_aranges,"",%progbits
- 1908 0000 5C000000 		.4byte	0x5c
- 1909 0004 0200     		.2byte	0x2
- 1910 0006 00000000 		.4byte	.Ldebug_info0
- 1911 000a 04       		.byte	0x4
- 1912 000b 00       		.byte	0
- 1913 000c 0000     		.2byte	0
- 1914 000e 0000     		.2byte	0
- 1915 0010 00000000 		.4byte	.LFB0
- 1916 0014 1C000000 		.4byte	.LFE0-.LFB0
- 1917 0018 00000000 		.4byte	.LFB1
- 1918 001c 1E000000 		.4byte	.LFE1-.LFB1
- 1919 0020 00000000 		.4byte	.LFB2
- 1920 0024 1E000000 		.4byte	.LFE2-.LFB2
- 1921 0028 00000000 		.4byte	.LFB3
- 1922 002c 0C000000 		.4byte	.LFE3-.LFB3
- 1923 0030 00000000 		.4byte	.LFB4
- 1924 0034 74000000 		.4byte	.LFE4-.LFB4
- 1925 0038 00000000 		.4byte	.LFB5
- 1926 003c 90010000 		.4byte	.LFE5-.LFB5
- 1927 0040 00000000 		.4byte	.LFB6
- 1928 0044 44000000 		.4byte	.LFE6-.LFB6
- 1929 0048 00000000 		.4byte	.LFB7
- 1930 004c 28000000 		.4byte	.LFE7-.LFB7
- 1931 0050 00000000 		.4byte	.LFB8
- 1932 0054 FC010000 		.4byte	.LFE8-.LFB8
- 1933 0058 00000000 		.4byte	0
- 1934 005c 00000000 		.4byte	0
- 1935              		.section	.debug_ranges,"",%progbits
- 1936              	.Ldebug_ranges0:
- 1937 0000 00000000 		.4byte	.LFB0
- 1938 0004 1C000000 		.4byte	.LFE0
- 1939 0008 00000000 		.4byte	.LFB1
- 1940 000c 1E000000 		.4byte	.LFE1
- 1941 0010 00000000 		.4byte	.LFB2
- 1942 0014 1E000000 		.4byte	.LFE2
- 1943 0018 00000000 		.4byte	.LFB3
- 1944 001c 0C000000 		.4byte	.LFE3
- 1945 0020 00000000 		.4byte	.LFB4
- 1946 0024 74000000 		.4byte	.LFE4
- 1947 0028 00000000 		.4byte	.LFB5
- 1948 002c 90010000 		.4byte	.LFE5
- 1949 0030 00000000 		.4byte	.LFB6
- 1950 0034 44000000 		.4byte	.LFE6
- 1951 0038 00000000 		.4byte	.LFB7
- 1952 003c 28000000 		.4byte	.LFE7
- 1953 0040 00000000 		.4byte	.LFB8
- 1954 0044 FC010000 		.4byte	.LFE8
- 1955 0048 00000000 		.4byte	0
- 1956 004c 00000000 		.4byte	0
- 1957              		.section	.debug_line,"",%progbits
- 1958              	.Ldebug_line0:
- 1959 0000 2A020000 		.section	.debug_str,"MS",%progbits,1
- 1959      0200CB00 
- 1959      00000201 
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 44
+ 1904              		.section	.debug_aranges,"",%progbits
+ 1905 0000 5C000000 		.4byte	0x5c
+ 1906 0004 0200     		.2byte	0x2
+ 1907 0006 00000000 		.4byte	.Ldebug_info0
+ 1908 000a 04       		.byte	0x4
+ 1909 000b 00       		.byte	0
+ 1910 000c 0000     		.2byte	0
+ 1911 000e 0000     		.2byte	0
+ 1912 0010 00000000 		.4byte	.LFB0
+ 1913 0014 1C000000 		.4byte	.LFE0-.LFB0
+ 1914 0018 00000000 		.4byte	.LFB1
+ 1915 001c 1E000000 		.4byte	.LFE1-.LFB1
+ 1916 0020 00000000 		.4byte	.LFB2
+ 1917 0024 1E000000 		.4byte	.LFE2-.LFB2
+ 1918 0028 00000000 		.4byte	.LFB3
+ 1919 002c 0C000000 		.4byte	.LFE3-.LFB3
+ 1920 0030 00000000 		.4byte	.LFB4
+ 1921 0034 74000000 		.4byte	.LFE4-.LFB4
+ 1922 0038 00000000 		.4byte	.LFB5
+ 1923 003c 90010000 		.4byte	.LFE5-.LFB5
+ 1924 0040 00000000 		.4byte	.LFB6
+ 1925 0044 44000000 		.4byte	.LFE6-.LFB6
+ 1926 0048 00000000 		.4byte	.LFB7
+ 1927 004c 28000000 		.4byte	.LFE7-.LFB7
+ 1928 0050 00000000 		.4byte	.LFB8
+ 1929 0054 EC010000 		.4byte	.LFE8-.LFB8
+ 1930 0058 00000000 		.4byte	0
+ 1931 005c 00000000 		.4byte	0
+ 1932              		.section	.debug_ranges,"",%progbits
+ 1933              	.Ldebug_ranges0:
+ 1934 0000 00000000 		.4byte	.LFB0
+ 1935 0004 1C000000 		.4byte	.LFE0
+ 1936 0008 00000000 		.4byte	.LFB1
+ 1937 000c 1E000000 		.4byte	.LFE1
+ 1938 0010 00000000 		.4byte	.LFB2
+ 1939 0014 1E000000 		.4byte	.LFE2
+ 1940 0018 00000000 		.4byte	.LFB3
+ 1941 001c 0C000000 		.4byte	.LFE3
+ 1942 0020 00000000 		.4byte	.LFB4
+ 1943 0024 74000000 		.4byte	.LFE4
+ 1944 0028 00000000 		.4byte	.LFB5
+ 1945 002c 90010000 		.4byte	.LFE5
+ 1946 0030 00000000 		.4byte	.LFB6
+ 1947 0034 44000000 		.4byte	.LFE6
+ 1948 0038 00000000 		.4byte	.LFB7
+ 1949 003c 28000000 		.4byte	.LFE7
+ 1950 0040 00000000 		.4byte	.LFB8
+ 1951 0044 EC010000 		.4byte	.LFE8
+ 1952 0048 00000000 		.4byte	0
+ 1953 004c 00000000 		.4byte	0
+ 1954              		.section	.debug_line,"",%progbits
+ 1955              	.Ldebug_line0:
+ 1956 0000 29020000 		.section	.debug_str,"MS",%progbits,1
+ 1956      0200CB00 
+ 1956      00000201 
+ 1956      FB0E0D00 
+ 1956      01010101 
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 44
 
 
- 1959      FB0E0D00 
- 1959      01010101 
- 1960              	.LASF14:
- 1961 0000 75696E74 		.ascii	"uint16\000"
- 1961      313600
- 1962              	.LASF33:
- 1963 0007 62617365 		.ascii	"baseAddr\000"
- 1963      41646472 
- 1963      00
- 1964              	.LASF12:
- 1965 0010 73697A65 		.ascii	"size_t\000"
- 1965      5F7400
- 1966              	.LASF28:
- 1967 0017 4379436C 		.ascii	"CyClockStartupError\000"
- 1967      6F636B53 
- 1967      74617274 
- 1967      75704572 
- 1967      726F7200 
- 1968              	.LASF51:
- 1969 002b 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 1969      43313120 
- 1969      352E342E 
- 1969      31203230 
- 1969      31363036 
- 1970 005e 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 1970      20726576 
- 1970      6973696F 
- 1970      6E203233 
- 1970      37373135 
- 1971 0091 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
- 1971      66756E63 
- 1971      74696F6E 
- 1971      2D736563 
- 1971      74696F6E 
- 1972              	.LASF32:
- 1973 00b9 64617461 		.ascii	"data_table\000"
- 1973      5F746162 
- 1973      6C6500
- 1974              	.LASF9:
- 1975 00c4 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1975      206C6F6E 
- 1975      6720756E 
- 1975      7369676E 
- 1975      65642069 
- 1976              	.LASF31:
- 1977 00db 61646472 		.ascii	"addr_table\000"
- 1977      5F746162 
- 1977      6C6500
- 1978              	.LASF38:
- 1979 00e6 416E616C 		.ascii	"AnalogSetDefault\000"
- 1979      6F675365 
- 1979      74446566 
- 1979      61756C74 
- 1979      00
- 1980              	.LASF1:
- 1981 00f7 6C6F6E67 		.ascii	"long long int\000"
- 1981      206C6F6E 
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 45
+ 1957              	.LASF14:
+ 1958 0000 75696E74 		.ascii	"uint16\000"
+ 1958      313600
+ 1959              	.LASF33:
+ 1960 0007 62617365 		.ascii	"baseAddr\000"
+ 1960      41646472 
+ 1960      00
+ 1961              	.LASF12:
+ 1962 0010 73697A65 		.ascii	"size_t\000"
+ 1962      5F7400
+ 1963              	.LASF28:
+ 1964 0017 4379436C 		.ascii	"CyClockStartupError\000"
+ 1964      6F636B53 
+ 1964      74617274 
+ 1964      75704572 
+ 1964      726F7200 
+ 1965              	.LASF51:
+ 1966 002b 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1966      43313120 
+ 1966      352E342E 
+ 1966      31203230 
+ 1966      31363036 
+ 1967 005e 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1967      20726576 
+ 1967      6973696F 
+ 1967      6E203233 
+ 1967      37373135 
+ 1968 0091 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 1968      66756E63 
+ 1968      74696F6E 
+ 1968      2D736563 
+ 1968      74696F6E 
+ 1969              	.LASF32:
+ 1970 00b9 64617461 		.ascii	"data_table\000"
+ 1970      5F746162 
+ 1970      6C6500
+ 1971              	.LASF9:
+ 1972 00c4 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1972      206C6F6E 
+ 1972      6720756E 
+ 1972      7369676E 
+ 1972      65642069 
+ 1973              	.LASF31:
+ 1974 00db 61646472 		.ascii	"addr_table\000"
+ 1974      5F746162 
+ 1974      6C6500
+ 1975              	.LASF38:
+ 1976 00e6 416E616C 		.ascii	"AnalogSetDefault\000"
+ 1976      6F675365 
+ 1976      74446566 
+ 1976      61756C74 
+ 1976      00
+ 1977              	.LASF1:
+ 1978 00f7 6C6F6E67 		.ascii	"long long int\000"
+ 1978      206C6F6E 
+ 1978      6720696E 
+ 1978      7400
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 45
 
 
- 1981      6720696E 
- 1981      7400
- 1982              	.LASF3:
- 1983 0105 7369676E 		.ascii	"signed char\000"
- 1983      65642063 
- 1983      68617200 
- 1984              	.LASF24:
- 1985 0111 43594D45 		.ascii	"CYMEMZERO\000"
- 1985      4D5A4552 
- 1985      4F00
- 1986              	.LASF35:
- 1987 011b 436C6F63 		.ascii	"ClockSetup\000"
- 1987      6B536574 
- 1987      757000
- 1988              	.LASF29:
- 1989 0126 6572726F 		.ascii	"errorCode\000"
- 1989      72436F64 
- 1989      6500
- 1990              	.LASF7:
- 1991 0130 6C6F6E67 		.ascii	"long int\000"
- 1991      20696E74 
- 1991      00
- 1992              	.LASF19:
- 1993 0139 72656731 		.ascii	"reg16\000"
- 1993      3600
- 1994              	.LASF13:
- 1995 013f 75696E74 		.ascii	"uint8\000"
- 1995      3800
- 1996              	.LASF17:
- 1997 0145 646F7562 		.ascii	"double\000"
- 1997      6C6500
- 1998              	.LASF15:
- 1999 014c 75696E74 		.ascii	"uint32\000"
- 1999      333200
- 2000              	.LASF34:
- 2001 0153 636F756E 		.ascii	"count\000"
- 2001      7400
- 2002              	.LASF41:
- 2003 0159 72656756 		.ascii	"regValue\000"
- 2003      616C7565 
- 2003      00
- 2004              	.LASF22:
- 2005 0162 76616C75 		.ascii	"value\000"
- 2005      6500
- 2006              	.LASF0:
- 2007 0168 756E7369 		.ascii	"unsigned int\000"
- 2007      676E6564 
- 2007      20696E74 
- 2007      00
- 2008              	.LASF50:
- 2009 0175 6E756D42 		.ascii	"numBytes\000"
- 2009      79746573 
- 2009      00
- 2010              	.LASF8:
- 2011 017e 6C6F6E67 		.ascii	"long unsigned int\000"
- 2011      20756E73 
- 2011      69676E65 
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 46
+ 1979              	.LASF3:
+ 1980 0105 7369676E 		.ascii	"signed char\000"
+ 1980      65642063 
+ 1980      68617200 
+ 1981              	.LASF24:
+ 1982 0111 43594D45 		.ascii	"CYMEMZERO\000"
+ 1982      4D5A4552 
+ 1982      4F00
+ 1983              	.LASF35:
+ 1984 011b 436C6F63 		.ascii	"ClockSetup\000"
+ 1984      6B536574 
+ 1984      757000
+ 1985              	.LASF29:
+ 1986 0126 6572726F 		.ascii	"errorCode\000"
+ 1986      72436F64 
+ 1986      6500
+ 1987              	.LASF7:
+ 1988 0130 6C6F6E67 		.ascii	"long int\000"
+ 1988      20696E74 
+ 1988      00
+ 1989              	.LASF19:
+ 1990 0139 72656731 		.ascii	"reg16\000"
+ 1990      3600
+ 1991              	.LASF13:
+ 1992 013f 75696E74 		.ascii	"uint8\000"
+ 1992      3800
+ 1993              	.LASF17:
+ 1994 0145 646F7562 		.ascii	"double\000"
+ 1994      6C6500
+ 1995              	.LASF15:
+ 1996 014c 75696E74 		.ascii	"uint32\000"
+ 1996      333200
+ 1997              	.LASF34:
+ 1998 0153 636F756E 		.ascii	"count\000"
+ 1998      7400
+ 1999              	.LASF41:
+ 2000 0159 72656756 		.ascii	"regValue\000"
+ 2000      616C7565 
+ 2000      00
+ 2001              	.LASF22:
+ 2002 0162 76616C75 		.ascii	"value\000"
+ 2002      6500
+ 2003              	.LASF0:
+ 2004 0168 756E7369 		.ascii	"unsigned int\000"
+ 2004      676E6564 
+ 2004      20696E74 
+ 2004      00
+ 2005              	.LASF50:
+ 2006 0175 6E756D42 		.ascii	"numBytes\000"
+ 2006      79746573 
+ 2006      00
+ 2007              	.LASF8:
+ 2008 017e 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2008      20756E73 
+ 2008      69676E65 
+ 2008      6420696E 
+ 2008      7400
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 46
 
 
- 2011      6420696E 
- 2011      7400
- 2012              	.LASF36:
- 2013 0190 74696D65 		.ascii	"timeout\000"
- 2013      6F757400 
- 2014              	.LASF45:
- 2015 0198 6366675F 		.ascii	"cfg_memcpy_t\000"
- 2015      6D656D63 
- 2015      70795F74 
- 2015      00
- 2016              	.LASF30:
- 2017 01a5 6366675F 		.ascii	"cfg_write_bytes32\000"
- 2017      77726974 
- 2017      655F6279 
- 2017      74657333 
- 2017      3200
- 2018              	.LASF43:
- 2019 01b7 73697A65 		.ascii	"size\000"
- 2019      00
- 2020              	.LASF6:
- 2021 01bc 73686F72 		.ascii	"short unsigned int\000"
- 2021      7420756E 
- 2021      7369676E 
- 2021      65642069 
- 2021      6E7400
- 2022              	.LASF20:
- 2023 01cf 72656733 		.ascii	"reg32\000"
- 2023      3200
- 2024              	.LASF27:
- 2025 01d5 4359434F 		.ascii	"CYCONFIGCPYCODE\000"
- 2025      4E464947 
- 2025      43505943 
- 2025      4F444500 
- 2026              	.LASF10:
- 2027 01e5 73697A65 		.ascii	"sizetype\000"
- 2027      74797065 
- 2027      00
- 2028              	.LASF2:
- 2029 01ee 6C6F6E67 		.ascii	"long double\000"
- 2029      20646F75 
- 2029      626C6500 
- 2030              	.LASF39:
- 2031 01fa 62675F78 		.ascii	"bg_xover_inl_trim\000"
- 2031      6F766572 
- 2031      5F696E6C 
- 2031      5F747269 
- 2031      6D00
- 2032              	.LASF44:
- 2033 020c 6366675F 		.ascii	"cfg_memset_t\000"
- 2033      6D656D73 
- 2033      65745F74 
- 2033      00
- 2034              	.LASF46:
- 2035 0219 6366675F 		.ascii	"cfg_memset_list\000"
- 2035      6D656D73 
- 2035      65745F6C 
- 2035      69737400 
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 47
+ 2009              	.LASF36:
+ 2010 0190 74696D65 		.ascii	"timeout\000"
+ 2010      6F757400 
+ 2011              	.LASF45:
+ 2012 0198 6366675F 		.ascii	"cfg_memcpy_t\000"
+ 2012      6D656D63 
+ 2012      70795F74 
+ 2012      00
+ 2013              	.LASF30:
+ 2014 01a5 6366675F 		.ascii	"cfg_write_bytes32\000"
+ 2014      77726974 
+ 2014      655F6279 
+ 2014      74657333 
+ 2014      3200
+ 2015              	.LASF43:
+ 2016 01b7 73697A65 		.ascii	"size\000"
+ 2016      00
+ 2017              	.LASF6:
+ 2018 01bc 73686F72 		.ascii	"short unsigned int\000"
+ 2018      7420756E 
+ 2018      7369676E 
+ 2018      65642069 
+ 2018      6E7400
+ 2019              	.LASF20:
+ 2020 01cf 72656733 		.ascii	"reg32\000"
+ 2020      3200
+ 2021              	.LASF27:
+ 2022 01d5 4359434F 		.ascii	"CYCONFIGCPYCODE\000"
+ 2022      4E464947 
+ 2022      43505943 
+ 2022      4F444500 
+ 2023              	.LASF10:
+ 2024 01e5 73697A65 		.ascii	"sizetype\000"
+ 2024      74797065 
+ 2024      00
+ 2025              	.LASF2:
+ 2026 01ee 6C6F6E67 		.ascii	"long double\000"
+ 2026      20646F75 
+ 2026      626C6500 
+ 2027              	.LASF39:
+ 2028 01fa 62675F78 		.ascii	"bg_xover_inl_trim\000"
+ 2028      6F766572 
+ 2028      5F696E6C 
+ 2028      5F747269 
+ 2028      6D00
+ 2029              	.LASF44:
+ 2030 020c 6366675F 		.ascii	"cfg_memset_t\000"
+ 2030      6D656D73 
+ 2030      65745F74 
+ 2030      00
+ 2031              	.LASF46:
+ 2032 0219 6366675F 		.ascii	"cfg_memset_list\000"
+ 2032      6D656D73 
+ 2032      65745F6C 
+ 2032      69737400 
+ 2033              	.LASF26:
+ 2034 0229 64657374 		.ascii	"dest\000"
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 47
 
 
- 2036              	.LASF26:
- 2037 0229 64657374 		.ascii	"dest\000"
- 2037      00
- 2038              	.LASF16:
- 2039 022e 666C6F61 		.ascii	"float\000"
- 2039      7400
- 2040              	.LASF48:
- 2041 0234 64657374 		.ascii	"destPtr\000"
- 2041      50747200 
- 2042              	.LASF18:
- 2043 023c 72656738 		.ascii	"reg8\000"
- 2043      00
- 2044              	.LASF4:
- 2045 0241 756E7369 		.ascii	"unsigned char\000"
- 2045      676E6564 
- 2045      20636861 
- 2045      7200
- 2046              	.LASF5:
- 2047 024f 73686F72 		.ascii	"short int\000"
- 2047      7420696E 
- 2047      7400
- 2048              	.LASF37:
- 2049 0259 706C6C4C 		.ascii	"pllLock\000"
- 2049      6F636B00 
- 2050              	.LASF23:
- 2051 0261 63795F63 		.ascii	"cy_cfg_addrvalue_t\000"
- 2051      66675F61 
- 2051      64647276 
- 2051      616C7565 
- 2051      5F7400
- 2052              	.LASF11:
- 2053 0274 63686172 		.ascii	"char\000"
- 2053      00
- 2054              	.LASF49:
- 2055 0279 73726350 		.ascii	"srcPtr\000"
- 2055      747200
- 2056              	.LASF53:
- 2057 0280 433A5C55 		.ascii	"C:\\Users\\jmspi\\OneDrive\\Documents\\GitHub\\ECE4"
- 2057      73657273 
- 2057      5C6A6D73 
- 2057      70695C4F 
- 2057      6E654472 
- 2058 02ad 3139315C 		.ascii	"191\\DeliveryRobot.cydsn\000"
- 2058      44656C69 
- 2058      76657279 
- 2058      526F626F 
- 2058      742E6379 
- 2059              	.LASF54:
- 2060 02c5 53657441 		.ascii	"SetAnalogRoutingPumps\000"
- 2060      6E616C6F 
- 2060      67526F75 
- 2060      74696E67 
- 2060      50756D70 
- 2061              	.LASF21:
- 2062 02db 6F666673 		.ascii	"offset\000"
- 2062      657400
- 2063              	.LASF40:
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccaRh7ud.s 			page 48
+ 2034      00
+ 2035              	.LASF16:
+ 2036 022e 666C6F61 		.ascii	"float\000"
+ 2036      7400
+ 2037              	.LASF48:
+ 2038 0234 64657374 		.ascii	"destPtr\000"
+ 2038      50747200 
+ 2039              	.LASF18:
+ 2040 023c 72656738 		.ascii	"reg8\000"
+ 2040      00
+ 2041              	.LASF4:
+ 2042 0241 756E7369 		.ascii	"unsigned char\000"
+ 2042      676E6564 
+ 2042      20636861 
+ 2042      7200
+ 2043              	.LASF5:
+ 2044 024f 73686F72 		.ascii	"short int\000"
+ 2044      7420696E 
+ 2044      7400
+ 2045              	.LASF37:
+ 2046 0259 706C6C4C 		.ascii	"pllLock\000"
+ 2046      6F636B00 
+ 2047              	.LASF23:
+ 2048 0261 63795F63 		.ascii	"cy_cfg_addrvalue_t\000"
+ 2048      66675F61 
+ 2048      64647276 
+ 2048      616C7565 
+ 2048      5F7400
+ 2049              	.LASF11:
+ 2050 0274 63686172 		.ascii	"char\000"
+ 2050      00
+ 2051              	.LASF49:
+ 2052 0279 73726350 		.ascii	"srcPtr\000"
+ 2052      747200
+ 2053              	.LASF53:
+ 2054 0280 433A5C55 		.ascii	"C:\\Users\\jmspi\\OneDrive\\Documents\\GitHub\\ECE4"
+ 2054      73657273 
+ 2054      5C6A6D73 
+ 2054      70695C4F 
+ 2054      6E654472 
+ 2055 02ad 3139315C 		.ascii	"191\\DeliveryRobot.cydsn\000"
+ 2055      44656C69 
+ 2055      76657279 
+ 2055      526F626F 
+ 2055      742E6379 
+ 2056              	.LASF54:
+ 2057 02c5 53657441 		.ascii	"SetAnalogRoutingPumps\000"
+ 2057      6E616C6F 
+ 2057      67526F75 
+ 2057      74696E67 
+ 2057      50756D70 
+ 2058              	.LASF21:
+ 2059 02db 6F666673 		.ascii	"offset\000"
+ 2059      657400
+ 2060              	.LASF40:
+ 2061 02e2 656E6162 		.ascii	"enabled\000"
+ 2061      6C656400 
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\cc0idiVj.s 			page 48
 
 
- 2064 02e2 656E6162 		.ascii	"enabled\000"
- 2064      6C656400 
- 2065              	.LASF25:
- 2066 02ea 4359434F 		.ascii	"CYCONFIGCPY\000"
- 2066      4E464947 
- 2066      43505900 
- 2067              	.LASF52:
- 2068 02f6 47656E65 		.ascii	"Generated_Source\\PSoC5\\cyfitter_cfg.c\000"
- 2068      72617465 
- 2068      645F536F 
- 2068      75726365 
- 2068      5C50536F 
- 2069              	.LASF42:
- 2070 031c 61646472 		.ascii	"address\000"
- 2070      65737300 
- 2071              	.LASF47:
- 2072 0324 6366675F 		.ascii	"cfg_memcpy_list\000"
- 2072      6D656D63 
- 2072      70795F6C 
- 2072      69737400 
- 2073              	.LASF55:
- 2074 0334 63796669 		.ascii	"cyfitter_cfg\000"
- 2074      74746572 
- 2074      5F636667 
- 2074      00
- 2075              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 2062              	.LASF25:
+ 2063 02ea 4359434F 		.ascii	"CYCONFIGCPY\000"
+ 2063      4E464947 
+ 2063      43505900 
+ 2064              	.LASF52:
+ 2065 02f6 47656E65 		.ascii	"Generated_Source\\PSoC5\\cyfitter_cfg.c\000"
+ 2065      72617465 
+ 2065      645F536F 
+ 2065      75726365 
+ 2065      5C50536F 
+ 2066              	.LASF42:
+ 2067 031c 61646472 		.ascii	"address\000"
+ 2067      65737300 
+ 2068              	.LASF47:
+ 2069 0324 6366675F 		.ascii	"cfg_memcpy_list\000"
+ 2069      6D656D63 
+ 2069      70795F6C 
+ 2069      69737400 
+ 2070              	.LASF55:
+ 2071 0334 63796669 		.ascii	"cyfitter_cfg\000"
+ 2071      74746572 
+ 2071      5F636667 
+ 2071      00
+ 2072              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

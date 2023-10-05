@@ -1,5 +1,5 @@
 -- Project:   DeliveryRobot
--- Generated: 10/04/2023 13:04:53
+-- Generated: 10/04/2023 17:43:39
 -- PSoC Creator  4.4
 
 ENTITY DeliveryRobot IS
@@ -58,9 +58,8 @@ ARCHITECTURE __DEFAULT__ OF DeliveryRobot IS
     SIGNAL MODIN2_1 : bit;
     SIGNAL MODIN3_0 : bit;
     SIGNAL MODIN3_1 : bit;
-    SIGNAL Net_1102 : bit;
-    SIGNAL Net_1103_0 : bit;
-    SIGNAL Net_1103_1 : bit;
+    SIGNAL Net_1005 : bit;
+    SIGNAL Net_1006 : bit;
     SIGNAL Net_1256 : bit;
     SIGNAL Net_1257 : bit;
     SIGNAL Net_13 : bit;
@@ -71,11 +70,11 @@ ARCHITECTURE __DEFAULT__ OF DeliveryRobot IS
     ATTRIBUTE global_signal OF Net_1433 : SIGNAL IS true;
     SIGNAL Net_1433_local : bit;
     SIGNAL Net_1435 : bit;
-    SIGNAL Net_1450 : bit;
     SIGNAL Net_1451 : bit;
-    SIGNAL Net_1452 : bit;
-    SIGNAL Net_1453 : bit;
     SIGNAL Net_1459 : bit;
+    SIGNAL Net_1475 : bit;
+    SIGNAL Net_1481 : bit;
+    SIGNAL Net_1491 : bit;
     SIGNAL Net_206 : bit;
     SIGNAL Net_207 : bit;
     SIGNAL Net_216 : bit;
@@ -150,8 +149,6 @@ ARCHITECTURE __DEFAULT__ OF DeliveryRobot IS
     SIGNAL Pin_US_Trigger3(0)__PA : bit;
     SIGNAL Pin_US_Trigger4(0)__PA : bit;
     SIGNAL Pin_US_Trigger5(0)__PA : bit;
-    SIGNAL \Control_Reg_ServoSelect:control_2\ : bit;
-    SIGNAL \Control_Reg_ServoSelect:control_3\ : bit;
     SIGNAL \Control_Reg_ServoSelect:control_4\ : bit;
     SIGNAL \Control_Reg_ServoSelect:control_5\ : bit;
     SIGNAL \Control_Reg_ServoSelect:control_6\ : bit;
@@ -225,9 +222,12 @@ ARCHITECTURE __DEFAULT__ OF DeliveryRobot IS
     SIGNAL \PWM_Motor_R:PWMUDB:status_3\ : bit;
     SIGNAL \PWM_Motor_R:PWMUDB:tc_i\ : bit;
     SIGNAL \PWM_ServoDir:PWMUDB:cmp1_less\ : bit;
+    SIGNAL \PWM_ServoDir:PWMUDB:cmp2_less\ : bit;
     SIGNAL \PWM_ServoDir:PWMUDB:prevCompare1\ : bit;
+    SIGNAL \PWM_ServoDir:PWMUDB:prevCompare2\ : bit;
     SIGNAL \PWM_ServoDir:PWMUDB:runmode_enable\ : bit;
     SIGNAL \PWM_ServoDir:PWMUDB:status_0\ : bit;
+    SIGNAL \PWM_ServoDir:PWMUDB:status_1\ : bit;
     SIGNAL \PWM_ServoDir:PWMUDB:status_2\ : bit;
     SIGNAL \PWM_ServoDir:PWMUDB:status_3\ : bit;
     SIGNAL \PWM_ServoDir:PWMUDB:tc_i\ : bit;
@@ -568,10 +568,6 @@ ARCHITECTURE __DEFAULT__ OF DeliveryRobot IS
     ATTRIBUTE lib_model OF \Timer_Avoidance:TimerUDB:status_tc\ : LABEL IS "macrocell32";
     ATTRIBUTE lib_model OF \PWM_1:PWMUDB:status_2\ : LABEL IS "macrocell33";
     ATTRIBUTE lib_model OF \PWM_ServoDir:PWMUDB:status_2\ : LABEL IS "macrocell34";
-    ATTRIBUTE lib_model OF Net_1450 : LABEL IS "macrocell35";
-    ATTRIBUTE lib_model OF Net_1451 : LABEL IS "macrocell36";
-    ATTRIBUTE lib_model OF Net_1452 : LABEL IS "macrocell37";
-    ATTRIBUTE lib_model OF Net_1453 : LABEL IS "macrocell38";
     ATTRIBUTE lib_model OF \UART:BUART:sTX:TxShifter:u0\ : LABEL IS "datapathcell1";
     ATTRIBUTE lib_model OF \UART:BUART:sTX:sCLOCK:TxBitClkGen\ : LABEL IS "datapathcell2";
     ATTRIBUTE lib_model OF \UART:BUART:sTX:TxSts\ : LABEL IS "statusicell1";
@@ -591,15 +587,15 @@ ARCHITECTURE __DEFAULT__ OF DeliveryRobot IS
     ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:sSTSReg:stsreg\ : LABEL IS "statusicell4";
     ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:sC16:counterdp:u0\ : LABEL IS "datapathcell9";
     ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:sC16:counterdp:u1\ : LABEL IS "datapathcell10";
-    ATTRIBUTE lib_model OF \QuadDec_L:bQuadDec:quad_A_filt\ : LABEL IS "macrocell39";
-    ATTRIBUTE lib_model OF \QuadDec_L:bQuadDec:quad_B_filt\ : LABEL IS "macrocell40";
+    ATTRIBUTE lib_model OF \QuadDec_L:bQuadDec:quad_A_filt\ : LABEL IS "macrocell35";
+    ATTRIBUTE lib_model OF \QuadDec_L:bQuadDec:quad_B_filt\ : LABEL IS "macrocell36";
     ATTRIBUTE lib_model OF \QuadDec_L:bQuadDec:Stsreg\ : LABEL IS "statusicell5";
     ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:sCTRLReg:ctrlreg\ : LABEL IS "controlcell6";
     ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:sSTSReg:stsreg\ : LABEL IS "statusicell6";
     ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:sC16:counterdp:u0\ : LABEL IS "datapathcell11";
     ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:sC16:counterdp:u1\ : LABEL IS "datapathcell12";
-    ATTRIBUTE lib_model OF \QuadDec_R:bQuadDec:quad_A_filt\ : LABEL IS "macrocell41";
-    ATTRIBUTE lib_model OF \QuadDec_R:bQuadDec:quad_B_filt\ : LABEL IS "macrocell42";
+    ATTRIBUTE lib_model OF \QuadDec_R:bQuadDec:quad_A_filt\ : LABEL IS "macrocell37";
+    ATTRIBUTE lib_model OF \QuadDec_R:bQuadDec:quad_B_filt\ : LABEL IS "macrocell38";
     ATTRIBUTE lib_model OF \QuadDec_R:bQuadDec:Stsreg\ : LABEL IS "statusicell7";
     ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:genblk1:ctrlreg\ : LABEL IS "controlcell7";
     ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:genblk8:stsreg\ : LABEL IS "statusicell8";
@@ -618,73 +614,76 @@ ARCHITECTURE __DEFAULT__ OF DeliveryRobot IS
     ATTRIBUTE lib_model OF \PWM_ServoDir:PWMUDB:sP16:pwmdp:u1\ : LABEL IS "datapathcell20";
     ATTRIBUTE lib_model OF \Control_Reg_ServoTrigger:Sync:ctrl_reg\ : LABEL IS "controlcell10";
     ATTRIBUTE lib_model OF \Control_Reg_ServoSelect:Sync:ctrl_reg\ : LABEL IS "controlcell11";
-    ATTRIBUTE lib_model OF \UART:BUART:txn\ : LABEL IS "macrocell43";
-    ATTRIBUTE lib_model OF \UART:BUART:tx_state_1\ : LABEL IS "macrocell44";
-    ATTRIBUTE lib_model OF \UART:BUART:tx_state_0\ : LABEL IS "macrocell45";
-    ATTRIBUTE lib_model OF \UART:BUART:tx_state_2\ : LABEL IS "macrocell46";
-    ATTRIBUTE lib_model OF \UART:BUART:tx_bitclk\ : LABEL IS "macrocell47";
-    ATTRIBUTE lib_model OF \PWM_Trigger:PWMUDB:runmode_enable\ : LABEL IS "macrocell48";
-    ATTRIBUTE lib_model OF \PWM_Trigger:PWMUDB:trig_disable\ : LABEL IS "macrocell49";
-    ATTRIBUTE lib_model OF Net_216 : LABEL IS "macrocell50";
-    ATTRIBUTE lib_model OF Net_81 : LABEL IS "macrocell51";
-    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:capture_last\ : LABEL IS "macrocell52";
-    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:run_mode\ : LABEL IS "macrocell53";
-    ATTRIBUTE lib_model OF MODIN2_1 : LABEL IS "macrocell54";
-    ATTRIBUTE lib_model OF MODIN2_0 : LABEL IS "macrocell55";
-    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:capt_int_temp\ : LABEL IS "macrocell56";
-    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:timer_enable\ : LABEL IS "macrocell57";
-    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:trig_disable\ : LABEL IS "macrocell58";
-    ATTRIBUTE lib_model OF \QuadDec_L:Net_1251_split\ : LABEL IS "macrocell59";
-    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:trig_rise_detected\ : LABEL IS "macrocell60";
-    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:trig_fall_detected\ : LABEL IS "macrocell61";
-    ATTRIBUTE lib_model OF \PWM_Motor_L:PWMUDB:runmode_enable\ : LABEL IS "macrocell62";
-    ATTRIBUTE lib_model OF \PWM_Motor_L:PWMUDB:prevCompare1\ : LABEL IS "macrocell63";
-    ATTRIBUTE lib_model OF \PWM_Motor_L:PWMUDB:prevCompare2\ : LABEL IS "macrocell64";
-    ATTRIBUTE lib_model OF \PWM_Motor_L:PWMUDB:status_0\ : LABEL IS "macrocell65";
-    ATTRIBUTE lib_model OF \PWM_Motor_L:PWMUDB:status_1\ : LABEL IS "macrocell66";
-    ATTRIBUTE lib_model OF Net_419 : LABEL IS "macrocell67";
-    ATTRIBUTE lib_model OF Net_418 : LABEL IS "macrocell68";
-    ATTRIBUTE lib_model OF \QuadDec_L:Net_1251\ : LABEL IS "macrocell69";
-    ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:overflow_reg_i\ : LABEL IS "macrocell70";
-    ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:underflow_reg_i\ : LABEL IS "macrocell71";
-    ATTRIBUTE lib_model OF \QuadDec_L:Net_1275\ : LABEL IS "macrocell72";
-    ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:prevCompare\ : LABEL IS "macrocell73";
-    ATTRIBUTE lib_model OF \QuadDec_L:Net_1203_split\ : LABEL IS "macrocell74";
-    ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:count_stored_i\ : LABEL IS "macrocell75";
-    ATTRIBUTE lib_model OF \QuadDec_L:Net_1203\ : LABEL IS "macrocell76";
-    ATTRIBUTE lib_model OF \QuadDec_L:Net_1260\ : LABEL IS "macrocell77";
-    ATTRIBUTE lib_model OF \QuadDec_L:bQuadDec:error\ : LABEL IS "macrocell78";
-    ATTRIBUTE lib_model OF \QuadDec_L:bQuadDec:state_1\ : LABEL IS "macrocell79";
-    ATTRIBUTE lib_model OF \QuadDec_L:bQuadDec:state_0\ : LABEL IS "macrocell80";
-    ATTRIBUTE lib_model OF \QuadDec_R:Net_1251\ : LABEL IS "macrocell81";
-    ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:overflow_reg_i\ : LABEL IS "macrocell82";
-    ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:underflow_reg_i\ : LABEL IS "macrocell83";
-    ATTRIBUTE lib_model OF \QuadDec_R:Net_1275\ : LABEL IS "macrocell84";
-    ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:prevCompare\ : LABEL IS "macrocell85";
-    ATTRIBUTE lib_model OF \QuadDec_R:Net_1251_split\ : LABEL IS "macrocell86";
-    ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:count_stored_i\ : LABEL IS "macrocell87";
-    ATTRIBUTE lib_model OF \QuadDec_R:Net_1203\ : LABEL IS "macrocell88";
-    ATTRIBUTE lib_model OF \QuadDec_R:Net_1260\ : LABEL IS "macrocell89";
-    ATTRIBUTE lib_model OF \QuadDec_R:bQuadDec:error\ : LABEL IS "macrocell90";
-    ATTRIBUTE lib_model OF \QuadDec_R:bQuadDec:state_1\ : LABEL IS "macrocell91";
-    ATTRIBUTE lib_model OF \QuadDec_R:bQuadDec:state_0\ : LABEL IS "macrocell92";
-    ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:runmode_enable\ : LABEL IS "macrocell93";
-    ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:prevCompare1\ : LABEL IS "macrocell94";
-    ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:prevCompare2\ : LABEL IS "macrocell95";
-    ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:status_0\ : LABEL IS "macrocell96";
-    ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:status_1\ : LABEL IS "macrocell97";
-    ATTRIBUTE lib_model OF Net_689 : LABEL IS "macrocell98";
-    ATTRIBUTE lib_model OF Net_690 : LABEL IS "macrocell99";
-    ATTRIBUTE lib_model OF \PWM_1:PWMUDB:trig_last\ : LABEL IS "macrocell100";
-    ATTRIBUTE lib_model OF \PWM_1:PWMUDB:runmode_enable\ : LABEL IS "macrocell101";
-    ATTRIBUTE lib_model OF \PWM_1:PWMUDB:prevCompare1\ : LABEL IS "macrocell102";
-    ATTRIBUTE lib_model OF \PWM_1:PWMUDB:status_0\ : LABEL IS "macrocell103";
-    ATTRIBUTE lib_model OF Net_1435 : LABEL IS "macrocell104";
-    ATTRIBUTE lib_model OF Net_1256 : LABEL IS "macrocell105";
-    ATTRIBUTE lib_model OF \PWM_ServoDir:PWMUDB:runmode_enable\ : LABEL IS "macrocell106";
-    ATTRIBUTE lib_model OF \PWM_ServoDir:PWMUDB:prevCompare1\ : LABEL IS "macrocell107";
-    ATTRIBUTE lib_model OF \PWM_ServoDir:PWMUDB:status_0\ : LABEL IS "macrocell108";
-    ATTRIBUTE lib_model OF Net_1102 : LABEL IS "macrocell109";
+    ATTRIBUTE lib_model OF \UART:BUART:txn\ : LABEL IS "macrocell39";
+    ATTRIBUTE lib_model OF \UART:BUART:tx_state_1\ : LABEL IS "macrocell40";
+    ATTRIBUTE lib_model OF \UART:BUART:tx_state_0\ : LABEL IS "macrocell41";
+    ATTRIBUTE lib_model OF \UART:BUART:tx_state_2\ : LABEL IS "macrocell42";
+    ATTRIBUTE lib_model OF \UART:BUART:tx_bitclk\ : LABEL IS "macrocell43";
+    ATTRIBUTE lib_model OF \PWM_Trigger:PWMUDB:runmode_enable\ : LABEL IS "macrocell44";
+    ATTRIBUTE lib_model OF \PWM_Trigger:PWMUDB:trig_disable\ : LABEL IS "macrocell45";
+    ATTRIBUTE lib_model OF Net_216 : LABEL IS "macrocell46";
+    ATTRIBUTE lib_model OF Net_81 : LABEL IS "macrocell47";
+    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:capture_last\ : LABEL IS "macrocell48";
+    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:run_mode\ : LABEL IS "macrocell49";
+    ATTRIBUTE lib_model OF MODIN2_1 : LABEL IS "macrocell50";
+    ATTRIBUTE lib_model OF MODIN2_0 : LABEL IS "macrocell51";
+    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:capt_int_temp\ : LABEL IS "macrocell52";
+    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:timer_enable\ : LABEL IS "macrocell53";
+    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:trig_disable\ : LABEL IS "macrocell54";
+    ATTRIBUTE lib_model OF \QuadDec_L:Net_1251_split\ : LABEL IS "macrocell55";
+    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:trig_rise_detected\ : LABEL IS "macrocell56";
+    ATTRIBUTE lib_model OF \Timer_Echo:TimerUDB:trig_fall_detected\ : LABEL IS "macrocell57";
+    ATTRIBUTE lib_model OF \PWM_Motor_L:PWMUDB:runmode_enable\ : LABEL IS "macrocell58";
+    ATTRIBUTE lib_model OF \PWM_Motor_L:PWMUDB:prevCompare1\ : LABEL IS "macrocell59";
+    ATTRIBUTE lib_model OF \PWM_Motor_L:PWMUDB:prevCompare2\ : LABEL IS "macrocell60";
+    ATTRIBUTE lib_model OF \PWM_Motor_L:PWMUDB:status_0\ : LABEL IS "macrocell61";
+    ATTRIBUTE lib_model OF \PWM_Motor_L:PWMUDB:status_1\ : LABEL IS "macrocell62";
+    ATTRIBUTE lib_model OF Net_419 : LABEL IS "macrocell63";
+    ATTRIBUTE lib_model OF Net_418 : LABEL IS "macrocell64";
+    ATTRIBUTE lib_model OF \QuadDec_L:Net_1251\ : LABEL IS "macrocell65";
+    ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:overflow_reg_i\ : LABEL IS "macrocell66";
+    ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:underflow_reg_i\ : LABEL IS "macrocell67";
+    ATTRIBUTE lib_model OF \QuadDec_L:Net_1275\ : LABEL IS "macrocell68";
+    ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:prevCompare\ : LABEL IS "macrocell69";
+    ATTRIBUTE lib_model OF \QuadDec_L:Net_1203_split\ : LABEL IS "macrocell70";
+    ATTRIBUTE lib_model OF \QuadDec_L:Cnt16:CounterUDB:count_stored_i\ : LABEL IS "macrocell71";
+    ATTRIBUTE lib_model OF \QuadDec_L:Net_1203\ : LABEL IS "macrocell72";
+    ATTRIBUTE lib_model OF \QuadDec_L:Net_1260\ : LABEL IS "macrocell73";
+    ATTRIBUTE lib_model OF \QuadDec_L:bQuadDec:error\ : LABEL IS "macrocell74";
+    ATTRIBUTE lib_model OF \QuadDec_L:bQuadDec:state_1\ : LABEL IS "macrocell75";
+    ATTRIBUTE lib_model OF \QuadDec_L:bQuadDec:state_0\ : LABEL IS "macrocell76";
+    ATTRIBUTE lib_model OF \QuadDec_R:Net_1251\ : LABEL IS "macrocell77";
+    ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:overflow_reg_i\ : LABEL IS "macrocell78";
+    ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:underflow_reg_i\ : LABEL IS "macrocell79";
+    ATTRIBUTE lib_model OF \QuadDec_R:Net_1275\ : LABEL IS "macrocell80";
+    ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:prevCompare\ : LABEL IS "macrocell81";
+    ATTRIBUTE lib_model OF \QuadDec_R:Net_1251_split\ : LABEL IS "macrocell82";
+    ATTRIBUTE lib_model OF \QuadDec_R:Cnt16:CounterUDB:count_stored_i\ : LABEL IS "macrocell83";
+    ATTRIBUTE lib_model OF \QuadDec_R:Net_1203\ : LABEL IS "macrocell84";
+    ATTRIBUTE lib_model OF \QuadDec_R:Net_1260\ : LABEL IS "macrocell85";
+    ATTRIBUTE lib_model OF \QuadDec_R:bQuadDec:error\ : LABEL IS "macrocell86";
+    ATTRIBUTE lib_model OF \QuadDec_R:bQuadDec:state_1\ : LABEL IS "macrocell87";
+    ATTRIBUTE lib_model OF \QuadDec_R:bQuadDec:state_0\ : LABEL IS "macrocell88";
+    ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:runmode_enable\ : LABEL IS "macrocell89";
+    ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:prevCompare1\ : LABEL IS "macrocell90";
+    ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:prevCompare2\ : LABEL IS "macrocell91";
+    ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:status_0\ : LABEL IS "macrocell92";
+    ATTRIBUTE lib_model OF \PWM_Motor_R:PWMUDB:status_1\ : LABEL IS "macrocell93";
+    ATTRIBUTE lib_model OF Net_689 : LABEL IS "macrocell94";
+    ATTRIBUTE lib_model OF Net_690 : LABEL IS "macrocell95";
+    ATTRIBUTE lib_model OF \PWM_1:PWMUDB:trig_last\ : LABEL IS "macrocell96";
+    ATTRIBUTE lib_model OF \PWM_1:PWMUDB:runmode_enable\ : LABEL IS "macrocell97";
+    ATTRIBUTE lib_model OF \PWM_1:PWMUDB:prevCompare1\ : LABEL IS "macrocell98";
+    ATTRIBUTE lib_model OF \PWM_1:PWMUDB:status_0\ : LABEL IS "macrocell99";
+    ATTRIBUTE lib_model OF Net_1435 : LABEL IS "macrocell100";
+    ATTRIBUTE lib_model OF Net_1256 : LABEL IS "macrocell101";
+    ATTRIBUTE lib_model OF \PWM_ServoDir:PWMUDB:runmode_enable\ : LABEL IS "macrocell102";
+    ATTRIBUTE lib_model OF \PWM_ServoDir:PWMUDB:prevCompare1\ : LABEL IS "macrocell103";
+    ATTRIBUTE lib_model OF \PWM_ServoDir:PWMUDB:prevCompare2\ : LABEL IS "macrocell104";
+    ATTRIBUTE lib_model OF \PWM_ServoDir:PWMUDB:status_0\ : LABEL IS "macrocell105";
+    ATTRIBUTE lib_model OF \PWM_ServoDir:PWMUDB:status_1\ : LABEL IS "macrocell106";
+    ATTRIBUTE lib_model OF Net_1491 : LABEL IS "macrocell107";
+    ATTRIBUTE lib_model OF Net_1481 : LABEL IS "macrocell108";
     COMPONENT clockblockcell
         PORT (
             dclk_0 : OUT std_ulogic;
@@ -2806,7 +2805,7 @@ BEGIN
             invert_out_reset => 0,
             io_voltage => ",,,",
             layout_mode => "NONCONTIGUOUS",
-            oe_conn => "0000",
+            oe_conn => "1111",
             oe_reset => 0,
             oe_sync => "0000",
             output_clk_en => 0,
@@ -2868,8 +2867,8 @@ BEGIN
             io_capabilities => "0000000000000000000000000000000000000000000000000000000000000101")
         PORT MAP(
             pa_out => Pin_Servos(0)__PA,
-            oe => open,
-            pin_input => Net_1450,
+            oe => Net_1475,
+            pin_input => Net_1491,
             pad_out => Pin_Servos(0)_PAD,
             pad_in => Pin_Servos(0)_PAD,
             in_clock => open,
@@ -2889,8 +2888,8 @@ BEGIN
             io_capabilities => "0000000000000000000000000000000000000000000000000000000000000101")
         PORT MAP(
             pa_out => Pin_Servos(1)__PA,
-            oe => open,
-            pin_input => Net_1451,
+            oe => Net_1451,
+            pin_input => Net_1481,
             pad_out => Pin_Servos(1)_PAD,
             pad_in => Pin_Servos(1)_PAD,
             in_clock => open,
@@ -2910,8 +2909,8 @@ BEGIN
             io_capabilities => "0000000000000000000000000000000000000000000000000000000000000101")
         PORT MAP(
             pa_out => Pin_Servos(2)__PA,
-            oe => open,
-            pin_input => Net_1452,
+            oe => Net_1005,
+            pin_input => Net_1491,
             pad_out => Pin_Servos(2)_PAD,
             pad_in => Pin_Servos(2)_PAD,
             in_clock => open,
@@ -2931,8 +2930,8 @@ BEGIN
             io_capabilities => "0000000000000000000000000000000000000000000000000000000000000101")
         PORT MAP(
             pa_out => Pin_Servos(3)__PA,
-            oe => open,
-            pin_input => Net_1453,
+            oe => Net_1006,
+            pin_input => Net_1481,
             pad_out => Pin_Servos(3)_PAD,
             pad_in => Pin_Servos(3)_PAD,
             in_clock => open,
@@ -3500,50 +3499,6 @@ BEGIN
             q => \PWM_ServoDir:PWMUDB:status_2\,
             main_0 => \PWM_ServoDir:PWMUDB:runmode_enable\,
             main_1 => \PWM_ServoDir:PWMUDB:tc_i\);
-
-    Net_1450:macrocell
-        GENERIC MAP(
-            eqn_main => "(main_0 * !main_1 * !main_2)",
-            regmode => 0,
-            clken_mode => 1)
-        PORT MAP(
-            q => Net_1450,
-            main_0 => Net_1102,
-            main_1 => Net_1103_1,
-            main_2 => Net_1103_0);
-
-    Net_1451:macrocell
-        GENERIC MAP(
-            eqn_main => "(main_0 * !main_1 * main_2)",
-            regmode => 0,
-            clken_mode => 1)
-        PORT MAP(
-            q => Net_1451,
-            main_0 => Net_1102,
-            main_1 => Net_1103_1,
-            main_2 => Net_1103_0);
-
-    Net_1452:macrocell
-        GENERIC MAP(
-            eqn_main => "(main_0 * main_1 * !main_2)",
-            regmode => 0,
-            clken_mode => 1)
-        PORT MAP(
-            q => Net_1452,
-            main_0 => Net_1102,
-            main_1 => Net_1103_1,
-            main_2 => Net_1103_0);
-
-    Net_1453:macrocell
-        GENERIC MAP(
-            eqn_main => "(main_0 * main_1 * main_2)",
-            regmode => 0,
-            clken_mode => 1)
-        PORT MAP(
-            q => Net_1453,
-            main_0 => Net_1102,
-            main_1 => Net_1103_1,
-            main_2 => Net_1103_0);
 
     \UART:TXInternalInterrupt\:interrupt
         GENERIC MAP(
@@ -4888,7 +4843,7 @@ BEGIN
             status_4 => open,
             status_3 => \PWM_ServoDir:PWMUDB:status_3\,
             status_2 => \PWM_ServoDir:PWMUDB:status_2\,
-            status_1 => open,
+            status_1 => \PWM_ServoDir:PWMUDB:status_1\,
             status_0 => \PWM_ServoDir:PWMUDB:status_0\);
 
     \PWM_ServoDir:PWMUDB:sP16:pwmdp:u0\:datapathcell
@@ -4970,6 +4925,7 @@ BEGIN
             cs_addr_1 => \PWM_ServoDir:PWMUDB:runmode_enable\,
             cl0_comb => \PWM_ServoDir:PWMUDB:cmp1_less\,
             z0_comb => \PWM_ServoDir:PWMUDB:tc_i\,
+            cl1_comb => \PWM_ServoDir:PWMUDB:cmp2_less\,
             f1_blk_stat_comb => \PWM_ServoDir:PWMUDB:status_3\,
             busclk => ClockBlock_BUS_CLK,
             ce0i => \PWM_ServoDir:PWMUDB:sP16:pwmdp:u0.ce0__sig\,
@@ -5018,10 +4974,10 @@ BEGIN
             control_6 => \Control_Reg_ServoSelect:control_6\,
             control_5 => \Control_Reg_ServoSelect:control_5\,
             control_4 => \Control_Reg_ServoSelect:control_4\,
-            control_3 => \Control_Reg_ServoSelect:control_3\,
-            control_2 => \Control_Reg_ServoSelect:control_2\,
-            control_1 => Net_1103_1,
-            control_0 => Net_1103_0,
+            control_3 => Net_1006,
+            control_2 => Net_1005,
+            control_1 => Net_1451,
+            control_0 => Net_1475,
             busclk => ClockBlock_BUS_CLK);
 
     \UART:BUART:txn\:macrocell
@@ -5832,7 +5788,7 @@ BEGIN
 
     \PWM_1:PWMUDB:runmode_enable\:macrocell
         GENERIC MAP(
-            eqn_main => "(main_0 * !main_1 * main_2) + (main_0 * main_3 * !main_4)",
+            eqn_main => "(main_0 * !main_1 * main_2) + (main_0 * main_1 * !main_2) + (main_0 * main_3 * !main_4)",
             regmode => 1,
             clk_inv => '0',
             clken_inv => '0',
@@ -5931,6 +5887,17 @@ BEGIN
             clock_0 => Net_1433,
             main_0 => \PWM_ServoDir:PWMUDB:cmp1_less\);
 
+    \PWM_ServoDir:PWMUDB:prevCompare2\:macrocell
+        GENERIC MAP(
+            eqn_main => "(main_0)",
+            regmode => 1,
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            q => \PWM_ServoDir:PWMUDB:prevCompare2\,
+            clock_0 => Net_1433,
+            main_0 => \PWM_ServoDir:PWMUDB:cmp2_less\);
+
     \PWM_ServoDir:PWMUDB:status_0\:macrocell
         GENERIC MAP(
             eqn_main => "(!main_0 * main_1)",
@@ -5943,16 +5910,40 @@ BEGIN
             main_0 => \PWM_ServoDir:PWMUDB:prevCompare1\,
             main_1 => \PWM_ServoDir:PWMUDB:cmp1_less\);
 
-    Net_1102:macrocell
+    \PWM_ServoDir:PWMUDB:status_1\:macrocell
+        GENERIC MAP(
+            eqn_main => "(!main_0 * main_1)",
+            regmode => 1,
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            q => \PWM_ServoDir:PWMUDB:status_1\,
+            clock_0 => Net_1433,
+            main_0 => \PWM_ServoDir:PWMUDB:prevCompare2\,
+            main_1 => \PWM_ServoDir:PWMUDB:cmp2_less\);
+
+    Net_1491:macrocell
         GENERIC MAP(
             eqn_main => "(main_0 * main_1)",
             regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
-            q => Net_1102,
+            q => Net_1491,
             clock_0 => Net_1433,
             main_0 => \PWM_ServoDir:PWMUDB:runmode_enable\,
             main_1 => \PWM_ServoDir:PWMUDB:cmp1_less\);
+
+    Net_1481:macrocell
+        GENERIC MAP(
+            eqn_main => "(main_0 * main_1)",
+            regmode => 1,
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            q => Net_1481,
+            clock_0 => Net_1433,
+            main_0 => \PWM_ServoDir:PWMUDB:runmode_enable\,
+            main_1 => \PWM_ServoDir:PWMUDB:cmp2_less\);
 
 END __DEFAULT__;

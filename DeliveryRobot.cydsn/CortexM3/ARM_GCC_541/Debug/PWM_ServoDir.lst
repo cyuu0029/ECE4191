@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 1
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 1
   22:Generated_Source\PSoC5/PWM_ServoDir.c **** ********************************************************************************/
   23:Generated_Source\PSoC5/PWM_ServoDir.c **** 
   24:Generated_Source\PSoC5/PWM_ServoDir.c **** #include "PWM_ServoDir.h"
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 2
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 2
 
 
   25:Generated_Source\PSoC5/PWM_ServoDir.c **** 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 1
   51              		.loc 1 61 0
   52 0010 034B     		ldr	r3, .L3
   53 0012 0122     		movs	r2, #1
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 3
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 3
 
 
   54 0014 1A70     		strb	r2, [r3]
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 1
   84 0002 82B0     		sub	sp, sp, #8
   85              		.cfi_def_cfa_offset 16
   86 0004 00AF     		add	r7, sp, #0
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 4
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 4
 
 
   87              		.cfi_def_cfa_register 7
@@ -227,8 +227,8 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 1
  128:Generated_Source\PSoC5/PWM_ServoDir.c ****             /* Set FIFO 0 to 1 byte register for period */
  129:Generated_Source\PSoC5/PWM_ServoDir.c ****             PWM_ServoDir_AUX_CONTROLDP0 |= (PWM_ServoDir_AUX_CTRL_FIFO0_CLR);
   88              		.loc 1 129 0
-  89 0006 1A4A     		ldr	r2, .L6
-  90 0008 194B     		ldr	r3, .L6
+  89 0006 1C4A     		ldr	r2, .L6
+  90 0008 1B4B     		ldr	r3, .L6
   91 000a 1B78     		ldrb	r3, [r3]
   92 000c DBB2     		uxtb	r3, r3
   93 000e 43F00103 		orr	r3, r3, #1
@@ -236,9 +236,9 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 1
   95 0014 1370     		strb	r3, [r2]
  130:Generated_Source\PSoC5/PWM_ServoDir.c ****             PWM_ServoDir_AUX_CONTROLDP1 |= (PWM_ServoDir_AUX_CTRL_FIFO0_CLR);
   96              		.loc 1 130 0
-  97 0016 174A     		ldr	r2, .L6+4
-  98 0018 164B     		ldr	r3, .L6+4
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 5
+  97 0016 194A     		ldr	r2, .L6+4
+  98 0018 184B     		ldr	r3, .L6+4
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 5
 
 
   99 001a 1B78     		ldrb	r3, [r3]
@@ -261,12 +261,15 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 1
  137:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  138:Generated_Source\PSoC5/PWM_ServoDir.c ****         #if (PWM_ServoDir_UseOneCompareMode)
  139:Generated_Source\PSoC5/PWM_ServoDir.c ****             PWM_ServoDir_WriteCompare(PWM_ServoDir_INIT_COMPARE_VALUE1);
- 110              		.loc 1 139 0
- 111 0036 4FF47A60 		mov	r0, #4000
- 112 003a FFF7FEFF 		bl	PWM_ServoDir_WriteCompare
  140:Generated_Source\PSoC5/PWM_ServoDir.c ****         #else
  141:Generated_Source\PSoC5/PWM_ServoDir.c ****             PWM_ServoDir_WriteCompare1(PWM_ServoDir_INIT_COMPARE_VALUE1);
+ 110              		.loc 1 141 0
+ 111 0036 4FF47A60 		mov	r0, #4000
+ 112 003a FFF7FEFF 		bl	PWM_ServoDir_WriteCompare1
  142:Generated_Source\PSoC5/PWM_ServoDir.c ****             PWM_ServoDir_WriteCompare2(PWM_ServoDir_INIT_COMPARE_VALUE2);
+ 113              		.loc 1 142 0
+ 114 003e 4FF4FA60 		mov	r0, #2000
+ 115 0042 FFF7FEFF 		bl	PWM_ServoDir_WriteCompare2
  143:Generated_Source\PSoC5/PWM_ServoDir.c ****         #endif /* (PWM_ServoDir_UseOneCompareMode) */
  144:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  145:Generated_Source\PSoC5/PWM_ServoDir.c ****         #if (PWM_ServoDir_KillModeMinTime)
@@ -279,9 +282,9 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 1
  152:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  153:Generated_Source\PSoC5/PWM_ServoDir.c ****     #if (PWM_ServoDir_UseStatus || PWM_ServoDir_UsingFixedFunction)
  154:Generated_Source\PSoC5/PWM_ServoDir.c ****         PWM_ServoDir_SetInterruptMode(PWM_ServoDir_INIT_INTERRUPTS_MODE);
- 113              		.loc 1 154 0
- 114 003e 0020     		movs	r0, #0
- 115 0040 FFF7FEFF 		bl	PWM_ServoDir_SetInterruptMode
+ 116              		.loc 1 154 0
+ 117 0046 0020     		movs	r0, #0
+ 118 0048 FFF7FEFF 		bl	PWM_ServoDir_SetInterruptMode
  155:Generated_Source\PSoC5/PWM_ServoDir.c ****     #endif /* (PWM_ServoDir_UseStatus || PWM_ServoDir_UsingFixedFunction) */
  156:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  157:Generated_Source\PSoC5/PWM_ServoDir.c ****     #if (PWM_ServoDir_UsingFixedFunction)
@@ -295,72 +298,72 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 1
  165:Generated_Source\PSoC5/PWM_ServoDir.c ****             /* CyEnterCriticalRegion and CyExitCriticalRegion are used to mark following region cri
  166:Generated_Source\PSoC5/PWM_ServoDir.c ****             /* Enter Critical Region*/
  167:Generated_Source\PSoC5/PWM_ServoDir.c ****             PWM_ServoDir_interruptState = CyEnterCriticalSection();
- 116              		.loc 1 167 0
- 117 0044 FFF7FEFF 		bl	CyEnterCriticalSection
- 118 0048 0346     		mov	r3, r0
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 6
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 6
 
 
- 119 004a FB71     		strb	r3, [r7, #7]
+ 119              		.loc 1 167 0
+ 120 004c FFF7FEFF 		bl	CyEnterCriticalSection
+ 121 0050 0346     		mov	r3, r0
+ 122 0052 FB71     		strb	r3, [r7, #7]
  168:Generated_Source\PSoC5/PWM_ServoDir.c ****             /* Use the interrupt output of the status register for IRQ output */
  169:Generated_Source\PSoC5/PWM_ServoDir.c ****             PWM_ServoDir_STATUS_AUX_CTRL |= PWM_ServoDir_STATUS_ACTL_INT_EN_MASK;
- 120              		.loc 1 169 0
- 121 004c 0A4A     		ldr	r2, .L6+8
- 122 004e 0A4B     		ldr	r3, .L6+8
- 123 0050 1B78     		ldrb	r3, [r3]
- 124 0052 DBB2     		uxtb	r3, r3
- 125 0054 43F01003 		orr	r3, r3, #16
- 126 0058 DBB2     		uxtb	r3, r3
- 127 005a 1370     		strb	r3, [r2]
+ 123              		.loc 1 169 0
+ 124 0054 0A4A     		ldr	r2, .L6+8
+ 125 0056 0A4B     		ldr	r3, .L6+8
+ 126 0058 1B78     		ldrb	r3, [r3]
+ 127 005a DBB2     		uxtb	r3, r3
+ 128 005c 43F01003 		orr	r3, r3, #16
+ 129 0060 DBB2     		uxtb	r3, r3
+ 130 0062 1370     		strb	r3, [r2]
  170:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  171:Generated_Source\PSoC5/PWM_ServoDir.c ****              /* Exit Critical Region*/
  172:Generated_Source\PSoC5/PWM_ServoDir.c ****             CyExitCriticalSection(PWM_ServoDir_interruptState);
- 128              		.loc 1 172 0
- 129 005c FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
- 130 005e 1846     		mov	r0, r3
- 131 0060 FFF7FEFF 		bl	CyExitCriticalSection
+ 131              		.loc 1 172 0
+ 132 0064 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 133 0066 1846     		mov	r0, r3
+ 134 0068 FFF7FEFF 		bl	CyExitCriticalSection
  173:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  174:Generated_Source\PSoC5/PWM_ServoDir.c ****             /* Clear the FIFO to enable the PWM_ServoDir_STATUS_FIFOFULL
  175:Generated_Source\PSoC5/PWM_ServoDir.c ****                    bit to be set on FIFO full. */
  176:Generated_Source\PSoC5/PWM_ServoDir.c ****             PWM_ServoDir_ClearFIFO();
- 132              		.loc 1 176 0
- 133 0064 FFF7FEFF 		bl	PWM_ServoDir_ClearFIFO
+ 135              		.loc 1 176 0
+ 136 006c FFF7FEFF 		bl	PWM_ServoDir_ClearFIFO
  177:Generated_Source\PSoC5/PWM_ServoDir.c ****         #endif /* (PWM_ServoDir_UseStatus) */
  178:Generated_Source\PSoC5/PWM_ServoDir.c ****     #endif /* (PWM_ServoDir_UsingFixedFunction) */
  179:Generated_Source\PSoC5/PWM_ServoDir.c **** }
- 134              		.loc 1 179 0
- 135 0068 00BF     		nop
- 136 006a 0837     		adds	r7, r7, #8
- 137              		.cfi_def_cfa_offset 8
- 138 006c BD46     		mov	sp, r7
- 139              		.cfi_def_cfa_register 13
- 140              		@ sp needed
- 141 006e 80BD     		pop	{r7, pc}
- 142              	.L7:
- 143              		.align	2
- 144              	.L6:
- 145 0070 9A640040 		.word	1073767578
- 146 0074 9B640040 		.word	1073767579
- 147 0078 9B650040 		.word	1073767835
- 148              		.cfi_endproc
- 149              	.LFE1:
- 150              		.size	PWM_ServoDir_Init, .-PWM_ServoDir_Init
- 151              		.section	.text.PWM_ServoDir_Enable,"ax",%progbits
- 152              		.align	2
- 153              		.global	PWM_ServoDir_Enable
- 154              		.thumb
- 155              		.thumb_func
- 156              		.type	PWM_ServoDir_Enable, %function
- 157              	PWM_ServoDir_Enable:
- 158              	.LFB2:
+ 137              		.loc 1 179 0
+ 138 0070 00BF     		nop
+ 139 0072 0837     		adds	r7, r7, #8
+ 140              		.cfi_def_cfa_offset 8
+ 141 0074 BD46     		mov	sp, r7
+ 142              		.cfi_def_cfa_register 13
+ 143              		@ sp needed
+ 144 0076 80BD     		pop	{r7, pc}
+ 145              	.L7:
+ 146              		.align	2
+ 147              	.L6:
+ 148 0078 96650040 		.word	1073767830
+ 149 007c 97650040 		.word	1073767831
+ 150 0080 95650040 		.word	1073767829
+ 151              		.cfi_endproc
+ 152              	.LFE1:
+ 153              		.size	PWM_ServoDir_Init, .-PWM_ServoDir_Init
+ 154              		.section	.text.PWM_ServoDir_Enable,"ax",%progbits
+ 155              		.align	2
+ 156              		.global	PWM_ServoDir_Enable
+ 157              		.thumb
+ 158              		.thumb_func
+ 159              		.type	PWM_ServoDir_Enable, %function
+ 160              	PWM_ServoDir_Enable:
+ 161              	.LFB2:
  180:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  181:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 7
+
+
  182:Generated_Source\PSoC5/PWM_ServoDir.c **** /*******************************************************************************
  183:Generated_Source\PSoC5/PWM_ServoDir.c **** * Function Name: PWM_ServoDir_Enable
  184:Generated_Source\PSoC5/PWM_ServoDir.c **** ********************************************************************************
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 7
-
-
  185:Generated_Source\PSoC5/PWM_ServoDir.c **** *
  186:Generated_Source\PSoC5/PWM_ServoDir.c **** * Summary:
  187:Generated_Source\PSoC5/PWM_ServoDir.c **** *  Enables the PWM block operation
@@ -377,16 +380,16 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 1
  198:Generated_Source\PSoC5/PWM_ServoDir.c **** *******************************************************************************/
  199:Generated_Source\PSoC5/PWM_ServoDir.c **** void PWM_ServoDir_Enable(void) 
  200:Generated_Source\PSoC5/PWM_ServoDir.c **** {
- 159              		.loc 1 200 0
- 160              		.cfi_startproc
- 161              		@ args = 0, pretend = 0, frame = 0
- 162              		@ frame_needed = 1, uses_anonymous_args = 0
- 163              		@ link register save eliminated.
- 164 0000 80B4     		push	{r7}
- 165              		.cfi_def_cfa_offset 4
- 166              		.cfi_offset 7, -4
- 167 0002 00AF     		add	r7, sp, #0
- 168              		.cfi_def_cfa_register 7
+ 162              		.loc 1 200 0
+ 163              		.cfi_startproc
+ 164              		@ args = 0, pretend = 0, frame = 0
+ 165              		@ frame_needed = 1, uses_anonymous_args = 0
+ 166              		@ link register save eliminated.
+ 167 0000 80B4     		push	{r7}
+ 168              		.cfi_def_cfa_offset 4
+ 169              		.cfi_offset 7, -4
+ 170 0002 00AF     		add	r7, sp, #0
+ 171              		.cfi_def_cfa_register 7
  201:Generated_Source\PSoC5/PWM_ServoDir.c ****     /* Globally Enable the Fixed Function Block chosen */
  202:Generated_Source\PSoC5/PWM_ServoDir.c ****     #if (PWM_ServoDir_UsingFixedFunction)
  203:Generated_Source\PSoC5/PWM_ServoDir.c ****         PWM_ServoDir_GLOBAL_ENABLE |= PWM_ServoDir_BLOCK_EN_MASK;
@@ -398,29 +401,29 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 1
  209:Generated_Source\PSoC5/PWM_ServoDir.c ****         PWM_ServoDir_CONTROL |= PWM_ServoDir_CTRL_ENABLE;
  210:Generated_Source\PSoC5/PWM_ServoDir.c ****     #endif /* (PWM_ServoDir_UseControl || PWM_ServoDir_UsingFixedFunction) */
  211:Generated_Source\PSoC5/PWM_ServoDir.c **** }
- 169              		.loc 1 211 0
- 170 0004 00BF     		nop
- 171 0006 BD46     		mov	sp, r7
- 172              		.cfi_def_cfa_register 13
- 173              		@ sp needed
- 174 0008 80BC     		pop	{r7}
- 175              		.cfi_restore 7
- 176              		.cfi_def_cfa_offset 0
- 177 000a 7047     		bx	lr
- 178              		.cfi_endproc
- 179              	.LFE2:
- 180              		.size	PWM_ServoDir_Enable, .-PWM_ServoDir_Enable
- 181              		.section	.text.PWM_ServoDir_Stop,"ax",%progbits
- 182              		.align	2
- 183              		.global	PWM_ServoDir_Stop
- 184              		.thumb
- 185              		.thumb_func
- 186              		.type	PWM_ServoDir_Stop, %function
- 187              	PWM_ServoDir_Stop:
- 188              	.LFB3:
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 8
+ 172              		.loc 1 211 0
+ 173 0004 00BF     		nop
+ 174 0006 BD46     		mov	sp, r7
+ 175              		.cfi_def_cfa_register 13
+ 176              		@ sp needed
+ 177 0008 80BC     		pop	{r7}
+ 178              		.cfi_restore 7
+ 179              		.cfi_def_cfa_offset 0
+ 180 000a 7047     		bx	lr
+ 181              		.cfi_endproc
+ 182              	.LFE2:
+ 183              		.size	PWM_ServoDir_Enable, .-PWM_ServoDir_Enable
+ 184              		.section	.text.PWM_ServoDir_Stop,"ax",%progbits
+ 185              		.align	2
+ 186              		.global	PWM_ServoDir_Stop
+ 187              		.thumb
+ 188              		.thumb_func
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 8
 
 
+ 189              		.type	PWM_ServoDir_Stop, %function
+ 190              	PWM_ServoDir_Stop:
+ 191              	.LFB3:
  212:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  213:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  214:Generated_Source\PSoC5/PWM_ServoDir.c **** /*******************************************************************************
@@ -444,16 +447,16 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 1
  232:Generated_Source\PSoC5/PWM_ServoDir.c **** *******************************************************************************/
  233:Generated_Source\PSoC5/PWM_ServoDir.c **** void PWM_ServoDir_Stop(void) 
  234:Generated_Source\PSoC5/PWM_ServoDir.c **** {
- 189              		.loc 1 234 0
- 190              		.cfi_startproc
- 191              		@ args = 0, pretend = 0, frame = 0
- 192              		@ frame_needed = 1, uses_anonymous_args = 0
- 193              		@ link register save eliminated.
- 194 0000 80B4     		push	{r7}
- 195              		.cfi_def_cfa_offset 4
- 196              		.cfi_offset 7, -4
- 197 0002 00AF     		add	r7, sp, #0
- 198              		.cfi_def_cfa_register 7
+ 192              		.loc 1 234 0
+ 193              		.cfi_startproc
+ 194              		@ args = 0, pretend = 0, frame = 0
+ 195              		@ frame_needed = 1, uses_anonymous_args = 0
+ 196              		@ link register save eliminated.
+ 197 0000 80B4     		push	{r7}
+ 198              		.cfi_def_cfa_offset 4
+ 199              		.cfi_offset 7, -4
+ 200 0002 00AF     		add	r7, sp, #0
+ 201              		.cfi_def_cfa_register 7
  235:Generated_Source\PSoC5/PWM_ServoDir.c ****     #if (PWM_ServoDir_UseControl || PWM_ServoDir_UsingFixedFunction)
  236:Generated_Source\PSoC5/PWM_ServoDir.c ****         PWM_ServoDir_CONTROL &= ((uint8)(~PWM_ServoDir_CTRL_ENABLE));
  237:Generated_Source\PSoC5/PWM_ServoDir.c ****     #endif /* (PWM_ServoDir_UseControl || PWM_ServoDir_UsingFixedFunction) */
@@ -464,29 +467,29 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 1
  242:Generated_Source\PSoC5/PWM_ServoDir.c ****         PWM_ServoDir_GLOBAL_STBY_ENABLE &= ((uint8)(~PWM_ServoDir_BLOCK_STBY_EN_MASK));
  243:Generated_Source\PSoC5/PWM_ServoDir.c ****     #endif /* (PWM_ServoDir_UsingFixedFunction) */
  244:Generated_Source\PSoC5/PWM_ServoDir.c **** }
- 199              		.loc 1 244 0
- 200 0004 00BF     		nop
- 201 0006 BD46     		mov	sp, r7
- 202              		.cfi_def_cfa_register 13
- 203              		@ sp needed
- 204 0008 80BC     		pop	{r7}
- 205              		.cfi_restore 7
- 206              		.cfi_def_cfa_offset 0
- 207 000a 7047     		bx	lr
- 208              		.cfi_endproc
- 209              	.LFE3:
- 210              		.size	PWM_ServoDir_Stop, .-PWM_ServoDir_Stop
- 211              		.section	.text.PWM_ServoDir_WriteCounter,"ax",%progbits
- 212              		.align	2
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 9
+ 202              		.loc 1 244 0
+ 203 0004 00BF     		nop
+ 204 0006 BD46     		mov	sp, r7
+ 205              		.cfi_def_cfa_register 13
+ 206              		@ sp needed
+ 207 0008 80BC     		pop	{r7}
+ 208              		.cfi_restore 7
+ 209              		.cfi_def_cfa_offset 0
+ 210 000a 7047     		bx	lr
+ 211              		.cfi_endproc
+ 212              	.LFE3:
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 9
 
 
- 213              		.global	PWM_ServoDir_WriteCounter
- 214              		.thumb
- 215              		.thumb_func
- 216              		.type	PWM_ServoDir_WriteCounter, %function
- 217              	PWM_ServoDir_WriteCounter:
- 218              	.LFB4:
+ 213              		.size	PWM_ServoDir_Stop, .-PWM_ServoDir_Stop
+ 214              		.section	.text.PWM_ServoDir_WriteCounter,"ax",%progbits
+ 215              		.align	2
+ 216              		.global	PWM_ServoDir_WriteCounter
+ 217              		.thumb
+ 218              		.thumb_func
+ 219              		.type	PWM_ServoDir_WriteCounter, %function
+ 220              	PWM_ServoDir_WriteCounter:
+ 221              	.LFB4:
  245:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  246:Generated_Source\PSoC5/PWM_ServoDir.c **** #if (PWM_ServoDir_UseOneCompareMode)
  247:Generated_Source\PSoC5/PWM_ServoDir.c ****     #if (PWM_ServoDir_CompareMode1SW)
@@ -535,12 +538,12 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 1
  290:Generated_Source\PSoC5/PWM_ServoDir.c ****                                                PWM_ServoDir_CTRL_CMPMODE2_MASK;
  291:Generated_Source\PSoC5/PWM_ServoDir.c ****                 #else
  292:Generated_Source\PSoC5/PWM_ServoDir.c ****                     uint8 comparemode2masked = comparemode & PWM_ServoDir_CTRL_CMPMODE2_MASK;
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 10
+
+
  293:Generated_Source\PSoC5/PWM_ServoDir.c ****                 #endif /* (0 != PWM_ServoDir_CTRL_CMPMODE2_SHIFT) */
  294:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  295:Generated_Source\PSoC5/PWM_ServoDir.c ****                 /*Clear existing mode */
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 10
-
-
  296:Generated_Source\PSoC5/PWM_ServoDir.c ****                 PWM_ServoDir_CONTROL &= ((uint8)(~(PWM_ServoDir_CTRL_CMPMODE1_MASK |
  297:Generated_Source\PSoC5/PWM_ServoDir.c ****                                             PWM_ServoDir_CTRL_CMPMODE2_MASK)));
  298:Generated_Source\PSoC5/PWM_ServoDir.c ****                 PWM_ServoDir_CONTROL |= (comparemode1masked | comparemode2masked);
@@ -595,12 +598,12 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 1
  347:Generated_Source\PSoC5/PWM_ServoDir.c ****     ********************************************************************************
  348:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
  349:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Summary:
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 11
+
+
  350:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  This function writes the Compare Mode for the pwm or pwm2 output
  351:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
  352:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Parameters:
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 11
-
-
  353:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  comparemode:  The new compare mode for the PWM output. Use the compare types
  354:Generated_Source\PSoC5/PWM_ServoDir.c ****     *                defined in the H file as input arguments.
  355:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
@@ -654,55 +657,55 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 1
  403:Generated_Source\PSoC5/PWM_ServoDir.c ****     void PWM_ServoDir_WriteCounter(uint16 counter) \
  404:Generated_Source\PSoC5/PWM_ServoDir.c ****                                        
  405:Generated_Source\PSoC5/PWM_ServoDir.c ****     {
- 219              		.loc 1 405 0
- 220              		.cfi_startproc
- 221              		@ args = 0, pretend = 0, frame = 8
- 222              		@ frame_needed = 1, uses_anonymous_args = 0
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 12
+ 222              		.loc 1 405 0
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 12
 
 
- 223              		@ link register save eliminated.
- 224 0000 80B4     		push	{r7}
- 225              		.cfi_def_cfa_offset 4
- 226              		.cfi_offset 7, -4
- 227 0002 83B0     		sub	sp, sp, #12
- 228              		.cfi_def_cfa_offset 16
- 229 0004 00AF     		add	r7, sp, #0
- 230              		.cfi_def_cfa_register 7
- 231 0006 0346     		mov	r3, r0
- 232 0008 FB80     		strh	r3, [r7, #6]	@ movhi
+ 223              		.cfi_startproc
+ 224              		@ args = 0, pretend = 0, frame = 8
+ 225              		@ frame_needed = 1, uses_anonymous_args = 0
+ 226              		@ link register save eliminated.
+ 227 0000 80B4     		push	{r7}
+ 228              		.cfi_def_cfa_offset 4
+ 229              		.cfi_offset 7, -4
+ 230 0002 83B0     		sub	sp, sp, #12
+ 231              		.cfi_def_cfa_offset 16
+ 232 0004 00AF     		add	r7, sp, #0
+ 233              		.cfi_def_cfa_register 7
+ 234 0006 0346     		mov	r3, r0
+ 235 0008 FB80     		strh	r3, [r7, #6]	@ movhi
  406:Generated_Source\PSoC5/PWM_ServoDir.c ****         CY_SET_REG16(PWM_ServoDir_COUNTER_LSB_PTR, counter);
- 233              		.loc 1 406 0
- 234 000a 044A     		ldr	r2, .L11
- 235 000c FB88     		ldrh	r3, [r7, #6]	@ movhi
- 236 000e 1380     		strh	r3, [r2]	@ movhi
+ 236              		.loc 1 406 0
+ 237 000a 044A     		ldr	r2, .L11
+ 238 000c FB88     		ldrh	r3, [r7, #6]	@ movhi
+ 239 000e 1380     		strh	r3, [r2]	@ movhi
  407:Generated_Source\PSoC5/PWM_ServoDir.c ****     }
- 237              		.loc 1 407 0
- 238 0010 00BF     		nop
- 239 0012 0C37     		adds	r7, r7, #12
- 240              		.cfi_def_cfa_offset 4
- 241 0014 BD46     		mov	sp, r7
- 242              		.cfi_def_cfa_register 13
- 243              		@ sp needed
- 244 0016 80BC     		pop	{r7}
- 245              		.cfi_restore 7
- 246              		.cfi_def_cfa_offset 0
- 247 0018 7047     		bx	lr
- 248              	.L12:
- 249 001a 00BF     		.align	2
- 250              	.L11:
- 251 001c 14680040 		.word	1073768468
- 252              		.cfi_endproc
- 253              	.LFE4:
- 254              		.size	PWM_ServoDir_WriteCounter, .-PWM_ServoDir_WriteCounter
- 255              		.section	.text.PWM_ServoDir_ReadCounter,"ax",%progbits
- 256              		.align	2
- 257              		.global	PWM_ServoDir_ReadCounter
- 258              		.thumb
- 259              		.thumb_func
- 260              		.type	PWM_ServoDir_ReadCounter, %function
- 261              	PWM_ServoDir_ReadCounter:
- 262              	.LFB5:
+ 240              		.loc 1 407 0
+ 241 0010 00BF     		nop
+ 242 0012 0C37     		adds	r7, r7, #12
+ 243              		.cfi_def_cfa_offset 4
+ 244 0014 BD46     		mov	sp, r7
+ 245              		.cfi_def_cfa_register 13
+ 246              		@ sp needed
+ 247 0016 80BC     		pop	{r7}
+ 248              		.cfi_restore 7
+ 249              		.cfi_def_cfa_offset 0
+ 250 0018 7047     		bx	lr
+ 251              	.L12:
+ 252 001a 00BF     		.align	2
+ 253              	.L11:
+ 254 001c 0C6A0040 		.word	1073768972
+ 255              		.cfi_endproc
+ 256              	.LFE4:
+ 257              		.size	PWM_ServoDir_WriteCounter, .-PWM_ServoDir_WriteCounter
+ 258              		.section	.text.PWM_ServoDir_ReadCounter,"ax",%progbits
+ 259              		.align	2
+ 260              		.global	PWM_ServoDir_ReadCounter
+ 261              		.thumb
+ 262              		.thumb_func
+ 263              		.type	PWM_ServoDir_ReadCounter, %function
+ 264              	PWM_ServoDir_ReadCounter:
+ 265              	.LFB5:
  408:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  409:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  410:Generated_Source\PSoC5/PWM_ServoDir.c ****     /*******************************************************************************
@@ -715,72 +718,72 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 1
  417:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
  418:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Parameters:
  419:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  None
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 13
+
+
  420:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
  421:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Return:
  422:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  The current value of the counter.
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 13
-
-
  423:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
  424:Generated_Source\PSoC5/PWM_ServoDir.c ****     *******************************************************************************/
  425:Generated_Source\PSoC5/PWM_ServoDir.c ****     uint16 PWM_ServoDir_ReadCounter(void) 
  426:Generated_Source\PSoC5/PWM_ServoDir.c ****     {
- 263              		.loc 1 426 0
- 264              		.cfi_startproc
- 265              		@ args = 0, pretend = 0, frame = 0
- 266              		@ frame_needed = 1, uses_anonymous_args = 0
- 267              		@ link register save eliminated.
- 268 0000 80B4     		push	{r7}
- 269              		.cfi_def_cfa_offset 4
- 270              		.cfi_offset 7, -4
- 271 0002 00AF     		add	r7, sp, #0
- 272              		.cfi_def_cfa_register 7
+ 266              		.loc 1 426 0
+ 267              		.cfi_startproc
+ 268              		@ args = 0, pretend = 0, frame = 0
+ 269              		@ frame_needed = 1, uses_anonymous_args = 0
+ 270              		@ link register save eliminated.
+ 271 0000 80B4     		push	{r7}
+ 272              		.cfi_def_cfa_offset 4
+ 273              		.cfi_offset 7, -4
+ 274 0002 00AF     		add	r7, sp, #0
+ 275              		.cfi_def_cfa_register 7
  427:Generated_Source\PSoC5/PWM_ServoDir.c ****         /* Force capture by reading Accumulator */
  428:Generated_Source\PSoC5/PWM_ServoDir.c ****         /* Must first do a software capture to be able to read the counter */
  429:Generated_Source\PSoC5/PWM_ServoDir.c ****         /* It is up to the user code to make sure there isn't already captured data in the FIFO */
  430:Generated_Source\PSoC5/PWM_ServoDir.c ****           (void)CY_GET_REG8(PWM_ServoDir_COUNTERCAP_LSB_PTR_8BIT);
- 273              		.loc 1 430 0
- 274 0004 044B     		ldr	r3, .L15
- 275 0006 1B78     		ldrb	r3, [r3]
+ 276              		.loc 1 430 0
+ 277 0004 044B     		ldr	r3, .L15
+ 278 0006 1B78     		ldrb	r3, [r3]
  431:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  432:Generated_Source\PSoC5/PWM_ServoDir.c ****         /* Read the data from the FIFO */
  433:Generated_Source\PSoC5/PWM_ServoDir.c ****         return (CY_GET_REG16(PWM_ServoDir_CAPTURE_LSB_PTR));
- 276              		.loc 1 433 0
- 277 0008 044B     		ldr	r3, .L15+4
- 278 000a 1B88     		ldrh	r3, [r3]	@ movhi
- 279 000c 9BB2     		uxth	r3, r3
+ 279              		.loc 1 433 0
+ 280 0008 044B     		ldr	r3, .L15+4
+ 281 000a 1B88     		ldrh	r3, [r3]	@ movhi
+ 282 000c 9BB2     		uxth	r3, r3
  434:Generated_Source\PSoC5/PWM_ServoDir.c ****     }
- 280              		.loc 1 434 0
- 281 000e 1846     		mov	r0, r3
- 282 0010 BD46     		mov	sp, r7
- 283              		.cfi_def_cfa_register 13
- 284              		@ sp needed
- 285 0012 80BC     		pop	{r7}
- 286              		.cfi_restore 7
- 287              		.cfi_def_cfa_offset 0
- 288 0014 7047     		bx	lr
- 289              	.L16:
- 290 0016 00BF     		.align	2
- 291              	.L15:
- 292 0018 1A640040 		.word	1073767450
- 293 001c B4680040 		.word	1073768628
- 294              		.cfi_endproc
- 295              	.LFE5:
- 296              		.size	PWM_ServoDir_ReadCounter, .-PWM_ServoDir_ReadCounter
- 297              		.section	.text.PWM_ServoDir_ClearFIFO,"ax",%progbits
- 298              		.align	2
- 299              		.global	PWM_ServoDir_ClearFIFO
- 300              		.thumb
- 301              		.thumb_func
- 302              		.type	PWM_ServoDir_ClearFIFO, %function
- 303              	PWM_ServoDir_ClearFIFO:
- 304              	.LFB6:
+ 283              		.loc 1 434 0
+ 284 000e 1846     		mov	r0, r3
+ 285 0010 BD46     		mov	sp, r7
+ 286              		.cfi_def_cfa_register 13
+ 287              		@ sp needed
+ 288 0012 80BC     		pop	{r7}
+ 289              		.cfi_restore 7
+ 290              		.cfi_def_cfa_offset 0
+ 291 0014 7047     		bx	lr
+ 292              	.L16:
+ 293 0016 00BF     		.align	2
+ 294              	.L15:
+ 295 0018 16650040 		.word	1073767702
+ 296 001c AC6A0040 		.word	1073769132
+ 297              		.cfi_endproc
+ 298              	.LFE5:
+ 299              		.size	PWM_ServoDir_ReadCounter, .-PWM_ServoDir_ReadCounter
+ 300              		.section	.text.PWM_ServoDir_ClearFIFO,"ax",%progbits
+ 301              		.align	2
+ 302              		.global	PWM_ServoDir_ClearFIFO
+ 303              		.thumb
+ 304              		.thumb_func
+ 305              		.type	PWM_ServoDir_ClearFIFO, %function
+ 306              	PWM_ServoDir_ClearFIFO:
+ 307              	.LFB6:
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 14
+
+
  435:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  436:Generated_Source\PSoC5/PWM_ServoDir.c ****     #if (PWM_ServoDir_UseStatus)
  437:Generated_Source\PSoC5/PWM_ServoDir.c **** 
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 14
-
-
  438:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  439:Generated_Source\PSoC5/PWM_ServoDir.c ****         /*******************************************************************************
  440:Generated_Source\PSoC5/PWM_ServoDir.c ****         * Function Name: PWM_ServoDir_ClearFIFO
@@ -798,51 +801,51 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 1
  452:Generated_Source\PSoC5/PWM_ServoDir.c ****         *******************************************************************************/
  453:Generated_Source\PSoC5/PWM_ServoDir.c ****         void PWM_ServoDir_ClearFIFO(void) 
  454:Generated_Source\PSoC5/PWM_ServoDir.c ****         {
- 305              		.loc 1 454 0
- 306              		.cfi_startproc
- 307              		@ args = 0, pretend = 0, frame = 0
- 308              		@ frame_needed = 1, uses_anonymous_args = 0
- 309 0000 80B5     		push	{r7, lr}
- 310              		.cfi_def_cfa_offset 8
- 311              		.cfi_offset 7, -8
- 312              		.cfi_offset 14, -4
- 313 0002 00AF     		add	r7, sp, #0
- 314              		.cfi_def_cfa_register 7
+ 308              		.loc 1 454 0
+ 309              		.cfi_startproc
+ 310              		@ args = 0, pretend = 0, frame = 0
+ 311              		@ frame_needed = 1, uses_anonymous_args = 0
+ 312 0000 80B5     		push	{r7, lr}
+ 313              		.cfi_def_cfa_offset 8
+ 314              		.cfi_offset 7, -8
+ 315              		.cfi_offset 14, -4
+ 316 0002 00AF     		add	r7, sp, #0
+ 317              		.cfi_def_cfa_register 7
  455:Generated_Source\PSoC5/PWM_ServoDir.c ****             while(0u != (PWM_ServoDir_ReadStatusRegister() & PWM_ServoDir_STATUS_FIFONEMPTY))
- 315              		.loc 1 455 0
- 316 0004 01E0     		b	.L18
- 317              	.L19:
+ 318              		.loc 1 455 0
+ 319 0004 01E0     		b	.L18
+ 320              	.L19:
  456:Generated_Source\PSoC5/PWM_ServoDir.c ****             {
  457:Generated_Source\PSoC5/PWM_ServoDir.c ****                 (void)PWM_ServoDir_ReadCapture();
- 318              		.loc 1 457 0
- 319 0006 FFF7FEFF 		bl	PWM_ServoDir_ReadCapture
- 320              	.L18:
+ 321              		.loc 1 457 0
+ 322 0006 FFF7FEFF 		bl	PWM_ServoDir_ReadCapture
+ 323              	.L18:
  455:Generated_Source\PSoC5/PWM_ServoDir.c ****             while(0u != (PWM_ServoDir_ReadStatusRegister() & PWM_ServoDir_STATUS_FIFONEMPTY))
- 321              		.loc 1 455 0
- 322 000a FFF7FEFF 		bl	PWM_ServoDir_ReadStatusRegister
- 323 000e 0346     		mov	r3, r0
- 324 0010 03F01003 		and	r3, r3, #16
- 325 0014 002B     		cmp	r3, #0
- 326 0016 F6D1     		bne	.L19
+ 324              		.loc 1 455 0
+ 325 000a FFF7FEFF 		bl	PWM_ServoDir_ReadStatusRegister
+ 326 000e 0346     		mov	r3, r0
+ 327 0010 03F01003 		and	r3, r3, #16
+ 328 0014 002B     		cmp	r3, #0
+ 329 0016 F6D1     		bne	.L19
  458:Generated_Source\PSoC5/PWM_ServoDir.c ****             }
  459:Generated_Source\PSoC5/PWM_ServoDir.c ****         }
- 327              		.loc 1 459 0
- 328 0018 00BF     		nop
- 329 001a 80BD     		pop	{r7, pc}
- 330              		.cfi_endproc
- 331              	.LFE6:
- 332              		.size	PWM_ServoDir_ClearFIFO, .-PWM_ServoDir_ClearFIFO
- 333              		.section	.text.PWM_ServoDir_WritePeriod,"ax",%progbits
- 334              		.align	2
- 335              		.global	PWM_ServoDir_WritePeriod
- 336              		.thumb
- 337              		.thumb_func
- 338              		.type	PWM_ServoDir_WritePeriod, %function
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 15
+ 330              		.loc 1 459 0
+ 331 0018 00BF     		nop
+ 332 001a 80BD     		pop	{r7, pc}
+ 333              		.cfi_endproc
+ 334              	.LFE6:
+ 335              		.size	PWM_ServoDir_ClearFIFO, .-PWM_ServoDir_ClearFIFO
+ 336              		.section	.text.PWM_ServoDir_WritePeriod,"ax",%progbits
+ 337              		.align	2
+ 338              		.global	PWM_ServoDir_WritePeriod
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 15
 
 
- 339              	PWM_ServoDir_WritePeriod:
- 340              	.LFB7:
+ 339              		.thumb
+ 340              		.thumb_func
+ 341              		.type	PWM_ServoDir_WritePeriod, %function
+ 342              	PWM_ServoDir_WritePeriod:
+ 343              	.LFB7:
  460:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  461:Generated_Source\PSoC5/PWM_ServoDir.c ****     #endif /* PWM_ServoDir_UseStatus */
  462:Generated_Source\PSoC5/PWM_ServoDir.c **** 
@@ -867,59 +870,59 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 1
  481:Generated_Source\PSoC5/PWM_ServoDir.c **** *******************************************************************************/
  482:Generated_Source\PSoC5/PWM_ServoDir.c **** void PWM_ServoDir_WritePeriod(uint16 period) 
  483:Generated_Source\PSoC5/PWM_ServoDir.c **** {
- 341              		.loc 1 483 0
- 342              		.cfi_startproc
- 343              		@ args = 0, pretend = 0, frame = 8
- 344              		@ frame_needed = 1, uses_anonymous_args = 0
- 345              		@ link register save eliminated.
- 346 0000 80B4     		push	{r7}
- 347              		.cfi_def_cfa_offset 4
- 348              		.cfi_offset 7, -4
- 349 0002 83B0     		sub	sp, sp, #12
- 350              		.cfi_def_cfa_offset 16
- 351 0004 00AF     		add	r7, sp, #0
- 352              		.cfi_def_cfa_register 7
- 353 0006 0346     		mov	r3, r0
- 354 0008 FB80     		strh	r3, [r7, #6]	@ movhi
+ 344              		.loc 1 483 0
+ 345              		.cfi_startproc
+ 346              		@ args = 0, pretend = 0, frame = 8
+ 347              		@ frame_needed = 1, uses_anonymous_args = 0
+ 348              		@ link register save eliminated.
+ 349 0000 80B4     		push	{r7}
+ 350              		.cfi_def_cfa_offset 4
+ 351              		.cfi_offset 7, -4
+ 352 0002 83B0     		sub	sp, sp, #12
+ 353              		.cfi_def_cfa_offset 16
+ 354 0004 00AF     		add	r7, sp, #0
+ 355              		.cfi_def_cfa_register 7
+ 356 0006 0346     		mov	r3, r0
+ 357 0008 FB80     		strh	r3, [r7, #6]	@ movhi
  484:Generated_Source\PSoC5/PWM_ServoDir.c ****     #if(PWM_ServoDir_UsingFixedFunction)
  485:Generated_Source\PSoC5/PWM_ServoDir.c ****         CY_SET_REG16(PWM_ServoDir_PERIOD_LSB_PTR, (uint16)period);
  486:Generated_Source\PSoC5/PWM_ServoDir.c ****     #else
  487:Generated_Source\PSoC5/PWM_ServoDir.c ****         CY_SET_REG16(PWM_ServoDir_PERIOD_LSB_PTR, period);
- 355              		.loc 1 487 0
- 356 000a 044A     		ldr	r2, .L21
- 357 000c FB88     		ldrh	r3, [r7, #6]	@ movhi
- 358 000e 1380     		strh	r3, [r2]	@ movhi
+ 358              		.loc 1 487 0
+ 359 000a 044A     		ldr	r2, .L21
+ 360 000c FB88     		ldrh	r3, [r7, #6]	@ movhi
+ 361 000e 1380     		strh	r3, [r2]	@ movhi
  488:Generated_Source\PSoC5/PWM_ServoDir.c ****     #endif /* (PWM_ServoDir_UsingFixedFunction) */
  489:Generated_Source\PSoC5/PWM_ServoDir.c **** }
- 359              		.loc 1 489 0
- 360 0010 00BF     		nop
- 361 0012 0C37     		adds	r7, r7, #12
- 362              		.cfi_def_cfa_offset 4
- 363 0014 BD46     		mov	sp, r7
- 364              		.cfi_def_cfa_register 13
- 365              		@ sp needed
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 16
+ 362              		.loc 1 489 0
+ 363 0010 00BF     		nop
+ 364 0012 0C37     		adds	r7, r7, #12
+ 365              		.cfi_def_cfa_offset 4
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 16
 
 
- 366 0016 80BC     		pop	{r7}
- 367              		.cfi_restore 7
- 368              		.cfi_def_cfa_offset 0
- 369 0018 7047     		bx	lr
- 370              	.L22:
- 371 001a 00BF     		.align	2
- 372              	.L21:
- 373 001c 94680040 		.word	1073768596
- 374              		.cfi_endproc
- 375              	.LFE7:
- 376              		.size	PWM_ServoDir_WritePeriod, .-PWM_ServoDir_WritePeriod
- 377              		.section	.text.PWM_ServoDir_WriteCompare,"ax",%progbits
- 378              		.align	2
- 379              		.global	PWM_ServoDir_WriteCompare
- 380              		.thumb
- 381              		.thumb_func
- 382              		.type	PWM_ServoDir_WriteCompare, %function
- 383              	PWM_ServoDir_WriteCompare:
- 384              	.LFB8:
+ 366 0014 BD46     		mov	sp, r7
+ 367              		.cfi_def_cfa_register 13
+ 368              		@ sp needed
+ 369 0016 80BC     		pop	{r7}
+ 370              		.cfi_restore 7
+ 371              		.cfi_def_cfa_offset 0
+ 372 0018 7047     		bx	lr
+ 373              	.L22:
+ 374 001a 00BF     		.align	2
+ 375              	.L21:
+ 376 001c 8C6A0040 		.word	1073769100
+ 377              		.cfi_endproc
+ 378              	.LFE7:
+ 379              		.size	PWM_ServoDir_WritePeriod, .-PWM_ServoDir_WritePeriod
+ 380              		.section	.text.PWM_ServoDir_WriteCompare1,"ax",%progbits
+ 381              		.align	2
+ 382              		.global	PWM_ServoDir_WriteCompare1
+ 383              		.thumb
+ 384              		.thumb_func
+ 385              		.type	PWM_ServoDir_WriteCompare1, %function
+ 386              	PWM_ServoDir_WriteCompare1:
+ 387              	.LFB8:
  490:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  491:Generated_Source\PSoC5/PWM_ServoDir.c **** #if (PWM_ServoDir_UseOneCompareMode)
  492:Generated_Source\PSoC5/PWM_ServoDir.c **** 
@@ -949,33 +952,15 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 1
  516:Generated_Source\PSoC5/PWM_ServoDir.c ****     void PWM_ServoDir_WriteCompare(uint16 compare) \
  517:Generated_Source\PSoC5/PWM_ServoDir.c ****                                        
  518:Generated_Source\PSoC5/PWM_ServoDir.c ****     {
- 385              		.loc 1 518 0
- 386              		.cfi_startproc
- 387              		@ args = 0, pretend = 0, frame = 8
- 388              		@ frame_needed = 1, uses_anonymous_args = 0
- 389              		@ link register save eliminated.
- 390 0000 80B4     		push	{r7}
- 391              		.cfi_def_cfa_offset 4
- 392              		.cfi_offset 7, -4
- 393 0002 83B0     		sub	sp, sp, #12
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 17
-
-
- 394              		.cfi_def_cfa_offset 16
- 395 0004 00AF     		add	r7, sp, #0
- 396              		.cfi_def_cfa_register 7
- 397 0006 0346     		mov	r3, r0
- 398 0008 FB80     		strh	r3, [r7, #6]	@ movhi
  519:Generated_Source\PSoC5/PWM_ServoDir.c ****         #if(PWM_ServoDir_UsingFixedFunction)
  520:Generated_Source\PSoC5/PWM_ServoDir.c ****             CY_SET_REG16(PWM_ServoDir_COMPARE1_LSB_PTR, (uint16)compare);
  521:Generated_Source\PSoC5/PWM_ServoDir.c ****         #else
  522:Generated_Source\PSoC5/PWM_ServoDir.c ****             CY_SET_REG16(PWM_ServoDir_COMPARE1_LSB_PTR, compare);
- 399              		.loc 1 522 0
- 400 000a 044A     		ldr	r2, .L24
- 401 000c FB88     		ldrh	r3, [r7, #6]	@ movhi
- 402 000e 1380     		strh	r3, [r2]	@ movhi
  523:Generated_Source\PSoC5/PWM_ServoDir.c ****         #endif /* (PWM_ServoDir_UsingFixedFunction) */
  524:Generated_Source\PSoC5/PWM_ServoDir.c **** 
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 17
+
+
  525:Generated_Source\PSoC5/PWM_ServoDir.c ****         #if (PWM_ServoDir_PWMMode == PWM_ServoDir__B_PWM__DITHER)
  526:Generated_Source\PSoC5/PWM_ServoDir.c ****             #if(PWM_ServoDir_UsingFixedFunction)
  527:Generated_Source\PSoC5/PWM_ServoDir.c ****                 CY_SET_REG16(PWM_ServoDir_COMPARE2_LSB_PTR, (uint16)(compare + 1u));
@@ -984,32 +969,6 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 1
  530:Generated_Source\PSoC5/PWM_ServoDir.c ****             #endif /* (PWM_ServoDir_UsingFixedFunction) */
  531:Generated_Source\PSoC5/PWM_ServoDir.c ****         #endif /* (PWM_ServoDir_PWMMode == PWM_ServoDir__B_PWM__DITHER) */
  532:Generated_Source\PSoC5/PWM_ServoDir.c ****     }
- 403              		.loc 1 532 0
- 404 0010 00BF     		nop
- 405 0012 0C37     		adds	r7, r7, #12
- 406              		.cfi_def_cfa_offset 4
- 407 0014 BD46     		mov	sp, r7
- 408              		.cfi_def_cfa_register 13
- 409              		@ sp needed
- 410 0016 80BC     		pop	{r7}
- 411              		.cfi_restore 7
- 412              		.cfi_def_cfa_offset 0
- 413 0018 7047     		bx	lr
- 414              	.L25:
- 415 001a 00BF     		.align	2
- 416              	.L24:
- 417 001c 54680040 		.word	1073768532
- 418              		.cfi_endproc
- 419              	.LFE8:
- 420              		.size	PWM_ServoDir_WriteCompare, .-PWM_ServoDir_WriteCompare
- 421              		.section	.text.PWM_ServoDir_SetInterruptMode,"ax",%progbits
- 422              		.align	2
- 423              		.global	PWM_ServoDir_SetInterruptMode
- 424              		.thumb
- 425              		.thumb_func
- 426              		.type	PWM_ServoDir_SetInterruptMode, %function
- 427              	PWM_ServoDir_SetInterruptMode:
- 428              	.LFB9:
  533:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  534:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  535:Generated_Source\PSoC5/PWM_ServoDir.c **** #else
@@ -1018,9 +977,6 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 1
  538:Generated_Source\PSoC5/PWM_ServoDir.c ****     /*******************************************************************************
  539:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Function Name: PWM_ServoDir_WriteCompare1
  540:Generated_Source\PSoC5/PWM_ServoDir.c ****     ********************************************************************************
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 18
-
-
  541:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
  542:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Summary:
  543:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  This funtion is used to change the compare1 value.  The compare output will
@@ -1038,12 +994,59 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 1
  555:Generated_Source\PSoC5/PWM_ServoDir.c ****     void PWM_ServoDir_WriteCompare1(uint16 compare) \
  556:Generated_Source\PSoC5/PWM_ServoDir.c ****                                         
  557:Generated_Source\PSoC5/PWM_ServoDir.c ****     {
+ 388              		.loc 1 557 0
+ 389              		.cfi_startproc
+ 390              		@ args = 0, pretend = 0, frame = 8
+ 391              		@ frame_needed = 1, uses_anonymous_args = 0
+ 392              		@ link register save eliminated.
+ 393 0000 80B4     		push	{r7}
+ 394              		.cfi_def_cfa_offset 4
+ 395              		.cfi_offset 7, -4
+ 396 0002 83B0     		sub	sp, sp, #12
+ 397              		.cfi_def_cfa_offset 16
+ 398 0004 00AF     		add	r7, sp, #0
+ 399              		.cfi_def_cfa_register 7
+ 400 0006 0346     		mov	r3, r0
+ 401 0008 FB80     		strh	r3, [r7, #6]	@ movhi
  558:Generated_Source\PSoC5/PWM_ServoDir.c ****         #if(PWM_ServoDir_UsingFixedFunction)
  559:Generated_Source\PSoC5/PWM_ServoDir.c ****             CY_SET_REG16(PWM_ServoDir_COMPARE1_LSB_PTR, (uint16)compare);
  560:Generated_Source\PSoC5/PWM_ServoDir.c ****         #else
  561:Generated_Source\PSoC5/PWM_ServoDir.c ****             CY_SET_REG16(PWM_ServoDir_COMPARE1_LSB_PTR, compare);
+ 402              		.loc 1 561 0
+ 403 000a 044A     		ldr	r2, .L24
+ 404 000c FB88     		ldrh	r3, [r7, #6]	@ movhi
+ 405 000e 1380     		strh	r3, [r2]	@ movhi
  562:Generated_Source\PSoC5/PWM_ServoDir.c ****         #endif /* (PWM_ServoDir_UsingFixedFunction) */
  563:Generated_Source\PSoC5/PWM_ServoDir.c ****     }
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 18
+
+
+ 406              		.loc 1 563 0
+ 407 0010 00BF     		nop
+ 408 0012 0C37     		adds	r7, r7, #12
+ 409              		.cfi_def_cfa_offset 4
+ 410 0014 BD46     		mov	sp, r7
+ 411              		.cfi_def_cfa_register 13
+ 412              		@ sp needed
+ 413 0016 80BC     		pop	{r7}
+ 414              		.cfi_restore 7
+ 415              		.cfi_def_cfa_offset 0
+ 416 0018 7047     		bx	lr
+ 417              	.L25:
+ 418 001a 00BF     		.align	2
+ 419              	.L24:
+ 420 001c 4C6A0040 		.word	1073769036
+ 421              		.cfi_endproc
+ 422              	.LFE8:
+ 423              		.size	PWM_ServoDir_WriteCompare1, .-PWM_ServoDir_WriteCompare1
+ 424              		.section	.text.PWM_ServoDir_WriteCompare2,"ax",%progbits
+ 425              		.align	2
+ 426              		.global	PWM_ServoDir_WriteCompare2
+ 427              		.thumb
+ 428              		.thumb_func
+ 429              		.type	PWM_ServoDir_WriteCompare2, %function
+ 430              	PWM_ServoDir_WriteCompare2:
+ 431              	.LFB9:
  564:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  565:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  566:Generated_Source\PSoC5/PWM_ServoDir.c ****     /*******************************************************************************
@@ -1067,20 +1070,64 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 1
  584:Generated_Source\PSoC5/PWM_ServoDir.c ****     void PWM_ServoDir_WriteCompare2(uint16 compare) \
  585:Generated_Source\PSoC5/PWM_ServoDir.c ****                                         
  586:Generated_Source\PSoC5/PWM_ServoDir.c ****     {
+ 432              		.loc 1 586 0
+ 433              		.cfi_startproc
+ 434              		@ args = 0, pretend = 0, frame = 8
+ 435              		@ frame_needed = 1, uses_anonymous_args = 0
+ 436              		@ link register save eliminated.
+ 437 0000 80B4     		push	{r7}
+ 438              		.cfi_def_cfa_offset 4
+ 439              		.cfi_offset 7, -4
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 19
+
+
+ 440 0002 83B0     		sub	sp, sp, #12
+ 441              		.cfi_def_cfa_offset 16
+ 442 0004 00AF     		add	r7, sp, #0
+ 443              		.cfi_def_cfa_register 7
+ 444 0006 0346     		mov	r3, r0
+ 445 0008 FB80     		strh	r3, [r7, #6]	@ movhi
  587:Generated_Source\PSoC5/PWM_ServoDir.c ****         #if(PWM_ServoDir_UsingFixedFunction)
  588:Generated_Source\PSoC5/PWM_ServoDir.c ****             CY_SET_REG16(PWM_ServoDir_COMPARE2_LSB_PTR, compare);
  589:Generated_Source\PSoC5/PWM_ServoDir.c ****         #else
  590:Generated_Source\PSoC5/PWM_ServoDir.c ****             CY_SET_REG16(PWM_ServoDir_COMPARE2_LSB_PTR, compare);
+ 446              		.loc 1 590 0
+ 447 000a 044A     		ldr	r2, .L27
+ 448 000c FB88     		ldrh	r3, [r7, #6]	@ movhi
+ 449 000e 1380     		strh	r3, [r2]	@ movhi
  591:Generated_Source\PSoC5/PWM_ServoDir.c ****         #endif /* (PWM_ServoDir_UsingFixedFunction) */
  592:Generated_Source\PSoC5/PWM_ServoDir.c ****     }
+ 450              		.loc 1 592 0
+ 451 0010 00BF     		nop
+ 452 0012 0C37     		adds	r7, r7, #12
+ 453              		.cfi_def_cfa_offset 4
+ 454 0014 BD46     		mov	sp, r7
+ 455              		.cfi_def_cfa_register 13
+ 456              		@ sp needed
+ 457 0016 80BC     		pop	{r7}
+ 458              		.cfi_restore 7
+ 459              		.cfi_def_cfa_offset 0
+ 460 0018 7047     		bx	lr
+ 461              	.L28:
+ 462 001a 00BF     		.align	2
+ 463              	.L27:
+ 464 001c 6C6A0040 		.word	1073769068
+ 465              		.cfi_endproc
+ 466              	.LFE9:
+ 467              		.size	PWM_ServoDir_WriteCompare2, .-PWM_ServoDir_WriteCompare2
+ 468              		.section	.text.PWM_ServoDir_SetInterruptMode,"ax",%progbits
+ 469              		.align	2
+ 470              		.global	PWM_ServoDir_SetInterruptMode
+ 471              		.thumb
+ 472              		.thumb_func
+ 473              		.type	PWM_ServoDir_SetInterruptMode, %function
+ 474              	PWM_ServoDir_SetInterruptMode:
+ 475              	.LFB10:
  593:Generated_Source\PSoC5/PWM_ServoDir.c **** #endif /* UseOneCompareMode */
  594:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  595:Generated_Source\PSoC5/PWM_ServoDir.c **** #if (PWM_ServoDir_DeadBandUsed)
  596:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  597:Generated_Source\PSoC5/PWM_ServoDir.c **** 
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 19
-
-
  598:Generated_Source\PSoC5/PWM_ServoDir.c ****     /*******************************************************************************
  599:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Function Name: PWM_ServoDir_WriteDeadTime
  600:Generated_Source\PSoC5/PWM_ServoDir.c ****     ********************************************************************************
@@ -1091,6 +1138,9 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 1
  605:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Parameters:
  606:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  deadtime:  Number of counts for dead time
  607:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 20
+
+
  608:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Return:
  609:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  None
  610:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
@@ -1138,9 +1188,6 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 1
  652:Generated_Source\PSoC5/PWM_ServoDir.c ****             return (CY_GET_REG8(PWM_ServoDir_DEADBAND_COUNT_PTR));
  653:Generated_Source\PSoC5/PWM_ServoDir.c ****         #else
  654:Generated_Source\PSoC5/PWM_ServoDir.c **** 
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 20
-
-
  655:Generated_Source\PSoC5/PWM_ServoDir.c ****             /* Otherwise the data has to be masked and offset */
  656:Generated_Source\PSoC5/PWM_ServoDir.c ****             #if(PWM_ServoDir_DEADBAND_COUNT_SHIFT)
  657:Generated_Source\PSoC5/PWM_ServoDir.c ****                 return ((uint8)(((uint8)(PWM_ServoDir_DEADBAND_COUNT & PWM_ServoDir_DEADBAND_COUNT_
@@ -1151,6 +1198,9 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 1
  662:Generated_Source\PSoC5/PWM_ServoDir.c ****         #endif /* (!PWM_ServoDir_DeadBand2_4) */
  663:Generated_Source\PSoC5/PWM_ServoDir.c ****     }
  664:Generated_Source\PSoC5/PWM_ServoDir.c **** #endif /* DeadBandUsed */
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 21
+
+
  665:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  666:Generated_Source\PSoC5/PWM_ServoDir.c **** #if (PWM_ServoDir_UseStatus || PWM_ServoDir_UsingFixedFunction)
  667:Generated_Source\PSoC5/PWM_ServoDir.c **** 
@@ -1172,55 +1222,55 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 1
  683:Generated_Source\PSoC5/PWM_ServoDir.c ****     *******************************************************************************/
  684:Generated_Source\PSoC5/PWM_ServoDir.c ****     void PWM_ServoDir_SetInterruptMode(uint8 interruptMode) 
  685:Generated_Source\PSoC5/PWM_ServoDir.c ****     {
- 429              		.loc 1 685 0
- 430              		.cfi_startproc
- 431              		@ args = 0, pretend = 0, frame = 8
- 432              		@ frame_needed = 1, uses_anonymous_args = 0
- 433              		@ link register save eliminated.
- 434 0000 80B4     		push	{r7}
- 435              		.cfi_def_cfa_offset 4
- 436              		.cfi_offset 7, -4
- 437 0002 83B0     		sub	sp, sp, #12
- 438              		.cfi_def_cfa_offset 16
- 439 0004 00AF     		add	r7, sp, #0
- 440              		.cfi_def_cfa_register 7
- 441 0006 0346     		mov	r3, r0
- 442 0008 FB71     		strb	r3, [r7, #7]
+ 476              		.loc 1 685 0
+ 477              		.cfi_startproc
+ 478              		@ args = 0, pretend = 0, frame = 8
+ 479              		@ frame_needed = 1, uses_anonymous_args = 0
+ 480              		@ link register save eliminated.
+ 481 0000 80B4     		push	{r7}
+ 482              		.cfi_def_cfa_offset 4
+ 483              		.cfi_offset 7, -4
+ 484 0002 83B0     		sub	sp, sp, #12
+ 485              		.cfi_def_cfa_offset 16
+ 486 0004 00AF     		add	r7, sp, #0
+ 487              		.cfi_def_cfa_register 7
+ 488 0006 0346     		mov	r3, r0
+ 489 0008 FB71     		strb	r3, [r7, #7]
  686:Generated_Source\PSoC5/PWM_ServoDir.c ****         CY_SET_REG8(PWM_ServoDir_STATUS_MASK_PTR, interruptMode);
- 443              		.loc 1 686 0
- 444 000a 044A     		ldr	r2, .L27
- 445 000c FB79     		ldrb	r3, [r7, #7]
- 446 000e 1370     		strb	r3, [r2]
+ 490              		.loc 1 686 0
+ 491 000a 044A     		ldr	r2, .L30
+ 492 000c FB79     		ldrb	r3, [r7, #7]
+ 493 000e 1370     		strb	r3, [r2]
  687:Generated_Source\PSoC5/PWM_ServoDir.c ****     }
- 447              		.loc 1 687 0
- 448 0010 00BF     		nop
- 449 0012 0C37     		adds	r7, r7, #12
- 450              		.cfi_def_cfa_offset 4
- 451 0014 BD46     		mov	sp, r7
- 452              		.cfi_def_cfa_register 13
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 21
+ 494              		.loc 1 687 0
+ 495 0010 00BF     		nop
+ 496 0012 0C37     		adds	r7, r7, #12
+ 497              		.cfi_def_cfa_offset 4
+ 498 0014 BD46     		mov	sp, r7
+ 499              		.cfi_def_cfa_register 13
+ 500              		@ sp needed
+ 501 0016 80BC     		pop	{r7}
+ 502              		.cfi_restore 7
+ 503              		.cfi_def_cfa_offset 0
+ 504 0018 7047     		bx	lr
+ 505              	.L31:
+ 506 001a 00BF     		.align	2
+ 507              	.L30:
+ 508 001c 85650040 		.word	1073767813
+ 509              		.cfi_endproc
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 22
 
 
- 453              		@ sp needed
- 454 0016 80BC     		pop	{r7}
- 455              		.cfi_restore 7
- 456              		.cfi_def_cfa_offset 0
- 457 0018 7047     		bx	lr
- 458              	.L28:
- 459 001a 00BF     		.align	2
- 460              	.L27:
- 461 001c 8B650040 		.word	1073767819
- 462              		.cfi_endproc
- 463              	.LFE9:
- 464              		.size	PWM_ServoDir_SetInterruptMode, .-PWM_ServoDir_SetInterruptMode
- 465              		.section	.text.PWM_ServoDir_ReadStatusRegister,"ax",%progbits
- 466              		.align	2
- 467              		.global	PWM_ServoDir_ReadStatusRegister
- 468              		.thumb
- 469              		.thumb_func
- 470              		.type	PWM_ServoDir_ReadStatusRegister, %function
- 471              	PWM_ServoDir_ReadStatusRegister:
- 472              	.LFB10:
+ 510              	.LFE10:
+ 511              		.size	PWM_ServoDir_SetInterruptMode, .-PWM_ServoDir_SetInterruptMode
+ 512              		.section	.text.PWM_ServoDir_ReadStatusRegister,"ax",%progbits
+ 513              		.align	2
+ 514              		.global	PWM_ServoDir_ReadStatusRegister
+ 515              		.thumb
+ 516              		.thumb_func
+ 517              		.type	PWM_ServoDir_ReadStatusRegister, %function
+ 518              	PWM_ServoDir_ReadStatusRegister:
+ 519              	.LFB11:
  688:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  689:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  690:Generated_Source\PSoC5/PWM_ServoDir.c ****     /*******************************************************************************
@@ -1246,49 +1296,49 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 1
  710:Generated_Source\PSoC5/PWM_ServoDir.c ****     *******************************************************************************/
  711:Generated_Source\PSoC5/PWM_ServoDir.c ****     uint8 PWM_ServoDir_ReadStatusRegister(void) 
  712:Generated_Source\PSoC5/PWM_ServoDir.c ****     {
- 473              		.loc 1 712 0
- 474              		.cfi_startproc
- 475              		@ args = 0, pretend = 0, frame = 0
- 476              		@ frame_needed = 1, uses_anonymous_args = 0
- 477              		@ link register save eliminated.
- 478 0000 80B4     		push	{r7}
- 479              		.cfi_def_cfa_offset 4
- 480              		.cfi_offset 7, -4
- 481 0002 00AF     		add	r7, sp, #0
- 482              		.cfi_def_cfa_register 7
+ 520              		.loc 1 712 0
+ 521              		.cfi_startproc
+ 522              		@ args = 0, pretend = 0, frame = 0
+ 523              		@ frame_needed = 1, uses_anonymous_args = 0
+ 524              		@ link register save eliminated.
+ 525 0000 80B4     		push	{r7}
+ 526              		.cfi_def_cfa_offset 4
+ 527              		.cfi_offset 7, -4
+ 528 0002 00AF     		add	r7, sp, #0
+ 529              		.cfi_def_cfa_register 7
  713:Generated_Source\PSoC5/PWM_ServoDir.c ****         return (CY_GET_REG8(PWM_ServoDir_STATUS_PTR));
- 483              		.loc 1 713 0
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 22
-
-
- 484 0004 034B     		ldr	r3, .L31
- 485 0006 1B78     		ldrb	r3, [r3]
- 486 0008 DBB2     		uxtb	r3, r3
+ 530              		.loc 1 713 0
+ 531 0004 034B     		ldr	r3, .L34
+ 532 0006 1B78     		ldrb	r3, [r3]
+ 533 0008 DBB2     		uxtb	r3, r3
  714:Generated_Source\PSoC5/PWM_ServoDir.c ****     }
- 487              		.loc 1 714 0
- 488 000a 1846     		mov	r0, r3
- 489 000c BD46     		mov	sp, r7
- 490              		.cfi_def_cfa_register 13
- 491              		@ sp needed
- 492 000e 80BC     		pop	{r7}
- 493              		.cfi_restore 7
- 494              		.cfi_def_cfa_offset 0
- 495 0010 7047     		bx	lr
- 496              	.L32:
- 497 0012 00BF     		.align	2
- 498              	.L31:
- 499 0014 6B650040 		.word	1073767787
- 500              		.cfi_endproc
- 501              	.LFE10:
- 502              		.size	PWM_ServoDir_ReadStatusRegister, .-PWM_ServoDir_ReadStatusRegister
- 503              		.section	.text.PWM_ServoDir_ReadCapture,"ax",%progbits
- 504              		.align	2
- 505              		.global	PWM_ServoDir_ReadCapture
- 506              		.thumb
- 507              		.thumb_func
- 508              		.type	PWM_ServoDir_ReadCapture, %function
- 509              	PWM_ServoDir_ReadCapture:
- 510              	.LFB11:
+ 534              		.loc 1 714 0
+ 535 000a 1846     		mov	r0, r3
+ 536 000c BD46     		mov	sp, r7
+ 537              		.cfi_def_cfa_register 13
+ 538              		@ sp needed
+ 539 000e 80BC     		pop	{r7}
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 23
+
+
+ 540              		.cfi_restore 7
+ 541              		.cfi_def_cfa_offset 0
+ 542 0010 7047     		bx	lr
+ 543              	.L35:
+ 544 0012 00BF     		.align	2
+ 545              	.L34:
+ 546 0014 65650040 		.word	1073767781
+ 547              		.cfi_endproc
+ 548              	.LFE11:
+ 549              		.size	PWM_ServoDir_ReadStatusRegister, .-PWM_ServoDir_ReadStatusRegister
+ 550              		.section	.text.PWM_ServoDir_ReadCapture,"ax",%progbits
+ 551              		.align	2
+ 552              		.global	PWM_ServoDir_ReadCapture
+ 553              		.thumb
+ 554              		.thumb_func
+ 555              		.type	PWM_ServoDir_ReadCapture, %function
+ 556              	PWM_ServoDir_ReadCapture:
+ 557              	.LFB12:
  715:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  716:Generated_Source\PSoC5/PWM_ServoDir.c **** #endif /* (PWM_ServoDir_UseStatus || PWM_ServoDir_UsingFixedFunction) */
  717:Generated_Source\PSoC5/PWM_ServoDir.c **** 
@@ -1318,9 +1368,6 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 1
  741:Generated_Source\PSoC5/PWM_ServoDir.c ****         result = CY_GET_REG8(PWM_ServoDir_CONTROL_PTR);
  742:Generated_Source\PSoC5/PWM_ServoDir.c ****         return (result);
  743:Generated_Source\PSoC5/PWM_ServoDir.c ****     }
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 23
-
-
  744:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  745:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  746:Generated_Source\PSoC5/PWM_ServoDir.c ****     /*******************************************************************************
@@ -1331,6 +1378,9 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 1
  751:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  Sets the bit field of the control register. This API is available only if
  752:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  the control register is not removed.
  753:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 24
+
+
  754:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Parameters:
  755:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  uint8 control: Control register bit field, The status register bits are:
  756:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  [7]   : PWM Enable
@@ -1369,49 +1419,49 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 1
  789:Generated_Source\PSoC5/PWM_ServoDir.c ****     *******************************************************************************/
  790:Generated_Source\PSoC5/PWM_ServoDir.c ****     uint16 PWM_ServoDir_ReadCapture(void) 
  791:Generated_Source\PSoC5/PWM_ServoDir.c ****     {
- 511              		.loc 1 791 0
- 512              		.cfi_startproc
- 513              		@ args = 0, pretend = 0, frame = 0
- 514              		@ frame_needed = 1, uses_anonymous_args = 0
- 515              		@ link register save eliminated.
- 516 0000 80B4     		push	{r7}
- 517              		.cfi_def_cfa_offset 4
- 518              		.cfi_offset 7, -4
- 519 0002 00AF     		add	r7, sp, #0
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 24
-
-
- 520              		.cfi_def_cfa_register 7
+ 558              		.loc 1 791 0
+ 559              		.cfi_startproc
+ 560              		@ args = 0, pretend = 0, frame = 0
+ 561              		@ frame_needed = 1, uses_anonymous_args = 0
+ 562              		@ link register save eliminated.
+ 563 0000 80B4     		push	{r7}
+ 564              		.cfi_def_cfa_offset 4
+ 565              		.cfi_offset 7, -4
+ 566 0002 00AF     		add	r7, sp, #0
+ 567              		.cfi_def_cfa_register 7
  792:Generated_Source\PSoC5/PWM_ServoDir.c ****         return (CY_GET_REG16(PWM_ServoDir_CAPTURE_LSB_PTR));
- 521              		.loc 1 792 0
- 522 0004 034B     		ldr	r3, .L35
- 523 0006 1B88     		ldrh	r3, [r3]	@ movhi
- 524 0008 9BB2     		uxth	r3, r3
+ 568              		.loc 1 792 0
+ 569 0004 034B     		ldr	r3, .L38
+ 570 0006 1B88     		ldrh	r3, [r3]	@ movhi
+ 571 0008 9BB2     		uxth	r3, r3
  793:Generated_Source\PSoC5/PWM_ServoDir.c ****     }
- 525              		.loc 1 793 0
- 526 000a 1846     		mov	r0, r3
- 527 000c BD46     		mov	sp, r7
- 528              		.cfi_def_cfa_register 13
- 529              		@ sp needed
- 530 000e 80BC     		pop	{r7}
- 531              		.cfi_restore 7
- 532              		.cfi_def_cfa_offset 0
- 533 0010 7047     		bx	lr
- 534              	.L36:
- 535 0012 00BF     		.align	2
- 536              	.L35:
- 537 0014 B4680040 		.word	1073768628
- 538              		.cfi_endproc
- 539              	.LFE11:
- 540              		.size	PWM_ServoDir_ReadCapture, .-PWM_ServoDir_ReadCapture
- 541              		.section	.text.PWM_ServoDir_ReadCompare,"ax",%progbits
- 542              		.align	2
- 543              		.global	PWM_ServoDir_ReadCompare
- 544              		.thumb
- 545              		.thumb_func
- 546              		.type	PWM_ServoDir_ReadCompare, %function
- 547              	PWM_ServoDir_ReadCompare:
- 548              	.LFB12:
+ 572              		.loc 1 793 0
+ 573 000a 1846     		mov	r0, r3
+ 574 000c BD46     		mov	sp, r7
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 25
+
+
+ 575              		.cfi_def_cfa_register 13
+ 576              		@ sp needed
+ 577 000e 80BC     		pop	{r7}
+ 578              		.cfi_restore 7
+ 579              		.cfi_def_cfa_offset 0
+ 580 0010 7047     		bx	lr
+ 581              	.L39:
+ 582 0012 00BF     		.align	2
+ 583              	.L38:
+ 584 0014 AC6A0040 		.word	1073769132
+ 585              		.cfi_endproc
+ 586              	.LFE12:
+ 587              		.size	PWM_ServoDir_ReadCapture, .-PWM_ServoDir_ReadCapture
+ 588              		.section	.text.PWM_ServoDir_ReadCompare1,"ax",%progbits
+ 589              		.align	2
+ 590              		.global	PWM_ServoDir_ReadCompare1
+ 591              		.thumb
+ 592              		.thumb_func
+ 593              		.type	PWM_ServoDir_ReadCompare1, %function
+ 594              	PWM_ServoDir_ReadCompare1:
+ 595              	.LFB13:
  794:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  795:Generated_Source\PSoC5/PWM_ServoDir.c **** #endif /* (!PWM_ServoDir_UsingFixedFunction) */
  796:Generated_Source\PSoC5/PWM_ServoDir.c **** 
@@ -1436,59 +1486,21 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 1
  815:Generated_Source\PSoC5/PWM_ServoDir.c ****     *******************************************************************************/
  816:Generated_Source\PSoC5/PWM_ServoDir.c ****     uint16 PWM_ServoDir_ReadCompare(void) 
  817:Generated_Source\PSoC5/PWM_ServoDir.c ****     {
- 549              		.loc 1 817 0
- 550              		.cfi_startproc
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 25
-
-
- 551              		@ args = 0, pretend = 0, frame = 0
- 552              		@ frame_needed = 1, uses_anonymous_args = 0
- 553              		@ link register save eliminated.
- 554 0000 80B4     		push	{r7}
- 555              		.cfi_def_cfa_offset 4
- 556              		.cfi_offset 7, -4
- 557 0002 00AF     		add	r7, sp, #0
- 558              		.cfi_def_cfa_register 7
  818:Generated_Source\PSoC5/PWM_ServoDir.c ****         #if(PWM_ServoDir_UsingFixedFunction)
  819:Generated_Source\PSoC5/PWM_ServoDir.c ****             return ((uint16)CY_GET_REG16(PWM_ServoDir_COMPARE1_LSB_PTR));
  820:Generated_Source\PSoC5/PWM_ServoDir.c ****         #else
  821:Generated_Source\PSoC5/PWM_ServoDir.c ****             return (CY_GET_REG16(PWM_ServoDir_COMPARE1_LSB_PTR));
- 559              		.loc 1 821 0
- 560 0004 034B     		ldr	r3, .L39
- 561 0006 1B88     		ldrh	r3, [r3]	@ movhi
- 562 0008 9BB2     		uxth	r3, r3
  822:Generated_Source\PSoC5/PWM_ServoDir.c ****         #endif /* (PWM_ServoDir_UsingFixedFunction) */
  823:Generated_Source\PSoC5/PWM_ServoDir.c ****     }
- 563              		.loc 1 823 0
- 564 000a 1846     		mov	r0, r3
- 565 000c BD46     		mov	sp, r7
- 566              		.cfi_def_cfa_register 13
- 567              		@ sp needed
- 568 000e 80BC     		pop	{r7}
- 569              		.cfi_restore 7
- 570              		.cfi_def_cfa_offset 0
- 571 0010 7047     		bx	lr
- 572              	.L40:
- 573 0012 00BF     		.align	2
- 574              	.L39:
- 575 0014 54680040 		.word	1073768532
- 576              		.cfi_endproc
- 577              	.LFE12:
- 578              		.size	PWM_ServoDir_ReadCompare, .-PWM_ServoDir_ReadCompare
- 579              		.section	.text.PWM_ServoDir_ReadPeriod,"ax",%progbits
- 580              		.align	2
- 581              		.global	PWM_ServoDir_ReadPeriod
- 582              		.thumb
- 583              		.thumb_func
- 584              		.type	PWM_ServoDir_ReadPeriod, %function
- 585              	PWM_ServoDir_ReadPeriod:
- 586              	.LFB13:
  824:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  825:Generated_Source\PSoC5/PWM_ServoDir.c **** #else
  826:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  827:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  828:Generated_Source\PSoC5/PWM_ServoDir.c ****     /*******************************************************************************
  829:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Function Name: PWM_ServoDir_ReadCompare1
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 26
+
+
  830:Generated_Source\PSoC5/PWM_ServoDir.c ****     ********************************************************************************
  831:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
  832:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Summary:
@@ -1498,19 +1510,57 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 1
  836:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  None
  837:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
  838:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Return:
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 26
-
-
  839:Generated_Source\PSoC5/PWM_ServoDir.c ****     *  uint8/uint16: Current compare value.
  840:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
  841:Generated_Source\PSoC5/PWM_ServoDir.c ****     *******************************************************************************/
  842:Generated_Source\PSoC5/PWM_ServoDir.c ****     uint16 PWM_ServoDir_ReadCompare1(void) 
  843:Generated_Source\PSoC5/PWM_ServoDir.c ****     {
+ 596              		.loc 1 843 0
+ 597              		.cfi_startproc
+ 598              		@ args = 0, pretend = 0, frame = 0
+ 599              		@ frame_needed = 1, uses_anonymous_args = 0
+ 600              		@ link register save eliminated.
+ 601 0000 80B4     		push	{r7}
+ 602              		.cfi_def_cfa_offset 4
+ 603              		.cfi_offset 7, -4
+ 604 0002 00AF     		add	r7, sp, #0
+ 605              		.cfi_def_cfa_register 7
  844:Generated_Source\PSoC5/PWM_ServoDir.c ****         return (CY_GET_REG16(PWM_ServoDir_COMPARE1_LSB_PTR));
+ 606              		.loc 1 844 0
+ 607 0004 034B     		ldr	r3, .L42
+ 608 0006 1B88     		ldrh	r3, [r3]	@ movhi
+ 609 0008 9BB2     		uxth	r3, r3
  845:Generated_Source\PSoC5/PWM_ServoDir.c ****     }
+ 610              		.loc 1 845 0
+ 611 000a 1846     		mov	r0, r3
+ 612 000c BD46     		mov	sp, r7
+ 613              		.cfi_def_cfa_register 13
+ 614              		@ sp needed
+ 615 000e 80BC     		pop	{r7}
+ 616              		.cfi_restore 7
+ 617              		.cfi_def_cfa_offset 0
+ 618 0010 7047     		bx	lr
+ 619              	.L43:
+ 620 0012 00BF     		.align	2
+ 621              	.L42:
+ 622 0014 4C6A0040 		.word	1073769036
+ 623              		.cfi_endproc
+ 624              	.LFE13:
+ 625              		.size	PWM_ServoDir_ReadCompare1, .-PWM_ServoDir_ReadCompare1
+ 626              		.section	.text.PWM_ServoDir_ReadCompare2,"ax",%progbits
+ 627              		.align	2
+ 628              		.global	PWM_ServoDir_ReadCompare2
+ 629              		.thumb
+ 630              		.thumb_func
+ 631              		.type	PWM_ServoDir_ReadCompare2, %function
+ 632              	PWM_ServoDir_ReadCompare2:
+ 633              	.LFB14:
  846:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  847:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  848:Generated_Source\PSoC5/PWM_ServoDir.c ****     /*******************************************************************************
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 27
+
+
  849:Generated_Source\PSoC5/PWM_ServoDir.c ****     * Function Name: PWM_ServoDir_ReadCompare2
  850:Generated_Source\PSoC5/PWM_ServoDir.c ****     ********************************************************************************
  851:Generated_Source\PSoC5/PWM_ServoDir.c ****     *
@@ -1526,10 +1576,51 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 1
  861:Generated_Source\PSoC5/PWM_ServoDir.c ****     *******************************************************************************/
  862:Generated_Source\PSoC5/PWM_ServoDir.c ****     uint16 PWM_ServoDir_ReadCompare2(void) 
  863:Generated_Source\PSoC5/PWM_ServoDir.c ****     {
+ 634              		.loc 1 863 0
+ 635              		.cfi_startproc
+ 636              		@ args = 0, pretend = 0, frame = 0
+ 637              		@ frame_needed = 1, uses_anonymous_args = 0
+ 638              		@ link register save eliminated.
+ 639 0000 80B4     		push	{r7}
+ 640              		.cfi_def_cfa_offset 4
+ 641              		.cfi_offset 7, -4
+ 642 0002 00AF     		add	r7, sp, #0
+ 643              		.cfi_def_cfa_register 7
  864:Generated_Source\PSoC5/PWM_ServoDir.c ****         return (CY_GET_REG16(PWM_ServoDir_COMPARE2_LSB_PTR));
+ 644              		.loc 1 864 0
+ 645 0004 034B     		ldr	r3, .L46
+ 646 0006 1B88     		ldrh	r3, [r3]	@ movhi
+ 647 0008 9BB2     		uxth	r3, r3
  865:Generated_Source\PSoC5/PWM_ServoDir.c ****     }
+ 648              		.loc 1 865 0
+ 649 000a 1846     		mov	r0, r3
+ 650 000c BD46     		mov	sp, r7
+ 651              		.cfi_def_cfa_register 13
+ 652              		@ sp needed
+ 653 000e 80BC     		pop	{r7}
+ 654              		.cfi_restore 7
+ 655              		.cfi_def_cfa_offset 0
+ 656 0010 7047     		bx	lr
+ 657              	.L47:
+ 658 0012 00BF     		.align	2
+ 659              	.L46:
+ 660 0014 6C6A0040 		.word	1073769068
+ 661              		.cfi_endproc
+ 662              	.LFE14:
+ 663              		.size	PWM_ServoDir_ReadCompare2, .-PWM_ServoDir_ReadCompare2
+ 664              		.section	.text.PWM_ServoDir_ReadPeriod,"ax",%progbits
+ 665              		.align	2
+ 666              		.global	PWM_ServoDir_ReadPeriod
+ 667              		.thumb
+ 668              		.thumb_func
+ 669              		.type	PWM_ServoDir_ReadPeriod, %function
+ 670              	PWM_ServoDir_ReadPeriod:
+ 671              	.LFB15:
  866:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  867:Generated_Source\PSoC5/PWM_ServoDir.c **** #endif /* (PWM_ServoDir_UseOneCompareMode) */
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 28
+
+
  868:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  869:Generated_Source\PSoC5/PWM_ServoDir.c **** 
  870:Generated_Source\PSoC5/PWM_ServoDir.c **** /*******************************************************************************
@@ -1548,911 +1639,961 @@ ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 1
  883:Generated_Source\PSoC5/PWM_ServoDir.c **** *******************************************************************************/
  884:Generated_Source\PSoC5/PWM_ServoDir.c **** uint16 PWM_ServoDir_ReadPeriod(void) 
  885:Generated_Source\PSoC5/PWM_ServoDir.c **** {
- 587              		.loc 1 885 0
- 588              		.cfi_startproc
- 589              		@ args = 0, pretend = 0, frame = 0
- 590              		@ frame_needed = 1, uses_anonymous_args = 0
- 591              		@ link register save eliminated.
- 592 0000 80B4     		push	{r7}
- 593              		.cfi_def_cfa_offset 4
- 594              		.cfi_offset 7, -4
- 595 0002 00AF     		add	r7, sp, #0
- 596              		.cfi_def_cfa_register 7
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 27
-
-
+ 672              		.loc 1 885 0
+ 673              		.cfi_startproc
+ 674              		@ args = 0, pretend = 0, frame = 0
+ 675              		@ frame_needed = 1, uses_anonymous_args = 0
+ 676              		@ link register save eliminated.
+ 677 0000 80B4     		push	{r7}
+ 678              		.cfi_def_cfa_offset 4
+ 679              		.cfi_offset 7, -4
+ 680 0002 00AF     		add	r7, sp, #0
+ 681              		.cfi_def_cfa_register 7
  886:Generated_Source\PSoC5/PWM_ServoDir.c ****     #if(PWM_ServoDir_UsingFixedFunction)
  887:Generated_Source\PSoC5/PWM_ServoDir.c ****         return ((uint16)CY_GET_REG16(PWM_ServoDir_PERIOD_LSB_PTR));
  888:Generated_Source\PSoC5/PWM_ServoDir.c ****     #else
  889:Generated_Source\PSoC5/PWM_ServoDir.c ****         return (CY_GET_REG16(PWM_ServoDir_PERIOD_LSB_PTR));
- 597              		.loc 1 889 0
- 598 0004 034B     		ldr	r3, .L43
- 599 0006 1B88     		ldrh	r3, [r3]	@ movhi
- 600 0008 9BB2     		uxth	r3, r3
+ 682              		.loc 1 889 0
+ 683 0004 034B     		ldr	r3, .L50
+ 684 0006 1B88     		ldrh	r3, [r3]	@ movhi
+ 685 0008 9BB2     		uxth	r3, r3
  890:Generated_Source\PSoC5/PWM_ServoDir.c ****     #endif /* (PWM_ServoDir_UsingFixedFunction) */
  891:Generated_Source\PSoC5/PWM_ServoDir.c **** }
- 601              		.loc 1 891 0
- 602 000a 1846     		mov	r0, r3
- 603 000c BD46     		mov	sp, r7
- 604              		.cfi_def_cfa_register 13
- 605              		@ sp needed
- 606 000e 80BC     		pop	{r7}
- 607              		.cfi_restore 7
- 608              		.cfi_def_cfa_offset 0
- 609 0010 7047     		bx	lr
- 610              	.L44:
- 611 0012 00BF     		.align	2
- 612              	.L43:
- 613 0014 94680040 		.word	1073768596
- 614              		.cfi_endproc
- 615              	.LFE13:
- 616              		.size	PWM_ServoDir_ReadPeriod, .-PWM_ServoDir_ReadPeriod
- 617              		.text
- 618              	.Letext0:
- 619              		.file 2 "Generated_Source\\PSoC5\\cytypes.h"
- 620              		.section	.debug_info,"",%progbits
- 621              	.Ldebug_info0:
- 622 0000 45020000 		.4byte	0x245
- 623 0004 0400     		.2byte	0x4
- 624 0006 00000000 		.4byte	.Ldebug_abbrev0
- 625 000a 04       		.byte	0x4
- 626 000b 01       		.uleb128 0x1
- 627 000c 06000000 		.4byte	.LASF36
- 628 0010 0C       		.byte	0xc
- 629 0011 ED010000 		.4byte	.LASF37
- 630 0015 A8010000 		.4byte	.LASF38
- 631 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 632 001d 00000000 		.4byte	0
- 633 0021 00000000 		.4byte	.Ldebug_line0
- 634 0025 02       		.uleb128 0x2
- 635 0026 01       		.byte	0x1
- 636 0027 06       		.byte	0x6
- 637 0028 30030000 		.4byte	.LASF0
- 638 002c 02       		.uleb128 0x2
- 639 002d 01       		.byte	0x1
- 640 002e 08       		.byte	0x8
- 641 002f 45020000 		.4byte	.LASF1
- 642 0033 02       		.uleb128 0x2
- 643 0034 02       		.byte	0x2
- 644 0035 05       		.byte	0x5
- 645 0036 34020000 		.4byte	.LASF2
- 646 003a 02       		.uleb128 0x2
- 647 003b 02       		.byte	0x2
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 28
+ 686              		.loc 1 891 0
+ 687 000a 1846     		mov	r0, r3
+ 688 000c BD46     		mov	sp, r7
+ 689              		.cfi_def_cfa_register 13
+ 690              		@ sp needed
+ 691 000e 80BC     		pop	{r7}
+ 692              		.cfi_restore 7
+ 693              		.cfi_def_cfa_offset 0
+ 694 0010 7047     		bx	lr
+ 695              	.L51:
+ 696 0012 00BF     		.align	2
+ 697              	.L50:
+ 698 0014 8C6A0040 		.word	1073769100
+ 699              		.cfi_endproc
+ 700              	.LFE15:
+ 701              		.size	PWM_ServoDir_ReadPeriod, .-PWM_ServoDir_ReadPeriod
+ 702              		.text
+ 703              	.Letext0:
+ 704              		.file 2 "Generated_Source\\PSoC5\\cytypes.h"
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 29
 
 
- 648 003c 07       		.byte	0x7
- 649 003d C9000000 		.4byte	.LASF3
- 650 0041 02       		.uleb128 0x2
- 651 0042 04       		.byte	0x4
- 652 0043 05       		.byte	0x5
- 653 0044 16030000 		.4byte	.LASF4
- 654 0048 02       		.uleb128 0x2
- 655 0049 04       		.byte	0x4
- 656 004a 07       		.byte	0x7
- 657 004b 90010000 		.4byte	.LASF5
- 658 004f 02       		.uleb128 0x2
- 659 0050 08       		.byte	0x8
- 660 0051 05       		.byte	0x5
- 661 0052 85020000 		.4byte	.LASF6
- 662 0056 02       		.uleb128 0x2
- 663 0057 08       		.byte	0x8
- 664 0058 07       		.byte	0x7
- 665 0059 60020000 		.4byte	.LASF7
- 666 005d 03       		.uleb128 0x3
- 667 005e 04       		.byte	0x4
- 668 005f 05       		.byte	0x5
- 669 0060 696E7400 		.ascii	"int\000"
- 670 0064 02       		.uleb128 0x2
- 671 0065 04       		.byte	0x4
- 672 0066 07       		.byte	0x7
- 673 0067 53020000 		.4byte	.LASF8
- 674 006b 04       		.uleb128 0x4
- 675 006c A2010000 		.4byte	.LASF9
- 676 0070 02       		.byte	0x2
- 677 0071 E801     		.2byte	0x1e8
- 678 0073 2C000000 		.4byte	0x2c
- 679 0077 04       		.uleb128 0x4
- 680 0078 3E020000 		.4byte	.LASF10
- 681 007c 02       		.byte	0x2
- 682 007d E901     		.2byte	0x1e9
- 683 007f 3A000000 		.4byte	0x3a
- 684 0083 02       		.uleb128 0x2
- 685 0084 04       		.byte	0x4
- 686 0085 04       		.byte	0x4
- 687 0086 22010000 		.4byte	.LASF11
- 688 008a 02       		.uleb128 0x2
- 689 008b 08       		.byte	0x8
- 690 008c 04       		.byte	0x4
- 691 008d 2D020000 		.4byte	.LASF12
- 692 0091 02       		.uleb128 0x2
- 693 0092 01       		.byte	0x1
- 694 0093 08       		.byte	0x8
- 695 0094 1F030000 		.4byte	.LASF13
- 696 0098 04       		.uleb128 0x4
- 697 0099 77020000 		.4byte	.LASF14
- 698 009d 02       		.byte	0x2
- 699 009e 9202     		.2byte	0x292
- 700 00a0 A4000000 		.4byte	0xa4
- 701 00a4 05       		.uleb128 0x5
- 702 00a5 6B000000 		.4byte	0x6b
- 703 00a9 04       		.uleb128 0x4
- 704 00aa 00000000 		.4byte	.LASF15
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 29
+ 705              		.section	.debug_info,"",%progbits
+ 706              	.Ldebug_info0:
+ 707 0000 81020000 		.4byte	0x281
+ 708 0004 0400     		.2byte	0x4
+ 709 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 710 000a 04       		.byte	0x4
+ 711 000b 01       		.uleb128 0x1
+ 712 000c 3C000000 		.4byte	.LASF38
+ 713 0010 0C       		.byte	0xc
+ 714 0011 23020000 		.4byte	.LASF39
+ 715 0015 DE010000 		.4byte	.LASF40
+ 716 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 717 001d 00000000 		.4byte	0
+ 718 0021 00000000 		.4byte	.Ldebug_line0
+ 719 0025 02       		.uleb128 0x2
+ 720 0026 01       		.byte	0x1
+ 721 0027 06       		.byte	0x6
+ 722 0028 67030000 		.4byte	.LASF0
+ 723 002c 02       		.uleb128 0x2
+ 724 002d 01       		.byte	0x1
+ 725 002e 08       		.byte	0x8
+ 726 002f 61020000 		.4byte	.LASF1
+ 727 0033 02       		.uleb128 0x2
+ 728 0034 02       		.byte	0x2
+ 729 0035 05       		.byte	0x5
+ 730 0036 50020000 		.4byte	.LASF2
+ 731 003a 02       		.uleb128 0x2
+ 732 003b 02       		.byte	0x2
+ 733 003c 07       		.byte	0x7
+ 734 003d FF000000 		.4byte	.LASF3
+ 735 0041 02       		.uleb128 0x2
+ 736 0042 04       		.byte	0x4
+ 737 0043 05       		.byte	0x5
+ 738 0044 4D030000 		.4byte	.LASF4
+ 739 0048 02       		.uleb128 0x2
+ 740 0049 04       		.byte	0x4
+ 741 004a 07       		.byte	0x7
+ 742 004b C6010000 		.4byte	.LASF5
+ 743 004f 02       		.uleb128 0x2
+ 744 0050 08       		.byte	0x8
+ 745 0051 05       		.byte	0x5
+ 746 0052 BB020000 		.4byte	.LASF6
+ 747 0056 02       		.uleb128 0x2
+ 748 0057 08       		.byte	0x8
+ 749 0058 07       		.byte	0x7
+ 750 0059 7C020000 		.4byte	.LASF7
+ 751 005d 03       		.uleb128 0x3
+ 752 005e 04       		.byte	0x4
+ 753 005f 05       		.byte	0x5
+ 754 0060 696E7400 		.ascii	"int\000"
+ 755 0064 02       		.uleb128 0x2
+ 756 0065 04       		.byte	0x4
+ 757 0066 07       		.byte	0x7
+ 758 0067 6F020000 		.4byte	.LASF8
+ 759 006b 04       		.uleb128 0x4
+ 760 006c D8010000 		.4byte	.LASF9
+ 761 0070 02       		.byte	0x2
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 30
 
 
- 705 00ae 02       		.byte	0x2
- 706 00af 9302     		.2byte	0x293
- 707 00b1 B5000000 		.4byte	0xb5
- 708 00b5 05       		.uleb128 0x5
- 709 00b6 77000000 		.4byte	0x77
- 710 00ba 02       		.uleb128 0x2
- 711 00bb 08       		.byte	0x8
- 712 00bc 04       		.byte	0x4
- 713 00bd 24030000 		.4byte	.LASF16
- 714 00c1 02       		.uleb128 0x2
- 715 00c2 04       		.byte	0x4
- 716 00c3 07       		.byte	0x7
- 717 00c4 7C020000 		.4byte	.LASF17
- 718 00c8 06       		.uleb128 0x6
- 719 00c9 61010000 		.4byte	.LASF18
- 720 00cd 01       		.byte	0x1
- 721 00ce 37       		.byte	0x37
- 722 00cf 00000000 		.4byte	.LFB0
- 723 00d3 24000000 		.4byte	.LFE0-.LFB0
- 724 00d7 01       		.uleb128 0x1
- 725 00d8 9C       		.byte	0x9c
- 726 00d9 07       		.uleb128 0x7
- 727 00da 04030000 		.4byte	.LASF21
- 728 00de 01       		.byte	0x1
- 729 00df 54       		.byte	0x54
- 730 00e0 00000000 		.4byte	.LFB1
- 731 00e4 7C000000 		.4byte	.LFE1-.LFB1
- 732 00e8 01       		.uleb128 0x1
- 733 00e9 9C       		.byte	0x9c
- 734 00ea FD000000 		.4byte	0xfd
- 735 00ee 08       		.uleb128 0x8
- 736 00ef 74010000 		.4byte	.LASF39
- 737 00f3 01       		.byte	0x1
- 738 00f4 5D       		.byte	0x5d
- 739 00f5 6B000000 		.4byte	0x6b
- 740 00f9 02       		.uleb128 0x2
- 741 00fa 91       		.byte	0x91
- 742 00fb 77       		.sleb128 -9
- 743 00fc 00       		.byte	0
- 744 00fd 09       		.uleb128 0x9
- 745 00fe EE000000 		.4byte	.LASF19
- 746 0102 01       		.byte	0x1
- 747 0103 C7       		.byte	0xc7
- 748 0104 00000000 		.4byte	.LFB2
- 749 0108 0C000000 		.4byte	.LFE2-.LFB2
- 750 010c 01       		.uleb128 0x1
- 751 010d 9C       		.byte	0x9c
- 752 010e 09       		.uleb128 0x9
- 753 010f DC000000 		.4byte	.LASF20
- 754 0113 01       		.byte	0x1
- 755 0114 E9       		.byte	0xe9
- 756 0115 00000000 		.4byte	.LFB3
- 757 0119 0C000000 		.4byte	.LFE3-.LFB3
- 758 011d 01       		.uleb128 0x1
- 759 011e 9C       		.byte	0x9c
- 760 011f 0A       		.uleb128 0xa
- 761 0120 D1020000 		.4byte	.LASF22
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 30
+ 762 0071 E801     		.2byte	0x1e8
+ 763 0073 2C000000 		.4byte	0x2c
+ 764 0077 04       		.uleb128 0x4
+ 765 0078 5A020000 		.4byte	.LASF10
+ 766 007c 02       		.byte	0x2
+ 767 007d E901     		.2byte	0x1e9
+ 768 007f 3A000000 		.4byte	0x3a
+ 769 0083 02       		.uleb128 0x2
+ 770 0084 04       		.byte	0x4
+ 771 0085 04       		.byte	0x4
+ 772 0086 58010000 		.4byte	.LASF11
+ 773 008a 02       		.uleb128 0x2
+ 774 008b 08       		.byte	0x8
+ 775 008c 04       		.byte	0x4
+ 776 008d 49020000 		.4byte	.LASF12
+ 777 0091 02       		.uleb128 0x2
+ 778 0092 01       		.byte	0x1
+ 779 0093 08       		.byte	0x8
+ 780 0094 56030000 		.4byte	.LASF13
+ 781 0098 04       		.uleb128 0x4
+ 782 0099 AD020000 		.4byte	.LASF14
+ 783 009d 02       		.byte	0x2
+ 784 009e 9202     		.2byte	0x292
+ 785 00a0 A4000000 		.4byte	0xa4
+ 786 00a4 05       		.uleb128 0x5
+ 787 00a5 6B000000 		.4byte	0x6b
+ 788 00a9 04       		.uleb128 0x4
+ 789 00aa 00000000 		.4byte	.LASF15
+ 790 00ae 02       		.byte	0x2
+ 791 00af 9302     		.2byte	0x293
+ 792 00b1 B5000000 		.4byte	0xb5
+ 793 00b5 05       		.uleb128 0x5
+ 794 00b6 77000000 		.4byte	0x77
+ 795 00ba 02       		.uleb128 0x2
+ 796 00bb 08       		.byte	0x8
+ 797 00bc 04       		.byte	0x4
+ 798 00bd 5B030000 		.4byte	.LASF16
+ 799 00c1 02       		.uleb128 0x2
+ 800 00c2 04       		.byte	0x4
+ 801 00c3 07       		.byte	0x7
+ 802 00c4 B2020000 		.4byte	.LASF17
+ 803 00c8 06       		.uleb128 0x6
+ 804 00c9 97010000 		.4byte	.LASF18
+ 805 00cd 01       		.byte	0x1
+ 806 00ce 37       		.byte	0x37
+ 807 00cf 00000000 		.4byte	.LFB0
+ 808 00d3 24000000 		.4byte	.LFE0-.LFB0
+ 809 00d7 01       		.uleb128 0x1
+ 810 00d8 9C       		.byte	0x9c
+ 811 00d9 07       		.uleb128 0x7
+ 812 00da 3B030000 		.4byte	.LASF21
+ 813 00de 01       		.byte	0x1
+ 814 00df 54       		.byte	0x54
+ 815 00e0 00000000 		.4byte	.LFB1
+ 816 00e4 84000000 		.4byte	.LFE1-.LFB1
+ 817 00e8 01       		.uleb128 0x1
+ 818 00e9 9C       		.byte	0x9c
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 31
 
 
- 762 0124 01       		.byte	0x1
- 763 0125 9301     		.2byte	0x193
- 764 0127 00000000 		.4byte	.LFB4
- 765 012b 20000000 		.4byte	.LFE4-.LFB4
- 766 012f 01       		.uleb128 0x1
- 767 0130 9C       		.byte	0x9c
- 768 0131 45010000 		.4byte	0x145
- 769 0135 0B       		.uleb128 0xb
- 770 0136 28010000 		.4byte	.LASF25
- 771 013a 01       		.byte	0x1
- 772 013b 9301     		.2byte	0x193
- 773 013d 77000000 		.4byte	0x77
- 774 0141 02       		.uleb128 0x2
- 775 0142 91       		.byte	0x91
- 776 0143 76       		.sleb128 -10
- 777 0144 00       		.byte	0
- 778 0145 0C       		.uleb128 0xc
- 779 0146 A9000000 		.4byte	.LASF31
- 780 014a 01       		.byte	0x1
- 781 014b A901     		.2byte	0x1a9
- 782 014d 77000000 		.4byte	0x77
- 783 0151 00000000 		.4byte	.LFB5
- 784 0155 20000000 		.4byte	.LFE5-.LFB5
- 785 0159 01       		.uleb128 0x1
- 786 015a 9C       		.byte	0x9c
- 787 015b 0D       		.uleb128 0xd
- 788 015c A1020000 		.4byte	.LASF23
- 789 0160 01       		.byte	0x1
- 790 0161 C501     		.2byte	0x1c5
- 791 0163 00000000 		.4byte	.LFB6
- 792 0167 1C000000 		.4byte	.LFE6-.LFB6
- 793 016b 01       		.uleb128 0x1
- 794 016c 9C       		.byte	0x9c
- 795 016d 0A       		.uleb128 0xa
- 796 016e 48010000 		.4byte	.LASF24
- 797 0172 01       		.byte	0x1
- 798 0173 E201     		.2byte	0x1e2
- 799 0175 00000000 		.4byte	.LFB7
- 800 0179 20000000 		.4byte	.LFE7-.LFB7
- 801 017d 01       		.uleb128 0x1
- 802 017e 9C       		.byte	0x9c
- 803 017f 93010000 		.4byte	0x193
- 804 0183 0B       		.uleb128 0xb
- 805 0184 C2000000 		.4byte	.LASF26
- 806 0188 01       		.byte	0x1
- 807 0189 E201     		.2byte	0x1e2
- 808 018b 77000000 		.4byte	0x77
- 809 018f 02       		.uleb128 0x2
- 810 0190 91       		.byte	0x91
- 811 0191 76       		.sleb128 -10
- 812 0192 00       		.byte	0
- 813 0193 0A       		.uleb128 0xa
- 814 0194 13020000 		.4byte	.LASF27
- 815 0198 01       		.byte	0x1
- 816 0199 0402     		.2byte	0x204
- 817 019b 00000000 		.4byte	.LFB8
- 818 019f 20000000 		.4byte	.LFE8-.LFB8
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 31
+ 819 00ea FD000000 		.4byte	0xfd
+ 820 00ee 08       		.uleb128 0x8
+ 821 00ef AA010000 		.4byte	.LASF41
+ 822 00f3 01       		.byte	0x1
+ 823 00f4 5D       		.byte	0x5d
+ 824 00f5 6B000000 		.4byte	0x6b
+ 825 00f9 02       		.uleb128 0x2
+ 826 00fa 91       		.byte	0x91
+ 827 00fb 77       		.sleb128 -9
+ 828 00fc 00       		.byte	0
+ 829 00fd 09       		.uleb128 0x9
+ 830 00fe 24010000 		.4byte	.LASF19
+ 831 0102 01       		.byte	0x1
+ 832 0103 C7       		.byte	0xc7
+ 833 0104 00000000 		.4byte	.LFB2
+ 834 0108 0C000000 		.4byte	.LFE2-.LFB2
+ 835 010c 01       		.uleb128 0x1
+ 836 010d 9C       		.byte	0x9c
+ 837 010e 09       		.uleb128 0x9
+ 838 010f 12010000 		.4byte	.LASF20
+ 839 0113 01       		.byte	0x1
+ 840 0114 E9       		.byte	0xe9
+ 841 0115 00000000 		.4byte	.LFB3
+ 842 0119 0C000000 		.4byte	.LFE3-.LFB3
+ 843 011d 01       		.uleb128 0x1
+ 844 011e 9C       		.byte	0x9c
+ 845 011f 0A       		.uleb128 0xa
+ 846 0120 08030000 		.4byte	.LASF22
+ 847 0124 01       		.byte	0x1
+ 848 0125 9301     		.2byte	0x193
+ 849 0127 00000000 		.4byte	.LFB4
+ 850 012b 20000000 		.4byte	.LFE4-.LFB4
+ 851 012f 01       		.uleb128 0x1
+ 852 0130 9C       		.byte	0x9c
+ 853 0131 45010000 		.4byte	0x145
+ 854 0135 0B       		.uleb128 0xb
+ 855 0136 5E010000 		.4byte	.LASF25
+ 856 013a 01       		.byte	0x1
+ 857 013b 9301     		.2byte	0x193
+ 858 013d 77000000 		.4byte	0x77
+ 859 0141 02       		.uleb128 0x2
+ 860 0142 91       		.byte	0x91
+ 861 0143 76       		.sleb128 -10
+ 862 0144 00       		.byte	0
+ 863 0145 0C       		.uleb128 0xc
+ 864 0146 DF000000 		.4byte	.LASF32
+ 865 014a 01       		.byte	0x1
+ 866 014b A901     		.2byte	0x1a9
+ 867 014d 77000000 		.4byte	0x77
+ 868 0151 00000000 		.4byte	.LFB5
+ 869 0155 20000000 		.4byte	.LFE5-.LFB5
+ 870 0159 01       		.uleb128 0x1
+ 871 015a 9C       		.byte	0x9c
+ 872 015b 0D       		.uleb128 0xd
+ 873 015c D7020000 		.4byte	.LASF23
+ 874 0160 01       		.byte	0x1
+ 875 0161 C501     		.2byte	0x1c5
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 32
 
 
- 819 01a3 01       		.uleb128 0x1
- 820 01a4 9C       		.byte	0x9c
- 821 01a5 B9010000 		.4byte	0x1b9
- 822 01a9 0B       		.uleb128 0xb
- 823 01aa 3C030000 		.4byte	.LASF28
- 824 01ae 01       		.byte	0x1
- 825 01af 0402     		.2byte	0x204
- 826 01b1 77000000 		.4byte	0x77
- 827 01b5 02       		.uleb128 0x2
- 828 01b6 91       		.byte	0x91
- 829 01b7 76       		.sleb128 -10
- 830 01b8 00       		.byte	0
- 831 01b9 0A       		.uleb128 0xa
- 832 01ba 44030000 		.4byte	.LASF29
- 833 01be 01       		.byte	0x1
- 834 01bf AC02     		.2byte	0x2ac
- 835 01c1 00000000 		.4byte	.LFB9
- 836 01c5 20000000 		.4byte	.LFE9-.LFB9
- 837 01c9 01       		.uleb128 0x1
- 838 01ca 9C       		.byte	0x9c
- 839 01cb DF010000 		.4byte	0x1df
- 840 01cf 0B       		.uleb128 0xb
- 841 01d0 93020000 		.4byte	.LASF30
- 842 01d4 01       		.byte	0x1
- 843 01d5 AC02     		.2byte	0x2ac
- 844 01d7 6B000000 		.4byte	0x6b
- 845 01db 02       		.uleb128 0x2
- 846 01dc 91       		.byte	0x91
- 847 01dd 77       		.sleb128 -9
- 848 01de 00       		.byte	0
- 849 01df 0C       		.uleb128 0xc
- 850 01e0 02010000 		.4byte	.LASF32
- 851 01e4 01       		.byte	0x1
- 852 01e5 C702     		.2byte	0x2c7
- 853 01e7 6B000000 		.4byte	0x6b
- 854 01eb 00000000 		.4byte	.LFB10
- 855 01ef 18000000 		.4byte	.LFE10-.LFB10
- 856 01f3 01       		.uleb128 0x1
- 857 01f4 9C       		.byte	0x9c
- 858 01f5 0C       		.uleb128 0xc
- 859 01f6 EB020000 		.4byte	.LASF33
- 860 01fa 01       		.byte	0x1
- 861 01fb 1603     		.2byte	0x316
- 862 01fd 77000000 		.4byte	0x77
- 863 0201 00000000 		.4byte	.LFB11
- 864 0205 18000000 		.4byte	.LFE11-.LFB11
- 865 0209 01       		.uleb128 0x1
- 866 020a 9C       		.byte	0x9c
- 867 020b 0C       		.uleb128 0xc
- 868 020c B8020000 		.4byte	.LASF34
- 869 0210 01       		.byte	0x1
- 870 0211 3003     		.2byte	0x330
- 871 0213 77000000 		.4byte	0x77
- 872 0217 00000000 		.4byte	.LFB12
- 873 021b 18000000 		.4byte	.LFE12-.LFB12
- 874 021f 01       		.uleb128 0x1
- 875 0220 9C       		.byte	0x9c
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 32
+ 876 0163 00000000 		.4byte	.LFB6
+ 877 0167 1C000000 		.4byte	.LFE6-.LFB6
+ 878 016b 01       		.uleb128 0x1
+ 879 016c 9C       		.byte	0x9c
+ 880 016d 0A       		.uleb128 0xa
+ 881 016e 7E010000 		.4byte	.LASF24
+ 882 0172 01       		.byte	0x1
+ 883 0173 E201     		.2byte	0x1e2
+ 884 0175 00000000 		.4byte	.LFB7
+ 885 0179 20000000 		.4byte	.LFE7-.LFB7
+ 886 017d 01       		.uleb128 0x1
+ 887 017e 9C       		.byte	0x9c
+ 888 017f 93010000 		.4byte	0x193
+ 889 0183 0B       		.uleb128 0xb
+ 890 0184 F8000000 		.4byte	.LASF26
+ 891 0188 01       		.byte	0x1
+ 892 0189 E201     		.2byte	0x1e2
+ 893 018b 77000000 		.4byte	0x77
+ 894 018f 02       		.uleb128 0x2
+ 895 0190 91       		.byte	0x91
+ 896 0191 76       		.sleb128 -10
+ 897 0192 00       		.byte	0
+ 898 0193 0A       		.uleb128 0xa
+ 899 0194 06000000 		.4byte	.LASF27
+ 900 0198 01       		.byte	0x1
+ 901 0199 2B02     		.2byte	0x22b
+ 902 019b 00000000 		.4byte	.LFB8
+ 903 019f 20000000 		.4byte	.LFE8-.LFB8
+ 904 01a3 01       		.uleb128 0x1
+ 905 01a4 9C       		.byte	0x9c
+ 906 01a5 B9010000 		.4byte	0x1b9
+ 907 01a9 0B       		.uleb128 0xb
+ 908 01aa 73030000 		.4byte	.LASF28
+ 909 01ae 01       		.byte	0x1
+ 910 01af 2B02     		.2byte	0x22b
+ 911 01b1 77000000 		.4byte	0x77
+ 912 01b5 02       		.uleb128 0x2
+ 913 01b6 91       		.byte	0x91
+ 914 01b7 76       		.sleb128 -10
+ 915 01b8 00       		.byte	0
+ 916 01b9 0A       		.uleb128 0xa
+ 917 01ba 21000000 		.4byte	.LASF29
+ 918 01be 01       		.byte	0x1
+ 919 01bf 4802     		.2byte	0x248
+ 920 01c1 00000000 		.4byte	.LFB9
+ 921 01c5 20000000 		.4byte	.LFE9-.LFB9
+ 922 01c9 01       		.uleb128 0x1
+ 923 01ca 9C       		.byte	0x9c
+ 924 01cb DF010000 		.4byte	0x1df
+ 925 01cf 0B       		.uleb128 0xb
+ 926 01d0 73030000 		.4byte	.LASF28
+ 927 01d4 01       		.byte	0x1
+ 928 01d5 4802     		.2byte	0x248
+ 929 01d7 77000000 		.4byte	0x77
+ 930 01db 02       		.uleb128 0x2
+ 931 01dc 91       		.byte	0x91
+ 932 01dd 76       		.sleb128 -10
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 33
 
 
- 876 0221 0C       		.uleb128 0xc
- 877 0222 30010000 		.4byte	.LASF35
- 878 0226 01       		.byte	0x1
- 879 0227 7403     		.2byte	0x374
- 880 0229 77000000 		.4byte	0x77
- 881 022d 00000000 		.4byte	.LFB13
- 882 0231 18000000 		.4byte	.LFE13-.LFB13
- 883 0235 01       		.uleb128 0x1
- 884 0236 9C       		.byte	0x9c
- 885 0237 0E       		.uleb128 0xe
- 886 0238 94000000 		.4byte	.LASF40
- 887 023c 01       		.byte	0x1
- 888 023d 20       		.byte	0x20
- 889 023e 6B000000 		.4byte	0x6b
- 890 0242 05       		.uleb128 0x5
- 891 0243 03       		.byte	0x3
- 892 0244 00000000 		.4byte	PWM_ServoDir_initVar
- 893 0248 00       		.byte	0
- 894              		.section	.debug_abbrev,"",%progbits
- 895              	.Ldebug_abbrev0:
- 896 0000 01       		.uleb128 0x1
- 897 0001 11       		.uleb128 0x11
- 898 0002 01       		.byte	0x1
- 899 0003 25       		.uleb128 0x25
- 900 0004 0E       		.uleb128 0xe
- 901 0005 13       		.uleb128 0x13
- 902 0006 0B       		.uleb128 0xb
- 903 0007 03       		.uleb128 0x3
- 904 0008 0E       		.uleb128 0xe
- 905 0009 1B       		.uleb128 0x1b
- 906 000a 0E       		.uleb128 0xe
- 907 000b 55       		.uleb128 0x55
- 908 000c 17       		.uleb128 0x17
- 909 000d 11       		.uleb128 0x11
- 910 000e 01       		.uleb128 0x1
- 911 000f 10       		.uleb128 0x10
- 912 0010 17       		.uleb128 0x17
- 913 0011 00       		.byte	0
- 914 0012 00       		.byte	0
- 915 0013 02       		.uleb128 0x2
- 916 0014 24       		.uleb128 0x24
- 917 0015 00       		.byte	0
- 918 0016 0B       		.uleb128 0xb
- 919 0017 0B       		.uleb128 0xb
- 920 0018 3E       		.uleb128 0x3e
- 921 0019 0B       		.uleb128 0xb
- 922 001a 03       		.uleb128 0x3
- 923 001b 0E       		.uleb128 0xe
- 924 001c 00       		.byte	0
- 925 001d 00       		.byte	0
- 926 001e 03       		.uleb128 0x3
- 927 001f 24       		.uleb128 0x24
- 928 0020 00       		.byte	0
- 929 0021 0B       		.uleb128 0xb
- 930 0022 0B       		.uleb128 0xb
- 931 0023 3E       		.uleb128 0x3e
- 932 0024 0B       		.uleb128 0xb
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 33
+ 933 01de 00       		.byte	0
+ 934 01df 0A       		.uleb128 0xa
+ 935 01e0 7B030000 		.4byte	.LASF30
+ 936 01e4 01       		.byte	0x1
+ 937 01e5 AC02     		.2byte	0x2ac
+ 938 01e7 00000000 		.4byte	.LFB10
+ 939 01eb 20000000 		.4byte	.LFE10-.LFB10
+ 940 01ef 01       		.uleb128 0x1
+ 941 01f0 9C       		.byte	0x9c
+ 942 01f1 05020000 		.4byte	0x205
+ 943 01f5 0B       		.uleb128 0xb
+ 944 01f6 C9020000 		.4byte	.LASF31
+ 945 01fa 01       		.byte	0x1
+ 946 01fb AC02     		.2byte	0x2ac
+ 947 01fd 6B000000 		.4byte	0x6b
+ 948 0201 02       		.uleb128 0x2
+ 949 0202 91       		.byte	0x91
+ 950 0203 77       		.sleb128 -9
+ 951 0204 00       		.byte	0
+ 952 0205 0C       		.uleb128 0xc
+ 953 0206 38010000 		.4byte	.LASF33
+ 954 020a 01       		.byte	0x1
+ 955 020b C702     		.2byte	0x2c7
+ 956 020d 6B000000 		.4byte	0x6b
+ 957 0211 00000000 		.4byte	.LFB11
+ 958 0215 18000000 		.4byte	.LFE11-.LFB11
+ 959 0219 01       		.uleb128 0x1
+ 960 021a 9C       		.byte	0x9c
+ 961 021b 0C       		.uleb128 0xc
+ 962 021c 22030000 		.4byte	.LASF34
+ 963 0220 01       		.byte	0x1
+ 964 0221 1603     		.2byte	0x316
+ 965 0223 77000000 		.4byte	0x77
+ 966 0227 00000000 		.4byte	.LFB12
+ 967 022b 18000000 		.4byte	.LFE12-.LFB12
+ 968 022f 01       		.uleb128 0x1
+ 969 0230 9C       		.byte	0x9c
+ 970 0231 0C       		.uleb128 0xc
+ 971 0232 93020000 		.4byte	.LASF35
+ 972 0236 01       		.byte	0x1
+ 973 0237 4A03     		.2byte	0x34a
+ 974 0239 77000000 		.4byte	0x77
+ 975 023d 00000000 		.4byte	.LFB13
+ 976 0241 18000000 		.4byte	.LFE13-.LFB13
+ 977 0245 01       		.uleb128 0x1
+ 978 0246 9C       		.byte	0x9c
+ 979 0247 0C       		.uleb128 0xc
+ 980 0248 EE020000 		.4byte	.LASF36
+ 981 024c 01       		.byte	0x1
+ 982 024d 5E03     		.2byte	0x35e
+ 983 024f 77000000 		.4byte	0x77
+ 984 0253 00000000 		.4byte	.LFB14
+ 985 0257 18000000 		.4byte	.LFE14-.LFB14
+ 986 025b 01       		.uleb128 0x1
+ 987 025c 9C       		.byte	0x9c
+ 988 025d 0C       		.uleb128 0xc
+ 989 025e 66010000 		.4byte	.LASF37
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 34
 
 
- 933 0025 03       		.uleb128 0x3
- 934 0026 08       		.uleb128 0x8
- 935 0027 00       		.byte	0
- 936 0028 00       		.byte	0
- 937 0029 04       		.uleb128 0x4
- 938 002a 16       		.uleb128 0x16
- 939 002b 00       		.byte	0
- 940 002c 03       		.uleb128 0x3
- 941 002d 0E       		.uleb128 0xe
- 942 002e 3A       		.uleb128 0x3a
- 943 002f 0B       		.uleb128 0xb
- 944 0030 3B       		.uleb128 0x3b
- 945 0031 05       		.uleb128 0x5
- 946 0032 49       		.uleb128 0x49
- 947 0033 13       		.uleb128 0x13
- 948 0034 00       		.byte	0
- 949 0035 00       		.byte	0
- 950 0036 05       		.uleb128 0x5
- 951 0037 35       		.uleb128 0x35
- 952 0038 00       		.byte	0
- 953 0039 49       		.uleb128 0x49
- 954 003a 13       		.uleb128 0x13
- 955 003b 00       		.byte	0
- 956 003c 00       		.byte	0
- 957 003d 06       		.uleb128 0x6
- 958 003e 2E       		.uleb128 0x2e
- 959 003f 00       		.byte	0
- 960 0040 3F       		.uleb128 0x3f
- 961 0041 19       		.uleb128 0x19
- 962 0042 03       		.uleb128 0x3
- 963 0043 0E       		.uleb128 0xe
- 964 0044 3A       		.uleb128 0x3a
- 965 0045 0B       		.uleb128 0xb
- 966 0046 3B       		.uleb128 0x3b
- 967 0047 0B       		.uleb128 0xb
- 968 0048 27       		.uleb128 0x27
- 969 0049 19       		.uleb128 0x19
- 970 004a 11       		.uleb128 0x11
- 971 004b 01       		.uleb128 0x1
- 972 004c 12       		.uleb128 0x12
- 973 004d 06       		.uleb128 0x6
- 974 004e 40       		.uleb128 0x40
- 975 004f 18       		.uleb128 0x18
- 976 0050 9642     		.uleb128 0x2116
- 977 0052 19       		.uleb128 0x19
- 978 0053 00       		.byte	0
- 979 0054 00       		.byte	0
- 980 0055 07       		.uleb128 0x7
- 981 0056 2E       		.uleb128 0x2e
- 982 0057 01       		.byte	0x1
- 983 0058 3F       		.uleb128 0x3f
- 984 0059 19       		.uleb128 0x19
- 985 005a 03       		.uleb128 0x3
- 986 005b 0E       		.uleb128 0xe
- 987 005c 3A       		.uleb128 0x3a
- 988 005d 0B       		.uleb128 0xb
- 989 005e 3B       		.uleb128 0x3b
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 34
+ 990 0262 01       		.byte	0x1
+ 991 0263 7403     		.2byte	0x374
+ 992 0265 77000000 		.4byte	0x77
+ 993 0269 00000000 		.4byte	.LFB15
+ 994 026d 18000000 		.4byte	.LFE15-.LFB15
+ 995 0271 01       		.uleb128 0x1
+ 996 0272 9C       		.byte	0x9c
+ 997 0273 0E       		.uleb128 0xe
+ 998 0274 CA000000 		.4byte	.LASF42
+ 999 0278 01       		.byte	0x1
+ 1000 0279 20       		.byte	0x20
+ 1001 027a 6B000000 		.4byte	0x6b
+ 1002 027e 05       		.uleb128 0x5
+ 1003 027f 03       		.byte	0x3
+ 1004 0280 00000000 		.4byte	PWM_ServoDir_initVar
+ 1005 0284 00       		.byte	0
+ 1006              		.section	.debug_abbrev,"",%progbits
+ 1007              	.Ldebug_abbrev0:
+ 1008 0000 01       		.uleb128 0x1
+ 1009 0001 11       		.uleb128 0x11
+ 1010 0002 01       		.byte	0x1
+ 1011 0003 25       		.uleb128 0x25
+ 1012 0004 0E       		.uleb128 0xe
+ 1013 0005 13       		.uleb128 0x13
+ 1014 0006 0B       		.uleb128 0xb
+ 1015 0007 03       		.uleb128 0x3
+ 1016 0008 0E       		.uleb128 0xe
+ 1017 0009 1B       		.uleb128 0x1b
+ 1018 000a 0E       		.uleb128 0xe
+ 1019 000b 55       		.uleb128 0x55
+ 1020 000c 17       		.uleb128 0x17
+ 1021 000d 11       		.uleb128 0x11
+ 1022 000e 01       		.uleb128 0x1
+ 1023 000f 10       		.uleb128 0x10
+ 1024 0010 17       		.uleb128 0x17
+ 1025 0011 00       		.byte	0
+ 1026 0012 00       		.byte	0
+ 1027 0013 02       		.uleb128 0x2
+ 1028 0014 24       		.uleb128 0x24
+ 1029 0015 00       		.byte	0
+ 1030 0016 0B       		.uleb128 0xb
+ 1031 0017 0B       		.uleb128 0xb
+ 1032 0018 3E       		.uleb128 0x3e
+ 1033 0019 0B       		.uleb128 0xb
+ 1034 001a 03       		.uleb128 0x3
+ 1035 001b 0E       		.uleb128 0xe
+ 1036 001c 00       		.byte	0
+ 1037 001d 00       		.byte	0
+ 1038 001e 03       		.uleb128 0x3
+ 1039 001f 24       		.uleb128 0x24
+ 1040 0020 00       		.byte	0
+ 1041 0021 0B       		.uleb128 0xb
+ 1042 0022 0B       		.uleb128 0xb
+ 1043 0023 3E       		.uleb128 0x3e
+ 1044 0024 0B       		.uleb128 0xb
+ 1045 0025 03       		.uleb128 0x3
+ 1046 0026 08       		.uleb128 0x8
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 35
 
 
- 990 005f 0B       		.uleb128 0xb
- 991 0060 27       		.uleb128 0x27
- 992 0061 19       		.uleb128 0x19
- 993 0062 11       		.uleb128 0x11
- 994 0063 01       		.uleb128 0x1
- 995 0064 12       		.uleb128 0x12
- 996 0065 06       		.uleb128 0x6
- 997 0066 40       		.uleb128 0x40
- 998 0067 18       		.uleb128 0x18
- 999 0068 9642     		.uleb128 0x2116
- 1000 006a 19       		.uleb128 0x19
- 1001 006b 01       		.uleb128 0x1
- 1002 006c 13       		.uleb128 0x13
- 1003 006d 00       		.byte	0
- 1004 006e 00       		.byte	0
- 1005 006f 08       		.uleb128 0x8
- 1006 0070 34       		.uleb128 0x34
- 1007 0071 00       		.byte	0
- 1008 0072 03       		.uleb128 0x3
- 1009 0073 0E       		.uleb128 0xe
- 1010 0074 3A       		.uleb128 0x3a
- 1011 0075 0B       		.uleb128 0xb
- 1012 0076 3B       		.uleb128 0x3b
- 1013 0077 0B       		.uleb128 0xb
- 1014 0078 49       		.uleb128 0x49
- 1015 0079 13       		.uleb128 0x13
- 1016 007a 02       		.uleb128 0x2
- 1017 007b 18       		.uleb128 0x18
- 1018 007c 00       		.byte	0
- 1019 007d 00       		.byte	0
- 1020 007e 09       		.uleb128 0x9
- 1021 007f 2E       		.uleb128 0x2e
- 1022 0080 00       		.byte	0
- 1023 0081 3F       		.uleb128 0x3f
- 1024 0082 19       		.uleb128 0x19
- 1025 0083 03       		.uleb128 0x3
- 1026 0084 0E       		.uleb128 0xe
- 1027 0085 3A       		.uleb128 0x3a
- 1028 0086 0B       		.uleb128 0xb
- 1029 0087 3B       		.uleb128 0x3b
- 1030 0088 0B       		.uleb128 0xb
- 1031 0089 27       		.uleb128 0x27
- 1032 008a 19       		.uleb128 0x19
- 1033 008b 11       		.uleb128 0x11
- 1034 008c 01       		.uleb128 0x1
- 1035 008d 12       		.uleb128 0x12
- 1036 008e 06       		.uleb128 0x6
- 1037 008f 40       		.uleb128 0x40
- 1038 0090 18       		.uleb128 0x18
- 1039 0091 9742     		.uleb128 0x2117
- 1040 0093 19       		.uleb128 0x19
- 1041 0094 00       		.byte	0
- 1042 0095 00       		.byte	0
- 1043 0096 0A       		.uleb128 0xa
- 1044 0097 2E       		.uleb128 0x2e
- 1045 0098 01       		.byte	0x1
- 1046 0099 3F       		.uleb128 0x3f
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 35
+ 1047 0027 00       		.byte	0
+ 1048 0028 00       		.byte	0
+ 1049 0029 04       		.uleb128 0x4
+ 1050 002a 16       		.uleb128 0x16
+ 1051 002b 00       		.byte	0
+ 1052 002c 03       		.uleb128 0x3
+ 1053 002d 0E       		.uleb128 0xe
+ 1054 002e 3A       		.uleb128 0x3a
+ 1055 002f 0B       		.uleb128 0xb
+ 1056 0030 3B       		.uleb128 0x3b
+ 1057 0031 05       		.uleb128 0x5
+ 1058 0032 49       		.uleb128 0x49
+ 1059 0033 13       		.uleb128 0x13
+ 1060 0034 00       		.byte	0
+ 1061 0035 00       		.byte	0
+ 1062 0036 05       		.uleb128 0x5
+ 1063 0037 35       		.uleb128 0x35
+ 1064 0038 00       		.byte	0
+ 1065 0039 49       		.uleb128 0x49
+ 1066 003a 13       		.uleb128 0x13
+ 1067 003b 00       		.byte	0
+ 1068 003c 00       		.byte	0
+ 1069 003d 06       		.uleb128 0x6
+ 1070 003e 2E       		.uleb128 0x2e
+ 1071 003f 00       		.byte	0
+ 1072 0040 3F       		.uleb128 0x3f
+ 1073 0041 19       		.uleb128 0x19
+ 1074 0042 03       		.uleb128 0x3
+ 1075 0043 0E       		.uleb128 0xe
+ 1076 0044 3A       		.uleb128 0x3a
+ 1077 0045 0B       		.uleb128 0xb
+ 1078 0046 3B       		.uleb128 0x3b
+ 1079 0047 0B       		.uleb128 0xb
+ 1080 0048 27       		.uleb128 0x27
+ 1081 0049 19       		.uleb128 0x19
+ 1082 004a 11       		.uleb128 0x11
+ 1083 004b 01       		.uleb128 0x1
+ 1084 004c 12       		.uleb128 0x12
+ 1085 004d 06       		.uleb128 0x6
+ 1086 004e 40       		.uleb128 0x40
+ 1087 004f 18       		.uleb128 0x18
+ 1088 0050 9642     		.uleb128 0x2116
+ 1089 0052 19       		.uleb128 0x19
+ 1090 0053 00       		.byte	0
+ 1091 0054 00       		.byte	0
+ 1092 0055 07       		.uleb128 0x7
+ 1093 0056 2E       		.uleb128 0x2e
+ 1094 0057 01       		.byte	0x1
+ 1095 0058 3F       		.uleb128 0x3f
+ 1096 0059 19       		.uleb128 0x19
+ 1097 005a 03       		.uleb128 0x3
+ 1098 005b 0E       		.uleb128 0xe
+ 1099 005c 3A       		.uleb128 0x3a
+ 1100 005d 0B       		.uleb128 0xb
+ 1101 005e 3B       		.uleb128 0x3b
+ 1102 005f 0B       		.uleb128 0xb
+ 1103 0060 27       		.uleb128 0x27
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 36
 
 
- 1047 009a 19       		.uleb128 0x19
- 1048 009b 03       		.uleb128 0x3
- 1049 009c 0E       		.uleb128 0xe
- 1050 009d 3A       		.uleb128 0x3a
- 1051 009e 0B       		.uleb128 0xb
- 1052 009f 3B       		.uleb128 0x3b
- 1053 00a0 05       		.uleb128 0x5
- 1054 00a1 27       		.uleb128 0x27
- 1055 00a2 19       		.uleb128 0x19
- 1056 00a3 11       		.uleb128 0x11
- 1057 00a4 01       		.uleb128 0x1
- 1058 00a5 12       		.uleb128 0x12
- 1059 00a6 06       		.uleb128 0x6
- 1060 00a7 40       		.uleb128 0x40
- 1061 00a8 18       		.uleb128 0x18
- 1062 00a9 9742     		.uleb128 0x2117
- 1063 00ab 19       		.uleb128 0x19
- 1064 00ac 01       		.uleb128 0x1
- 1065 00ad 13       		.uleb128 0x13
- 1066 00ae 00       		.byte	0
- 1067 00af 00       		.byte	0
- 1068 00b0 0B       		.uleb128 0xb
- 1069 00b1 05       		.uleb128 0x5
- 1070 00b2 00       		.byte	0
- 1071 00b3 03       		.uleb128 0x3
- 1072 00b4 0E       		.uleb128 0xe
- 1073 00b5 3A       		.uleb128 0x3a
- 1074 00b6 0B       		.uleb128 0xb
- 1075 00b7 3B       		.uleb128 0x3b
- 1076 00b8 05       		.uleb128 0x5
- 1077 00b9 49       		.uleb128 0x49
- 1078 00ba 13       		.uleb128 0x13
- 1079 00bb 02       		.uleb128 0x2
- 1080 00bc 18       		.uleb128 0x18
- 1081 00bd 00       		.byte	0
- 1082 00be 00       		.byte	0
- 1083 00bf 0C       		.uleb128 0xc
- 1084 00c0 2E       		.uleb128 0x2e
- 1085 00c1 00       		.byte	0
- 1086 00c2 3F       		.uleb128 0x3f
- 1087 00c3 19       		.uleb128 0x19
- 1088 00c4 03       		.uleb128 0x3
- 1089 00c5 0E       		.uleb128 0xe
- 1090 00c6 3A       		.uleb128 0x3a
- 1091 00c7 0B       		.uleb128 0xb
- 1092 00c8 3B       		.uleb128 0x3b
- 1093 00c9 05       		.uleb128 0x5
- 1094 00ca 27       		.uleb128 0x27
- 1095 00cb 19       		.uleb128 0x19
- 1096 00cc 49       		.uleb128 0x49
- 1097 00cd 13       		.uleb128 0x13
- 1098 00ce 11       		.uleb128 0x11
- 1099 00cf 01       		.uleb128 0x1
- 1100 00d0 12       		.uleb128 0x12
- 1101 00d1 06       		.uleb128 0x6
- 1102 00d2 40       		.uleb128 0x40
- 1103 00d3 18       		.uleb128 0x18
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 36
+ 1104 0061 19       		.uleb128 0x19
+ 1105 0062 11       		.uleb128 0x11
+ 1106 0063 01       		.uleb128 0x1
+ 1107 0064 12       		.uleb128 0x12
+ 1108 0065 06       		.uleb128 0x6
+ 1109 0066 40       		.uleb128 0x40
+ 1110 0067 18       		.uleb128 0x18
+ 1111 0068 9642     		.uleb128 0x2116
+ 1112 006a 19       		.uleb128 0x19
+ 1113 006b 01       		.uleb128 0x1
+ 1114 006c 13       		.uleb128 0x13
+ 1115 006d 00       		.byte	0
+ 1116 006e 00       		.byte	0
+ 1117 006f 08       		.uleb128 0x8
+ 1118 0070 34       		.uleb128 0x34
+ 1119 0071 00       		.byte	0
+ 1120 0072 03       		.uleb128 0x3
+ 1121 0073 0E       		.uleb128 0xe
+ 1122 0074 3A       		.uleb128 0x3a
+ 1123 0075 0B       		.uleb128 0xb
+ 1124 0076 3B       		.uleb128 0x3b
+ 1125 0077 0B       		.uleb128 0xb
+ 1126 0078 49       		.uleb128 0x49
+ 1127 0079 13       		.uleb128 0x13
+ 1128 007a 02       		.uleb128 0x2
+ 1129 007b 18       		.uleb128 0x18
+ 1130 007c 00       		.byte	0
+ 1131 007d 00       		.byte	0
+ 1132 007e 09       		.uleb128 0x9
+ 1133 007f 2E       		.uleb128 0x2e
+ 1134 0080 00       		.byte	0
+ 1135 0081 3F       		.uleb128 0x3f
+ 1136 0082 19       		.uleb128 0x19
+ 1137 0083 03       		.uleb128 0x3
+ 1138 0084 0E       		.uleb128 0xe
+ 1139 0085 3A       		.uleb128 0x3a
+ 1140 0086 0B       		.uleb128 0xb
+ 1141 0087 3B       		.uleb128 0x3b
+ 1142 0088 0B       		.uleb128 0xb
+ 1143 0089 27       		.uleb128 0x27
+ 1144 008a 19       		.uleb128 0x19
+ 1145 008b 11       		.uleb128 0x11
+ 1146 008c 01       		.uleb128 0x1
+ 1147 008d 12       		.uleb128 0x12
+ 1148 008e 06       		.uleb128 0x6
+ 1149 008f 40       		.uleb128 0x40
+ 1150 0090 18       		.uleb128 0x18
+ 1151 0091 9742     		.uleb128 0x2117
+ 1152 0093 19       		.uleb128 0x19
+ 1153 0094 00       		.byte	0
+ 1154 0095 00       		.byte	0
+ 1155 0096 0A       		.uleb128 0xa
+ 1156 0097 2E       		.uleb128 0x2e
+ 1157 0098 01       		.byte	0x1
+ 1158 0099 3F       		.uleb128 0x3f
+ 1159 009a 19       		.uleb128 0x19
+ 1160 009b 03       		.uleb128 0x3
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 37
 
 
- 1104 00d4 9742     		.uleb128 0x2117
- 1105 00d6 19       		.uleb128 0x19
- 1106 00d7 00       		.byte	0
- 1107 00d8 00       		.byte	0
- 1108 00d9 0D       		.uleb128 0xd
- 1109 00da 2E       		.uleb128 0x2e
- 1110 00db 00       		.byte	0
- 1111 00dc 3F       		.uleb128 0x3f
- 1112 00dd 19       		.uleb128 0x19
- 1113 00de 03       		.uleb128 0x3
- 1114 00df 0E       		.uleb128 0xe
- 1115 00e0 3A       		.uleb128 0x3a
- 1116 00e1 0B       		.uleb128 0xb
- 1117 00e2 3B       		.uleb128 0x3b
- 1118 00e3 05       		.uleb128 0x5
- 1119 00e4 27       		.uleb128 0x27
- 1120 00e5 19       		.uleb128 0x19
- 1121 00e6 11       		.uleb128 0x11
- 1122 00e7 01       		.uleb128 0x1
- 1123 00e8 12       		.uleb128 0x12
- 1124 00e9 06       		.uleb128 0x6
- 1125 00ea 40       		.uleb128 0x40
- 1126 00eb 18       		.uleb128 0x18
- 1127 00ec 9642     		.uleb128 0x2116
- 1128 00ee 19       		.uleb128 0x19
- 1129 00ef 00       		.byte	0
- 1130 00f0 00       		.byte	0
- 1131 00f1 0E       		.uleb128 0xe
- 1132 00f2 34       		.uleb128 0x34
- 1133 00f3 00       		.byte	0
- 1134 00f4 03       		.uleb128 0x3
- 1135 00f5 0E       		.uleb128 0xe
- 1136 00f6 3A       		.uleb128 0x3a
- 1137 00f7 0B       		.uleb128 0xb
- 1138 00f8 3B       		.uleb128 0x3b
- 1139 00f9 0B       		.uleb128 0xb
- 1140 00fa 49       		.uleb128 0x49
- 1141 00fb 13       		.uleb128 0x13
- 1142 00fc 3F       		.uleb128 0x3f
- 1143 00fd 19       		.uleb128 0x19
- 1144 00fe 02       		.uleb128 0x2
- 1145 00ff 18       		.uleb128 0x18
- 1146 0100 00       		.byte	0
- 1147 0101 00       		.byte	0
- 1148 0102 00       		.byte	0
- 1149              		.section	.debug_aranges,"",%progbits
- 1150 0000 84000000 		.4byte	0x84
- 1151 0004 0200     		.2byte	0x2
- 1152 0006 00000000 		.4byte	.Ldebug_info0
- 1153 000a 04       		.byte	0x4
- 1154 000b 00       		.byte	0
- 1155 000c 0000     		.2byte	0
- 1156 000e 0000     		.2byte	0
- 1157 0010 00000000 		.4byte	.LFB0
- 1158 0014 24000000 		.4byte	.LFE0-.LFB0
- 1159 0018 00000000 		.4byte	.LFB1
- 1160 001c 7C000000 		.4byte	.LFE1-.LFB1
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 37
+ 1161 009c 0E       		.uleb128 0xe
+ 1162 009d 3A       		.uleb128 0x3a
+ 1163 009e 0B       		.uleb128 0xb
+ 1164 009f 3B       		.uleb128 0x3b
+ 1165 00a0 05       		.uleb128 0x5
+ 1166 00a1 27       		.uleb128 0x27
+ 1167 00a2 19       		.uleb128 0x19
+ 1168 00a3 11       		.uleb128 0x11
+ 1169 00a4 01       		.uleb128 0x1
+ 1170 00a5 12       		.uleb128 0x12
+ 1171 00a6 06       		.uleb128 0x6
+ 1172 00a7 40       		.uleb128 0x40
+ 1173 00a8 18       		.uleb128 0x18
+ 1174 00a9 9742     		.uleb128 0x2117
+ 1175 00ab 19       		.uleb128 0x19
+ 1176 00ac 01       		.uleb128 0x1
+ 1177 00ad 13       		.uleb128 0x13
+ 1178 00ae 00       		.byte	0
+ 1179 00af 00       		.byte	0
+ 1180 00b0 0B       		.uleb128 0xb
+ 1181 00b1 05       		.uleb128 0x5
+ 1182 00b2 00       		.byte	0
+ 1183 00b3 03       		.uleb128 0x3
+ 1184 00b4 0E       		.uleb128 0xe
+ 1185 00b5 3A       		.uleb128 0x3a
+ 1186 00b6 0B       		.uleb128 0xb
+ 1187 00b7 3B       		.uleb128 0x3b
+ 1188 00b8 05       		.uleb128 0x5
+ 1189 00b9 49       		.uleb128 0x49
+ 1190 00ba 13       		.uleb128 0x13
+ 1191 00bb 02       		.uleb128 0x2
+ 1192 00bc 18       		.uleb128 0x18
+ 1193 00bd 00       		.byte	0
+ 1194 00be 00       		.byte	0
+ 1195 00bf 0C       		.uleb128 0xc
+ 1196 00c0 2E       		.uleb128 0x2e
+ 1197 00c1 00       		.byte	0
+ 1198 00c2 3F       		.uleb128 0x3f
+ 1199 00c3 19       		.uleb128 0x19
+ 1200 00c4 03       		.uleb128 0x3
+ 1201 00c5 0E       		.uleb128 0xe
+ 1202 00c6 3A       		.uleb128 0x3a
+ 1203 00c7 0B       		.uleb128 0xb
+ 1204 00c8 3B       		.uleb128 0x3b
+ 1205 00c9 05       		.uleb128 0x5
+ 1206 00ca 27       		.uleb128 0x27
+ 1207 00cb 19       		.uleb128 0x19
+ 1208 00cc 49       		.uleb128 0x49
+ 1209 00cd 13       		.uleb128 0x13
+ 1210 00ce 11       		.uleb128 0x11
+ 1211 00cf 01       		.uleb128 0x1
+ 1212 00d0 12       		.uleb128 0x12
+ 1213 00d1 06       		.uleb128 0x6
+ 1214 00d2 40       		.uleb128 0x40
+ 1215 00d3 18       		.uleb128 0x18
+ 1216 00d4 9742     		.uleb128 0x2117
+ 1217 00d6 19       		.uleb128 0x19
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 38
 
 
- 1161 0020 00000000 		.4byte	.LFB2
- 1162 0024 0C000000 		.4byte	.LFE2-.LFB2
- 1163 0028 00000000 		.4byte	.LFB3
- 1164 002c 0C000000 		.4byte	.LFE3-.LFB3
- 1165 0030 00000000 		.4byte	.LFB4
- 1166 0034 20000000 		.4byte	.LFE4-.LFB4
- 1167 0038 00000000 		.4byte	.LFB5
- 1168 003c 20000000 		.4byte	.LFE5-.LFB5
- 1169 0040 00000000 		.4byte	.LFB6
- 1170 0044 1C000000 		.4byte	.LFE6-.LFB6
- 1171 0048 00000000 		.4byte	.LFB7
- 1172 004c 20000000 		.4byte	.LFE7-.LFB7
- 1173 0050 00000000 		.4byte	.LFB8
- 1174 0054 20000000 		.4byte	.LFE8-.LFB8
- 1175 0058 00000000 		.4byte	.LFB9
- 1176 005c 20000000 		.4byte	.LFE9-.LFB9
- 1177 0060 00000000 		.4byte	.LFB10
- 1178 0064 18000000 		.4byte	.LFE10-.LFB10
- 1179 0068 00000000 		.4byte	.LFB11
- 1180 006c 18000000 		.4byte	.LFE11-.LFB11
- 1181 0070 00000000 		.4byte	.LFB12
- 1182 0074 18000000 		.4byte	.LFE12-.LFB12
- 1183 0078 00000000 		.4byte	.LFB13
- 1184 007c 18000000 		.4byte	.LFE13-.LFB13
- 1185 0080 00000000 		.4byte	0
- 1186 0084 00000000 		.4byte	0
- 1187              		.section	.debug_ranges,"",%progbits
- 1188              	.Ldebug_ranges0:
- 1189 0000 00000000 		.4byte	.LFB0
- 1190 0004 24000000 		.4byte	.LFE0
- 1191 0008 00000000 		.4byte	.LFB1
- 1192 000c 7C000000 		.4byte	.LFE1
- 1193 0010 00000000 		.4byte	.LFB2
- 1194 0014 0C000000 		.4byte	.LFE2
- 1195 0018 00000000 		.4byte	.LFB3
- 1196 001c 0C000000 		.4byte	.LFE3
- 1197 0020 00000000 		.4byte	.LFB4
- 1198 0024 20000000 		.4byte	.LFE4
- 1199 0028 00000000 		.4byte	.LFB5
- 1200 002c 20000000 		.4byte	.LFE5
- 1201 0030 00000000 		.4byte	.LFB6
- 1202 0034 1C000000 		.4byte	.LFE6
- 1203 0038 00000000 		.4byte	.LFB7
- 1204 003c 20000000 		.4byte	.LFE7
- 1205 0040 00000000 		.4byte	.LFB8
- 1206 0044 20000000 		.4byte	.LFE8
- 1207 0048 00000000 		.4byte	.LFB9
- 1208 004c 20000000 		.4byte	.LFE9
- 1209 0050 00000000 		.4byte	.LFB10
- 1210 0054 18000000 		.4byte	.LFE10
- 1211 0058 00000000 		.4byte	.LFB11
- 1212 005c 18000000 		.4byte	.LFE11
- 1213 0060 00000000 		.4byte	.LFB12
- 1214 0064 18000000 		.4byte	.LFE12
- 1215 0068 00000000 		.4byte	.LFB13
- 1216 006c 18000000 		.4byte	.LFE13
- 1217 0070 00000000 		.4byte	0
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 38
+ 1218 00d7 00       		.byte	0
+ 1219 00d8 00       		.byte	0
+ 1220 00d9 0D       		.uleb128 0xd
+ 1221 00da 2E       		.uleb128 0x2e
+ 1222 00db 00       		.byte	0
+ 1223 00dc 3F       		.uleb128 0x3f
+ 1224 00dd 19       		.uleb128 0x19
+ 1225 00de 03       		.uleb128 0x3
+ 1226 00df 0E       		.uleb128 0xe
+ 1227 00e0 3A       		.uleb128 0x3a
+ 1228 00e1 0B       		.uleb128 0xb
+ 1229 00e2 3B       		.uleb128 0x3b
+ 1230 00e3 05       		.uleb128 0x5
+ 1231 00e4 27       		.uleb128 0x27
+ 1232 00e5 19       		.uleb128 0x19
+ 1233 00e6 11       		.uleb128 0x11
+ 1234 00e7 01       		.uleb128 0x1
+ 1235 00e8 12       		.uleb128 0x12
+ 1236 00e9 06       		.uleb128 0x6
+ 1237 00ea 40       		.uleb128 0x40
+ 1238 00eb 18       		.uleb128 0x18
+ 1239 00ec 9642     		.uleb128 0x2116
+ 1240 00ee 19       		.uleb128 0x19
+ 1241 00ef 00       		.byte	0
+ 1242 00f0 00       		.byte	0
+ 1243 00f1 0E       		.uleb128 0xe
+ 1244 00f2 34       		.uleb128 0x34
+ 1245 00f3 00       		.byte	0
+ 1246 00f4 03       		.uleb128 0x3
+ 1247 00f5 0E       		.uleb128 0xe
+ 1248 00f6 3A       		.uleb128 0x3a
+ 1249 00f7 0B       		.uleb128 0xb
+ 1250 00f8 3B       		.uleb128 0x3b
+ 1251 00f9 0B       		.uleb128 0xb
+ 1252 00fa 49       		.uleb128 0x49
+ 1253 00fb 13       		.uleb128 0x13
+ 1254 00fc 3F       		.uleb128 0x3f
+ 1255 00fd 19       		.uleb128 0x19
+ 1256 00fe 02       		.uleb128 0x2
+ 1257 00ff 18       		.uleb128 0x18
+ 1258 0100 00       		.byte	0
+ 1259 0101 00       		.byte	0
+ 1260 0102 00       		.byte	0
+ 1261              		.section	.debug_aranges,"",%progbits
+ 1262 0000 94000000 		.4byte	0x94
+ 1263 0004 0200     		.2byte	0x2
+ 1264 0006 00000000 		.4byte	.Ldebug_info0
+ 1265 000a 04       		.byte	0x4
+ 1266 000b 00       		.byte	0
+ 1267 000c 0000     		.2byte	0
+ 1268 000e 0000     		.2byte	0
+ 1269 0010 00000000 		.4byte	.LFB0
+ 1270 0014 24000000 		.4byte	.LFE0-.LFB0
+ 1271 0018 00000000 		.4byte	.LFB1
+ 1272 001c 84000000 		.4byte	.LFE1-.LFB1
+ 1273 0020 00000000 		.4byte	.LFB2
+ 1274 0024 0C000000 		.4byte	.LFE2-.LFB2
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 39
 
 
- 1218 0074 00000000 		.4byte	0
- 1219              		.section	.debug_line,"",%progbits
- 1220              	.Ldebug_line0:
- 1221 0000 63010000 		.section	.debug_str,"MS",%progbits,1
- 1221      02004900 
- 1221      00000201 
- 1221      FB0E0D00 
- 1221      01010101 
- 1222              	.LASF15:
- 1223 0000 72656731 		.ascii	"reg16\000"
- 1223      3600
- 1224              	.LASF36:
- 1225 0006 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 1225      43313120 
- 1225      352E342E 
- 1225      31203230 
- 1225      31363036 
- 1226 0039 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 1226      20726576 
- 1226      6973696F 
- 1226      6E203233 
- 1226      37373135 
- 1227 006c 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
- 1227      66756E63 
- 1227      74696F6E 
- 1227      2D736563 
- 1227      74696F6E 
- 1228              	.LASF40:
- 1229 0094 50574D5F 		.ascii	"PWM_ServoDir_initVar\000"
- 1229      53657276 
- 1229      6F446972 
- 1229      5F696E69 
- 1229      74566172 
- 1230              	.LASF31:
- 1231 00a9 50574D5F 		.ascii	"PWM_ServoDir_ReadCounter\000"
- 1231      53657276 
- 1231      6F446972 
- 1231      5F526561 
- 1231      64436F75 
- 1232              	.LASF26:
- 1233 00c2 70657269 		.ascii	"period\000"
- 1233      6F6400
- 1234              	.LASF3:
- 1235 00c9 73686F72 		.ascii	"short unsigned int\000"
- 1235      7420756E 
- 1235      7369676E 
- 1235      65642069 
- 1235      6E7400
- 1236              	.LASF20:
- 1237 00dc 50574D5F 		.ascii	"PWM_ServoDir_Stop\000"
- 1237      53657276 
- 1237      6F446972 
- 1237      5F53746F 
- 1237      7000
- 1238              	.LASF19:
- 1239 00ee 50574D5F 		.ascii	"PWM_ServoDir_Enable\000"
- 1239      53657276 
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 39
+ 1275 0028 00000000 		.4byte	.LFB3
+ 1276 002c 0C000000 		.4byte	.LFE3-.LFB3
+ 1277 0030 00000000 		.4byte	.LFB4
+ 1278 0034 20000000 		.4byte	.LFE4-.LFB4
+ 1279 0038 00000000 		.4byte	.LFB5
+ 1280 003c 20000000 		.4byte	.LFE5-.LFB5
+ 1281 0040 00000000 		.4byte	.LFB6
+ 1282 0044 1C000000 		.4byte	.LFE6-.LFB6
+ 1283 0048 00000000 		.4byte	.LFB7
+ 1284 004c 20000000 		.4byte	.LFE7-.LFB7
+ 1285 0050 00000000 		.4byte	.LFB8
+ 1286 0054 20000000 		.4byte	.LFE8-.LFB8
+ 1287 0058 00000000 		.4byte	.LFB9
+ 1288 005c 20000000 		.4byte	.LFE9-.LFB9
+ 1289 0060 00000000 		.4byte	.LFB10
+ 1290 0064 20000000 		.4byte	.LFE10-.LFB10
+ 1291 0068 00000000 		.4byte	.LFB11
+ 1292 006c 18000000 		.4byte	.LFE11-.LFB11
+ 1293 0070 00000000 		.4byte	.LFB12
+ 1294 0074 18000000 		.4byte	.LFE12-.LFB12
+ 1295 0078 00000000 		.4byte	.LFB13
+ 1296 007c 18000000 		.4byte	.LFE13-.LFB13
+ 1297 0080 00000000 		.4byte	.LFB14
+ 1298 0084 18000000 		.4byte	.LFE14-.LFB14
+ 1299 0088 00000000 		.4byte	.LFB15
+ 1300 008c 18000000 		.4byte	.LFE15-.LFB15
+ 1301 0090 00000000 		.4byte	0
+ 1302 0094 00000000 		.4byte	0
+ 1303              		.section	.debug_ranges,"",%progbits
+ 1304              	.Ldebug_ranges0:
+ 1305 0000 00000000 		.4byte	.LFB0
+ 1306 0004 24000000 		.4byte	.LFE0
+ 1307 0008 00000000 		.4byte	.LFB1
+ 1308 000c 84000000 		.4byte	.LFE1
+ 1309 0010 00000000 		.4byte	.LFB2
+ 1310 0014 0C000000 		.4byte	.LFE2
+ 1311 0018 00000000 		.4byte	.LFB3
+ 1312 001c 0C000000 		.4byte	.LFE3
+ 1313 0020 00000000 		.4byte	.LFB4
+ 1314 0024 20000000 		.4byte	.LFE4
+ 1315 0028 00000000 		.4byte	.LFB5
+ 1316 002c 20000000 		.4byte	.LFE5
+ 1317 0030 00000000 		.4byte	.LFB6
+ 1318 0034 1C000000 		.4byte	.LFE6
+ 1319 0038 00000000 		.4byte	.LFB7
+ 1320 003c 20000000 		.4byte	.LFE7
+ 1321 0040 00000000 		.4byte	.LFB8
+ 1322 0044 20000000 		.4byte	.LFE8
+ 1323 0048 00000000 		.4byte	.LFB9
+ 1324 004c 20000000 		.4byte	.LFE9
+ 1325 0050 00000000 		.4byte	.LFB10
+ 1326 0054 20000000 		.4byte	.LFE10
+ 1327 0058 00000000 		.4byte	.LFB11
+ 1328 005c 18000000 		.4byte	.LFE11
+ 1329 0060 00000000 		.4byte	.LFB12
+ 1330 0064 18000000 		.4byte	.LFE12
+ 1331 0068 00000000 		.4byte	.LFB13
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 40
 
 
- 1239      6F446972 
- 1239      5F456E61 
- 1239      626C6500 
- 1240              	.LASF32:
- 1241 0102 50574D5F 		.ascii	"PWM_ServoDir_ReadStatusRegister\000"
- 1241      53657276 
- 1241      6F446972 
- 1241      5F526561 
- 1241      64537461 
- 1242              	.LASF11:
- 1243 0122 666C6F61 		.ascii	"float\000"
- 1243      7400
- 1244              	.LASF25:
- 1245 0128 636F756E 		.ascii	"counter\000"
- 1245      74657200 
- 1246              	.LASF35:
- 1247 0130 50574D5F 		.ascii	"PWM_ServoDir_ReadPeriod\000"
- 1247      53657276 
- 1247      6F446972 
- 1247      5F526561 
- 1247      64506572 
- 1248              	.LASF24:
- 1249 0148 50574D5F 		.ascii	"PWM_ServoDir_WritePeriod\000"
- 1249      53657276 
- 1249      6F446972 
- 1249      5F577269 
- 1249      74655065 
- 1250              	.LASF18:
- 1251 0161 50574D5F 		.ascii	"PWM_ServoDir_Start\000"
- 1251      53657276 
- 1251      6F446972 
- 1251      5F537461 
- 1251      727400
- 1252              	.LASF39:
- 1253 0174 50574D5F 		.ascii	"PWM_ServoDir_interruptState\000"
- 1253      53657276 
- 1253      6F446972 
- 1253      5F696E74 
- 1253      65727275 
- 1254              	.LASF5:
- 1255 0190 6C6F6E67 		.ascii	"long unsigned int\000"
- 1255      20756E73 
- 1255      69676E65 
- 1255      6420696E 
- 1255      7400
- 1256              	.LASF9:
- 1257 01a2 75696E74 		.ascii	"uint8\000"
- 1257      3800
- 1258              	.LASF38:
- 1259 01a8 433A5C55 		.ascii	"C:\\Users\\jmspi\\OneDrive\\Documents\\GitHub\\ECE4"
- 1259      73657273 
- 1259      5C6A6D73 
- 1259      70695C4F 
- 1259      6E654472 
- 1260 01d5 3139315C 		.ascii	"191\\DeliveryRobot.cydsn\000"
- 1260      44656C69 
- 1260      76657279 
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 40
+ 1332 006c 18000000 		.4byte	.LFE13
+ 1333 0070 00000000 		.4byte	.LFB14
+ 1334 0074 18000000 		.4byte	.LFE14
+ 1335 0078 00000000 		.4byte	.LFB15
+ 1336 007c 18000000 		.4byte	.LFE15
+ 1337 0080 00000000 		.4byte	0
+ 1338 0084 00000000 		.4byte	0
+ 1339              		.section	.debug_line,"",%progbits
+ 1340              	.Ldebug_line0:
+ 1341 0000 86010000 		.section	.debug_str,"MS",%progbits,1
+ 1341      02004900 
+ 1341      00000201 
+ 1341      FB0E0D00 
+ 1341      01010101 
+ 1342              	.LASF15:
+ 1343 0000 72656731 		.ascii	"reg16\000"
+ 1343      3600
+ 1344              	.LASF27:
+ 1345 0006 50574D5F 		.ascii	"PWM_ServoDir_WriteCompare1\000"
+ 1345      53657276 
+ 1345      6F446972 
+ 1345      5F577269 
+ 1345      7465436F 
+ 1346              	.LASF29:
+ 1347 0021 50574D5F 		.ascii	"PWM_ServoDir_WriteCompare2\000"
+ 1347      53657276 
+ 1347      6F446972 
+ 1347      5F577269 
+ 1347      7465436F 
+ 1348              	.LASF38:
+ 1349 003c 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1349      43313120 
+ 1349      352E342E 
+ 1349      31203230 
+ 1349      31363036 
+ 1350 006f 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1350      20726576 
+ 1350      6973696F 
+ 1350      6E203233 
+ 1350      37373135 
+ 1351 00a2 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 1351      66756E63 
+ 1351      74696F6E 
+ 1351      2D736563 
+ 1351      74696F6E 
+ 1352              	.LASF42:
+ 1353 00ca 50574D5F 		.ascii	"PWM_ServoDir_initVar\000"
+ 1353      53657276 
+ 1353      6F446972 
+ 1353      5F696E69 
+ 1353      74566172 
+ 1354              	.LASF32:
+ 1355 00df 50574D5F 		.ascii	"PWM_ServoDir_ReadCounter\000"
+ 1355      53657276 
+ 1355      6F446972 
+ 1355      5F526561 
+ 1355      64436F75 
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 41
 
 
- 1260      526F626F 
- 1260      742E6379 
- 1261              	.LASF37:
- 1262 01ed 47656E65 		.ascii	"Generated_Source\\PSoC5\\PWM_ServoDir.c\000"
- 1262      72617465 
- 1262      645F536F 
- 1262      75726365 
- 1262      5C50536F 
- 1263              	.LASF27:
- 1264 0213 50574D5F 		.ascii	"PWM_ServoDir_WriteCompare\000"
- 1264      53657276 
- 1264      6F446972 
- 1264      5F577269 
- 1264      7465436F 
- 1265              	.LASF12:
- 1266 022d 646F7562 		.ascii	"double\000"
- 1266      6C6500
- 1267              	.LASF2:
- 1268 0234 73686F72 		.ascii	"short int\000"
- 1268      7420696E 
- 1268      7400
- 1269              	.LASF10:
- 1270 023e 75696E74 		.ascii	"uint16\000"
- 1270      313600
- 1271              	.LASF1:
- 1272 0245 756E7369 		.ascii	"unsigned char\000"
- 1272      676E6564 
- 1272      20636861 
- 1272      7200
- 1273              	.LASF8:
- 1274 0253 756E7369 		.ascii	"unsigned int\000"
- 1274      676E6564 
- 1274      20696E74 
- 1274      00
- 1275              	.LASF7:
- 1276 0260 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1276      206C6F6E 
- 1276      6720756E 
- 1276      7369676E 
- 1276      65642069 
- 1277              	.LASF14:
- 1278 0277 72656738 		.ascii	"reg8\000"
- 1278      00
- 1279              	.LASF17:
- 1280 027c 73697A65 		.ascii	"sizetype\000"
- 1280      74797065 
- 1280      00
- 1281              	.LASF6:
- 1282 0285 6C6F6E67 		.ascii	"long long int\000"
- 1282      206C6F6E 
- 1282      6720696E 
- 1282      7400
- 1283              	.LASF30:
- 1284 0293 696E7465 		.ascii	"interruptMode\000"
- 1284      72727570 
- 1284      744D6F64 
- 1284      6500
-ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccFXs9hE.s 			page 41
+ 1356              	.LASF26:
+ 1357 00f8 70657269 		.ascii	"period\000"
+ 1357      6F6400
+ 1358              	.LASF3:
+ 1359 00ff 73686F72 		.ascii	"short unsigned int\000"
+ 1359      7420756E 
+ 1359      7369676E 
+ 1359      65642069 
+ 1359      6E7400
+ 1360              	.LASF20:
+ 1361 0112 50574D5F 		.ascii	"PWM_ServoDir_Stop\000"
+ 1361      53657276 
+ 1361      6F446972 
+ 1361      5F53746F 
+ 1361      7000
+ 1362              	.LASF19:
+ 1363 0124 50574D5F 		.ascii	"PWM_ServoDir_Enable\000"
+ 1363      53657276 
+ 1363      6F446972 
+ 1363      5F456E61 
+ 1363      626C6500 
+ 1364              	.LASF33:
+ 1365 0138 50574D5F 		.ascii	"PWM_ServoDir_ReadStatusRegister\000"
+ 1365      53657276 
+ 1365      6F446972 
+ 1365      5F526561 
+ 1365      64537461 
+ 1366              	.LASF11:
+ 1367 0158 666C6F61 		.ascii	"float\000"
+ 1367      7400
+ 1368              	.LASF25:
+ 1369 015e 636F756E 		.ascii	"counter\000"
+ 1369      74657200 
+ 1370              	.LASF37:
+ 1371 0166 50574D5F 		.ascii	"PWM_ServoDir_ReadPeriod\000"
+ 1371      53657276 
+ 1371      6F446972 
+ 1371      5F526561 
+ 1371      64506572 
+ 1372              	.LASF24:
+ 1373 017e 50574D5F 		.ascii	"PWM_ServoDir_WritePeriod\000"
+ 1373      53657276 
+ 1373      6F446972 
+ 1373      5F577269 
+ 1373      74655065 
+ 1374              	.LASF18:
+ 1375 0197 50574D5F 		.ascii	"PWM_ServoDir_Start\000"
+ 1375      53657276 
+ 1375      6F446972 
+ 1375      5F537461 
+ 1375      727400
+ 1376              	.LASF41:
+ 1377 01aa 50574D5F 		.ascii	"PWM_ServoDir_interruptState\000"
+ 1377      53657276 
+ 1377      6F446972 
+ 1377      5F696E74 
+ 1377      65727275 
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 42
 
 
- 1285              	.LASF23:
- 1286 02a1 50574D5F 		.ascii	"PWM_ServoDir_ClearFIFO\000"
- 1286      53657276 
- 1286      6F446972 
- 1286      5F436C65 
- 1286      61724649 
- 1287              	.LASF34:
- 1288 02b8 50574D5F 		.ascii	"PWM_ServoDir_ReadCompare\000"
- 1288      53657276 
- 1288      6F446972 
- 1288      5F526561 
- 1288      64436F6D 
- 1289              	.LASF22:
- 1290 02d1 50574D5F 		.ascii	"PWM_ServoDir_WriteCounter\000"
- 1290      53657276 
- 1290      6F446972 
- 1290      5F577269 
- 1290      7465436F 
- 1291              	.LASF33:
- 1292 02eb 50574D5F 		.ascii	"PWM_ServoDir_ReadCapture\000"
- 1292      53657276 
- 1292      6F446972 
- 1292      5F526561 
- 1292      64436170 
- 1293              	.LASF21:
- 1294 0304 50574D5F 		.ascii	"PWM_ServoDir_Init\000"
- 1294      53657276 
- 1294      6F446972 
- 1294      5F496E69 
- 1294      7400
- 1295              	.LASF4:
- 1296 0316 6C6F6E67 		.ascii	"long int\000"
- 1296      20696E74 
- 1296      00
- 1297              	.LASF13:
- 1298 031f 63686172 		.ascii	"char\000"
- 1298      00
- 1299              	.LASF16:
- 1300 0324 6C6F6E67 		.ascii	"long double\000"
- 1300      20646F75 
- 1300      626C6500 
- 1301              	.LASF0:
- 1302 0330 7369676E 		.ascii	"signed char\000"
- 1302      65642063 
- 1302      68617200 
- 1303              	.LASF28:
- 1304 033c 636F6D70 		.ascii	"compare\000"
- 1304      61726500 
- 1305              	.LASF29:
- 1306 0344 50574D5F 		.ascii	"PWM_ServoDir_SetInterruptMode\000"
- 1306      53657276 
- 1306      6F446972 
- 1306      5F536574 
- 1306      496E7465 
- 1307              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 1378              	.LASF5:
+ 1379 01c6 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1379      20756E73 
+ 1379      69676E65 
+ 1379      6420696E 
+ 1379      7400
+ 1380              	.LASF9:
+ 1381 01d8 75696E74 		.ascii	"uint8\000"
+ 1381      3800
+ 1382              	.LASF40:
+ 1383 01de 433A5C55 		.ascii	"C:\\Users\\jmspi\\OneDrive\\Documents\\GitHub\\ECE4"
+ 1383      73657273 
+ 1383      5C6A6D73 
+ 1383      70695C4F 
+ 1383      6E654472 
+ 1384 020b 3139315C 		.ascii	"191\\DeliveryRobot.cydsn\000"
+ 1384      44656C69 
+ 1384      76657279 
+ 1384      526F626F 
+ 1384      742E6379 
+ 1385              	.LASF39:
+ 1386 0223 47656E65 		.ascii	"Generated_Source\\PSoC5\\PWM_ServoDir.c\000"
+ 1386      72617465 
+ 1386      645F536F 
+ 1386      75726365 
+ 1386      5C50536F 
+ 1387              	.LASF12:
+ 1388 0249 646F7562 		.ascii	"double\000"
+ 1388      6C6500
+ 1389              	.LASF2:
+ 1390 0250 73686F72 		.ascii	"short int\000"
+ 1390      7420696E 
+ 1390      7400
+ 1391              	.LASF10:
+ 1392 025a 75696E74 		.ascii	"uint16\000"
+ 1392      313600
+ 1393              	.LASF1:
+ 1394 0261 756E7369 		.ascii	"unsigned char\000"
+ 1394      676E6564 
+ 1394      20636861 
+ 1394      7200
+ 1395              	.LASF8:
+ 1396 026f 756E7369 		.ascii	"unsigned int\000"
+ 1396      676E6564 
+ 1396      20696E74 
+ 1396      00
+ 1397              	.LASF7:
+ 1398 027c 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1398      206C6F6E 
+ 1398      6720756E 
+ 1398      7369676E 
+ 1398      65642069 
+ 1399              	.LASF35:
+ 1400 0293 50574D5F 		.ascii	"PWM_ServoDir_ReadCompare1\000"
+ 1400      53657276 
+ 1400      6F446972 
+ 1400      5F526561 
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 43
+
+
+ 1400      64436F6D 
+ 1401              	.LASF14:
+ 1402 02ad 72656738 		.ascii	"reg8\000"
+ 1402      00
+ 1403              	.LASF17:
+ 1404 02b2 73697A65 		.ascii	"sizetype\000"
+ 1404      74797065 
+ 1404      00
+ 1405              	.LASF6:
+ 1406 02bb 6C6F6E67 		.ascii	"long long int\000"
+ 1406      206C6F6E 
+ 1406      6720696E 
+ 1406      7400
+ 1407              	.LASF31:
+ 1408 02c9 696E7465 		.ascii	"interruptMode\000"
+ 1408      72727570 
+ 1408      744D6F64 
+ 1408      6500
+ 1409              	.LASF23:
+ 1410 02d7 50574D5F 		.ascii	"PWM_ServoDir_ClearFIFO\000"
+ 1410      53657276 
+ 1410      6F446972 
+ 1410      5F436C65 
+ 1410      61724649 
+ 1411              	.LASF36:
+ 1412 02ee 50574D5F 		.ascii	"PWM_ServoDir_ReadCompare2\000"
+ 1412      53657276 
+ 1412      6F446972 
+ 1412      5F526561 
+ 1412      64436F6D 
+ 1413              	.LASF22:
+ 1414 0308 50574D5F 		.ascii	"PWM_ServoDir_WriteCounter\000"
+ 1414      53657276 
+ 1414      6F446972 
+ 1414      5F577269 
+ 1414      7465436F 
+ 1415              	.LASF34:
+ 1416 0322 50574D5F 		.ascii	"PWM_ServoDir_ReadCapture\000"
+ 1416      53657276 
+ 1416      6F446972 
+ 1416      5F526561 
+ 1416      64436170 
+ 1417              	.LASF21:
+ 1418 033b 50574D5F 		.ascii	"PWM_ServoDir_Init\000"
+ 1418      53657276 
+ 1418      6F446972 
+ 1418      5F496E69 
+ 1418      7400
+ 1419              	.LASF4:
+ 1420 034d 6C6F6E67 		.ascii	"long int\000"
+ 1420      20696E74 
+ 1420      00
+ 1421              	.LASF13:
+ 1422 0356 63686172 		.ascii	"char\000"
+ 1422      00
+ 1423              	.LASF16:
+ 1424 035b 6C6F6E67 		.ascii	"long double\000"
+ARM GAS  C:\Users\jmspi\AppData\Local\Temp\ccsgcyba.s 			page 44
+
+
+ 1424      20646F75 
+ 1424      626C6500 
+ 1425              	.LASF0:
+ 1426 0367 7369676E 		.ascii	"signed char\000"
+ 1426      65642063 
+ 1426      68617200 
+ 1427              	.LASF28:
+ 1428 0373 636F6D70 		.ascii	"compare\000"
+ 1428      61726500 
+ 1429              	.LASF30:
+ 1430 037b 50574D5F 		.ascii	"PWM_ServoDir_SetInterruptMode\000"
+ 1430      53657276 
+ 1430      6F446972 
+ 1430      5F536574 
+ 1430      496E7465 
+ 1431              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

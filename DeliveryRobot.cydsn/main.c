@@ -56,7 +56,7 @@ Sensor sensors;       // Ultrasonics
 void Drive_Left_Motor(long double duty_cycle);
 void Drive_Right_Motor(long double duty_cycle);
 void Turn_Delay(long double angle);
-void move_servo(int servo_num, int dir);
+void move_servo(int servo_nums);
 
 /* Interrupt to obtain Ultrasonic measurement value. */  
 CY_ISR( Timer_Int_Handler ) {
@@ -257,8 +257,7 @@ int main(void)
                         robot.desired_v = 0;
 
                         // TODO: Unload Package Code
-                        move_servo(3, 1);
-                        move_servo(0, 0);
+                        move_servo(0b0101); // move servos 3 and 1 simultaneously
                         //
                         
                         // Turn towards box B
@@ -296,7 +295,7 @@ int main(void)
                             Turn_Delay(ref_direction);
 
                             // TODO: Unload Package Code
-                            move_servo(1, 1);                                      
+                            move_servo(0b0001);                                      
                             
                             //
                             
@@ -305,6 +304,7 @@ int main(void)
                             Turn_Delay(ref_direction);
                             front_dist_th = 50;
                             B_flag = 1;
+                            robot.desired_v = velocity;
                             
                         } else {
                             // Stop moving
@@ -315,7 +315,7 @@ int main(void)
                             Turn_Delay(ref_direction);
 
                             // TODO: Unload Package Code
-                            move_servo(2, 0);
+                            move_servo(0b0010);
                             //
                             
                             // Go back to A
@@ -498,31 +498,17 @@ int velocity_control(int max_velocity) {
     int velocity = floor(max_velocity * (1200 - avg_dist) / 400);
 }
 
-void move_servo(int servo_num, int dir) {
-    int comp_1, comp_2;
-    
-    if( dir ) {
-        comp_1 = 4000;
-        comp_2 = 2000;
-    } else {
-        comp_1 = 2000;
-        comp_2 = 4000;
-    }
-    
+void move_servo(int servo_nums) {
     CyDelay(100);
-    PWM_ServoDir_WriteCompare(comp_1);
-    Control_Reg_ServoSelect_Write(servo_num);
+    PWM_ServoDir_WriteCompare1(2000);
+    PWM_ServoDir_WriteCompare2(4000);
+    Control_Reg_ServoSelect_Write(servo_nums);
     Control_Reg_ServoTrigger_Write(1);
-    CyDelay(100);
-    Control_Reg_ServoTrigger_Write(0);
     
     CyDelay(2550);
     
-    PWM_ServoDir_WriteCompare(comp_2);
-    Control_Reg_ServoTrigger_Write(1);
-    CyDelay(100);
+    PWM_ServoDir_WriteCompare1(4000);
+    PWM_ServoDir_WriteCompare2(2000);
     Control_Reg_ServoTrigger_Write(0);
-    
-    CyDelay(2550);
 }
 /* [] END OF FILE */

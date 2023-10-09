@@ -38,9 +38,10 @@ const double PULSES_PER_REV = 3591.92;
 const double POSE_UPDATE_PERIOD = 1.0/50.0; // seconds
 
 uint8_t echo_flag = 0;          // Ultrasonic flag
-uint16_t max_count = 65535;     // Ultrasonic time count
+uint16_t max_count = 2500;     // Ultrasonic time count
 uint16_t echo_distance;         // Ultrasonic distance
 uint8_t mux_select = 0;         // For selecting specific ultrasonic sensor
+int dir = 0;
 
 int32 left_wheel_count = 0;
 int32 right_wheel_count = 0;
@@ -72,7 +73,7 @@ CY_ISR( Timer_Int_Handler ) {
     }
 
     Control_Reg_US_Write(mux_select);
-    PWM_Trigger_WriteCounter(255);    
+    PWM_Trigger_WriteCounter(2500);    
 }
 
 /* Interrupt for Robot pose and desired drive update. */
@@ -226,7 +227,7 @@ int main(void)
    
     // Thresholds
     float front_dist_th = 50;
-    float dist_ref = 50;
+    float dist_ref = 40;
     int front_count = 0;
     
     // Flags
@@ -234,7 +235,7 @@ int main(void)
     int B_flag = 0;
     
     // Settings
-    int velocity = 15;
+    int velocity = 12;
     
     /*=======================================================================*/  
     // starts at front left and goes clockwise
@@ -243,34 +244,31 @@ int main(void)
     //move_servo(1, 1);
     //move_servo(2, 0);
     
-    
     for(;;) {  
         // Wall follow only after sensor is updated
         // Read 3 times
         if ( wall_following_flag ) {
-            if (sensors.distance[0] < front_dist_th && sensors.distance[5] < front_dist_th) {                
+            if (sensors.distance[0] < front_dist_th && sensors.distance[5] < front_dist_th) {                  
                 switch (ref_direction_deg) {
                     // Travelling towards box A
                     case (90):
-         
                         // Stop moving
                         robot.desired_v = 0;
 
                         // TODO: Unload Package Code
-                        move_servo(0b0101); // move servos 3 and 1 simultaneously
+                        move_servo(9); // move servos 3 and 1 simultaneously
                         //
                         
                         // Turn towards box B
                         ref_direction = calculate_angle_modulo(robot.theta - M_PI/2);
                         Turn_Delay(ref_direction);
                         
-                        
                         ref_direction_deg = angle_clamp(ref_direction_deg - 90);
                         robot.desired_v = velocity;
                         
                         // Update Flags
                         wall_following_flag = 0;
-                        front_dist_th = 450;
+                        front_dist_th = 430;
                         
                         // Spoof
                         sensors.distance[1] = dist_ref;
@@ -295,7 +293,7 @@ int main(void)
                             Turn_Delay(ref_direction);
 
                             // TODO: Unload Package Code
-                            move_servo(0b0001);                                      
+                            move_servo(2);                                      
                             
                             //
                             
@@ -315,12 +313,13 @@ int main(void)
                             Turn_Delay(ref_direction);
 
                             // TODO: Unload Package Code
-                            move_servo(0b0010);
+                            move_servo(4);
                             //
                             
                             // Go back to A
                             ref_direction = calculate_angle_modulo(robot.theta - M_PI/2);
                             Turn_Delay(ref_direction);
+                            CyDelay(1000);
                             ref_direction_deg = angle_clamp(ref_direction_deg - 180);
                             robot.desired_v = velocity;
                             
@@ -351,6 +350,8 @@ int main(void)
                         Turn_Delay(ref_direction);
                         ref_direction_deg = angle_clamp(ref_direction_deg + 90);
                         robot.desired_v = velocity;
+                        front_dist_th = 50;
+                        dist_ref = 100;
                         wall_following_flag = 0;
                     
                         // Spoof
@@ -376,6 +377,7 @@ int main(void)
                         
                         // Update Flags
                         wall_following_flag = 0;
+                        dist_ref = 40;
                         return_flag = 0;
                             
                         // Spoof
@@ -410,27 +412,29 @@ int main(void)
 
             // Wall Following
             float error = 0;
-            int terminal_phase = sensors.distance[0] < 100 && sensors.distance[5] < 150;
+            int terminal_phase = sensors.distance[0] < 100 && sensors.distance[5] < 100;
             switch ( return_flag ){
                 case (0):
                     // Follow Left Wall
-                    robot.desired_v = terminal_phase ? 5: velocity;
+                    robot.desired_v = terminal_phase ? 2: velocity;
                     error = (sensors.distance[1] < sensors.distance[2]) ? dist_ref - sensors.distance[1] : dist_ref - sensors.distance[2];
                     //error = dist_ref - (sensors.distance[1] + sensors.distance[2] / 2);
+                    if( error > 150 ) {break;}
                     theta_correction = wall_Kp * -(error);
-                    robot.desired_theta = ref_direction + theta_correction;
+                    robot.desired_theta = calculate_angle_modulo(ref_direction + theta_correction);
                     wall_following_flag = 0;
                     
                     break;    
                 
                 case (1):
                     // Follow right wall
-                    robot.desired_v = terminal_phase ? 5: velocity;
+                    robot.desired_v = terminal_phase ? 2: velocity;
                     
                     error = (sensors.distance[3] < sensors.distance[4]) ? dist_ref - sensors.distance[3] : dist_ref - sensors.distance[4];
-                    
+                    //error = dist_ref - (sensors.distance[3] + sensors.distance[4] / 2);
+                    if( error > 150 ) { break; }
                     theta_correction = wall_Kp * -(error);
-                    robot.desired_theta = ref_direction - theta_correction;
+                    robot.desired_theta = calculate_angle_modulo(ref_direction - theta_correction);
                     wall_following_flag = 0;
                     
                     break;  
@@ -486,9 +490,17 @@ void Drive_Right_Motor(long double duty_cycle) {
 void Turn_Delay(long double angle) {
     // Set desired turn in radians
     robot.desired_theta = angle;
-    
+    float diff = fabs(robot.theta-robot.desired_theta);
+    if( diff > M_PI ) { 
+        diff = M_TWOPI - diff; 
+    }
     // Idle loop to wait until turn is complete
-    while( !( fabs(robot.theta-robot.desired_theta) < 0.2 ) ) {}; 
+    while( diff > 0.25 ) {
+        diff = fabs(robot.theta-robot.desired_theta);
+        if( diff > M_PI ) { 
+            diff = M_TWOPI - diff; 
+        }
+    }; 
 }
 
 int velocity_control(int max_velocity) {
@@ -503,9 +515,9 @@ void move_servo(int servo_nums) {
     PWM_ServoDir_WriteCompare1(2000);
     PWM_ServoDir_WriteCompare2(4000);
     Control_Reg_ServoSelect_Write(servo_nums);
+    CyDelayUs(100);
     Control_Reg_ServoTrigger_Write(1);
-    
-    CyDelay(2550);
+    CyDelay(3550);
     
     PWM_ServoDir_WriteCompare1(4000);
     PWM_ServoDir_WriteCompare2(2000);

@@ -73,7 +73,7 @@ CY_ISR( Timer_Int_Handler ) {
     }
 
     Control_Reg_US_Write(mux_select);
-    PWM_Trigger_WriteCounter(2500);    
+    PWM_Trigger_WriteCounter(1500);    
 }
 
 /* Interrupt for Robot pose and desired drive update. */
@@ -183,8 +183,8 @@ int main(void)
     
     // Define and initialise robot 
     long double robot_axle_width = 0.936*22.5;  // TODO: get accurate measurement
-    long double robot_Ki = 3e-5;    // TODO: Determine good value
-    long double robot_Kp = 0.75;     // was previously 0.75 before changing for MS1
+    long double robot_Ki = 3e-7;    // TODO: Determine good value
+    long double robot_Kp = 1.75;     // was previously 0.75 before changing for MS1
     long double min_distance = 5;   // Minimum distance between robot position and goal
 
 
@@ -208,8 +208,8 @@ int main(void)
     // Goals should be defined where the bin is
     int n_goals = 2;    // Number of goals, duh!
     int goals[4] = {0, 90, 90, 90};    // Coordinates of goals [x1, y1, x2, y2, ..., xn, yn]
-    robot.goal_x = goals[0];   // Update robot x goal
-    robot.goal_y = goals[1];   // Update robot y goal
+    robot.goal_x = 0;   // Update robot x goal
+    robot.goal_y = 0;   // Update robot y goal
     int goals_reached = 0;  // Counter for number of goas reached, duh!
     /*=======================================================================*/    
 
@@ -223,7 +223,7 @@ int main(void)
     
     // KP Controls
     float theta_correction = 0;
-    float wall_Kp = 0.01;
+    float wall_Kp = 0.005;
    
     // Thresholds
     float front_dist_th = 50;
@@ -233,9 +233,11 @@ int main(void)
     // Flags
     int return_flag = 0;
     int B_flag = 0;
+    int obstacle_flag = 0;
     
     // Settings
-    int velocity = 12;
+    int velocity = 15;
+    int arena_def = 85; //cm
     
     /*=======================================================================*/  
     // starts at front left and goes clockwise
@@ -249,165 +251,215 @@ int main(void)
         // Read 3 times
         if ( wall_following_flag ) {
             if (sensors.distance[0] < front_dist_th && sensors.distance[5] < front_dist_th) {                  
-                switch (ref_direction_deg) {
-                    // Travelling towards box A
-                    case (90):
-                        // Stop moving
-                        robot.desired_v = 0;
-
-                        // TODO: Unload Package Code
-                        move_servo(9); // move servos 3 and 1 simultaneously
-                        //
-                        
-                        // Turn towards box B
-                        ref_direction = calculate_angle_modulo(robot.theta - M_PI/2);
-                        Turn_Delay(ref_direction);
-                        
-                        ref_direction_deg = angle_clamp(ref_direction_deg - 90);
-                        robot.desired_v = velocity;
-                        
-                        // Update Flags
-                        wall_following_flag = 0;
-                        front_dist_th = 430;
-                        
-                        // Spoof
-                        sensors.distance[1] = dist_ref;
-                        sensors.distance[2] = dist_ref;
-                        sensors.distance[3] = dist_ref;
-                        sensors.distance[4] = dist_ref;
-                        sensors.distance[0] = 10000;
-                        sensors.distance[5] = 10000;
-                        
-                        break;
-                        
+                // Check current distance from position flag
+                robot.goal_min_dist = calculate_distance_from_goal(robot.goal_x, robot.goal_y, robot.x, robot.y);
+                float min_sensor = (sensors.distance[0] < sensors.distance[5]) ? sensors.distance[0] : sensors.distance[5];
+                min_sensor /= 10;
+                if ((robot.goal_min_dist + min_sensor) < arena_def) {
+                    // Stop for 30 seconds
+                    robot.desired_v = 0;
+                    CyDelay(100);
                     
-                    // Travelling towards box B
-                    case (0):
-                        // If we haven't stopped at B yet
-                        if (!B_flag) {
+                    while ( (robot.goal_min_dist + min_sensor) < arena_def) {
+                        min_sensor = (sensors.distance[0] < sensors.distance[5]) ? sensors.distance[0] : sensors.distance[5];
+                        min_sensor /= 10;
+                    }
+                    obstacle_flag = 1;
+                    robot.desired_v = velocity;
+                }
+                if( obstacle_flag ) {
+                    obstacle_flag = 0;
+                } else {
+                    switch (ref_direction_deg) {
+                        // Travelling towards box A
+                        case (90):
                             // Stop moving
                             robot.desired_v = 0;
-                            
-                            // Rotate -90 deg to deliver packages
-                            ref_direction = calculate_angle_modulo(robot.theta - M_PI/2);
-                            Turn_Delay(ref_direction);
 
                             // TODO: Unload Package Code
-                            move_servo(2);                                      
-                            
+                            move_servo(9); // move servos 3 and 1 simultaneously
                             //
                             
-                            // Rotate back to go to C
-                            ref_direction = calculate_angle_modulo(robot.theta + M_PI/2);
-                            Turn_Delay(ref_direction);
-                            front_dist_th = 50;
-                            B_flag = 1;
-                            robot.desired_v = velocity;
-                            
-                        } else {
-                            // Stop moving
-                            robot.desired_v = 0;
-                            
-                            // Rotate -90 deg to deliver packages
+                            // Turn towards box B
                             ref_direction = calculate_angle_modulo(robot.theta - M_PI/2);
                             Turn_Delay(ref_direction);
-
-                            // TODO: Unload Package Code
-                            move_servo(4);
-                            //
                             
-                            // Go back to A
-                            ref_direction = calculate_angle_modulo(robot.theta - M_PI/2);
-                            Turn_Delay(ref_direction);
-                            CyDelay(1000);
-                            ref_direction_deg = angle_clamp(ref_direction_deg - 180);
+                            // Set position flag and track distance
+                            robot.goal_x = robot.x;
+                            robot.goal_y = robot.y;
+                            
+                            ref_direction_deg = angle_clamp(ref_direction_deg - 90);
                             robot.desired_v = velocity;
                             
                             // Update Flags
                             wall_following_flag = 0;
-                            return_flag = 1;
-                            B_flag = 0;
+                            front_dist_th = 430;
                             
-                        }
-                        
-                        // Spoof
-                        sensors.distance[1] = dist_ref;
-                        sensors.distance[2] = dist_ref;
-                        sensors.distance[3] = dist_ref;
-                        sensors.distance[4] = dist_ref;
-                        sensors.distance[0] = 10000;
-                        sensors.distance[5] = 10000;
-                        break;
-                    
-                    // Travelling Back to A *Can include a flag for safety measures
-                    case (180):
-
-                        // Stop moving and turn towards loading bay
-                        robot.desired_v = 0;
-
-                        // Go towards beginning
-                        ref_direction = calculate_angle_modulo(robot.theta + M_PI/2);
-                        Turn_Delay(ref_direction);
-                        ref_direction_deg = angle_clamp(ref_direction_deg + 90);
-                        robot.desired_v = velocity;
-                        front_dist_th = 50;
-                        dist_ref = 100;
-                        wall_following_flag = 0;
-                    
-                        // Spoof
-                        sensors.distance[1] = dist_ref;
-                        sensors.distance[2] = dist_ref;
-                        sensors.distance[3] = dist_ref;
-                        sensors.distance[4] = dist_ref;
-                        sensors.distance[0] = 10000;
-                        sensors.distance[5] = 10000;
-                        break;
-
-                    // Travelling Back to Start
-                    case (270):
-                         
-                        // Stop moving and point back to A
-                        robot.desired_v = 0;
-
-                        // Update Position
-                        ref_direction = calculate_angle_modulo(robot.theta - M_PI);
-                        Turn_Delay(ref_direction);
-                        ref_direction_deg = angle_clamp(ref_direction_deg - 180);
-                        robot.desired_v = velocity;
-                        
-                        // Update Flags
-                        wall_following_flag = 0;
-                        dist_ref = 40;
-                        return_flag = 0;
+                            // Spoof
+                            sensors.distance[1] = dist_ref;
+                            sensors.distance[2] = dist_ref;
+                            sensors.distance[3] = dist_ref;
+                            sensors.distance[4] = dist_ref;
+                            sensors.distance[0] = 10000;
+                            sensors.distance[5] = 10000;
                             
-                        // Spoof
-                        sensors.distance[1] = dist_ref;
-                        sensors.distance[2] = dist_ref;
-                        sensors.distance[3] = dist_ref;
-                        sensors.distance[4] = dist_ref;
-                        sensors.distance[0] = 10000;
-                        sensors.distance[5] = 10000;
+                            break;
+                            
                         
-                        break;
+                        // Travelling towards box B
+                        case (0):
+                            // If we haven't stopped at B yet
+                            if (!B_flag) {
+                                // Stop moving
+                                robot.desired_v = 0;
+                                
+                                // Rotate -90 deg to deliver packages
+                                ref_direction = calculate_angle_modulo(robot.theta - M_PI/2);
+                                Turn_Delay(ref_direction);
 
-                    default:
-                        
-                        // Wall follow if broken
-                        robot.desired_v = 0;
-                        Turn_Delay(M_PI/2);
-                        ref_direction = calculate_angle_modulo(ref_direction - M_PI/2);
-                        
-                        robot.desired_v = velocity;
-                        wall_following_flag = 0;
+                                // TODO: Unload Package Code
+                                move_servo(2);                                      
+                                
+                                //
+                                
+                                // Rotate back to go to C
+                                ref_direction = calculate_angle_modulo(robot.theta + M_PI/2);
+                                Turn_Delay(ref_direction);
+                                
+                                front_dist_th = 70;
+                                B_flag = 1;
+                                robot.desired_v = velocity;
+                                
+                            } else {
+                                // Stop moving
+                                robot.desired_v = 0;
+                                
+                                // Rotate -90 deg to deliver packages
+                                ref_direction = calculate_angle_modulo(robot.theta - M_PI/2);
+                                Turn_Delay(ref_direction);
 
-                        // Spoof sensor to avoid sensor updates during turn
-                        sensors.distance[1] = dist_ref;
-                        sensors.distance[2] = dist_ref;
-                        sensors.distance[3] = dist_ref;
-                        sensors.distance[4] = dist_ref;
-                        sensors.distance[0] = 10000;
-                        sensors.distance[5] = 10000;
+                                // TODO: Unload Package Code
+                                move_servo(4);
+                                //
+                                
+                                // Go back to A
+                                ref_direction = calculate_angle_modulo(robot.theta - M_PI/2);
+                                Turn_Delay(ref_direction);
+                                // Set position flag and track distance
+                                robot.goal_x = robot.x;
+                                robot.goal_y = robot.y;
+                                
+                                CyDelay(100);
+                                ref_direction_deg = angle_clamp(ref_direction_deg - 180);
+                                robot.desired_v = velocity;
+                                
+                                // Update Flags
+                                wall_following_flag = 0;
+                                return_flag = 1;
+                                B_flag = 0;
+                                
+                                dist_ref = 150;
+                                front_dist_th = 150;
+                                
+                            }
+                            
+                            // Spoof
+                            sensors.distance[1] = dist_ref;
+                            sensors.distance[2] = dist_ref;
+                            sensors.distance[3] = dist_ref;
+                            sensors.distance[4] = dist_ref;
+                            sensors.distance[0] = 10000;
+                            sensors.distance[5] = 10000;
+                            break;
+                        
+                        // Travelling Back to A *Can include a flag for safety measures
+                        case (180):
+
+                            // Stop moving and turn towards loading bay
+                            robot.desired_v = 0;
+
+                            // Go towards beginning
+                            ref_direction = calculate_angle_modulo(robot.theta + M_PI/2);
+                            Turn_Delay(ref_direction);
+                            // Set position flag and track distance
+                            robot.goal_x = robot.x;
+                            robot.goal_y = robot.y;
+                            ref_direction_deg = angle_clamp(ref_direction_deg + 90);
+                            robot.desired_v = velocity;
+                            front_dist_th = 100;
+                            dist_ref = 70;
+                            wall_following_flag = 0;
+                            arena_def = 75;
+                        
+                            // Spoof
+                            sensors.distance[1] = dist_ref;
+                            sensors.distance[2] = dist_ref;
+                            sensors.distance[3] = dist_ref;
+                            sensors.distance[4] = dist_ref;
+                            sensors.distance[0] = 10000;
+                            sensors.distance[5] = 10000;
+                            break;
+
+                        // Travelling Back to Start
+                        case (270):
+                             
+                            // Stop moving and point back to A
+                            robot.desired_v = 0;
+
+                            // Update Position
+                            robot.Kp = 0.9;
+                            ref_direction = calculate_angle_modulo(robot.theta - M_PI);
+                            Turn_Delay(ref_direction);
+                            ref_direction_deg = angle_clamp(ref_direction_deg - 180);
+                            robot.Kp = 1.75;
+                            
+                            // Set position flag and track distance
+                            robot.goal_x = robot.x;
+                            robot.goal_y = robot.y;
+                            
+                            
+                            // Pause to load packages
+                            CyDelay(3000);
+                            
+                            robot.desired_v = velocity;
+                            
+                            // Update Flags
+                            wall_following_flag = 0;
+                            dist_ref = 40;
+                            front_dist_th = 50;
+                            return_flag = 0;
+                            arena_def = 80;
+                                
+                            // Spoof
+                            sensors.distance[1] = dist_ref;
+                            sensors.distance[2] = dist_ref;
+                            sensors.distance[3] = dist_ref;
+                            sensors.distance[4] = dist_ref;
+                            sensors.distance[0] = 10000;
+                            sensors.distance[5] = 10000;
+                            
+                            break;
+
+                        default:
+                            
+                            // Wall follow if broken
+                            robot.desired_v = 0;
+                            Turn_Delay(M_PI/2);
+                            ref_direction = calculate_angle_modulo(ref_direction - M_PI/2);
+                            
+                            robot.desired_v = velocity;
+                            wall_following_flag = 0;
+
+                            // Spoof sensor to avoid sensor updates during turn
+                            sensors.distance[1] = dist_ref;
+                            sensors.distance[2] = dist_ref;
+                            sensors.distance[3] = dist_ref;
+                            sensors.distance[4] = dist_ref;
+                            sensors.distance[0] = 10000;
+                            sensors.distance[5] = 10000;
+                    }
                 }
+                
             }
 
             // Wall Following
@@ -416,7 +468,7 @@ int main(void)
             switch ( return_flag ){
                 case (0):
                     // Follow Left Wall
-                    robot.desired_v = terminal_phase ? 2: velocity;
+                    robot.desired_v = terminal_phase ? 10: velocity;
                     error = (sensors.distance[1] < sensors.distance[2]) ? dist_ref - sensors.distance[1] : dist_ref - sensors.distance[2];
                     //error = dist_ref - (sensors.distance[1] + sensors.distance[2] / 2);
                     if( error > 150 ) {break;}
@@ -428,7 +480,7 @@ int main(void)
                 
                 case (1):
                     // Follow right wall
-                    robot.desired_v = terminal_phase ? 2: velocity;
+                    robot.desired_v = terminal_phase ? 10: velocity;
                     
                     error = (sensors.distance[3] < sensors.distance[4]) ? dist_ref - sensors.distance[3] : dist_ref - sensors.distance[4];
                     //error = dist_ref - (sensors.distance[3] + sensors.distance[4] / 2);
@@ -517,7 +569,7 @@ void move_servo(int servo_nums) {
     Control_Reg_ServoSelect_Write(servo_nums);
     CyDelayUs(100);
     Control_Reg_ServoTrigger_Write(1);
-    CyDelay(3550);
+    CyDelay(2300);
     
     PWM_ServoDir_WriteCompare1(4000);
     PWM_ServoDir_WriteCompare2(2000);

@@ -47,6 +47,7 @@ int32 left_wheel_count = 0;
 int32 right_wheel_count = 0;
 char serial_output[150];        // For UART print output
 int wall_following_flag = 0;
+int pbutton = 0;
 
 /* Defining/Creating all data structures*/
 Motor left_motor;     // Left Motor, duh!
@@ -138,15 +139,11 @@ CY_ISR( Motor_PI_Int_Handler ) {
 
 }
 
-/* Interrupt for test handler? */
-CY_ISR( Navigation_Test_Int_Handler ) {
-    long double angle;
-    angle = robot.desired_theta + M_PI/8;
-    if( angle >= M_TWOPI ) {
-        angle = angle - M_TWOPI;
-    }
-    robot.desired_theta = angle;
+// Button Interrupt Handler
+CY_ISR( Button_Int_Handler ) {
+    pbutton = !pbutton;
 }
+
 
 
 int main(void)
@@ -157,7 +154,8 @@ int main(void)
     Timer_Echo_Int_StartEx( Timer_Int_Handler );
     Pose_Update_Int_StartEx( Pose_Update_Int_Handler );
     Motor_PI_Int_StartEx( Motor_PI_Int_Handler );
-    //Testing_Int_StartEx( Navigation_Test_Int_Handler );
+    Button_Int_StartEx( Button_Int_Handler );
+    
     
     // Start up code - enable UART, PWM and Timer used for ultrasonic module
     UART_Start();
@@ -293,7 +291,11 @@ int main(void)
                             
                             // Update Flags
                             wall_following_flag = 0;
-                            front_dist_th = 430;
+                            if( !pbutton ) {
+                                front_dist_th = 480;
+                            } else {
+                                front_dist_th = 430;
+                            }
                             
                             // Spoof
                             sensors.distance[1] = dist_ref;
@@ -318,17 +320,33 @@ int main(void)
                                 Turn_Delay(ref_direction);
 
                                 // TODO: Unload Package Code
-                                move_servo(2);                                      
-                                
-                                //
-                                
-                                // Rotate back to go to C
-                                ref_direction = calculate_angle_modulo(robot.theta + M_PI/2);
-                                Turn_Delay(ref_direction);
-                                
-                                front_dist_th = 70;
-                                B_flag = 1;
-                                robot.desired_v = velocity;
+                                if( !pbutton ) {
+                                    move_servo(0b0110);
+                                    ref_direction = calculate_angle_modulo(robot.theta - M_PI/2);
+                                    ref_direction_deg = angle_clamp(ref_direction_deg - 180);
+                                    Turn_Delay(ref_direction);
+                                    
+                                    // Plant a flag at B
+                                    robot.goal_x = robot.x;
+                                    robot.goal_y = robot.y;
+                                    arena_def = 30;
+                                    
+                                    return_flag = 1;
+                                    wall_following_flag = 0;
+                                    robot.desired_v = velocity;
+                                    dist_ref = 150;
+                                    front_dist_th = 150;
+                                    
+                                } else {
+                                    move_servo(2);  
+                                    // Rotate back to go to C
+                                    ref_direction = calculate_angle_modulo(robot.theta + M_PI/2);
+                                    Turn_Delay(ref_direction);
+                                    
+                                    front_dist_th = 70;
+                                    B_flag = 1;
+                                    robot.desired_v = velocity;
+                                }
                                 
                             } else {
                                 // Stop moving
@@ -360,8 +378,8 @@ int main(void)
                                 
                                 dist_ref = 150;
                                 front_dist_th = 150;
-                                
                             }
+                                
                             
                             // Spoof
                             sensors.distance[1] = dist_ref;

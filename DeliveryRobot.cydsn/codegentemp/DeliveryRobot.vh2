@@ -2,7 +2,7 @@
 --	Conversion of DeliveryRobot.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Tue Oct 10 15:22:33 2023
+--	Wed Oct 11 10:21:39 2023
 --
 
 USE cypress.cypress.all;
@@ -2197,7 +2197,8 @@ SIGNAL tmpFB_0__Pin_PWM2_R_net_0 : bit;
 SIGNAL tmpIO_0__Pin_PWM2_R_net_0 : bit;
 TERMINAL tmpSIOVREF__Pin_PWM2_R_net_0 : bit;
 SIGNAL tmpINTERRUPT_0__Pin_PWM2_R_net_0 : bit;
-SIGNAL Net_714 : bit;
+SIGNAL Net_1619 : bit;
+SIGNAL Net_1609 : bit;
 SIGNAL \Timer_Avoidance:Net_260\ : bit;
 SIGNAL Net_771 : bit;
 SIGNAL \Timer_Avoidance:Net_55\ : bit;
@@ -3340,6 +3341,17 @@ SIGNAL tmpOE__Pin_US_Echo5_net_0 : bit;
 SIGNAL tmpIO_0__Pin_US_Echo5_net_0 : bit;
 TERMINAL tmpSIOVREF__Pin_US_Echo5_net_0 : bit;
 SIGNAL tmpINTERRUPT_0__Pin_US_Echo5_net_0 : bit;
+SIGNAL \Debouncer_1:op_clk\ : bit;
+SIGNAL \Debouncer_1:DEBOUNCER[0]:d_sync_0\ : bit;
+SIGNAL Net_1608 : bit;
+SIGNAL \Debouncer_1:DEBOUNCER[0]:d_sync_1\ : bit;
+SIGNAL Net_1610 : bit;
+SIGNAL Net_1613 : bit;
+SIGNAL Net_1612 : bit;
+SIGNAL tmpOE__Pin_Button_net_0 : bit;
+SIGNAL tmpIO_0__Pin_Button_net_0 : bit;
+TERMINAL tmpSIOVREF__Pin_Button_net_0 : bit;
+SIGNAL tmpINTERRUPT_0__Pin_Button_net_0 : bit;
 SIGNAL \UART:BUART:reset_reg\\D\ : bit;
 SIGNAL \UART:BUART:txn\\D\ : bit;
 SIGNAL \UART:BUART:tx_state_1\\D\ : bit;
@@ -3435,6 +3447,7 @@ SIGNAL \PWM_Motor_R:PWMUDB:pwm_i_reg\\D\ : bit;
 SIGNAL \PWM_Motor_R:PWMUDB:pwm1_i_reg\\D\ : bit;
 SIGNAL \PWM_Motor_R:PWMUDB:pwm2_i_reg\\D\ : bit;
 SIGNAL \PWM_Motor_R:PWMUDB:tc_i_reg\\D\ : bit;
+SIGNAL Net_1619D : bit;
 SIGNAL \Timer_Avoidance:TimerUDB:capture_last\\D\ : bit;
 SIGNAL \Timer_Avoidance:TimerUDB:tc_reg_i\\D\ : bit;
 SIGNAL \Timer_Avoidance:TimerUDB:hwEnable_reg\\D\ : bit;
@@ -3472,6 +3485,10 @@ SIGNAL \PWM_ServoDir:PWMUDB:pwm_i_reg\\D\ : bit;
 SIGNAL \PWM_ServoDir:PWMUDB:pwm1_i_reg\\D\ : bit;
 SIGNAL \PWM_ServoDir:PWMUDB:pwm2_i_reg\\D\ : bit;
 SIGNAL \PWM_ServoDir:PWMUDB:tc_i_reg\\D\ : bit;
+SIGNAL \Debouncer_1:DEBOUNCER[0]:d_sync_0\\D\ : bit;
+SIGNAL \Debouncer_1:DEBOUNCER[0]:d_sync_1\\D\ : bit;
+SIGNAL Net_1613D : bit;
+SIGNAL Net_1612D : bit;
 BEGIN
 
 one <=  ('1') ;
@@ -3804,6 +3821,8 @@ Net_1459 <= ((not Net_800_1 and Net_216 and Net_800_2 and Net_800_0));
 \PWM_ServoDir:PWMUDB:pwm1_i\ <= ((\PWM_ServoDir:PWMUDB:runmode_enable\ and \PWM_ServoDir:PWMUDB:cmp1_less\));
 
 \PWM_ServoDir:PWMUDB:pwm2_i\ <= ((\PWM_ServoDir:PWMUDB:runmode_enable\ and \PWM_ServoDir:PWMUDB:cmp2_less\));
+
+Net_1619D <= ((not \Debouncer_1:DEBOUNCER[0]:d_sync_0\ and \Debouncer_1:DEBOUNCER[0]:d_sync_1\));
 
 \UART:TXInternalInterrupt\:cy_isr_v1_0
 	GENERIC MAP(int_type=>"10",
@@ -6279,20 +6298,20 @@ Pin_PWM2_R:cy_psoc3_pins_v1_10
 		out_clock_en=>one,
 		out_reset=>zero,
 		interrupt=>tmpINTERRUPT_0__Pin_PWM2_R_net_0);
-Clock_Testing_1:cy_clock_v1_0
-	GENERIC MAP(cy_registers=>"",
-		id=>"d247c875-6bb7-4611-bd6e-8be1f781b938",
-		source_clock_id=>"",
-		divisor=>0,
-		period=>"1E+15",
-		is_direct=>'0',
-		is_digital=>'1')
-	PORT MAP(clock_out=>Net_714,
-		dig_domain_out=>open);
-Testing_Int:cy_isr_v1_0
+Button_Int:cy_isr_v1_0
 	GENERIC MAP(int_type=>"00",
 		is_nmi=>'0')
-	PORT MAP(int_signal=>Net_714);
+	PORT MAP(int_signal=>Net_1619);
+Clock_5:cy_clock_v1_0
+	GENERIC MAP(cy_registers=>"",
+		id=>"31bd356e-a24d-47b8-8ac1-35d98b868650",
+		source_clock_id=>"",
+		divisor=>0,
+		period=>"10000000000000",
+		is_direct=>'0',
+		is_digital=>'1')
+	PORT MAP(clock_out=>Net_1609,
+		dig_domain_out=>open);
 \Timer_Avoidance:TimerUDB:clock_enable_block\:cy_psoc3_udb_clock_enable_v1_0
 	GENERIC MAP(sync_mode=>'1')
 	PORT MAP(clock_in=>Net_769,
@@ -7574,6 +7593,81 @@ Pin_US_Echo5:cy_psoc3_pins_v1_10
 		out_clock_en=>one,
 		out_reset=>zero,
 		interrupt=>tmpINTERRUPT_0__Pin_US_Echo5_net_0);
+\Debouncer_1:ClkSync\:cy_psoc3_udb_clock_enable_v1_0
+	GENERIC MAP(sync_mode=>'1')
+	PORT MAP(clock_in=>Net_1609,
+		enable=>one,
+		clock_out=>\Debouncer_1:op_clk\);
+Pin_Button:cy_psoc3_pins_v1_10
+	GENERIC MAP(id=>"a35e5f19-f75a-41a7-8067-7a374c96c15c",
+		drive_mode=>"010",
+		ibuf_enabled=>"1",
+		init_dr_st=>"1",
+		input_sync=>"0",
+		input_clk_en=>'0',
+		input_sync_mode=>"0",
+		intr_mode=>"00",
+		invert_in_clock=>'0',
+		invert_in_clock_en=>'0',
+		invert_in_reset=>'0',
+		invert_out_clock=>'0',
+		invert_out_clock_en=>'0',
+		invert_out_reset=>'0',
+		io_voltage=>"",
+		layout_mode=>"CONTIGUOUS",
+		output_conn=>"0",
+		output_sync=>"0",
+		output_clk_en=>'0',
+		output_mode=>"0",
+		output_reset=>'0',
+		output_clock_mode=>"0",
+		oe_sync=>"0",
+		oe_conn=>"0",
+		oe_reset=>'0',
+		pin_aliases=>"",
+		pin_mode=>"I",
+		por_state=>4,
+		sio_group_cnt=>0,
+		sio_hifreq=>"00000000",
+		sio_hyst=>"1",
+		sio_ibuf=>"00000000",
+		sio_info=>"00",
+		sio_obuf=>"00000000",
+		sio_refsel=>"00000000",
+		sio_vtrip=>"00000000",
+		sio_vohsel=>"00000000",
+		slew_rate=>"0",
+		spanning=>'0',
+		sw_only=>'0',
+		vtrip=>"00",
+		width=>1,
+		port_alias_required=>'0',
+		port_alias_group=>"",
+		use_annotation=>"0",
+		pa_in_clock=>-1,
+		pa_in_clock_en=>-1,
+		pa_in_reset=>-1,
+		pa_out_clock=>-1,
+		pa_out_clock_en=>-1,
+		pa_out_reset=>-1,
+		ovt_needed=>"0",
+		ovt_slew_control=>"00",
+		ovt_hyst_trim=>"0",
+		input_buffer_sel=>"00")
+	PORT MAP(oe=>(one),
+		y=>(zero),
+		fb=>Net_1608,
+		analog=>(open),
+		io=>(tmpIO_0__Pin_Button_net_0),
+		siovref=>(tmpSIOVREF__Pin_Button_net_0),
+		annotation=>(open),
+		in_clock=>zero,
+		in_clock_en=>one,
+		in_reset=>zero,
+		out_clock=>zero,
+		out_clock_en=>one,
+		out_reset=>zero,
+		interrupt=>tmpINTERRUPT_0__Pin_Button_net_0);
 \UART:BUART:reset_reg\:cy_dff
 	PORT MAP(d=>zero,
 		clk=>\UART:BUART:clock_op\,
@@ -7998,6 +8092,10 @@ Net_12:cy_dff
 	PORT MAP(d=>\PWM_Motor_R:PWMUDB:status_2\,
 		clk=>\PWM_Motor_R:PWMUDB:ClockOutFromEnBlock\,
 		q=>\PWM_Motor_R:PWMUDB:tc_i_reg\);
+Net_1619:cy_dff
+	PORT MAP(d=>Net_1619D,
+		clk=>\Debouncer_1:op_clk\,
+		q=>Net_1619);
 \Timer_Avoidance:TimerUDB:capture_last\:cy_dff
 	PORT MAP(d=>zero,
 		clk=>\Timer_Avoidance:TimerUDB:ClockOutFromEnBlock\,
@@ -8178,5 +8276,21 @@ Net_12:cy_dff
 	PORT MAP(d=>\PWM_ServoDir:PWMUDB:status_2\,
 		clk=>\PWM_ServoDir:PWMUDB:ClockOutFromEnBlock\,
 		q=>\PWM_ServoDir:PWMUDB:tc_i_reg\);
+\Debouncer_1:DEBOUNCER[0]:d_sync_0\:cy_dff
+	PORT MAP(d=>Net_1608,
+		clk=>\Debouncer_1:op_clk\,
+		q=>\Debouncer_1:DEBOUNCER[0]:d_sync_0\);
+\Debouncer_1:DEBOUNCER[0]:d_sync_1\:cy_dff
+	PORT MAP(d=>\Debouncer_1:DEBOUNCER[0]:d_sync_0\,
+		clk=>\Debouncer_1:op_clk\,
+		q=>\Debouncer_1:DEBOUNCER[0]:d_sync_1\);
+Net_1613:cy_dff
+	PORT MAP(d=>zero,
+		clk=>\Debouncer_1:op_clk\,
+		q=>Net_1613);
+Net_1612:cy_dff
+	PORT MAP(d=>zero,
+		clk=>\Debouncer_1:op_clk\,
+		q=>Net_1612);
 
 END R_T_L;

@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: Testing_Int.c  
+* File Name: Button_Int.c  
 * Version 1.70
 *
 *  Description:
@@ -18,15 +18,15 @@
 
 #include <cydevice_trm.h>
 #include <CyLib.h>
-#include <Testing_Int.h>
+#include <Button_Int.h>
 #include "cyapicallbacks.h"
 
-#if !defined(Testing_Int__REMOVED) /* Check for removal by optimization */
+#if !defined(Button_Int__REMOVED) /* Check for removal by optimization */
 
 /*******************************************************************************
 *  Place your includes, defines and code here 
 ********************************************************************************/
-/* `#START Testing_Int_intc` */
+/* `#START Button_Int_intc` */
 
 /* `#END` */
 
@@ -42,7 +42,7 @@ CY_ISR_PROTO(IntDefaultHandler);
 
 
 /*******************************************************************************
-* Function Name: Testing_Int_Start
+* Function Name: Button_Int_Start
 ********************************************************************************
 *
 * Summary:
@@ -58,24 +58,24 @@ CY_ISR_PROTO(IntDefaultHandler);
 *   None
 *
 *******************************************************************************/
-void Testing_Int_Start(void)
+void Button_Int_Start(void)
 {
     /* For all we know the interrupt is active. */
-    Testing_Int_Disable();
+    Button_Int_Disable();
 
-    /* Set the ISR to point to the Testing_Int Interrupt. */
-    Testing_Int_SetVector(&Testing_Int_Interrupt);
+    /* Set the ISR to point to the Button_Int Interrupt. */
+    Button_Int_SetVector(&Button_Int_Interrupt);
 
     /* Set the priority. */
-    Testing_Int_SetPriority((uint8)Testing_Int_INTC_PRIOR_NUMBER);
+    Button_Int_SetPriority((uint8)Button_Int_INTC_PRIOR_NUMBER);
 
     /* Enable it. */
-    Testing_Int_Enable();
+    Button_Int_Enable();
 }
 
 
 /*******************************************************************************
-* Function Name: Testing_Int_StartEx
+* Function Name: Button_Int_StartEx
 ********************************************************************************
 *
 * Summary:
@@ -101,24 +101,24 @@ void Testing_Int_Start(void)
 *   None
 *
 *******************************************************************************/
-void Testing_Int_StartEx(cyisraddress address)
+void Button_Int_StartEx(cyisraddress address)
 {
     /* For all we know the interrupt is active. */
-    Testing_Int_Disable();
+    Button_Int_Disable();
 
-    /* Set the ISR to point to the Testing_Int Interrupt. */
-    Testing_Int_SetVector(address);
+    /* Set the ISR to point to the Button_Int Interrupt. */
+    Button_Int_SetVector(address);
 
     /* Set the priority. */
-    Testing_Int_SetPriority((uint8)Testing_Int_INTC_PRIOR_NUMBER);
+    Button_Int_SetPriority((uint8)Button_Int_INTC_PRIOR_NUMBER);
 
     /* Enable it. */
-    Testing_Int_Enable();
+    Button_Int_Enable();
 }
 
 
 /*******************************************************************************
-* Function Name: Testing_Int_Stop
+* Function Name: Button_Int_Stop
 ********************************************************************************
 *
 * Summary:
@@ -131,22 +131,22 @@ void Testing_Int_StartEx(cyisraddress address)
 *   None
 *
 *******************************************************************************/
-void Testing_Int_Stop(void)
+void Button_Int_Stop(void)
 {
     /* Disable this interrupt. */
-    Testing_Int_Disable();
+    Button_Int_Disable();
 
     /* Set the ISR to point to the passive one. */
-    Testing_Int_SetVector(&IntDefaultHandler);
+    Button_Int_SetVector(&IntDefaultHandler);
 }
 
 
 /*******************************************************************************
-* Function Name: Testing_Int_Interrupt
+* Function Name: Button_Int_Interrupt
 ********************************************************************************
 *
 * Summary:
-*   The default Interrupt Service Routine for Testing_Int.
+*   The default Interrupt Service Routine for Button_Int.
 *
 *   Add custom code between the coments to keep the next version of this file
 *   from over writting your code.
@@ -157,27 +157,27 @@ void Testing_Int_Stop(void)
 *   None
 *
 *******************************************************************************/
-CY_ISR(Testing_Int_Interrupt)
+CY_ISR(Button_Int_Interrupt)
 {
-    #ifdef Testing_Int_INTERRUPT_INTERRUPT_CALLBACK
-        Testing_Int_Interrupt_InterruptCallback();
-    #endif /* Testing_Int_INTERRUPT_INTERRUPT_CALLBACK */ 
+    #ifdef Button_Int_INTERRUPT_INTERRUPT_CALLBACK
+        Button_Int_Interrupt_InterruptCallback();
+    #endif /* Button_Int_INTERRUPT_INTERRUPT_CALLBACK */ 
 
     /*  Place your Interrupt code here. */
-    /* `#START Testing_Int_Interrupt` */
+    /* `#START Button_Int_Interrupt` */
 
     /* `#END` */
 }
 
 
 /*******************************************************************************
-* Function Name: Testing_Int_SetVector
+* Function Name: Button_Int_SetVector
 ********************************************************************************
 *
 * Summary:
-*   Change the ISR vector for the Interrupt. Note calling Testing_Int_Start
+*   Change the ISR vector for the Interrupt. Note calling Button_Int_Start
 *   will override any effect this method would have had. To set the vector 
-*   before the component has been started use Testing_Int_StartEx instead.
+*   before the component has been started use Button_Int_StartEx instead.
 * 
 *   When defining ISR functions, the CY_ISR and CY_ISR_PROTO macros should be 
 *   used to provide consistent definition across compilers:
@@ -197,18 +197,18 @@ CY_ISR(Testing_Int_Interrupt)
 *   None
 *
 *******************************************************************************/
-void Testing_Int_SetVector(cyisraddress address)
+void Button_Int_SetVector(cyisraddress address)
 {
     cyisraddress * ramVectorTable;
 
     ramVectorTable = (cyisraddress *) *CYINT_VECT_TABLE;
 
-    ramVectorTable[CYINT_IRQ_BASE + (uint32)Testing_Int__INTC_NUMBER] = address;
+    ramVectorTable[CYINT_IRQ_BASE + (uint32)Button_Int__INTC_NUMBER] = address;
 }
 
 
 /*******************************************************************************
-* Function Name: Testing_Int_GetVector
+* Function Name: Button_Int_GetVector
 ********************************************************************************
 *
 * Summary:
@@ -221,26 +221,26 @@ void Testing_Int_SetVector(cyisraddress address)
 *   Address of the ISR in the interrupt vector table.
 *
 *******************************************************************************/
-cyisraddress Testing_Int_GetVector(void)
+cyisraddress Button_Int_GetVector(void)
 {
     cyisraddress * ramVectorTable;
 
     ramVectorTable = (cyisraddress *) *CYINT_VECT_TABLE;
 
-    return ramVectorTable[CYINT_IRQ_BASE + (uint32)Testing_Int__INTC_NUMBER];
+    return ramVectorTable[CYINT_IRQ_BASE + (uint32)Button_Int__INTC_NUMBER];
 }
 
 
 /*******************************************************************************
-* Function Name: Testing_Int_SetPriority
+* Function Name: Button_Int_SetPriority
 ********************************************************************************
 *
 * Summary:
 *   Sets the Priority of the Interrupt. 
 *
-*   Note calling Testing_Int_Start or Testing_Int_StartEx will 
+*   Note calling Button_Int_Start or Button_Int_StartEx will 
 *   override any effect this API would have had. This API should only be called
-*   after Testing_Int_Start or Testing_Int_StartEx has been called. 
+*   after Button_Int_Start or Button_Int_StartEx has been called. 
 *   To set the initial priority for the component, use the Design-Wide Resources
 *   Interrupt Editor.
 *
@@ -255,14 +255,14 @@ cyisraddress Testing_Int_GetVector(void)
 *   None
 *
 *******************************************************************************/
-void Testing_Int_SetPriority(uint8 priority)
+void Button_Int_SetPriority(uint8 priority)
 {
-    *Testing_Int_INTC_PRIOR = priority << 5;
+    *Button_Int_INTC_PRIOR = priority << 5;
 }
 
 
 /*******************************************************************************
-* Function Name: Testing_Int_GetPriority
+* Function Name: Button_Int_GetPriority
 ********************************************************************************
 *
 * Summary:
@@ -277,19 +277,19 @@ void Testing_Int_SetPriority(uint8 priority)
 *    PSoC 4: Priority is from 0 to 3.
 *
 *******************************************************************************/
-uint8 Testing_Int_GetPriority(void)
+uint8 Button_Int_GetPriority(void)
 {
     uint8 priority;
 
 
-    priority = *Testing_Int_INTC_PRIOR >> 5;
+    priority = *Button_Int_INTC_PRIOR >> 5;
 
     return priority;
 }
 
 
 /*******************************************************************************
-* Function Name: Testing_Int_Enable
+* Function Name: Button_Int_Enable
 ********************************************************************************
 *
 * Summary:
@@ -304,15 +304,15 @@ uint8 Testing_Int_GetPriority(void)
 *   None
 *
 *******************************************************************************/
-void Testing_Int_Enable(void)
+void Button_Int_Enable(void)
 {
     /* Enable the general interrupt. */
-    *Testing_Int_INTC_SET_EN = Testing_Int__INTC_MASK;
+    *Button_Int_INTC_SET_EN = Button_Int__INTC_MASK;
 }
 
 
 /*******************************************************************************
-* Function Name: Testing_Int_GetState
+* Function Name: Button_Int_GetState
 ********************************************************************************
 *
 * Summary:
@@ -325,15 +325,15 @@ void Testing_Int_Enable(void)
 *   1 if enabled, 0 if disabled.
 *
 *******************************************************************************/
-uint8 Testing_Int_GetState(void)
+uint8 Button_Int_GetState(void)
 {
     /* Get the state of the general interrupt. */
-    return ((*Testing_Int_INTC_SET_EN & (uint32)Testing_Int__INTC_MASK) != 0u) ? 1u:0u;
+    return ((*Button_Int_INTC_SET_EN & (uint32)Button_Int__INTC_MASK) != 0u) ? 1u:0u;
 }
 
 
 /*******************************************************************************
-* Function Name: Testing_Int_Disable
+* Function Name: Button_Int_Disable
 ********************************************************************************
 *
 * Summary:
@@ -346,15 +346,15 @@ uint8 Testing_Int_GetState(void)
 *   None
 *
 *******************************************************************************/
-void Testing_Int_Disable(void)
+void Button_Int_Disable(void)
 {
     /* Disable the general interrupt. */
-    *Testing_Int_INTC_CLR_EN = Testing_Int__INTC_MASK;
+    *Button_Int_INTC_CLR_EN = Button_Int__INTC_MASK;
 }
 
 
 /*******************************************************************************
-* Function Name: Testing_Int_SetPending
+* Function Name: Button_Int_SetPending
 ********************************************************************************
 *
 * Summary:
@@ -373,14 +373,14 @@ void Testing_Int_Disable(void)
 *   interrupts).
 *
 *******************************************************************************/
-void Testing_Int_SetPending(void)
+void Button_Int_SetPending(void)
 {
-    *Testing_Int_INTC_SET_PD = Testing_Int__INTC_MASK;
+    *Button_Int_INTC_SET_PD = Button_Int__INTC_MASK;
 }
 
 
 /*******************************************************************************
-* Function Name: Testing_Int_ClearPending
+* Function Name: Button_Int_ClearPending
 ********************************************************************************
 *
 * Summary:
@@ -398,9 +398,9 @@ void Testing_Int_SetPending(void)
 *   None
 *
 *******************************************************************************/
-void Testing_Int_ClearPending(void)
+void Button_Int_ClearPending(void)
 {
-    *Testing_Int_INTC_CLR_PD = Testing_Int__INTC_MASK;
+    *Button_Int_INTC_CLR_PD = Button_Int__INTC_MASK;
 }
 
 #endif /* End check for removal by optimization */

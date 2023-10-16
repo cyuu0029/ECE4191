@@ -1,4 +1,4 @@
---------------- Rebuild Started: 10/03/2023 20:51:08 Project: DeliveryRobot, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
+--------------- Rebuild Started: 10/12/2023 00:01:56 Project: DeliveryRobot, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
 Deleting file ".\CortexM3\ARM_GCC_541\Debug\main.o"
 Deleting file ".\CortexM3\ARM_GCC_541\Debug\robot.o"
 Deleting file ".\CortexM3\ARM_GCC_541\Debug\helper.o"
@@ -60,8 +60,6 @@ Deleting file ".\CortexM3\ARM_GCC_541\Debug\QuadDec_R_isr.o"
 Deleting file ".\CortexM3\ARM_GCC_541\Debug\QuadDec_R_Cnt16.o"
 Deleting file ".\CortexM3\ARM_GCC_541\Debug\QuadDec_R_Cnt16_PM.o"
 Deleting file ".\CortexM3\ARM_GCC_541\Debug\Pose_Update_Int.o"
-Deleting file ".\CortexM3\ARM_GCC_541\Debug\Clock_Testing_1.o"
-Deleting file ".\CortexM3\ARM_GCC_541\Debug\Testing_Int.o"
 Deleting file ".\CortexM3\ARM_GCC_541\Debug\Timer_Avoidance.o"
 Deleting file ".\CortexM3\ARM_GCC_541\Debug\Timer_Avoidance_PM.o"
 Deleting file ".\CortexM3\ARM_GCC_541\Debug\Clock_Seconds.o"
@@ -71,6 +69,22 @@ Deleting file ".\CortexM3\ARM_GCC_541\Debug\Pin_US_Echo3.o"
 Deleting file ".\CortexM3\ARM_GCC_541\Debug\Pin_US_Echo4.o"
 Deleting file ".\CortexM3\ARM_GCC_541\Debug\Pin_US_Trigger3.o"
 Deleting file ".\CortexM3\ARM_GCC_541\Debug\Pin_US_Trigger4.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\PWM_1.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\PWM_1_PM.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\PWM_ServoDir.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\PWM_ServoDir_PM.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\Control_Reg_ServoTrigger.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\Control_Reg_ServoTrigger_PM.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\Control_Reg_ServoSelect.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\Control_Reg_ServoSelect_PM.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\Clock_4.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\Pin_US_Trigger5.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\Pin_US_Echo5.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\Clock_5.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\Pin_Button.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\Button_Int.o"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\DeliveryRobot.hex"
+Deleting file ".\CortexM3\ARM_GCC_541\Debug\DeliveryRobot.elf"
 Deleting file ".\CortexM3\ARM_GCC_541\Debug\DeliveryRobot.map"
 Deleting file ".\DeliveryRobot.cycdx"
 Deleting file ".\DeliveryRobot.svd"
@@ -78,14 +92,11 @@ Deleting file ".\DeliveryRobot.rpt"
 Deleting file ".\DeliveryRobot_timing.html"
 Deleting file ".\CortexM3\ARM_GCC_541\Debug\.deps\SOURCE_C__ARM_GCC_GENERIC.P"
 Deleting file ".\CortexM3\ARM_GCC_541\Debug\.deps\SOURCE_ASM__ARM_GCC_GENERIC.P"
-cydsfit.exe -.appdatapath "C:\Users\cyu13\AppData\Local\Cypress Semiconductor\PSoC Creator\4.4" -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -.fdsreffile=referenced_files.txt -p "C:\Users\cyu13\Desktop\ECE4191 GitHub\ECE4191\DeliveryRobot.cydsn\DeliveryRobot.cyprj" -d CY8C5888LTI-LP097 -s "C:\Users\cyu13\Desktop\ECE4191 GitHub\ECE4191\DeliveryRobot.cydsn\Generated_Source\PSoC5" -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE
+cydsfit.exe -.appdatapath "C:\Users\jmspi\AppData\Local\Cypress Semiconductor\PSoC Creator\4.4" -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -.fdsreffile=referenced_files.txt -p C:\Users\jmspi\OneDrive\Documents\GitHub\ECE4191\DeliveryRobot.cydsn\DeliveryRobot.cyprj -d CY8C5888LTI-LP097 -s C:\Users\jmspi\OneDrive\Documents\GitHub\ECE4191\DeliveryRobot.cydsn\Generated_Source\PSoC5 -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE
 Elaborating Design...
-ADD: fit.M0032: warning: Clock Warning: (Clock_Testing_1's accuracy range '1  Hz -50% +100%, (0.5  Hz - 2  Hz)' is not within the specified tolerance range '1  Hz +/- 5%, (0.95  Hz - 1.05  Hz)'.).
- * C:\Users\cyu13\Desktop\ECE4191 GitHub\ECE4191\DeliveryRobot.cydsn\DeliveryRobot.cydwr (Clock_Testing_1)
- * C:\Users\cyu13\Desktop\ECE4191 GitHub\ECE4191\DeliveryRobot.cydsn\TopDesign\TopDesign.cysch (Instance:Clock_Testing_1)
 ADD: fit.M0032: warning: Clock Warning: (Clock_Seconds's accuracy range '1  Hz -50% +100%, (0.5  Hz - 2  Hz)' is not within the specified tolerance range '1  Hz +/- 1%, (0.99  Hz - 1.01  Hz)'.).
- * C:\Users\cyu13\Desktop\ECE4191 GitHub\ECE4191\DeliveryRobot.cydsn\DeliveryRobot.cydwr (Clock_Seconds)
- * C:\Users\cyu13\Desktop\ECE4191 GitHub\ECE4191\DeliveryRobot.cydsn\TopDesign\TopDesign.cysch (Instance:Clock_Seconds)
+ * C:\Users\jmspi\OneDrive\Documents\GitHub\ECE4191\DeliveryRobot.cydsn\DeliveryRobot.cydwr (Clock_Seconds)
+ * C:\Users\jmspi\OneDrive\Documents\GitHub\ECE4191\DeliveryRobot.cydsn\TopDesign\TopDesign.cysch (Instance:Clock_Seconds)
 HDL Generation...
 Synthesis...
 Tech Mapping...
@@ -102,12 +113,28 @@ Dependency Generation...
 Cleanup...
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/main.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -O0 -c main.c -o .\CortexM3\ARM_GCC_541\Debug\main.o
 main.c: In function 'main':
-main.c:208:9: warning: unused variable 'goals_reached' [-Wunused-variable]
+main.c:229:9: warning: unused variable 'front_count' [-Wunused-variable]
+     int front_count = 0;
+         ^
+main.c:211:9: warning: unused variable 'goals_reached' [-Wunused-variable]
      int goals_reached = 0;  // Counter for number of goas reached, duh!
          ^
-main.c:204:9: warning: unused variable 'n_goals' [-Wunused-variable]
+main.c:208:9: warning: unused variable 'goals' [-Wunused-variable]
+     int goals[4] = {0, 90, 90, 90};    // Coordinates of goals [x1, y1, x2, y2, ..., xn, yn]
+         ^
+main.c:207:9: warning: unused variable 'n_goals' [-Wunused-variable]
      int n_goals = 2;    // Number of goals, duh!
          ^
+main.c: In function 'velocity_control':
+main.c:580:9: warning: unused variable 'velocity' [-Wunused-variable]
+     int velocity = floor(max_velocity * (1200 - avg_dist) / 400);
+         ^
+main.c:579:9: warning: unused variable 'thresh' [-Wunused-variable]
+     int thresh = 1;
+         ^
+main.c:581:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/robot.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -O0 -c ..\Robot\robot.c -o .\CortexM3\ARM_GCC_541\Debug\robot.o
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/helper.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -O0 -c ..\Helper\helper.c -o .\CortexM3\ARM_GCC_541\Debug\helper.o
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/cyfitter_cfg.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\cyfitter_cfg.c -o .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
@@ -167,8 +194,6 @@ arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/QuadDec_R_Cnt16.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\QuadDec_R_Cnt16.c -o .\CortexM3\ARM_GCC_541\Debug\QuadDec_R_Cnt16.o
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/QuadDec_R_Cnt16_PM.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\QuadDec_R_Cnt16_PM.c -o .\CortexM3\ARM_GCC_541\Debug\QuadDec_R_Cnt16_PM.o
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/Pose_Update_Int.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\Pose_Update_Int.c -o .\CortexM3\ARM_GCC_541\Debug\Pose_Update_Int.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/Clock_Testing_1.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\Clock_Testing_1.c -o .\CortexM3\ARM_GCC_541\Debug\Clock_Testing_1.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/Testing_Int.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\Testing_Int.c -o .\CortexM3\ARM_GCC_541\Debug\Testing_Int.o
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/Timer_Avoidance.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\Timer_Avoidance.c -o .\CortexM3\ARM_GCC_541\Debug\Timer_Avoidance.o
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/Timer_Avoidance_PM.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\Timer_Avoidance_PM.c -o .\CortexM3\ARM_GCC_541\Debug\Timer_Avoidance_PM.o
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/Clock_Seconds.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\Clock_Seconds.c -o .\CortexM3\ARM_GCC_541\Debug\Clock_Seconds.o
@@ -178,15 +203,29 @@ arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/Pin_US_Echo4.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\Pin_US_Echo4.c -o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Echo4.o
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/Pin_US_Trigger3.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\Pin_US_Trigger3.c -o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Trigger3.o
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/Pin_US_Trigger4.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\Pin_US_Trigger4.c -o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Trigger4.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/PWM_1.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PWM_1.c -o .\CortexM3\ARM_GCC_541\Debug\PWM_1.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/PWM_1_PM.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PWM_1_PM.c -o .\CortexM3\ARM_GCC_541\Debug\PWM_1_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/PWM_ServoDir.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PWM_ServoDir.c -o .\CortexM3\ARM_GCC_541\Debug\PWM_ServoDir.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/PWM_ServoDir_PM.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\PWM_ServoDir_PM.c -o .\CortexM3\ARM_GCC_541\Debug\PWM_ServoDir_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/Control_Reg_ServoTrigger.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\Control_Reg_ServoTrigger.c -o .\CortexM3\ARM_GCC_541\Debug\Control_Reg_ServoTrigger.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/Control_Reg_ServoTrigger_PM.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\Control_Reg_ServoTrigger_PM.c -o .\CortexM3\ARM_GCC_541\Debug\Control_Reg_ServoTrigger_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/Control_Reg_ServoSelect.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\Control_Reg_ServoSelect.c -o .\CortexM3\ARM_GCC_541\Debug\Control_Reg_ServoSelect.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/Control_Reg_ServoSelect_PM.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\Control_Reg_ServoSelect_PM.c -o .\CortexM3\ARM_GCC_541\Debug\Control_Reg_ServoSelect_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/Clock_4.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\Clock_4.c -o .\CortexM3\ARM_GCC_541\Debug\Clock_4.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/Pin_US_Trigger5.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\Pin_US_Trigger5.c -o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Trigger5.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/Pin_US_Echo5.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\Pin_US_Echo5.c -o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Echo5.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/Clock_5.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\Clock_5.c -o .\CortexM3\ARM_GCC_541\Debug\Clock_5.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/Pin_Button.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\Pin_Button.c -o .\CortexM3\ARM_GCC_541\Debug\Pin_Button.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/Button_Int.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC5\Button_Int.c -o .\CortexM3\ARM_GCC_541\Debug\Button_Int.o
 arm-none-eabi-as.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -alh=.\CortexM3\ARM_GCC_541\Debug/CyBootAsmGnu.lst -g -W -o .\CortexM3\ARM_GCC_541\Debug\CyBootAsmGnu.o Generated_Source\PSoC5\CyBootAsmGnu.s
-arm-none-eabi-ar.exe -rs .\CortexM3\ARM_GCC_541\Debug\DeliveryRobot.a .\CortexM3\ARM_GCC_541\Debug\PWM_Trigger.o .\CortexM3\ARM_GCC_541\Debug\PWM_Trigger_PM.o .\CortexM3\ARM_GCC_541\Debug\CLOCK_echo.o .\CortexM3\ARM_GCC_541\Debug\Timer_Echo.o .\CortexM3\ARM_GCC_541\Debug\Timer_Echo_PM.o .\CortexM3\ARM_GCC_541\Debug\Clock_Trigger.o .\CortexM3\ARM_GCC_541\Debug\Timer_Echo_Int.o .\CortexM3\ARM_GCC_541\Debug\Pin_UART_Tx.o .\CortexM3\ARM_GCC_541\Debug\CyDmac.o .\CortexM3\ARM_GCC_541\Debug\CyFlash.o .\CortexM3\ARM_GCC_541\Debug\CyLib.o .\CortexM3\ARM_GCC_541\Debug\cyPm.o .\CortexM3\ARM_GCC_541\Debug\CySpc.o .\CortexM3\ARM_GCC_541\Debug\cyutils.o .\CortexM3\ARM_GCC_541\Debug\cy_em_eeprom.o .\CortexM3\ARM_GCC_541\Debug\UART.o .\CortexM3\ARM_GCC_541\Debug\UART_PM.o .\CortexM3\ARM_GCC_541\Debug\UART_INT.o .\CortexM3\ARM_GCC_541\Debug\UART_BOOT.o .\CortexM3\ARM_GCC_541\Debug\UART_IntClock.o .\CortexM3\ARM_GCC_541\Debug\Control_Reg_US.o .\CortexM3\ARM_GCC_541\Debug\Control_Reg_US_PM.o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Echo1.o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Trigger1.o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Trigger2.o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Echo2.o .\CortexM3\ARM_GCC_541\Debug\QuadDec_L.o .\CortexM3\ARM_GCC_541\Debug\QuadDec_L_INT.o .\CortexM3\ARM_GCC_541\Debug\QuadDec_L_PM.o .\CortexM3\ARM_GCC_541\Debug\Pin_DecA_L.o .\CortexM3\ARM_GCC_541\Debug\Pin_DecB_L.o .\CortexM3\ARM_GCC_541\Debug\QuadDec_L_isr.o .\CortexM3\ARM_GCC_541\Debug\QuadDec_L_Cnt16.o .\CortexM3\ARM_GCC_541\Debug\QuadDec_L_Cnt16_PM.o .\CortexM3\ARM_GCC_541\Debug\PWM_Motor_L.o .\CortexM3\ARM_GCC_541\Debug\PWM_Motor_L_PM.o .\CortexM3\ARM_GCC_541\Debug\Pin_PWM1_L.o .\CortexM3\ARM_GCC_541\Debug\Pin_PWM2_L.o .\CortexM3\ARM_GCC_541\Debug\Clock_Motor_Control.o .\CortexM3\ARM_GCC_541\Debug\Clock_Motor_PI_Control.o .\CortexM3\ARM_GCC_541\Debug\Motor_PI_Int.o .\CortexM3\ARM_GCC_541\Debug\QuadDec_R.o .\CortexM3\ARM_GCC_541\Debug\QuadDec_R_INT.o .\CortexM3\ARM_GCC_541\Debug\QuadDec_R_PM.o .\CortexM3\ARM_GCC_541\Debug\Pin_DecA_R.o .\CortexM3\ARM_GCC_541\Debug\Pin_DecB_R.o .\CortexM3\ARM_GCC_541\Debug\PWM_Motor_R.o .\CortexM3\ARM_GCC_541\Debug\PWM_Motor_R_PM.o .\CortexM3\ARM_GCC_541\Debug\Pin_PWM1_R.o .\CortexM3\ARM_GCC_541\Debug\Pin_PWM2_R.o .\CortexM3\ARM_GCC_541\Debug\QuadDec_R_isr.o .\CortexM3\ARM_GCC_541\Debug\QuadDec_R_Cnt16.o .\CortexM3\ARM_GCC_541\Debug\QuadDec_R_Cnt16_PM.o .\CortexM3\ARM_GCC_541\Debug\Pose_Update_Int.o .\CortexM3\ARM_GCC_541\Debug\Clock_Testing_1.o .\CortexM3\ARM_GCC_541\Debug\Testing_Int.o .\CortexM3\ARM_GCC_541\Debug\Timer_Avoidance.o .\CortexM3\ARM_GCC_541\Debug\Timer_Avoidance_PM.o .\CortexM3\ARM_GCC_541\Debug\Clock_Seconds.o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Echo0.o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Trigger0.o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Echo3.o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Echo4.o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Trigger3.o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Trigger4.o .\CortexM3\ARM_GCC_541\Debug\CyBootAsmGnu.o
+arm-none-eabi-ar.exe -rs .\CortexM3\ARM_GCC_541\Debug\DeliveryRobot.a .\CortexM3\ARM_GCC_541\Debug\PWM_Trigger.o .\CortexM3\ARM_GCC_541\Debug\PWM_Trigger_PM.o .\CortexM3\ARM_GCC_541\Debug\CLOCK_echo.o .\CortexM3\ARM_GCC_541\Debug\Timer_Echo.o .\CortexM3\ARM_GCC_541\Debug\Timer_Echo_PM.o .\CortexM3\ARM_GCC_541\Debug\Clock_Trigger.o .\CortexM3\ARM_GCC_541\Debug\Timer_Echo_Int.o .\CortexM3\ARM_GCC_541\Debug\Pin_UART_Tx.o .\CortexM3\ARM_GCC_541\Debug\CyDmac.o .\CortexM3\ARM_GCC_541\Debug\CyFlash.o .\CortexM3\ARM_GCC_541\Debug\CyLib.o .\CortexM3\ARM_GCC_541\Debug\cyPm.o .\CortexM3\ARM_GCC_541\Debug\CySpc.o .\CortexM3\ARM_GCC_541\Debug\cyutils.o .\CortexM3\ARM_GCC_541\Debug\cy_em_eeprom.o .\CortexM3\ARM_GCC_541\Debug\UART.o .\CortexM3\ARM_GCC_541\Debug\UART_PM.o .\CortexM3\ARM_GCC_541\Debug\UART_INT.o .\CortexM3\ARM_GCC_541\Debug\UART_BOOT.o .\CortexM3\ARM_GCC_541\Debug\UART_IntClock.o .\CortexM3\ARM_GCC_541\Debug\Control_Reg_US.o .\CortexM3\ARM_GCC_541\Debug\Control_Reg_US_PM.o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Echo1.o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Trigger1.o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Trigger2.o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Echo2.o .\CortexM3\ARM_GCC_541\Debug\QuadDec_L.o .\CortexM3\ARM_GCC_541\Debug\QuadDec_L_INT.o .\CortexM3\ARM_GCC_541\Debug\QuadDec_L_PM.o .\CortexM3\ARM_GCC_541\Debug\Pin_DecA_L.o .\CortexM3\ARM_GCC_541\Debug\Pin_DecB_L.o .\CortexM3\ARM_GCC_541\Debug\QuadDec_L_isr.o .\CortexM3\ARM_GCC_541\Debug\QuadDec_L_Cnt16.o .\CortexM3\ARM_GCC_541\Debug\QuadDec_L_Cnt16_PM.o .\CortexM3\ARM_GCC_541\Debug\PWM_Motor_L.o .\CortexM3\ARM_GCC_541\Debug\PWM_Motor_L_PM.o .\CortexM3\ARM_GCC_541\Debug\Pin_PWM1_L.o .\CortexM3\ARM_GCC_541\Debug\Pin_PWM2_L.o .\CortexM3\ARM_GCC_541\Debug\Clock_Motor_Control.o .\CortexM3\ARM_GCC_541\Debug\Clock_Motor_PI_Control.o .\CortexM3\ARM_GCC_541\Debug\Motor_PI_Int.o .\CortexM3\ARM_GCC_541\Debug\QuadDec_R.o .\CortexM3\ARM_GCC_541\Debug\QuadDec_R_INT.o .\CortexM3\ARM_GCC_541\Debug\QuadDec_R_PM.o .\CortexM3\ARM_GCC_541\Debug\Pin_DecA_R.o .\CortexM3\ARM_GCC_541\Debug\Pin_DecB_R.o .\CortexM3\ARM_GCC_541\Debug\PWM_Motor_R.o .\CortexM3\ARM_GCC_541\Debug\PWM_Motor_R_PM.o .\CortexM3\ARM_GCC_541\Debug\Pin_PWM1_R.o .\CortexM3\ARM_GCC_541\Debug\Pin_PWM2_R.o .\CortexM3\ARM_GCC_541\Debug\QuadDec_R_isr.o .\CortexM3\ARM_GCC_541\Debug\QuadDec_R_Cnt16.o .\CortexM3\ARM_GCC_541\Debug\QuadDec_R_Cnt16_PM.o .\CortexM3\ARM_GCC_541\Debug\Pose_Update_Int.o .\CortexM3\ARM_GCC_541\Debug\Timer_Avoidance.o .\CortexM3\ARM_GCC_541\Debug\Timer_Avoidance_PM.o .\CortexM3\ARM_GCC_541\Debug\Clock_Seconds.o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Echo0.o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Trigger0.o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Echo3.o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Echo4.o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Trigger3.o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Trigger4.o .\CortexM3\ARM_GCC_541\Debug\PWM_1.o .\CortexM3\ARM_GCC_541\Debug\PWM_1_PM.o .\CortexM3\ARM_GCC_541\Debug\PWM_ServoDir.o .\CortexM3\ARM_GCC_541\Debug\PWM_ServoDir_PM.o .\CortexM3\ARM_GCC_541\Debug\Control_Reg_ServoTrigger.o .\CortexM3\ARM_GCC_541\Debug\Control_Reg_ServoTrigger_PM.o .\CortexM3\ARM_GCC_541\Debug\Control_Reg_ServoSelect.o .\CortexM3\ARM_GCC_541\Debug\Control_Reg_ServoSelect_PM.o .\CortexM3\ARM_GCC_541\Debug\Clock_4.o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Trigger5.o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Echo5.o .\CortexM3\ARM_GCC_541\Debug\Clock_5.o .\CortexM3\ARM_GCC_541\Debug\Pin_Button.o .\CortexM3\ARM_GCC_541\Debug\Button_Int.o .\CortexM3\ARM_GCC_541\Debug\CyBootAsmGnu.o
 arm-none-eabi-ar.exe: creating .\CortexM3\ARM_GCC_541\Debug\DeliveryRobot.a
-arm-none-eabi-gcc.exe -Wl,--start-group -o "C:\Users\cyu13\Desktop\ECE4191 GitHub\ECE4191\DeliveryRobot.cydsn\CortexM3\ARM_GCC_541\Debug\DeliveryRobot.elf" .\CortexM3\ARM_GCC_541\Debug\main.o .\CortexM3\ARM_GCC_541\Debug\robot.o .\CortexM3\ARM_GCC_541\Debug\helper.o .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o .\CortexM3\ARM_GCC_541\Debug\cymetadata.o .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o .\CortexM3\ARM_GCC_541\Debug\DeliveryRobot.a "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM3\ARM_GCC_541\Debug\CyComponentLibrary.a" -mcpu=cortex-m3 -mthumb -l m -L Generated_Source\PSoC5 -Wl,-Map,.\CortexM3\ARM_GCC_541\Debug/DeliveryRobot.map -T Generated_Source\PSoC5\cm3gcc.ld -specs=nano.specs -u _printf_float -Wl,--gc-sections -g -ffunction-sections -O0 -ffat-lto-objects -Wl,--end-group
-cyelftool.exe -C "C:\Users\cyu13\Desktop\ECE4191 GitHub\ECE4191\DeliveryRobot.cydsn\CortexM3\ARM_GCC_541\Debug\DeliveryRobot.elf" --flash_row_size 256 --flash_size 262144 --flash_offset 0x00000000
+arm-none-eabi-gcc.exe -Wl,--start-group -o C:\Users\jmspi\OneDrive\Documents\GitHub\ECE4191\DeliveryRobot.cydsn\CortexM3\ARM_GCC_541\Debug\DeliveryRobot.elf .\CortexM3\ARM_GCC_541\Debug\main.o .\CortexM3\ARM_GCC_541\Debug\robot.o .\CortexM3\ARM_GCC_541\Debug\helper.o .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o .\CortexM3\ARM_GCC_541\Debug\cymetadata.o .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o .\CortexM3\ARM_GCC_541\Debug\DeliveryRobot.a "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM3\ARM_GCC_541\Debug\CyComponentLibrary.a" -mcpu=cortex-m3 -mthumb -l m -L Generated_Source\PSoC5 -Wl,-Map,.\CortexM3\ARM_GCC_541\Debug/DeliveryRobot.map -T Generated_Source\PSoC5\cm3gcc.ld -specs=nano.specs -u _printf_float -Wl,--gc-sections -g -ffunction-sections -O0 -ffat-lto-objects -Wl,--end-group
+cyelftool.exe -C C:\Users\jmspi\OneDrive\Documents\GitHub\ECE4191\DeliveryRobot.cydsn\CortexM3\ARM_GCC_541\Debug\DeliveryRobot.elf --flash_row_size 256 --flash_size 262144 --flash_offset 0x00000000
 No ELF section .cychecksum found, creating one
 Application checksum calculated and stored in ELF section .cychecksum
 Checksum calculated and stored in ELF section .cymeta
-cyelftool.exe -S "C:\Users\cyu13\Desktop\ECE4191 GitHub\ECE4191\DeliveryRobot.cydsn\CortexM3\ARM_GCC_541\Debug\DeliveryRobot.elf"
-Flash used: 28596 of 262144 bytes (10.9%).
-SRAM used: 61029 of 65536 bytes (93.1%). Stack: 6000 bytes. Heap: 50000 bytes.
---------------- Rebuild Succeeded: 10/03/2023 20:51:46 ---------------
+cyelftool.exe -S C:\Users\jmspi\OneDrive\Documents\GitHub\ECE4191\DeliveryRobot.cydsn\CortexM3\ARM_GCC_541\Debug\DeliveryRobot.elf
+Flash used: 36268 of 262144 bytes (13.8%).
+SRAM used: 61053 of 65536 bytes (93.2%). Stack: 6000 bytes. Heap: 50000 bytes.
+--------------- Rebuild Succeeded: 10/12/2023 00:02:24 ---------------

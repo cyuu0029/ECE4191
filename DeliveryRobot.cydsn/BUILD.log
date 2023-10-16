@@ -1,4 +1,4 @@
---------------- Build Started: 10/11/2023 11:03:28 Project: DeliveryRobot, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
+--------------- Build Started: 10/16/2023 19:04:39 Project: DeliveryRobot, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
 The code generation step is up to date.
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/main.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -O0 -c main.c -o .\CortexM3\ARM_GCC_541\Debug\main.o
 main.c: In function 'main':
@@ -15,13 +15,13 @@ main.c:207:9: warning: unused variable 'n_goals' [-Wunused-variable]
      int n_goals = 2;    // Number of goals, duh!
          ^
 main.c: In function 'velocity_control':
-main.c:580:9: warning: unused variable 'velocity' [-Wunused-variable]
+main.c:588:9: warning: unused variable 'velocity' [-Wunused-variable]
      int velocity = floor(max_velocity * (1200 - avg_dist) / 400);
          ^
-main.c:579:9: warning: unused variable 'thresh' [-Wunused-variable]
+main.c:587:9: warning: unused variable 'thresh' [-Wunused-variable]
      int thresh = 1;
          ^
-main.c:581:1: warning: control reaches end of non-void function [-Wreturn-type]
+main.c:589:1: warning: control reaches end of non-void function [-Wreturn-type]
  }
  ^
 arm-none-eabi-ar.exe -rs .\CortexM3\ARM_GCC_541\Debug\DeliveryRobot.a .\CortexM3\ARM_GCC_541\Debug\PWM_Trigger.o .\CortexM3\ARM_GCC_541\Debug\PWM_Trigger_PM.o .\CortexM3\ARM_GCC_541\Debug\CLOCK_echo.o .\CortexM3\ARM_GCC_541\Debug\Timer_Echo.o .\CortexM3\ARM_GCC_541\Debug\Timer_Echo_PM.o .\CortexM3\ARM_GCC_541\Debug\Clock_Trigger.o .\CortexM3\ARM_GCC_541\Debug\Timer_Echo_Int.o .\CortexM3\ARM_GCC_541\Debug\Pin_UART_Tx.o .\CortexM3\ARM_GCC_541\Debug\CyDmac.o .\CortexM3\ARM_GCC_541\Debug\CyFlash.o .\CortexM3\ARM_GCC_541\Debug\CyLib.o .\CortexM3\ARM_GCC_541\Debug\cyPm.o .\CortexM3\ARM_GCC_541\Debug\CySpc.o .\CortexM3\ARM_GCC_541\Debug\cyutils.o .\CortexM3\ARM_GCC_541\Debug\cy_em_eeprom.o .\CortexM3\ARM_GCC_541\Debug\UART.o .\CortexM3\ARM_GCC_541\Debug\UART_PM.o .\CortexM3\ARM_GCC_541\Debug\UART_INT.o .\CortexM3\ARM_GCC_541\Debug\UART_BOOT.o .\CortexM3\ARM_GCC_541\Debug\UART_IntClock.o .\CortexM3\ARM_GCC_541\Debug\Control_Reg_US.o .\CortexM3\ARM_GCC_541\Debug\Control_Reg_US_PM.o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Echo1.o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Trigger1.o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Trigger2.o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Echo2.o .\CortexM3\ARM_GCC_541\Debug\QuadDec_L.o .\CortexM3\ARM_GCC_541\Debug\QuadDec_L_INT.o .\CortexM3\ARM_GCC_541\Debug\QuadDec_L_PM.o .\CortexM3\ARM_GCC_541\Debug\Pin_DecA_L.o .\CortexM3\ARM_GCC_541\Debug\Pin_DecB_L.o .\CortexM3\ARM_GCC_541\Debug\QuadDec_L_isr.o .\CortexM3\ARM_GCC_541\Debug\QuadDec_L_Cnt16.o .\CortexM3\ARM_GCC_541\Debug\QuadDec_L_Cnt16_PM.o .\CortexM3\ARM_GCC_541\Debug\PWM_Motor_L.o .\CortexM3\ARM_GCC_541\Debug\PWM_Motor_L_PM.o .\CortexM3\ARM_GCC_541\Debug\Pin_PWM1_L.o .\CortexM3\ARM_GCC_541\Debug\Pin_PWM2_L.o .\CortexM3\ARM_GCC_541\Debug\Clock_Motor_Control.o .\CortexM3\ARM_GCC_541\Debug\Clock_Motor_PI_Control.o .\CortexM3\ARM_GCC_541\Debug\Motor_PI_Int.o .\CortexM3\ARM_GCC_541\Debug\QuadDec_R.o .\CortexM3\ARM_GCC_541\Debug\QuadDec_R_INT.o .\CortexM3\ARM_GCC_541\Debug\QuadDec_R_PM.o .\CortexM3\ARM_GCC_541\Debug\Pin_DecA_R.o .\CortexM3\ARM_GCC_541\Debug\Pin_DecB_R.o .\CortexM3\ARM_GCC_541\Debug\PWM_Motor_R.o .\CortexM3\ARM_GCC_541\Debug\PWM_Motor_R_PM.o .\CortexM3\ARM_GCC_541\Debug\Pin_PWM1_R.o .\CortexM3\ARM_GCC_541\Debug\Pin_PWM2_R.o .\CortexM3\ARM_GCC_541\Debug\QuadDec_R_isr.o .\CortexM3\ARM_GCC_541\Debug\QuadDec_R_Cnt16.o .\CortexM3\ARM_GCC_541\Debug\QuadDec_R_Cnt16_PM.o .\CortexM3\ARM_GCC_541\Debug\Pose_Update_Int.o .\CortexM3\ARM_GCC_541\Debug\Timer_Avoidance.o .\CortexM3\ARM_GCC_541\Debug\Timer_Avoidance_PM.o .\CortexM3\ARM_GCC_541\Debug\Clock_Seconds.o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Echo0.o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Trigger0.o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Echo3.o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Echo4.o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Trigger3.o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Trigger4.o .\CortexM3\ARM_GCC_541\Debug\PWM_1.o .\CortexM3\ARM_GCC_541\Debug\PWM_1_PM.o .\CortexM3\ARM_GCC_541\Debug\PWM_ServoDir.o .\CortexM3\ARM_GCC_541\Debug\PWM_ServoDir_PM.o .\CortexM3\ARM_GCC_541\Debug\Control_Reg_ServoTrigger.o .\CortexM3\ARM_GCC_541\Debug\Control_Reg_ServoTrigger_PM.o .\CortexM3\ARM_GCC_541\Debug\Control_Reg_ServoSelect.o .\CortexM3\ARM_GCC_541\Debug\Control_Reg_ServoSelect_PM.o .\CortexM3\ARM_GCC_541\Debug\Clock_4.o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Trigger5.o .\CortexM3\ARM_GCC_541\Debug\Pin_US_Echo5.o .\CortexM3\ARM_GCC_541\Debug\Clock_5.o .\CortexM3\ARM_GCC_541\Debug\Pin_Button.o .\CortexM3\ARM_GCC_541\Debug\Button_Int.o .\CortexM3\ARM_GCC_541\Debug\CyBootAsmGnu.o
@@ -32,6 +32,6 @@ No ELF section .cychecksum found, creating one
 Application checksum calculated and stored in ELF section .cychecksum
 Checksum calculated and stored in ELF section .cymeta
 cyelftool.exe -S C:\Users\jmspi\OneDrive\Documents\GitHub\ECE4191\DeliveryRobot.cydsn\CortexM3\ARM_GCC_541\Debug\DeliveryRobot.elf
-Flash used: 36268 of 262144 bytes (13.8%).
+Flash used: 36300 of 262144 bytes (13.8%).
 SRAM used: 61053 of 65536 bytes (93.2%). Stack: 6000 bytes. Heap: 50000 bytes.
---------------- Build Succeeded: 10/11/2023 11:03:29 ---------------
+--------------- Build Succeeded: 10/16/2023 19:04:40 ---------------

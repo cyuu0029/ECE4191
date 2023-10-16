@@ -221,7 +221,7 @@ int main(void)
     
     // KP Controls
     float theta_correction = 0;
-    float wall_Kp = 0.005;
+    float wall_Kp = 0.0065;
    
     // Thresholds
     float front_dist_th = 50;
@@ -292,7 +292,7 @@ int main(void)
                             // Update Flags
                             wall_following_flag = 0;
                             if( !pbutton ) {
-                                front_dist_th = 480;
+                                front_dist_th = 495;
                             } else {
                                 front_dist_th = 430;
                             }
@@ -407,7 +407,7 @@ int main(void)
                             front_dist_th = 100;
                             dist_ref = 70;
                             wall_following_flag = 0;
-                            arena_def = 75;
+                            arena_def = 70;
                         
                             // Spoof
                             sensors.distance[1] = dist_ref;
@@ -437,7 +437,15 @@ int main(void)
                             
                             
                             // Pause to load packages
-                            CyDelay(3000);
+                            int delay_flag = 1;
+                            while( delay_flag ) {
+                                if( sensors.distance[3] < 100 ) {
+                                    CyDelay(500);
+                                    if(sensors.distance[3] < 100) {
+                                        delay_flag = 0;
+                                    }
+                                }
+                            }
                             
                             robot.desired_v = velocity;
                             

@@ -74,7 +74,7 @@ CY_ISR( Timer_Int_Handler ) {
     }
 
     Control_Reg_US_Write(mux_select);
-    PWM_Trigger_WriteCounter(1500);    
+    PWM_Trigger_WriteCounter(1000);    
 }
 
 /* Interrupt for Robot pose and desired drive update. */
@@ -180,8 +180,8 @@ int main(void)
     motor_create(&right_motor, wheel_r_scale, motor_Ki, motor_Kp);
     
     // Define and initialise robot 
-    long double robot_axle_width = 0.936*22.5;  // TODO: get accurate measurement
-    long double robot_Ki = 3e-7;    // TODO: Determine good value
+    long double robot_axle_width = 0.916*22.5;  // TODO: get accurate measurement
+    long double robot_Ki = 0*3e-7;    // TODO: Determine good value
     long double robot_Kp = 1.75;     // was previously 0.75 before changing for MS1
     long double min_distance = 5;   // Minimum distance between robot position and goal
 
@@ -204,11 +204,8 @@ int main(void)
 
     /*========================= M1: Goal Definition =========================*/
     // Goals should be defined where the bin is
-    int n_goals = 2;    // Number of goals, duh!
-    int goals[4] = {0, 90, 90, 90};    // Coordinates of goals [x1, y1, x2, y2, ..., xn, yn]
     robot.goal_x = 0;   // Update robot x goal
     robot.goal_y = 0;   // Update robot y goal
-    int goals_reached = 0;  // Counter for number of goas reached, duh!
     /*=======================================================================*/    
 
     
@@ -221,12 +218,11 @@ int main(void)
     
     // KP Controls
     float theta_correction = 0;
-    float wall_Kp = 0.0065;
+    float wall_Kp = 0.01;
    
     // Thresholds
-    float front_dist_th = 50;
-    float dist_ref = 40;
-    int front_count = 0;
+    float front_dist_th = 40;
+    float dist_ref = 30;
     
     // Flags
     int return_flag = 0;
@@ -246,15 +242,20 @@ int main(void)
     
     for(;;) {  
         // Wall follow only after sensor is updated
-        // Read 3 times
         if ( wall_following_flag ) {
-            if (sensors.distance[0] < front_dist_th && sensors.distance[5] < front_dist_th) {                  
+
+            // Obstacle Detection Code based on current position, measured distances, and defined arena
+            if (sensors.distance[0] < front_dist_th && sensors.distance[5] < front_dist_th) {   
+
                 // Check current distance from position flag
                 robot.goal_min_dist = calculate_distance_from_goal(robot.goal_x, robot.goal_y, robot.x, robot.y);
+
+                // Take smallest sensor measurement and convert to cm for arena size comparison
                 float min_sensor = (sensors.distance[0] < sensors.distance[5]) ? sensors.distance[0] : sensors.distance[5];
                 min_sensor /= 10;
+
                 if ((robot.goal_min_dist + min_sensor) < arena_def) {
-                    // Stop for 30 seconds
+                    // Stop if obstacle is detected
                     robot.desired_v = 0;
                     CyDelay(100);
                     
@@ -265,8 +266,11 @@ int main(void)
                     obstacle_flag = 1;
                     robot.desired_v = velocity;
                 }
+
+                // Stay stationary if obstacle detected
                 if( obstacle_flag ) {
                     obstacle_flag = 0;
+
                 } else {
                     switch (ref_direction_deg) {
                         // Travelling towards box A
@@ -274,36 +278,31 @@ int main(void)
                             // Stop moving
                             robot.desired_v = 0;
 
-                            // TODO: Unload Package Code
+                            // Unload Package
                             move_servo(9); // move servos 3 and 1 simultaneously
-                            //
                             
                             // Turn towards box B
                             ref_direction = calculate_angle_modulo(robot.theta - M_PI/2);
                             Turn_Delay(ref_direction);
                             
-                            // Set position flag and track distance
+                            // Set position
                             robot.goal_x = robot.x;
                             robot.goal_y = robot.y;
                             
+                            // Update angles for switch statement
                             ref_direction_deg = angle_clamp(ref_direction_deg - 90);
                             robot.desired_v = velocity;
                             
                             // Update Flags
                             wall_following_flag = 0;
+
+                            // Change B delivery distance based on A-B delivery or all bins
                             if( !pbutton ) {
-                                front_dist_th = 495;
+                                front_dist_th = 475;
                             } else {
                                 front_dist_th = 430;
                             }
-                            
-                            // Spoof
-                            sensors.distance[1] = dist_ref;
-                            sensors.distance[2] = dist_ref;
-                            sensors.distance[3] = dist_ref;
-                            sensors.distance[4] = dist_ref;
-                            sensors.distance[0] = 10000;
-                            sensors.distance[5] = 10000;
+                            dist_ref = 35;
                             
                             break;
                             
@@ -319,8 +318,9 @@ int main(void)
                                 ref_direction = calculate_angle_modulo(robot.theta - M_PI/2);
                                 Turn_Delay(ref_direction);
 
-                                // TODO: Unload Package Code
+                                // Unload Package
                                 if( !pbutton ) {
+                                    // Return to loading zone for A-B delivery
                                     move_servo(0b0110);
                                     ref_direction = calculate_angle_modulo(robot.theta - M_PI/2);
                                     ref_direction_deg = angle_clamp(ref_direction_deg - 180);
@@ -331,11 +331,12 @@ int main(void)
                                     robot.goal_y = robot.y;
                                     arena_def = 30;
                                     
+                                    // Update flags
                                     return_flag = 1;
-                                    wall_following_flag = 0;
-                                    robot.desired_v = velocity;
-                                    dist_ref = 150;
-                                    front_dist_th = 150;
+                                    
+                                    // Update thresholds
+                                    dist_ref = 100;
+                                    front_dist_th = 100;
                                     
                                 } else {
                                     move_servo(2);  
@@ -343,10 +344,17 @@ int main(void)
                                     ref_direction = calculate_angle_modulo(robot.theta + M_PI/2);
                                     Turn_Delay(ref_direction);
                                     
-                                    front_dist_th = 70;
+                                    // Update flags
                                     B_flag = 1;
+                                    
+                                    // Update thresholds
+                                    front_dist_th = 70;
                                     robot.desired_v = velocity;
                                 }
+                                
+                                // Start the robot and wall following flag
+                                robot.desired_v = velocity;
+                                wall_following_flag = 0;
                                 
                             } else {
                                 // Stop moving
@@ -356,17 +364,18 @@ int main(void)
                                 ref_direction = calculate_angle_modulo(robot.theta - M_PI/2);
                                 Turn_Delay(ref_direction);
 
-                                // TODO: Unload Package Code
+                                // Unload Package C
                                 move_servo(4);
-                                //
                                 
                                 // Go back to A
                                 ref_direction = calculate_angle_modulo(robot.theta - M_PI/2);
                                 Turn_Delay(ref_direction);
+                                
                                 // Set position flag and track distance
                                 robot.goal_x = robot.x;
                                 robot.goal_y = robot.y;
                                 
+                                // Turn back towards loading zone
                                 CyDelay(100);
                                 ref_direction_deg = angle_clamp(ref_direction_deg - 180);
                                 robot.desired_v = velocity;
@@ -376,46 +385,37 @@ int main(void)
                                 return_flag = 1;
                                 B_flag = 0;
                                 
-                                dist_ref = 150;
-                                front_dist_th = 150;
+                                // Update thresholds
+                                dist_ref = 100;
+                                front_dist_th = 100;
                             }
                                 
-                            
-                            // Spoof
-                            sensors.distance[1] = dist_ref;
-                            sensors.distance[2] = dist_ref;
-                            sensors.distance[3] = dist_ref;
-                            sensors.distance[4] = dist_ref;
-                            sensors.distance[0] = 10000;
-                            sensors.distance[5] = 10000;
                             break;
                         
-                        // Travelling Back to A *Can include a flag for safety measures
+                        // Travelling Back to A
                         case (180):
 
                             // Stop moving and turn towards loading bay
                             robot.desired_v = 0;
-
-                            // Go towards beginning
                             ref_direction = calculate_angle_modulo(robot.theta + M_PI/2);
                             Turn_Delay(ref_direction);
+                            
                             // Set position flag and track distance
                             robot.goal_x = robot.x;
                             robot.goal_y = robot.y;
                             ref_direction_deg = angle_clamp(ref_direction_deg + 90);
-                            robot.desired_v = velocity;
+                            
+                            // Update flags
+                            wall_following_flag = 0;
+                            
+                            // Update thresholds
                             front_dist_th = 100;
                             dist_ref = 70;
-                            wall_following_flag = 0;
                             arena_def = 70;
-                        
-                            // Spoof
-                            sensors.distance[1] = dist_ref;
-                            sensors.distance[2] = dist_ref;
-                            sensors.distance[3] = dist_ref;
-                            sensors.distance[4] = dist_ref;
-                            sensors.distance[0] = 10000;
-                            sensors.distance[5] = 10000;
+                            
+                            // Start moving
+                            robot.desired_v = velocity;
+
                             break;
 
                         // Travelling Back to Start
@@ -424,14 +424,14 @@ int main(void)
                             // Stop moving and point back to A
                             robot.desired_v = 0;
 
-                            // Update Position
+                            // Adjust KP for smooth turning
                             robot.Kp = 0.9;
                             ref_direction = calculate_angle_modulo(robot.theta - M_PI);
                             Turn_Delay(ref_direction);
                             ref_direction_deg = angle_clamp(ref_direction_deg - 180);
                             robot.Kp = 1.75;
                             
-                            // Set position flag and track distance
+                            // Set position flag
                             robot.goal_x = robot.x;
                             robot.goal_y = robot.y;
                             
@@ -451,18 +451,12 @@ int main(void)
                             
                             // Update Flags
                             wall_following_flag = 0;
-                            dist_ref = 40;
-                            front_dist_th = 50;
                             return_flag = 0;
+                            
+                            // Update thresholds back to starting values
+                            front_dist_th = 40;
+                            dist_ref = 30;
                             arena_def = 80;
-                                
-                            // Spoof
-                            sensors.distance[1] = dist_ref;
-                            sensors.distance[2] = dist_ref;
-                            sensors.distance[3] = dist_ref;
-                            sensors.distance[4] = dist_ref;
-                            sensors.distance[0] = 10000;
-                            sensors.distance[5] = 10000;
                             
                             break;
 
@@ -470,20 +464,16 @@ int main(void)
                             
                             // Wall follow if broken
                             robot.desired_v = 0;
-                            Turn_Delay(M_PI/2);
-                            ref_direction = calculate_angle_modulo(ref_direction - M_PI/2);
-                            
-                            robot.desired_v = velocity;
-                            wall_following_flag = 0;
-
-                            // Spoof sensor to avoid sensor updates during turn
-                            sensors.distance[1] = dist_ref;
-                            sensors.distance[2] = dist_ref;
-                            sensors.distance[3] = dist_ref;
-                            sensors.distance[4] = dist_ref;
-                            sensors.distance[0] = 10000;
-                            sensors.distance[5] = 10000;
+                            robot.desired_theta += M_PI_4;
                     }
+                    
+                    // Spoof
+                    sensors.distance[1] = dist_ref;
+                    sensors.distance[2] = dist_ref;
+                    sensors.distance[3] = dist_ref;
+                    sensors.distance[4] = dist_ref;
+                    sensors.distance[0] = 10000;
+                    sensors.distance[5] = 10000;
                 }
                 
             }
@@ -497,7 +487,7 @@ int main(void)
                     robot.desired_v = terminal_phase ? 10: velocity;
                     error = (sensors.distance[1] < sensors.distance[2]) ? dist_ref - sensors.distance[1] : dist_ref - sensors.distance[2];
                     //error = dist_ref - (sensors.distance[1] + sensors.distance[2] / 2);
-                    if( error > 150 ) {break;}
+
                     theta_correction = wall_Kp * -(error);
                     robot.desired_theta = calculate_angle_modulo(ref_direction + theta_correction);
                     wall_following_flag = 0;
@@ -507,10 +497,9 @@ int main(void)
                 case (1):
                     // Follow right wall
                     robot.desired_v = terminal_phase ? 10: velocity;
-                    
                     error = (sensors.distance[3] < sensors.distance[4]) ? dist_ref - sensors.distance[3] : dist_ref - sensors.distance[4];
                     //error = dist_ref - (sensors.distance[3] + sensors.distance[4] / 2);
-                    if( error > 150 ) { break; }
+
                     theta_correction = wall_Kp * -(error);
                     robot.desired_theta = calculate_angle_modulo(ref_direction - theta_correction);
                     wall_following_flag = 0;
@@ -519,7 +508,7 @@ int main(void)
                     
                 default:
                     robot.desired_v = 0;
-                    robot.desired_theta = 190000;
+                    robot.desired_theta += M_PI_4;
                  
             }
             
@@ -579,13 +568,6 @@ void Turn_Delay(long double angle) {
             diff = M_TWOPI - diff; 
         }
     }; 
-}
-
-int velocity_control(int max_velocity) {
-    // Adjust the velocity the closer we approach the walls
-    int avg_dist = (sensors.distance[0] + sensors.distance[1]) / 2;
-    int thresh = 1;
-    int velocity = floor(max_velocity * (1200 - avg_dist) / 400);
 }
 
 void move_servo(int servo_nums) {

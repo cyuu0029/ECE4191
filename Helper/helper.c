@@ -14,8 +14,8 @@ long double calculate_angle_modulo(long double angle) {
 }
 
 int angle_clamp(int angle) {
+  while (angle < 0) {angle += 360;}
     angle = angle % 360;
-    if (angle < 0) {angle += 360;}
     return angle;
 }
 
